@@ -84,6 +84,6 @@ In addition, various MONAHRQ presentations that may guide you in your understand
 
 
 ## Developers 
-The technical details of the open source project can be found in Wiki section of this repository. 
+The technical details of the open source project can be found in [Wiki](https://github.com/pantheonahrq/MONAHRQ-Full-Code/wiki) section of this repository. 
 
 	
