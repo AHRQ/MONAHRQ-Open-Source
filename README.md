@@ -82,8 +82,6 @@ Host Users and Developers can get informed on how the MONAHRQ application works 
 
 In addition, various MONAHRQ presentations that may guide you in your understanding of MONAHRQ can be found here: https://www.ahrq.gov/professionals/systems/monahrq/resources/index.html#Presentations
 
-## How to Contribute
-You can contribute to MONAHRQ open project by extending the code base for Wings and Flutters and adding them to the repository. The open source code repository can be found here: 
 
 ## Developers 
 The technical details of the open source project can be found in Wiki section of this repository. 
