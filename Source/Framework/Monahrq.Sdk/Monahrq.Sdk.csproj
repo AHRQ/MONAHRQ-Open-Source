@@ -1,0 +1,351 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{75ACE9C7-D049-437B-BBA8-7B8CDDE19A13}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Monahrq.Sdk</RootNamespace>
+    <AssemblyName>Monahrq.Sdk</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'CustomConfiguration|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\CustomConfiguration\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'CustomConfiguration|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\CustomConfiguration\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'CustomConfiguration|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\CustomConfiguration\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Castle.Core, Version=3.2.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Castle.Core.3.2.0\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Windsor">
+      <HintPath>..\..\packages\Castle.Windsor.3.2.0\lib\net45\Castle.Windsor.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentNHibernate, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FluentNHibernate.2.0.3.0\lib\net40\FluentNHibernate.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\..\packages\Iesi.Collections.4.0.1.4000\lib\net40\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="LinqKit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=bc217f8844052a91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\LinqKit.1.0\lib\35\LinqKit.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CommonServiceLocator.1.2\lib\portable-windows8+net40+sl5+windowsphone8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\..\packages\NHibernate.4.0.3.4000\lib\net40\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="PresentationUI, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="PropertyChanged, Version=1.50.3.0, Culture=neutral, PublicKeyToken=ee3ee20bcf148ddd, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\PropertyChanged.Fody.1.50.3\lib\dotnet\PropertyChanged.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ReachFramework">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.Composition.Registration" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Printing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationProvider">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="UIAutomationTypes">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\MonahrqAssemblyInfo.cs">
+      <Link>Properties\MonahrqAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Common\FileImport\FileImportViewModel.cs" />
+    <Compile Include="Common\FileImport\IFileImportView.cs" />
+    <Compile Include="Common\WaitCursor.cs" />
+    <Compile Include="Environment\HostingEnvironment.cs" />
+    <Compile Include="Events\Empty.cs" />
+    <Compile Include="Events\EntityImportedEvent.cs" />
+    <Compile Include="Events\EventArgsBase.cs" />
+    <Compile Include="Events\GenericNotificationEvent.cs" />
+    <Compile Include="Events\ISimpleImportCompleteHandler.cs" />
+    <Compile Include="Events\PleaseStandByEvent.cs" />
+    <Compile Include="Events\ProgressNotificationEvent.cs" />
+    <Compile Include="Events\RegionEvents.cs" />
+    <Compile Include="Events\SetContextualHelpContext.cs" />
+    <Compile Include="Events\SimpleImportCompletedEvent.cs" />
+    <Compile Include="Generators\BaseDataReportGenerator.cs" />
+    <Compile Include="Generators\CostQualityCalculator.cs" />
+    <Compile Include="Generators\CostCalculator.cs" />
+    <Compile Include="Generators\CMSZoneReportGenerator.cs" />
+    <Compile Include="Generators\HospitalProfileReportGenerator.cs" />
+    <Compile Include="Generators\MeasureDescriptionJs.cs" />
+    <Compile Include="Generators\MeasureTopicJs.cs" />
+    <Compile Include="Generators\PublishException.cs" />
+    <Compile Include="Generators\PublishWebsiteResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PublishWebsiteResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Generators\ReportGeneratorAttribute.cs" />
+    <Compile Include="Generators\BaseReportGenerator.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Model\BaseNotify.cs" />
+    <Compile Include="Generators\IReportGenerator.cs" />
+    <Compile Include="Behaviors\AutoPopulateExportedViewsBehavior.cs" />
+    <Compile Include="Model\DeferPropertyChangedEvents.cs" />
+    <Compile Include="Model\IBaseNotifyInterceptor.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Services\Contracts\DatasetWing.cs" />
+    <Compile Include="Services\Contracts\DatasetWingExportAttribute.cs" />
+    <Compile Include="Services\Contracts\IDatasetWing.cs" />
+    <Compile Include="Services\Contracts\IDomainService.cs" />
+    <Compile Include="Services\CatalogPartsService.cs" />
+    <Compile Include="Services\DataProviderService.cs" />
+    <Compile Include="Services\DatasetService.cs" />
+    <Compile Include="Services\DomainWorkflowService.cs" />
+    <Compile Include="Services\Generators\WebsiteGenerator.cs" />
+    <Compile Include="Services\ICatalogPartsService.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\Import\CustomRegionFileImporter.cs" />
+    <Compile Include="Services\Import\CustomRegionPopulationFileImporter.cs" />
+    <Compile Include="Services\Import\EntityFileImporter.cs" />
+    <Compile Include="Services\Import\Exceptions\ImportHospitalRegionNotFoundException.cs" />
+    <Compile Include="Services\Import\Exceptions\InvalidDataLineException.cs" />
+    <Compile Include="Services\Import\Exceptions\EntityFileImportException.cs" />
+    <Compile Include="Services\Import\Exceptions\StateLookupFailed.cs" />
+    <Compile Include="Services\Import\Exceptions\ExistingEntityLookupException.cs" />
+    <Compile Include="Services\Import\HospitalImporter.cs" />
+    <Compile Include="Services\Import\IEntityFileImporter.cs" />
+    <Compile Include="Services\Import\PhysicianFileImporter.cs" />
+    <Compile Include="Services\Import\PhysiciansImporter.cs" />
+    <Compile Include="Services\Tasks\MonahrqTaskScheduler.cs" />
+    <Compile Include="StateMachine\InvalidStateMachineException.cs" />
+    <Compile Include="StateMachine\InvalidTriggerException.cs" />
+    <Compile Include="StateMachine\IWorkflow.cs" />
+    <Compile Include="StateMachine\StateMachine.cs" />
+    <Compile Include="StateMachine\StateMachineExample.cs" />
+    <Compile Include="StateMachine\StateAction.cs" />
+    <Compile Include="StateMachine\StateStepActionBackgroundWorker.cs" />
+    <Compile Include="StateMachine\StateEvent .cs" />
+    <Compile Include="Validation\CollectionNotEmptyValidator.cs" />
+    <Compile Include="Validation\DirectoryValidator.cs" />
+    <Compile Include="Validation\CsvFileValidator.cs" />
+    <Compile Include="Validation\IsFileOpenValidator.cs" />
+    <Compile Include="Validation\IsNotNullValidator.cs" />
+    <Compile Include="Validation\RangeToCurrentYearAttribute.cs" />
+    <Compile Include="Services\Tasks\AbstractTaskRunner.cs" />
+    <Compile Include="Services\Tasks\ITaskRunner.cs" />
+    <Compile Include="Services\Tasks\ParallelTaskRunner.cs" />
+    <Compile Include="Services\Tasks\SequentialTaskRunner.cs" />
+    <Compile Include="Validation\YearValidator.cs" />
+    <Compile Include="ViewModels\IPaging.cs" />
+    <Compile Include="ViewModels\TabOwnerUserControl.cs" />
+    <Compile Include="ViewModels\TabViewModel.cs" />
+    <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\CustomType.cs" />
+    <Compile Include="ViewModels\CustomTypeHelper.cs" />
+    <Compile Include="ViewModels\DetailsViewModel.cs" />
+    <Compile Include="ViewModels\ExportAsViewModelAttribute.cs" />
+    <Compile Include="ViewModels\ITabItem.cs" />
+    <Compile Include="ViewModels\ITabViewModel.cs" />
+    <Compile Include="ViewModels\IViewModel.cs" />
+    <Compile Include="ViewModels\IViewModelRouter.cs" />
+    <Compile Include="ViewModels\ListTabViewModel.cs" />
+    <Compile Include="ViewModels\ListViewModel.cs" />
+    <Compile Include="ViewModels\UniqueAttribute.cs" />
+    <Compile Include="ViewModels\ViewConverter.cs" />
+    <Compile Include="ViewModels\ViewModelRoute.cs" />
+    <Compile Include="Workflow.Contracts\IWorkdflowActionItem.cs" />
+    <Compile Include="Workflow.Contracts\IWorkflow.cs" />
+    <Compile Include="Workflow\Workflow.cs" />
+    <Compile Include="Workflow\WorkflowEventArgs.cs" />
+    <Compile Include="Workflow\WorkflowStatusEnum.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\ThirdParty\Microsoft\Prism.Interactivity\Prism.Interactivity.csproj">
+      <Project>{de856812-a32c-4866-801e-af396d711942}</Project>
+      <Name>Prism.Interactivity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ThirdParty\Microsoft\Prism.MefExtensions\Prism.MefExtensions.csproj">
+      <Project>{6ed61550-8e7a-42c6-9b30-380c6f97ed55}</Project>
+      <Name>Prism.MefExtensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ThirdParty\Microsoft\Prism\Prism.csproj">
+      <Project>{77138947-1d13-4e22-aee0-5d0dd046ca34}</Project>
+      <Name>Prism</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MONAHRQ.Infrastructure\Monahrq.Infrastructure.csproj">
+      <Project>{36f8dedc-eecc-48d2-b900-7c02c671ba1b}</Project>
+      <Name>Monahrq.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\PhysiciansImport\ImportUpdatePhysiciansMedPractices.sql" />
+    <EmbeddedResource Include="Resources\PhysiciansImport\ImportUpdateMedicalPractices.sql" />
+    <EmbeddedResource Include="Resources\PhysiciansImport\ImportUpdatePhysicians.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Types\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generators\PublishWebsiteResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PublishWebsiteResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="FodyWeavers.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\packages\PropertyChanged.Fody.1.50.3\build\dotnet\PropertyChanged.Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\PropertyChanged.Fody.1.50.3\build\dotnet\PropertyChanged.Fody.targets'))" />
+    <Error Condition="!Exists('..\..\packages\Fody.1.29.3\build\dotnet\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Fody.1.29.3\build\dotnet\Fody.targets'))" />
+    <!--<Error Condition="!Exists('..\..\packages\Fody.1.29.2\build\dotnet\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Fody.1.29.2\build\dotnet\Fody.targets'))" />-->
+  </Target>
+  <Import Project="..\..\packages\PropertyChanged.Fody.1.50.3\build\dotnet\PropertyChanged.Fody.targets" Condition="Exists('..\..\packages\PropertyChanged.Fody.1.50.3\build\dotnet\PropertyChanged.Fody.targets')" />
+  <Import Project="..\..\packages\Fody.1.29.3\build\dotnet\Fody.targets" Condition="Exists('..\..\packages\Fody.1.29.3\build\dotnet\Fody.targets')" />
+  <!--<Import Project="..\..\packages\Fody.1.29.2\build\dotnet\Fody.targets" Condition="Exists('..\..\packages\Fody.1.29.2\build\dotnet\Fody.targets')" />-->
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

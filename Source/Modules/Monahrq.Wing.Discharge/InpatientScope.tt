@@ -1,0 +1,74 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Data" #>
+<#@ import namespace="System.Data.SqlClient" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+
+
+namespace Monahrq.Wing.InpatientData
+{
+	using Monahrq.Sdk.Attributes.Wings;
+
+<# 
+var sqlScopes = "SELECT distinct n.[target_column], REPLACE(n.[target_column],' ','') "
++ " FROM  [dbo].[NewValues] n";
+
+var sqlValues = "SELECT n.[target_column] "
+        + " ,case n.[id] when 1099 then 99 else n.[id] end as id"
+        + " ,n.[value]"
+        + " ,n.[description]"
+		+ " FROM [dbo].[NewValues] n"       
+		+ " WHERE n.target_column  = @target";
+
+var builder = new SqlConnectionStringBuilder();
+builder.InitialCatalog = "MONAHRQ_41";
+builder.DataSource = @"castor";
+builder.IntegratedSecurity = true;
+using (var conn = new SqlConnection(builder.ConnectionString))
+{
+    conn.Open();
+    using (var cmdScopes = conn.CreateCommand())
+    {
+        cmdScopes.CommandText = sqlScopes;
+        using (var rdrScopes = cmdScopes.ExecuteReader())
+        {
+            while (rdrScopes.Read())
+            {
+#>
+	[WingScope("<#=rdrScopes.GetString(0)#>")]
+	public enum <#= rdrScopes.GetString(1) #>
+	{
+<# 
+                using (var valsconn = new SqlConnection(builder.ConnectionString))
+                {
+                    valsconn.Open();
+				
+					using (var cmdValues = valsconn.CreateCommand())
+                    {
+                        cmdValues.CommandText = sqlValues;
+                        cmdValues.Parameters.Add(new SqlParameter("@target", rdrScopes.GetString(0)));
+                        using (var rdrValues = cmdValues.ExecuteReader())
+                        {
+							while (rdrValues.Read())
+							{
+#>
+		[WingScopeValue("<#=rdrValues.GetString(2)#>",<#=rdrValues.GetValue(1)#>,"<#=rdrValues.GetString(3)#>")]
+		<#= rdrValues.GetString(2) #> = <#= rdrValues.GetValue(1).ToString() #>,
+<#}
+                        }
+                    }
+                }
+	
+#>
+	}
+
+<#	
+			}
+		}
+    }
+}
+#>
+}

@@ -1,0 +1,754 @@
+MSDRG,MDC,Description,FirstYear,LastYear
+1,77,Heart transplant or implant of heart assist system w MCC,0,9999
+2,77,Heart transplant or implant of heart assist system w/o MCC,0,9999
+3,77,"ECMO or trach w MV 96+ hrs or PDX exc face, mouth & neck w maj O.R.",0,9999
+4,77,"Trach w MV 96+ hrs or PDX exc face, mouth & neck w/o maj O.R.",0,9999
+5,77,Liver transplant w MCC or intestinal transplant,0,9999
+6,77,Liver transplant w/o MCC,0,9999
+7,77,Lung transplant,0,9999
+8,77,Simultaneous pancreas/kidney transplant,0,9999
+9,77,Bone marrow transplant,0,9999
+10,77,Pancreas transplant,0,9999
+11,77,"Tracheostomy for face,mouth & neck diagnoses w MCC",0,9999
+12,77,"Tracheostomy for face,mouth & neck diagnoses w CC",0,9999
+13,77,"Tracheostomy for face,mouth & neck diagnoses w/o CC/MCC",0,9999
+14,77,Allogeneic bone marrow transplant,0,9999
+15,77,Autologous bone marrow transplant,0,9999
+16,77,Autologous bone marrow transplant w CC/MCC,0,9999
+17,77,Autologous bone marrow transplant w/o CC/MCC,0,9999
+20,1,Intracranial vascular procedures w PDX hemorrhage w MCC,0,9999
+21,1,Intracranial vascular procedures w PDX hemorrhage w CC,0,9999
+22,1,Intracranial vascular procedures w PDX hemorrhage w/o CC/MCC,0,9999
+23,1,Cranio w major dev impl/acute complex CNS PDX w MCC or chemo implant,0,9999
+24,1,Cranio w major dev impl/acute complex CNS PDX w/o MCC,0,9999
+25,1,Craniotomy & endovascular intracranial procedures w MCC,0,9999
+26,1,Craniotomy & endovascular intracranial procedures w CC,0,9999
+27,1,Craniotomy & endovascular intracranial procedures w/o CC/MCC,0,9999
+28,1,Spinal procedures w MCC,0,9999
+29,1,Spinal procedures w CC or spinal neurostimulators,0,9999
+30,1,Spinal procedures w/o CC/MCC,0,9999
+31,1,Ventricular shunt procedures w MCC,0,9999
+32,1,Ventricular shunt procedures w CC,0,9999
+33,1,Ventricular shunt procedures w/o CC/MCC,0,9999
+34,1,Carotid artery stent procedure w MCC,0,9999
+35,1,Carotid artery stent procedure w CC,0,9999
+36,1,Carotid artery stent procedure w/o CC/MCC,0,9999
+37,1,Extracranial procedures w MCC,0,9999
+38,1,Extracranial procedures w CC,0,9999
+39,1,Extracranial procedures w/o CC/MCC,0,9999
+40,1,Periph/cranial nerve & other nerv syst proc w MCC,0,9999
+41,1,Periph/cranial nerve & other nerv syst proc w CC or periph neurostim,0,9999
+42,1,Periph/cranial nerve & other nerv syst proc w/o CC/MCC,0,9999
+52,1,Spinal disorders & injuries w CC/MCC,0,9999
+53,1,Spinal disorders & injuries w/o CC/MCC,0,9999
+54,1,Nervous system neoplasms w MCC,0,9999
+55,1,Nervous system neoplasms w/o MCC,0,9999
+56,1,Degenerative nervous system disorders w MCC,0,9999
+57,1,Degenerative nervous system disorders w/o MCC,0,9999
+58,1,Multiple sclerosis & cerebellar ataxia w MCC,0,9999
+59,1,Multiple sclerosis & cerebellar ataxia w CC,0,9999
+60,1,Multiple sclerosis & cerebellar ataxia w/o CC/MCC,0,9999
+61,1,Acute ischemic stroke w use of thrombolytic agent w MCC,0,9999
+62,1,Acute ischemic stroke w use of thrombolytic agent w CC,0,9999
+63,1,Acute ischemic stroke w use of thrombolytic agent w/o CC/MCC,0,9999
+64,1,Intracranial hemorrhage or cerebral infarction w MCC,0,9999
+65,1,Intracranial hemorrhage or cerebral infarction w CC,0,9999
+66,1,Intracranial hemorrhage or cerebral infarction w/o CC/MCC,0,9999
+67,1,Nonspecific cva & precerebral occlusion w/o infarct w MCC,0,9999
+68,1,Nonspecific cva & precerebral occlusion w/o infarct w/o MCC,0,9999
+69,1,Transient ischemia,0,9999
+70,1,Nonspecific cerebrovascular disorders w MCC,0,9999
+71,1,Nonspecific cerebrovascular disorders w CC,0,9999
+72,1,Nonspecific cerebrovascular disorders w/o CC/MCC,0,9999
+73,1,Cranial & peripheral nerve disorders w MCC,0,9999
+74,1,Cranial & peripheral nerve disorders w/o MCC,0,9999
+75,1,Viral meningitis w CC/MCC,0,9999
+76,1,Viral meningitis w/o CC/MCC,0,9999
+77,1,Hypertensive encephalopathy w MCC,0,9999
+78,1,Hypertensive encephalopathy w CC,0,9999
+79,1,Hypertensive encephalopathy w/o CC/MCC,0,9999
+80,1,Nontraumatic stupor & coma w MCC,0,9999
+81,1,Nontraumatic stupor & coma w/o MCC,0,9999
+82,1,"Traumatic stupor & coma, coma >1 hr w MCC",0,9999
+83,1,"Traumatic stupor & coma, coma >1 hr w CC",0,9999
+84,1,"Traumatic stupor & coma, coma >1 hr w/o CC/MCC",0,9999
+85,1,"Traumatic stupor & coma, coma <1 hr w MCC",0,9999
+86,1,"Traumatic stupor & coma, coma <1 hr w CC",0,9999
+87,1,"Traumatic stupor & coma, coma <1 hr w/o CC/MCC",0,9999
+88,1,Concussion w MCC,0,9999
+89,1,Concussion w CC,0,9999
+90,1,Concussion w/o CC/MCC,0,9999
+91,1,Other disorders of nervous system w MCC,0,9999
+92,1,Other disorders of nervous system w CC,0,9999
+93,1,Other disorders of nervous system w/o CC/MCC,0,9999
+94,1,Bacterial & tuberculous infections of nervous system w MCC,0,9999
+95,1,Bacterial & tuberculous infections of nervous system w CC,0,9999
+96,1,Bacterial & tuberculous infections of nervous system w/o CC/MCC,0,9999
+97,1,Non-bacterial infect of nervous sys exc viral meningitis w MCC,0,9999
+98,1,Non-bacterial infect of nervous sys exc viral meningitis w CC,0,9999
+99,1,Non-bacterial infect of nervous sys exc viral meningitis w/o CC/MCC,0,9999
+100,1,Seizures w MCC,0,9999
+101,1,Seizures w/o MCC,0,9999
+102,1,Headaches w MCC,0,9999
+103,1,Headaches w/o MCC,0,9999
+113,2,Orbital procedures w CC/MCC,0,9999
+114,2,Orbital procedures w/o CC/MCC,0,9999
+115,2,Extraocular procedures except orbit,0,9999
+116,2,Intraocular procedures w CC/MCC,0,9999
+117,2,Intraocular procedures w/o CC/MCC,0,9999
+121,2,Acute major eye infections w CC/MCC,0,9999
+122,2,Acute major eye infections w/o CC/MCC,0,9999
+123,2,Neurological eye disorders,0,9999
+124,2,Other disorders of the eye w MCC,0,9999
+125,2,Other disorders of the eye w/o MCC,0,9999
+129,3,Major head & neck procedures w CC/MCC or major device,0,9999
+130,3,Major head & neck procedures w/o CC/MCC,0,9999
+131,3,Cranial/facial procedures w CC/MCC,0,9999
+132,3,Cranial/facial procedures w/o CC/MCC,0,9999
+133,3,"Other ear, nose, mouth & throat O.R. procedures w CC/MCC",0,9999
+134,3,"Other ear, nose, mouth & throat O.R. procedures w/o CC/MCC",0,9999
+135,3,Sinus & mastoid procedures w CC/MCC,0,9999
+136,3,Sinus & mastoid procedures w/o CC/MCC,0,9999
+137,3,Mouth procedures w CC/MCC,0,9999
+138,3,Mouth procedures w/o CC/MCC,0,9999
+139,3,Salivary gland procedures,0,9999
+146,3,"Ear, nose, mouth & throat malignancy w MCC",0,9999
+147,3,"Ear, nose, mouth & throat malignancy w CC",0,9999
+148,3,"Ear, nose, mouth & throat malignancy w/o CC/MCC",0,9999
+149,3,Dysequilibrium,0,9999
+150,3,Epistaxis w MCC,0,9999
+151,3,Epistaxis w/o MCC,0,9999
+152,3,Otitis media & URI w MCC,0,9999
+153,3,Otitis media & URI w/o MCC,0,9999
+154,3,"Other ear, nose, mouth & throat diagnoses w MCC",0,9999
+155,3,"Other ear, nose, mouth & throat diagnoses w CC",0,9999
+156,3,"Other ear, nose, mouth & throat diagnoses w/o CC/MCC",0,9999
+157,3,Dental & Oral Diseases w MCC,0,9999
+158,3,Dental & Oral Diseases w CC,0,9999
+159,3,Dental & Oral Diseases w/o CC/MCC,0,9999
+163,4,Major chest procedures w MCC,0,9999
+164,4,Major chest procedures w CC,0,9999
+165,4,Major chest procedures w/o CC/MCC,0,9999
+166,4,Other resp system O.R. procedures w MCC,0,9999
+167,4,Other resp system O.R. procedures w CC,0,9999
+168,4,Other resp system O.R. procedures w/o CC/MCC,0,9999
+175,4,Pulmonary embolism w MCC,0,9999
+176,4,Pulmonary embolism w/o MCC,0,9999
+177,4,Respiratory infections & inflammations w MCC,0,9999
+178,4,Respiratory infections & inflammations w CC,0,9999
+179,4,Respiratory infections & inflammations w/o CC/MCC,0,9999
+180,4,Respiratory neoplasms w MCC,0,9999
+181,4,Respiratory neoplasms w CC,0,9999
+182,4,Respiratory neoplasms w/o CC/MCC,0,9999
+183,4,Major chest trauma w MCC,0,9999
+184,4,Major chest trauma w CC,0,9999
+185,4,Major chest trauma w/o CC/MCC,0,9999
+186,4,Pleural effusion w MCC,0,9999
+187,4,Pleural effusion w CC,0,9999
+188,4,Pleural effusion w/o CC/MCC,0,9999
+189,4,Pulmonary edema & respiratory failure,0,9999
+190,4,Chronic obstructive pulmonary disease w MCC,0,9999
+191,4,Chronic obstructive pulmonary disease w CC,0,9999
+192,4,Chronic obstructive pulmonary disease w/o CC/MCC,0,9999
+193,4,Simple pneumonia & pleurisy w MCC,0,9999
+194,4,Simple pneumonia & pleurisy w CC,0,9999
+195,4,Simple pneumonia & pleurisy w/o CC/MCC,0,9999
+196,4,Interstitial lung disease w MCC,0,9999
+197,4,Interstitial lung disease w CC,0,9999
+198,4,Interstitial lung disease w/o CC/MCC,0,9999
+199,4,Pneumothorax w MCC,0,9999
+200,4,Pneumothorax w CC,0,9999
+201,4,Pneumothorax w/o CC/MCC,0,9999
+202,4,Bronchitis & asthma w CC/MCC,0,9999
+203,4,Bronchitis & asthma w/o CC/MCC,0,9999
+204,4,Respiratory signs & symptoms,0,9999
+205,4,Other respiratory system diagnoses w MCC,0,9999
+206,4,Other respiratory system diagnoses w/o MCC,0,9999
+207,4,Respiratory system diagnosis w ventilator support 96+ hours,0,9999
+208,4,Respiratory system diagnosis w ventilator support <96 hours,0,9999
+215,5,Other heart assist system implant,0,9999
+216,5,Cardiac valve & oth maj cardiothoracic proc w card cath w MCC,0,9999
+217,5,Cardiac valve & oth maj cardiothoracic proc w card cath w CC,0,9999
+218,5,Cardiac valve & oth maj cardiothoracic proc w card cath w/o CC/MCC,0,9999
+219,5,Cardiac valve & oth maj cardiothoracic proc w/o card cath w MCC,0,9999
+220,5,Cardiac valve & oth maj cardiothoracic proc w/o card cath w CC,0,9999
+221,5,Cardiac valve & oth maj cardiothoracic proc w/o card cath w/o CC/MCC,0,9999
+222,5,Cardiac defib implant w cardiac cath w AMI/HF/shock w MCC,0,9999
+223,5,Cardiac defib implant w cardiac cath w AMI/HF/shock w/o MCC,0,9999
+224,5,Cardiac defib implant w cardiac cath w/o AMI/HF/shock w MCC,0,9999
+225,5,Cardiac defib implant w cardiac cath w/o AMI/HF/shock w/o MCC,0,9999
+226,5,Cardiac defibrillator implant w/o cardiac cath w MCC,0,9999
+227,5,Cardiac defibrillator implant w/o cardiac cath w/o MCC,0,9999
+228,5,Other cardiothoracic procedures w MCC,0,9999
+229,5,Other cardiothoracic procedures w CC,0,9999
+230,5,Other cardiothoracic procedures w/o CC/MCC,0,9999
+231,5,Coronary bypass w PTCA w MCC,0,9999
+232,5,Coronary bypass w PTCA w/o MCC,0,9999
+233,5,Coronary bypass w cardiac cath w MCC,0,9999
+234,5,Coronary bypass w cardiac cath w/o MCC,0,9999
+235,5,Coronary bypass w/o cardiac cath w MCC,0,9999
+236,5,Coronary bypass w/o cardiac cath w/o MCC,0,9999
+237,5,Major cardiovasc procedures w MCC,0,9999
+238,5,Major cardiovasc procedures w/o MCC,0,9999
+239,5,Amputation for circ sys disorders exc upper limb & toe w MCC,0,9999
+240,5,Amputation for circ sys disorders exc upper limb & toe w CC,0,9999
+241,5,Amputation for circ sys disorders exc upper limb & toe w/o CC/MCC,0,9999
+242,5,Permanent cardiac pacemaker implant w MCC,0,9999
+243,5,Permanent cardiac pacemaker implant w CC,0,9999
+244,5,Permanent cardiac pacemaker implant w/o CC/MCC,0,9999
+245,5,AICD generator procedures,0,9999
+246,5,Perc cardiovasc proc w drug-eluting stent w MCC or 4+ vessels/stents,0,9999
+247,5,Perc cardiovasc proc w drug-eluting stent w/o MCC,0,9999
+248,5,Perc cardiovasc proc w non-drug-eluting stent w MCC or 4+ ves/stents,0,9999
+249,5,Perc cardiovasc proc w non-drug-eluting stent w/o MCC,0,9999
+250,5,Perc cardiovasc proc w/o coronary artery stent w MCC,0,9999
+251,5,Perc cardiovasc proc w/o coronary artery stent w/o MCC,0,9999
+252,5,Other vascular procedures w MCC,0,9999
+253,5,Other vascular procedures w CC,0,9999
+254,5,Other vascular procedures w/o CC/MCC,0,9999
+255,5,Upper limb & toe amputation for circ system disorders w MCC,0,9999
+256,5,Upper limb & toe amputation for circ system disorders w CC,0,9999
+257,5,Upper limb & toe amputation for circ system disorders w/o CC/MCC,0,9999
+258,5,Cardiac pacemaker device replacement w MCC,0,9999
+259,5,Cardiac pacemaker device replacement w/o MCC,0,9999
+260,5,Cardiac pacemaker revision except device replacement w MCC,0,9999
+261,5,Cardiac pacemaker revision except device replacement w CC,0,9999
+262,5,Cardiac pacemaker revision except device replacement w/o CC/MCC,0,9999
+263,5,Vein ligation & stripping,0,9999
+264,5,Other circulatory system O.R. procedures,0,9999
+265,5,AICD lead procedures,0,9999
+280,5,"Acute myocardial infarction, discharged alive w MCC",0,9999
+281,5,"Acute myocardial infarction, discharged alive w CC",0,9999
+282,5,"Acute myocardial infarction, discharged alive w/o CC/MCC",0,9999
+283,5,"Acute myocardial infarction, expired w MCC",0,9999
+284,5,"Acute myocardial infarction, expired w CC",0,9999
+285,5,"Acute myocardial infarction, expired w/o CC/MCC",0,9999
+286,5,"Circulatory disorders except AMI, w card cath w MCC",0,9999
+287,5,"Circulatory disorders except AMI, w card cath w/o MCC",0,9999
+288,5,Acute & subacute endocarditis w MCC,0,9999
+289,5,Acute & subacute endocarditis w CC,0,9999
+290,5,Acute & subacute endocarditis w/o CC/MCC,0,9999
+291,5,Heart failure & shock w MCC,0,9999
+292,5,Heart failure & shock w CC,0,9999
+293,5,Heart failure & shock w/o CC/MCC,0,9999
+294,5,Deep vein thrombophlebitis w CC/MCC,0,9999
+295,5,Deep vein thrombophlebitis w/o CC/MCC,0,9999
+296,5,"Cardiac arrest, unexplained w MCC",0,9999
+297,5,"Cardiac arrest, unexplained w CC",0,9999
+298,5,"Cardiac arrest, unexplained w/o CC/MCC",0,9999
+299,5,Peripheral vascular disorders w MCC,0,9999
+300,5,Peripheral vascular disorders w CC,0,9999
+301,5,Peripheral vascular disorders w/o CC/MCC,0,9999
+302,5,Atherosclerosis w MCC,0,9999
+303,5,Atherosclerosis w/o MCC,0,9999
+304,5,Hypertension w MCC,0,9999
+305,5,Hypertension w/o MCC,0,9999
+306,5,Cardiac congenital & valvular disorders w MCC,0,9999
+307,5,Cardiac congenital & valvular disorders w/o MCC,0,9999
+308,5,Cardiac arrhythmia & conduction disorders w MCC,0,9999
+309,5,Cardiac arrhythmia & conduction disorders w CC,0,9999
+310,5,Cardiac arrhythmia & conduction disorders w/o CC/MCC,0,9999
+311,5,Angina pectoris,0,9999
+312,5,Syncope & collapse,0,9999
+313,5,Chest pain,0,9999
+314,5,Other circulatory system diagnoses w MCC,0,9999
+315,5,Other circulatory system diagnoses w CC,0,9999
+316,5,Other circulatory system diagnoses w/o CC/MCC,0,9999
+326,6,"Stomach, esophageal & duodenal proc w MCC",0,9999
+327,6,"Stomach, esophageal & duodenal proc w CC",0,9999
+328,6,"Stomach, esophageal & duodenal proc w/o CC/MCC",0,9999
+329,6,Major small & large bowel procedures w MCC,0,9999
+330,6,Major small & large bowel procedures w CC,0,9999
+331,6,Major small & large bowel procedures w/o CC/MCC,0,9999
+332,6,Rectal resection w MCC,0,9999
+333,6,Rectal resection w CC,0,9999
+334,6,Rectal resection w/o CC/MCC,0,9999
+335,6,Peritoneal adhesiolysis w MCC,0,9999
+336,6,Peritoneal adhesiolysis w CC,0,9999
+337,6,Peritoneal adhesiolysis w/o CC/MCC,0,9999
+338,6,Appendectomy w complicated principal diag w MCC,0,9999
+339,6,Appendectomy w complicated principal diag w CC,0,9999
+340,6,Appendectomy w complicated principal diag w/o CC/MCC,0,9999
+341,6,Appendectomy w/o complicated principal diag w MCC,0,9999
+342,6,Appendectomy w/o complicated principal diag w CC,0,9999
+343,6,Appendectomy w/o complicated principal diag w/o CC/MCC,0,9999
+344,6,Minor small & large bowel procedures w MCC,0,9999
+345,6,Minor small & large bowel procedures w CC,0,9999
+346,6,Minor small & large bowel procedures w/o CC/MCC,0,9999
+347,6,Anal & stomal procedures w MCC,0,9999
+348,6,Anal & stomal procedures w CC,0,9999
+349,6,Anal & stomal procedures w/o CC/MCC,0,9999
+350,6,Inguinal & femoral hernia procedures w MCC,0,9999
+351,6,Inguinal & femoral hernia procedures w CC,0,9999
+352,6,Inguinal & femoral hernia procedures w/o CC/MCC,0,9999
+353,6,Hernia procedures except inguinal & femoral w MCC,0,9999
+354,6,Hernia procedures except inguinal & femoral w CC,0,9999
+355,6,Hernia procedures except inguinal & femoral w/o CC/MCC,0,9999
+356,6,Other digestive system O.R. procedures w MCC,0,9999
+357,6,Other digestive system O.R. procedures w CC,0,9999
+358,6,Other digestive system O.R. procedures w/o CC/MCC,0,9999
+368,6,Major esophageal disorders w MCC,0,9999
+369,6,Major esophageal disorders w CC,0,9999
+370,6,Major esophageal disorders w/o CC/MCC,0,9999
+371,6,Major gastrointestinal disorders & peritoneal infections w MCC,0,9999
+372,6,Major gastrointestinal disorders & peritoneal infections w CC,0,9999
+373,6,Major gastrointestinal disorders & peritoneal infections w/o CC/MCC,0,9999
+374,6,Digestive malignancy w MCC,0,9999
+375,6,Digestive malignancy w CC,0,9999
+376,6,Digestive malignancy w/o CC/MCC,0,9999
+377,6,G.I. hemorrhage w MCC,0,9999
+378,6,G.I. hemorrhage w CC,0,9999
+379,6,G.I. hemorrhage w/o CC/MCC,0,9999
+380,6,Complicated peptic ulcer w MCC,0,9999
+381,6,Complicated peptic ulcer w CC,0,9999
+382,6,Complicated peptic ulcer w/o CC/MCC,0,9999
+383,6,Uncomplicated peptic ulcer w MCC,0,9999
+384,6,Uncomplicated peptic ulcer w/o MCC,0,9999
+385,6,Inflammatory bowel disease w MCC,0,9999
+386,6,Inflammatory bowel disease w CC,0,9999
+387,6,Inflammatory bowel disease w/o CC/MCC,0,9999
+388,6,G.I. obstruction w MCC,0,9999
+389,6,G.I. obstruction w CC,0,9999
+390,6,G.I. obstruction w/o CC/MCC,0,9999
+391,6,"Esophagitis, gastroent & misc digest disorders w MCC",0,9999
+392,6,"Esophagitis, gastroent & misc digest disorders w/o MCC",0,9999
+393,6,Other digestive system diagnoses w MCC,0,9999
+394,6,Other digestive system diagnoses w CC,0,9999
+395,6,Other digestive system diagnoses w/o CC/MCC,0,9999
+405,7,"Pancreas, liver & shunt procedures w MCC",0,9999
+406,7,"Pancreas, liver & shunt procedures w CC",0,9999
+407,7,"Pancreas, liver & shunt procedures w/o CC/MCC",0,9999
+408,7,Biliary tract proc except only cholecyst w or w/o c.d.e. w MCC,0,9999
+409,7,Biliary tract proc except only cholecyst w or w/o c.d.e. w CC,0,9999
+410,7,Biliary tract proc except only cholecyst w or w/o c.d.e. w/o CC/MCC,0,9999
+411,7,Cholecystectomy w c.d.e. w MCC,0,9999
+412,7,Cholecystectomy w c.d.e. w CC,0,9999
+413,7,Cholecystectomy w c.d.e. w/o CC/MCC,0,9999
+414,7,Cholecystectomy except by laparoscope w/o c.d.e. w MCC,0,9999
+415,7,Cholecystectomy except by laparoscope w/o c.d.e. w CC,0,9999
+416,7,Cholecystectomy except by laparoscope w/o c.d.e. w/o CC/MCC,0,9999
+417,7,Laparoscopic cholecystectomy w/o c.d.e. w MCC,0,9999
+418,7,Laparoscopic cholecystectomy w/o c.d.e. w CC,0,9999
+419,7,Laparoscopic cholecystectomy w/o c.d.e. w/o CC/MCC,0,9999
+420,7,Hepatobiliary diagnostic procedures w MCC,0,9999
+421,7,Hepatobiliary diagnostic procedures w CC,0,9999
+422,7,Hepatobiliary diagnostic procedures w/o CC/MCC,0,9999
+423,7,Other hepatobiliary or pancreas O.R. procedures w MCC,0,9999
+424,7,Other hepatobiliary or pancreas O.R. procedures w CC,0,9999
+425,7,Other hepatobiliary or pancreas O.R. procedures w/o CC/MCC,0,9999
+432,7,Cirrhosis & alcoholic hepatitis w MCC,0,9999
+433,7,Cirrhosis & alcoholic hepatitis w CC,0,9999
+434,7,Cirrhosis & alcoholic hepatitis w/o CC/MCC,0,9999
+435,7,Malignancy of hepatobiliary system or pancreas w MCC,0,9999
+436,7,Malignancy of hepatobiliary system or pancreas w CC,0,9999
+437,7,Malignancy of hepatobiliary system or pancreas w/o CC/MCC,0,9999
+438,7,Disorders of pancreas except malignancy w MCC,0,9999
+439,7,Disorders of pancreas except malignancy w CC,0,9999
+440,7,Disorders of pancreas except malignancy w/o CC/MCC,0,9999
+441,7,"Disorders of liver except malig,cirr,alc hepa w MCC",0,9999
+442,7,"Disorders of liver except malig,cirr,alc hepa w CC",0,9999
+443,7,"Disorders of liver except malig,cirr,alc hepa w/o CC/MCC",0,9999
+444,7,Disorders of the biliary tract w MCC,0,9999
+445,7,Disorders of the biliary tract w CC,0,9999
+446,7,Disorders of the biliary tract w/o CC/MCC,0,9999
+453,8,Combined anterior/posterior spinal fusion w MCC,0,9999
+454,8,Combined anterior/posterior spinal fusion w CC,0,9999
+455,8,Combined anterior/posterior spinal fusion w/o CC/MCC,0,9999
+456,8,Spinal fus exc cerv w spinal curv/malig/infec or 9+ fus w MCC,0,9999
+457,8,Spinal fus exc cerv w spinal curv/malig/infec or 9+ fus w CC,0,9999
+458,8,Spinal fus exc cerv w spinal curv/malig/infec or 9+ fus w/o CC/MCC,0,9999
+459,8,Spinal fusion except cervical w MCC,0,9999
+460,8,Spinal fusion except cervical w/o MCC,0,9999
+461,8,Bilateral or multiple major joint procs of lower extremity w MCC,0,9999
+462,8,Bilateral or multiple major joint procs of lower extremity w/o MCC,0,9999
+463,8,"Wnd debrid & skn grft exc hand, for musculo-conn tiss dis w MCC",0,9999
+464,8,"Wnd debrid & skn grft exc hand, for musculo-conn tiss dis w CC",0,9999
+465,8,"Wnd debrid & skn grft exc hand, for musculo-conn tiss dis w/o CC/MCC",0,9999
+466,8,Revision of hip or knee replacement w MCC,0,9999
+467,8,Revision of hip or knee replacement w CC,0,9999
+468,8,Revision of hip or knee replacement w/o CC/MCC,0,9999
+469,8,Major joint replacement or reattachment of lower extremity w MCC,0,9999
+470,8,Major joint replacement or reattachment of lower extremity w/o MCC,0,9999
+471,8,Cervical spinal fusion w MCC,0,9999
+472,8,Cervical spinal fusion w CC,0,9999
+473,8,Cervical spinal fusion w/o CC/MCC,0,9999
+474,8,Amputation for musculoskeletal sys & conn tissue dis w MCC,0,9999
+475,8,Amputation for musculoskeletal sys & conn tissue dis w CC,0,9999
+476,8,Amputation for musculoskeletal sys & conn tissue dis w/o CC/MCC,0,9999
+477,8,Biopsies of musculoskeletal system & connective tissue w MCC,0,9999
+478,8,Biopsies of musculoskeletal system & connective tissue w CC,0,9999
+479,8,Biopsies of musculoskeletal system & connective tissue w/o CC/MCC,0,9999
+480,8,Hip & femur procedures except major joint w MCC,0,9999
+481,8,Hip & femur procedures except major joint w CC,0,9999
+482,8,Hip & femur procedures except major joint w/o CC/MCC,0,9999
+483,8,Major joint & limb reattachment proc of upper extremity w CC/MCC,0,9999
+484,8,Major joint & limb reattachment proc of upper extremity w/o CC/MCC,0,9999
+485,8,Knee procedures w pdx of infection w MCC,0,9999
+486,8,Knee procedures w pdx of infection w CC,0,9999
+487,8,Knee procedures w pdx of infection w/o CC/MCC,0,9999
+488,8,Knee procedures w/o pdx of infection w CC/MCC,0,9999
+489,8,Knee procedures w/o pdx of infection w/o CC/MCC,0,9999
+490,8,Back & neck proc exc spinal fusion w CC/MCC or disc device/neurostim,0,9999
+491,8,Back & neck proc exc spinal fusion w/o CC/MCC,0,9999
+492,8,"Lower extrem & humer proc except hip,foot,femur w MCC",0,9999
+493,8,"Lower extrem & humer proc except hip,foot,femur w CC",0,9999
+494,8,"Lower extrem & humer proc except hip,foot,femur w/o CC/MCC",0,9999
+495,8,Local excision & removal int fix devices exc hip & femur w MCC,0,9999
+496,8,Local excision & removal int fix devices exc hip & femur w CC,0,9999
+497,8,Local excision & removal int fix devices exc hip & femur w/o CC/MCC,0,9999
+498,8,Local excision & removal int fix devices of hip & femur w CC/MCC,0,9999
+499,8,Local excision & removal int fix devices of hip & femur w/o CC/MCC,0,9999
+500,8,Soft tissue procedures w MCC,0,9999
+501,8,Soft tissue procedures w CC,0,9999
+502,8,Soft tissue procedures w/o CC/MCC,0,9999
+503,8,Foot procedures w MCC,0,9999
+504,8,Foot procedures w CC,0,9999
+505,8,Foot procedures w/o CC/MCC,0,9999
+506,8,Major thumb or joint procedures,0,9999
+507,8,Major shoulder or elbow joint procedures w CC/MCC,0,9999
+508,8,Major shoulder or elbow joint procedures w/o CC/MCC,0,9999
+509,8,Arthroscopy,0,9999
+510,8,"Shoulder,elbow or forearm proc,exc major joint proc w MCC",0,9999
+511,8,"Shoulder,elbow or forearm proc,exc major joint proc w CC",0,9999
+512,8,"Shoulder,elbow or forearm proc,exc major joint proc w/o CC/MCC",0,9999
+513,8,"Hand or wrist proc, except major thumb or joint proc w CC/MCC",0,9999
+514,8,"Hand or wrist proc, except major thumb or joint proc w/o CC/MCC",0,9999
+515,8,Other musculoskelet sys & conn tiss O.R. proc w MCC,0,9999
+516,8,Other musculoskelet sys & conn tiss O.R. proc w CC,0,9999
+517,8,Other musculoskelet sys & conn tiss O.R. proc w/o CC/MCC,0,9999
+533,8,Fractures of femur w MCC,0,9999
+534,8,Fractures of femur w/o MCC,0,9999
+535,8,Fractures of hip & pelvis w MCC,0,9999
+536,8,Fractures of hip & pelvis w/o MCC,0,9999
+537,8,"Sprains, strains, & dislocations of hip, pelvis & thigh w CC/MCC",0,9999
+538,8,"Sprains, strains, & dislocations of hip, pelvis & thigh w/o CC/MCC",0,9999
+539,8,Osteomyelitis w MCC,0,9999
+540,8,Osteomyelitis w CC,0,9999
+541,8,Osteomyelitis w/o CC/MCC,0,9999
+542,8,Pathological fractures & musculoskelet & conn tiss malig w MCC,0,9999
+543,8,Pathological fractures & musculoskelet & conn tiss malig w CC,0,9999
+544,8,Pathological fractures & musculoskelet & conn tiss malig w/o CC/MCC,0,9999
+545,8,Connective tissue disorders w MCC,0,9999
+546,8,Connective tissue disorders w CC,0,9999
+547,8,Connective tissue disorders w/o CC/MCC,0,9999
+548,8,Septic arthritis w MCC,0,9999
+549,8,Septic arthritis w CC,0,9999
+550,8,Septic arthritis w/o CC/MCC,0,9999
+551,8,Medical back problems w MCC,0,9999
+552,8,Medical back problems w/o MCC,0,9999
+553,8,Bone diseases & arthropathies w MCC,0,9999
+554,8,Bone diseases & arthropathies w/o MCC,0,9999
+555,8,Signs & symptoms of musculoskeletal system & conn tissue w MCC,0,9999
+556,8,Signs & symptoms of musculoskeletal system & conn tissue w/o MCC,0,9999
+557,8,"Tendonitis, myositis & bursitis w MCC",0,9999
+558,8,"Tendonitis, myositis & bursitis w/o MCC",0,9999
+559,8,"Aftercare, musculoskeletal system & connective tissue w MCC",0,9999
+560,8,"Aftercare, musculoskeletal system & connective tissue w CC",0,9999
+561,8,"Aftercare, musculoskeletal system & connective tissue w/o CC/MCC",0,9999
+562,8,"Fx, sprn, strn & disl except femur, hip, pelvis & thigh w MCC",0,9999
+563,8,"Fx, sprn, strn & disl except femur, hip, pelvis & thigh w/o MCC",0,9999
+564,8,Other musculoskeletal sys & connective tissue diagnoses w MCC,0,9999
+565,8,Other musculoskeletal sys & connective tissue diagnoses w CC,0,9999
+566,8,Other musculoskeletal sys & connective tissue diagnoses w/o CC/MCC,0,9999
+570,8,Skin debridement w MCC,0,9999
+571,8,Skin debridement w CC,0,9999
+572,8,Skin debridement w/o CC/MCC,0,9999
+573,9,Skin Graft for skin ulcer or cellulitis w MCC,0,9999
+574,9,Skin Graft for skin ulcer or cellulitis w CC,0,9999
+575,9,Skin Graft for skin ulcer or cellulitis w/o CC/MCC,0,9999
+576,9,Skin Graft exc for skin ulcer or cellulitis w MCC,0,9999
+577,9,Skin Graft exc for skin ulcer or cellulitis w CC,0,9999
+578,9,Skin Graft exc for skin ulcer or cellulitis w/o CC/MCC,0,9999
+579,9,"Other skin, subcut tiss & breast proc w MCC",0,9999
+580,9,"Other skin, subcut tiss & breast proc w CC",0,9999
+581,9,"Other skin, subcut tiss & breast proc w/o CC/MCC",0,9999
+582,9,Mastectomy for malignancy w CC/MCC,0,9999
+583,9,Mastectomy for malignancy w/o CC/MCC,0,9999
+584,9,"Breast biopsy, local excision & other breast procedures w CC/MCC",0,9999
+585,9,"Breast biopsy, local excision & other breast procedures w/o CC/MCC",0,9999
+592,9,Skin ulcers w MCC,0,9999
+593,9,Skin ulcers w CC,0,9999
+594,9,Skin ulcers w/o CC/MCC,0,9999
+595,9,Major skin disorders w MCC,0,9999
+596,9,Major skin disorders w/o MCC,0,9999
+597,9,Malignant breast disorders w MCC,0,9999
+598,9,Malignant breast disorders w CC,0,9999
+599,9,Malignant breast disorders w/o CC/MCC,0,9999
+600,9,Non-malignant breast disorders w CC/MCC,0,9999
+601,9,Non-malignant breast disorders w/o CC/MCC,0,9999
+602,9,Cellulitis w MCC,0,9999
+603,9,Cellulitis w/o MCC,0,9999
+604,9,"Trauma to the skin, subcut tiss & breast w MCC",0,9999
+605,9,"Trauma to the skin, subcut tiss & breast w/o MCC",0,9999
+606,9,Minor skin disorders w MCC,0,9999
+607,9,Minor skin disorders w/o MCC,0,9999
+614,10,Adrenal & pituitary procedures w CC/MCC,0,9999
+615,10,Adrenal & pituitary procedures w/o CC/MCC,0,9999
+616,10,"Amputat of lower limb for endocrine,nutrit,& metabol dis w MCC",0,9999
+617,10,"Amputat of lower limb for endocrine,nutrit,& metabol dis w CC",0,9999
+618,10,"Amputat of lower limb for endocrine,nutrit,& metabol dis w/o CC/MCC",0,9999
+619,10,O.R. procedures for obesity w MCC,0,9999
+620,10,O.R. procedures for obesity w CC,0,9999
+621,10,O.R. procedures for obesity w/o CC/MCC,0,9999
+622,10,"Skin grafts & wound debrid for endoc, nutrit & metab dis w MCC",0,9999
+623,10,"Skin grafts & wound debrid for endoc, nutrit & metab dis w CC",0,9999
+624,10,"Skin grafts & wound debrid for endoc, nutrit & metab dis w/o CC/MCC",0,9999
+625,10,"Thyroid, parathyroid & thyroglossal procedures w MCC",0,9999
+626,10,"Thyroid, parathyroid & thyroglossal procedures w CC",0,9999
+627,10,"Thyroid, parathyroid & thyroglossal procedures w/o CC/MCC",0,9999
+628,10,"Other endocrine, nutrit & metab O.R. proc w MCC",0,9999
+629,10,"Other endocrine, nutrit & metab O.R. proc w CC",0,9999
+630,10,"Other endocrine, nutrit & metab O.R. proc w/o CC/MCC",0,9999
+637,10,Diabetes w MCC,0,9999
+638,10,Diabetes w CC,0,9999
+639,10,Diabetes w/o CC/MCC,0,9999
+640,10,"Misc disorders of nutrition,metabolism,fluids/electrolytes w MCC",0,9999
+641,10,"Misc disorders of nutrition,metabolism,fluids/electrolytes w/o MCC",0,9999
+642,10,Inborn and other disorders of metabolism,0,9999
+643,10,Endocrine disorders w MCC,0,9999
+644,10,Endocrine disorders w CC,0,9999
+645,10,Endocrine disorders w/o CC/MCC,0,9999
+652,11,Kidney transplant,0,9999
+653,11,Major bladder procedures w MCC,0,9999
+654,11,Major bladder procedures w CC,0,9999
+655,11,Major bladder procedures w/o CC/MCC,0,9999
+656,11,Kidney & ureter procedures for neoplasm w MCC,0,9999
+657,11,Kidney & ureter procedures for neoplasm w CC,0,9999
+658,11,Kidney & ureter procedures for neoplasm w/o CC/MCC,0,9999
+659,11,Kidney & ureter procedures for non-neoplasm w MCC,0,9999
+660,11,Kidney & ureter procedures for non-neoplasm w CC,0,9999
+661,11,Kidney & ureter procedures for non-neoplasm w/o CC/MCC,0,9999
+662,11,Minor bladder procedures w MCC,0,9999
+663,11,Minor bladder procedures w CC,0,9999
+664,11,Minor bladder procedures w/o CC/MCC,0,9999
+665,11,Prostatectomy w MCC,0,9999
+666,11,Prostatectomy w CC,0,9999
+667,11,Prostatectomy w/o CC/MCC,0,9999
+668,11,Transurethral procedures w MCC,0,9999
+669,11,Transurethral procedures w CC,0,9999
+670,11,Transurethral procedures w/o CC/MCC,0,9999
+671,11,Urethral procedures w CC/MCC,0,9999
+672,11,Urethral procedures w/o CC/MCC,0,9999
+673,11,Other kidney & urinary tract procedures w MCC,0,9999
+674,11,Other kidney & urinary tract procedures w CC,0,9999
+675,11,Other kidney & urinary tract procedures w/o CC/MCC,0,9999
+682,11,Renal failure w MCC,0,9999
+683,11,Renal failure w CC,0,9999
+684,11,Renal failure w/o CC/MCC,0,9999
+685,11,Admit for renal dialysis,0,9999
+686,11,Kidney & urinary tract neoplasms w MCC,0,9999
+687,11,Kidney & urinary tract neoplasms w CC,0,9999
+688,11,Kidney & urinary tract neoplasms w/o CC/MCC,0,9999
+689,11,Kidney & urinary tract infections w MCC,0,9999
+690,11,Kidney & urinary tract infections w/o MCC,0,9999
+691,11,Urinary stones w esw lithotripsy w CC/MCC,0,9999
+692,11,Urinary stones w esw lithotripsy w/o CC/MCC,0,9999
+693,11,Urinary stones w/o esw lithotripsy w MCC,0,9999
+694,11,Urinary stones w/o esw lithotripsy w/o MCC,0,9999
+695,11,Kidney & urinary tract signs & symptoms w MCC,0,9999
+696,11,Kidney & urinary tract signs & symptoms w/o MCC,0,9999
+697,11,Urethral stricture,0,9999
+698,11,Other kidney & urinary tract diagnoses w MCC,0,9999
+699,11,Other kidney & urinary tract diagnoses w CC,0,9999
+700,11,Other kidney & urinary tract diagnoses w/o CC/MCC,0,9999
+707,12,Major male pelvic procedures w CC/MCC,0,9999
+708,12,Major male pelvic procedures w/o CC/MCC,0,9999
+709,12,Penis procedures w CC/MCC,0,9999
+710,12,Penis procedures w/o CC/MCC,0,9999
+711,12,Testes procedures w CC/MCC,0,9999
+712,12,Testes procedures w/o CC/MCC,0,9999
+713,12,Transurethral prostatectomy w CC/MCC,0,9999
+714,12,Transurethral prostatectomy w/o CC/MCC,0,9999
+715,12,Other male reproductive system O.R. proc for malignancy w CC/MCC,0,9999
+716,12,Other male reproductive system O.R. proc for malignancy w/o CC/MCC,0,9999
+717,12,Other male reproductive system O.R. proc exc malignancy w CC/MCC,0,9999
+718,12,Other male reproductive system O.R. proc exc malignancy w/o CC/MCC,0,9999
+722,12,"Malignancy, male reproductive system w MCC",0,9999
+723,12,"Malignancy, male reproductive system w CC",0,9999
+724,12,"Malignancy, male reproductive system w/o CC/MCC",0,9999
+725,12,Benign prostatic hypertrophy w MCC,0,9999
+726,12,Benign prostatic hypertrophy w/o MCC,0,9999
+727,12,Inflammation of the male reproductive system w MCC,0,9999
+728,12,Inflammation of the male reproductive system w/o MCC,0,9999
+729,12,Other male reproductive system diagnoses w CC/MCC,0,9999
+730,12,Other male reproductive system diagnoses w/o CC/MCC,0,9999
+734,13,"Pelvic evisceration, rad hysterectomy & rad vulvectomy w CC/MCC",0,9999
+735,13,"Pelvic evisceration, rad hysterectomy & rad vulvectomy w/o CC/MCC",0,9999
+736,13,Uterine & adnexa proc for ovarian or adnexal malignancy w MCC,0,9999
+737,13,Uterine & adnexa proc for ovarian or adnexal malignancy w CC,0,9999
+738,13,Uterine & adnexa proc for ovarian or adnexal malignancy w/o CC/MCC,0,9999
+739,13,"Uterine,adnexa proc for non-ovarian/adnexal malig w MCC",0,9999
+740,13,"Uterine,adnexa proc for non-ovarian/adnexal malig w CC",0,9999
+741,13,"Uterine,adnexa proc for non-ovarian/adnexal malig w/o CC/MCC",0,9999
+742,13,Uterine & adnexa proc for non-malignancy w CC/MCC,0,9999
+743,13,Uterine & adnexa proc for non-malignancy w/o CC/MCC,0,9999
+744,13,"D&C, conization, laparoscopy & tubal interruption w CC/MCC",0,9999
+745,13,"D&C, conization, laparoscopy & tubal interruption w/o CC/MCC",0,9999
+746,13,"Vagina, cervix & vulva procedures w CC/MCC",0,9999
+747,13,"Vagina, cervix & vulva procedures w/o CC/MCC",0,9999
+748,13,Female reproductive system reconstructive procedures,0,9999
+749,13,Other female reproductive system O.R. procedures w CC/MCC,0,9999
+750,13,Other female reproductive system O.R. procedures w/o CC/MCC,0,9999
+754,13,"Malignancy, female reproductive system w MCC",0,9999
+755,13,"Malignancy, female reproductive system w CC",0,9999
+756,13,"Malignancy, female reproductive system w/o CC/MCC",0,9999
+757,13,"Infections, female reproductive system w MCC",0,9999
+758,13,"Infections, female reproductive system w CC",0,9999
+759,13,"Infections, female reproductive system w/o CC/MCC",0,9999
+760,13,Menstrual & other female reproductive system disorders w CC/MCC,0,9999
+761,13,Menstrual & other female reproductive system disorders w/o CC/MCC,0,9999
+765,14,Cesarean section w CC/MCC,0,9999
+766,14,Cesarean section w/o CC/MCC,0,9999
+767,14,Vaginal delivery w sterilization &/or D&C,0,9999
+768,14,Vaginal delivery w O.R. proc except steril &/or D&C,0,9999
+769,14,Postpartum & post abortion diagnoses w O.R. procedure,0,9999
+770,14,"Abortion w D&C, aspiration curettage or hysterotomy",0,9999
+774,14,Vaginal delivery w complicating diagnoses,0,9999
+775,14,Vaginal delivery w/o complicating diagnoses,0,9999
+776,14,Postpartum & post abortion diagnoses w/o O.R. procedure,0,9999
+777,14,Ectopic pregnancy,0,9999
+778,14,Threatened abortion,0,9999
+779,14,Abortion w/o D&C,0,9999
+780,14,False labor,0,9999
+781,14,Other antepartum diagnoses w medical complications,0,9999
+782,14,Other antepartum diagnoses w/o medical complications,0,9999
+789,15,"Neonates, died or transferred to another acute care facility",0,9999
+790,15,"Extreme immaturity or respiratory distress syndrome, neonate",0,9999
+791,15,Prematurity w major problems,0,9999
+792,15,Prematurity w/o major problems,0,9999
+793,15,Full term neonate w major problems,0,9999
+794,15,Neonate w other significant problems,0,9999
+795,15,Normal newborn,0,9999
+799,16,Splenectomy w MCC,0,9999
+800,16,Splenectomy w CC,0,9999
+801,16,Splenectomy w/o CC/MCC,0,9999
+802,16,Other O.R. proc of the blood & blood forming organs w MCC,0,9999
+803,16,Other O.R. proc of the blood & blood forming organs w CC,0,9999
+804,16,Other O.R. proc of the blood & blood forming organs w/o CC/MCC,0,9999
+808,16,Major hematol/immun diag exc sickle cell crisis & coagul w MCC,0,9999
+809,16,Major hematol/immun diag exc sickle cell crisis & coagul w CC,0,9999
+810,16,Major hematol/immun diag exc sickle cell crisis & coagul w/o CC/MCC,0,9999
+811,16,Red blood cell disorders w MCC,0,9999
+812,16,Red blood cell disorders w/o MCC,0,9999
+813,16,Coagulation disorders,0,9999
+814,16,Reticuloendothelial & immunity disorders w MCC,0,9999
+815,16,Reticuloendothelial & immunity disorders w CC,0,9999
+816,16,Reticuloendothelial & immunity disorders w/o CC/MCC,0,9999
+820,17,Lymphoma & leukemia w major O.R. procedure w MCC,0,9999
+821,17,Lymphoma & leukemia w major O.R. procedure w CC,0,9999
+822,17,Lymphoma & leukemia w major O.R. procedure w/o CC/MCC,0,9999
+823,17,Lymphoma & non-acute leukemia w other O.R. proc w MCC,0,9999
+824,17,Lymphoma & non-acute leukemia w other O.R. proc w CC,0,9999
+825,17,Lymphoma & non-acute leukemia w other O.R. proc w/o CC/MCC,0,9999
+826,17,Myeloprolif disord or poorly diff neopl w maj O.R. proc w MCC,0,9999
+827,17,Myeloprolif disord or poorly diff neopl w maj O.R. proc w CC,0,9999
+828,17,Myeloprolif disord or poorly diff neopl w maj O.R. proc w/o CC/MCC,0,9999
+829,17,Myeloprolif disord or poorly diff neopl w other O.R. proc w CC/MCC,0,9999
+830,17,Myeloprolif disord or poorly diff neopl w other O.R. proc w/o CC/MCC,0,9999
+834,17,Acute leukemia w/o major O.R. procedure w MCC,0,9999
+835,17,Acute leukemia w/o major O.R. procedure w CC,0,9999
+836,17,Acute leukemia w/o major O.R. procedure w/o CC/MCC,0,9999
+837,17,Chemo w acute leukemia as sdx or w high dose chemo agent w MCC,0,9999
+838,17,Chemo w acute leukemia as sdx w CC or high dose chemo agent,0,9999
+839,17,Chemo w acute leukemia as sdx w/o CC/MCC,0,9999
+840,17,Lymphoma & non-acute leukemia w MCC,0,9999
+841,17,Lymphoma & non-acute leukemia w CC,0,9999
+842,17,Lymphoma & non-acute leukemia w/o CC/MCC,0,9999
+843,17,Other myeloprolif dis or poorly diff neopl diag w MCC,0,9999
+844,17,Other myeloprolif dis or poorly diff neopl diag w CC,0,9999
+845,17,Other myeloprolif dis or poorly diff neopl diag w/o CC/MCC,0,9999
+846,17,Chemotherapy w/o acute leukemia as secondary diagnosis w MCC,0,9999
+847,17,Chemotherapy w/o acute leukemia as secondary diagnosis w CC,0,9999
+848,17,Chemotherapy w/o acute leukemia as secondary diagnosis w/o CC/MCC,0,9999
+849,17,Radiotherapy,0,9999
+853,18,Infectious & parasitic diseases w O.R. procedure w MCC,0,9999
+854,18,Infectious & parasitic diseases w O.R. procedure w CC,0,9999
+855,18,Infectious & parasitic diseases w O.R. procedure w/o CC/MCC,0,9999
+856,18,Postoperative or post-traumatic infections w O.R. proc w MCC,0,9999
+857,18,Postoperative or post-traumatic infections w O.R. proc w CC,0,9999
+858,18,Postoperative or post-traumatic infections w O.R. proc w/o CC/MCC,0,9999
+862,18,Postoperative & post-traumatic infections w MCC,0,9999
+863,18,Postoperative & post-traumatic infections w/o MCC,0,9999
+864,18,Fever,0,9999
+865,18,Viral illness w MCC,0,9999
+866,18,Viral illness w/o MCC,0,9999
+867,18,Other infectious & parasitic diseases diagnoses w MCC,0,9999
+868,18,Other infectious & parasitic diseases diagnoses w CC,0,9999
+869,18,Other infectious & parasitic diseases diagnoses w/o CC/MCC,0,9999
+870,18,Septicemia or severe sepsis w MV 96+ hours,0,9999
+871,18,Septicemia or severe sepsis w/o MV 96+ hours w MCC,0,9999
+872,18,Septicemia or severe sepsis w/o MV 96+ hours w/o MCC,0,9999
+876,19,O.R. procedure w principal diagnoses of mental illness,0,9999
+880,19,Acute adjustment reaction & psychosocial dysfunction,0,9999
+881,19,Depressive neuroses,0,9999
+882,19,Neuroses except depressive,0,9999
+883,19,Disorders of personality & impulse control,0,9999
+884,19,Organic disturbances & mental retardation,0,9999
+885,19,Psychoses,0,9999
+886,19,Behavioral & developmental disorders,0,9999
+887,19,Other mental disorder diagnoses,0,9999
+894,20,"Alcohol/drug abuse or dependence, left ama",0,9999
+895,20,Alcohol/drug abuse or dependence w rehabilitation therapy,0,9999
+896,20,Alcohol/drug abuse or dependence w/o rehabilitation therapy w MCC,0,9999
+897,20,Alcohol/drug abuse or dependence w/o rehabilitation therapy w/o MCC,0,9999
+901,21,Wound debridements for injuries w MCC,0,9999
+902,21,Wound debridements for injuries w CC,0,9999
+903,21,Wound debridements for injuries w/o CC/MCC,0,9999
+904,21,Skin grafts for injuries w CC/MCC,0,9999
+905,21,Skin grafts for injuries w/o CC/MCC,0,9999
+906,21,Hand procedures for injuries,0,9999
+907,21,Other O.R. procedures for injuries w MCC,0,9999
+908,21,Other O.R. procedures for injuries w CC,0,9999
+909,21,Other O.R. procedures for injuries w/o CC/MCC,0,9999
+913,21,Traumatic injury w MCC,0,9999
+914,21,Traumatic injury w/o MCC,0,9999
+915,21,Allergic reactions w MCC,0,9999
+916,21,Allergic reactions w/o MCC,0,9999
+917,21,Poisoning & toxic effects of drugs w MCC,0,9999
+918,21,Poisoning & toxic effects of drugs w/o MCC,0,9999
+919,21,Complications of treatment w MCC,0,9999
+920,21,Complications of treatment w CC,0,9999
+921,21,Complications of treatment w/o CC/MCC,0,9999
+922,21,"Other injury, poisoning & toxic effect diag w MCC",0,9999
+923,21,"Other injury, poisoning & toxic effect diag w/o MCC",0,9999
+927,22,Extensive burns or full thickness burns w MV 96+ hrs w skin graft,0,9999
+928,22,Full thickness burn w skin graft or inhal inj w CC/MCC,0,9999
+929,22,Full thickness burn w skin graft or inhal inj w/o CC/MCC,0,9999
+933,22,Extensive burns or full thickness burns w MV 96+ hrs w/o skin graft,0,9999
+934,22,Full thickness burn w/o skin grft or inhal inj,0,9999
+935,22,Non-extensive burns,0,9999
+939,23,O.R. proc w diagnoses of other contact w health services w MCC,0,9999
+940,23,O.R. proc w diagnoses of other contact w health services w CC,0,9999
+941,23,O.R. proc w diagnoses of other contact w health services w/o CC/MCC,0,9999
+945,23,Rehabilitation w CC/MCC,0,9999
+946,23,Rehabilitation w/o CC/MCC,0,9999
+947,23,Signs & symptoms w MCC,0,9999
+948,23,Signs & symptoms w/o MCC,0,9999
+949,23,Aftercare w CC/MCC,0,9999
+950,23,Aftercare w/o CC/MCC,0,9999
+951,23,Other factors influencing health status,0,9999
+955,24,Craniotomy for multiple significant trauma,0,9999
+956,24,"Limb reattachment, hip & femur proc for multiple significant trauma",0,9999
+957,24,Other O.R. procedures for multiple significant trauma w MCC,0,9999
+958,24,Other O.R. procedures for multiple significant trauma w CC,0,9999
+959,24,Other O.R. procedures for multiple significant trauma w/o CC/MCC,0,9999
+963,24,Other multiple significant trauma w MCC,0,9999
+964,24,Other multiple significant trauma w CC,0,9999
+965,24,Other multiple significant trauma w/o CC/MCC,0,9999
+969,25,HIV w extensive O.R. procedure w MCC,0,9999
+970,25,HIV w extensive O.R. procedure w/o MCC,0,9999
+974,25,HIV w major related condition w MCC,0,9999
+975,25,HIV w major related condition w CC,0,9999
+976,25,HIV w major related condition w/o CC/MCC,0,9999
+977,25,HIV w or w/o other related condition,0,9999
+981,99,Extensive O.R. procedure unrelated to principal diagnosis w MCC,0,9999
+982,99,Extensive O.R. procedure unrelated to principal diagnosis w CC,0,9999
+983,99,Extensive O.R. procedure unrelated to principal diagnosis w/o CC/MCC,0,9999
+984,99,Prostatic O.R. procedure unrelated to principal diagnosis w MCC,0,9999
+985,99,Prostatic O.R. procedure unrelated to principal diagnosis w CC,0,9999
+986,99,Prostatic O.R. procedure unrelated to principal diagnosis w/o CC/MCC,0,9999
+987,99,Non-extensive O.R. proc unrelated to principal diagnosis w MCC,0,9999
+988,99,Non-extensive O.R. proc unrelated to principal diagnosis w CC,0,9999
+989,99,Non-extensive O.R. proc unrelated to principal diagnosis w/o CC/MCC,0,9999
+998,99,Principal diagnosis invalid as discharge diagnosis,0,9999
+999,99,Ungroupable,0,9999

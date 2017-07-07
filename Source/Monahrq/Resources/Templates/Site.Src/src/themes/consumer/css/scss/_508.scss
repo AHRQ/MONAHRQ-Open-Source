@@ -1,0 +1,26 @@
+// -------------------------------------------------------------------- //
+//  Compliance
+// -------------------------------------------------------------------- //
+
+.sr-hidden,
+.skip a,
+button.skip {
+  position: absolute;
+  top: auto;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.skip a:hover,
+.skip a:focus,
+.skip a:active,
+button.skip:hover,
+button.skip:focus,
+button.skip:active {
+  position: static !important;
+  height: 100% !important;
+  width: 100px !important;
+  overflow: visible !important;
+}

@@ -1,0 +1,163 @@
+<main class="compare">
+
+  <section class="search--refine" role="search">
+    <div class="contain">
+      <div class="search--refine__title-group">
+        <h1 class="search--refine__title">Compare Hospitals:</h1>
+      </div>
+    </div>
+  </section>
+
+  <div data-mh-cms-zone="'header'" data-mh-cms-zone-report-id="reportId" data-mh-cms-zone-product="'Consumer'"></div>
+
+  <section class="report" tabindex="-1">
+    <header class="report-header">
+      <div class="report-header__compare-against">
+        <fieldset>
+        <legend>Compare Your Results To The:</legend>
+        <label for="compareTo-national"><input type="radio" name="compareTo" id="compareTo-national" value="national" data-ng-model="query.compareTo">National Average</label>
+        <label for="compareTo-state"><input type="radio" name="compareTo" id="compareTo-state" value="state" data-ng-model="query.compareTo">State Average</label>
+        </fieldset>
+      </div>
+
+      <div class="report-header__help">
+        <div data-mh-help-icon="'Help me understand this report'" data-mh-on-click="modalLegend()"></div>
+      </div>
+
+      <table class="report-header__comparing" data-compare-size="{{hospitals.length + 1}}" sticky use-placeholder role="presentation">
+        <th class="report-header__comparing-label">
+          <h2>Hospitals you selected:</h2>
+          <button id="compareDifferentHospitalsBtn" data-ng-click="backToReport($event)">Select different hospitals</button>
+        </th>
+        <td class="report-header__comparing-items" >
+          <span data-ng-if="query.compareTo == 'national'"><strong>Nationwide Mean</strong></span>
+          <span data-ng-if="query.compareTo == 'state'"><strong>State Mean</strong></span>
+        </td>
+        <td class="report-header__comparing-items" data-ng-repeat="h in hospitals track by $index">
+          <a id="hospitalToCompare{{$index}}" href="#" data-ui-sref="^.profile({id: h.Id})">{{h.Name}}</a>
+        </td>
+      </table>
+
+      <div class="report-header__conditions-concerns">
+        <header>
+          <h2>Select conditions and/or topics you are interested in:</h2>
+          <button class="toggle-topics" data-ng-click="toggleSection('topic_filter', 1)" aria-expanded="{{showSection('topic_filter', 1)}}">{{getSectionStateName('topic_filter', 1)}}</button>
+        </header>
+        <!--<fieldset class="report-header__conditions" data-ng-if="showSection('topic_filter', 1)">
+          <legend>Conditions</legend>
+          <ul>
+            <li data-ng-repeat="topic in conditions">
+              <label for="topic-{{topic.id}}"><input id="topic-{{topic.id}}" type="checkbox" data-ng-click="addSrMsg(getVisibilityName(topic.id) + topic.label)" data-ng-model="query.topicIds[topic.id]">{{topic.label}}  <span data-mh-help-icon data-sr-label="'Help for ' + topic.label" data-mh-on-click="modalTopic(topic.id)"></span></label>
+            </li>
+          </ul>
+        </fieldset>-->
+        <fieldset class="report-header__concerns" data-ng-if="showSection('topic_filter', 1)">
+          <legend class="sr-hidden">Health Topics</legend>
+           <ul>
+             <li class="topic-item" data-ng-repeat="topic in topicsList track by $index" id="topic-item{{$index}}">
+               <!--START: TICKET:MONNGBD-19 Add wrapper to input checkbox and label to fix alignment issue-->
+               <label for="topic-{{topic.id}}">
+                 <span class="input-chckbox">
+                   <input id="topic-{{topic.id}}" type="checkbox" data-ng-click="addSrMsg(getVisibilityName(topic.id) + topic.label)" data-ng-model="query.topicIds[topic.id]">
+                 </span>
+                 <span class="label-right">
+                  {{topic.label}}
+                  <span data-mh-help-icon data-sr-label="'Help for ' + topic.label" data-mh-on-click="modalTopic(topic.id)"></span>
+                 </span>
+               </label>
+               <!--END: TICKET:MONNGBD-19 Add wrapper to input checkbox and label to fix alignment issue-->
+            </li>
+          </ul>
+        </fieldset>
+      </div>
+    </header>
+
+    <div class="report--content" data-ng-if="!hasResults">
+      <div class="contain report__no-results" id="report__no-resultsText">
+        <h2>You have not selected any conditions or topics to compare these hospitals against.</h2>
+        <p>Please select any conditions and/or topics above</p>
+      </div>
+    </div>
+
+    <div class="report-content" data-ng-if="hasResults">
+      <!--<div class="toggle-all-subtopics-container">
+        <a class="toggle-all-subtopics" data-ng-click="toggleSection('topics', reportTopics)" aria-expanded="{{showSection('topics', reportTopics)}}">{{getSectionStateName('topics', reportTopics)}}</a>
+      </div>-->
+
+      <div class="compared-topic" data-ng-repeat="topic in reportTopics" >
+        <header>
+          <h2>{{topic.name}} <span data-mh-help-icon data-sr-label="'Help for ' + topic.name" data-mh-on-click="modalTopic(topic.id)"></span></h2>
+          <div data-ng-bind-html="topic.description"></div>
+          <button class="toggle-compared-data" data-ng-click="toggleSection('topic', topic)" aria-expanded="{{showSection('topic', topic)}}">{{getSectionStateName('topic', topic)}}</button>
+        </header>
+
+        <div data-ng-if="showSection('topic', topic)">
+          <!-- Removed "expand all" links to prevent clutter -->
+          <!-- <table data-compare-size="{{hospitals.length}}">
+            <thead>
+            <tr>
+              <th></th>
+              <th data-ng-repeat="h in hospitals"><a href="#" data-ui-sref="top.consumer.hospitals.profile({id: h.Id})">{{h.Name}}</a></th>
+            </tr>
+            </thead>
+           <tbody>
+            <tr>
+              <th class="compared-tr-label">Number of Treated Patients</th>
+              <td data-ng-repeat="h in hospitals">lorem ipsum</td>
+            </tr>
+            </tbody>
+          </table> -->
+
+          <!-- Removed "expand all" links to prevent clutter -->
+          <!-- <div class="toggle-all-subtopics-container">
+            <a class="toggle-all-subtopics" data-ng-click="toggleSection('subtopics', topic)" aria-expanded="{{showSection('subtopics', topic)}}">{{getSectionStateName('subtopics', topic)}}</a>
+          </div> -->
+
+          <div class="compared-subtopic" data-ng-repeat="subtopic in topic.subtopics">
+            <div class="compared-subtopic__header" data-ng-click="toggleSection('subtopic', subtopic)" aria-expanded="{{showSection('subtopic', subtopic)}}">
+              <h3 class="compared-title">{{subtopic.name}} <span data-mh-help-icon data-sr-label="'Help for ' + subtopic.name" data-mh-on-click="modalSubtopic(subtopic.id)"></span></h3>
+              <button class="toggle-subtopic" data-ng-click="$event.stopPropagation(); toggleSection('subtopic', subtopic)" aria-expanded="{{showSection('subtopic', subtopic)}}">{{getSectionStateName('subtopic', subtopic)}}</button>
+            </div>
+            <table data-compare-size="{{hospitals.length + 1}}" data-ng-if="showSection('subtopic', subtopic)">
+              <thead>
+              <tr class="compare-hidden-header">
+                <td></td>
+                <td></td>
+                <th class="sr-hidden" data-ng-repeat="h in hospitals">{{h.Name}}</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr data-ng-repeat="measure in subtopic.measures">
+                <th class="compared-tr-label">
+                  {{measure.name}} <span data-mh-help-icon data-sr-label="'Help for ' + measure.name" data-mh-on-click="modalMeasure(measure.id)"></span>
+                  <span data-ng-if="showSupportsCost(measure)"><button class="btn--primary cost-for-care" data-ng-click="$event.preventDefault(); gotoCostQuality(subtopic)">View Cost for Care</button></span>
+                </th>
+                <td>
+                  <span data-ng-if="query.compareTo == 'national' && measureDefs[measure.id].NatRateAndCI != -1"><strong>{{measureDefs[measure.id].NatRateAndCI}}</strong></span>
+                  <span data-ng-if="query.compareTo == 'national' && measureDefs[measure.id].NatRateAndCI == -1"><strong class="rating-symbol--text">NOT COMPARED</strong></span>
+                  <span data-ng-if="query.compareTo == 'state' && measureDefs[measure.id].PeerRateAndCI != -1"><strong>{{measureDefs[measure.id].PeerRateAndCI}}</strong></span>
+                  <span data-ng-if="query.compareTo == 'state' && measureDefs[measure.id].PeerRateAndCI == -1"><strong class="rating-symbol--text">NOT COMPARED</strong></span>
+                </td>
+                <td data-ng-repeat="h in hospitals">
+                  <div data-ng-if="showSymbol(model[measure.id][h.Id]) && query.compareTo == 'national'" data-mh-rating-symbol="model[measure.id][h.Id].natRating"></div>
+                  <div data-ng-if="showSymbol(model[measure.id][h.Id]) && query.compareTo == 'state'" data-mh-rating-symbol="model[measure.id][h.Id].peerRating"></div>
+                  <div data-ng-if="!showSymbol(model[measure.id][h.Id])">{{model[measure.id][h.Id].RateAndCI}}</div>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div data-ng-if="reportSettings.footer" class="report-footnotes" data-ng-bind-html="reportSettings.footer"></div>
+    </div>
+
+  </section>
+
+  <div data-mh-cms-zone="'footer'" data-mh-cms-zone-report-id="reportId" data-mh-cms-zone-product="'Consumer'"></div>
+
+  <ul aria-live="assertive" class="sr-hidden">
+    <li data-ng-repeat="msg in srMessages track by $index">{{msg}}</li>
+  </ul>
+</main>

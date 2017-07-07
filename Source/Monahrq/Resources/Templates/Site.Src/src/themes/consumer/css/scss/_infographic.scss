@@ -1,0 +1,1287 @@
+// -------------------------------------------------------------------- //
+//  Infographics
+// -------------------------------------------------------------------- //
+//  Variables
+
+$color-sea-blue: rgba(0, 102, 143, 1);
+$color-onahau:   rgba(206, 237, 250, 1);
+$color-flamingo: rgba(243, 87, 49, 1);
+$color-java:     rgba(29, 165, 156, 1);
+
+
+
+// -------------------------------------------------------------------- //
+//  Home - Search Health Topics block
+
+.search-health-topics {
+  padding: 40px 0;
+  background-color: #eee;
+  border-top: 2px solid #999;
+
+  h2 {
+    margin-bottom: 40px;
+    font-size: 42px;
+    text-align: center;
+  }
+
+  img {
+    margin: 0 10px;
+    opacity: .5;
+  }
+
+  button {
+    margin: 0 20px;
+    font-size: 24px;
+  }
+}
+
+
+
+
+
+// -------------------------------------------------------------------- //
+//  Infographics (Shared full styles)
+
+.infographic {
+  clear: both;
+  padding-top: 75px;
+
+  .contain {
+    @include clearfix;
+    position: relative;
+  }
+
+  > section {
+    padding: 40px 0;
+  }
+
+  // Footnote links
+  sup > a {
+    padding: 0 2px;
+    color: currentColor;
+    text-decoration: underline;
+  }
+
+  // Checkmark icons for list items
+  li {
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: -30px;
+      display: block;
+      width: 22px;
+      height: 22px;
+      background-image: url('../assets/infographic/icon-checkmark.png');
+    }
+  }
+}
+
+
+// Section titles
+.infographic__title {
+  margin: 0 auto;
+  font-size: 30px;
+  text-align: center;
+}
+
+
+// Social icons
+.infographic__social span,
+.infographic__social a,
+.infographic__social--footer a {
+  display: inline-block;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+.infographic__social {
+  text-align: right;
+} // END infographic__social
+
+.infographic__social--facebook svg,
+.infographic__social--twitter svg,
+.infographic__social--email svg {
+  // @include hide-text;
+  width: 32px;
+  height: 32px;
+  fill: rgba(0, 0, 0, .5);
+  transition: fill .3s;
+}
+
+.infographic__social--facebook svg:hover {
+  fill: #40559c;
+}
+
+.infographic__social--twitter svg:hover {
+  fill: #5aa8f6;
+}
+
+.infographic__social--email svg:hover {
+  fill: #333;
+}
+
+
+// Infographic headers
+.infographic__header {
+  padding: 40px 0;
+  background-color: $color-onahau;
+  text-align: center;
+
+  .infographic__header__icon-bar {
+    margin-bottom: 20px;
+  }
+
+  .infographic__header__doctor-1,
+  .infographic__header__doctor-2 {
+    position: absolute;
+    bottom: -40px;
+  }
+
+  .infographic__header__doctor-1 {
+    left: -55px;
+  }
+
+  .infographic__header__doctor-2 {
+    right: -90px;
+  }
+
+  h1 {
+    margin: 0 0 10px;
+    padding: 0 80px;
+    color: #00668f;
+    font-size: 50px;
+    font-weight: 900;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    margin-bottom: 40px;
+    color: #ff6739;
+    font-size: 36px;
+    line-height: 1;
+  }
+
+  p {
+    padding: 20px 60px;
+    border: 4px solid #fff;
+    color: #00668f;
+    font-size: 18px;
+  }
+} // END infographic__header
+
+
+// Infographic description
+.infographic__description {
+  background-color: $color-java;
+  text-align: left;
+
+  img {
+    position: absolute;
+    bottom: -40px;
+    z-index: 0;
+
+    &[src*='hospital.png'] {
+      left: 0;
+    }
+
+    &[src*='ambulance.png'] {
+      right: 60px;
+      bottom: -45px;
+    }
+
+    &[src*='nursing-home.png'] {
+      left: -260px;
+    }
+  }
+
+  p {
+    float: right;
+    clear: both;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 550px;
+    color: #fff;
+    font-size: 22px;
+        text-shadow: 0 0 5px rgba(0, 0, 0, .5);
+
+    &:not(:last-of-type) {
+      margin-bottom: 20px;
+    }
+  }
+
+  strong {
+    font-weight: 900;
+  }
+} // END infographic__description
+
+
+// Infographic statistic bubbles
+.infographic__statistic {
+  float: left;
+  width: calc(100% / 3);
+  margin-bottom: 40px;
+  padding: 0 40px;
+  text-align: center;
+
+  // Statistic intro sentence
+  > p:first-of-type {
+    color: $color-flamingo;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+}
+
+// Infographic statistic bubbles
+.infographic__statistic__x2 {
+  float: left;
+  width: calc(100% / 2);
+  margin-bottom: 40px;
+  padding: 0 40px;
+  text-align: center;
+
+  // Statistic intro sentence
+  > p:first-of-type {
+    color: $color-flamingo;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+}
+
+.statistic__value {
+  position: relative;
+  display: block;
+  width: 160px;
+  height: 160px;
+  margin: 0 auto 10px;
+  background-color: $color-flamingo;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 35px;
+  font-weight: 900;
+  line-height: 1;
+
+  p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    margin: 0;
+    transform: translateX(-50%) translateY(-50%);
+    -ms-transform: translateX(-50%) translateY(-50%);
+  }
+
+  small {
+    font-size: 50%;
+  }
+} // END statistic__value
+
+.infographic__statistic--text {
+  clear: both;
+  font-size: 24px;
+  text-align: center;
+
+  strong {
+    color: $color-flamingo;
+  }
+}
+
+
+// Infographic quality metrics
+.infographic__quality {
+  background-color: $color-onahau;
+
+  .contain > p {
+    position: relative;
+    margin-bottom: 40px;
+    padding: 0 150px;
+    color: #00618c;
+    text-align: center;
+
+    strong {
+      font-weight: 900;
+    }
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      display: block;
+      width: 71px;
+      height: 71px;
+      transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+    }
+
+    &::before {
+      left: 0;
+      background-image: url('../assets/infographic/icon-bandaid.png');
+    }
+
+    &::after {
+      right: 0;
+      background-image: url('../assets/infographic/icon-cross.png');
+    }
+  }
+} // END infographic__quality
+
+.infographic__quality__stat {
+  float: left;
+  width: 34%;
+  margin-bottom: 20px;
+  padding: 0 20px;
+
+  &:nth-child(3n+1) {
+    margin-left: -20px;
+  }
+
+  &:nth-child(3n+3) {
+    margin-right: -20px;
+  }
+
+  small {
+    display: block;
+    height: 20px;
+  }
+
+  .quality__value {
+    margin-bottom: 5px;
+    color: $color-flamingo;
+    font-size: 30px;
+    font-weight: 900;
+    line-height: 1;
+  }
+}
+
+.infographic__quality__callout {
+  float: left;
+  width: 30%;
+  margin: 10px 0 0 10px;
+  padding: 20px;
+  border: 3px solid #fff;
+
+  p {
+    margin-bottom: 0;
+  }
+}
+
+.infographic__quality__low-rating {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 960px;
+  margin: 0 auto;
+  padding: 40px;
+  background-color: #e9f7fc;
+
+  > p {
+    flex: 0 1 245px;
+    margin: 0;
+    color: $color-sea-blue;
+    font-size: 22px;
+    font-weight: 900;
+        text-align: center;
+  }
+
+  ul {
+    flex: 1;
+    margin-left: 120px;
+    font-size: 24px;
+    font-weight: 900;
+
+    li {
+      &::before {
+        top: 10px;
+        width: 17px;
+        height: 17px;
+        background-image: url('../assets/infographic/icon-x.png');
+      }
+
+      &:not(:last-of-type) {
+        margin-bottom: 20px;
+      }
+    }
+  } // END ul
+} // END infographic__quality__low-rating
+
+
+// Infographic staffing / checklist
+.infographic__staffing,
+.infographic__checklist {
+  background-image: linear-gradient(to bottom,
+                                    rgba(0, 0, 0, .1) 0%,
+                                    rgba(0, 0, 0, 0) 20%);
+
+  .contain > p {
+    max-width: 750px;
+    margin-bottom: 60px;
+    color: $color-sea-blue;
+    font-size: 22px;
+  }
+}
+
+.infographic__clipboard {
+  position: relative;
+  margin-bottom: -40px;
+  padding: 40px 60px;
+  background-color: #fff;
+  border: {
+    width: 15px 15px 0 15px;
+    style: solid;
+    color: rgba(149, 117, 105, 1);
+  }
+  border-radius: 5px 5px 0 0;
+  font-size: 26px;
+
+  // Clip graphic
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    display: block;
+    width: 121px;
+    height: 55px;
+    background-image: url('../assets/infographic/clipboard-clip.png');
+    transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+  }
+
+  > p {
+    max-width: 500px;
+    margin: 0 auto 40px;
+    color: $color-java;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  ul {
+    max-width: 650px;
+  }
+
+  li {
+    margin-bottom: 20px;
+  }
+}
+
+.clipboard__doctor {
+  position: absolute;
+  right: -10px;
+  bottom: 0;
+  z-index: 1;
+}
+
+.clipboard__post-it {
+  position: absolute;
+  top: 100px;
+  right: 160px;
+  z-index: 0;
+  display: block;
+  width: 300px;
+  height: 210px;
+  padding: 20px 30px;
+  background-color: rgb(252, 255, 175);
+  font-size: 22px;
+  box-shadow: inset 0 50px 20px -20px rgba(252, 228, 0, 0.15);
+  transform: rotate(-10deg);
+  -ms-transform: rotate(-10deg);
+}
+
+
+// Infographic inspections / safety
+.infographic__inspections,
+.infographic__safety {
+  background-color: $color-sea-blue;
+  color: #fff;
+  text-align: center;
+
+  .contain > p {
+    margin-bottom: 30px;
+    font-size: 30px;
+    font-weight: 900;
+    line-height: 1;
+    text-shadow: 0 0 5px rgba(0, 0, 0, .3);
+  }
+}
+
+.inspections__measures,
+.safety__measures {
+  display: flex;
+  justify-content: space-around;
+}
+
+.inspections__measure,
+.safety__measure {
+  flex: 0 0 240px;
+
+  img {
+    margin: 0 auto 20px;
+  }
+
+  .measure__value {
+    margin-bottom: 10px;
+    font-size: 38px;
+    font-weight: 900;
+    line-height: 1;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 1);
+  }
+
+  .measure__description {
+    font-size: 18px;
+    font-weight: 100;
+    line-height: 1.3;
+  }
+}
+
+
+// Infographic Tips
+.infographic__tips {
+  background-color: rgba(242, 242, 242, 1);
+
+  .contain {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .infographic__title {
+    flex-basis: 100%;
+    margin-bottom: 20px;
+    color: #00668f;
+    font-weight: 900;
+  }
+}
+
+.infographic__tip {
+  flex: 1;
+  margin-top: 20px;
+  padding: 0 20px;
+  text-align: center;
+
+  ul {
+    text-align: left;
+  }
+
+  li {
+    margin-bottom: 20px;
+    padding-left: 40px;
+
+    a {
+      color: rgba(235, 80, 27, 1);
+      font-weight: 900;
+    }
+
+    &::before {
+      top: 2px;
+      left: 10px;
+    }
+  }
+}
+
+.tip__icon {
+  max-width: 140px;
+  max-height: 140px;
+  margin-bottom: 20px;
+}
+
+.tip__title {
+  max-width: 250px;
+  height: 40px;
+  margin: 0 auto 20px;
+  color: rgba(40, 184, 175, 1);
+  font-size: 18px;
+  font-weight: 900;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+
+.infographic__comparing-hospitals {
+  @include clearfix;
+
+  .contain {
+    max-width: 750px;
+  }
+
+  img {
+    float: left;
+  }
+
+  .comparing-hospitals__content {
+    float: right;
+    padding: 30px 0;
+    color: $brand-blue;
+    text-align: center;
+
+    p:not(.infographic__title) {
+      font-size: 20px;
+    }
+
+    small {
+      font-size: 75%;
+    }
+  }
+
+  .infographic__title {
+    margin-bottom: 20px;
+    font-weight: 900;
+  }
+
+  .btn--primary {
+    margin-top: 20px;
+  }
+}
+
+
+// Footer
+.infographic__footer {
+  @include clearfix;
+  padding: 0;
+  background-color: rgba(206, 237, 250, 1);
+  background-image: linear-gradient(to right,
+                                    rgba(206, 237, 250, 1) 0%,
+                                    rgba(206, 237, 250, 1) 50%,
+                                    rgba(220, 242, 251, 1) 50%,
+                                    rgba(220, 242, 251, 1) 100%);
+  text-align: left;
+
+  .footer__closing-statement,
+  .footer__cta {
+    display: flex;
+    align-items: center;
+    padding: 40px 0;
+    color: #00668f;
+  }
+
+  .footer__closing-statement {
+    float: left;
+    width: 66%;
+    padding-right: 80px;
+    background-color: rgba(206, 237, 250, 1);
+    font-size: 22px;
+
+    p {
+      margin: 0 0 0 10px;
+    }
+  }
+
+  .footer__cta {
+    flex-direction: column;
+    float: right;
+    width: 33%;
+    padding-left: 80px;
+    text-align: center;
+
+    a {
+      padding: 10px 30px;
+      background-color: $color-flamingo;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+  }
+}
+
+
+
+// Footnotes
+.infographic__footnotes {
+  color: #999;
+  font-size: 12px;
+
+  .resource__toggle button {
+    margin-bottom: 10px;
+    padding: 10px 0;
+    background-color: transparent;
+    font-size: 14px;
+
+    &:hover,
+    &:active,
+    &:focus {
+      background-color: transparent;
+      color: #333;
+    }
+
+    &::after {
+      top: 6px;
+      right: 10px;
+    }
+  }
+
+  [id^="foot"] {
+    margin-bottom: 5px;
+  }
+}
+
+
+
+
+
+// -------------------------------------------------------------------- //
+//  Browse Health Topics (Landing Page)
+
+.health-topics {
+  padding-top: 75px;
+
+  .contain {
+    width: 1200px;
+  }
+} // END health-topics
+
+.health-topics__intro {
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee;
+  text-align: center;
+
+  h1 {
+    margin-bottom: 15px;
+  }
+
+  p {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+.health-topics__list {
+  &::before,
+  &::after {
+    content: "";
+    display: table;
+  }
+
+  &::after {
+    clear: both;
+  }
+}
+
+.health-topic {
+  float: left;
+  position: relative;
+  width: 30%;
+  height: 100px;
+  overflow: visible;
+  padding: 10px 130px 10px 15px;
+  background-color: #eee;
+  border: 1px solid #ddd;
+  margin-bottom: 40px;
+  cursor: pointer;
+  transition: background-color .15s;
+
+  &:not(:nth-child(3n+1)) {
+    margin-left: 5%;
+  }
+
+  &.detail {
+    flex: 100%;
+    max-width: 100%;
+    height: auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 0;
+    text-align: center;
+
+    p:nth-child(2) {
+      margin-bottom: 0;
+      font-size: 14px;
+    }
+  }
+
+  &:hover,
+  &:focus {
+    background-color: #ddd;
+  }
+}
+
+
+.health-topic__name {
+  font-weight: 700;
+
+  + a {
+    position: absolute;
+    left: 15px;
+    bottom: 10px;
+    font-size: 12px;
+  }
+}
+
+.health-topic__icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  width: auto;
+  height: 100px;
+  transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+}
+
+
+[window-class='modal--health-topics'] .modal-dialog {
+  width: 900px;
+}
+
+.modal--health-topics {
+  .health-topics__list {
+    @include clearfix;
+    display: block;
+  }
+
+  .health-topic {
+    height: 70px;
+    margin-bottom: 20px;
+    padding-right: 80px;
+  }
+
+  .health-topic__name {
+    font-size: 14px;
+    line-height: 1.2;
+  }
+
+  .health-topic__icon {
+    max-width: 60px;
+    width: 100%;
+    max-height: 70px;
+    height: auto;
+  }
+}
+
+
+.health-topics__footer {
+  position: relative;
+  margin-top: 40px;
+  padding: 55px 0;
+  text-align: center;
+
+  p {
+    line-height: 1;
+  }
+
+  p:nth-of-type(1) {
+    margin-bottom: 15px;
+    font-size: 50px;
+    font-weight: 900;
+    text-transform: uppercase;
+  }
+
+  p:nth-of-type(2) {
+    margin-bottom: 40px;
+    font-size: 40px;
+  }
+
+  [class^="doctor--"] {
+    position: absolute;
+    top: -30px;
+    height: 300px;
+  }
+
+  .doctor--left {
+    left: 40px;
+  }
+
+  .doctor--right {
+    right: 40px;
+  }
+
+  &.nursing-home-footer p:nth-of-type(1) {
+    font-size: 40px;
+  }
+
+  &.nursing-home-footer p:nth-of-type(2) {
+    font-size: 25px;
+  }
+}
+
+
+
+
+
+// -------------------------------------------------------------------- //
+//  Topic Infographic
+
+.infographic--topic {
+  padding-top: 0;
+
+  .topic__compare-divider {
+    margin-top: 50px;
+    border-top: 3px dotted #eee
+  }
+
+  // Social
+  .infographic__social {
+    margin-top: 55px;
+    padding: 0;
+  }
+
+  // Header
+  .infographic__header {
+    position: relative;
+    margin-bottom: $base-spacing;
+    padding: 0;
+    background-color: transparent;
+
+    h1 {
+      color: #414042;
+      font-size: 40px;
+      font-weight: 700;
+      text-transform: none;
+    }
+  }
+
+
+  // Topic Description (Is Preview)
+  .infographic__description-toggle {
+    text-align: center;
+  }
+
+
+  .infographic__content {
+    position: relative
+  }
+
+
+  .infographic__description {
+    position: relative;
+    margin-bottom: 80px;
+    padding: $base-spacing 200px;
+    background-color: #eee;
+    text-align: center;
+
+    &[data-ng-if="isPreview() && showDesc"] {
+      margin: $base-spacing 0;
+      padding: $base-spacing;
+    }
+
+    img {
+      position: absolute;
+      top: 50%;
+      height: 200px;
+      transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+
+      &:first-of-type {
+        left: 10px;
+      }
+
+      &:last-of-type {
+        right: 10px;
+      }
+    }
+
+    p {
+      float: none;
+      max-width: 100%;
+      padding: 0;
+      border: 0;
+      color: #414042;
+      font-size: 18px;
+      text-shadow: none;
+    }
+
+    p:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+
+  // CTAs
+  .infographic__cta {
+    margin-bottom: 50px;
+    text-align: center;
+
+    button {
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 14px;
+    }
+  }
+
+
+  // Facts
+  .infographic__facts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    position: relative;
+    margin-bottom: 50px;
+  }
+
+  .infographic__fact {
+    flex: 0 0 490px;
+    max-width: 490px; // IE11 Fix
+    position: relative;
+    margin-bottom: $base-spacing;
+    padding: 10px;
+    background-color: #f2f8ff;
+    border: 1px solid #d1e6fd;
+    color: #3275ac;
+
+    p {
+      overflow: hidden;
+    }
+
+    sup {
+      font-size: 9px;
+    }
+
+    &:nth-child(odd) {
+      .fact__image {
+        float: right;
+        margin-right: 0;
+        margin-left: 10px;
+      }
+
+      .fact__source {
+        margin-left: 0;
+      }
+    }
+  }
+
+  .fact__image {
+    float: left;
+    max-width: 140px;
+    max-height: 140px;
+    margin-right: 10px;
+  }
+
+  .fact__source {
+    margin-bottom: 0;
+    margin-left: 140px;
+    color: #333;
+    font-size: 12px;
+  }
+
+
+
+  // Tips
+  .infographic__tips {
+    margin-bottom: 50px;
+    background-color: #eee;
+
+    h2 {
+      flex-basis: 100%;
+      margin: 0 0 $base-spacing;
+      padding-top: $base-spacing;
+      text-align: center;
+    }
+
+    > div {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+  }
+
+  .infographic__tip {
+    margin-bottom: 20px;
+  }
+
+
+
+  // Measures
+  .infographic__measures {
+    margin-bottom: 40px;
+    padding: $base-spacing;
+    background-color: #f2f8ff;
+    border: 1px solid #d1e6fd;
+    text-align: center;
+
+    h2 {
+      margin-bottom: $base-spacing;
+    }
+  }
+
+  .measures__list {
+    @include clearfix;
+  }
+
+  .measure {
+    float: left;
+    width: 50%;
+    margin-bottom: $base-spacing;
+    padding: 0 40px;
+  }
+
+  .measure__value {
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .measure__description {
+    max-width: 280px;
+    margin: 0 auto 5px;
+    font-size: 18px;
+    line-height: 1.2;
+  }
+
+  .measures__risk {
+    position: relative;
+    margin: 0 -#{$base-spacing} -#{$base-spacing};
+    padding: 30px 0;
+    background-color: #e3f0ff;
+    font-size: 14px;
+
+    img {
+      position: absolute;
+      bottom: -10px;
+      left: 50px;
+      height: 180px;
+    }
+  }
+
+
+
+  // Footer
+  .infographic__footer {
+    background-color: transparent;
+    background-image: none;
+    text-align: center;
+  }
+
+  .infographic__compare,
+  .infographic__doctor-talk,
+  .infographic__social--footer {
+    margin-bottom: 40px;
+  }
+
+  .infographic__compare {
+    h2 {
+      margin-bottom: 10px;
+    }
+
+    p {
+      margin-bottom: 20px;
+    }
+  }
+
+  .infographic__doctor-talk {
+    padding: $base-spacing;
+    background-color: #eee;
+  }
+
+
+
+  // Preview footer
+  .infographic__footer--preview {
+    text-align: right;
+
+    a:not(:first-of-type) {
+      margin-left: $base-spacing;
+      padding-left: $base-spacing;
+      border-left: 1px solid #ccc;
+    }
+  }
+
+
+
+  // Clipboard
+  .infographic__clipboard {
+    margin-top: 80px;
+    margin-bottom: 40px;
+    font-size: 20px;
+
+    ul {
+      max-width: 50%;
+    }
+  }
+
+  .clipboard__intro {
+    max-width: 40%;
+    margin-bottom: 20px;
+    color: rgb(0, 98, 140);
+
+    p {
+      line-height: 1.3;
+    }
+  }
+
+  .clipboard__post-it {
+    font-size: 16px;
+  }
+}
+
+
+
+
+// -------------------------------------------------------------------- //
+//  Surgery Infographic
+
+.infographic--surgery {
+
+  // Doctor sizing in header
+  .infographic__header__doctor-2 {
+    right: -40px;
+  }
+
+
+  // Checklist
+  .infographic__clipboard {
+    font-size: 18px;
+
+    ul {
+      max-width: 400px;
+    }
+  }
+
+  .safety__measure {
+    flex: 0 0 200px;
+    padding: 0 15px;
+  }
+
+  .measure__description {
+    font-size: 14px;
+  }
+
+  // Social sharing (footer)
+  .infographic__social {
+    margin: 40px 0;
+    text-align: center;
+  }
+}
+
+
+
+
+// -------------------------------------------------------------------- //
+//  Nursing Home Infographic
+
+.infographic--nursing-home {
+
+  // Doctor sizing in header
+  .infographic__header__doctor-1 {
+    height: 300px;
+  }
+
+  // Checklist
+  .infographic__clipboard {
+    li {
+      margin-bottom: 20px;
+      line-height: 1.2;
+
+      &::before {
+        top: 5px;
+      }
+    }
+  }
+}
+
+
+
+
+
+// Nursing Home Report Footer
+
+.report-footer--infographic {
+  padding: 20px 0;
+  text-align: center;
+}

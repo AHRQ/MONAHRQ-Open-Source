@@ -1,0 +1,19 @@
+<aside class="site-notification-bar" data-ng-show="notificationBar.visible">
+  <div class="contain">
+    <p>Are you a health care professional looking for <a href="#" data-ui-sref="top.professional.home">Quality and Service Use Rates</a>?</p>
+    <a href="#" data-ng-click="notificationBar.visible = false; $event.preventDefault()"><span class="hide-notification">&times;</span><span class="sr-hidden">Hide Notification Bar</span></a>
+  </div>
+</aside>
+
+<header class="site-header" role="banner">
+  <div class="contain">
+    <a href="#" data-ui-sref="top.consumer.home" class="provider-logo"><img alt="Go to home" data-ng-src="{{config.products.consumer.website_LogoImagePath}}" /></a>
+    <nav class="site-header__nav">
+      <ul>
+        <li><button data-ng-click="print()" class="btn--tertiary">Print</button></li>
+        <li><button data-ng-click="share()" class="btn--tertiary">Share This Page</button></li>
+        <li><button data-ng-click="feedbackModal()" data-ng-if="config.products.consumer.website_FeedBackEmail" class="btn--tertiary">Feedback</button></li>
+      </ul>
+    </nav>
+  </div>
+</header>

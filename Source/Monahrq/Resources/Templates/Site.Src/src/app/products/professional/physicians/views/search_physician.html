@@ -1,0 +1,45 @@
+<div data-ng-if="navActive('top.professional.physicians.find-physician')" data-mh-wizard class="row">
+  <div data-mh-wizard-step step-num="1" step-label="'1'" step-visible="true" class="col-md-3">
+    <div data-mh-wizard-step-option option-label="'Find a Physician'">
+      <select class="form-control" data-ng-class="{selectEmpty: !query.searchType}" data-ng-model="query.searchType" data-ng-options="x.id as x.name for x in searchTypeOptions" title="Search Type">
+        <option value="" selected disabled style="display:none;">Select an Option</option>
+      </select>
+    </div>
+  </div>
+
+  <div data-mh-wizard-step step-num="2" step-label="'2'" step-visible="query.searchType" step-option-switch="query.searchType" class="col-md-3">
+    <div data-mh-wizard-step-option option-switch-on="'name'" option-label="'Physician Name'">
+      <input class="form-control" type="text" data-ng-model="query.firstName" placeholder="First Name {{matchTypeName}}" />
+      <input class="form-control" type="text" data-ng-model="query.lastName" placeholder="Last Name {{matchTypeName}}" />
+    </div>
+
+    <div data-mh-wizard-step-option option-switch-on="'practiceName'" option-label="'Practice or Medical Group Name'">
+      <input class="form-control" type="text" data-ng-model="query.practiceName" placeholder="{{matchTypeFacility}}" />
+    </div>
+
+    <div data-mh-wizard-step-option option-switch-on="'city'" option-label="'City'">
+      <input class="form-control" type="text" data-ng-model="query.city" placeholder="{{matchTypeCity}}" />
+    </div>
+
+    <div data-mh-wizard-step-option option-switch-on="'zip'" option-label="'Zip Code'">
+      <input class="form-control" type="text" data-ng-model="query.zip" placeholder="{{matchTypeZip}}" />
+    </div>
+
+    <div data-mh-wizard-step-option option-switch-on="'specialty'" option-label="'Specialty'">
+      <select class="form-control" data-ng-class="{selectEmpty: !query.specialty}"  data-ng-model="query.specialty" data-ng-options="x.id as x.name for x in specialtyOptions" title="Specialty">
+        <option value="" selected disabled style="display:none;">Specialty</option>
+      </select>
+    </div>
+
+    <div data-mh-wizard-step-option option-switch-on="'condition'" option-label="'Condition'">
+      <div data-mh-autocomplete="uiaConditions" selected-id="query.condition"></div>
+    </div>
+  </div>
+
+   <div data-mh-wizard-step step-num="3" step-visible="canSearch()" class="col-md-3 last has-value">
+     <div data-mh-wizard-step-option>
+       <button class="btn btn-success" data-ng-click="search()">Search</button>
+     </div>
+  </div>
+
+</div>

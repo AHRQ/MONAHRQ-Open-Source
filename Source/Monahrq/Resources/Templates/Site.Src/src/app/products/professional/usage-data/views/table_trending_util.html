@@ -1,0 +1,59 @@
+<div class="modal-body">
+    <h1>{{vm.report.title}}</h1>
+    <h2>{{vm.report.subtitle}}</h2>
+    <div class="report-header" data-ng-bind-html="vm.reportSettings.header"></div>
+    <a href="#" data-ng-click="vm.back(); $event.preventDefault();">Back</a>
+    <span class="trending-toggle" data-ng-if="vm.reportingQuarters.length > 0">
+        <button class="btn btn-default" data-ng-click="vm.toggleQuarters()" uib-btn-checkbox btn-checkbox-true="1">
+            {{ vm.showQuarters ? 'Hide Quarters' : 'Show Quarters' }}
+        </button>
+
+        <!--<input id="toggleQuarters" type="checkbox" data-ng-init="vm.showQuarters" data-ng-click="vm.toggleQuarters()">
+        <label for="toggleQuarters" data-ng-if="">View Quarters</label>
+        <label for="toggleQuarters" data-ng-if="!vm.showQuarters">Hide Quarters</label>-->
+    </span>
+    <div ng-if="vm.showTable()" class="table-wrapper">
+        <table class="data">
+            <thead>
+                <tr>
+                    <th>Year</th>
+                    <th data-ng-if="vm.showQuarters">Quarter</th>
+                    <th data-ng-repeat="c in vm.report.columns" class="{{c.class}}">{{c.title}}</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th></th>
+                    <th data-ng-if="vm.showQuarters"></th>
+                    <th data-ng-repeat="c in vm.report.columns">
+                        <a href="#" data-ng-click="vm.onChartSelect(c, row); $event.preventDefault();">Show Chart</a>
+                    </th>
+                </tr>
+            </tfoot>
+            <tbody data-ng-repeat="row in vm.report.tableData">
+                <tr>
+                    <th rowspan="{{vm.showQuarters ? vm.getQuartersForYear(row.reportingYear).length + 1 : 1}}">{{row.reportingYear}}</th>
+                    <td data-ng-if="vm.showQuarters">Total</td>
+                    <td data-ng-repeat="c in vm.report.columns">{{vm.getCell(c.name, row)}}</td>
+                </tr>
+                <tr data-ng-if="vm.showQuarters" data-ng-repeat="quarter in vm.getQuartersForYear(row.reportingYear)" data-ng-class="{isICD10: vm.isICD10Quarter(row.reportingYear, quarter)}">
+                    <th>Q{{quarter}} <span data-ng-if="vm.isICD10Quarter(row.reportingYear, quarter)" class="sr-hidden">(Post ICD 10)</span></th>
+                    <td data-ng-repeat="c in vm.report.columns">{{vm.getCell('Q' + quarter + '_' + c.name, row)}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div ng-if="vm.showChart()">
+        <label for="trendingChartColumn">
+            Change Report
+            <select id="trendingChartColumn" class="form-control" aria-controls="trendingChart" data-ng-model="vm.chartColumnName" data-ng-options="o.id as o.name for o in vm.columnOptions" title="Select a Measure"></select>
+        </label>
+        <div class="row">
+            <h3 class="col-md-6">{{vm.getChartColumn().title}}</h3>
+            <a href="#" class="col-md-6 text-right" data-ng-click="vm.onTableSelect(); $event.preventDefault();">Show Table</a>
+        </div>
+        <div id="trendingChart" ac-title="''" ac-chart="'line'" ac-data="vm.chartData" ac-config="vm.chartConfig" id="chart" class="chart" style="width:600px;height:400px;"></div>
+    </div>
+    <div class="report-footer" data-ng-bind-html="vm.reportSettings.footer"></div>
+</div>

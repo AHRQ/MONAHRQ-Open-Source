@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="Monahrq.Default.DataProvider.Administration.File.FileDatasourceView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:prism="clr-namespace:Microsoft.Practices.Prism.Regions;assembly=Microsoft.Practices.Prism"
+             xmlns:monahrqValidation="clr-namespace:Monahrq.Sdk.Validation;assembly=Monahrq.Sdk"
+             xmlns:builder="clr-namespace:Monahrq.Sdk.DataProvider.Builder;assembly=Monahrq.Sdk"
+             xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             xmlns:controls="clr-namespace:Monahrq.Theme.Controls;assembly=Monahrq.Theme"
+             mc:Ignorable="d" 
+             d:DesignHeight="130" d:DesignWidth="800">
+
+   
+        <DockPanel LastChildFill="True">
+        <StackPanel DockPanel.Dock="Top">
+            <TextBlock Margin="0,0,10,10" FontSize="16" Foreground="#FF585858" HorizontalAlignment="Left" Text="* Please browse for your input data file:"></TextBlock>
+
+            <DockPanel Margin="-5,0,0,0" LastChildFill="True" HorizontalAlignment="Stretch" Width="Auto">
+                <controls:MonahrqButton Command="{Binding SelectFileCommand}" 
+                        Foreground="White" Style="{DynamicResource MonahrqBlueStyle}" 
+                        BorderBrush="{x:Null}" 
+                        Padding="5,0,5,0" Margin="0,0,5,0" 
+                        DockPanel.Dock="Right" 
+                        Width="80" >BROWSE</controls:MonahrqButton>
+                <TextBox Height="34" FontSize="16"
+                         Controls:TextboxHelper.ClearTextButton="True"
+                         Controls:TextboxHelper.Watermark="Select file " 
+                         Margin="5,0,5,0" DockPanel.Dock="left" Width="Auto">
+                    <TextBox.Text>
+                        <Binding Path="CurrentFile" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <monahrqValidation:CsvFileValidator FieldName="Input Data File" ValidatesOnTargetUpdated="True" />
+                                <monahrqValidation:IsFileOpenValidator PropertyName="Input Data File" ValidatesOnTargetUpdated="True" />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+            </DockPanel>
+            
+        </StackPanel>
+        <DockPanel LastChildFill="True" Margin="0,0,0,0" >
+            <ContentControl x:Name="ViewContent" HorizontalAlignment="Stretch" 
+                            HorizontalContentAlignment="Stretch"  
+                            VerticalAlignment="Stretch" VerticalContentAlignment="Stretch"
+                            Margin="0,0,0,0" 
+                            Content="{Binding CurrentView}"   />
+        </DockPanel>
+    </DockPanel>
+</UserControl>

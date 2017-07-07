@@ -1,0 +1,282 @@
+﻿<UserControl x:Class="Monahrq.DataSets.Controls.DataGridWithPopup"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+	         xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+             xmlns:local="clr-namespace:Monahrq.DataSets.Controls"
+             xmlns:controls="clr-namespace:Monahrq.Theme.Controls;assembly=Monahrq.Theme"
+             xmlns:behaviors="clr-namespace:Monahrq.Theme.Behaviors;assembly=Monahrq.Theme"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+   
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.Buttons.xaml"/>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.DataGrid.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+                
+            <DataTemplate x:Key="FieldValueItemTemplate">
+                <Grid Height="Auto" Width="Auto">
+                    <Border Margin="2,0" VerticalAlignment="Stretch" BorderBrush="#FF666666" BorderThickness="1" Background="Gainsboro">
+                        <TextBlock TextWrapping="Wrap" Height="15.96" Margin="5,0,7,0" HorizontalAlignment="Left" Foreground="#FF353535" Text="{Binding }" Width="70"/>
+                    </Border>
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="FieldValueItemTemplateWhite">
+                <Grid Height="Auto" Width="Auto">
+                    <Border Margin="2,0" VerticalAlignment="Stretch" >
+                        <TextBlock TextWrapping="Wrap" Height="15.96" Margin="5,0,7,0" HorizontalAlignment="Left" Foreground="#FF353535" Text="{Binding }" Width="70"/>
+                    </Border>
+                </Grid>
+            </DataTemplate>
+            <Storyboard x:Key="MovePopUpPointer">
+                <PointAnimationUsingKeyFrames Storyboard.TargetProperty="(Path.Data).(PathGeometry.Figures)[0].(PathFigure.Segments)[0].(LineSegment.Point)" Storyboard.TargetName="path">
+                    <EasingPointKeyFrame KeyTime="0" Value="35,275"/>
+                </PointAnimationUsingKeyFrames>
+            </Storyboard>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    
+    <Grid x:Name="LayoutRoot">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="VisualStateGroup">
+                <VisualState x:Name="PopupIsClosed"/>
+                <VisualState x:Name="PopupIsOpen">
+                    
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="border">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        
+                        <BooleanAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.IsEnabled)" Storyboard.TargetName="dataGrid">
+                            <DiscreteBooleanKeyFrame KeyTime="0" Value="False"/>
+                        </BooleanAnimationUsingKeyFrames>
+                        
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="dataGrid">
+                            <EasingDoubleKeyFrame KeyTime="0" Value="0.315"/>
+                        </DoubleAnimationUsingKeyFrames>
+                    </Storyboard>
+                    
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        
+        <DataGrid x:Name="dataGrid" BorderBrush="#FFBABABA" Foreground="#FF434343" 
+		    HorizontalGridLinesBrush="#FFBABABA" VerticalGridLinesBrush="#FFBABABA" 
+		    HeadersVisibility="None" IsReadOnly="True" AutoGenerateColumns="False" 
+            SelectedItem="{Binding SelectedTargetField}"
+		    ItemsSource="{Binding TargetFields}" SelectionUnit="FullRow"
+                      Background="White" RowBackground="#FFBABABA">
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Setter Property="Visibility" Value="{Binding FieldVisibility}" />
+                    <Setter Property="Height" Value="40" />
+                    <Setter Property="Padding" Value="0" />
+                    <Setter Property="Margin" Value="0" />
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected"
+                        Value="True">
+                            <Setter Property="Background" Value="#FFFFFFA9" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
+            <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell">
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected"
+                        Value="True">
+                            <Setter Property="Background"
+                        Value="#FFFFFFA9" />
+                            <Setter Property="Foreground"
+                        Value="Black" />
+                        </Trigger>
+                    </Style.Triggers>
+                    <Setter Property="Padding" Value="1,1,1,0"/>
+                    <Setter Property="Margin" Value="0"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                <Border Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                                    <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </DataGrid.CellStyle>
+            
+            <DataGrid.Columns>
+                <DataGridTemplateColumn>                            <!-- column 0 -->
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid Width="300" Height="35" Margin="0">
+                                <controls:MappingGridButton Content="{Binding Caption}" Style="{DynamicResource GridBoxItemButton}" IsMapped="{Binding IsMapped}" Click="UpdatePosition">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="Click" >
+                                            <ei:GoToStateAction StateName="PopupIsOpen" TargetObject="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"/>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </controls:MappingGridButton>
+                            </Grid>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <!-- column 1: the combobox of the column this is mapped to -->
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid Height="35" >
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" >
+                                    <Border Padding="2">
+                                        <Border.Style>
+                                            <Style TargetType="{x:Type Border}">
+                                                <Setter Property="Background" Value="#FFFF0000"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding IsMapped}" Value="true"> <!--Value="UNMAPPED"-->
+                                                        <Setter Property="Background" Value="#FF02DA02"/>
+                                                    </DataTrigger>
+                                                 
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Border.Style>
+                                        <ComboBox x:Name="comboBox" 
+                                                  Width="250" 
+                                                  ItemsSource="{Binding OriginalFields}" 
+                                                  x:Uid="comboBoxMappedField"
+                                                  DisplayMemberPath="Name" 
+                                                  SelectedValue="{Binding MappedField, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+
+                                            <!-- AutomationProperties.AutomationId is supposed to enable coded-UI tests, but couldn't get this to work in xaml-->
+                                            <!--ComboBox.ItemContainerStyle>
+                                                <Style>
+                                                    < !- -Setter Property="AutomationProperties.AutomationId" Value="{Binding XPath=.}"/- ->
+                                                    <Setter Property="AutomationProperties.AutomationId" Value="{Binding ID}"/>
+                                                    <Setter Property="AutomationProperties.Name" Value="{Binding @Name}"/>
+                                                </Style>
+                                            </ComboBox.ItemContainerStyle-->
+                                            
+                                        </ComboBox>
+                                    </Border>
+
+                                    <ItemsControl ItemTemplate="{DynamicResource FieldValueItemTemplate}"  
+									    ItemsSource="{Binding ElementName=comboBox, Path=SelectedItem.Values}"
+									    ItemsPanel="{DynamicResource ItemsPanelHorizontal}"/>
+                                    <StackPanel x:Name="NoRecordsPanel" Visibility="Hidden">
+                                        <Label>No Fields Found...</Label>
+                                    </StackPanel>
+                                </StackPanel>
+
+                            </Grid>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        
+            <Border x:Name="border" BorderBrush="{DynamicResource MBlue}"  BorderThickness="2" Background="White" MinWidth="250" Width="Auto" MaxWidth="500" Height="300" Margin="250,-100,0,0" HorizontalAlignment="Left" Visibility="Hidden" Panel.ZIndex="9999">
+                <Border.Effect>
+                    <DropShadowEffect Opacity="0.49" BlurRadius="19"/>
+                </Border.Effect>
+                <Grid Margin="-1" Background="White" MinWidth="225" Width="Auto">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="52.138"/>
+                        <RowDefinition Height="49.112"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="48.37"/>
+                    </Grid.RowDefinitions>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="60.258"/>
+                        </Grid.ColumnDefinitions>
+                                               
+                        <StackPanel HorizontalAlignment="Left" Margin="15,0,0,0" VerticalAlignment="Center">
+                            <TextBlock Margin="0" TextWrapping="Wrap" Text="{Binding SelectedTargetField.Name}" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="21.333" Foreground="Black"/>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock TextWrapping="Wrap" Text="Map this field to" VerticalAlignment="Center" Margin="0" Foreground="{DynamicResource MGrey5}"/>
+                                <TextBlock TextWrapping="Wrap" Text="{Binding SelectedOriginalField.Name}" VerticalAlignment="Center" Margin="5,0,0,0" Foreground="{DynamicResource MBlue}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                    <TextBox Margin="15,0,0,0" Grid.Row="1" 
+					    TextWrapping="Wrap" VerticalAlignment="Center" 
+					    Height="24" Foreground="#FF393939" HorizontalAlignment="Left" Width="250" Text="{Binding PopFilterText}" BorderBrush="{DynamicResource MBlue}">
+                        <i:Interaction.Behaviors>
+                            <behaviors:TextBoxChangedBehavior/>
+                        </i:Interaction.Behaviors>
+                    </TextBox>
+                    <DataGrid x:Name="PopUpDataGrid" 
+                            Background="White"
+					        ItemsSource="{Binding SelectedTargetField.OriginalFields}"
+					        SelectedItem="{Binding SelectedOriginalField, UpdateSourceTrigger=PropertyChanged}"
+					        AutoGenerateColumns="False"
+                            SelectionUnit="FullRow"
+                            SelectionMode="Single"
+					        Grid.Row="2" 
+                            Margin="15,0" 
+                            BorderBrush="{DynamicResource MGrey2}" 
+					        Foreground="{DynamicResource MGrey5}" 
+                            HorizontalGridLinesBrush="{DynamicResource MGrey2}" 
+                            IsReadOnly="True" 
+                            HeadersVisibility="None">
+                        <DataGrid.RowStyle>
+                            <Style TargetType="{x:Type DataGridRow}">
+                                <Setter Property="Visibility" Value="{Binding FieldVisibility}" />
+                            </Style>
+                        </DataGrid.RowStyle>
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{Binding Name}" Width="200" />
+                                                <ItemsControl ItemTemplate="{StaticResource FieldValueItemTemplateWhite}"  
+												ItemsSource="{Binding Values}"
+												ItemsPanel="{DynamicResource ItemsPanelHorizontal}" MinWidth="300"/>
+                                            </StackPanel>
+                                        </Grid>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Path x:Name="path" Fill="White" HorizontalAlignment="Left" Margin="-247,-4.056,0,-0.194" Grid.Row="2" Width="256.128" Stroke="{DynamicResource MBlue}" Grid.RowSpan="2">
+                        <Path.Data>
+                            <PathGeometry>
+                                <PathFigure IsClosed="True" StartPoint="255.627869549802,18.9970592955531">
+                                    <LineSegment x:Name="segment" Point="30,310"/>
+                                    <LineSegment Point="254.87354205218,104.351194839366"/>
+                                </PathFigure>
+                            </PathGeometry>
+                        </Path.Data>
+                    </Path>
+                    <Rectangle Fill="White" HorizontalAlignment="Left" Height="99.5" Margin="0,11.194,0,0" Grid.Row="2" StrokeThickness="2" VerticalAlignment="Top" Width="9.25"/>
+                    
+                <!-- Save/Cancel buttons -->
+                <StackPanel Margin="0" Orientation="Horizontal" Grid.Row="3" d:LayoutOverrides="Width" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Button Content="OK" Background="{DynamicResource MBlue}" Margin="0,0,10,0" Width="100" Height="30" Command="{Binding SaveOrCancelPopupMappingCommand}" CommandParameter="Save">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <ei:GoToStateAction StateName="PopupIsClosed"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
+                    <Button Content="Cancel" Background="{DynamicResource MPink}" Margin="0,0,10,0" Width="100" Height="30" Command="{Binding SaveOrCancelPopupMappingCommand}" CommandParameter="Cancel">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <ei:GoToStateAction StateName="PopupIsClosed" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

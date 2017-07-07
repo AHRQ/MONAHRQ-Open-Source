@@ -1,0 +1,56 @@
+<main>
+  <header class="resource__header">
+    <div class="contain">
+      <h2>How To Use Our Quality Ratings</h2>
+    </div>
+  </header>
+
+  <section id="how-to-use--content" class="page" tabindex="-1">
+    <section id="howToUseThisSite" class="consumer-benefits">
+      <div class="contain">
+        <!--<h2 class="consumer-benefits__title">How to use our quality ratings</h2>-->
+
+        <section class="consumer-benefits__use-cases">
+          <p class="use-case">Use our quality ratings to learn about a health care facility that you or someone you care about will go to for treatment.</p>
+          <p>
+
+            <a data-ng-if="ConsumerReportConfigSvc.hasEntity('HOSPITAL')" href="#" data-ui-sref="top.consumer.hospitals.profile">Find a hospital</a>
+            <span data-ng-if="ConsumerReportConfigSvc.hasEntities(['HOSPITAL', 'NURSINGHOME'])">or</span>
+            <a data-ng-if="ConsumerReportConfigSvc.hasEntity('NURSINGHOME')" href="#" data-ui-sref="top.consumer.nursing-homes.profile">find a nursing home</a>
+            by name.
+          </p>
+
+          <p class="use-case">Choose from a list of health care facilities in your area to see how they do and compare them. What does each one do well?  What could each one do better?</p>
+          <p>
+
+            <a data-ng-if="ConsumerReportConfigSvc.hasEntity('HOSPITAL')" href="#" data-ui-sref="top.consumer.hospitals.location">Find a hospital by location</a>
+            <span data-ng-if="ConsumerReportConfigSvc.hasEntities(['HOSPITAL', 'NURSINGHOME'])">or</span>
+            <a data-ng-if="ConsumerReportConfigSvc.hasEntity('NURSINGHOME')" href="#" data-ui-sref="top.consumer.nursing-homes.location">Find a nursing home by location</a>.
+          </p>
+
+          <div data-ng-if="ConsumerReportConfigSvc.hasEntity('HOSPITAL')">
+            <p class="use-case">Concerned about how well hospitals perform for different conditions, or on different topics? We have ratings on many different illnesses, procedures and other topics.</p>
+            <p><a href="#" data-ui-sref="top.consumer.hospitals.topic">Compare hospitals by a health topic </a> that you care about.</p>
+          </div>
+        </section>
+
+        <aside class="consumer-benefits__use-site">
+          <p class="use-site__title">Use the ratings on this site to:</p>
+          <ul>
+            <li>Choose a {{getEntityGroupTitle()}} where you want to get your care</li>
+            <li>Advise a family member or friend about what the ratings say</li>
+            <li>If you don’t have a choice of health care facility:
+              <ul>
+                <li>Identify problems at the {{getEntityGroupTitle()}} you have to use</li>
+                <li>Talk about these problems with your doctor to get their help</li>
+                <li>Make sure a loved one visits you regularly; ask them to watch out for the problems that worry you</li>
+              </ul>
+            </li>
+          </ul>
+        </aside>
+
+        <a href="#" data-ui-sref="^.about-ratings" class="learn-more--ratings btn--secondary">Learn About the Ratings</a>
+      </div>
+    </section>
+  </section>
+</main>

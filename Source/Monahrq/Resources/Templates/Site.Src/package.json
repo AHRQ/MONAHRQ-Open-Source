@@ -1,0 +1,30 @@
+{
+  "name": "monahrq",
+  "version": "7.0.0",
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-autoprefixer": "~0.4.0",
+    "grunt-concurrent": "~0.4.1",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-connect": "~0.5.0",
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-contrib-htmlmin": "~0.1.3",
+    "grunt-contrib-imagemin": ">=0.3.0",
+    "grunt-contrib-jshint": "~0.7.1",
+    "grunt-contrib-sass": "~0.8.1",
+    "grunt-contrib-watch": "~0.5.2",
+    "grunt-newer": "~0.5.4",
+    "grunt-svgmin": "~0.2.0",
+    "jshint-stylish": "~0.1.3",
+    "load-grunt-tasks": "~0.2.0",
+    "time-grunt": "~0.2.1",
+    "requirejs": "~2.1.9",
+    "grunt-angular-templates": "~0.5.3"
+  },
+  "engines": {
+    "node": ">=0.8.0"
+  },
+  "scripts": {
+  }
+}

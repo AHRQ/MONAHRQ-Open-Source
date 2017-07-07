@@ -1,0 +1,196 @@
+/* MONAHRQ Consumer User Settings */
+
+/*
+  Default Colors
+  -------------------------------
+  $brand-blue:       #7d5eaa;
+  $brand-blue-dark:  #53235e;
+  $brand-orange:     #eda618;
+  -------------------------------
+*/
+
+/*
+  Required colors from application
+  -------------------------------
+  Brand Color 1
+  Brand Color 2
+  Button Color
+  -------------------------------
+  Generated colors from algorithms
+  -------------------------------
+  Font Color (Dark Grey)
+  Font Color Alt (White)
+  Brand Color 1 Alt
+  Brand Color 2 Alt
+  Button Color Alt
+  -------------------------------
+*/
+
+
+
+
+
+/* Basic Link Colors */
+.consumer a {
+  color: #7d5eaa; /* Brand Color 1 */
+}
+
+.consumer a:hover,
+.consumer a:active,
+.consumer a:focus {
+  color: #7d5eaa; /* Brand Color 1 Alt */
+}
+
+
+
+
+/* Buttons - General */
+.consumer input[type="button"],
+.consumer input[type="reset"],
+.consumer input[type="submit"],
+.consumer button {
+  background-color: #53235e; /* Brand Color 2 */
+  color: #fff; /* Font Color Alt. */
+}
+
+.consumer input[type="button"]:hover,
+.consumer input[type="button"]:focus,
+.consumer input[type="reset"]:hover,
+.consumer input[type="reset"]:focus,
+.consumer input[type="submit"]:hover,
+.consumer input[type="submit"]:focus,
+.consumer button:hover,
+.consumer button:focus {
+  background-color: #53235e; /* Brand Color 2 Alt */
+  color: #fff; /* Font Color Alt. */
+}
+
+/* Buttons - Primary */
+.consumer .btn--primary {
+  background-color: #eda618; /* Button Color */
+  color: #fff; /* Font Color Alt. */
+}
+
+.consumer .btn--primary:hover {
+  background-color: #f8a05d; /* Brand Color Alt */
+  color: #fff; /* Font Color Alt. */
+}
+
+/* Buttons - Secondary */
+.consumer .btn--secondary {
+  background-color: #7d5eaa; /* Brand Color 1 */
+  color: #fff; /* Font Color Alt. */
+}
+
+.consumer .btn--secondary:hover {
+  background-color: #53235e; /* Brand Color 1 Alt */
+  color: #fff; /* Font Color Alt. */
+}
+
+/* Text Links */
+.consumer .text-link {
+  color: #7d5eaa; /* Brand Color 1 */
+}
+
+
+
+
+
+/* Main Nav */
+.consumer .main-nav__link.active {
+  background-color: #53235e; /* Brand Color 2 */
+  color: #fff; /* Font Color Alt. */
+}
+
+
+
+
+
+/* Footer */
+.consumer .site-footer {
+  background-color: #7d5eaa; /* Brand Color 1 */
+  color: #fff; /* Font Color Alt. */
+}
+
+.consumer .footer-nav {
+  background-color: #53235e; /* Brand Color 2 */
+}
+
+.consumer .footer-nav__link,
+.consumer .footer-nav__link:hover,
+.consumer .about__secondary aside a,
+.consumer .about__secondary aside a:hover,
+.consumer .about__secondary .about__legal a,
+.consumer .about__secondary .about__legal a:hover {
+  color: #fff; /* Font Color Alt. */
+}
+
+.consumer .about__legal a:first-child::after {
+  border-right-color: #fff; /* Font Color Alt. */
+}
+
+
+
+
+/* Search / Filter / Page Heroes */
+.consumer .search--browse,
+.consumer .search--refine,
+.consumer .resource__header {
+  background-color: #7d5eaa; /* Brand Color 1 */
+  color: #fff; /* Font Color Alt. */
+}
+
+.consumer .search--refine__compare,
+.consumer .search--refine__compare a {
+  color: #fff;
+}
+
+.consumer .change-search-area button {
+  background-color: #7d5eaa; /* Brand Color 1*/
+  color: #fff; /* Font Color Alt. */
+}
+
+.consumer .condition-search .search-form__narrow legend {
+  color: #fff; /* Font Color Alt. */
+}
+
+
+
+
+
+/* Reports / Results */
+.consumer .topic-map-subtopics button.active {
+  background-color: #eda618; /* Button Color */
+  color: #fff; /* Font Color Alt. */
+}
+
+.consumer .report-header__comparing.stuck {
+  background-color: #7d5eaa; /* Brand Color 1 */
+}
+
+.consumer .report-header__comparing.stuck h2,
+.consumer .report-header__comparing.stuck a {
+  color: #fff; /* Font Color Alt. */
+}
+
+.consumer .report-header__conditions-concerns legend {
+  color: #7d5eaa; /* Brand Color 1 */
+}
+
+.consumer .compare-conditions-menu__label {
+  color: #7d5eaa; /* Brand Color 1 */
+}
+
+.consumer .compared-subtopic__header .compared-title {
+  color: #53235e; /* Brand Color 2 */
+}
+
+
+
+
+
+/* Resources (About the Ratings) */
+.consumer .resource__header {
+  background-color: #7d5eaa; /* Brand Color 1 */
+  color: #fff; /* Font Color Alt. */
+}

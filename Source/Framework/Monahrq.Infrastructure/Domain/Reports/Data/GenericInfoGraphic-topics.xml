@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ReportManifest RptId="64B545BF-D183-4F0D-8ABC-6643FF39F5DE"
+                Name="Generic Infographic Templates for Topics"
+                Category="Quality"
+				IsTrending="false"
+				ShowInterpretationText="true" ConsumerPreviewImage="GenericInfoGraphic-topics.png"
+                PreviewImage="Infographics.png"
+                RequiresCostToChargeRatio="false">
+	<Audiences>
+		<Audience AudienceType="Consumers" />
+	</Audiences>
+	<Datasets>
+		<Dataset Name="Hospital Compare Data"/>
+		<Dataset Name="AHRQ-QI Provider Data"/>
+		<Dataset Name="AHRQ-QI Composite Data"/>
+	</Datasets>
+	<Filters>
+		<Filter Type="ActiveSections">
+			<Values>
+				<FilterValue Name="CMS Measures" />
+				<FilterValue Name="AHRQ QI Measures" />
+			</Values>
+		</Filter>
+	</Filters>
+	<ReportAttributes />
+	<!--ReportColumns-->
+	<Columns>
+	</Columns>
+	<InterpretationText />
+</ReportManifest>

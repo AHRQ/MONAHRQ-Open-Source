@@ -1,0 +1,16 @@
+<aside class="site-notification-bar" data-ng-show="notificationBar.visible">
+  <div class="contain">
+      <p>Are you a consumer seeking to <a href="#" data-ui-sref="top.consumer.home">make more informed decisions about which providers you use</a>?</p>
+      <a href="#" data-ng-click="notificationBar.visible = false; $event.preventDefault()"><span class="hide-notification"></span><span class="sr-hidden">Hide Notification Bar</span></a>
+  </div>
+</aside>
+
+<div class="branding" role="banner"><a data-ui-sref="top.professional.home"><img alt="Go to home" data-ng-src="{{config.products.professional.website_LogoImagePath}}" /></a></div>
+<div class="meta-nav" role="navigation" aria-label="Utility Navigation">
+  <ul class="nav nav-pills">
+    <li><button data-ng-click="print()" class="btn">Print <span class="glyphicon glyphicon-print"></span></button></li>
+    <li><button data-ng-click="share()" class="btn">Share this Page <span class="glyphicon glyphicon-share-alt"></span></button></li>
+    <li data-ng-if="config.products.professional.website_FeedBackEmail"><button data-ng-click="feedbackModal()" class="btn">Feedback <span class="glyphicon glyphicon-comment"></span></button></li>
+  </ul>
+</div>
+

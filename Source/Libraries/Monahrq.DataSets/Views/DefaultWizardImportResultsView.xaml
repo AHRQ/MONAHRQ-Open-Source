@@ -1,0 +1,127 @@
+﻿<UserControl x:Class="Monahrq.DataSets.Views.DefaultWizardImportResultsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:views="clr-namespace:Monahrq.DataSets.Views"             
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="800">
+    <Grid Background="White">
+        <Grid x:Name="ProgressGrid" Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid x:Name="HeaderGrid">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.529*"/>
+                    <ColumnDefinition Width="0.471*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Margin="0" TextWrapping="Wrap" Text="Import Process Complete" FontSize="26" Foreground="Gray" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+                <!-- Display dataset title and date in upper right corner -->
+                <StackPanel Grid.Column="1" d:LayoutOverrides="Height" VerticalAlignment="Top" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <views:DatasetTitlePeriod DataContext="{Binding DataContextObject.Entry}" />
+                </StackPanel>
+            </Grid>
+            <Grid x:Name="contentGrid1" Grid.Row="1" Margin="0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="0" Grid.Column="0" TextWrapping="Wrap" FontSize="16" Foreground="#FF585858" Padding="0,0,15,0"
+                           Text="The data has been loaded from your file and is ready for analysis. The following shows descriptive statistics for the loaded data. You may go back and change the data mapping and crosswalk options and reload the file to correct any errors." />
+
+                <!-- Totals grid in upper right -->
+                <StackPanel Grid.Row="0" Grid.Column="2">
+                    <Label Content="Totals:" FontSize="16" />
+                    <DataGrid x:Name="ImportTotals" ItemsSource="{Binding ImportTotals}" HeadersVisibility="None" IsReadOnly="True">
+                        <DataGrid.CellStyle>
+                            <Style TargetType="{x:Type DataGridCell}">
+                                <Setter Property="Foreground" Value="Black" />
+                                <Style.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Background" Value="{x:Null}" />
+                                        <Setter Property="BorderBrush" Value="{x:Null}" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGrid.CellStyle>
+                    </DataGrid>
+                </StackPanel>
+                
+                <!-- Record Warnings grid in lower left -->
+                <Label Grid.Row="2" Grid.Column="0" Content="Record Warnings:" FontSize="16" />
+                <DataGrid Grid.Row="3" Grid.Column="0" x:Name="RecordWarnings" ItemsSource="{Binding RecordWarnings}" IsReadOnly="True" AutoGenerateColumns="False">
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="Background" Value="#FF0DAEF3" />
+                            <!-- BUG: use mahapps themes....    
+                            Setter Property="Background" Value="MBlue" /-->
+                            <Setter Property="Foreground" Value="White" />
+                            <Setter Property="FontSize" Value="14" />
+                        </Style>
+                    </DataGrid.ColumnHeaderStyle>
+
+                    <DataGrid.CellStyle>
+                        <Style TargetType="{x:Type DataGridCell}">
+                            <Setter Property="Foreground" Value="Black" />
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="{x:Null}" />
+                                    <Setter Property="BorderBrush" Value="{x:Null}" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.CellStyle>
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="SizeToCells" MinWidth="60" Header="Column " Binding="{Binding Path=Column}" />
+                        <DataGridTextColumn Width="SizeToHeader" Header="Records Affected  " Binding="{Binding Path=Records_Affected}" />
+                        <DataGridTextColumn Width="300" Header="Message" Binding="{Binding Path=Message}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <!-- Value Statistics grid in lower right -->
+                <Label Grid.Row="2" Grid.Column="2" Content="Value Statistics:" FontSize="16" />
+                <DataGrid Grid.Row="3" Grid.Column="2" Grid.RowSpan="3" x:Name="ValueStats" ItemsSource="{Binding ValueStats}" IsReadOnly="True" AutoGenerateColumns="False">
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="Background" Value="#FF0DAEF3" />
+                            <Setter Property="Foreground" Value="White" />
+                            <Setter Property="FontSize" Value="14" />
+                        </Style>
+                    </DataGrid.ColumnHeaderStyle>
+                    
+                    <DataGrid.CellStyle>
+                        <Style TargetType="{x:Type DataGridCell}">
+                            <Setter Property="Foreground" Value="Black" />
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="{x:Null}" />
+                                    <Setter Property="BorderBrush" Value="{x:Null}" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.CellStyle>
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="SizeToCells" MinWidth="60" Header="Column " Binding="{Binding Path=Column}" />
+                        <DataGridTextColumn Width="SizeToHeader" Header="Number Missing  " Binding="{Binding Path=Number_Missing}" />
+                        <DataGridTextColumn Width="100" Header="Minimum" Binding="{Binding Path=Minimum}" />
+                        <DataGridTextColumn Width="100" Header="Maximum" Binding="{Binding Path=Maximum}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

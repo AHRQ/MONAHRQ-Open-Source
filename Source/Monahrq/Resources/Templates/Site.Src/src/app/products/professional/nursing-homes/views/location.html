@@ -1,0 +1,17 @@
+<div data-mh-cms-zone="'header'" data-mh-cms-zone-report-id="reportId" data-mh-cms-zone-product="'Professional'"></div>
+
+<div class="hidden-print" data-ui-view="nh-search-location"></div>
+
+<div class="page-content clearfix">
+  <div ng-if="showTabs()" class="nursing-tabs hidden-print">
+    <ul class="nav nav-tabs">
+      <li id="rates-tab" data-ng-if="ReportConfigSvc.webElementAvailable('NH_ViewRates_Tab')" role="tab" aria-controls="rates" data-ng-class="{active: isActiveTab('table')}"><a href="#" data-ng-click="goToTable(); $event.preventDefault();">View Rates</a></li>
+      <li id="map-tab" data-ng-if="ReportConfigSvc.webElementAvailable('NH_MapView_Tab')" role="tab" aria-controls="map" data-ng-class="{active: isActiveTab('map')}"><a href="#" data-ng-click="goToMap(); $event.preventDefault();">View Map</a></li>
+    </ul>
+  </div>
+  <div class="clearfix"></div>
+
+  <div data-ui-view="nh-content-location"></div>
+</div>
+
+<div data-mh-cms-zone="'footer'" data-mh-cms-zone-report-id="reportId" data-mh-cms-zone-product="'Professional'"></div>

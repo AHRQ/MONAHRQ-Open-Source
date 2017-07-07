@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ReportManifest RptId="47426256-5F4F-4996-8F4A-3A344E39D90E"
+                Name="Inpatient Hospital Discharge Utilization Trending Report" ShowInterpretationText="true"
+                Category="Utilization"
+				IsTrending="true" ConsumerPreviewImage="IP_Util_Trending_Report.png"
+                RequiresCostToChargeRatio="true"
+                PreviewImage="IP_Util_Trending_Report.png"
+              >
+	<Audiences>
+		<Audience AudienceType="Professionals" />
+	</Audiences>
+	<Datasets>
+		<Dataset Name="Inpatient Discharge"/>
+	</Datasets>
+	<Filters>
+		<Filter Type="Hospital">
+			<Values>
+				<FilterValue Name="Hospital Name" />
+				<FilterValue Name="Hospital Type" />
+				<FilterValue Name="Region" />
+				<FilterValue Name="County" />
+			</Values>
+		</Filter>
+		<Filter Type="DRGsDischarges">
+			<Values>
+				<FilterValue Name="Major Diagnosis Category" />
+				<FilterValue Name="Diagnosis Related Group" />
+				<FilterValue Name="Health Condition or Topic" />
+				<FilterValue Name="Procedure" />
+			</Values>
+		</Filter>
+	</Filters>
+	<ReportAttributes>
+		HospitalFilters DRGsDischargesFilters
+	</ReportAttributes>
+	<!-- ReportColumns-->
+	<Columns >
+		<Column IsMeasure="true" MeasureCode="IP-01" Name="Number of discharges" />
+		<Column IsMeasure="true" MeasureCode="IP-02" Name="Mean charges in dollars" />
+		<Column IsMeasure="true" MeasureCode="IP-03" Name="Mean costs in dollars" />
+		<Column IsMeasure="true" MeasureCode="IP-04" Name="Mean length of stay in days" />
+		<Column IsMeasure="true" MeasureCode="IP-05" Name="Median charges in dollars" />
+		<Column IsMeasure="true" MeasureCode="IP-14" Name="Median cost in dollars for Region" />
+		<Column IsMeasure="true" MeasureCode="IP-07" Name="Median length of stay" />
+	</Columns>
+	<Header>
+		<![CDATA[<p> Hospital utilization means use of hospital services, such as the number and length of hospital stays for different health conditions or procedures.
+Narrowing display results by one of the categories listed below will show fewer hospitals. For instance, narrowing by County will show use of hospital services by the county selected.
+Clicking ‘View Trends’ will display changes in data over time for the selected category, such as a utilization measure or hospital.
+	</p>]]>
+	</Header>
+	<InterpretationText>
+		<![CDATA[ <P>How do I interpret the table?<P>
+ <p>Information is provided for each selected hospital by condition or procedure grouping.  Select the titles in the top row to sort the results.  Tables may include the following.<br/><br/><b>Total US: </b>National numbers are weighted estimates from the <a href="http://www.hcup-us.ahrq.gov/" target="_blank">HCUP Nationwide Inpatient Sample</a> (NIS), 2008, Agency for Healthcare Research and Quality (AHRQ).<br/><br/><b>Total US region: </b>Regional categories are defined by the Census Bureau: Midwest, Northeast, South, and West.  Numbers for each region are weighted estimates from the <a href="http://www.hcup-us.ahrq.gov/" target="_blank">HCUP Nationwide Inpatient Sample</a> (NIS), 2008, Agency for Healthcare Research and Quality (AHRQ). <br/><br/><b>Total of all hospitals in this Website: </b>Numbers are presented for all hospitals included in this Website.<br/><br/><b>Hospitals: </b>Previously chosen hospitals are listed.  You can select a hospital from the list for more detailed results.  Detailed results include characteristics of each hospital stay (age, gender, payer, and race).<br/><br/><b>Hospital County: </b>The county for each hospital is provided.<br/><br/><b>Number of discharges (all-listed): </b>The number of hospital stays (or discharges) for the selected condition or procedure is provided for each hospital.  All listed diagnoses include the principal diagnosis (or reason for going to the hospital) as well as any other conditions that coexist during the hospital stay.  All listed procedures include all procedures done for the patient.<br/><br/><b>Number of discharges (principal): </b>The number of hospital stays (or discharges) for the selected condition or procedure is provided for each hospital.  Principal diagnosis means this is the condition chiefly responsible for admission to the hospital for care.  The principal procedure is the procedure that was done to address the principal diagnosis.<br/><br/><b>Mean charges in dollars: </b>The mean or average charge is sometimes reported for each hospital.  This is the amount the hospital asked to be paid for services. This does not include professional (MD) fees.  Charges are not necessarily how much was paid.<br/><br/><b>Mean costs in dollars: </b>The mean or average cost is sometimes reported for each hospital.  Costs are the actual value of services performed (while charges represent the amount the hospital asked to be paid for services). Total charges were converted to costs using <a href=" http://www.hcup-us.ahrq.gov/db/state/costtocharge.jsp" target="_blank">cost-to-charge</a> ratios based on hospital accounting reports from the Centers for Medicare and Medicaid Services (CMS). In general, costs are less than charges.  AHRQ adjusts the <a href=" http://www.hcup-us.ahrq.gov/db/state/costtocharge.jsp" target="_blank">cost-to-charge ratios</a>  to work with this type of hospital data.<br/><br/><b>Mean length of stay in days: </b>The average or mean length of stay (LOS) is reported for each hospital.  This is the average number of nights the patient remained in the hospital. When a patient is admitted and discharged on the same day, it has a length of stay of zero.  A longer length of stay does not necessarily mean better or more care is given to patients.<br/><br/>If you select a specific hospital you will get following.<br/><br/><b>Age group: </b>Patient age in years is based on the admission date to the hospital and date of birth.  The number of stays in each age is reported.<br/><br/><b>Gender: </b>The number of males and females is reported for the selected hospital and condition or procedure.<br/><br/><b>Payer: </b>Payer is the expected payer for the hospital stay. Payers are grouped into general categories: Medicaid, Medicare, private insurance, uninsured, other, and missing.  The number of stays for each payer category is reported for the selected hospital and condition or procedure.<br/><br/><b>Race: </b>Race/ethnicity of the patient as listed in the medical record.  Racial and ethnic categories are collapsed into larger groups based on US Census Bureau designations.<br/><br/>You may notice some special codes in the tables.<br/><br/><b>Dash (-): </b>A dash is reported when there are not enough data for the given selection.  There are many reasons there may not be enough data to report.<br/><br/><b>Small number suppression: </b>Small raw numbers may be suppressed to protect patient confidentiality.  In this case, a &quot;c&quot; appears.</p>	
+]]>
+	</InterpretationText>
+	<WebsitePages>
+		<WebsitePage
+			Name="Service Use [IP Summary Trending]"
+			Audience="Professionals"
+			Path="app/products/professional/usage-data/views/service-use.html"
+			Url="/utilization/service-use?viewBy=hospital&amp;reportType=id"
+			UrlRaw="/usage-data/service-use?viewBy&amp;reportType&amp;displayType&amp;levelType&amp;levelValue&amp;levelViewBy&amp;groupBy&amp;dimension&amp;value&amp;value2"
+			IsEditable="true">
+			<WebsitePageZones>
+				<WebsitePageZone Name="Header" CodePath=""/>
+				<WebsitePageZone Name="Footer" CodePath=""/>
+			</WebsitePageZones>
+		</WebsitePage>
+	</WebsitePages>
+</ReportManifest>

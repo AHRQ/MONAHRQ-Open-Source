@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ReportManifest RptId="2AAF7FBA-7102-4C66-8598-A70597E2F82B"
+                Name="Hospitals listings based on the search from the home page" ShowInterpretationText="false"
+                Category="Quality"
+				IsTrending="false" ConsumerPreviewImage="ConsumerHospitalSearchByCondition.png"
+				PreviewImage="HospitalListings.png" >
+	<Audiences>
+		<Audience AudienceType="Consumers" />
+		<Audience AudienceType="Professionals" />
+	</Audiences>
+	<ReportAttributes>
+		HospitalFilters KeysForRatings
+	</ReportAttributes>
+	<!--ReportColumns-->
+	<Datasets>
+		<Dataset Name="Hospital Compare Data"/>
+	</Datasets>
+	<Filters>
+		<Filter Type="Hospital">
+			<Values>
+				<FilterValue Name="Hospital Name" />
+				<FilterValue Name="Hospital Type" />
+				<FilterValue Name="Region" />
+				<FilterValue Name="County" />
+			</Values>
+		</Filter>
+	</Filters>
+	<Columns>
+		<Column Name="Hospital Name"/>
+		<Column Name="Type of Hospital"/>
+		<Column IsMeasure="true" MeasureCode="H-HSP-RATING" Name="How do patients rate the hospital overall?" />
+	</Columns>
+	<WebsitePages>
+		<WebsitePage
+			Name="Compare Hospitals Search"
+			Audience="Consumers"
+			Path="app/products/consumer/hospitals/views/location.html"
+			Url="/hospitals/location"
+			UrlRaw="/hospitals/location?location&amp;distance"
+			IsEditable="true">
+			<WebsitePageZones>
+				<WebsitePageZone Name="Header" CodePath=""/>
+				<WebsitePageZone Name="Footer" CodePath=""/>
+			</WebsitePageZones>
+		</WebsitePage>
+		<WebsitePage
+			Name="Compare Hospitals Search Map"
+			Audience="Consumers"
+			Path="app/products/consumer/hospitals/views/location_map.html"
+			Url="/hospitals/location-map"
+			UrlRaw="/hospitals/location-map?location&amp;distance"
+			IsEditable="false">
+			<WebsitePageZones>
+				<WebsitePageZone Name="Header" CodePath=""/>
+				<WebsitePageZone Name="Footer" CodePath=""/>
+			</WebsitePageZones>
+		</WebsitePage>
+		<WebsitePage
+			Name="Hospital - Quality Ratings [Symbols]"
+			Audience="Professionals"
+			Path="app/products/professional/quality-ratings/views/location.html"
+			Url="/quality-ratings/location"
+			UrlRaw="/quality-ratings/location?hospitalType&amp;searchType&amp;geoType&amp;zipDistance&amp;zip&amp;region&amp;displayType"
+			IsEditable="true">
+			<WebsitePageZones>
+				<WebsitePageZone Name="Header" CodePath=""/>
+				<WebsitePageZone Name="Footer" CodePath=""/>
+			</WebsitePageZones>
+		</WebsitePage>
+	</WebsitePages>
+</ReportManifest>

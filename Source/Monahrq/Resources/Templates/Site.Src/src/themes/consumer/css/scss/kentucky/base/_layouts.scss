@@ -1,0 +1,52 @@
+// ------------------------------------------------------------------- //
+//  Layouts Normalization
+// ------------------------------------------------------------------- //
+
+$max-width: 1000px;
+
+.contain {
+  width: $max-width;
+  height: 100%;
+  margin: 0 auto;
+}
+
+
+
+// Mini normalize
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+
+
+// -------------------------------------------------------------------- //
+//  Z-Indexing
+
+.main-nav {
+  position: relative;
+  z-index: map-get($z-map, "nav");
+}
+
+main {
+  position: relative;
+  z-index: map-get($z-map, "base");
+}
+
+
+
+// -------------------------------------------------------------------- //
+//  Sticky
+
+.stuck {
+  z-index: 1000;
+  left: 20px;
+  width: calc(100% - 40px) !important;
+  margin: 0 !important;
+  box-shadow: 0 3px 5px 2px rgba(0, 0, 0, 0.2);
+}

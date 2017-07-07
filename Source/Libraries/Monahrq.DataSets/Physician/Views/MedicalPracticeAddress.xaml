@@ -1,0 +1,157 @@
+﻿<UserControl x:Class="Monahrq.DataSets.Physician.Views.MedicalPracticeAddress"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:viewModel="clr-namespace:Monahrq.DataSets.Physician.Views"
+             xmlns:converters="clr-namespace:Monahrq.Theme.Converters;assembly=Monahrq.Theme"
+             mc:Ignorable="d" d:DataContext="{d:DesignInstance viewModel:MedicalPracticeAddress}"
+             d:DesignHeight="300" d:DesignWidth="900">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.Buttons.xaml"/>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.DataGrid.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+            <Style x:Key="NoRecordFound" TargetType="{x:Type TextBlock}">
+                <Setter Property="Margin" Value="0,40,0,0" />
+                <Setter Property="Padding" Value="0,0,0,30" />
+                <Setter Property="HorizontalAlignment" Value="Center" />
+                <Setter Property="FontWeight" Value="SemiBold" />
+                <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                <Setter Property="FontSize" Value="13" />
+                <Setter Property="Foreground" Value="Black" />
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Visibility" Value="Collapsed"/>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Count}" Value="0">
+                        <Setter Property="Visibility" Value="Visible"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Count}" Value="{x:Null}">
+                        <Setter Property="Visibility" Value="Visible"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <DataGrid BorderBrush="{StaticResource MGrey2}" HorizontalGridLinesBrush="{StaticResource MGrey2}" 
+                                              VerticalGridLinesBrush="{StaticResource MGrey2}" Foreground="{StaticResource MGrey5}" IsSynchronizedWithCurrentItem="True" 
+                                              Background="{StaticResource White}" AutoGenerateColumns="False" SelectionUnit="FullRow" CanUserAddRows="False" 
+                                              ColumnHeaderHeight="40" CanUserResizeRows="False" HeadersVisibility="Column" AlternationCount="2"  CanUserDeleteRows="False" 
+                                              ItemsSource="{Binding }">
+        <DataGrid.GroupStyle>
+            <!-- Style for groups at top level. -->
+            <GroupStyle>
+                <GroupStyle.ContainerStyle>
+                    <Style TargetType="{x:Type GroupItem}">
+                        <Setter Property="Margin" Value="0,0,0,1"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type GroupItem}">
+                                    <Expander IsExpanded="True" Background="#F1F3F8" BorderBrush="#CCCFD2" Foreground="Black" BorderThickness="1,1,1,2">
+                                        <Expander.Header>
+                                            <DockPanel>
+                                                <TextBlock FontWeight="Bold" Text="{Binding Name}" Margin="5,0,0,0" />
+                                            </DockPanel>
+                                        </Expander.Header>
+                                        <Expander.Content>
+                                            <ItemsPresenter />
+                                        </Expander.Content>
+                                    </Expander>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </GroupStyle.ContainerStyle>
+            </GroupStyle>
+            <!-- Style for groups under the top level. -->
+            <GroupStyle>
+                <GroupStyle.HeaderTemplate>
+                    <DataTemplate>
+                        <DockPanel Background="LightCyan">
+                            <TextBlock Text="{Binding Name}" Foreground="Blue" Margin="30,0,0,0" />
+                        </DockPanel>
+                    </DataTemplate>
+                </GroupStyle.HeaderTemplate>
+            </GroupStyle>
+        </DataGrid.GroupStyle>
+        <DataGrid.Columns>
+            <DataGridTemplateColumn Header="" CanUserSort="False">
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Button VerticalAlignment="Top"  Margin="0,5,0,5" CommandParameter="{Binding}" Style="{StaticResource EditButton}"
+                                    Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=EditCommand}"
+                                    Visibility="{Binding RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}, Path=IsEditButtonVisible,Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <Button.ToolTip>
+                                    <TextBlock Text="Edit" />
+                                </Button.ToolTip>
+                            </Button>
+                            <Button VerticalAlignment="Top"  Margin="0,5,0,5" CommandParameter="{Binding}" Style="{StaticResource DeleteButton}"
+                                    Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=RemoveCommand}"
+                                    Visibility="{Binding RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}, Path=IsDeleteButtonVisible, Converter={StaticResource BooleanToVisibilityConverter} }">
+                                <Button.ToolTip>
+                                    <TextBlock Text="Delete" />
+                                </Button.ToolTip>
+                            </Button>
+                        </StackPanel>
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+            <DataGridTemplateColumn Header="" CanUserSort="True" SortMemberPath="IsSelected"
+                                    Visibility="{Binding RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}, Path=IsAddressSelectable, Converter={StaticResource BooleanToVisibilityConverter} }">
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <CheckBox Foreground="{StaticResource MGrey5}" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                  IsChecked="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                  IsEnabled="{Binding RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}, Path=IsAddressSelectable}" />
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+            <DataGridTemplateColumn Header="Name" Width=".17*" CanUserSort="True" SortMemberPath="MedicalPracticeName" 
+                                    Visibility="{Binding RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}, Path=IsMedicalPracticeNameVisible, Converter={StaticResource BooleanToVisibilityConverter} }">
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBlock Foreground="{StaticResource MGrey5}" Text="{Binding MedicalPracticeName}" />
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+            <DataGridTemplateColumn Header="Street 1" Width=".17*" CanUserSort="True" SortMemberPath="Line1">
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBlock Foreground="{StaticResource MGrey5}" Text="{Binding Line1}" />
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+            <DataGridTemplateColumn Header="Street 2" Width=".17*" CanUserSort="True" SortMemberPath="Line2">
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBlock Foreground="{StaticResource MGrey5}" Text="{Binding Line2}" />
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+            <DataGridTemplateColumn Header="City" Width=".17*" CanUserSort="True" SortMemberPath="City">
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBlock Foreground="{StaticResource MGrey5}" Text="{Binding City}" />
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+            <DataGridTemplateColumn Header="State" Width=".14*" CanUserSort="True" SortMemberPath="State">
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBlock Foreground="{StaticResource MGrey5}" Text="{Binding State}" />
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+            <DataGridTemplateColumn Header="Zip Code" Width=".17*" CanUserSort="True" SortMemberPath="ZipCode">
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBlock Foreground="{StaticResource MGrey5}" Text="{Binding ZipCode}" />
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+        </DataGrid.Columns>
+    </DataGrid>
+</UserControl>

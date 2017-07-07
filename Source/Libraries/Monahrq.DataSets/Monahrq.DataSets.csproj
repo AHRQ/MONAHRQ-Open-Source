@@ -1,0 +1,626 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AB509EF6-0C79-4CFE-914B-D3D71D5F7626}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Monahrq.DataSets</RootNamespace>
+    <AssemblyName>Monahrq.DataSets</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'CustomConfiguration|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\CustomConfiguration\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'CustomConfiguration|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\CustomConfiguration\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'CustomConfiguration|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\CustomConfiguration\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Castle.Core">
+      <HintPath>..\..\packages\Castle.Core.3.2.0\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Windsor">
+      <HintPath>..\..\packages\Castle.Windsor.3.2.0\lib\net45\Castle.Windsor.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\..\packages\Iesi.Collections.4.0.1.4000\lib\net40\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="LinqKit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=bc217f8844052a91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\LinqKit.1.0\lib\35\LinqKit.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro">
+      <HintPath>..\..\packages\MahApps.Metro.0.10.1.1\lib\net45\MahApps.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="MefContrib">
+      <HintPath>..\..\packages\MefContrib.1.2.2.1\lib\net40-Client\MefContrib.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CommonServiceLocator.1.2\lib\portable-windows8+net40+sl5+windowsphone8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\..\packages\NHibernate.4.0.3.4000\lib\net40\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationUI, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="PropertyChanged, Version=1.50.3.0, Culture=neutral, PublicKeyToken=ee3ee20bcf148ddd, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\PropertyChanged.Fody.1.50.3\lib\dotnet\PropertyChanged.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ReachFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Printing" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Expression.Interaction.3.0.40218.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="UIAutomationTypes" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\MONAHRQAssemblyInfo.cs">
+      <Link>Properties\MONAHRQAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Controls\DragDropMappingControl.xaml.cs">
+      <DependentUpon>DragDropMappingControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converters\RowsImportedColumnVisibilityConverter.cs" />
+    <Compile Include="Events\WizardNavigateSelectStatesEvent.cs" />
+    <Compile Include="HospitalRegionMapping\Categories\CategoriesView.xaml.cs">
+      <DependentUpon>CategoriesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HospitalRegionMapping\Categories\CategoriesViewModel.cs" />
+    <Compile Include="HospitalRegionMapping\Context\ContextView.xaml.cs">
+      <DependentUpon>ContextView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HospitalRegionMapping\Context\ContextViewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HospitalRegionMapping\Regions\RegionsView.xaml.cs">
+      <DependentUpon>RegionsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HospitalRegionMapping\Regions\RegionsViewModel.cs" />
+    <Compile Include="HospitalRegionMapping\Regions\RegionViewModel.cs" />
+    <Compile Include="HospitalRegionMapping\Details\DetailsView.xaml.cs">
+      <DependentUpon>DetailsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HospitalRegionMapping\Details\DetailsViewModel.cs" />
+    <Compile Include="HospitalRegionMapping\Events\RetrieveContextMappingReference.cs" />
+    <Compile Include="HospitalRegionMapping\HospitalRegionMappingViewModel.cs" />
+    <Compile Include="HospitalRegionMapping\Hospitals\HospitalCategoriesPresenter.cs" />
+    <Compile Include="HospitalRegionMapping\Hospitals\HospitalFilterHelperExtensions.cs" />
+    <Compile Include="HospitalRegionMapping\Hospitals\HospitalsViewModel.cs" />
+    <Compile Include="HospitalRegionMapping\Hospitals\HospitalView.xaml.cs">
+      <DependentUpon>HospitalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HospitalRegionMapping\Hospitals\HospitalViewModel.cs" />
+    <Compile Include="HospitalRegionMapping\Mapping\MappingView.xaml.cs">
+      <DependentUpon>MappingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HospitalRegionMapping\Mapping\MappingViewModel.cs" />
+    <Compile Include="HospitalRegionMapping\Mapping\RegionNames.cs" />
+    <Compile Include="Model\DatasetSummaryHelper.cs" />
+    <Compile Include="Model\DesignHospitalModel.cs" />
+    <Compile Include="Model\IElementMappingModel.cs" />
+    <Compile Include="Model\RegionsPopulationModel.cs" />
+    <Compile Include="NHC\ViewModels\NursingHomeDetailViewModel.cs" />
+    <Compile Include="NHC\ViewModels\NursingHomesViewModel.cs" />
+    <Compile Include="NHC\Views\NursingHomeDetailView.xaml.cs">
+      <DependentUpon>NursingHomeDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NHC\Views\NursingHomesView.xaml.cs">
+      <DependentUpon>NursingHomesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Physician\ViewModels\MedicalPracticeEditViewModel.cs" />
+    <Compile Include="Physician\ViewModels\MedicalPracticesViewModel.cs" />
+    <Compile Include="Physician\ViewModels\PhysicianDetailViewModel.cs" />
+    <Compile Include="Physician\ViewModels\PhysicianListViewModel.cs" />
+    <Compile Include="Physician\ViewModels\PhysicianMappingViewModel.cs" />
+    <Compile Include="Physician\Views\MedicalPracticeAddress.xaml.cs">
+      <DependentUpon>MedicalPracticeAddress.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Physician\Views\MedicalPracticeEditView.xaml.cs">
+      <DependentUpon>MedicalPracticeEditView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Physician\Views\MedicalPracticesView.xaml.cs">
+      <DependentUpon>MedicalPracticesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Physician\Views\PhysicianDetailView.xaml.cs">
+      <DependentUpon>PhysicianDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Physician\Views\PhysicianListView.xaml.cs">
+      <DependentUpon>PhysicianListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Physician\Views\PhysicianMappingView.xaml.cs">
+      <DependentUpon>PhysicianMappingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Services\DataproviderFactory.cs" />
+    <Compile Include="Services\ExistingEntityLookupException.cs" />
+    <Compile Include="Services\HospitalDataService.cs" />
+    <Compile Include="ViewModels\Crosswalk\CrossWalkViewModel.cs" />
+    <Compile Include="ViewModels\Crosswalk\FieldsViewCorrect.xaml.cs">
+      <DependentUpon>FieldsViewCorrect.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Crosswalk\ICrosswalkViewModel.cs" />
+    <Compile Include="ViewModels\Crosswalk\IFieldsView.cs" />
+    <Compile Include="ViewModels\Crosswalk\IMappedFieldEntryViewModel.cs" />
+    <Compile Include="ViewModels\DefaultDatasetMetadataViewModel.cs" />
+    <Compile Include="ViewModels\Hospitals\HospitalMainViewModel.cs" />
+    <Compile Include="ViewModels\Hospitals\ImportModeRadioCheckedConverter.cs" />
+    <Compile Include="ViewModels\IElementMappingViewModel.cs" />
+    <Compile Include="ViewModels\Import\ImportResultViewModel.cs" />
+    <Compile Include="ViewModels\MainDataSetViewModel.cs" />
+    <Compile Include="ViewModels\MappingSummary\Report.cs" />
+    <Compile Include="ViewModels\MappingSummary\ReportConstants.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportConstants.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Validation\IValidationResultsSummary.cs" />
+    <Compile Include="ViewModels\Validation\IValidationResultViewModel.cs" />
+    <Compile Include="ViewModels\Validation\IValidationViewModel.cs" />
+    <Compile Include="ViewModels\Validation\ValidationResultView.xaml.cs">
+      <DependentUpon>ValidationResultView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Validation\ValidationResultViewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewModels\Validation\ValidationRunningVisibilityConverter.cs" />
+    <Compile Include="ViewModels\Validation\ValidationSummaryListView.xaml.cs">
+      <DependentUpon>ValidationSummaryListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Validation\ValidationView.xaml.cs">
+      <DependentUpon>ValidationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Validation\ValidationViewModel.cs" />
+    <Compile Include="Views\DatasetTitlePeriod.xaml.cs">
+      <DependentUpon>DatasetTitlePeriod.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DataGridWithPopup.xaml.cs">
+      <DependentUpon>DataGridWithPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DataImportCrosswalkControl.xaml.cs">
+      <DependentUpon>DataImportCrosswalkControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DataImportCrosswalkFieldValues.xaml.cs">
+      <DependentUpon>DataImportCrosswalkFieldValues.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataSetsModule.cs" />
+    <Compile Include="Context\DatasetContext.cs" />
+    <Compile Include="Context\GenericStepView.xaml.cs">
+      <DependentUpon>GenericStepView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Context\MOriginalField.cs" />
+    <Compile Include="Context\MTargetField.cs" />
+    <Compile Include="Events\RequestCurrentDataTypeModelEvent.cs" />
+    <Compile Include="Model\BaseDataContext.cs" />
+    <Compile Include="Model\DataTypeModel.cs" />
+    <Compile Include="Model\DefaultStepCollection.cs" />
+    <Compile Include="Model\ElementMappingModel.cs" />
+    <Compile Include="Model\Histogram.cs" />
+    <Compile Include="Model\ImportStageModel.cs" />
+    <Compile Include="Model\ITargetMapper.cs" />
+    <Compile Include="Model\TargetMapper.cs" />
+    <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Resources\Parameters.cs" />
+    <Compile Include="ViewModels\Crosswalk\FieldsView_unused.xaml.cs">
+      <DependentUpon>FieldsView_unused.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Crosswalk\MappedFieldEntryViewModel.cs" />
+    <Compile Include="ViewModels\Crosswalk\FieldsViewModel.cs" />
+    <Compile Include="ViewModels\DataImportValueMapViewModel.cs" />
+    <Compile Include="ViewModels\DataSetListViewModel.cs" />
+    <Compile Include="ViewModels\DataTypeDetailsViewModel.cs" />
+    <Compile Include="ViewModels\DefaultWizardColumnMappingViewModel.cs" />
+    <Compile Include="ViewModels\DefaultWizardCrosswalkViewModel.cs" />
+    <Compile Include="ViewModels\DefaultWizardDataErrorReportViewModel.cs" />
+    <Compile Include="ViewModels\DefaultWizardFileReadabilityViewModel.cs" />
+    <Compile Include="ViewModels\DefaultWizardImportResultsViewModel.cs" />
+    <Compile Include="ViewModels\DefaultWizardOptionalColumnMappingViewModel.cs" />
+    <Compile Include="ViewModels\DefaultWizardSelectFileViewModel.cs" />
+    <Compile Include="ViewModels\ElementMappingViewModelBase.cs" />
+    <Compile Include="ViewModels\MappingReimportViewModel.cs" />
+    <Compile Include="Views\DataImportValueMapView.xaml.cs">
+      <DependentUpon>DataImportValueMapView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DataImportWizard.xaml.cs">
+      <DependentUpon>DataImportWizard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DataSetListView.xaml.cs">
+      <DependentUpon>DataSetListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DefaultDatasetMetadataView.xaml.cs">
+      <DependentUpon>DefaultDatasetMetadataView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DefaultWizardCrosswalkView.xaml.cs">
+      <DependentUpon>DefaultWizardCrosswalkView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DefaultWizardColumnMappingView.xaml.cs">
+      <DependentUpon>DefaultWizardColumnMappingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DefaultWizardDataErrorReportView.xaml.cs">
+      <DependentUpon>DefaultWizardDataErrorReportView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DefaultWizardImportDataView.xaml.cs">
+      <DependentUpon>DefaultWizardImportDataView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DefaultWizardImportResultsView.xaml.cs">
+      <DependentUpon>DefaultWizardImportResultsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DefaultWizardFileReadabilityView.xaml.cs">
+      <DependentUpon>DefaultWizardFileReadabilityView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DefaultWizardColumnMappingSummaryView.xaml.cs">
+      <DependentUpon>DefaultWizardColumnMappingSummaryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DefaultWizardSelectFileView.xaml.cs">
+      <DependentUpon>DefaultWizardSelectFileView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DeleteRecordView.xaml.cs">
+      <DependentUpon>DeleteRecordView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DummyView.xaml.cs">
+      <DependentUpon>DummyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainDataSetView.xaml.cs">
+      <DependentUpon>MainDataSetView.xaml</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewModels\MappingSummary\ReportConstants.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ReportConstants.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="..\MONAHRQ\App.config">
+      <Link>App.config</Link>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Framework\Monahrq.Default\Monahrq.Default.csproj">
+      <Project>{004d4c04-32fa-425b-a4cd-8369c8ad6ca4}</Project>
+      <Name>Monahrq.Default</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\Monahrq.Infrastructure\Monahrq.Infrastructure.csproj">
+      <Project>{36f8dedc-eecc-48d2-b900-7c02c671ba1b}</Project>
+      <Name>Monahrq.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\Monahrq.Sdk\Monahrq.Sdk.csproj">
+      <Project>{75ace9c7-d049-437b-bba8-7b8cdde19a13}</Project>
+      <Name>Monahrq.Sdk</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ThirdParty\Microsoft\Prism.Interactivity\Prism.Interactivity.csproj">
+      <Project>{de856812-a32c-4866-801e-af396d711942}</Project>
+      <Name>Prism.Interactivity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ThirdParty\Microsoft\Prism.MefExtensions\Prism.MefExtensions.csproj">
+      <Project>{6ed61550-8e7a-42c6-9b30-380c6f97ed55}</Project>
+      <Name>Prism.MefExtensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ThirdParty\Microsoft\Prism\Prism.csproj">
+      <Project>{77138947-1d13-4e22-aee0-5d0dd046ca34}</Project>
+      <Name>Prism</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Monahrq.Theme\Monahrq.Theme.csproj">
+      <Project>{27ea8b7b-fcae-4264-a3cb-68de78b46675}</Project>
+      <Name>Monahrq.Theme</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Controls\DragDropMappingControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HospitalRegionMapping\Categories\CategoriesView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="HospitalRegionMapping\Context\ContextView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="HospitalRegionMapping\Regions\RegionsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="HospitalRegionMapping\Details\DetailsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="HospitalRegionMapping\Hospitals\HospitalView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="HospitalRegionMapping\Mapping\MappingView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="NHC\Views\NursingHomeDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NHC\Views\NursingHomesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Physician\Views\MedicalPracticeAddress.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Physician\Views\MedicalPracticeEditView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Physician\Views\MedicalPracticesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Physician\Views\PhysicianDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Physician\Views\PhysicianListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Physician\Views\PhysicianMappingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewModels\Crosswalk\FieldsViewCorrect.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewModels\Validation\ValidationResultView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewModels\Validation\ValidationSummaryListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewModels\Validation\ValidationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DatasetTitlePeriod.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\DataGridWithPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\DataImportCrosswalkControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\DataImportCrosswalkFieldValues.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Context\GenericStepView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewModels\Crosswalk\FieldsView_unused.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DataImportValueMapView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\DataImportWizard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DataSetListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DefaultDatasetMetadataView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DefaultWizardCrosswalkView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DefaultWizardColumnMappingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DefaultWizardDataErrorReportView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DefaultWizardImportDataView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DefaultWizardImportResultsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DefaultWizardFileReadabilityView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DefaultWizardColumnMappingSummaryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DefaultWizardSelectFileView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DeleteRecordView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DummyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainDataSetView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="FodyWeavers.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>@echo ======= Copying...  
+@echo "$(TargetPath)"  "$(SolutionDir)Monahrq\$(OutDir)Modules\" 
+@echo  =======
+xcopy "$(TargetPath)"  "$(SolutionDir)Monahrq\$(OutDir)Modules\"    /y
+
+@echo ======= Copied...  
+@echo "$(TargetPath)"  "$(SolutionDir)Monahrq\$(OutDir)Modules\" 
+@echo  =======</PostBuildEvent>
+  </PropertyGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\packages\PropertyChanged.Fody.1.50.3\build\dotnet\PropertyChanged.Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\PropertyChanged.Fody.1.50.3\build\dotnet\PropertyChanged.Fody.targets'))" />
+    <Error Condition="!Exists('..\..\packages\Fody.1.29.3\build\dotnet\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Fody.1.29.3\build\dotnet\Fody.targets'))" />
+  </Target>
+  <Import Project="..\..\packages\PropertyChanged.Fody.1.50.3\build\dotnet\PropertyChanged.Fody.targets" Condition="Exists('..\..\packages\PropertyChanged.Fody.1.50.3\build\dotnet\PropertyChanged.Fody.targets')" />
+  <Import Project="..\..\packages\Fody.1.29.3\build\dotnet\Fody.targets" Condition="Exists('..\..\packages\Fody.1.29.3\build\dotnet\Fody.targets')" />
+  <Import Project="$(SolutionDir)\MonahrqExtensionCommon.targets" />
+</Project>

@@ -1,0 +1,127 @@
+<main>
+  <section class="home-hero">
+    <div class="contain">
+      <section class="home-hero__statement">
+        <h2 class="hero-title">We help you choose a better health care facility <small class="hero-subtitle">with ratings from trusted, independent sources.</small></h2>
+        <a class="home-hero__cta" href="#" data-ui-sref="^.about-ratings">Learn about the ratings</a>
+      </section>
+
+      <span class="scroll-down" data-ng-click="onDownButton()"></span>
+    </div>
+  </section>
+
+  <section class="search--browse" role="search" id="home-search">
+    <span class="search--browse__border"></span>
+    <div class="contain">
+      <h1 class="search--browse__title">{{getSearchTitle()}}</h1>
+      <p class="search--browse__subtitle">Click on 'Select an Option' to select the type of health care provider you want to find.</p>
+
+      <form class="search-combo-box" name="searchForm" novalidate>
+        <div class="search-combo-box__contain">
+          <select id="step1" name="searchType" title="Search type" data-ng-model="query.searchType" data-ng-options="x.id as x.label for x in searchTypes" required>
+            <option value="">Select an Option</option>
+          </select>
+          <span data-ng-if="searchForm.searchType.$error.required && showValidationErrors" class="form-error-message" role="alert">Error: Please enter a search type</span>
+
+          <input type="text" id="step2" name="searchLocation" title="Search location - enter street address, city, or zip code" placeholder="Enter street address, city, or zip code" data-ng-model="query.location" required />
+          <span data-ng-if="searchForm.searchLocation.$error.required && showValidationErrors" class="form-error-message" role="alert">Error: Please enter a location</span>
+
+          <button class="btn--primary" id="step3" data-ng-click="search()">Search</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section class="consumer-info-provider">
+    <div class="contain">
+      <p class="info-provider__title">The information on this site is brought to you by {{config.website_GeographicDescription}} State Quality Organization.</p>
+
+      <p>{{config.website_GeographicDescription}} State Quality Organization provides objective ratings, descriptive information, and information about costs (where available)
+        for
+        <a data-ng-if="ConsumerReportConfigSvc.hasEntity('HOSPITAL')" href="#" data-ui-sref="top.consumer.hospitals.location">hospitals<span class="sr-hidden"> by location</span></a><span data-ng-if="ConsumerReportConfigSvc.hasEntities(['HOSPITAL', 'NURSINGHOME', 'PHYSICIAN'])">,</span>
+        <span data-ng-if="!ConsumerReportConfigSvc.hasEntity('PHYSICIAN') && ConsumerReportConfigSvc.hasEntities(['HOSPITAL', 'NURSINGHOME'])">and</span>
+        <span data-ng-if="!ConsumerReportConfigSvc.hasEntity('NURSINGHOME') && ConsumerReportConfigSvc.hasEntities(['HOSPITAL', 'PHYSICIAN'])">and</span>
+        <a data-ng-if="ConsumerReportConfigSvc.hasEntity('NURSINGHOME')" href="#" data-ui-sref="top.consumer.nursing-homes.location">nursing homes<span class="sr-hidden"> by location</span></a><span data-ng-if="ConsumerReportConfigSvc.hasEntities(['NURSINGHOME', 'HOSPITAL', 'PHYSICIAN'])">,</span>
+        <span data-ng-if="!ConsumerReportConfigSvc.hasEntity('HOSPITAL') && ConsumerReportConfigSvc.hasEntities(['PHYSICIAN', 'NURSINGHOME'])">and</span>
+        <span data-ng-if="ConsumerReportConfigSvc.hasEntities(['NURSINGHOME', 'HOSPITAL', 'PHYSICIAN'])">and</span>
+        <a data-ng-if="ConsumerReportConfigSvc.hasEntity('PHYSICIAN')" href="#" data-ui-sref="top.consumer.physicians.search">doctors</a>
+        in {{config.website_GeographicDescription}}.</p>
+    </div>
+  </section>
+
+  <section class="consumer-questions">
+    <div class="contain">
+      <aside data-ng-if="config.products.consumer.HOMEPAGE_VIDEO == 1">
+        <figure>
+          <iframe width="445" height="300" data-ng-src="{{videoUrl}}" frameborder="0" allowfullscreen title="Health care quality video"></iframe>
+          <figcaption>Click to watch a brief video on health care quality and how this site can help you make good decisions about your health care.</figcaption>
+        </figure>
+      </aside>
+
+      <div data-ng-if="ConsumerReportConfigSvc.hasEntity('HOSPITAL')" class="consumer-question">
+        <p class="consumer-question__title">Why consider hospital quality?</p>
+        <p>All hospitals are not the same. Some are better overall, some are not so good. Some do well in some areas of care but not in others. A hospital that rates high on the measures on this website, especially if they rate high with respect to health conditions or issues important to you, is much more likely to address your health concerns well. Hospital ratings are based on a variety of sources, including insurance claims information and patient surveys.</p>
+        <a href="#" data-ui-sref="top.consumer.about-ratings({page: 'resourceHospitalQuality'})" class="text-link">Learn about hospital quality</a>
+      </div>
+      <div data-ng-if="ConsumerReportConfigSvc.hasEntity('NURSINGHOME')" class="consumer-question">
+        <p class="consumer-question__title">Why consider nursing home quality?</p>
+        <p>Most people realize that choosing a nursing home is an important decision, especially because people often stay in a nursing home for a long time. So it is especially important to find a nursing home that is of higher quality. Our ratings help you do just that. They cover the results of inspections, the quality of care, and the number and kind of staff available. The ratings are based on health and safety inspections conducted by the state as well as information about residents’ health and well-being that nursing homes must report to the federal government every month.</p>
+        <a href="#" data-ui-sref="top.consumer.about-ratings({page: 'resourceNursingHomeQuality'})" class="text-link">Learn about nursing home quality</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="consumer-banner--home">
+    <div class="contain">
+      <h3 class="consumer-banner__title">Choose a better health care facility</h3>
+      <p class="consumer-banner__subtitle">with ratings from trusted, independent sources.</p>
+    </div>
+  </section>
+
+  <section id="howToUseThisSite" class="consumer-benefits">
+    <div class="contain">
+      <h2 class="consumer-benefits__title">How to use our quality ratings</h2>
+
+      <section class="consumer-benefits__use-cases">
+        <p class="use-case">Use our quality ratings to learn about a health care facility that you or someone you care about will go to for treatment.</p>
+        <p>
+          <a data-ng-if="ConsumerReportConfigSvc.hasEntity('HOSPITAL')" href="#" data-ui-sref="top.consumer.hospitals.profile">Find a hospital</a>
+          <span data-ng-if="ConsumerReportConfigSvc.hasEntities(['HOSPITAL', 'NURSINGHOME'])">or</span>
+          <a data-ng-if="ConsumerReportConfigSvc.hasEntity('NURSINGHOME')" href="#" data-ui-sref="top.consumer.nursing-homes.profile">find a nursing home</a>
+          by name.
+        </p>
+
+        <p class="use-case">Choose from a list of health care facilities in your area to see how they do and compare them. What does each one do well?  What could each one do better?</p>
+        <p>
+          <a data-ng-if="ConsumerReportConfigSvc.hasEntity('HOSPITAL')" href="#" data-ui-sref="top.consumer.hospitals.location">Find a hospital by location</a>
+          <span data-ng-if="ConsumerReportConfigSvc.hasEntities(['HOSPITAL', 'NURSINGHOME'])">or</span>
+          <a data-ng-if="ConsumerReportConfigSvc.hasEntity('NURSINGHOME')" href="#" data-ui-sref="top.consumer.nursing-homes.location">find a nursing home by location</a>.
+        </p>
+
+        <div data-ng-if="ConsumerReportConfigSvc.hasEntity('HOSPITAL')">
+          <p class="use-case">Concerned about how well hospitals perform for different conditions, or on different topics? We have ratings on many different illnesses, procedures and other topics.</p>
+          <p><a href="#" data-ui-sref="top.consumer.hospitals.health-topics">Compare hospitals by a health topic </a> that you care about.</p>
+        </div>
+      </section>
+
+      <aside class="consumer-benefits__use-site">
+        <p class="use-site__title">Use the ratings on this site to:</p>
+        <ul>
+          <li>Choose a {{getEntityGroupTitle()}} where you want to get your care</li>
+          <li>Advise a family member or friend about what the ratings say</li>
+          <li>If you don’t have a choice of health care facility:
+            <ul>
+              <li>Identify problems at the {{getEntityGroupTitle()}} you have to use</li>
+              <li>Talk about these problems with your doctor to get their help</li>
+              <li>Make sure a loved one visits you regularly; ask them to watch out for the problems that worry you</li>
+            </ul>
+          </li>
+        </ul>
+      </aside>
+
+      <a href="#" data-ui-sref="^.about-ratings" class="learn-more--ratings btn--secondary">Learn About the Ratings</a>
+    </div>
+  </section>
+
+  <section data-ng-if="ConsumerReportConfigSvc.hasEntity('HOSPITAL')" id="condition-menu" tabindex="-1" data-mhc-hospital-topic-menu=""></section>
+</main>

@@ -1,0 +1,67 @@
+﻿<UserControl x:Class="Monahrq.Websites.Views.WebsitePagesView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+	  xmlns:mtx="http://schemas.monahrq.com/theme/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:Monahrq.Websites.Views"
+      xmlns:views="clr-namespace:Monahrq.Websites.Views"
+      xmlns:viewModels="clr-namespace:Monahrq.Websites.ViewModels"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.Buttons.xaml"/>
+				<ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.DataGrid.xaml"/>
+			</ResourceDictionary.MergedDictionaries>
+
+			<DataTemplate x:Key="WPListViewTemplate">
+				<views:WebsitePagesListView  DataContext="{Binding WebsitePagesListViewModel}"/>
+			</DataTemplate>
+			<DataTemplate x:Key="WPEditStaticViewTemplate">
+				<views:WebsitePagesEditStaticView DataContext="{Binding WebsitePagesEditStaticViewModel}"/>
+			</DataTemplate>
+			<DataTemplate x:Key="WPEditReportViewTemplate">
+				<views:WebsitePagesEditReportView DataContext="{Binding WebsitePagesEditReportViewModel}"/>
+			</DataTemplate>
+
+			<Style
+				x:Key="WPContentStyle"
+				TargetType="{x:Type ContentControl}">
+				<Style.Triggers>
+					<DataTrigger Binding="{mtx:BindTo Path=WebsitePageState}" Value="{x:Static viewModels:WebsitePageStateEnum.List}">
+						<Setter Property="ContentTemplate" Value="{StaticResource ResourceKey=WPListViewTemplate}" />
+					</DataTrigger>
+					<DataTrigger Binding="{mtx:BindTo Path=WebsitePageState}" Value="{x:Static viewModels:WebsitePageStateEnum.EditStatic}">
+						<Setter Property="ContentTemplate" Value="{StaticResource ResourceKey=WPEditStaticViewTemplate}" />
+					</DataTrigger>
+					<DataTrigger Binding="{mtx:BindTo Path=WebsitePageState}" Value="{x:Static viewModels:WebsitePageStateEnum.EditReport}">
+						<Setter Property="ContentTemplate" Value="{StaticResource ResourceKey=WPEditReportViewTemplate}" />
+					</DataTrigger>
+				</Style.Triggers>
+			</Style>
+			
+
+
+
+			<!--
+			<DataTemplate DataType="{x:Type viewModels:WebsitePagesListViewModel}">
+				<views:WebsitePagesListView  DataContext="{Binding WebsitePagesListViewModel}"/>
+			</DataTemplate>
+			<DataTemplate DataType="{x:Type viewModels:WebsitePagesEditStaticViewModel}">
+				<views:WebsitePagesEditStaticView DataContext="{Binding WebsitePagesEditStaticViewModel}"/>
+			</DataTemplate>
+			<DataTemplate DataType="{x:Type viewModels:WebsitePagesEditReportViewModel}">
+				<views:WebsitePagesEditReportView DataContext="{Binding WebsitePagesEditReportViewModel}"/>
+			</DataTemplate>
+			-->
+		</ResourceDictionary>
+	</UserControl.Resources>
+	
+	<Grid x:Name="LayoutRoot" Background="{StaticResource MGrey2}">
+		<!--ContentPresenter Content="{Binding}"/ -->
+		<!--views:WebsitePagesListView  DataContext="{Binding WebsitePagesListViewModel}"/-->
+		<ContentControl Content="{Binding}" Style="{StaticResource ResourceKey=WPContentStyle}" />
+	</Grid>
+</UserControl>

@@ -1,0 +1,45 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d"
+	x:Class="Monahrq.DataSets.HospitalDetailsView"
+	x:Name="UserControl"
+	d:DesignWidth="940" d:DesignHeight="680">
+	 <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.Buttons.xaml"/>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.DataGrid.xaml"/>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/ModernTab.xaml"/>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/ModernFrame.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+       
+        </ResourceDictionary>
+    </UserControl.Resources>
+	<Grid x:Name="LayoutRoot" Margin="0" Background="White">
+		<Border BorderBrush="{DynamicResource MBlue}" BorderThickness="2" Margin="20">
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="65"/>
+					<RowDefinition/>
+					<RowDefinition Height="70"/>
+				</Grid.RowDefinitions>
+				<Grid Margin="20,10,20,0" >
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition/>
+						<ColumnDefinition Width="Auto"/>
+					</Grid.ColumnDefinitions>
+					<TextBlock TextWrapping="Wrap" Text="HOSPITAL"  Style="{DynamicResource Header1}" FontWeight="Bold" Margin="0"/>
+				</Grid>
+				<Border BorderThickness="1" Grid.Row="2" Background="{DynamicResource MGrey2}" Margin="20,0">
+					
+				</Border>
+				<TextBlock Grid.Row="1" TextWrapping="Wrap" Text="ADD NEW HOSPITAL" Margin="20,0" VerticalAlignment="Center" 
+					Style="{DynamicResource Header3}" Height="22.53"/>
+			</Grid>
+		</Border>
+	</Grid>
+</UserControl>

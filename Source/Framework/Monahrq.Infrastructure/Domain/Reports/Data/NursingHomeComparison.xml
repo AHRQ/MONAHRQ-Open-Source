@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ReportManifest RptId="F2F2B7FE-8653-488B-8ED8-FD4417CD0F9E"
+                Name="Nursing home comparison report (up to five nursing homes) with individual measure scores by domains"
+                Category="Quality"
+				IsTrending="false" ConsumerPreviewImage="ConsumerNursingHome_Compare_Report.png"
+				ShowInterpretationText="true"
+                PreviewImage="NursingHome_Compare_Report.png"
+                RequiresCostToChargeRatio="false">
+  
+ 
+  <Audiences>
+    <Audience AudienceType="Professionals" />
+    <Audience AudienceType="Consumers" />
+  </Audiences>
+  <Datasets>
+    <Dataset Name="Nursing Home Compare Data"/>
+    <Dataset Name="NH-CAHPS Survey Results Data"/>
+    <Dataset Name="Nursing Home Deficiency Matrix Data"/>
+  </Datasets>
+  <Filters />
+  <ReportAttributes />
+  <!--ReportColumns-->
+  <Columns>
+    <Column IsMeasure="false" MeasureCode="NH-OA-01" Name="Overall Rating" />
+    <Column IsMeasure="true" MeasureCode="NH-HI-01" Name="Overall Health Inspection" />
+    <Column IsMeasure="false" MeasureCode="NH-QM-01" Name="Overall Quality" />
+    <Column IsMeasure="true" MeasureCode="NH-HI-02" Name="Date of most recent health inspection." />
+    <Column IsMeasure="true" MeasureCode="NH-HI-03" Name="Date of most recent fire safety inspection." />
+    <Column IsMeasure="true" MeasureCode="NH-HI-04" Name="How many health-related standards nursing home failed to meet." />
+    <Column IsMeasure="true" MeasureCode="NH-HI-05" Name="How many fire safety standards nursing home failed to meet." />
+    <Column IsMeasure="true" MeasureCode="NH-QM-SS-01" Name="How many residents, out of 100, with a short nursing home stay, reported moderate to severe pain." />
+    <Column IsMeasure="true" MeasureCode="NH-QM-SS-02" Name="How many residents, out of 100, with a short nursing home stay, had new pressure sores or sores that got worse." />
+    <Column IsMeasure="true" MeasureCode="NH-QM-SS-03" Name="How many residents, out of 100, with a short nursing home stay, got a flu vaccine if needed." />
+    <Column IsMeasure="true" MeasureCode="NH-QM-SS-04" Name="How many residents, out of 100, with a short nursing home stay, got a pneumonia vaccine if needed." />
+    <Column IsMeasure="true" MeasureCode="NH-QM-SS-05" Name="How many residents, out of 100, with a short nursing home stay, got antipsychotic medicine for the first time." />
+    <Column IsMeasure="true" MeasureCode="NH-QM-LS-01" Name="How many residents, out of 100, with a long nursing home stay, had a fall leading to a major injury." />
+    <Column IsMeasure="true" MeasureCode="NH-QM-LS-02" Name="How many residents, out of 100, with a long nursing home stay reported moderate to severe pain." />
+    <Column IsMeasure="true" MeasureCode="NH-QM-LS-03" Name="How many residents, out of 100, with a long nursing home stay, had a new pressure sores or sores that got worse." />
+    <Column IsMeasure="true" MeasureCode="NH-QM-LS-04" Name="How many residents, out of 100, with a long nursing home stay, got a flu vaccine if needed." />
+    <Column IsMeasure="true" MeasureCode="NH-QM-LS-05" Name="How many residents, out of 100, with a long nursing home stay, got a pneumonia vaccine if needed." />
+    <Column IsMeasure="true" MeasureCode="NH-QM-LS-06" Name="How many residents, out of 100, with a long nursing homes stay, get an infection in their bladder." />
+    <Column IsMeasure="true" MeasureCode="NH-QM-LS-07" Name="How many residents, out of 100, with a long nursing home stay, lose control of bladder or bowels." />
+    <Column IsMeasure="true" MeasureCode="NH-QM-LS-08" Name="How many residents, out of 100, with a long nursing home stay, had catheter inserted and left in their bladder." />
+    <Column IsMeasure="true" MeasureCode="NH-QM-LS-09" Name="How many residents, out 100, with a long nursing home stay, were physically restrained on a daily basis." />
+    <Column IsMeasure="true" MeasureCode="NH-QM-LS-10" Name="How many residents, out of 100, with a long nursing home stay, need more help doing daily tasks." />
+    <Column IsMeasure="true" MeasureCode="NH-QM-LS-11" Name="How many residents, out of 100, with a long nursing home stay, lost too much weight." />
+    <Column IsMeasure="true" MeasureCode="NH-QM-LS-12" Name="How many residents, out 100, with a long nursing home stay, began to be depressed." />
+    <Column IsMeasure="true" MeasureCode="NH-QM-LS-13" Name="How many residents, out 100, with a long nursing home stay, got antipsychotic medicine" />
+    <Column IsMeasure="false" MeasureCode="NH-SD-01" Name="Overall Staff Available" />
+    <Column IsMeasure="true" MeasureCode="NH-SD-02" Name="Hours of help from nursing aides that each resident can get day." />
+    <Column IsMeasure="true" MeasureCode="NH-SD-03" Name="Hours of help from licensed vocational or practical nurses (LVN, LPN) that each resident can get each day." />
+    <Column IsMeasure="true" MeasureCode="NH-SD-04" Name="Hours of help from Registered Nurses that each resident can get each day." />
+    <Column IsMeasure="true" MeasureCode="NH-SD-05" Name="Hours of help from any licensed nurse (LVN, LPN, RN) that each resident can get each day." />
+    <Column IsMeasure="true" MeasureCode="NH-SD-06" Name="Hours of help from any kind of nurse that each resident can get each day." />
+    <Column IsMeasure="true" MeasureCode="NH-SD-07" Name="Hours of help from a physical therapist available to each resident each day." />
+    <Column IsMeasure="true" MeasureCode="NH-DEF-01" Name="Number of health care related deficiencies" />
+    <Column IsMeasure="true" MeasureCode="NH-DEF-02" Name="Number of fire safety or maintenance related deficiencies" />
+    <Column IsMeasure="true" MeasureCode="NH-DEF-03" Name="Number of life safety related deficiencies that have not been corrected" />
+    <Column IsMeasure="true" MeasureCode="NH-DEF-04" Name="Facility has had at least one deficiency related to resident abuse in the most recent three surveys. This will have a value either 1 or 0." />
+    <Column IsMeasure="true" MeasureCode="NH-DEF-05" Name="Facility has had at least one deficiency related to resident neglect in the most recent three surveys. This will have a value either 1 or 0." />
+    <Column IsMeasure="true" MeasureCode="NH-DEF-06" Name="Facility has had at least one deficiency type J, K, or L in the most recent three surveys. This will have a value either 1 or 0." />
+    <Column IsMeasure="true" MeasureCode="Q46" Name="Meeting Basic Needs: Help with Eating, Drinking, and Toileting" />
+    <Column IsMeasure="true" MeasureCode="Q47" Name="Wait too long for help with eating" />
+    <Column IsMeasure="true" MeasureCode="Q48" Name="Wait too long for help with drinking" />
+    <Column IsMeasure="true" MeasureCode="Q49" Name="Wait too long for help with toileting" />
+    <Column IsMeasure="true" MeasureCode="Q50" Name="Nurses/Aides' Kindness/ Respect Towards Resident" />
+    <Column IsMeasure="true" MeasureCode="Q51" Name="Nurses/Aides treat resident with courtesy and respect" />
+    <Column IsMeasure="true" MeasureCode="Q52" Name="Nurses/Aides treat resident with kindness" />
+    <Column IsMeasure="true" MeasureCode="Q54" Name="Nurses/Aides really cared about resident" />
+    <Column IsMeasure="true" MeasureCode="Q55" Name="Nurses/Aides appropriate with resident displaying behavioral problems" />
+    <Column IsMeasure="true" MeasureCode="Q56" Name="Nurses/Aides rude to resident" />
+    <Column IsMeasure="true" MeasureCode="Q57" Name="Nursing Home Provides Information/ Encourages Respondent Involvement" />
+    <Column IsMeasure="true" MeasureCode="Q58" Name="Nurses/Aides give respondent timely information about resident" />
+    <Column IsMeasure="true" MeasureCode="Q59" Name="Nurses/Aides explain things to respondent" />
+    <Column IsMeasure="true" MeasureCode="Q60" Name="Respondent involved in decisions about care" />
+    <Column IsMeasure="true" MeasureCode="Q61" Name="Respondent given information about payments/expenses" />
+    <Column IsMeasure="true" MeasureCode="Q62" Name="Nurses/Aides discourage respondents questions " />
+    <Column IsMeasure="true" MeasureCode="Q63" Name="Respondent stops self from complaining" />
+    <Column IsMeasure="true" MeasureCode="Q64" Name="Nursing Home Staffing, Care of Belongings, and Cleanliness" />
+    <Column IsMeasure="true" MeasureCode="Q65" Name="Can find a nurse or aide" />
+    <Column IsMeasure="true" MeasureCode="Q66" Name="Enough nurses/aides" />
+    <Column IsMeasure="true" MeasureCode="Q67" Name="Room looks/smells clean" />
+    <Column IsMeasure="true" MeasureCode="Q68" Name="Resident looks/smells clean" />
+    <Column IsMeasure="true" MeasureCode="Q69" Name="Public areas look/smell clean" />
+    <Column IsMeasure="true" MeasureCode="Q70" Name="Family member’s personal medical belongings lost" />
+    <Column IsMeasure="true" MeasureCode="Q71" Name="Family member’s clothes damaged or lost" />
+    <Column IsMeasure="true" MeasureCode="Q72" Name="Overall Rating of Care by Family Members at Nursing Home" />
+  </Columns>
+  <InterpretationText>
+    <![CDATA[<p><strong>How to interpret content</strong>
+    <br>Each rating in the report is shown as a simple image along with a word or two. The words will tell you how a particular nursing home compares to the average rating of the other homes in the area. Going from best to worst, the rating will show that a nursing home is:
+    <ul>
+        <li><span class="ng-scope ng-isolate-scope"><span class="rating-nursing">
+  <img width="155" height="24" src="themes/base/assets/stars_5.png" class=""><br>
+  <span class="rating-nursing--title ng-binding">Much better than average</span>
+  <span class="rating-nursing--subtitle ng-binding"> </span>
+</span></li>
+        <li><span class="ng-scope ng-isolate-scope"><span class="rating-nursing">
+  <img  height="24" src="themes/base/assets/stars_4.png" class=""><br>
+  <span class="rating-nursing--title ng-binding">Better than average</span>
+  <span class="rating-nursing--subtitle ng-binding"> </span>
+</span></li>
+        <li><span class="ng-scope ng-isolate-scope"><span class="rating-nursing">
+  <img width="155" height="24" src="themes/base/assets/stars_3.png" class=""><br>
+  <span class="rating-nursing--title ng-binding">Average</span>
+  <span class="rating-nursing--subtitle ng-binding"> </span>
+</span></li>
+        <li><span class="ng-scope ng-isolate-scope"><span class="rating-nursing">
+  <img  width="155" height="24" src="themes/base/assets/stars_2.png" class=""><br>
+  <span class="rating-nursing--title ng-binding">Below average</span>
+  <span class="rating-nursing--subtitle ng-binding"> </span>
+</span></li>
+        <li><span class="ng-scope ng-isolate-scope"><span class="rating-nursing">
+  <img width="155" height="24" src="themes/base/assets/stars_1.png" class=""><br>
+  <span class="rating-nursing--title ng-binding">Much below average</span>
+  <span class="rating-nursing--subtitle ng-binding"> </span>
+</span></li>
+    </ul>
+    <br><strong>The information on this website comes from two sources:</strong>
+    <br>1. Yearly health and safety inspections of each nursing home that are done by state agencies. Health and safety information, and staffing information, come from reports on these inspections.
+    <br>2. Monthly information that each nursing home submits to the federal government about each resident. Quality information comes from this information source.
+    <br>
+    <br><strong>What’s here?</strong>
+    <br>There are three types of information in this Report:
+    <ul>
+        <li><strong>Quality Information</strong>, such as whether residents are receiving appropriate care what is happening to their health and ability to function</li>
+        <li><strong>Health and Safety Information</strong>, such as number of health and safety problems found when state agencies did an inspection</li>
+        <li><strong>Staffing Information</strong>, such as the number of nursing home staff available to care for residents during their stay</li>
+    </ul>
+    <br>This information helps you compare nursing homes to each other and see which are better. You can compare up to 5 nursing homes in terms of their Overall Score, their Inspection Score, their Quality Score and their Staffing Score.
+    <br>
+    <br><strong>How can I use this information?</strong>
+    <br>You can use this information to:
+    <ul>
+        <li>help you choose a nursing home for yourself</li>
+        <li>provide useful information for your loved ones if they need nursing home care</li>
+        <li>encourage nursing homes to improve their quality</li>
+    </ul>
+</p>]]>
+  </InterpretationText>
+  <WebsitePages>
+    <WebsitePage
+			Name="Compare Nursing Homes"
+			Audience="Consumers"
+			Path="app/products/consumer/nursing-homes/views/compare.html"
+			Url="/nursing-homes/location"
+			UrlRaw="/nursing-homes/location?location&amp;distance"
+			IsEditable="true">
+      <WebsitePageZones>
+        <WebsitePageZone Name="Header" CodePath=""/>
+        <WebsitePageZone Name="Footer" CodePath=""/>
+      </WebsitePageZones>
+    </WebsitePage>
+    <WebsitePage
+			Name="Compare - Nursing Homes"
+			Audience="Professionals"
+			Path="app/products/professional/nursing-homes/views/compare.html"
+			Url="/nursing-homes/compare?ids=1,2"
+			UrlRaw="/nursing-homes/compare?ids"
+			IsEditable="true">
+      <WebsitePageZones>
+        <WebsitePageZone Name="Header" CodePath=""/>
+        <WebsitePageZone Name="Footer" CodePath=""/>
+      </WebsitePageZones>
+    </WebsitePage>
+  </WebsitePages>
+</ReportManifest>

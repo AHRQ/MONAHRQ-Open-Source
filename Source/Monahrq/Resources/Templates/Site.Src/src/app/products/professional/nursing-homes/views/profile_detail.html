@@ -1,0 +1,80 @@
+<br />
+<p><strong>{{profile.Name}}</strong><br /> {{profile.Address}}<br />{{profile.City}}, {{profile.State}} {{profile.Zip | zip}}</p>
+
+<div data-ng-if="ReportConfigSvc.nhProfileHasMap()" class="map">
+  <img data-ng-src="{{gmapUrl}}" alt="" />
+</div>
+
+<div data-ng-if="ReportConfigSvc.nhProfileHasBasicDescriptiveData()" class="basic-data">
+  <p>{{profile.Description}}</p>
+  <!-- <br /> -->
+  <table class="info__table info__table--no_border">
+    <thead>
+      <tr>
+        <th>General Information</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr data-ng-if="profile.PhoneNumber != null">
+        <td><strong>Phone Number:</strong> {{profile.PhoneNumber | phone}}</td>
+      </tr>
+      <tr data-ng-if="countyName != null">
+        <td><strong>County Name:</strong> {{countyName}}</td>
+      </tr>
+      <tr data-ng-if="profile.OwnershipType != null">
+        <td><strong>Ownership Type:</strong> {{profile.OwnershipType}}</td>
+      </tr>
+      <tr data-ng-if="profile.CertifiedBeds != null">
+        <td><strong>Number of Certified Beds:</strong> {{profile.CertifiedBeds}}</td>
+      </tr>
+      <tr data-ng-if="profile.ResidentsInCertifiedBeds != null">
+        <td><strong>Number of Residents in Certified Beds:</strong> {{profile.ResidentsInCertifiedBeds}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <table class="info__table info__table--no_border">
+    <thead>
+      <tr>
+        <th colspan="2">Other Information</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr data-ng-if="profile.ProviderType != null">
+        <td><strong>Provider ID:</strong></td>
+        <td>{{profile.ProviderType}}</td>
+      </tr>
+      <tr data-ng-if="profile.InHospital != null">
+        <td><strong>Is the nursing home located in Hospital:</strong></td>
+        <td>{{getYN(profile.InHospital)}}</td>
+      </tr>
+      <tr data-ng-if="profile.InRetirementCommunity != null">
+        <td><strong>Is the nursing home located in Continuing Care Retirement Community:</strong></td>
+        <td>{{getYN(profile.InRetirementCommunity)}}</td>
+      </tr>
+      <tr data-ng-if="profile.DateApprovedMedicareMedicaid != null">
+        <td><strong>Date First Approved to Provide Medicare and Medicaid services:</strong></td>
+        <td>{{getFormattedDate(profile.DateApprovedMedicareMedicaid)}}</td>
+      </tr>
+      <tr data-ng-if="profile.SpecialFocus != null">
+        <td><strong>Special Focus Facility:</strong></td>
+        <td>{{getYN(profile.SpecialFocus)}}</td>
+      </tr>
+      <tr data-ng-if="profile.LastYearOwnershipChange != null">
+        <td><strong>Provider Changed Ownership in Last 12 Months:</strong></td>
+        <td>{{getYN(profile.LastYearOwnershipChange)}}</td>
+      </tr>
+      <tr data-ng-if="profile.HasCouncil != null">
+        <td><strong>Does the nursing home has Resident and Family Council:</strong></td>
+        <td>{{getYN(profile.HasCouncil)}}</td>
+      </tr>
+      <tr data-ng-if="profile.HasSprinkler  != null">
+        <td><strong>Automatic Sprinkler Systems in All Required Areas:</strong></td>
+        <td>{{getYN(profile.HasSprinkler)}}</td>
+      </tr>
+      <tr data-ng-if="profile.Accreditation != null">
+        <td><strong>Accreditation:</strong></td>
+        <td>{{profile.Accreditation }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

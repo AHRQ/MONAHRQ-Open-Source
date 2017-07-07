@@ -1,0 +1,655 @@
+﻿<UserControl x:Class="Monahrq.Websites.Views.WebsitePagesListView"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:mtx="http://schemas.monahrq.com/theme/xaml"
+			 xmlns:mtxc="clr-namespace:Monahrq.Theme.Controls;assembly=Monahrq.Theme"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:local="clr-namespace:Monahrq.Websites.Views"
+			 xmlns:localvm="clr-namespace:Monahrq.Websites.ViewModels"
+			 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+			 xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+			 xmlns:basedata="clr-namespace:Monahrq.Infrastructure.Entities.Domain.BaseData;assembly=Monahrq.Infrastructure"
+			 xmlns:ns="clr-namespace:Monahrq.Websites.Helpers"
+			 mc:Ignorable="d"
+			 d:DesignWidth="600"
+			 d:DesignHeight="600">
+
+	<UserControl.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.Buttons.xaml" />
+				<ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.DataGrid.xaml" />
+			</ResourceDictionary.MergedDictionaries>
+			<mtx:BooleanToStringConverter x:Key="BooleanToStringConverter" />
+			<mtx:EnumListToStringConverter x:Key="EnumListToStringConverter" />
+			<mtx:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+			<mtx:EnumToDescriptionConverter x:Key="EnumToDescriptionConverter" />
+			<localvm:WebsitePagePreviewDisplayNameConverter x:Key="WebsitePagePreviewDisplayNameConverter" />
+		</ResourceDictionary>
+	</UserControl.Resources>
+
+
+	<i:Interaction.Triggers>
+		<i:EventTrigger EventName="Loaded">
+			<i:InvokeCommandAction Command="{mtx:BindTo OnViewLoaded()}" />
+		</i:EventTrigger>
+		<i:EventTrigger EventName="Unloaded">
+			<i:InvokeCommandAction Command="{mtx:BindTo OnViewUnloaded()}" />
+		</i:EventTrigger>
+	</i:Interaction.Triggers>
+
+	<Grid>
+		<Grid.RowDefinitions>
+			<!-- Page Consumer/Profession Options -->
+			<RowDefinition Height="0" />			<!-- Page Filter Options -->
+			<RowDefinition Height="60" />			<!-- Page List -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<!-- Page Grid Filter Section -->
+		<!-- Filter Panel -->
+		<Grid x:Name="controlsPanel"
+			  Grid.Row="1">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="*" />
+				<RowDefinition Height="*" />
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="20" />
+			</Grid.ColumnDefinitions>
+			<StackPanel Grid.Row="0"
+						Grid.Column="0"
+						HorizontalAlignment="Left"
+						Orientation="Horizontal"
+						Margin="0 0 0 0"
+						VerticalAlignment="Center">
+				<ListBox ItemsSource="{Binding AudienceFilterTypes}"
+						 SelectedItem="{Binding SelectedAudienceFilter}">
+					<ListBox.ItemsPanel>
+						<ItemsPanelTemplate>
+							<WrapPanel Orientation="Horizontal" />
+						</ItemsPanelTemplate>
+					</ListBox.ItemsPanel>
+					<ListBox.ItemContainerStyle>
+						<Style TargetType="{x:Type ListBoxItem}">
+							<Setter Property="Template">
+								<Setter.Value>
+									<ControlTemplate TargetType="{x:Type ListBoxItem}">
+										<RadioButton Margin="0,0,15,0"
+													 FontSize="12"
+													 Content="{TemplateBinding Content}"
+													 IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsSelected}" />
+									</ControlTemplate>
+								</Setter.Value>
+							</Setter>
+						</Style>
+					</ListBox.ItemContainerStyle>
+				</ListBox>
+			</StackPanel>
+			<StackPanel Grid.Row="1"
+						Grid.Column="0"
+						HorizontalAlignment="Left"
+						Orientation="Horizontal"
+						Margin="0 0 0 0"
+						VerticalAlignment="Center">
+
+				<TextBlock Text="Filter by:"
+						   Foreground="{DynamicResource MGrey5}"
+						   Margin="0,0,10,0"
+						   VerticalAlignment="Center" />
+				<ComboBox ItemsSource="{Binding PropertyFilterTypes}"
+						  SelectedValue="{Binding SelectedPropertyFilter}"
+						  Margin="0,0,10,0"
+						  Width="130"
+						  Foreground="{DynamicResource MGrey5}"
+						  FontSize="12" />
+				<TextBox x:Name="txtPropertyFilter"
+						 controls:TextboxHelper.ClearTextButton="True"
+						 controls:TextboxHelper.Watermark="filter text..."
+						 MaxWidth="200"
+						 MinWidth="130"
+						 FontSize="12"
+						 Foreground="{DynamicResource MGrey5}"
+						 Text="{Binding PropertyFilterInputText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Delay=350}">
+					<TextBox.InputBindings>
+						<KeyBinding Key="Enter"
+									Command="{mtx:BindTo Path=ancestor.UserControl.DataContext.OnFilterSearch()}" />
+					</TextBox.InputBindings>
+				</TextBox>
+				<Button Content="Reset"
+						Command="{mtx:BindTo Path=ancestor.UserControl.DataContext.OnFilterReset()}"
+						Margin="0,0,8,0"
+						Width="75"
+						Background="{DynamicResource MGrey1}" />
+
+				<!-- Display PageType(Audience) Filter [] -->
+				<ComboBox ItemsSource="{Binding PageTypeFilterTypes}"
+						  SelectedValue="{Binding SelectedPageTypeFilter}"
+						  Margin="8,0,8,0"
+						  Width="150"
+						  Foreground="{DynamicResource MGrey5}"
+						  FontSize="12" />
+
+
+				<!-- Display the count of records that match the filter criteria -->
+				<TextBlock Text="Viewable Website Pages:"
+						   VerticalAlignment="Center"
+						   Margin="0,0,3,0"
+						   Foreground="{DynamicResource MGrey5}" />
+				<TextBlock VerticalAlignment="Center"
+						   Margin="0,0,3,0"
+						   Foreground="{DynamicResource MGrey5}">
+					<TextBlock.Text>
+						<MultiBinding Converter="{mtx:FormatConverter {} {0} / {1}}">
+							<Binding Path="WebsitePageModelsView.Count" />
+							<Binding Path="WebsitePageModels.Count" />
+							<!--Binding Path="ManageViewModel.AllAvailableWebsitePages.Count" /-->
+						</MultiBinding>
+					</TextBlock.Text>
+				</TextBlock>
+			</StackPanel>
+		</Grid>
+
+		<!-- Pages Grid -->
+		<DataGrid x:Name="WebsitePages"
+				  Grid.Row="2"
+				  VerticalScrollBarVisibility="Auto"
+				  VerticalAlignment="Top"
+				  BorderBrush="{StaticResource MGrey3}"
+				  HorizontalGridLinesBrush="{StaticResource MGrey2}"
+				  VerticalGridLinesBrush="{StaticResource MGrey2}"
+				  Foreground="{StaticResource MGrey5}"
+				  Background="{StaticResource White}"
+				  Margin="0,0,0,0"
+				  AutoGenerateColumns="False"
+				  CanUserAddRows="False"
+				  CanUserDeleteRows="False"
+				  CanUserResizeRows="False"
+				  HeadersVisibility="Column"
+				  AlternationCount="2"
+				  ItemsSource="{Binding WebsitePageModelsView}">
+			<DataGrid.Columns>
+				<DataGridTemplateColumn Width="100"
+										CanUserSort="False">
+					<DataGridTemplateColumn.Header>
+						<TextBlock Text="Manage Content"
+								   TextWrapping="WrapWithOverflow"
+								   Foreground="White" />
+					</DataGridTemplateColumn.Header>
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<StackPanel Orientation="Horizontal"
+										VerticalAlignment="Center">
+								<Button x:Name="btnEdit"
+										VerticalAlignment="Center"
+										Margin="5,0,0,0"
+										BorderBrush="{StaticResource MBlue}"
+										Background="{StaticResource MBlue}"
+										Foreground="{StaticResource MGrey5}"
+										Command="{mtx:BindTo Path=ancestor.UserControl.DataContext.EditContent()}"
+										CommandParameter="{Binding}"
+										Style="{StaticResource EditButton}">
+									<Button.ToolTip>
+										<TextBlock Text="Edit contents"
+												   Foreground="White" />
+									</Button.ToolTip>
+								</Button>
+								<Button VerticalAlignment="Center"
+										Command="{mtx:BindTo Path=ancestor.UserControl.DataContext.DeleteModifiedWebsitePage()}"
+										CommandParameter="{Binding}"
+										Style="{StaticResource UndoButton}"
+										ToolTip="Reset"
+										Margin="5,0,0,0"
+										Visibility="{mtx:BindTo Path=IsModified, Converter={mtx:BooleanToVisibilityConverter UseHidden=true}}" />
+								
+								<Button VerticalAlignment="Center"
+										Command="{mtx:BindTo Path=ancestor.UserControl.DataContext.OnPreviewWebsitePage()}"
+										CommandParameter="{Binding}"
+										Style="{DynamicResource PreviewButton}"
+										ToolTip="{mtx:BindTo Path=ancestor.UserControl.DataContext.CanPreviewWebsitePage, Converter={StaticResource BooleanToStringConverter}, ConverterParameter=Preview Website|No Preview Available }"
+										Margin="5,0,0,0"
+										IsEnabled="{mtx:BindTo Path=ancestor.UserControl.DataContext.CanPreviewWebsitePage}" />
+
+							</StackPanel>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+				
+				<DataGridTemplateColumn Width="0.33*"
+										CanUserSort="True"
+										SortMemberPath="WebsitePageName">
+					<DataGridTemplateColumn.Header>
+						<TextBlock Text="Page Name"
+								   TextWrapping="WrapWithOverflow"
+								   Foreground="White" />
+					</DataGridTemplateColumn.Header>
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<TextBlock Margin="6"
+									   TextWrapping="Wrap"
+									   Text="{Binding WebsitePageName}"
+									   TextTrimming="CharacterEllipsis" />
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+				
+				<DataGridTemplateColumn Width=".33*"
+										CanUserSort="True"
+										SortMemberPath="Audiences[0]">
+					<DataGridTemplateColumn.Header>
+						<TextBlock Text="Audience"
+								   TextWrapping="WrapWithOverflow"
+								   Foreground="White" />
+					</DataGridTemplateColumn.Header>
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<TextBlock Margin="6"
+									   TextWrapping="Wrap"
+									   Text="{Binding Audiences, Converter={StaticResource EnumListToStringConverter}}"
+									   TextTrimming="CharacterEllipsis" />
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+				
+				<DataGridTemplateColumn Width=".33*"
+										CanUserSort="True"
+										SortMemberPath="PageType">
+					<!--SortMemberPath="Audiences"> -->
+					<DataGridTemplateColumn.Header>
+						<TextBlock Text="Page Type"
+								   TextWrapping="WrapWithOverflow"
+								   Foreground="White" />
+					</DataGridTemplateColumn.Header>
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<TextBlock Margin="6"
+									   TextWrapping="Wrap"
+									   Text="{Binding PageType, Converter={StaticResource EnumToDescriptionConverter}}"
+									   TextTrimming="CharacterEllipsis" />
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+				
+				<DataGridTemplateColumn Width="130"
+										CanUserSort="True"
+										SortMemberPath="IsModified">
+					<DataGridTemplateColumn.Header>
+						<TextBlock Text="Is Customized?"
+								   TextWrapping="WrapWithOverflow"
+								   Foreground="White" />
+					</DataGridTemplateColumn.Header>
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<TextBlock Margin="6"
+									   TextWrapping="Wrap"
+									   Text="{Binding IsModified, Converter={StaticResource BooleanToStringConverter}, ConverterParameter=Yes|No }"
+									   TextTrimming="CharacterEllipsis" />
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+				<!--
+				<DataGridTemplateColumn Width="100"
+										CanUserSort="False">
+					<DataGridTemplateColumn.Header>
+						<TextBlock Text="Preview"
+								   TextWrapping="WrapWithOverflow"
+								   Foreground="White" />
+					</DataGridTemplateColumn.Header>
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<Button x:Name="btnPreview"
+									VerticalAlignment="Center"
+									Width="35"
+									BorderBrush="{StaticResource MBlue}"
+									Background="{StaticResource MBlue}"
+									Foreground="{StaticResource MGrey5}"
+									CommandParameter="{Binding}"
+									Command="{mtx:BindTo Path=ancestor.UserControl.DataContext.OnPreviewContent()}"
+									Style="{StaticResource PreviewButton}">
+								<Button.Visibility>
+									<mtx:BindTo Path="WebsitePage.PageType"
+												ConverterParameter="{x:Static basedata:WebsitePageTypeEnum.Report}">
+										<mtx:BindTo.Converter>
+											<mtx:ConverterSequence>
+												<mtx:EnumToBooleanConverter />
+												<mtx:BooleanToVisibilityConverter />
+											</mtx:ConverterSequence>
+										</mtx:BindTo.Converter>
+									</mtx:BindTo>
+								</Button.Visibility>
+								<Button.ToolTip>
+									<TextBlock Text="Preview contents."
+											   Foreground="White" />
+								</Button.ToolTip>
+							</Button>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+				-->
+			</DataGrid.Columns>
+		</DataGrid>
+
+		<!-- Preview Popup - Coppied from: \Monahrq.Websites\Views\WebsiteBuildReportsTabsView.xaml -->
+		<Popup IsOpen="{Binding IsPreviewOpen, Mode=TwoWay}"
+			   Panel.ZIndex="100"
+			   Placement="Center"
+			   AllowsTransparency="True"
+			   Width="950"
+			   Height="740">
+			<Border BorderThickness="1"
+					Margin="15,20,20,20"
+					Padding="10"
+					Background="White"
+					BorderBrush="{DynamicResource MBlue}">
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="60" />
+						<RowDefinition />
+					</Grid.RowDefinitions>
+					<Grid Row="0">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition />
+							<ColumnDefinition Width="50" />
+						</Grid.ColumnDefinitions>
+						<Button Grid.Column="1"
+								Command="{mtx:BindTo Path=ancestor.UserControl.DataContext.OnClosePreviewContent()}"
+								Content="X"
+								Style="{DynamicResource PlainButton}"
+								Foreground="White"
+								Background="{DynamicResource MPink}"
+								Width="32"
+								Height="32"
+								VerticalAlignment="tOP"
+								HorizontalAlignment="Right" />
+						<StackPanel>
+							<TextBlock Text="PREVIEW REPORT:"
+									   Style="{DynamicResource Subtopic}" />
+							<TextBlock Text="{Binding PreviewReport.Name}"
+									   Style="{DynamicResource Header3}" />
+						</StackPanel>
+					</Grid>
+					<Border Background="{DynamicResource MGrey1}"
+							Padding="20"
+							BorderThickness="1"
+							BorderBrush="{DynamicResource MBlue}"
+							Grid.Row="1">
+						<Border BorderThickness="0"
+								BorderBrush="{DynamicResource MGrey4}">
+							<TabControl Style="{StaticResource TabControlStyleLeft}"
+										SelectedIndex="{Binding ActivePreviewImageTabIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+								<TabItem Style="{StaticResource TabItemStyleLeft}"
+										 Header="Professional"
+										 Visibility="{Binding PreviewReport.Report.HasProfessionalsAudience, Converter={StaticResource BooleanToVisibilityConverter}}">
+									<Border BorderBrush="{DynamicResource MBlue}"
+											BorderThickness="0,1,0,0"
+											Margin="-1,0,0,0"
+											Padding="0,10"
+											Background="White"
+											MinWidth="300"
+											MinHeight="200">
+										<Border BorderThickness="1"
+												BorderBrush="{StaticResource MGrey3}"
+												Margin="10"
+												MinWidth="300"
+												MinHeight="200">
+											<Image Source="{Binding PreviewReport.ProfessionalPreviewImage}"
+												   Stretch="Fill"
+												   HorizontalAlignment="Center"
+												   VerticalAlignment="Center" />
+										</Border>
+									</Border>
+								</TabItem>
+								<TabItem Style="{StaticResource TabItemStyleLeft}"
+										 Header="Consumer"
+										 Visibility="{Binding PreviewReport.Report.HasConsumersAudience, Converter={StaticResource BooleanToVisibilityConverter}}">
+									<Border BorderBrush="{DynamicResource MBlue}"
+											BorderThickness="0,1,0,0"
+											Margin="-1,0,0,0"
+											Padding="0,10"
+											Background="White"
+											MinWidth="300"
+											MinHeight="200">
+										<Border BorderThickness="1"
+												BorderBrush="{StaticResource MGrey3}"
+												Margin="10"
+												MinWidth="300"
+												MinHeight="200">
+											<Image Source="{Binding PreviewReport.ConsumerPreviewImage}"
+												   Stretch="Fill"
+												   HorizontalAlignment="Center"
+												   VerticalAlignment="Center" />
+										</Border>
+									</Border>
+								</TabItem>
+							</TabControl>
+						</Border>
+					</Border>
+				</Grid>
+			</Border>
+		</Popup>
+
+		<!-- View Preview Page Settings -->
+		<mtxc:PopupEx x:Name="PreviewSettingsPopup"
+					  IsOpen="{Binding IsPreviewDemoSettingsOpen}"
+					  Panel.ZIndex="100"
+					  Placement="Center"
+					  AllowsTransparency="True"
+					  IsChildPopup="true">
+			<i:Interaction.Behaviors>
+				<mtx:MouseDragPopupBehavior />
+			</i:Interaction.Behaviors>
+
+			<Border Background="{DynamicResource MGrey2}">
+				<Border BorderThickness="1"
+						Margin="0"
+						Padding="1"
+						Background="White"
+						BorderBrush="{StaticResource MBlue}">
+					<Grid>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="30" />		<!-- Close Button [Top] -->
+							<RowDefinition Height="*" />		<!-- Settings Panel [Bottom] -->
+						</Grid.RowDefinitions>
+
+						<!-- Close Button [Top] -->
+						<DockPanel Grid.Row="0"
+									   Background="{StaticResource MBlue}"
+									   HorizontalAlignment="Stretch"
+									   Cursor="Hand">
+								<Button Name="SettingsBtnCloseX"
+										DockPanel.Dock="Right"
+										HorizontalAlignment="Right"
+										Height="15"
+										Width="20"
+										Margin="0,5,5,5"
+										Background="White"
+										Content="X"
+										Style="{DynamicResource CloseButton}"
+										Command="{mtx:BindTo Path=ancestor.UserControl.DataContext.OnClosePreviewDemoSettings()}" />
+							</DockPanel>
+
+						<!-- Settings Panel [Bottom] -->
+						<Border Grid.Row="1"
+								Background="{StaticResource MGrey1}"
+								BorderThickness="1"
+								BorderBrush="{StaticResource MBlue}">
+							<Border BorderThickness="1"
+									BorderBrush="{StaticResource MGrey3}"
+									Background="White"
+									Margin="6">
+								<Grid Margin="5">
+									<Grid.RowDefinitions>
+										<RowDefinition Height="Auto" />		<!-- Title -->
+										<RowDefinition Height="Auto" />		<!-- Settings -->
+										<RowDefinition Height="Auto" />		<!-- Actions -->
+									</Grid.RowDefinitions>
+
+									<!-- Title -->
+									<Border Grid.Row="0"
+											Margin="0,5,10,0"
+											Padding="0,5,0,5"
+											Background="{StaticResource MGrey1}"
+											VerticalAlignment="Top">
+										<StackPanel Orientation="Vertical"
+													HorizontalAlignment="Left"
+													VerticalAlignment="Center">
+											<TextBlock Text="This is a sample preview of the website page and does not reflect the pages from your website."
+													   Foreground="{DynamicResource MGrey5}" />
+											<TextBlock Text="Some of the preview pages load the top level navigation by default and you will have to navigate to the appropriate reports to see the changes on the webpage."
+													   TextWrapping="WrapWithOverflow"
+													   Margin="0,5,0,0"
+													   MaxWidth="500"
+													   FontSize="10"
+													   Foreground="{DynamicResource MGrey5}" />
+										</StackPanel>
+									</Border>
+									
+									<!-- Settings -->
+									<StackPanel Grid.Row="1"
+												HorizontalAlignment="Left"
+												VerticalAlignment="Center"
+												Orientation="Horizontal"
+												Margin="0 5 0 0">
+										<TextBlock Text="Pages:"
+												   Foreground="{DynamicResource MGrey5}"
+												   Margin="0,5,10,0"
+												   VerticalAlignment="Top" />
+										<ListBox x:Name="PreviewSettings"
+												 ItemsSource="{Binding ActivePreviewWebsitePageModel.WebsitePages}"
+												 SelectedItem="{Binding SelectedPreviewWebsitePage, Mode=TwoWay, UpdateSourceTrigger=Default}"
+												 IsEnabled="{mtx:BindTo ActivePreviewWebsitePageModel.WebsitePages.Count, Converter={mtx:ExpressionConverter Expression= {} {0} > 1}}">
+											<ListBox.ItemsPanel>
+												<ItemsPanelTemplate>
+													<WrapPanel Orientation="Vertical" />
+												</ItemsPanelTemplate>
+											</ListBox.ItemsPanel>
+											<ListBox.ItemContainerStyle>
+												<Style TargetType="{x:Type ListBoxItem}">
+													<Setter Property="Template">
+														<Setter.Value>
+															<ControlTemplate TargetType="{x:Type ListBoxItem}">
+																<RadioButton x:Name="rbIsSelected"
+																			 GroupName="rbGroupX"
+																			 Margin="0,0,15,0"
+																			 FontSize="12"
+																			 Content="{TemplateBinding Content, Converter={StaticResource WebsitePagePreviewDisplayNameConverter}}"
+																			 IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+															</ControlTemplate>
+														</Setter.Value>
+													</Setter>
+												</Style>
+											</ListBox.ItemContainerStyle>
+										</ListBox>
+									</StackPanel>
+
+
+									<!-- Actions -->
+									<StackPanel Grid.Row="2"
+												HorizontalAlignment="Right"
+												VerticalAlignment="Center"
+												Orientation="Horizontal"
+												Margin="0 10 0 0">
+										<Button Content="Preview"
+												VerticalAlignment="Center"
+												Command="{mtx:BindTo Path=OnPreviewSelectedWebsitePage()}"
+												Style="{DynamicResource PlainButton}"
+												BorderBrush="{StaticResource MBlue}"
+												Background="{StaticResource MBlue}"
+												Foreground="White"
+												FontSize="10"
+												FontWeight="Bold"
+												Height="25"
+												Width="120"
+												Margin="0,0,10,0"
+												ToolTip="{mtx:BindTo Path=CanPreviewWebsitePage, Converter={StaticResource BooleanToStringConverter}, ConverterParameter=Preview Website|No Preview Available }"
+												ToolTipService.ShowOnDisabled="True"
+												IsEnabled="{mtx:BindTo Path=CanPreviewWebsitePage}" />
+									</StackPanel>
+
+								</Grid>
+							</Border>
+						</Border>
+						
+						<Thumb mtx:PopupEx.ResizableThumb="{mtx:BindTo Path=this}"
+							   HorizontalAlignment="Right"
+							   VerticalAlignment="Bottom"
+							   Width="5"
+							   Height="5"
+							   Visibility="Collapsed" />
+					</Grid>
+				</Border>
+			</Border>
+
+		</mtxc:PopupEx>
+		
+		
+		<!-- View Page Preview -->
+		<mtx:PopupEx x:Name="PreviewPopup"
+					 IsOpen="{Binding IsPreviewDemoOpen}"
+					 Panel.ZIndex="100"
+					 Placement="Center"
+					 AllowsTransparency="True"
+					 Width="1100"
+					 Height="740"
+					 IsChildPopup="true">
+			<i:Interaction.Behaviors>
+				<mtx:MouseDragPopupBehavior />
+			</i:Interaction.Behaviors>
+
+			<Border Background="{DynamicResource MGrey2}">
+				<Border BorderThickness="1"
+						Margin="0"
+						Padding="1"
+						Background="White"
+						BorderBrush="{StaticResource MBlue}">
+					<Grid>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="30" />		<!-- Close Button [Top] -->
+							<RowDefinition Height="*" />		<!-- Browser Window [Bottom] -->
+						</Grid.RowDefinitions>
+
+						<!-- Close Button [Top] -->
+						<DockPanel Grid.Row="0"
+									   Background="{StaticResource MBlue}"
+									   HorizontalAlignment="Stretch"
+									   Cursor="Hand">
+								<Button Name="BtnCloseX"
+										DockPanel.Dock="Right"
+										HorizontalAlignment="Right"
+										Height="15"
+										Width="20"
+										Margin="0,5,5,5"
+										Background="White"
+										Content="X"
+										Style="{DynamicResource CloseButton}"
+										Command="{mtx:BindTo Path=ancestor.UserControl.DataContext.OnClosePreviewDemoWebBrowser()}" />
+							</DockPanel>
+
+						<!-- Browser Window [Bottom] -->
+						<Border Grid.Row="1"
+								Background="{StaticResource MGrey1}"
+								BorderThickness="1"
+								BorderBrush="{StaticResource MBlue}">
+							<Border BorderThickness="1"
+									BorderBrush="{StaticResource MGrey3}"
+									Background="White"
+									Margin="6">
+								<WebBrowser Name="DemoPreviewWebBrowser"
+											ns:WebBrowserHelper.BindableSource="{Binding PreviewDemoUrl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+							</Border>
+						</Border>
+						
+						<Thumb mtx:PopupEx.ResizableThumb="{mtx:BindTo Path=this}"
+							   HorizontalAlignment="Right"
+							   VerticalAlignment="Bottom"
+							   Width="5"
+							   Height="5"
+							   Visibility="Collapsed" />
+					</Grid>
+				</Border>
+			</Border>
+		</mtx:PopupEx>
+	</Grid>
+</UserControl>

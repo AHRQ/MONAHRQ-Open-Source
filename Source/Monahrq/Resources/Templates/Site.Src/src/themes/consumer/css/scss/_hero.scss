@@ -1,0 +1,84 @@
+// -------------------------------------------------------------------- //
+//  Hero
+// -------------------------------------------------------------------- //
+
+.home-hero {
+  position: relative;
+  height: 350px;
+  background-image: url("../assets/images/home-hero.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  .contain {
+    position: relative;
+  }
+}
+
+.scroll-down {
+  position: absolute;
+  bottom: -65px;
+  left: calc(50% - 47px);
+  z-index: 2;
+  display: block;
+  width: 94px;
+  height: 95px;
+  background-image: url("../assets/images/monahrq-sprite.png");
+  background-position: 0 0;
+  cursor: pointer;
+}
+
+
+
+// -------------------------------------------------------------------- //
+//  Hero Content
+
+.home-hero__statement {
+  position: absolute;
+  top: 75px;
+  width: 495px;
+  padding: 25px 30px;
+  background: rgba(0, 0, 0, .5);
+  border-radius: 5px;
+  line-height: 1.5;
+}
+
+.hero-title,
+.hero-subtitle {
+  color: white;
+  font-weight: 700;
+}
+
+.hero-title {
+  font-size: $h1-font-size;
+  text-shadow: 2px 2px 5px rgba(0,0,0,.4);
+}
+
+.hero-subtitle {
+  display: block;
+  margin-bottom: 20px;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+
+
+// -------------------------------------------------------------------- //
+//  Hero CTA
+
+.home-hero__cta {
+  color: white;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  &:after {
+    content: "";
+    display: inline-block;
+    width: 13px;
+    height: 13px;
+    margin-left: 15px;
+    background-image: url("../assets/images/monahrq-sprite.png");
+    background-position: -119px -12px;
+  }
+}

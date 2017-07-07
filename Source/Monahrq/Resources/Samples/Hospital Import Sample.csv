@@ -1,0 +1,10 @@
+LocalHospitalId,County,Name,Zip,CCR,CustomRegion_Id,CmsProviderID,Address,City,Description,Employees,TotalBeds,HospitalOwnership,PhoneNumber,FaxNumber,MedicareMedicaidProvider,EmergencyService,TraumaService,UrgentCareService,PediatricService,PediatricICUService,CardiacCatherizationService,PharmacyService,DiagnosticXRayService,Latitude,Longitude
+123478,33009,Facility 19,3766,,,301305,,,,,,,,,0,0,0,0,0,0,0,0,0,,
+123468,33019,Facility 22,3743,,,301308,100 Mcgregor StreetABC,ManchesterABC,ABC,34,34,ABC,6.04E+12,6.04E+12,1,1,1,1,1,0,0,1,0,,
+123479,50025,Facility 39,5353,,,471300,Po Box 216,Townshend,,,,,8023657920,8023657031,1,1,0,0,1,0,0,1,0,,
+123469,50025,Facility 47,5301,,,474001,,,,,,,,,0,0,0,0,0,0,0,0,0,,
+123465,33015,Facility 27,3079,,,303026,70 Butler Street,Salem,,,,,6038932900,,1,0,0,0,1,0,0,1,0,,
+123497,33003,Facility 21,3860,,,301307,,,,,,,,,0,0,0,0,0,0,0,0,0,,
+123472,50007,Facility 34,5401,,,470003,,,,,,,,,0,0,0,0,0,0,0,0,0,,
+123476,33007,Facility 17,3584,,,301303,173 Middle Street,Lancaster,,,,,6037884911,6037885068,1,1,0,0,1,0,0,1,0,,
+123483,50017,Facility 40,5060,,,471301,44 South Main Street,Randolph,,,,,8027284441,8027284245,1,1,0,0,1,0,0,1,0,,

@@ -1,0 +1,58 @@
+<div data-ng-if="haveSearched" class="row page-header"></div>
+
+<div data-ng-if="!haveSearched" class="main-initial">
+  <h1>{{content.main.title}}</h1>
+  <div data-ng-bind-html="content.main.body"></div>
+</div>
+
+<div data-ng-if="haveSearched && showTabs()" class="main-table">
+  <div class="report-header" data-ng-bind-html="reportSettings.header"></div>
+
+  <h2 data-ng-if="tableModel.length == 0">
+    Report data is not available for this search.
+  </h2>
+
+  <div data-ng-if="tableModel.length > 0" class="filters row hidden-print">
+    <div class="col-md-4">
+      <label for="ddComparedTo" class="md-blockfix">Compared To:</label>
+      <select class="form-control" id="ddComparedTo" data-ng-model="query.comparedTo" data-ng-click="updateColumn()">
+        <option value="nat">National Average</option>
+        <option value="peer">{{config.website_GeographicDescription}} Average</option>
+        <option value="county">County Average</option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <label for="sortBy">Sort By:</label>
+      <select id="sortBy" class="form-control" data-ng-model="query.sortBy" data-ng-options="x.id as x.name for x in sortByOptions" title="Sort By"></select>
+    </div>
+    <div class="col-md-4 text-right"><h6 data-mh-help-icon data-mh-on-click="modalLegend()"></h6></div>
+  </div>
+
+
+  <div data-ng-if="tableModel.length > 0" class="table-wrapper">
+    <table id="location-data-table" class="data" mh-sticky-table-header="columnModel">
+      <thead>
+      <tr>
+        <th data-ng-if="showCompare()" class="compare">Select nursing homes to compare<span style="display: inline-block;" class="compare-action" aria-hidden="true" data-ng-mouseover="$event.preventDefault(); showCompareHelpModal();"><button data-ng-click="compareHomes()" data-ng-mouseover="$event.preventDefault(); showCompareHelpModal();" data-ng-class="{disabled: !canCompare()}" class="compare-btn btn btn-default btn-xs">Compare</button></span></th>
+        <th class="entity">Nursing Home Name</th>
+        <th data-ng-repeat="col in columnModel"><button class="btn btn-link btn-column" data-ng-click="modalMeasure(col.id)"><span ng-bind="col.name"></span></button></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr data-ng-repeat="row in tableModel">
+        <td data-ng-if="showCompare()" class="compare"><input data-ng-click="toggleCompare(row.id)" title="Add to Compare" aria-label="Add {{row.name}} to the list of nursing homes to compare" type="checkbox"></td>
+        <th scope="row" class="entity"><a data-ui-sref="top.professional.nursing-homes.profile({id:row.id})">{{ row.name }}</a><p>{{row.address}}</p></th>
+        <td data-ng-repeat="col in columnModel" data-ng-if="col.show(col)">
+          <span ng-if="query.comparedTo == 'nat'" data-mh-rating-nursing="row[col.id].NatRating"></span>
+          <span ng-if="query.comparedTo == 'peer'" data-mh-rating-nursing="row[col.id].PeerRating"></span>
+          <span ng-if="query.comparedTo == 'county'" data-mh-rating-nursing="row[col.id].CountyRating"></span>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div data-ng-if="showCompare()" class="compare-action" data-ng-mouseover="$event.preventDefault(); showCompareHelpModal();"><button data-ng-click="compareHomes()" data-ng-class="{disabled: !canCompare()}" class="compare-btn btn btn-default btn-xs skip">Compare</button></div>
+
+  <div class="report-footer" data-ng-bind-html="reportSettings.footer"></div>
+</div>

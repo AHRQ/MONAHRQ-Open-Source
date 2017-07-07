@@ -1,0 +1,16 @@
+<div data-ng-if="query.groupBy.value" class="utilization-table col-xs-9">
+
+  <div class="map large">
+    <div data-ui-map="utilGoogleMap" data-ui-options="mapOptions" class="map-canvas"></div>
+  </div>
+  <div class="map-legend">
+    <ul class="list-unstyled clearfix">
+      <li data-ng-repeat="r in legend"><span class="legend-color"></span>{{r.low}} - {{r.high}}</li>
+    </ul>
+    <div class="dynamic-caption"><span>{{caption}}</span></div>
+    <p>{{riskLabel}}</p>
+  </div>
+
+</div>
+
+

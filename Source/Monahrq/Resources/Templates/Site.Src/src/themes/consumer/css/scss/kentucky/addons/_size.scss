@@ -1,0 +1,47 @@
+// Sizing mixin
+@mixin size($size) {
+
+  // If only one value is present
+  @if length($size) == 1 {
+
+    @if $size == auto{
+      width: auto;
+      height: auto;
+    }
+    @else if unitless($size) {
+      width: $size + px;
+      height: $size + px;
+    }
+    @else if not(unitless($size)) {
+      width: $size;
+      height: $size;
+    }
+  }
+
+  // If both values are present
+  @if length($size) == 2 {
+
+    $width: nth($size, 1);
+    $height: nth($size, 2);
+
+    @if $width == auto {
+      width: $width;
+    }
+    @else if unitless($width){
+      width: $width + px;
+    }
+    @else if not(unitless($width)) {
+      width: $width;
+    }
+
+    @if $height == auto{
+      height: $height;
+    }
+    @else if unitless($height) {
+      height: $height + px;
+    }
+    @else if not(unitless($height)) {
+      height: $height;
+    }
+  }
+}

@@ -1,0 +1,52 @@
+<div data-ng-if="haveSearched" class="row page-header">
+</div>
+
+<div data-ng-if="!haveSearched" class="main-initial">
+  <h1>{{content.main.title}}</h1>
+  <div data-ng-bind-html="content.main.body"></div>
+</div>
+
+<div data-ng-if="haveSearched" class="main-table">
+<div class="filters hidden-print">
+    <div class="row qr-sort-by-filter hidden-print">
+      <div class="col-md-4">
+        <label for="ddSortBy">Sort By:</label>
+        <select class="form-control" id="ddSortBy" title="Sort By" data-ng-model="query.sortBy">
+          <option value="name.asc">Hospital Name (A to Z)</option>
+          <option value="name.desc">Hospital Name (Z to A)</option>
+          <option value="type.asc">Type of Hospital (A to Z)</option>
+          <option value="type.desc">Type of Hospital (Z to A)</option>
+          <option value="rating.desc">How patients rate this hospital overall (High to Low)</option>
+          <option value="rating.asc">How patients rate this hospital overall (Low to High)</option>
+        </select>
+      </div>
+      <div class="col-md-8 text-right"><h6 data-mh-help-icon data-mh-on-click="modalLegend('symbols')"></h6></div>
+    </div>
+</div>
+<div class="table-wrapper">
+    <table id="location-data-table" class="data" mh-sticky-table-header="model">
+      <thead>
+        <tr>
+          <th data-ng-if="showCompare()" class="compare">Select hospitals to compare<span class="compare-action" aria-hidden="true"><button data-ng-click="compareHospitals()" data-ng-class="{disabled: !canCompare()}" class="compare-btn btn btn-default btn-xs">Compare</button></span></th>
+          <th class="entity">Hospital Name</th>
+          <th>Type of Hospital</th>
+          <th data-ng-if="showMeasure"><button class="btn btn-link btn-column" data-ng-click="modalMeasure(measureIdOverallRating)">{{overallMeasureTitle}}</button></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-ng-repeat="h in model">
+          <td data-ng-if="showCompare()" class="compare"><input data-ng-click="toggleHospitalCompare(h.id)" title="Add to Compare" aria-label="Add {{h.name}} to the list of hospitals to compare" type="checkbox"></td>
+          <th scope="row" class="entity"><a data-ui-sref="top.professional.quality-ratings.profile({id:h.id})">{{ h.name }}</a><br />{{ h.address }}</th>
+          <td>{{ h.type }}</td>
+          <td data-ng-if="showMeasure">
+            <div data-mh-rating-symbol="h.rating"></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+
+<div data-ng-if="showCompare()" class="compare-action"><button data-ng-click="compareHospitals()" data-ng-class="{disabled: !canCompare()}" class="compare-btn btn btn-default btn-xs skip">Compare</button></div>
+
+<div class="report-footer" data-ng-bind-html="reportSettings.footer"></div>
+</div>

@@ -1,0 +1,62 @@
+.compare-report {
+
+}
+
+.compare-topic {
+  margin-top: 20px;
+}
+
+.compare-title {
+  margin:0;
+  padding-left: 10px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: #eee;
+}
+
+.compare-table table {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.info_window__wrapper {
+  padding: 10px;
+  @include sourceSans('regular');
+  
+  h2 {
+    margin-top: 0;
+    margin-bottom: 8px;
+    color: #4c4c4c;
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .info__window__adr {
+    // margin-bottom: 0;
+    font-size: 16px;
+  }
+
+  .info__window__rating > span {
+    margin-bottom:8px;
+  }
+  .info__window__rating:last-child > span {
+    margin-bottom:0px;
+  }
+
+  .compare_hospitals {
+      min-width: 650px;
+      min-height: 180px;
+  }
+  .compare_nursing_homes {
+      min-width: 550px;
+      min-height: 400px;
+  }
+  .compare_location {
+      min-width: 475px;
+      min-height: 375px;
+  }
+}
+
+.nursing-home-profile .report-footer {
+  margin-top: 20px;
+}

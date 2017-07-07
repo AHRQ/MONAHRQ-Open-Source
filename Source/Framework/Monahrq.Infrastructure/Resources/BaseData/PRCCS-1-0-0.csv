@@ -1,0 +1,245 @@
+PRCCS,Description,FirstYear,LastYear
+1,Incision and excision of CNS,0,9999
+2,"Insertion, replacement, or removal of extracranial ventricular shunt",0,9999
+3,"Laminectomy, excision intervertebral disc",0,9999
+4,Diagnostic spinal tap,0,9999
+5,Insertion of catheter or spinal stimulator and injection into spinal canal,0,9999
+6,Decompression peripheral nerve,0,9999
+7,Other diagnostic nervous system procedures,0,9999
+8,Other non-OR or closed therapeutic nervous system procedures,0,9999
+9,Other OR therapeutic nervous system procedures,0,9999
+10,"Thyroidectomy, partial or complete",0,9999
+11,Diagnostic endocrine procedures,0,9999
+12,Other therapeutic endocrine procedures,0,9999
+13,Corneal transplant,0,9999
+14,Glaucoma procedures,0,9999
+15,Lens and cataract procedures,0,9999
+16,"Repair of retinal tear, detachment",0,9999
+17,Destruction of lesion of retina and choroid,0,9999
+18,Diagnostic procedures on eye,0,9999
+19,"Other therapeutic procedures on eyelids, conjunctiva, cornea",0,9999
+20,Other intraocular therapeutic procedures,0,9999
+21,Other extraocular muscle and orbit therapeutic procedures,0,9999
+22,Tympanoplasty,0,9999
+23,Myringotomy,0,9999
+24,Mastoidectomy,0,9999
+25,Diagnostic procedures on ear,0,9999
+26,Other therapeutic ear procedures,0,9999
+27,Control of epistaxis,0,9999
+28,Plastic procedures on nose,0,9999
+29,Dental procedures,0,9999
+30,Tonsillectomy and/or adenoidectomy,0,9999
+31,"Diagnostic procedures on nose, mouth and pharynx",0,9999
+32,"Other non-OR therapeutic procedures on nose, mouth and pharynx",0,9999
+33,"Other OR therapeutic procedures on nose, mouth and pharynx",0,9999
+34,"Tracheostomy, temporary and permanent",0,9999
+35,Tracheoscopy and laryngoscopy with biopsy,0,9999
+36,Lobectomy or pneumonectomy,0,9999
+37,Diagnostic bronchoscopy and biopsy of bronchus,0,9999
+38,Other diagnostic procedures on lung and bronchus,0,9999
+39,"Incision of pleura, thoracentesis, chest drainage",0,9999
+40,Other diagnostic procedures of respiratory tract and mediastinum,0,9999
+41,Other non-OR therapeutic procedures on respiratory system,0,9999
+42,Other OR therapeutic procedures on respiratory system,0,9999
+43,Heart valve procedures,0,9999
+44,Coronary artery bypass graft (CABG),0,9999
+45,Percutaneous coronary angioplasty (PTCA),0,9999
+46,Coronary thrombolysis,0,9999
+47,"Diagnostic cardiac catheterization, coronary arteriography",0,9999
+48,"Insertion, revision, replacement, removal of cardiac pacemaker or cardioverter/defibrillator",0,9999
+49,Other OR heart procedures,0,9999
+50,Extracorporeal circulation auxiliary to open heart procedures,0,9999
+51,"Endarterectomy, vessel of head and neck",0,9999
+52,"Aortic resection, replacement or anastomosis",0,9999
+53,"Varicose vein stripping, lower limb",0,9999
+54,"Other vascular catheterization, not heart",0,9999
+55,Peripheral vascular bypass,0,9999
+56,"Other vascular bypass and shunt, not heart",0,9999
+57,"Creation, revision and removal of arteriovenous fistula or vessel-to-vessel cannula for dialysis",0,9999
+58,Hemodialysis,0,9999
+59,Other OR procedures on vessels of head and neck,0,9999
+60,Embolectomy and endarterectomy of lower limbs,0,9999
+61,Other OR procedures on vessels other than head and neck,0,9999
+62,Other diagnostic cardiovascular procedures,0,9999
+63,Other non-OR therapeutic cardiovascular procedures,0,9999
+64,Bone marrow transplant,0,9999
+65,Bone marrow biopsy,0,9999
+66,Procedures on spleen,0,9999
+67,"Other therapeutic procedures, hemic and lymphatic system",0,9999
+68,Injection or ligation of esophageal varices,0,9999
+69,Esophageal dilatation,0,9999
+70,"Upper gastrointestinal endoscopy, biopsy",0,9999
+71,"Gastrostomy, temporary and permanent",0,9999
+72,"Colostomy, temporary and permanent",0,9999
+73,Ileostomy and other enterostomy,0,9999
+74,"Gastrectomy, partial and total",0,9999
+75,Small bowel resection,0,9999
+76,Colonoscopy and biopsy,0,9999
+77,Proctoscopy and anorectal biopsy,0,9999
+78,Colorectal resection,0,9999
+79,Local excision of large intestine lesion (not endoscopic),0,9999
+80,Appendectomy,0,9999
+81,Hemorrhoid procedures,0,9999
+82,Endoscopic cannulation of pancreas (ERCP),0,9999
+83,Biopsy of liver,0,9999
+84,Cholecystectomy and common duct exploration,0,9999
+85,Inguinal and femoral hernia repair,0,9999
+86,Other hernia repair,0,9999
+87,Laparoscopy,0,9999
+88,Abdominal paracentesis,0,9999
+89,Exploratory laparotomy,0,9999
+90,"Excision, lysis peritoneal adhesions",0,9999
+91,Peritoneal dialysis,0,9999
+92,Other GI diagnostic procedures,0,9999
+93,Other non-OR upper GI therapeutic procedures,0,9999
+94,Other OR upper GI therapeutic procedures,0,9999
+95,Other non-OR lower GI therapeutic procedures,0,9999
+96,Other OR lower GI therapeutic procedures,0,9999
+97,Other gastrointestinal diagnostic procedures,0,9999
+98,Other non-OR gastrointestinal therapeutic procedures,0,9999
+99,Other OR gastrointestinal therapeutic procedures,0,9999
+100,Endoscopy and endoscopic biopsy of the urinary tract,0,9999
+101,"Transurethral excision, drainage, or removal urinary obstruction",0,9999
+102,Ureteral catheterization,0,9999
+103,Nephrotomy and nephrostomy,0,9999
+104,"Nephrectomy, partial or complete",0,9999
+105,Kidney transplant,0,9999
+106,Genitourinary incontinence procedures,0,9999
+107,"Extracorporeal lithotripsy, urinary",0,9999
+108,Indwelling catheter,0,9999
+109,Procedures on the urethra,0,9999
+110,Other diagnostic procedures of urinary tract,0,9999
+111,Other non-OR therapeutic procedures of urinary tract,0,9999
+112,Other OR therapeutic procedures of urinary tract,0,9999
+113,Transurethral prostatectomy (TURP),0,9999
+114,Open prostatectomy,0,9999
+115,Circumcision,0,9999
+116,"Diagnostic procedures, male genital",0,9999
+117,"Other non-OR therapeutic procedures, male genital",0,9999
+118,"Other OR therapeutic procedures, male genital",0,9999
+119,"Oophorectomy, unilateral and bilateral",0,9999
+120,Other operations on ovary,0,9999
+121,Ligation of fallopian tubes,0,9999
+122,Removal ectopic pregnancy,0,9999
+123,Other operations on fallopian tubes,0,9999
+124,"Hysterectomy, abdominal and vaginal",0,9999
+125,Other excision of cervix and uterus,0,9999
+126,Abortion (termination of pregnancy),0,9999
+127,"Dilatation and curettage (D&C), aspiration after delivery or abortion",0,9999
+128,Diagnostic dilatation and curettage (D&C),0,9999
+129,"Repair of cystocele and rectocele, obliteration of vaginal vault",0,9999
+130,Other diagnostic procedures female organs,0,9999
+131,"Other non-OR therapeutic procedures, female organs",0,9999
+132,"Other OR therapeutic procedures, female organs",0,9999
+133,Episiotomy,0,9999
+134,Cesarean section,0,9999
+135,"Forceps, vacuum, and breech delivery",0,9999
+136,Artificial rupture of membranes to assist delivery,0,9999
+137,Other procedures to assist delivery,0,9999
+138,Diagnostic amniocentesis,0,9999
+139,Fetal monitoring,0,9999
+140,Repair of current obstetric laceration,0,9999
+141,Other therapeutic obstetrical procedures,0,9999
+142,Partial excision bone,0,9999
+143,Bunionectomy or repair of toe deformities,0,9999
+144,"Treatment, facial fracture or dislocation",0,9999
+145,"Treatment, fracture or dislocation of radius and ulna",0,9999
+146,"Treatment, fracture or dislocation of hip and femur",0,9999
+147,"Treatment, fracture or dislocation of lower extremity (other than hip or femur)",0,9999
+148,Other fracture and dislocation procedure,0,9999
+149,Arthroscopy,0,9999
+150,"Division of joint capsule, ligament or cartilage",0,9999
+151,Excision of semilunar cartilage of knee,0,9999
+152,Arthroplasty knee,0,9999
+153,"Hip replacement, total and partial",0,9999
+154,Arthroplasty other than hip or knee,0,9999
+155,Arthrocentesis,0,9999
+156,"Injections and aspirations of muscles, tendons, bursa, joints and soft tissue",0,9999
+157,Amputation of lower extremity,0,9999
+158,Spinal fusion,0,9999
+159,Other diagnostic procedures on musculoskeletal system,0,9999
+160,Other therapeutic procedures on muscles and tendons,0,9999
+161,Other OR therapeutic procedures on bone,0,9999
+162,Other OR therapeutic procedures on joints,0,9999
+163,Other non-OR therapeutic procedures on musculoskeletal system,0,9999
+164,Other OR therapeutic procedures on musculoskeletal system,0,9999
+165,Breast biopsy and other diagnostic procedures on breast,0,9999
+166,"Lumpectomy, quadrantectomy of breast",0,9999
+167,Mastectomy,0,9999
+168,"Incision and drainage, skin and subcutaneous tissue",0,9999
+169,"Debridement of wound, infection or burn",0,9999
+170,Excision of skin lesion,0,9999
+171,Suture of skin and subcutaneous tissue,0,9999
+172,Skin graft,0,9999
+173,Other diagnostic procedures on skin and subcutaneous tissue,0,9999
+174,Other non-OR therapeutic procedures on skin and breast,0,9999
+175,Other OR therapeutic procedures on skin and breast,0,9999
+176,Other organ transplantation,0,9999
+177,Computerized axial tomography (CT) scan head,0,9999
+178,CT scan chest,0,9999
+179,CT scan abdomen,0,9999
+180,Other CT scan,0,9999
+181,Myelogram,0,9999
+182,Mammography,0,9999
+183,Routine chest X-ray,0,9999
+184,Intraoperative cholangiogram,0,9999
+185,Upper gastrointestinal X-ray,0,9999
+186,Lower gastrointestinal X-ray,0,9999
+187,Intravenous pyelogram,0,9999
+188,Cerebral arteriogram,0,9999
+189,Contrast aortogram,0,9999
+190,Contrast arteriogram of femoral and lower extremity arteries,0,9999
+191,Arterio- or venogram (not heart and head),0,9999
+192,Diagnostic ultrasound of head and neck,0,9999
+193,Diagnostic ultrasound of heart (echocardiogram),0,9999
+194,Diagnostic ultrasound of gastrointestinal tract,0,9999
+195,Diagnostic ultrasound of urinary tract,0,9999
+196,Diagnostic ultrasound of abdomen or retroperitoneum,0,9999
+197,Other diagnostic ultrasound,0,9999
+198,Magnetic resonance imaging,0,9999
+199,Electroencephalogram (EEG),0,9999
+200,Nonoperative urinary system measurements,0,9999
+201,Cardiac stress tests,0,9999
+202,Electrocardiogram,0,9999
+203,Electrographic cardiac monitoring,0,9999
+204,Swan-Ganz catheterization for monitoring,0,9999
+205,Arterial blood gases,0,9999
+206,"Microscopic examination (bacterial smear, culture, toxicology)",0,9999
+207,Radioisotope bone scan,0,9999
+208,Radioisotope pulmonary scan,0,9999
+209,Radioisotope scan and function studies,0,9999
+210,Other radioisotope scan,0,9999
+211,Therapeutic radiology,0,9999
+212,Diagnostic physical therapy,0,9999
+213,"Physical therapy exercises, manipulation, and other procedures",0,9999
+214,"Traction, splints, and other wound care",0,9999
+215,Other physical therapy and rehabilitation,0,9999
+216,Respiratory intubation and mechanical ventilation,0,9999
+217,Other respiratory therapy,0,9999
+218,Psychological and psychiatric evaluation and therapy,0,9999
+219,Alcohol and drug rehabilitation/detoxification,0,9999
+220,Ophthalmologic and otologic diagnosis and treatment,0,9999
+221,Nasogastric tube,0,9999
+222,Blood transfusion,0,9999
+223,Enteral and parenteral nutrition,0,9999
+224,Cancer chemotherapy,0,9999
+225,Conversion of cardiac rhythm,0,9999
+226,Other diagnostic radiology and related techniques,0,9999
+227,"Other diagnostic procedures (interview, evaluation, consultation)",0,9999
+228,Prophylactic vaccinations and inoculations,0,9999
+229,Nonoperative removal of foreign body,0,9999
+230,"Extracorporeal shock wave lithotripsy, other than urinary",0,9999
+231,Other therapeutic procedures,0,9999
+232,Anesthesia,0,9999
+233,Laboratory - Chemistry and Hematology,0,9999
+234,Pathology,0,9999
+235,Other Lab,0,9999
+236,Home Health Services,0,9999
+237,Ancillary Services,0,9999
+238,Infertility Services,0,9999
+239,"Transportation - patient, provider, equipment",0,9999
+240,"Medications (Injections, infusions and other forms)",0,9999
+241,Visual aids and other optical supplies,0,9999
+242,Hearing devices and audiology supplies,0,9999
+243,DME and supplies,0,9999
+244,Gastric bypass and volume reduction,0,9999

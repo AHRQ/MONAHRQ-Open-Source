@@ -1,0 +1,228 @@
+<div class="row page-header">
+  <div class="col-md-12">
+    <h1>Compare Nursing Homes</h1>
+
+    <div data-ng-if="canBackToReport()" class="row">
+      <div class="col-md-12">
+        <a href="#" data-ng-click="backToReport(); $event.preventDefault();">Back to previous report</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="report-header" data-ng-bind-html="reportSettings.header"></div>
+
+<div class="filters hidden-print">
+  <div class="row qr-sort-by-filter">
+    <div class="col-md-5" data-ng-hide="showRawData()">
+      <label for="ddComparedTo" class="md-blockfix">Compared To:</label>
+      <select class="form-control" id="ddComparedTo" data-ng-model="query.comparedTo">
+        <option value="nat">National Average</option>
+        <option value="peer">{{config.website_GeographicDescription}} Average</option>
+        <option value="county">County Average</option>
+      </select>
+    </div>
+    <div class="col-md-3"></div>
+    <div class="col-md-3">
+      <button class="btn select-to-copy-btn md-top" data-ng-click="selectText('compare-report'); $event.preventDefault();" href="#">Select Report to Copy <span class="glyphicon glyphicon-cloud-download"></span></button>
+    </div>
+    <div class="col-md-1 legend-icon-wrapper">
+      <h6 data-mh-help-icon mh-on-click="modalLegend()"></h6>
+    </div>
+  </div>
+</div>
+
+<ul class="list-unstyled compare-report" id="compare-report">
+  <li class="compare-topic">
+    <h4 class="compare-title">Overall Rating</h4>
+    <div id="ratings-overall" class="compare-table profile-data-table table-wrapper">
+      <table class="table table-bordered data">
+        <thead>
+          <tr>
+            <th class="compare"></th>
+            <th scope="col" data-ng-repeat="col in columns" class="compare-col-entity"><a data-ui-sref="top.professional.nursing-homes.profile({id:col.id})">{{col.name}}</a></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td class="entity compare"><a href="#" data-ng-click="modalMeasure(overallMeasure.MeasureID); $event.preventDefault()">{{getMeasureTitle(overallMeasure.MeasureID)}}</a></td>
+            <td data-ng-repeat="col in columns">
+              <div data-ng-if="query.comparedTo === 'peer'" data-mh-rating-nursing="model[col.id][overallMeasure.MeasureID].PeerRating"></div>
+              <div data-ng-if="query.comparedTo === 'nat'" data-mh-rating-nursing="model[col.id][overallMeasure.MeasureID].NatRating"></div>
+              <div data-ng-if="query.comparedTo === 'county'" data-mh-rating-nursing="model[col.id][overallMeasure.MeasureID].CountyRating"></div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </li>
+
+  <li data-ng-repeat="topic in topics" class="compare-topic" data-ng-if="hasOverallMeasure(topic.OverallMeasure)">
+    <h4 class="compare-title">
+      <button aria-expanded="{{showTopic(topic.TopicID)}}" aria-controls="ratings-{{topic.TopicID}}" href="#" data-ng-click="toggleTopic(topic.TopicID); $event.preventDefault();" class="btn-link btn-heading" data-ng-class="{'active': showTopic(topic.TopicID)}">{{topic.Name}}</button><span class="dark" data-mh-help-icon="'&nbsp;'" data-mh-on-click="modalTopic(topic.TopicID)"></span>
+      <button aria-expanded="{{showTopic(topic.TopicID)}}" aria-controls="ratings-{{topic.TopicID}}" href="#" data-ng-click="toggleTopic(topic.TopicID); $event.preventDefault();" class="pull-right btn-link">
+        <small>
+        <span data-ng-show="!showTopic(topic.TopicID)">Show Data</span>
+        <span data-ng-show="showTopic(topic.TopicID)">Hide Data</span>
+        </small>
+      </button>
+    </h4>
+
+    <div id="ratings-{{topic.TopicID}}" data-ng-if="showTopic(topic.TopicID)" class="compare-table profile-data-table table-wrapper">
+
+
+      <table class="table table-bordered data" data-ng-if="!topic.SubsetInScore">
+        <thead>
+          <tr>
+            <th class="compare"></th>
+            <th scope="col" data-ng-repeat="col in columns" class="compare-col-entity"><a data-ui-sref="top.professional.nursing-homes.profile({id:col.id})">{{col.name}}</a></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td class="entity compare"><a href="#" data-ng-click="modalMeasure(topic.OverallMeasure); $event.preventDefault()">{{getMeasureTitle(topic.OverallMeasure)}}</a></td>
+            <td data-ng-repeat="col in columns">
+              <div data-ng-if="query.comparedTo === 'peer'" data-mh-rating-nursing="model[col.id][topic.OverallMeasure].PeerRating"></div>
+              <div data-ng-if="query.comparedTo === 'nat'" data-mh-rating-nursing="model[col.id][topic.OverallMeasure].NatRating"></div>
+              <div data-ng-if="query.comparedTo === 'county'" data-mh-rating-nursing="model[col.id][topic.OverallMeasure].CountyRating"></div>
+            </td>
+          </tr>
+          <tr data-ng-if="topic.TopicID != overallRatingsTopic" data-ng-repeat="measure in topic.measures" >
+            <td class="entity compare"><a href="#" data-ng-click="modalMeasure(measure.MeasureID); $event.preventDefault()">{{measure.SelectedTitle}}</a></td>
+            <td data-ng-repeat="col in columns">
+              <div>{{model[col.id][measure.MeasureID].Rate}}</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+
+      <div data-ng-if="topic.SubsetInScore">
+        <table class="table table-bordered data">
+          <thead>
+            <tr>
+              <th class="compare"></th>
+              <th scope="col" data-ng-repeat="col in columns" class="compare-col-entity"><a data-ui-sref="top.professional.nursing-homes.profile({id:col.id})">{{col.name}}</a></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="entity compare"><a href="#" data-ng-click="modalMeasure(topic.OverallMeasure); $event.preventDefault()">{{getMeasureTitle(topic.OverallMeasure)}}</a></td>
+              <td data-ng-repeat="col in columns">
+                <div data-ng-if="query.comparedTo === 'peer'" data-mh-rating-nursing="model[col.id][topic.OverallMeasure].PeerRating"></div>
+                <div data-ng-if="query.comparedTo === 'nat'" data-mh-rating-nursing="model[col.id][topic.OverallMeasure].NatRating"></div>
+                <div data-ng-if="query.comparedTo === 'county'" data-mh-rating-nursing="model[col.id][topic.OverallMeasure].CountyRating"></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table class="table table-bordered data" ng-repeat="(typeGroupName, typeGroup) in topic.groupByType">
+          <thead>
+            <tr>
+              <th>{{typeGroupName}}<span class="dark" data-mh-help-icon="'&nbsp;'" data-mh-on-click="modalGroup(topic.TopicID, typeGroupName)"></span></th>
+              <th scope="col" data-ng-repeat="col in columns" class="compare-col-entity"><a data-ui-sref="top.professional.nursing-homes.profile({id:col.id})">{{col.name}}</a></th>
+            </tr>
+          </thead>
+
+          <tbody >
+            <tr class="super-row">
+              <td colspan="99" class="row">
+                <span class="col-md-8">Measures used in summary scores<span class="dark" data-mh-help-icon="'&nbsp;'" data-mh-on-click="modalInSummary(topic.TopicID, 'inSummary')"></span></span>
+                <a href="#" class="col-md-4 text-right" data-ng-click="toggleInScore(typeGroupName + '-inSummary'); $event.preventDefault();" data-ng-if="typeGroup[true].length > 0">
+                  <span data-ng-show="!showInScore(typeGroupName + '-inSummary')">Show Measures</span>
+                  <span data-ng-show="showInScore(typeGroupName + '-inSummary')">Hide Measures</span>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+          <tbody ng-if="showInScore(typeGroupName + '-inSummary')">
+            <tr data-ng-repeat="measure in typeGroup[true]" >
+              <td class="entity compare"><a href="#" data-ng-click="modalMeasure(measure.MeasureID); $event.preventDefault()">{{measure.SelectedTitle}}</a></td>
+              <td data-ng-repeat="col in columns">
+                <div>{{model[col.id][measure.MeasureID].Rate}}</div>
+              </td>
+            </tr>
+          </tbody>
+
+          <tbody>
+            <tr class="super-row">
+              <td colspan="99" class="row">
+                <span class="col-md-8">Measures not used in summary scores<span class="dark" data-mh-help-icon="'&nbsp;'" data-mh-on-click="modalInSummary(topic.TopicID, 'notInSummary')"></span></span>
+                <a href="#" class="col-md-4 text-right" data-ng-click="toggleInScore(typeGroupName + '-notInSummary'); $event.preventDefault();" data-ng-if="typeGroup[false].length > 0">
+                  <span data-ng-show="!showInScore(typeGroupName + '-notInSummary')">Show Measures</span>
+                  <span data-ng-show="showInScore(typeGroupName + '-notInSummary')">Hide Measures</span>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+          <tbody ng-if="showInScore(typeGroupName + '-notInSummary')">
+            <tr data-ng-repeat="measure in typeGroup[false]" >
+              <td class="entity compare"><a href="#" data-ng-click="modalMeasure(measure.MeasureID); $event.preventDefault()">{{measure.SelectedTitle}}</a></td>
+              <td data-ng-repeat="col in columns">
+                <div>{{model[col.id][measure.MeasureID].Rate}}</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </li>
+
+  <li class="compare-topic">
+    <div data-ng-if="CAHPSReport.isLoaded && query.comparedTo === 'peer' && !CAHPSReport.isEmpty(CAHPSReport)">
+        <h2>
+            Survey Summary - Overall Rating of Care
+            <span class="help-icon" style="position:relative">
+                <a class="btn btn-link" data-ng-click="showModalMeasureHeader(); $event.preventDefault()" href="#">
+                    <span class="glyphicon glyphicon-question-sign" style="color: #666"></span>
+                </a>
+            </span>
+        </h2>
+  
+      <div class="compare-table profile-data-table table-wrapper" data-ng-repeat="topic in CAHPSReport.topics">
+        <header>
+          <h4 class="compare-title">{{topic.Name}}
+              <button href="#" data-ng-click="toggleTopic('CAHPSTopic'+topic.TopicID); $event.preventDefault();" class="pull-right btn-link">
+                  <small>
+                      <span data-ng-show="!showTopic('CAHPSTopic'+topic.TopicID)">Show Data</span>
+                      <span data-ng-show="showTopic('CAHPSTopic'+topic.TopicID)">Hide Data</span>
+                  </small>
+              </button>
+          </h4>
+          <div data-ng-bind-html="topic.Description"></div>
+        </header>
+        <table class="table table-bordered data" data-compare-size="{{columns.length}}"  data-ng-if="showTopic('CAHPSTopic'+topic.TopicID)">
+          <thead>
+          <tr>
+            <td></td>
+            <th scope="col" data-ng-repeat="col in columns" class="compare-col-entity"><a data-ui-sref="top.professional.nursing-homes.profile({id:col.id})">{{col.name}}</a></th>
+          </tr>
+          </thead>
+            <tbody>
+                <tr>
+                    <td class="entity compare"><a href="#" data-ng-click="$event.preventDefault(); modalMeasure(CAHPSReport.getOverallMeasureDef(CAHPSReport, topic).MeasureID)">{{CAHPSReport.getOverallMeasureDef(CAHPSReport, topic).SelectedTitleConsumer}}</a></td>
+                    <td data-ng-repeat="col in columns">
+                        <span data-mh-rating-nursing="CAHPSReport.getOverallMeasure(CAHPSReport, topic, col.id).PeerRating"></span>
+                    </td>
+                </tr>
+            </tbody>
+            <tbody data-ng-repeat="measureDefs in CAHPSReport.getGroupedMeasureDefs(CAHPSReport, topic)">
+                <tr data-ng-repeat="measureDef in measureDefs">
+                    <td class="entity compare"><a href="#" data-ng-click="$event.preventDefault(); modalMeasure(measureDef.MeasureID)">{{measureDef.SelectedTitle}}</a></td>
+                    <td data-ng-repeat="col in columns" data-ng-init="tempMeasures = CAHPSReport.getMeasure(CAHPSReport, measureDef.MeasureID, col.id)">
+                        {{tempMeasures['Rate']}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <br/>
+      </div>
+    </div>
+  </li>
+</ul>
+
+<div class="report-footer" data-ng-bind-html="reportSettings.footer"></div>

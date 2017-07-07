@@ -1,0 +1,3436 @@
+HSANumber,HSACity,HSAState
+1001,Alabaster,AL
+1002,Alexander City,AL
+1003,Andalusia,AL
+1004,Anniston,AL
+1006,Ashland,AL
+1007,Athens,AL
+1008,Atmore,AL
+1010,Bessemer,AL
+1011,Birmingham,AL
+1012,Boaz,AL
+1013,Brewton,AL
+1014,Bridgeport,AL
+1016,Camden,AL
+1017,Carrollton,AL
+1018,Centre,AL
+1019,Centreville,AL
+1022,Cullman,AL
+1023,Dadeville,AL
+1024,Decatur,AL
+1025,Demopolis,AL
+1026,Dothan,AL
+1027,Elba,AL
+1028,Enterprise,AL
+1029,Eufaula,AL
+1031,Evergreen,AL
+1032,Fairhope,AL
+1033,Fayette,AL
+1035,Florala,AL
+1036,Florence,AL
+1037,Foley,AL
+1038,Fort Payne,AL
+1039,Gadsden,AL
+1040,Geneva,AL
+1044,Greenville,AL
+1045,Grove Hill,AL
+1046,Guntersville,AL
+1047,Haleyville,AL
+1048,Hamilton,AL
+1049,Hartselle,AL
+1051,Huntsville,AL
+1053,Jacksonville,AL
+1054,Jasper,AL
+1056,Luverne,AL
+1057,Mobile,AL
+1058,Monroeville,AL
+1059,Montgomery,AL
+1060,Moulton,AL
+1061,Muscle Shoals/Sheffield,AL
+1063,Oneonta,AL
+1064,Opelika,AL
+1065,Opp,AL
+1066,Ozark,AL
+1068,Phenix City,AL
+1070,Prattville,AL
+1071,Red Bay,AL
+1072,Roanoke,AL
+1073,Russellville,AL
+1074,Scottsboro,AL
+1075,Selma,AL
+1077,Sylacauga,AL
+1078,Talladega,AL
+1079,Tallassee,AL
+1080,Thomasville,AL
+1081,Troy,AL
+1082,Tuscaloosa,AL
+1083,Union Springs,AL
+1084,Valley,AL
+1085,Vernon,AL
+1086,Wedowee,AL
+1088,Winfield,AL
+2001,Anchorage,AK
+2002,Cordova,AK
+2003,Fairbanks,AK
+2004,Homer,AK
+2005,Juneau,AK
+2006,Ketchikan,AK
+2007,Kodiak,AK
+2008,Nome,AK
+2009,Palmer,AK
+2010,Petersburg,AK
+2011,Seward,AK
+2012,Sitka,AK
+2013,Soldotna,AK
+2014,Valdez,AK
+2015,Wrangell,AK
+2016,Barrow,AK
+2017,Bethel,AK
+2018,Dillingham,AK
+2019,Kotzebue,AK
+3002,Bisbee,AZ
+3003,Bullhead City,AZ
+3004,Casa Grande,AZ
+3005,Chandler,AZ
+3006,Cottonwood,AZ
+3007,Douglas,AZ
+3008,Flagstaff,AZ
+3009,Florence,AZ
+3010,Ganado,AZ
+3014,Kingman,AZ
+3015,Lake Havasu City,AZ
+3016,Mesa,AZ
+3019,Page,AZ
+3020,Parker,AZ
+3021,Payson,AZ
+3022,Phoenix,AZ
+3023,Prescott,AZ
+3024,Safford,AZ
+3025,Scottsdale,AZ
+3026,Show Low,AZ
+3027,Sierra Vista,AZ
+3028,Springerville,AZ
+3029,Sun City,AZ
+3032,Tucson,AZ
+3033,Wickenburg,AZ
+3034,Willcox,AZ
+3035,Winslow,AZ
+3037,Yuma,AZ
+3038,Chinle,AZ
+3040,Keams Canyon,AZ
+3042,San Carlos,AZ
+3044,Tuba City,AZ
+3047,Claypool,AZ
+4001,Arkadelphia,AR
+4002,Ashdown,AR
+4003,Batesville,AR
+4004,Benton,AR
+4005,Bentonville,AR
+4006,Berryville,AR
+4007,Blytheville,AR
+4008,Booneville,AR
+4010,Calico Rock,AR
+4011,Camden,AR
+4012,Cherokee Village,AR
+4013,Clarksville,AR
+4015,Conway,AR
+4017,Crossett,AR
+4018,Danville,AR
+4019,Dardanelle,AR
+4020,De Queen,AR
+4021,De Witt,AR
+4023,Dumas,AR
+4024,El Dorado,AR
+4025,Eureka Springs,AR
+4026,Fayetteville,AR
+4027,Fordyce,AR
+4028,Forrest City,AR
+4029,Fort Smith,AR
+4030,Gravette,AR
+4031,Harrison,AR
+4032,Heber Springs,AR
+4033,Helena,AR
+4034,Hope,AR
+4035,Hot Springs,AR
+4038,Jacksonville,AR
+4039,Jonesboro,AR
+4040,Lake Village,AR
+4041,Little Rock,AR
+4042,Magnolia,AR
+4043,Malvern,AR
+4045,McGehee,AR
+4046,Mena,AR
+4047,Monticello,AR
+4048,Morrilton,AR
+4049,Mountain Home,AR
+4050,Mountain View,AR
+4051,Murfreesboro,AR
+4052,Nashville,AR
+4053,Newport,AR
+4054,North Little Rock,AR
+4055,Osceola,AR
+4056,Ozark,AR
+4057,Paragould,AR
+4059,Piggott,AR
+4060,Pine Bluff,AR
+4061,Pocahontas,AR
+4062,Prescott,AR
+4063,Rogers,AR
+4064,Russellville,AR
+4065,Salem,AR
+4066,Searcy,AR
+4067,Siloam Springs,AR
+4068,Springdale,AR
+4069,Stuttgart,AR
+4070,Texarkana,AR
+4072,Waldron,AR
+4074,Warren,AR
+4075,West Memphis,AR
+4076,Wynne,AR
+5001,Alameda,CA
+5003,Alturas,CA
+5004,Anaheim,CA
+5005,Antioch,CA
+5006,Apple Valley,CA
+5007,Arcadia,CA
+5008,Arcata,CA
+5009,Arroyo Grande,CA
+5012,Auburn,CA
+5013,Avalon,CA
+5015,Bakersfield,CA
+5017,Banning,CA
+5018,Barstow,CA
+5019,Bellflower,CA
+5020,Berkeley,CA
+5021,Big Bear Lake,CA
+5022,Bishop,CA
+5023,Blythe,CA
+5024,Brawley,CA
+5028,Burbank,CA
+5029,Burlingame,CA
+5031,Camarillo,CA
+5032,Canoga Park,CA
+5033,Carmichael,CA
+5034,Castro Valley,CA
+5035,Cedarville,CA
+5036,Chester,CA
+5037,Chico,CA
+5038,Chino,CA
+5040,Chula Vista,CA
+5041,Clearlake,CA
+5043,Coalinga,CA
+5044,Colusa,CA
+5045,Concord,CA
+5046,Corcoran,CA
+5047,Corona,CA
+5048,Coronado,CA
+5050,Covina,CA
+5051,Crescent City,CA
+5052,Culver City,CA
+5053,Daly City,CA
+5054,Davis,CA
+5055,Deer Park,CA
+5056,Delano,CA
+5057,Dinuba,CA
+5059,Downey,CA
+5060,Duarte,CA
+5062,El Centro,CA
+5063,Encinitas,CA
+5064,Encino,CA
+5065,Escondido,CA
+5066,Eureka,CA
+5068,Fairfield,CA
+5069,Fall River Mills,CA
+5070,Fallbrook,CA
+5071,Folsom,CA
+5072,Fontana,CA
+5073,Fort Bragg,CA
+5074,Fortuna,CA
+5075,Fountain Valley,CA
+5077,Fremont,CA
+5078,Fresno,CA
+5079,Fullerton,CA
+5080,Garberville,CA
+5081,Garden Grove,CA
+5082,Gardena,CA
+5083,Gilroy,CA
+5084,Glendale,CA
+5085,Glendora,CA
+5086,Granada Hills,CA
+5087,Grass Valley,CA
+5088,Greenbrae,CA
+5089,Greenville,CA
+5090,Gridley,CA
+5091,Hanford,CA
+5092,Harbor City,CA
+5094,Hawthorne,CA
+5095,Hayward,CA
+5096,Healdsburg,CA
+5097,Hemet,CA
+5098,Hollister,CA
+5100,Huntington Beach,CA
+5102,Indio,CA
+5103,Inglewood,CA
+5104,Jackson,CA
+5105,Joshua Tree,CA
+5106,King City,CA
+5108,La Jolla,CA
+5109,La Mesa,CA
+5112,Laguna Hills,CA
+5114,Lake Isabella,CA
+5115,Lakeport,CA
+5116,Lakewood,CA
+5117,Lancaster,CA
+5118,Lindsay,CA
+5119,Livermore,CA
+5120,Lodi,CA
+5121,Loma Linda,CA
+5122,Lompoc,CA
+5123,Lone Pine,CA
+5124,Long Beach,CA
+5125,Los Alamitos,CA
+5126,Los Angeles,CA
+5127,Los Banos,CA
+5130,Lynwood,CA
+5131,Madera,CA
+5132,Mammoth Lakes,CA
+5133,Manteca,CA
+5136,Martinez,CA
+5137,Marysville,CA
+5138,Merced,CA
+5139,Mission Hills,CA
+5140,Mission Viejo,CA
+5141,Modesto,CA
+5144,Montebello,CA
+5145,Monterey,CA
+5146,Monterey Park,CA
+5148,Mount Shasta,CA
+5149,Mountain View,CA
+5150,Napa,CA
+5151,National City,CA
+5152,Needles,CA
+5155,Newport Beach,CA
+5157,Northridge,CA
+5158,Norwalk,CA
+5159,Novato,CA
+5160,Oakdale,CA
+5161,Oakland,CA
+5162,Oceanside,CA
+5163,Ojai,CA
+5165,Orange,CA
+5166,Oroville,CA
+5167,Oxnard,CA
+5168,Palm Springs,CA
+5171,Panorama City,CA
+5172,Paradise,CA
+5173,Paramount,CA
+5174,Pasadena,CA
+5177,Petaluma,CA
+5179,Pinole,CA
+5180,Pittsburg,CA
+5182,Placerville,CA
+5183,Pomona,CA
+5185,Porterville,CA
+5186,Portola,CA
+5187,Poway,CA
+5188,Quincy,CA
+5189,Rancho Mirage,CA
+5190,Red Bluff,CA
+5191,Redding,CA
+5192,Redlands,CA
+5194,Redwood City,CA
+5197,Ridgecrest,CA
+5198,Riverside,CA
+5199,Roseville,CA
+5200,Sacramento,CA
+5201,Salinas,CA
+5202,San Andreas,CA
+5203,San Bernardino,CA
+5204,San Clemente,CA
+5205,San Diego,CA
+5206,San Dimas,CA
+5208,San Francisco,CA
+5209,San Gabriel,CA
+5210,San Jose,CA
+5211,San Leandro,CA
+5212,San Luis Obispo,CA
+5213,San Mateo,CA
+5214,San Pablo,CA
+5215,San Pedro,CA
+5218,Santa Ana,CA
+5219,Santa Barbara,CA
+5221,Santa Cruz,CA
+5222,Santa Maria,CA
+5223,Santa Monica,CA
+5224,Santa Paula,CA
+5225,Santa Rosa,CA
+5226,Sebastopol,CA
+5227,Selma,CA
+5229,Simi Valley,CA
+5230,Solvang,CA
+5231,Sonoma,CA
+5232,Sonora,CA
+5233,South El Monte,CA
+5234,South Laguna,CA
+5235,South Lake Tahoe,CA
+5236,South San Francisco,CA
+5237,Stanford,CA
+5239,Stockton,CA
+5241,Susanville,CA
+5244,Tarzana,CA
+5246,Templeton,CA
+5247,Thousand Oaks,CA
+5248,Torrance,CA
+5249,Tracy,CA
+5250,Truckee,CA
+5251,Tulare,CA
+5252,Turlock,CA
+5253,Ukiah,CA
+5254,Upland,CA
+5255,Vacaville,CA
+5256,Valencia,CA
+5257,Vallejo,CA
+5258,Van Nuys,CA
+5259,Ventura,CA
+5260,Victorville,CA
+5261,Visalia,CA
+5262,Walnut Creek,CA
+5263,Watsonville,CA
+5264,Weaverville,CA
+5265,West Covina,CA
+5270,Whittier,CA
+5271,Wildomar/Murrieta,CA
+5272,Willits,CA
+5274,Woodland,CA
+5277,Yreka,CA
+5278,Yuba City,CA
+5282,Irvine,CA
+5285,Morgan Hill,CA
+5287,Pleasanton,CA
+5288,San Ramon,CA
+5289,Sun City,CA
+6002,Alamosa,CO
+6003,Aspen,CO
+6004,Aurora,CO
+6005,Boulder,CO
+6006,Brighton,CO
+6007,Brush,CO
+6008,Burlington,CO
+6009,Canon City,CO
+6010,Cheyenne Wells,CO
+6011,Colorado Springs,CO
+6012,Cortez,CO
+6013,Craig,CO
+6015,Delta,CO
+6016,Denver,CO
+6017,Durango,CO
+6018,Eads,CO
+6020,Estes Park,CO
+6022,Fort Collins,CO
+6023,Fort Morgan,CO
+6025,Glenwood Springs,CO
+6026,Grand Junction,CO
+6027,Greeley,CO
+6028,Gunnison,CO
+6029,Haxtun,CO
+6030,Holyoke,CO
+6031,Hugo,CO
+6032,Julesburg,CO
+6033,Kremmling,CO
+6034,La Jara,CO
+6035,La Junta,CO
+6036,Lamar,CO
+6037,Leadville,CO
+6038,Longmont,CO
+6039,Loveland,CO
+6040,Meeker,CO
+6041,Montrose,CO
+6042,Pueblo,CO
+6043,Rangely,CO
+6045,Salida,CO
+6046,Springfield,CO
+6047,Steamboat Springs,CO
+6048,Sterling,CO
+6049,Thornton,CO
+6050,Trinidad,CO
+6051,Vail,CO
+6052,Walsenburg,CO
+6053,Wheat Ridge,CO
+6054,Wray,CO
+6055,Yuma,CO
+7001,Bridgeport,CT
+7002,Bristol,CT
+7003,Danbury,CT
+7004,Derby,CT
+7006,Greenwich,CT
+7007,Hartford,CT
+7008,Manchester,CT
+7009,Meriden,CT
+7010,Middletown,CT
+7011,Milford,CT
+7012,New Britain,CT
+7013,New Haven,CT
+7014,New London,CT
+7015,New Milford,CT
+7017,Norwalk,CT
+7018,Norwich,CT
+7019,Putnam,CT
+7020,Rockville,CT
+7021,Sharon,CT
+7022,Southington,CT
+7023,Stafford Springs,CT
+7024,Stamford,CT
+7025,Torrington,CT
+7026,Waterbury,CT
+7027,Willimantic,CT
+7028,Winsted,CT
+8001,Dover,DE
+8002,Lewes,DE
+8003,Milford,DE
+8004,Seaford,DE
+8005,Wilmington,DE
+9001,Washington,DC
+10001,Apalachicola,FL
+10002,Arcadia,FL
+10003,Atlantis,FL
+10005,Avon Park,FL
+10006,Bartow,FL
+10007,Belle Glade,FL
+10008,Blountstown,FL
+10009,Boca Raton,FL
+10011,Boynton Beach,FL
+10012,Bradenton,FL
+10013,Brandon,FL
+10014,Brooksville,FL
+10015,Bunnell,FL
+10016,Cape Coral,FL
+10017,Chipley,FL
+10018,Clearwater,FL
+10019,Clermont,FL
+10020,Clewiston,FL
+10021,Cocoa Beach,FL
+10022,Coral Gables,FL
+10023,Coral Springs,FL
+10024,Crestview,FL
+10025,Crystal River,FL
+10026,Dade City,FL
+10027,Daytona Beach,FL
+10028,De Funiak Springs,FL
+10029,De Land,FL
+10030,Delray Beach,FL
+10031,Destin,FL
+10032,Dunedin,FL
+10033,Englewood,FL
+10034,Eustis,FL
+10035,Fernandina Beach,FL
+10036,Fort Lauderdale,FL
+10037,Fort Myers,FL
+10038,Fort Pierce,FL
+10039,Fort Walton Beach,FL
+10040,Gainesville,FL
+10041,Graceville,FL
+10043,Gulf Breeze,FL
+10045,Hialeah,FL
+10046,Hollywood,FL
+10047,Homestead,FL
+10048,Hudson,FL
+10049,Inverness,FL
+10050,Jacksonville,FL
+10051,Jacksonville Beach,FL
+10052,Jasper,FL
+10053,Jay,FL
+10054,Jupiter,FL
+10055,Key West,FL
+10056,Kissimmee,FL
+10058,Lake City,FL
+10059,Lake Wales,FL
+10061,Lakeland,FL
+10062,Largo,FL
+10063,Leesburg,FL
+10064,Lehigh Acres,FL
+10069,Madison,FL
+10070,Marathon,FL
+10071,Margate,FL
+10072,Marianna,FL
+10073,Melbourne,FL
+10074,Miami,FL
+10075,Miami Beach,FL
+10076,Milton,FL
+10077,Naples,FL
+10078,New Port Richey,FL
+10079,New Smyrna Beach,FL
+10080,Niceville,FL
+10083,Ocala,FL
+10084,Okeechobee,FL
+10085,Orange Park,FL
+10086,Orlando,FL
+10087,Ormond Beach,FL
+10088,Pahokee,FL
+10089,Palatka,FL
+10090,Palm Beach Gardens,FL
+10091,Panama City,FL
+10092,Pembroke Pines,FL
+10093,Pensacola,FL
+10096,Plant City,FL
+10097,Plantation,FL
+10098,Pompano Beach,FL
+10099,Port Charlotte,FL
+10100,Port St. Joe,FL
+10101,Port St. Lucie,FL
+10102,Punta Gorda,FL
+10104,Rockledge,FL
+10105,Safety Harbor,FL
+10106,Sanford,FL
+10107,Sarasota,FL
+10108,Sebastian,FL
+10109,Sebring,FL
+10111,South Miami,FL
+10112,Spring Hill,FL
+10113,St. Augustine,FL
+10114,St. Cloud,FL
+10115,St. Petersburg,FL
+10117,Stuart,FL
+10118,Sun City Center,FL
+10119,Tallahassee,FL
+10120,Tamarac,FL
+10121,Tampa,FL
+10122,Tarpon Springs,FL
+10123,Tavernier,FL
+10124,Titusville,FL
+10125,Venice,FL
+10126,Vero Beach,FL
+10128,West Palm Beach,FL
+10131,Winter Haven,FL
+10132,Winter Park,FL
+10133,Zephyrhills,FL
+10135,Ocoee,FL
+11001,Adel,GA
+11002,Albany,GA
+11003,Alma,GA
+11004,Americus,GA
+11005,Arlington,GA
+11006,Athens,GA
+11007,Atlanta,GA
+11008,Augusta,GA
+11009,Austell,GA
+11010,Bainbridge,GA
+11011,Baxley,GA
+11013,Blairsville,GA
+11014,Blakely,GA
+11015,Blue Ridge,GA
+11017,Bremen,GA
+11018,Brunswick,GA
+11020,Cairo,GA
+11021,Calhoun,GA
+11023,Canton,GA
+11024,Carrollton,GA
+11025,Cartersville,GA
+11028,Claxton,GA
+11029,Clayton,GA
+11030,Cochran,GA
+11031,Colquitt,GA
+11032,Columbus,GA
+11033,Commerce,GA
+11034,Conyers,GA
+11035,Cordele,GA
+11036,Covington,GA
+11038,Cuthbert,GA
+11039,Dahlonega,GA
+11040,Dallas,GA
+11041,Dalton,GA
+11043,Decatur,GA
+11044,Demorest,GA
+11045,Donalsonville,GA
+11046,Douglas,GA
+11047,Douglasville,GA
+11048,Dublin,GA
+11049,East Point,GA
+11050,Eastman,GA
+11051,Eatonton,GA
+11052,Elberton,GA
+11053,Ellijay,GA
+11054,Fitzgerald,GA
+11055,Folkston,GA
+11056,Forsyth,GA
+11057,Fort Oglethorpe,GA
+11058,Fort Valley,GA
+11059,Gainesville,GA
+11060,Glenwood,GA
+11061,Greensboro,GA
+11062,Griffin,GA
+11063,Hahira,GA
+11064,Hartwell,GA
+11065,Hawkinsville,GA
+11066,Hazlehurst,GA
+11067,Hiawassee,GA
+11068,Hinesville,GA
+11069,Homerville,GA
+11070,Jackson,GA
+11071,Jasper,GA
+11072,Jesup,GA
+11073,La Grange,GA
+11074,Lakeland,GA
+11075,Lawrenceville,GA
+11077,Louisville,GA
+11078,Macon,GA
+11080,Marietta,GA
+11081,McRae,GA
+11082,Metter,GA
+11083,Milledgeville,GA
+11084,Millen,GA
+11085,Monroe,GA
+11086,Montezuma,GA
+11088,Moultrie,GA
+11089,Nashville,GA
+11090,Newnan,GA
+11091,Ocilla,GA
+11092,Perry,GA
+11093,Quitman,GA
+11094,Reidsville,GA
+11095,Richland,GA
+11096,Riverdale,GA
+11098,Rome,GA
+11099,Roswell,GA
+11100,Royston,GA
+11101,Sandersville,GA
+11102,Savannah,GA
+11103,Smyrna,GA
+11104,Snellville,GA
+11105,Sparta,GA
+11107,St. Marys,GA
+11108,Statesboro,GA
+11109,Stockbridge,GA
+11111,Swainsboro,GA
+11112,Sylvania,GA
+11114,Thomaston,GA
+11115,Thomasville,GA
+11116,Thomson,GA
+11117,Tifton,GA
+11118,Toccoa,GA
+11119,Valdosta,GA
+11120,Vidalia,GA
+11121,Vienna,GA
+11122,Villa Rica,GA
+11124,Warner Robins,GA
+11125,Washington,GA
+11126,Waycross,GA
+11127,Waynesboro,GA
+11128,Winder,GA
+12001,Hilo,HI
+12003,Honolulu,HI
+12005,Kailua,HI
+12007,Kealakekua,HI
+12008,Kohala,HI
+12010,Lihue,HI
+12012,Wahiawa,HI
+12013,Wailuku,HI
+12014,Waimea,HI
+13003,Blackfoot,ID
+13004,Boise,ID
+13005,Bonners Ferry,ID
+13006,Burley,ID
+13007,Caldwell,ID
+13009,Coeur D'Alene,ID
+13010,Cottonwood,ID
+13012,Driggs,ID
+13015,Grangeville,ID
+13017,Idaho Falls,ID
+13019,Kellogg,ID
+13020,Lewiston,ID
+13021,Malad City,ID
+13022,McCall,ID
+13023,Montpelier,ID
+13024,Moscow,ID
+13025,Mountain Home,ID
+13026,Nampa,ID
+13027,Orofino,ID
+13028,Pocatello,ID
+13029,Preston,ID
+13030,Rexburg,ID
+13031,Rupert,ID
+13032,Salmon,ID
+13033,Sandpoint,ID
+13035,Soda Springs,ID
+13036,St. Maries,ID
+13037,Sun Valley,ID
+13038,Twin Falls,ID
+13039,Weiser,ID
+14001,Aledo,IL
+14002,Alton,IL
+14003,Anna,IL
+14004,Arlington Heights,IL
+14005,Aurora,IL
+14006,Barrington,IL
+14007,Belleville,IL
+14008,Belvidere,IL
+14009,Benton,IL
+14010,Berwyn,IL
+14011,Bloomington,IL
+14012,Blue Island,IL
+14013,Breese,IL
+14014,Canton,IL
+14015,Carbondale,IL
+14016,Carlinville,IL
+14017,Carmi,IL
+14018,Carrollton,IL
+14019,Carthage,IL
+14020,Centralia,IL
+14022,Chester,IL
+14023,Chicago,IL
+14024,Chicago Heights,IL
+14026,Clinton,IL
+14027,Danville,IL
+14028,De Kalb,IL
+14029,Decatur,IL
+14031,Dixon,IL
+14032,Downers Grove,IL
+14033,Du Quoin,IL
+14035,Effingham,IL
+14036,Eldorado,IL
+14037,Elgin,IL
+14038,Elk Grove Village,IL
+14039,Elmhurst,IL
+14040,Evanston,IL
+14043,Fairfield,IL
+14044,Flora,IL
+14045,Freeport,IL
+14047,Galesburg,IL
+14048,Geneseo,IL
+14049,Gibson City,IL
+14050,Glendale Heights,IL
+14051,Granite City,IL
+14052,Greenville,IL
+14053,Harrisburg,IL
+14054,Harvard,IL
+14055,Harvey,IL
+14056,Havana,IL
+14057,Hazel Crest,IL
+14058,Herrin,IL
+14059,Highland,IL
+14060,Highland Park,IL
+14061,Hillsboro,IL
+14062,Hinsdale,IL
+14063,Hoffman Estates,IL
+14064,Hoopeston,IL
+14065,Hopedale,IL
+14066,Jacksonville,IL
+14067,Jerseyville,IL
+14068,Joliet,IL
+14069,Kankakee,IL
+14070,Kewanee,IL
+14071,La Grange,IL
+14072,Lake Forest,IL
+14073,Lawrenceville,IL
+14074,Libertyville,IL
+14075,Lincoln,IL
+14076,Litchfield,IL
+14077,Macomb,IL
+14078,Marion,IL
+14079,Maryville,IL
+14080,Mattoon,IL
+14082,McHenry,IL
+14083,McLeansboro,IL
+14084,Melrose Park,IL
+14085,Mendota,IL
+14086,Metropolis,IL
+14088,Monmouth,IL
+14089,Monticello,IL
+14090,Morris,IL
+14092,Mount Carmel,IL
+14093,Mount Vernon,IL
+14094,Murphysboro,IL
+14095,Naperville,IL
+14096,Nashville,IL
+14097,Oak Lawn,IL
+14098,Oak Park,IL
+14099,Olney,IL
+14100,Ottawa,IL
+14101,Palos Heights,IL
+14102,Pana,IL
+14103,Paris,IL
+14104,Park Ridge,IL
+14105,Pekin,IL
+14106,Peoria,IL
+14107,Peru,IL
+14108,Pinckneyville,IL
+14109,Pittsfield,IL
+14110,Pontiac,IL
+14111,Princeton,IL
+14112,Quincy,IL
+14113,Red Bud,IL
+14114,Robinson,IL
+14115,Rochelle,IL
+14116,Rock Island,IL
+14117,Rockford,IL
+14118,Rosiclare,IL
+14119,Rushville,IL
+14120,Salem,IL
+14121,Sandwich,IL
+14123,Shelbyville,IL
+14124,Silvis,IL
+14125,Skokie,IL
+14126,Sparta,IL
+14127,Spring Valley,IL
+14128,Springfield,IL
+14130,Staunton,IL
+14131,Sterling,IL
+14132,Streator,IL
+14134,Taylorville,IL
+14136,Urbana,IL
+14137,Vandalia,IL
+14138,Watseka,IL
+14139,Waukegan,IL
+14140,West Frankfort,IL
+14141,Winfield,IL
+14143,Woodstock,IL
+14146,Eureka,IL
+14147,Geneva,IL
+15001,Anderson,IN
+15002,Angola,IN
+15003,Auburn,IN
+15004,Batesville,IN
+15005,Bedford,IN
+15006,Beech Grove,IN
+15007,Bloomington,IN
+15008,Bluffton,IN
+15009,Boonville,IN
+15010,Brazil,IN
+15011,Bremen,IN
+15012,Charlestown,IN
+15013,Clinton,IN
+15014,Columbia City,IN
+15015,Columbus,IN
+15016,Connersville,IN
+15017,Corydon,IN
+15018,Crawfordsville,IN
+15019,Crown Point,IN
+15020,Danville,IN
+15021,Decatur,IN
+15022,Dyer,IN
+15023,East Chicago,IN
+15024,Elkhart,IN
+15025,Elwood,IN
+15026,Evansville,IN
+15027,Fort Wayne,IN
+15028,Frankfort,IN
+15029,Franklin,IN
+15030,Gary,IN
+15031,Goshen,IN
+15032,Greencastle,IN
+15033,Greenfield,IN
+15034,Greensburg,IN
+15035,Hammond,IN
+15036,Hartford City,IN
+15037,Huntingburg,IN
+15038,Huntington,IN
+15039,Indianapolis,IN
+15040,Jasper,IN
+15041,Jeffersonville,IN
+15042,Kendallville,IN
+15043,Knox,IN
+15044,Kokomo,IN
+15045,Lafayette,IN
+15046,Lagrange,IN
+15047,Laporte,IN
+15048,Lawrenceburg,IN
+15049,Lebanon,IN
+15050,Linton,IN
+15051,Logansport,IN
+15052,Madison,IN
+15053,Marion,IN
+15054,Martinsville,IN
+15055,Michigan City,IN
+15056,Monticello,IN
+15057,Muncie,IN
+15058,Munster,IN
+15059,New Albany,IN
+15060,New Castle,IN
+15061,Noblesville,IN
+15062,North Vernon,IN
+15064,Paoli,IN
+15065,Peru,IN
+15066,Plymouth,IN
+15067,Portland,IN
+15068,Princeton,IN
+15069,Rensselaer,IN
+15070,Richmond,IN
+15071,Rochester,IN
+15072,Rushville,IN
+15073,Salem,IN
+15074,Seymour,IN
+15075,Shelbyville,IN
+15076,South Bend,IN
+15077,Sullivan,IN
+15078,Tell City,IN
+15079,Terre Haute,IN
+15080,Tipton,IN
+15082,Valparaiso,IN
+15083,Vincennes,IN
+15084,Wabash,IN
+15085,Warsaw,IN
+15086,Washington,IN
+15087,Williamsport,IN
+15088,Winamac,IN
+15089,Winchester,IN
+15091,Mishawaka,IN
+15093,Scottsburg,IN
+16001,Albia,IA
+16002,Algona,IA
+16003,Ames,IA
+16005,Atlantic,IA
+16006,Audubon,IA
+16008,Bloomfield,IA
+16009,Boone,IA
+16010,Britt,IA
+16011,Burlington,IA
+16012,Carroll,IA
+16013,Cedar Falls,IA
+16014,Cedar Rapids,IA
+16015,Centerville,IA
+16017,Charles City,IA
+16018,Cherokee,IA
+16019,Clarinda,IA
+16020,Clarion,IA
+16021,Clinton,IA
+16022,Corning,IA
+16023,Corydon,IA
+16024,Council Bluffs,IA
+16025,Cresco,IA
+16026,Creston,IA
+16027,Davenport,IA
+16029,Decorah,IA
+16030,Denison,IA
+16031,Des Moines,IA
+16032,Dubuque,IA
+16033,Eldora,IA
+16034,Elkader,IA
+16035,Emmetsburg,IA
+16036,Estherville,IA
+16037,Fairfield,IA
+16039,Fort Dodge,IA
+16040,Fort Madison,IA
+16041,Greenfield,IA
+16042,Grinnell,IA
+16044,Guthrie Center,IA
+16045,Guttenberg,IA
+16046,Hamburg,IA
+16047,Hampton,IA
+16048,Harlan,IA
+16050,Hawarden,IA
+16051,Humboldt,IA
+16052,Ida Grove,IA
+16053,Independence,IA
+16054,Iowa City,IA
+16055,Iowa Falls,IA
+16056,Jefferson,IA
+16057,Keokuk,IA
+16058,Keosauqua,IA
+16059,Knoxville,IA
+16060,Lake City,IA
+16061,Le Mars,IA
+16062,Leon,IA
+16063,Manchester,IA
+16064,Manning,IA
+16065,Maquoketa,IA
+16067,Marshalltown,IA
+16068,Mason City,IA
+16069,Missouri Valley,IA
+16072,Mount Pleasant,IA
+16073,Muscatine,IA
+16075,New Hampton,IA
+16076,Newton,IA
+16077,Oelwein,IA
+16078,Onawa,IA
+16079,Orange City,IA
+16080,Osage,IA
+16081,Osceola,IA
+16082,Oskaloosa,IA
+16083,Ottumwa,IA
+16084,Pella,IA
+16085,Perry,IA
+16086,Pocahontas,IA
+16088,Primghar,IA
+16089,Red Oak,IA
+16091,Rock Valley,IA
+16092,Sac City,IA
+16093,Sheldon,IA
+16094,Shenandoah,IA
+16095,Sibley,IA
+16097,Sioux Center,IA
+16098,Sioux City,IA
+16099,Spencer,IA
+16100,Spirit Lake,IA
+16101,Storm Lake,IA
+16103,Sumner,IA
+16105,Washington,IA
+16106,Waterloo,IA
+16107,Waukon,IA
+16108,Waverly,IA
+16109,Webster City,IA
+16110,West Union,IA
+17001,Abilene,KS
+17002,Anthony,KS
+17003,Arkansas City,KS
+17004,Ashland,KS
+17005,Atchison,KS
+17007,Atwood,KS
+17010,Belleville,KS
+17011,Beloit,KS
+17012,Burlington,KS
+17013,Caldwell,KS
+17014,Cedar Vale,KS
+17015,Chanute,KS
+17016,Clay Center,KS
+17017,Coffeyville,KS
+17018,Colby,KS
+17019,Coldwater,KS
+17021,Concordia,KS
+17022,Council Grove,KS
+17023,Dighton,KS
+17024,Dodge City,KS
+17025,El Dorado,KS
+17026,Elkhart,KS
+17027,Ellinwood,KS
+17028,Ellsworth,KS
+17029,Emporia,KS
+17030,Eureka,KS
+17031,Fort Scott,KS
+17032,Fredonia,KS
+17033,Garden City,KS
+17034,Garnett,KS
+17035,Girard,KS
+17036,Goodland,KS
+17037,Great Bend,KS
+17038,Greensburg,KS
+17039,Halstead,KS
+17040,Hanover,KS
+17041,Harper,KS
+17042,Hays,KS
+17043,Herington,KS
+17044,Hiawatha,KS
+17045,Hill City,KS
+17046,Hillsboro,KS
+17047,Hoisington,KS
+17049,Horton,KS
+17050,Hoxie,KS
+17051,Hugoton,KS
+17052,Hutchinson,KS
+17053,Independence,KS
+17054,Iola,KS
+17055,Jetmore,KS
+17056,Johnson,KS
+17057,Junction City,KS
+17058,Kansas City,KS
+17059,Kingman,KS
+17060,Kinsley,KS
+17061,Kiowa,KS
+17062,La Crosse,KS
+17063,Lakin,KS
+17064,Lawrence,KS
+17065,Leavenworth,KS
+17066,Leoti,KS
+17067,Liberal,KS
+17068,Lincoln,KS
+17069,Lindsborg,KS
+17070,Lyons,KS
+17071,Manhattan,KS
+17073,Marion,KS
+17074,Marysville,KS
+17075,McPherson,KS
+17076,Meade,KS
+17077,Medicine Lodge,KS
+17078,Minneapolis,KS
+17079,Minneola,KS
+17080,Moundridge,KS
+17081,Neodesha,KS
+17082,Ness City,KS
+17083,Newton,KS
+17084,Norton,KS
+17085,Oakley,KS
+17086,Oberlin,KS
+17087,Olathe,KS
+17088,Onaga,KS
+17089,Osborne,KS
+17091,Ottawa,KS
+17094,Parsons,KS
+17095,Phillipsburg,KS
+17096,Pittsburg,KS
+17097,Plainville,KS
+17098,Pratt,KS
+17099,Quinter,KS
+17100,Ransom,KS
+17101,Russell,KS
+17102,Sabetha,KS
+17103,Salina,KS
+17104,Satanta,KS
+17105,Scott City,KS
+17106,Sedan,KS
+17107,Seneca,KS
+17108,Shawnee Mission/Overland,KS
+17109,Smith Center,KS
+17111,St. Francis,KS
+17113,Stafford,KS
+17114,Syracuse,KS
+17115,Topeka,KS
+17116,Tribune,KS
+17117,Ulysses,KS
+17118,Wakeeney,KS
+17119,Wamego,KS
+17120,Washington,KS
+17121,Wellington,KS
+17122,Westmoreland,KS
+17123,Wichita,KS
+17124,Winchester,KS
+17125,Winfield,KS
+18001,Albany,KY
+18002,Ashland,KY
+18003,Barbourville,KY
+18004,Bardstown,KY
+18006,Berea,KY
+18007,Bowling Green,KY
+18008,Burkesville,KY
+18009,Cadiz,KY
+18011,Campbellsville,KY
+18012,Carlisle,KY
+18013,Carrollton,KY
+18014,Columbia,KY
+18015,Corbin,KY
+18016,Covington,KY
+18017,Cynthiana,KY
+18018,Danville,KY
+18019,Elizabethtown,KY
+18020,Flemingsburg,KY
+18021,Florence,KY
+18022,Fort Thomas,KY
+18023,Frankfort,KY
+18024,Franklin,KY
+18025,Fulton,KY
+18026,Georgetown,KY
+18027,Glasgow,KY
+18028,Greensburg,KY
+18029,Greenville,KY
+18030,Hardinsburg,KY
+18031,Harlan,KY
+18032,Harrodsburg,KY
+18033,Hartford,KY
+18034,Hazard,KY
+18035,Henderson,KY
+18036,Hopkinsville,KY
+18038,Hyden,KY
+18039,Irvine,KY
+18040,Jenkins,KY
+18041,La Grange,KY
+18042,Lancaster,KY
+18043,Lebanon,KY
+18044,Leitchfield,KY
+18045,Lexington,KY
+18047,London,KY
+18048,Louisa,KY
+18049,Louisville,KY
+18050,Madisonville,KY
+18051,Manchester,KY
+18052,Marion,KY
+18054,Mayfield,KY
+18055,Maysville,KY
+18056,McDowell,KY
+18057,Middlesboro,KY
+18058,Monticello,KY
+18059,Morehead,KY
+18060,Morganfield,KY
+18061,Mount Sterling,KY
+18062,Mount Vernon,KY
+18063,Murray,KY
+18064,Owensboro,KY
+18065,Owenton,KY
+18066,Paducah,KY
+18067,Paintsville,KY
+18068,Paris,KY
+18069,Pikeville,KY
+18070,Pineville,KY
+18071,Prestonsburg,KY
+18072,Princeton,KY
+18073,Richmond,KY
+18074,Russell Springs,KY
+18075,Russellville,KY
+18076,Salem,KY
+18078,Shelbyville,KY
+18079,Somerset,KY
+18080,South Williamson,KY
+18081,Stanford,KY
+18082,Tompkinsville,KY
+18083,Versailles,KY
+18084,West Liberty,KY
+18085,Whitesburg,KY
+18086,Williamstown,KY
+18087,Winchester,KY
+18089,Jackson,KY
+19001,Abbeville,LA
+19002,Alexandria,LA
+19003,Amite,LA
+19006,Bastrop,LA
+19007,Baton Rouge,LA
+19008,Bernice,LA
+19009,Bogalusa,LA
+19012,Bunkie,LA
+19014,Chalmette,LA
+19016,Columbia,LA
+19018,Covington,LA
+19019,Crowley,LA
+19020,De Quincy,LA
+19021,De Ridder,LA
+19022,Delhi,LA
+19024,Eunice,LA
+19026,Ferriday,LA
+19027,Franklin,LA
+19028,Franklinton,LA
+19029,Galliano,LA
+19030,Gonzales,LA
+19031,Greensburg,LA
+19033,Hammond,LA
+19035,Homer,LA
+19036,Houma,LA
+19039,Jena,LA
+19040,Jennings,LA
+19042,Kaplan,LA
+19046,Lafayette,LA
+19047,Lake Charles,LA
+19049,Laplace,LA
+19050,Leesville,LA
+19051,Luling,LA
+19052,Lutcher,LA
+19053,Mamou,LA
+19054,Mansfield,LA
+19055,Many,LA
+19057,Marrero,LA
+19058,Merryville,LA
+19059,Metairie,LA
+19060,Minden,LA
+19061,Monroe,LA
+19062,Morgan City,LA
+19063,Napoleonville,LA
+19064,Natchitoches,LA
+19065,New Iberia,LA
+19066,New Orleans,LA
+19067,New Roads,LA
+19069,Oakdale,LA
+19070,Olla,LA
+19071,Opelousas,LA
+19073,Plaquemine,LA
+19075,Raceland,LA
+19077,Rayville,LA
+19078,Ruston,LA
+19080,Shreveport,LA
+19081,Slidell,LA
+19082,Springhill,LA
+19084,Sulphur,LA
+19085,Tallulah,LA
+19086,Thibodaux,LA
+19087,Ville Platte,LA
+19088,Vivian,LA
+19090,West Monroe,LA
+19091,Winnfield,LA
+19092,Winnsboro,LA
+19093,Zachary,LA
+20001,Augusta,ME
+20002,Bangor,ME
+20003,Bar Harbor,ME
+20005,Belfast,ME
+20006,Biddeford,ME
+20007,Blue Hill,ME
+20008,Boothbay Harbor,ME
+20009,Bridgton,ME
+20010,Brunswick,ME
+20011,Calais,ME
+20012,Caribou,ME
+20013,Damariscotta,ME
+20014,Dover-Foxcroft,ME
+20015,Ellsworth,ME
+20016,Farmington,ME
+20017,Fort Kent,ME
+20018,Houlton,ME
+20019,Lewiston,ME
+20020,Lincoln,ME
+20021,Machias,ME
+20022,Millinocket,ME
+20023,Norway,ME
+20024,Pittsfield,ME
+20025,Portland,ME
+20026,Presque Isle,ME
+20027,Rockland,ME
+20028,Rumford,ME
+20029,Sanford,ME
+20030,Skowhegan,ME
+20031,Waterville,ME
+20033,York,ME
+20035,Greenville,ME
+21001,Annapolis,MD
+21002,Baltimore,MD
+21003,Bethesda,MD
+21004,Cambridge,MD
+21005,Chestertown,MD
+21006,Cheverly,MD
+21007,Clinton,MD
+21008,Columbia,MD
+21009,Crisfield,MD
+21010,Cumberland,MD
+21011,Easton,MD
+21012,Elkton,MD
+21013,Fallston,MD
+21014,Frederick,MD
+21016,Glen Burnie,MD
+21017,Hagerstown,MD
+21018,Havre De Grace,MD
+21019,La Plata,MD
+21020,Lanham,MD
+21021,Laurel,MD
+21022,Leonardtown,MD
+21023,Oakland,MD
+21024,Olney,MD
+21025,Prince Frederick,MD
+21026,Randallstown,MD
+21028,Rockville,MD
+21029,Salisbury,MD
+21030,Silver Spring,MD
+21031,Takoma Park,MD
+21033,Westminster,MD
+22002,Athol,MA
+22003,Attleboro,MA
+22004,Ayer,MA
+22005,Beverly,MA
+22006,Boston,MA
+22007,Brockton,MA
+22008,Burlington,MA
+22009,Cambridge,MA
+22010,Clinton,MA
+22011,Concord,MA
+22013,Everett,MA
+22014,Fall River,MA
+22015,Falmouth,MA
+22016,Fitchburg,MA
+22018,Gardner,MA
+22019,Gloucester,MA
+22020,Great Barrington,MA
+22021,Greenfield,MA
+22022,Haverhill,MA
+22023,Holyoke,MA
+22024,Hyannis,MA
+22025,Lawrence,MA
+22026,Leominster,MA
+22027,Lowell,MA
+22028,Ludlow,MA
+22029,Lynn,MA
+22030,Malden,MA
+22031,Marlborough,MA
+22032,Medford,MA
+22033,Melrose,MA
+22034,Methuen,MA
+22037,Milton,MA
+22038,Nantucket,MA
+22039,Natick,MA
+22040,Needham,MA
+22041,New Bedford,MA
+22042,Newburyport,MA
+22043,Newton,MA
+22044,Norfolk,MA
+22045,North Adams,MA
+22046,Northampton,MA
+22047,Norwood,MA
+22048,Oak Bluffs,MA
+22049,Palmer,MA
+22051,Pittsfield,MA
+22052,Plymouth,MA
+22053,Quincy,MA
+22054,Salem,MA
+22055,Somerville,MA
+22056,South Weymouth,MA
+22057,Southbridge,MA
+22058,Springfield,MA
+22059,Stoneham,MA
+22060,Stoughton,MA
+22061,Taunton,MA
+22062,Waltham,MA
+22063,Ware,MA
+22064,Wareham,MA
+22065,Webster,MA
+22066,Westfield,MA
+22067,Winchester,MA
+22068,Winthrop,MA
+22070,Worcester,MA
+22072,Arlington,MA
+23002,Adrian,MI
+23003,Albion,MI
+23004,Allegan,MI
+23005,Alma,MI
+23006,Alpena,MI
+23007,Ann Arbor,MI
+23008,Bad Axe,MI
+23009,Battle Creek,MI
+23010,Bay City,MI
+23011,Berrien Center,MI
+23012,Big Rapids,MI
+23013,Cadillac,MI
+23014,Caro,MI
+23015,Carson City,MI
+23016,Cass City,MI
+23017,Charlevoix,MI
+23018,Charlotte,MI
+23019,Cheboygan,MI
+23020,Chelsea,MI
+23021,Clare,MI
+23022,Coldwater,MI
+23023,Crystal Falls,MI
+23024,Dearborn,MI
+23025,Deckerville,MI
+23026,Detroit,MI
+23027,Dowagiac,MI
+23029,Escanaba,MI
+23030,Farmington Hills,MI
+23031,Flint,MI
+23032,Frankfort,MI
+23033,Fremont,MI
+23034,Garden City,MI
+23035,Gaylord,MI
+23036,Gladwin,MI
+23038,Grand Haven,MI
+23039,Grand Rapids,MI
+23040,Grayling,MI
+23041,Greenville,MI
+23042,Grosse Pointe,MI
+23044,Hancock,MI
+23045,Harbor Beach,MI
+23047,Hastings,MI
+23049,Hillsdale,MI
+23050,Holland,MI
+23051,Howell,MI
+23052,Ionia,MI
+23053,Iron Mountain,MI
+23054,Iron River,MI
+23055,Ironwood,MI
+23056,Ishpeming,MI
+23057,Jackson,MI
+23058,Kalamazoo,MI
+23060,L'anse,MI
+23061,Lakeview,MI
+23062,Lansing,MI
+23063,Lapeer,MI
+23064,Laurium,MI
+23066,Livonia,MI
+23067,Ludington,MI
+23068,Madison Heights,MI
+23069,Manistee,MI
+23070,Manistique,MI
+23071,Marlette,MI
+23072,Marquette,MI
+23073,Marshall,MI
+23074,Midland,MI
+23075,Milford,MI
+23076,Monroe,MI
+23078,Mount Clemens,MI
+23079,Mount Pleasant,MI
+23080,Munising,MI
+23081,Muskegon,MI
+23082,Newberry,MI
+23083,Niles,MI
+23084,Northport,MI
+23085,Ontonagon,MI
+23086,Owosso,MI
+23087,Paw Paw,MI
+23088,Petoskey,MI
+23089,Pigeon,MI
+23091,Pontiac,MI
+23092,Port Huron,MI
+23094,Reed City,MI
+23095,Rochester,MI
+23097,Royal Oak,MI
+23098,Saginaw,MI
+23099,Saline,MI
+23100,Sandusky,MI
+23101,Sault Ste Marie,MI
+23104,South Haven,MI
+23105,Southfield,MI
+23106,St. Clair,MI
+23108,St. Johns,MI
+23109,St. Joseph,MI
+23110,Standish,MI
+23111,Sturgis,MI
+23112,Tawas City,MI
+23113,Taylor,MI
+23114,Tecumseh,MI
+23115,Three Rivers,MI
+23116,Traverse City,MI
+23117,Trenton,MI
+23118,Troy,MI
+23119,Warren,MI
+23120,Watervliet,MI
+23121,Wayne,MI
+23122,West Branch,MI
+23124,Wyandotte,MI
+23127,Zeeland,MI
+24001,Ada,MN
+24003,Aitkin,MN
+24005,Albert Lea,MN
+24006,Alexandria,MN
+24007,Appleton,MN
+24008,Arlington,MN
+24009,Aurora,MN
+24010,Austin,MN
+24011,Bagley,MN
+24012,Baudette,MN
+24013,Bemidji,MN
+24014,Benson,MN
+24015,Bigfork,MN
+24016,Blue Earth,MN
+24017,Brainerd,MN
+24018,Breckenridge,MN
+24019,Buffalo,MN
+24020,Burnsville,MN
+24021,Cambridge,MN
+24022,Canby,MN
+24023,Cannon Falls,MN
+24024,Chisago City,MN
+24025,Cloquet,MN
+24027,Cook,MN
+24028,Crookston,MN
+24029,Crosby,MN
+24030,Dawson,MN
+24031,Deer River,MN
+24032,Detroit Lakes,MN
+24033,Duluth,MN
+24034,Elbow Lake,MN
+24035,Ely,MN
+24037,Fairmont,MN
+24038,Faribault,MN
+24039,Farmington,MN
+24040,Fergus Falls,MN
+24041,Forest Lake,MN
+24042,Fosston,MN
+24043,Glencoe,MN
+24044,Glenwood,MN
+24045,Graceville,MN
+24046,Grand Marais,MN
+24047,Grand Rapids,MN
+24048,Granite Falls,MN
+24050,Hallock,MN
+24052,Hastings,MN
+24053,Hendricks,MN
+24055,Hibbing,MN
+24056,Hutchinson,MN
+24057,International Falls,MN
+24058,Ivanhoe,MN
+24059,Jackson,MN
+24060,Karlstad,MN
+24061,Lake City,MN
+24062,Lakefield,MN
+24063,Le Sueur,MN
+24064,Litchfield,MN
+24065,Little Falls,MN
+24066,Long Prairie,MN
+24067,Luverne,MN
+24068,Madelia,MN
+24069,Madison,MN
+24071,Mankato,MN
+24072,Maplewood,MN
+24073,Marshall,MN
+24074,Melrose,MN
+24076,Minneapolis,MN
+24077,Montevideo,MN
+24078,Monticello,MN
+24080,Moose Lake,MN
+24081,Mora,MN
+24082,Morris,MN
+24084,New Prague,MN
+24085,New Ulm,MN
+24086,Northfield,MN
+24087,Olivia,MN
+24088,Onamia,MN
+24089,Ortonville,MN
+24090,Owatonna,MN
+24091,Park Rapids,MN
+24093,Paynesville,MN
+24095,Perham,MN
+24096,Pipestone,MN
+24097,Princeton,MN
+24098,Red Wing,MN
+24099,Redwood Falls,MN
+24100,Robbinsdale,MN
+24101,Rochester,MN
+24102,Roseau,MN
+24103,Rush City,MN
+24104,Sandstone,MN
+24105,Sauk Centre,MN
+24106,Shakopee,MN
+24107,Slayton,MN
+24108,Sleepy Eye,MN
+24112,Springfield,MN
+24113,St. Cloud,MN
+24114,St. James,MN
+24115,St. Louis Park,MN
+24116,St. Paul,MN
+24117,St. Peter,MN
+24118,Staples,MN
+24119,Starbuck,MN
+24120,Stillwater,MN
+24121,Thief River Falls,MN
+24122,Tracy,MN
+24124,Two Harbors,MN
+24125,Tyler,MN
+24126,Virginia,MN
+24127,Wabasha,MN
+24128,Waconia,MN
+24129,Wadena,MN
+24130,Warren,MN
+24131,Waseca,MN
+24133,Westbrook,MN
+24134,Wheaton,MN
+24135,Willmar,MN
+24136,Windom,MN
+24137,Winona,MN
+24138,Worthington,MN
+24141,Redlake,MN
+25002,Ackerman,MS
+25003,Amory,MS
+25004,Batesville,MS
+25006,Bay St. Louis,MS
+25007,Belzoni,MS
+25008,Biloxi,MS
+25009,Booneville,MS
+25011,Brookhaven,MS
+25012,Calhoun City,MS
+25014,Carthage,MS
+25015,Centreville,MS
+25016,Charleston,MS
+25017,Clarksdale,MS
+25018,Cleveland,MS
+25020,Columbia,MS
+25021,Columbus,MS
+25022,Corinth,MS
+25025,Eupora,MS
+25026,Fayette,MS
+25027,Forest,MS
+25029,Greenville,MS
+25030,Greenwood,MS
+25031,Grenada,MS
+25032,Gulfport,MS
+25033,Hattiesburg,MS
+25034,Hazlehurst,MS
+25036,Houston,MS
+25037,Indianola,MS
+25038,Iuka,MS
+25039,Jackson,MS
+25040,Kilmichael,MS
+25041,Kosciusko,MS
+25042,Laurel,MS
+25044,Lexington,MS
+25045,Louisville,MS
+25046,Lucedale,MS
+25048,Macon,MS
+25050,Magee,MS
+25051,Magnolia,MS
+25052,Marks,MS
+25053,McComb,MS
+25054,Meadville,MS
+25055,Mendenhall,MS
+25056,Meridian,MS
+25057,Monticello,MS
+25059,Natchez,MS
+25060,New Albany,MS
+25063,Oxford,MS
+25064,Pascagoula,MS
+25066,Picayune,MS
+25070,Port Gibson,MS
+25071,Prentiss,MS
+25072,Quitman,MS
+25075,Ripley,MS
+25076,Rolling Fork,MS
+25077,Ruleville,MS
+25082,Starkville,MS
+25084,Tupelo,MS
+25085,Tylertown,MS
+25087,Vicksburg,MS
+25089,Waynesboro,MS
+25090,West Point,MS
+25093,Winona,MS
+25094,Yazoo City,MS
+26001,Albany,MO
+26002,Appleton City,MO
+26003,Aurora,MO
+26004,Bethany,MO
+26005,Blue Springs,MO
+26006,Bolivar,MO
+26009,Branson,MO
+26010,Brookfield,MO
+26011,Butler,MO
+26012,Cameron,MO
+26013,Cape Girardeau,MO
+26014,Carrollton,MO
+26015,Carthage,MO
+26019,Chillicothe,MO
+26020,Clinton,MO
+26021,Columbia,MO
+26022,Crystal City,MO
+26023,Dexter,MO
+26025,El Dorado Springs,MO
+26026,Ellington,MO
+26027,Excelsior Springs,MO
+26028,Fairfax,MO
+26029,Farmington,MO
+26031,Fredericktown,MO
+26033,Hannibal,MO
+26034,Harrisonville,MO
+26035,Hayti,MO
+26036,Hermann,MO
+26037,Houston,MO
+26038,Independence,MO
+26039,Jefferson City,MO
+26040,Joplin,MO
+26041,Kansas City,MO
+26042,Kennett,MO
+26043,Kirksville,MO
+26045,Lake Saint Louis,MO
+26046,Lamar,MO
+26048,Lees Summit,MO
+26049,Lexington,MO
+26050,Liberty,MO
+26052,Louisiana,MO
+26053,Macon,MO
+26056,Marshall,MO
+26057,Maryville,MO
+26058,Memphis,MO
+26059,Mexico,MO
+26060,Milan,MO
+26064,Neosho,MO
+26065,Nevada,MO
+26066,North Kansas City,MO
+26067,Osage Beach,MO
+26068,Osceola,MO
+26069,Perryville,MO
+26070,Pilot Knob,MO
+26071,Poplar Bluff,MO
+26072,Potosi,MO
+26073,Richmond,MO
+26074,Rolla,MO
+26075,Salem,MO
+26076,Sedalia,MO
+26077,Sikeston,MO
+26078,Smithville,MO
+26079,Springfield,MO
+26080,St. Charles,MO
+26081,St. Joseph,MO
+26082,St. Louis,MO
+26084,Ste. Genevieve,MO
+26088,Trenton,MO
+26089,Troy,MO
+26090,Unionville,MO
+26091,Warrensburg,MO
+26093,West Plains,MO
+27001,Anaconda,MT
+27002,Baker,MT
+27005,Billings,MT
+27006,Bozeman,MT
+27007,Butte,MT
+27008,Chester,MT
+27012,Conrad,MT
+27014,Cut Bank/Browning,MT
+27015,Deer Lodge,MT
+27016,Dillon,MT
+27017,Ennis,MT
+27020,Glasgow,MT
+27021,Glendive,MT
+27022,Great Falls,MT
+27023,Hamilton,MT
+27024,Hardin,MT
+27026,Havre,MT
+27027,Helena,MT
+27028,Kalispell,MT
+27029,Lewistown,MT
+27030,Libby,MT
+27031,Livingston,MT
+27032,Malta,MT
+27033,Miles City,MT
+27034,Missoula,MT
+27036,Plains,MT
+27037,Plentywood,MT
+27038,Polson,MT
+27039,Poplar,MT
+27040,Red Lodge,MT
+27041,Ronan,MT
+27043,Scobey,MT
+27044,Shelby,MT
+27045,Sheridan,MT
+27046,Sidney,MT
+27047,Superior,MT
+27049,Townsend,MT
+27051,White Sulphur Springs,MT
+27052,Whitefish,MT
+27053,Wolf Point,MT
+27054,Browning,MT
+28001,Ainsworth,NE
+28002,Albion,NE
+28003,Alliance,NE
+28004,Alma,NE
+28005,Atkinson,NE
+28006,Auburn,NE
+28007,Aurora,NE
+28008,Bassett,NE
+28009,Beatrice,NE
+28010,Benkelman,NE
+28011,Blair,NE
+28013,Broken Bow,NE
+28014,Callaway,NE
+28015,Cambridge,NE
+28016,Central City,NE
+28017,Chadron,NE
+28018,Columbus,NE
+28019,Cozad,NE
+28020,Crawford,NE
+28021,Creighton,NE
+28022,Crete,NE
+28023,David City,NE
+28024,Fairbury,NE
+28025,Falls City,NE
+28026,Franklin,NE
+28027,Fremont,NE
+28030,Geneva,NE
+28031,Genoa,NE
+28032,Gordon,NE
+28033,Gothenburg,NE
+28034,Grand Island,NE
+28035,Grant,NE
+28036,Hastings,NE
+28037,Hebron,NE
+28038,Henderson,NE
+28039,Holdrege,NE
+28040,Humboldt,NE
+28041,Imperial,NE
+28042,Kearney,NE
+28043,Kimball,NE
+28044,Lexington,NE
+28045,Lincoln,NE
+28046,Lynch,NE
+28047,McCook,NE
+28048,Minden,NE
+28049,Nebraska City,NE
+28050,Neligh,NE
+28051,Norfolk,NE
+28052,North Platte,NE
+28053,O'Neill,NE
+28054,Oakland,NE
+28055,Ogallala,NE
+28056,Omaha,NE
+28057,Ord,NE
+28058,Osceola,NE
+28059,Oshkosh,NE
+28060,Osmond,NE
+28062,Pawnee City,NE
+28063,Pender,NE
+28064,Plainview,NE
+28065,Red Cloud,NE
+28066,Sargent,NE
+28067,Schuyler,NE
+28068,Scottsbluff,NE
+28069,Seward,NE
+28070,Sidney,NE
+28071,St. Paul,NE
+28072,Superior,NE
+28073,Syracuse,NE
+28074,Tecumseh,NE
+28076,Valentine,NE
+28077,Wahoo,NE
+28078,Wayne,NE
+28079,West Point,NE
+28080,York,NE
+29001,Battle Mountain,NV
+29002,Boulder City,NV
+29003,Carson City,NV
+29004,Elko,NV
+29005,Ely,NV
+29006,Fallon,NV
+29007,Hawthorne,NV
+29008,Henderson,NV
+29010,Las Vegas,NV
+29013,Reno,NV
+29015,Tonopah,NV
+29016,Winnemucca,NV
+29018,Owyhee,NV
+30001,Berlin,NH
+30002,Claremont,NH
+30003,Colebrook,NH
+30004,Concord,NH
+30005,Derry,NH
+30006,Dover,NH
+30007,Exeter,NH
+30008,Franklin,NH
+30010,Keene,NH
+30011,Laconia,NH
+30012,Lancaster,NH
+30013,Lebanon,NH
+30014,Littleton,NH
+30015,Manchester,NH
+30016,Nashua,NH
+30017,New London,NH
+30019,North Conway,NH
+30020,Peterborough,NH
+30021,Plymouth,NH
+30022,Portsmouth,NH
+30023,Rochester,NH
+30024,Wolfeboro,NH
+30025,Woodsville,NH
+31001,Atlantic City,NJ
+31002,Bayonne,NJ
+31003,Belleville,NJ
+31004,Bridgeton,NJ
+31005,Camden,NJ
+31006,Cape May Court House,NJ
+31007,Denville,NJ
+31008,Dover,NJ
+31010,Edison,NJ
+31011,Elizabeth,NJ
+31012,Elmer,NJ
+31013,Englewood,NJ
+31014,Flemington,NJ
+31015,Freehold,NJ
+31016,Hackensack,NJ
+31017,Hackettstown,NJ
+31019,Hammonton,NJ
+31020,Hoboken,NJ
+31021,Holmdel,NJ
+31022,Irvington,NJ
+31023,Jersey City,NJ
+31024,Kearny,NJ
+31025,Lakewood,NJ
+31026,Livingston,NJ
+31027,Long Branch,NJ
+31028,Manahawkin,NJ
+31030,Montclair,NJ
+31031,Morristown,NJ
+31032,Mount Holly,NJ
+31033,Neptune,NJ
+31034,New Brunswick,NJ
+31035,Newark,NJ
+31036,Newton,NJ
+31037,North Bergen,NJ
+31038,Orange,NJ
+31039,Paramus,NJ
+31040,Passaic,NJ
+31041,Paterson,NJ
+31042,Perth Amboy,NJ
+31043,Phillipsburg,NJ
+31044,Plainfield,NJ
+31045,Point Pleasant,NJ
+31046,Pompton Plains,NJ
+31047,Princeton,NJ
+31048,Rahway,NJ
+31049,Red Bank,NJ
+31050,Ridgewood,NJ
+31051,Riverside,NJ
+31053,Salem,NJ
+31054,Secaucus,NJ
+31055,Somers Point,NJ
+31056,Somerville,NJ
+31057,South Amboy,NJ
+31058,Stratford,NJ
+31059,Summit,NJ
+31060,Sussex,NJ
+31061,Teaneck,NJ
+31062,Toms River,NJ
+31063,Trenton,NJ
+31064,Union,NJ
+31065,Vineland,NJ
+31066,Wayne,NJ
+31067,Westwood,NJ
+31068,Willingboro,NJ
+31069,Woodbury,NJ
+32001,Alamogordo,NM
+32002,Albuquerque,NM
+32003,Artesia,NM
+32005,Carlsbad,NM
+32006,Clayton,NM
+32007,Clovis,NM
+32008,Deming,NM
+32009,Espanola,NM
+32010,Farmington,NM
+32011,Fort Sumner,NM
+32012,Gallup/Crownpoint,NM
+32013,Grants/San Fidel,NM
+32014,Hobbs,NM
+32015,Las Cruces,NM
+32016,Las Vegas,NM
+32017,Los Alamos,NM
+32019,Portales,NM
+32020,Raton,NM
+32021,Roswell,NM
+32022,Ruidoso,NM
+32023,Santa Fe,NM
+32024,Santa Rosa,NM
+32025,Silver City,NM
+32026,Socorro,NM
+32027,Taos,NM
+32028,Truth or Consequences,NM
+32029,Tucumcari,NM
+32031,Mescalero,NM
+32033,Shiprock,NM
+32034,Zuni,NM
+33001,Albany,NY
+33002,Alexandria Bay,NY
+33003,Amityville,NY
+33004,Amsterdam,NY
+33005,Auburn,NY
+33006,Batavia,NY
+33007,Bath,NY
+33008,Bay Shore,NY
+33009,Bethpage,NY
+33010,Binghamton,NY
+33011,Brockport,NY
+33012,Bronx,NY
+33013,Bronxville,NY
+33014,Brooklyn,NY
+33015,Buffalo,NY
+33016,Cambridge,NY
+33017,Canandaigua,NY
+33018,Carmel,NY
+33019,Carthage,NY
+33020,Catskill,NY
+33022,Clifton Springs,NY
+33023,Cobleskill,NY
+33024,Cold Spring,NY
+33025,Cooperstown,NY
+33027,Corning,NY
+33028,Cornwall,NY
+33029,Cortland,NY
+33030,Cuba,NY
+33031,Dansville,NY
+33032,Dobbs Ferry,NY
+33033,Dunkirk,NY
+33034,East Meadow,NY
+33035,Elizabethtown,NY
+33036,Ellenville,NY
+33037,Elmira,NY
+33038,Far Rockaway,NY
+33039,Flushing,NY
+33040,Fulton,NY
+33041,Geneva,NY
+33042,Glen Cove,NY
+33043,Glens Falls,NY
+33044,Gloversville,NY
+33045,Goshen,NY
+33046,Gouverneur,NY
+33047,Gowanda,NY
+33048,Greenport,NY
+33049,Hamilton,NY
+33050,Harris,NY
+33052,Hornell,NY
+33053,Huntington,NY
+33055,Irving,NY
+33056,Ithaca,NY
+33057,Jamaica,NY
+33058,Jamestown,NY
+33059,Kenmore,NY
+33060,Kingston,NY
+33061,Lackawanna,NY
+33063,Lewiston,NY
+33064,Little Falls,NY
+33065,Lockport,NY
+33066,Long Beach,NY
+33067,Long Island City,NY
+33068,Lowville,NY
+33069,Malone,NY
+33070,Manhasset,NY
+33071,Margaretville,NY
+33072,Massena,NY
+33073,Medina,NY
+33074,Middletown,NY
+33075,Mineola,NY
+33076,Montour Falls,NY
+33077,Mount Kisco,NY
+33078,Mount Vernon,NY
+33079,New Rochelle,NY
+33080,Manhattan,NY
+33081,Newark,NY
+33082,Newburgh,NY
+33083,Newfane,NY
+33084,Niagara Falls,NY
+33085,North Tarrytown,NY
+33086,North Tonawanda,NY
+33087,Norwich,NY
+33088,Nyack,NY
+33089,Oceanside,NY
+33090,Ogdensburg,NY
+33091,Olean,NY
+33092,Oneida,NY
+33093,Oneonta,NY
+33094,Oswego,NY
+33095,Patchogue,NY
+33096,Peekskill,NY
+33097,Penn Yan,NY
+33098,Plainview,NY
+33099,Plattsburgh,NY
+33100,Port Chester,NY
+33101,Port Jefferson,NY
+33102,Port Jervis,NY
+33103,Potsdam,NY
+33104,Poughkeepsie,NY
+33105,Rhinebeck,NY
+33106,Riverhead,NY
+33107,Rochester,NY
+33108,Rockville Centre,NY
+33109,Rome,NY
+33111,Saranac Lake,NY
+33112,Saratoga Springs,NY
+33113,Schenectady,NY
+33114,Seaford,NY
+33115,Sidney,NY
+33116,Smithtown,NY
+33117,Sodus,NY
+33118,Southampton,NY
+33119,Springville,NY
+33120,Star Lake,NY
+33121,Staten Island,NY
+33122,Stony Brook,NY
+33123,Suffern,NY
+33124,Syosset,NY
+33125,Syracuse,NY
+33126,Ticonderoga,NY
+33127,Troy,NY
+33128,Utica,NY
+33130,Valley Stream,NY
+33131,Walton,NY
+33132,Warsaw,NY
+33133,Warwick,NY
+33135,Watertown,NY
+33136,Wellsville,NY
+33137,West Islip,NY
+33138,Westfield,NY
+33139,White Plains,NY
+33140,Yonkers,NY
+33142,Callicoon,NY
+34001,Ahoskie,NC
+34002,Albemarle,NC
+34003,Andrews,NC
+34004,Asheboro,NC
+34005,Asheville,NC
+34006,Banner Elk,NC
+34007,Belhaven,NC
+34008,Blowing Rock,NC
+34010,Boone,NC
+34011,Brevard,NC
+34012,Bryson City,NC
+34013,Burgaw,NC
+34014,Burlington,NC
+34015,Chapel Hill,NC
+34016,Charlotte,NC
+34017,Clinton,NC
+34018,Clyde,NC
+34019,Columbus,NC
+34020,Concord,NC
+34021,Crossnore,NC
+34023,Dunn,NC
+34024,Durham,NC
+34025,Eden,NC
+34026,Edenton,NC
+34027,Elizabeth City,NC
+34028,Elizabethtown,NC
+34029,Elkin,NC
+34030,Erwin,NC
+34031,Fayetteville,NC
+34033,Franklin,NC
+34034,Gastonia,NC
+34035,Goldsboro,NC
+34036,Greensboro,NC
+34037,Greenville,NC
+34038,Hamlet,NC
+34039,Henderson,NC
+34040,Hendersonville,NC
+34041,Hickory,NC
+34042,High Point,NC
+34043,Highlands,NC
+34044,Jacksonville,NC
+34045,Jefferson,NC
+34046,Kenansville,NC
+34047,Kings Mountain,NC
+34048,Kinston,NC
+34049,Laurinburg,NC
+34050,Lenoir,NC
+34051,Lexington,NC
+34052,Lincolnton,NC
+34053,Louisburg,NC
+34054,Lumberton,NC
+34055,Marion,NC
+34056,Mocksville,NC
+34057,Monroe,NC
+34058,Mooresville,NC
+34059,Morehead City,NC
+34060,Morganton,NC
+34061,Mount Airy,NC
+34062,Murphy,NC
+34063,New Bern,NC
+34064,North Wilkesboro,NC
+34065,Oxford,NC
+34066,Pinehurst,NC
+34067,Plymouth,NC
+34068,Raleigh,NC
+34069,Reidsville,NC
+34070,Roanoke Rapids,NC
+34071,Rockingham,NC
+34072,Rocky Mount,NC
+34073,Roxboro,NC
+34074,Rutherfordton,NC
+34075,Salisbury,NC
+34076,Sanford,NC
+34079,Shelby,NC
+34080,Siler City,NC
+34081,Smithfield,NC
+34082,Southport,NC
+34083,Sparta,NC
+34084,Spruce Pine,NC
+34085,Statesville,NC
+34086,Supply,NC
+34087,Sylva,NC
+34088,Tarboro,NC
+34089,Taylorsville,NC
+34090,Thomasville,NC
+34091,Troy,NC
+34092,Valdese,NC
+34093,Wadesboro,NC
+34094,Washington,NC
+34095,Whiteville,NC
+34096,Williamston,NC
+34097,Wilmington,NC
+34098,Wilson,NC
+34099,Windsor,NC
+34100,Winston-Salem,NC
+34102,Cherokee,NC
+35001,Ashley,ND
+35002,Bismarck,ND
+35003,Bottineau,ND
+35004,Bowman,ND
+35005,Cando,ND
+35006,Carrington,ND
+35007,Cavalier,ND
+35008,Cooperstown,ND
+35009,Crosby,ND
+35010,Devils Lake,ND
+35011,Dickinson,ND
+35012,Elgin,ND
+35014,Fargo/Moorhead MN,ND
+35017,Grand Forks,ND
+35019,Harvey,ND
+35020,Hazen,ND
+35021,Hettinger,ND
+35022,Hillsboro,ND
+35023,Jamestown,ND
+35025,Langdon,ND
+35026,Linton,ND
+35027,Lisbon,ND
+35029,Mayville,ND
+35030,McVille,ND
+35031,Minot,ND
+35034,Northwood,ND
+35035,Oakes,ND
+35036,Park River,ND
+35038,Rolla,ND
+35039,Rugby,ND
+35040,Stanley,ND
+35041,Tioga,ND
+35042,Turtle Lake,ND
+35043,Valley City,ND
+35044,Watford City,ND
+35045,Williston,ND
+35046,Wishek,ND
+36001,Akron,OH
+36002,Alliance,OH
+36004,Ashland,OH
+36005,Ashtabula,OH
+36006,Athens,OH
+36007,Barberton,OH
+36008,Barnesville,OH
+36009,Batavia,OH
+36010,Bedford,OH
+36011,Bellaire,OH
+36012,Bellefontaine,OH
+36013,Bellevue,OH
+36014,Bluffton,OH
+36015,Bowling Green,OH
+36016,Bryan,OH
+36017,Bucyrus,OH
+36018,Cadiz,OH
+36019,Cambridge,OH
+36020,Canton,OH
+36021,Chardon,OH
+36022,Chillicothe,OH
+36023,Cincinnati,OH
+36024,Circleville,OH
+36025,Cleveland,OH
+36026,Coldwater,OH
+36027,Columbus,OH
+36028,Conneaut,OH
+36029,Coshocton,OH
+36032,Dayton,OH
+36033,Defiance,OH
+36034,Delaware,OH
+36035,Dennison,OH
+36036,Dover,OH
+36037,East Liverpool,OH
+36038,Elyria,OH
+36039,Euclid,OH
+36040,Findlay,OH
+36041,Fostoria,OH
+36042,Fremont,OH
+36043,Galion,OH
+36044,Gallipolis,OH
+36045,Garfield Heights,OH
+36046,Geneva,OH
+36047,Georgetown,OH
+36048,Greenfield,OH
+36049,Greenville,OH
+36050,Hamilton,OH
+36051,Hicksville,OH
+36052,Hillsboro,OH
+36053,Ironton,OH
+36054,Kenton,OH
+36055,Kettering,OH
+36056,Lakewood,OH
+36057,Lancaster,OH
+36058,Lima,OH
+36059,Lodi,OH
+36060,Logan,OH
+36061,London,OH
+36062,Lorain,OH
+36063,Loudonville,OH
+36064,Mansfield,OH
+36065,Marietta,OH
+36066,Marion,OH
+36067,Martins Ferry,OH
+36068,Marysville,OH
+36069,Massillon,OH
+36070,Maumee,OH
+36071,Mayfield Heights,OH
+36072,Medina,OH
+36074,Middletown,OH
+36075,Millersburg,OH
+36076,Mount Gilead,OH
+36077,Mount Vernon,OH
+36078,Napoleon,OH
+36079,Nelsonville,OH
+36080,Newark,OH
+36081,Norwalk,OH
+36083,Oberlin,OH
+36084,Oregon,OH
+36085,Orrville,OH
+36086,Oxford,OH
+36087,Painesville,OH
+36088,Parma/Middleburg Heights,OH
+36089,Paulding,OH
+36090,Piqua,OH
+36091,Pomeroy,OH
+36092,Port Clinton,OH
+36093,Portsmouth,OH
+36094,Ravenna,OH
+36095,Salem,OH
+36096,Sandusky,OH
+36097,Shelby,OH
+36098,Sidney,OH
+36099,Springfield,OH
+36100,St. Marys,OH
+36101,Steubenville,OH
+36102,Sylvania,OH
+36103,Tiffin,OH
+36104,Toledo,OH
+36105,Troy,OH
+36106,Upper Sandusky,OH
+36107,Urbana,OH
+36108,Van Wert,OH
+36109,Wadsworth,OH
+36110,Warren,OH
+36112,Washington Court House,OH
+36113,Wauseon,OH
+36114,Waverly,OH
+36116,West Union,OH
+36118,Westlake,OH
+36119,Willard,OH
+36120,Wilmington,OH
+36121,Wooster,OH
+36122,Xenia,OH
+36123,Youngstown,OH
+36124,Zanesville,OH
+37001,Ada,OK
+37002,Altus,OK
+37003,Alva,OK
+37004,Anadarko,OK
+37005,Antlers,OK
+37006,Ardmore,OK
+37007,Atoka,OK
+37008,Bartlesville,OK
+37009,Beaver,OK
+37011,Blackwell,OK
+37015,Buffalo,OK
+37016,Carnegie,OK
+37018,Cheyenne,OK
+37019,Chickasha,OK
+37020,Claremore,OK
+37022,Clinton,OK
+37023,Coalgate,OK
+37024,Cordell,OK
+37025,Cushing,OK
+37026,Drumright,OK
+37027,Duncan,OK
+37028,Durant,OK
+37029,Edmond,OK
+37030,El Reno,OK
+37031,Elk City,OK
+37032,Enid,OK
+37033,Eufaula,OK
+37034,Fairfax,OK
+37035,Fairview,OK
+37036,Frederick,OK
+37037,Grove,OK
+37038,Guthrie,OK
+37039,Guymon,OK
+37042,Hobart,OK
+37043,Holdenville,OK
+37044,Hollis,OK
+37047,Idabel,OK
+37048,Kingfisher,OK
+37049,Lawton,OK
+37050,Lindsay,OK
+37051,Madill,OK
+37052,Mangum,OK
+37053,Marietta,OK
+37054,McAlester,OK
+37055,Miami,OK
+37056,Midwest City,OK
+37058,Muskogee,OK
+37059,Norman,OK
+37062,Okeene,OK
+37063,Oklahoma City,OK
+37064,Okmulgee,OK
+37065,Pauls Valley,OK
+37066,Pawhuska,OK
+37067,Pawnee,OK
+37068,Perry,OK
+37069,Ponca City,OK
+37070,Poteau,OK
+37071,Prague,OK
+37072,Pryor,OK
+37073,Purcell,OK
+37074,Sallisaw,OK
+37075,Sapulpa,OK
+37076,Sayre,OK
+37077,Seiling,OK
+37079,Shattuck,OK
+37080,Shawnee,OK
+37081,Stigler,OK
+37082,Stillwater,OK
+37083,Stroud,OK
+37084,Sulphur,OK
+37085,Tahlequah,OK
+37087,Tishomingo,OK
+37088,Tulsa,OK
+37089,Vinita,OK
+37090,Wagoner,OK
+37091,Watonga,OK
+37092,Waurika,OK
+37093,Weatherford,OK
+37094,Wetumka,OK
+37096,Wilburton,OK
+37097,Woodward,OK
+37101,Stilwell,OK
+38001,Albany,OR
+38002,Ashland,OR
+38003,Astoria,OR
+38004,Baker,OR
+38006,Bend,OR
+38007,Burns,OR
+38010,Coos Bay,OR
+38012,Corvallis,OR
+38013,Cottage Grove,OR
+38014,Dallas,OR
+38015,Enterprise,OR
+38016,Eugene,OR
+38017,Florence,OR
+38019,Gold Beach,OR
+38020,Grants Pass,OR
+38022,Heppner,OR
+38023,Hermiston,OR
+38024,Hillsboro,OR
+38025,Hood River,OR
+38026,John Day,OR
+38027,Klamath Falls,OR
+38028,La Grande,OR
+38029,Lakeview,OR
+38030,Lebanon,OR
+38031,Lincoln City,OR
+38032,Madras,OR
+38033,McMinnville,OR
+38034,Medford,OR
+38037,Newberg,OR
+38038,Newport,OR
+38040,Ontario,OR
+38041,Oregon City,OR
+38042,Pendleton,OR
+38043,Portland,OR
+38044,Prineville,OR
+38045,Redmond,OR
+38047,Roseburg,OR
+38048,Salem,OR
+38049,Seaside,OR
+38050,Silverton,OR
+38051,Springfield,OR
+38054,The Dalles,OR
+38055,Tillamook/Wheeler,OR
+38056,Tualatin,OR
+39001,Abington,PA
+39002,Aliquippa,PA
+39003,Allentown,PA
+39004,Altoona,PA
+39005,Ashland,PA
+39006,Beaver,PA
+39007,Berwick,PA
+39008,Bethlehem,PA
+39009,Bloomsburg,PA
+39010,Braddock,PA
+39011,Bradford,PA
+39012,Bristol,PA
+39013,Brookville,PA
+39014,Brownsville,PA
+39015,Bryn Mawr,PA
+39016,Butler,PA
+39017,Coatesville,PA
+39018,Camp Hill,PA
+39019,Canonsburg,PA
+39020,Carbondale,PA
+39021,Carlisle,PA
+39022,Chambersburg,PA
+39024,Clarion,PA
+39025,Clearfield,PA
+39026,Coaldale,PA
+39028,Connellsville,PA
+39029,Corry,PA
+39030,Coudersport,PA
+39031,Danville,PA
+39032,Darby,PA
+39033,Doylestown,PA
+39034,Drexel Hill,PA
+39035,Dubois,PA
+39036,East Stroudsburg,PA
+39037,Easton,PA
+39039,Ellwood City,PA
+39040,Ephrata,PA
+39041,Erie,PA
+39042,Everett,PA
+39044,Franklin,PA
+39045,Gettysburg,PA
+39046,Greensburg,PA
+39047,Greenville,PA
+39048,Grove City,PA
+39049,Hanover,PA
+39050,Harrisburg,PA
+39052,Hazleton,PA
+39053,Hershey,PA
+39054,Honesdale,PA
+39055,Huntingdon,PA
+39056,Indiana,PA
+39057,Jeannette,PA
+39058,Jersey Shore,PA
+39059,Johnstown,PA
+39060,Kane,PA
+39061,Kingston,PA
+39062,Kittanning,PA
+39063,Lancaster,PA
+39064,Langhorne,PA
+39065,Lansdale,PA
+39066,Latrobe,PA
+39067,Lebanon,PA
+39068,Lehighton,PA
+39069,Lewisburg,PA
+39070,Lewistown,PA
+39072,Lock Haven,PA
+39073,McConnellsburg,PA
+39074,McKees Rocks,PA
+39075,McKeesport,PA
+39077,Meadville,PA
+39079,Media,PA
+39080,Meyersdale,PA
+39081,Monongahela,PA
+39082,Monroeville,PA
+39083,Montrose,PA
+39084,Mount Pleasant,PA
+39085,Muncy,PA
+39087,Natrona Heights,PA
+39088,New Castle,PA
+39089,New Kensington,PA
+39090,Norristown,PA
+39092,Palmerton,PA
+39093,Paoli,PA
+39094,Peckville,PA
+39095,Philadelphia,PA
+39096,Philipsburg,PA
+39097,Phoenixville,PA
+39098,Pittsburgh,PA
+39099,Pottstown,PA
+39100,Pottsville,PA
+39101,Punxsutawney,PA
+39102,Quakertown,PA
+39103,Reading,PA
+39104,Renovo,PA
+39105,Ridgway,PA
+39106,Ridley Park,PA
+39107,Roaring Spring,PA
+39108,Sayre,PA
+39109,Scranton,PA
+39110,Sellersville,PA
+39111,Sewickley,PA
+39112,Shamokin,PA
+39113,Sharon,PA
+39114,Somerset,PA
+39115,Spangler,PA
+39117,St. Marys,PA
+39118,State College,PA
+39119,Sunbury,PA
+39120,Susquehanna,PA
+39121,Titusville,PA
+39122,Towanda,PA
+39124,Tunkhannock,PA
+39125,Tyrone,PA
+39126,Union City,PA
+39127,Uniontown,PA
+39128,Upland,PA
+39129,Warminster,PA
+39130,Warren,PA
+39131,Washington,PA
+39132,Waynesboro,PA
+39133,Waynesburg,PA
+39134,Wellsboro,PA
+39135,West Chester,PA
+39136,West Grove,PA
+39137,Wilkes-Barre,PA
+39138,Williamsport,PA
+39139,Windber,PA
+39140,York,PA
+41002,Newport,RI
+41004,Pawtucket,RI
+41005,Providence,RI
+41006,Wakefield,RI
+41007,Warwick,RI
+41008,Westerly,RI
+41009,Woonsocket,RI
+42001,Abbeville,SC
+42002,Aiken,SC
+42003,Anderson,SC
+42004,Bamberg,SC
+42005,Barnwell,SC
+42006,Beaufort,SC
+42007,Bennettsville,SC
+42008,Bishopville,SC
+42009,Camden,SC
+42010,Charleston,SC
+42011,Cheraw,SC
+42012,Chester,SC
+42013,Clinton,SC
+42014,Columbia,SC
+42015,Conway,SC
+42017,Dillon,SC
+42018,Easley,SC
+42019,Edgefield,SC
+42020,Fairfax,SC
+42021,Florence,SC
+42022,Gaffney,SC
+42023,Georgetown,SC
+42024,Greenville,SC
+42025,Greenwood,SC
+42026,Greer,SC
+42027,Hartsville,SC
+42028,Hilton Head Island,SC
+42029,Kingstree,SC
+42031,Lancaster,SC
+42033,Loris,SC
+42034,Manning,SC
+42035,Marion,SC
+42036,Mount Pleasant,SC
+42037,Mullins,SC
+42038,Myrtle Beach,SC
+42039,Newberry,SC
+42040,Orangeburg,SC
+42041,Pickens,SC
+42042,Ridgeland,SC
+42043,Rock Hill,SC
+42044,Seneca,SC
+42046,Spartanburg,SC
+42047,Sumter,SC
+42048,Union,SC
+42049,Varnville,SC
+42050,Walterboro,SC
+42051,West Columbia,SC
+42052,Winnsboro,SC
+42053,Woodruff,SC
+43001,Aberdeen,SD
+43002,Armour,SD
+43003,Belle Fourche,SD
+43004,Bowdle,SD
+43005,Britton,SD
+43006,Brookings,SD
+43007,Burke,SD
+43009,Chamberlain,SD
+43010,Clear Lake,SD
+43013,Deadwood,SD
+43014,Dell Rapids,SD
+43016,Eureka,SD
+43017,Faulkton,SD
+43019,Freeman,SD
+43020,Gettysburg,SD
+43021,Gregory,SD
+43023,Hoven,SD
+43024,Huron,SD
+43026,Madison,SD
+43027,Martin,SD
+43028,Milbank,SD
+43029,Miller,SD
+43030,Mitchell,SD
+43031,Mobridge,SD
+43032,Parkston,SD
+43033,Philip,SD
+43034,Pierre,SD
+43035,Platte,SD
+43036,Rapid City,SD
+43037,Redfield,SD
+43038,Scotland,SD
+43039,Sioux Falls,SD
+43040,Sisseton,SD
+43041,Spearfish,SD
+43042,Sturgis,SD
+43043,Tyndall,SD
+43044,Vermillion,SD
+43045,Viborg,SD
+43046,Wagner,SD
+43047,Watertown,SD
+43048,Webster,SD
+43049,Wessington Springs,SD
+43050,Winner,SD
+43051,Yankton,SD
+43052,Eagle Butte,SD
+43053,Pine Ridge,SD
+43054,Rosebud,SD
+44001,Athens,TN
+44003,Bristol,TN
+44004,Brownsville,TN
+44005,Camden,TN
+44006,Carthage,TN
+44007,Celina,TN
+44008,Centerville,TN
+44009,Chattanooga,TN
+44010,Clarksville,TN
+44011,Cleveland,TN
+44012,Columbia,TN
+44013,Cookeville,TN
+44014,Copperhill,TN
+44015,Covington,TN
+44016,Crossville,TN
+44017,Dayton,TN
+44018,Dickson,TN
+44020,Dyersburg,TN
+44022,Erin,TN
+44023,Erwin,TN
+44024,Etowah,TN
+44025,Fayetteville,TN
+44026,Franklin,TN
+44027,Gainesboro,TN
+44028,Gallatin,TN
+44030,Greeneville,TN
+44031,Harriman,TN
+44032,Hartsville,TN
+44033,Hendersonville,TN
+44036,Huntingdon,TN
+44037,Jackson,TN
+44038,Jamestown,TN
+44039,Jefferson City,TN
+44040,Jellico,TN
+44041,Johnson City,TN
+44042,Kingsport,TN
+44043,Knoxville,TN
+44044,La Follette,TN
+44045,Lafayette,TN
+44046,Lawrenceburg,TN
+44047,Lebanon,TN
+44048,Lewisburg,TN
+44049,Lexington,TN
+44050,Linden,TN
+44051,Livingston,TN
+44053,Madison,TN
+44054,Manchester,TN
+44055,Martin,TN
+44056,Maryville,TN
+44057,McKenzie,TN
+44058,McMinnville,TN
+44059,Memphis,TN
+44060,Milan,TN
+44061,Morristown,TN
+44062,Murfreesboro,TN
+44063,Nashville,TN
+44064,Newport,TN
+44065,Oak Ridge,TN
+44066,Oneida,TN
+44067,Paris,TN
+44068,Parsons,TN
+44069,Pikeville,TN
+44070,Portland,TN
+44071,Pulaski,TN
+44072,Ripley,TN
+44073,Rockwood,TN
+44074,Rogersville,TN
+44075,Savannah,TN
+44076,Selmer,TN
+44077,Sevierville,TN
+44078,Shelbyville,TN
+44079,Smithville,TN
+44082,South Pittsburg,TN
+44083,Sparta,TN
+44084,Springfield,TN
+44085,Sweetwater,TN
+44086,Tazewell,TN
+44088,Tullahoma,TN
+44089,Union City,TN
+44090,Waverly,TN
+44091,Waynesboro,TN
+44093,Winchester,TN
+44094,Woodbury,TN
+44096,Ashland City,TN
+45001,Abilene,TX
+45003,Alice,TX
+45004,Alpine,TX
+45005,Alvin,TX
+45006,Amarillo,TX
+45007,Anahuac,TX
+45008,Andrews,TX
+45009,Angleton,TX
+45010,Anson,TX
+45011,Aransas Pass,TX
+45012,Arlington,TX
+45013,Aspermont,TX
+45014,Athens,TX
+45015,Atlanta,TX
+45016,Austin,TX
+45017,Azle,TX
+45019,Bay City,TX
+45020,Baytown,TX
+45021,Beaumont,TX
+45022,Bedford,TX
+45023,Beeville,TX
+45024,Bellville,TX
+45026,Big Spring,TX
+45027,Bonham,TX
+45028,Bowie,TX
+45029,Brady,TX
+45030,Breckenridge,TX
+45031,Brenham,TX
+45034,Brownsville,TX
+45035,Brownwood,TX
+45036,Bryan,TX
+45038,Burnet,TX
+45039,Caldwell,TX
+45040,Cameron,TX
+45041,Canadian,TX
+45042,Canyon,TX
+45043,Carrizo Springs,TX
+45045,Carthage,TX
+45048,Childress,TX
+45049,Chillicothe,TX
+45051,Clarksville,TX
+45052,Cleburne,TX
+45053,Cleveland,TX
+45054,Clifton,TX
+45055,Coleman,TX
+45057,Colorado City,TX
+45058,Columbus,TX
+45059,Comanche,TX
+45060,Conroe,TX
+45061,Corpus Christi,TX
+45062,Corsicana,TX
+45064,Crockett,TX
+45065,Crosbyton,TX
+45066,Cuero,TX
+45068,Dallas,TX
+45069,De Leon,TX
+45070,Decatur,TX
+45071,Del Rio,TX
+45072,Denison,TX
+45073,Denton,TX
+45076,Dimmitt,TX
+45078,Dumas,TX
+45079,Eagle Lake,TX
+45080,Eagle Pass,TX
+45081,Eastland,TX
+45083,Edinburg,TX
+45085,El Campo,TX
+45086,El Paso,TX
+45088,Electra,TX
+45089,Ennis,TX
+45090,Fairfield,TX
+45091,Falfurrias,TX
+45094,Fort Stockton,TX
+45095,Fort Worth,TX
+45096,Fredericksburg,TX
+45097,Friona,TX
+45098,Gainesville,TX
+45099,Galveston,TX
+45100,Garland,TX
+45101,Gatesville,TX
+45102,Georgetown,TX
+45104,Gilmer,TX
+45106,Glen Rose,TX
+45109,Gonzales,TX
+45110,Graham,TX
+45111,Granbury,TX
+45112,Grand Prairie,TX
+45114,Grapevine,TX
+45115,Greenville,TX
+45116,Groesbeck,TX
+45119,Hallettsville,TX
+45120,Hamilton,TX
+45121,Hamlin,TX
+45122,Harlingen,TX
+45123,Haskell,TX
+45124,Hemphill,TX
+45125,Henderson,TX
+45129,Hillsboro,TX
+45131,Houston,TX
+45133,Humble,TX
+45134,Huntsville,TX
+45135,Iraan,TX
+45136,Irving,TX
+45138,Jacksonville,TX
+45139,Jasper,TX
+45140,Jourdanton,TX
+45141,Junction,TX
+45142,Katy,TX
+45143,Kaufman,TX
+45144,Kenedy,TX
+45145,Kermit,TX
+45146,Kerrville,TX
+45147,Kilgore,TX
+45148,Killeen,TX
+45149,Kingsville,TX
+45150,Knox City,TX
+45151,La Grange,TX
+45152,Lake Jackson,TX
+45155,Lancaster,TX
+45156,Laredo,TX
+45158,Lewisville,TX
+45159,Liberty,TX
+45160,Linden,TX
+45163,Llano,TX
+45167,Longview,TX
+45168,Lubbock,TX
+45169,Lufkin,TX
+45170,Luling,TX
+45171,Madisonville,TX
+45173,Marlin,TX
+45174,Marshall,TX
+45175,McAllen,TX
+45176,McCamey,TX
+45177,McKinney,TX
+45180,Mexia,TX
+45181,Midland,TX
+45182,Mineral Wells,TX
+45185,Monahans,TX
+45187,Mount Pleasant,TX
+45188,Mount Vernon,TX
+45189,Muenster,TX
+45191,Nacogdoches,TX
+45194,Navasota,TX
+45196,New Braunfels,TX
+45197,Nocona,TX
+45198,Odessa,TX
+45199,Olney,TX
+45200,Orange,TX
+45201,Palacios,TX
+45202,Palestine,TX
+45203,Pampa,TX
+45204,Paris,TX
+45205,Pasadena,TX
+45207,Pecos,TX
+45208,Perryton,TX
+45209,Pittsburg,TX
+45211,Plano,TX
+45212,Port Arthur,TX
+45213,Port Lavaca,TX
+45215,Quanah,TX
+45216,Quitman,TX
+45218,Rankin,TX
+45219,Refugio,TX
+45221,Richmond,TX
+45223,Rockdale,TX
+45224,Rotan,TX
+45225,Round Rock,TX
+45226,Rowlett,TX
+45228,San Angelo,TX
+45229,San Antonio,TX
+45232,San Marcos,TX
+45233,Seguin,TX
+45235,Seymour,TX
+45236,Shamrock,TX
+45237,Sherman,TX
+45240,Snyder,TX
+45241,Sonora,TX
+45245,Stephenville,TX
+45246,Sulphur Springs,TX
+45248,Sweetwater,TX
+45250,Taylor,TX
+45251,Temple,TX
+45252,Terrell,TX
+45253,Texarkana,TX
+45254,Texas City,TX
+45257,Tomball,TX
+45258,Trinity,TX
+45260,Tyler,TX
+45261,Uvalde,TX
+45263,Vernon,TX
+45264,Victoria,TX
+45265,Waco,TX
+45266,Waxahachie,TX
+45267,Weatherford,TX
+45268,Webster,TX
+45269,Weimar,TX
+45270,Wellington,TX
+45271,Weslaco,TX
+45273,Wharton,TX
+45274,Wheeler,TX
+45275,Whitney,TX
+45276,Wichita Falls,TX
+45277,Winnie,TX
+45278,Winnsboro,TX
+45279,Winters,TX
+45280,Woodville,TX
+45281,Wylie,TX
+46001,American Fork,UT
+46002,Beaver,UT
+46003,Bountiful,UT
+46004,Brigham City,UT
+46005,Cedar City,UT
+46006,Delta,UT
+46007,Fillmore,UT
+46008,Gunnison,UT
+46010,Kanab,UT
+46011,Layton,UT
+46012,Logan,UT
+46013,Milford,UT
+46014,Moab,UT
+46015,Monticello,UT
+46016,Monument Valley,UT
+46017,Mount Pleasant,UT
+46019,Nephi,UT
+46020,Ogden,UT
+46022,Panguitch,UT
+46023,Payson,UT
+46024,Price,UT
+46025,Provo,UT
+46026,Richfield,UT
+46027,Roosevelt,UT
+46028,Salt Lake City,UT
+46030,St. George,UT
+46032,Tremonton,UT
+46033,Vernal,UT
+47002,Bennington,VT
+47003,Berlin,VT
+47004,Brattleboro,VT
+47005,Burlington,VT
+47006,Middlebury,VT
+47007,Morrisville,VT
+47008,Newport,VT
+47009,Randolph,VT
+47010,Rutland,VT
+47011,Springfield,VT
+47012,St. Albans,VT
+47013,St. Johnsbury,VT
+47014,Townshend,VT
+47015,Windsor,VT
+49001,Abingdon,VA
+49002,Alexandria,VA
+49003,Arlington,VA
+49004,Bedford,VA
+49005,Big Stone Gap,VA
+49006,Blacksburg,VA
+49007,Charlottesville,VA
+49008,Chesapeake,VA
+49009,Clintwood,VA
+49010,Culpeper,VA
+49011,Danville,VA
+49012,Emporia,VA
+49013,Fairfax,VA
+49014,Falls Church,VA
+49015,Farmville,VA
+49016,Franklin,VA
+49017,Fredericksburg,VA
+49018,Front Royal,VA
+49019,Galax,VA
+49020,Gloucester,VA
+49021,Grundy,VA
+49022,Hampton,VA
+49023,Harrisonburg,VA
+49024,Hopewell,VA
+49025,Hot Springs,VA
+49026,Kilmarnock,VA
+49027,Lebanon,VA
+49028,Leesburg,VA
+49029,Lexington,VA
+49030,Low Moor,VA
+49031,Luray,VA
+49032,Lynchburg,VA
+49033,Manassas,VA
+49034,Marion,VA
+49035,Martinsville,VA
+49036,Nassawadox,VA
+49037,Newport News,VA
+49038,Norfolk,VA
+49039,Norton,VA
+49040,Pearisburg,VA
+49041,Pennington Gap,VA
+49042,Petersburg,VA
+49043,Portsmouth,VA
+49044,Pulaski,VA
+49045,Radford,VA
+49046,Reston,VA
+49047,Richlands,VA
+49048,Richmond,VA
+49049,Roanoke,VA
+49050,Rocky Mount,VA
+49051,Salem,VA
+49052,South Boston,VA
+49053,South Hill,VA
+49054,Staunton,VA
+49055,Stuart,VA
+49056,Suffolk,VA
+49057,Tappahannock,VA
+49058,Tazewell,VA
+49059,Virginia Beach,VA
+49060,Warrenton,VA
+49062,Williamsburg,VA
+49063,Winchester,VA
+49065,Woodbridge,VA
+49066,Woodstock,VA
+49067,Wytheville,VA
+50001,Aberdeen,WA
+50002,Anacortes,WA
+50003,Arlington,WA
+50004,Auburn,WA
+50005,Bellevue,WA
+50006,Bellingham,WA
+50007,Bremerton,WA
+50008,Brewster,WA
+50009,Centralia,WA
+50010,Chelan,WA
+50011,Chewelah,WA
+50012,Clarkston,WA
+50013,Colfax,WA
+50014,Colville,WA
+50015,Coupeville,WA
+50016,Davenport,WA
+50017,Dayton,WA
+50018,Edmonds,WA
+50019,Ellensburg,WA
+50020,Enumclaw,WA
+50022,Everett,WA
+50023,Federal Way,WA
+50024,Forks,WA
+50025,Goldendale,WA
+50026,Grand Coulee,WA
+50027,Ilwaco,WA
+50028,Kennewick,WA
+50029,Kirkland,WA
+50031,Longview,WA
+50033,Monroe,WA
+50034,Morton,WA
+50035,Moses Lake,WA
+50036,Mount Vernon,WA
+50039,Olympia,WA
+50040,Omak,WA
+50041,Othello,WA
+50042,Pasco,WA
+50044,Port Angeles,WA
+50045,Port Townsend,WA
+50046,Prosser,WA
+50047,Pullman,WA
+50048,Puyallup,WA
+50050,Renton,WA
+50051,Republic,WA
+50052,Richland,WA
+50053,Ritzville,WA
+50054,Seattle,WA
+50056,Shelton,WA
+50058,South Bend,WA
+50059,Spokane,WA
+50060,Sunnyside,WA
+50061,Tacoma,WA
+50062,Tonasket,WA
+50063,Toppenish,WA
+50064,Vancouver,WA
+50065,Walla Walla,WA
+50066,Wenatchee,WA
+50067,White Salmon,WA
+50068,Yakima,WA
+51001,Beckley,WV
+51002,Berkeley Springs,WV
+51003,Bluefield,WV
+51004,Buckhannon,WV
+51005,Charleston,WV
+51006,Clarksburg,WV
+51007,Elkins,WV
+51008,Fairmont,WV
+51009,Gassaway,WV
+51010,Glen Dale,WV
+51011,Grafton,WV
+51012,Grantsville,WV
+51013,Hinton,WV
+51014,Huntington,WV
+51015,Hurricane,WV
+51017,Kingwood,WV
+51018,Logan,WV
+51020,Man,WV
+51021,Marlinton,WV
+51022,Martinsburg,WV
+51023,Montgomery,WV
+51024,Morgantown,WV
+51025,New Martinsville,WV
+51026,Oak Hill,WV
+51027,Parkersburg,WV
+51028,Petersburg,WV
+51029,Philippi,WV
+51030,Point Pleasant,WV
+51031,Princeton,WV
+51032,Ranson,WV
+51033,Richwood,WV
+51034,Ripley,WV
+51035,Romney,WV
+51036,Ronceverte,WV
+51037,Sistersville,WV
+51038,South Charleston,WV
+51039,Spencer,WV
+51040,Summersville,WV
+51041,Webster Springs,WV
+51042,Weirton,WV
+51043,Weston,WV
+51044,Wheeling,WV
+51045,Williamson,WV
+52001,Amery,WI
+52002,Antigo,WI
+52003,Appleton,WI
+52004,Arcadia,WI
+52005,Ashland,WI
+52006,Baldwin,WI
+52007,Baraboo,WI
+52008,Barron,WI
+52009,Beaver Dam,WI
+52010,Beloit,WI
+52011,Berlin,WI
+52012,Black River Falls,WI
+52013,Bloomer,WI
+52014,Boscobel,WI
+52015,Brookfield,WI
+52016,Burlington,WI
+52017,Chilton,WI
+52018,Chippewa Falls,WI
+52020,Columbus,WI
+52021,Cudahy,WI
+52022,Cumberland,WI
+52023,Darlington,WI
+52024,Dodgeville,WI
+52025,Durand,WI
+52026,Eagle River,WI
+52027,Eau Claire,WI
+52028,Edgerton,WI
+52029,Elkhorn,WI
+52030,Fond Du Lac,WI
+52031,Fort Atkinson,WI
+52033,Friendship,WI
+52034,Grantsburg,WI
+52035,Green Bay,WI
+52036,Hartford,WI
+52037,Hayward,WI
+52038,Hillsboro,WI
+52039,Hudson,WI
+52041,Janesville,WI
+52043,Kenosha,WI
+52044,Kewaunee,WI
+52045,La Crosse,WI
+52046,Ladysmith,WI
+52047,Lancaster,WI
+52048,Madison,WI
+52049,Manitowoc,WI
+52050,Marinette,WI
+52051,Marshfield,WI
+52052,Mauston,WI
+52053,Medford,WI
+52054,Menomonee Falls,WI
+52055,Menomonie,WI
+52056,Merrill,WI
+52057,Milwaukee,WI
+52058,Monroe,WI
+52059,Neenah,WI
+52060,Neillsville,WI
+52061,New London,WI
+52062,New Richmond,WI
+52063,Oconomowoc,WI
+52065,Oconto Falls,WI
+52066,Osceola,WI
+52067,Oshkosh,WI
+52069,Park Falls,WI
+52070,Phelps,WI
+52071,Platteville,WI
+52072,Plymouth,WI
+52073,Port Washington,WI
+52074,Portage,WI
+52075,Prairie Du Chien,WI
+52076,Prairie Du Sac,WI
+52077,Racine,WI
+52078,Reedsburg,WI
+52079,Rhinelander,WI
+52080,Rice Lake,WI
+52081,Richland Center,WI
+52082,Ripon,WI
+52083,River Falls,WI
+52084,Shawano,WI
+52085,Sheboygan,WI
+52086,Shell Lake,WI
+52088,Spooner,WI
+52089,St. Croix Falls,WI
+52090,Stanley,WI
+52091,Stevens Point,WI
+52092,Stoughton,WI
+52093,Sturgeon Bay,WI
+52095,Tomah,WI
+52096,Two Rivers,WI
+52097,Viroqua,WI
+52098,Watertown,WI
+52099,Waukesha,WI
+52100,Waupaca,WI
+52101,Waupun,WI
+52102,Wausau,WI
+52103,West Allis,WI
+52104,West Bend,WI
+52105,Whitehall,WI
+52106,Wild Rose,WI
+52107,Wisconsin Rapids,WI
+52108,Woodruff,WI
+53001,Afton,WY
+53002,Buffalo,WY
+53003,Casper,WY
+53004,Cheyenne,WY
+53005,Cody,WY
+53006,Douglas,WY
+53007,Evanston,WY
+53008,Gillette,WY
+53010,Jackson,WY
+53011,Kemmerer,WY
+53012,Lander,WY
+53013,Laramie,WY
+53014,Lovell,WY
+53015,Lusk,WY
+53016,Newcastle,WY
+53017,Powell,WY
+53018,Rawlins,WY
+53019,Riverton,WY
+53020,Rock Springs,WY
+53021,Sheridan,WY
+53022,Sundance,WY
+53023,Thermopolis,WY
+53024,Torrington,WY
+53025,Wheatland,WY
+53026,Worland,WY

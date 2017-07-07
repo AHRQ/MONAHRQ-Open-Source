@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ReportManifest RptId="4C5727B4-0E85-4F80-ADE9-418B49A1373E"
+                Name="Physician Profile"
+                Category="Utilization"
+				IsTrending="false"
+				ShowInterpretationText="true" ConsumerPreviewImage="ConsumerDoctorProfile_GeneralInformation.png"
+                PreviewImage="PhysicianProfile - MQ60.jpg"
+                RequiresCostToChargeRatio="false">
+	<Audiences>
+		<Audience AudienceType="Professionals" />
+		<Audience AudienceType="Consumers" />
+	</Audiences>
+	<Datasets>
+		<Dataset Name="Physician Data"/>
+		<Dataset Name="CG-CAHPS Survey Results Data"/>
+		<Dataset Name="Medical Practice HEDIS Measures Data"/>
+	</Datasets>
+	<Filters>
+		<Filter Type="Display">
+			<Values>
+				<FilterValue Name="Basic Descriptive Data" />
+				<FilterValue Name="Map" />
+				<FilterValue Name="Affiliated Hospitals" />
+				<FilterValue Name="Medical Practice" />
+				<FilterValue Name="HEDIS Measures" />
+			</Values>
+		</Filter>
+	</Filters>
+	<ReportAttributes>
+		Display
+	</ReportAttributes>
+	<!--ReportColumns-->
+	<Header>
+		<![CDATA[On the table below, click to check the box in the first column “Select physicians” to see a detailed profile of a given physician; you will be taken automatically to general information about the physician.  Click the “Hospital Affiliations” tab to get a list of hospitals where that physician practices.]]>
+	</Header>
+	<Columns>
+		<Column Name="Doctor Name"/>
+		<Column Name="Practice Name"/>
+		<Column Name="City"/>
+		<Column Name="Zip Code"/>
+		<Column Name="State"/>
+		<Column Name="Primary Specialty"/>
+	</Columns>
+	<!--<Column Name="Number of discharges"/>
+    <Column Name="Mean cost in dollars"/>
+    <Column Name="Rate of Discharges Per 1000 Persons"/>
+  </Columns>-->
+	<InterpretationText >
+		<![CDATA[<p><strong>ASSIGNMENT/PARTICIPATION</strong></p>
+<p><strong><em>Accepts Medicare Assignment:</em></strong>&nbsp; If Yes, then this physician is willing to accept the Medicare allowable charge for his/her services as payment in full.&nbsp; If No, then you will be responsible for paying what the physicians charges, even if it is higher than the Medicare allowable charge.&nbsp;</p>
+<p><strong>Participation in Electronic Prescribing program:&nbsp;</strong>&nbsp;Doctors can write a prescription for Medicare patients and send it electronically to participating pharmacies for the patient to pick up. Patients do not need to bring a written prescription on a piece of paper from their doctor in order to pick up their medication.A green checkmark/&rdquo;Yes&rdquo; means this doctor participates in this program.</p>
+<p><strong>Participation in Physician Quality Reporting System:&nbsp;</strong>&nbsp;Doctors, or the medical group practice they belong to, voluntarily report information to the Physician Quality Reporting System about the quality of care they provide to their Medicare patients (for example, the number of their patients with diabetes who had well-controlled blood sugar levels).&nbsp;&rdquo;Yes&rdquo; means this doctor participates in this program.A green checkmark/&rdquo;Yes&rdquo; means this doctor participates in this program.</p>
+<p><strong>Participation in Electronic Health Records program:</strong>&nbsp;Doctors, or the hospitals they practice at, can use electronic health records to document a Medicare patient&rsquo;s medical history. Electronic health records can help doctors make decisions about the kind of care a patient should receive.&rdquo;Yes&rdquo; means this doctor participates in this program.A green checkmark/&rdquo;Yes&rdquo; means this doctor participates in this program.</p>]]>
+	</InterpretationText>
+	<WebsitePages>
+		<WebsitePage
+				Name="Doctor Profile"
+				Audience="Consumers"
+				Path="app/products/consumer/physicians/views/profile.html"
+				Url="/physicians/profile/"
+				UrlRaw=""
+				IsEditable="true">
+			<WebsitePageZones>
+				<WebsitePageZone Name="Header" CodePath=""/>
+				<WebsitePageZone Name="Footer" CodePath=""/>
+			</WebsitePageZones>
+		</WebsitePage>
+		<WebsitePage
+				Name="Physicians - Profile"
+				Audience="Professionals"
+				Path="app/products/professional/physicians/views/profile.html"
+				Url="/physicians/find-physician"
+				UrlRaw=""
+				IsEditable="true">
+			<WebsitePageZones>
+				<WebsitePageZone Name="Header" CodePath="" />
+				<WebsitePageZone Name="Footer" CodePath="" />
+			</WebsitePageZones>
+		</WebsitePage>
+	</WebsitePages>
+</ReportManifest>

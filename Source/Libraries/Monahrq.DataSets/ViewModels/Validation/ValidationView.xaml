@@ -1,0 +1,129 @@
+﻿<UserControl x:Class="Monahrq.DataSets.ViewModels.Validation.ValidationView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             xmlns:infConverter="clr-namespace:Monahrq.Theme.Converters;assembly=Monahrq.Theme"
+             xmlns:themeConverters="clr-namespace:Monahrq.Theme.Converters;assembly=Monahrq.Theme"
+             xmlns:views="clr-namespace:Monahrq.DataSets.Views"
+             xmlns:local="clr-namespace:Monahrq.DataSets.ViewModels.Validation"
+             mc:Ignorable="d"
+             d:DesignHeight="350" d:DesignWidth="600">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.Buttons.xaml"/>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.DataGrid.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <local:NullCollapseConverter x:Key="collapseResultsConverter" />
+            <local:BooleanCollapseConverter  x:Key="collapseRunningConverter" />
+            <local:ImportSucessfullConverter x:Key="ImportSucessfullConverter" />
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid x:Name="ProgressGrid" Margin="20" Background="White" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="HeaderGrid" Margin="10,0,10,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="{Binding DisplayName}" FontSize="26" Foreground="Gray" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+            <!-- Display dataset title and date in upper right corner -->
+            <StackPanel Grid.Column="1" d:LayoutOverrides="Height" VerticalAlignment="Top" Orientation="Horizontal" HorizontalAlignment="Right">
+                <views:DatasetTitlePeriod DataContext="{Binding CurrentContentItem}" />
+            </StackPanel>
+        </Grid>
+
+        <Grid x:Name="contentGrid1" Grid.Row="1" Grid.Column="0" Margin="30,0,30,20" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="200"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <!-- 0.25* -->
+                <!--<RowDefinition Height="20" />-->
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!-- Progress Bar spans both columns -->
+            <StackPanel Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"
+                  Visibility="{Binding IsRunning, Converter={StaticResource  ResourceKey=collapseRunningConverter}, ConverterParameter=Invert}" >
+                <StackPanel HorizontalAlignment="Left" Margin="0,0,0,0" Orientation="Vertical" VerticalAlignment="Center">
+                    <TextBlock Text="{Binding Path=Feedback}" Margin="0" TextWrapping="Wrap"  FontSize="18" Foreground="#FF454545" VerticalAlignment="Center"/>
+                </StackPanel>
+                <Controls:MetroProgressBar Value="{Binding CurrentProgress.Current, Mode=OneWay}" VerticalAlignment="Stretch" Foreground="#FF09CE1E"
+                                   Background="#59D2D2D2" BorderBrush="#00000000" Margin="0,0,0,10" Maximum="{Binding CurrentProgress.Total, Mode=OneWay}"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Record"/>
+                    <TextBlock Margin="3,0,0,0" Text="{Binding CurrentProgress.Current,  StringFormat='{}{0:N0}'}"/>
+                    <TextBlock Margin="3,0,0,0" Text="of"/>
+                    <TextBlock Margin="3,0,0,0" Text="{Binding CurrentProgress.Total, StringFormat='{}{0:N0}'}"/>
+                </StackPanel>
+            </StackPanel>
+            <ScrollViewer Grid.Column="0" Grid.Row="1" VerticalAlignment="Top">
+                <StackPanel Orientation="Vertical" Margin="0,10,0,20">
+                    <TextBlock
+                       Visibility="{Binding ResultsSummary, Converter={StaticResource ResourceKey=collapseResultsConverter}}"
+                     x:Name="SummaryCaption" Style="{StaticResource Subtopic}" Foreground="{StaticResource MGrey5}"
+                       HorizontalAlignment="Stretch" VerticalAlignment="Top"
+                      Text="Summary:" FontSize="16" Height="20" />
+                    
+                    <DataGrid Visibility="{Binding ElementName=SummaryCaption, Path=Visibility}"
+                      HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                      ItemsSource="{Binding ResultsView}"
+                      AutoGenerateColumns="False"
+                      HorizontalScrollBarVisibility="Auto"
+                      VerticalScrollBarVisibility="Visible" Name="TheGrid" MinHeight="230" Height="Auto"
+                      Margin="0,5,10,5"
+                      BorderBrush="{DynamicResource MGrey2}"
+                      HorizontalGridLinesBrush="{DynamicResource MGrey2}"
+                      VerticalGridLinesBrush="{DynamicResource MGrey2}"
+                      Foreground="{DynamicResource MGrey5}"
+                      >
+                        <!--HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"-->
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding RecordNumber}" Header="Record #" Width="20*" />
+                            <DataGridTextColumn Binding="{Binding ElementName}" Header="MONAHRQ Variable" Width="20*"/>
+                            <DataGridTextColumn Binding="{Binding ResultType}" Header="Status" Width="20*"/>
+                            <!--<DataGridTextColumn Binding="{Binding Message}" Header="Message" Width="20*"/>-->
+                            <DataGridTemplateColumn Header="Message" Width="40*" CanUserSort="False" CanUserReorder="False">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Message}" TextWrapping="WrapWithOverflow"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <TextBlock Text="Import completed successfully. No errors found." Margin="0,-200, 0, 0" FontSize="14" FontWeight="SemiBold"
+                               Foreground="{DynamicResource MDarkGreen}" Visibility="{Binding ResultsSummary, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ImportSucessfullConverter}}" >
+                    </TextBlock>
+                </StackPanel>
+            </ScrollViewer>
+            <StackPanel Grid.Column="1" Grid.Row="1"  Orientation="Vertical">
+                <Button Command="{Binding Path=StartCommand}" Width="150" Padding="5,3,5,3" Margin="0,0,0,20" HorizontalAlignment="Right" Background="{StaticResource MDarkBlue}"
+                Visibility="{Binding IsRunning, Converter={StaticResource  ResourceKey=collapseRunningConverter}}">
+                    <TextBlock Text="{Binding Path=ButtonCaption}" Foreground="White" />
+                </Button>
+                <Border VerticalAlignment="Top" HorizontalAlignment="Right" Background="{StaticResource MGrey2}" BorderBrush="{StaticResource MGrey4}" BorderThickness=".75" Width="150" Padding="2" 
+                Visibility="{Binding ElementName=SummaryCaption, Path=Visibility}">
+                    <local:ValidationResultView
+                  VerticalContentAlignment="Top" HorizontalContentAlignment="Left"
+                  VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                  DataContext="{Binding ResultsSummary}" x:Name="summaryView" />
+                </Border>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

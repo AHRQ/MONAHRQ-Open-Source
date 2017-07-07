@@ -1,0 +1,42 @@
+MeasureCode,TopicCategory,TopicName,UsedForInfographic
+NH-OA-01,Nursing Home,,False
+NH-HI-01,Nursing Home,,True
+NH-QM-01,Nursing Home,,False
+NH-HI-02,Nursing Home,Health Inspection,False
+NH-HI-03,Nursing Home,Health Inspection,False
+NH-HI-04,Nursing Home,Health Inspection,True
+NH-HI-05,Nursing Home,Health Inspection,True
+NH-HI-06,Nursing Home,Health Inspection,False
+NH-HI-07,Nursing Home,Health Inspection,False
+NH-QM-OA-01,Nursing Home,Nursing Home,True
+NH-QM-SS-01,Nursing Home,Quality Measures,False
+NH-QM-SS-02,Nursing Home,Quality Measures,False
+NH-QM-SS-03,Nursing Home,Quality Measures,False
+NH-QM-SS-04,Nursing Home,Quality Measures,False
+NH-QM-SS-05,Nursing Home,Quality Measures,False
+NH-QM-SS-06,Nursing Home,Quality Measures,False
+NH-QM-SS-07,Nursing Home,Quality Measures,False
+NH-QM-SS-08,Nursing Home,Quality Measures,False
+NH-QM-SS-09,Nursing Home,Quality Measures,False
+NH-QM-LS-01,Nursing Home,Quality Measures,False
+NH-QM-LS-02,Nursing Home,Quality Measures,False
+NH-QM-LS-03,Nursing Home,Quality Measures,False
+NH-QM-LS-04,Nursing Home,Quality Measures,False
+NH-QM-LS-05,Nursing Home,Quality Measures,False
+NH-QM-LS-06,Nursing Home,Quality Measures,False
+NH-QM-LS-07,Nursing Home,Quality Measures,False
+NH-QM-LS-08,Nursing Home,Quality Measures,False
+NH-QM-LS-09,Nursing Home,Quality Measures,False
+NH-QM-LS-10,Nursing Home,Quality Measures,False
+NH-QM-LS-11,Nursing Home,Quality Measures,False
+NH-QM-LS-12,Nursing Home,Quality Measures,False
+NH-QM-LS-13,Nursing Home,Quality Measures,False
+NH-QM-LS-14,Nursing Home,Quality Measures,False
+NH-QM-LS-15,Nursing Home,Quality Measures,False
+NH-SD-01,Nursing Home,,False
+NH-SD-02,Nursing Home,Staffing,False
+NH-SD-03,Nursing Home,Staffing,False
+NH-SD-04,Nursing Home,Staffing,False
+NH-SD-05,Nursing Home,Staffing,False
+NH-SD-06,Nursing Home,Staffing,False
+NH-SD-07,Nursing Home,Staffing,False

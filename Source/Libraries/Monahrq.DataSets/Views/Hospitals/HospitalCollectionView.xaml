@@ -1,0 +1,286 @@
+<UserControl x:Class="Monahrq.DataSets.Views.Hospitals.HospitalCollectionView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             xmlns:converters="clr-namespace:Monahrq.Theme.Converters;assembly=Monahrq.Theme"
+             xmlns:ei="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Microsoft.Expression.Interactions"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="900">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.Buttons.xaml"/>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.DataGrid.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <converters:ListToStringConverter x:Key="ListToStringConverter" />
+            <DataTemplate x:Key="RegionsItemTemplate">
+                <CheckBox IsChecked="{Binding IsSelected}" Content="{Binding Name}" />
+             </DataTemplate>
+            <DataTemplate x:Key="CategoryItemTemplate">
+                <CheckBox IsChecked="{Binding IsSelected}" Content="{Binding Name}" />
+            </DataTemplate>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid Background="{DynamicResource MGrey2}">
+    <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Button Content="ADD NEW HOSPITAL" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right"
+                                                        Style="{DynamicResource AddDataFileButton}" 
+                                                        FontWeight="Normal"
+                                                        Background="{DynamicResource MDGreen}" 
+                                                        FontSize="12" Margin="5" 
+                                                        Foreground="{DynamicResource White}" 
+                                                        Width="190" Height="32" />
+            <StackPanel Grid.Column="1" Grid.Row="2">
+                <Button Command="{Binding ImportHospitalDataCommand}" CommandParameter="none" Content="IMPORT DATA FILE"  
+                                            Margin="0,5" Style="{DynamicResource MonahrqArrowButtonRight}" 
+                                            Foreground="White"
+                    FontWeight="Normal"  FontSize="12" 
+                                            Background="{DynamicResource MBlue}" 
+                                            Width="188" Height="32" />
+                <Button Command="{Binding AssignCategoryCommand}" CommandParameter="none" Content="ASSIGN CATEGORIES"  
+                                            Margin="5" Style="{DynamicResource MonahrqArrowButtonRight}" 
+                                            Foreground="White"
+                    FontWeight="Normal"  FontSize="12" 
+                                            Background="{DynamicResource MDGreen}" 
+                                            Width="188" Height="32"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1" Margin="0,0,0,45" Grid.RowSpan="2">
+
+                <Button Content="IMPORT DATA FILE" 
+                                                        Style="{DynamicResource PlainImportButton}" 
+                                                        Background="White" Visibility="Collapsed"
+                                                        FontSize="10" Margin="5" 
+                                                        Foreground="{DynamicResource MGrey5}" 
+                                                        Width="140" Height="24" />
+                <Button Content="EXPORT DATA FILE" Style="{DynamicResource PlainExportButton}" Background="White" 
+                                                        FontSize="10" Margin="5" Visibility="Collapsed"
+                                                        Foreground="{DynamicResource MGrey5}" 
+                                                        Width="140" Height="24" />
+                <Button Content="DELETE DATA FILE" Style="{DynamicResource  PlainDeleteButton}"  Visibility="Collapsed"
+                                                        Background="{DynamicResource MPink}" 
+                                                        FontSize="10"
+                                                        Foreground="White" Margin="5" Width="140" Height="24" />
+            </StackPanel>
+            <StackPanel Grid.Row="1" Margin="0,5" Grid.ColumnSpan="1">
+                <TextBlock Text="HOSPITALS" Style="{DynamicResource SectionHeader}" />
+                <TextBlock Text="Edit hospital name and reference data, define category types and assign geographic regions" 
+                                                           Foreground="{DynamicResource MGrey5}"  />
+            </StackPanel>
+            <StackPanel Grid.Row="2" Margin="0,10,0,5" Grid.ColumnSpan="1">
+                <TextBlock Style="{DynamicResource Subtopic}" Foreground="{DynamicResource MGrey5}" Text="FILTER BY" />
+                <StackPanel Orientation="Horizontal" Margin="0,5">
+                    <ComboBox MinWidth="150"  ItemsSource="{Binding FilterEnumerations}" SelectedItem="{Binding SelectedFilter}"/>
+                    <TextBox MinWidth="150" Margin="5,0"  Controls:TextboxHelper.ClearTextButton="True" />
+                </StackPanel>
+            </StackPanel>
+
+
+            <!-- Data Grid-->
+            <DataGrid Grid.Row="3" 
+                      
+                        ItemsSource="{Binding HospitalsCollectionView}"
+                        BorderBrush="{DynamicResource MGrey2}" 
+                        HorizontalGridLinesBrush="{DynamicResource MGrey2}" 
+                        VerticalGridLinesBrush="{DynamicResource MGrey2}" 
+                        Foreground="{DynamicResource MGrey5}"   
+                        Background="{DynamicResource White}" 
+                        Margin="0,0,0,0"  
+                        AutoGenerateColumns="False" 
+						CanUserAddRows="False" 
+                        CanUserDeleteRows="False" 
+                        ColumnHeaderHeight="40" 
+                        CanUserResizeRows="False" 
+                        HeadersVisibility="Column" 
+						AlternationCount="2"
+                        SelectedItem="{Binding SelectedHospital}"
+                        SelectionMode="Single" Grid.ColumnSpan="2">
+                <!--<DataGrid.RowStyle>
+                    <Style TargetType="{x:Type DataGridRow}">
+
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsSelected}" Value="True" >
+                                <Setter Property="DataGridCell.Background" Value="#FFFAFDBA" />
+                            </DataTrigger>
+
+                            <DataTrigger Binding="{Binding IsVisible}" Value="True" >
+                                <Setter Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsVisible}" Value="False" >
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="BorderBrush" Value="{DynamicResource MBlue}" />
+                                <Setter Property="BorderThickness" Value="0" />
+                            </Trigger>
+
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.RowStyle>-->
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn  x:Name="columnCheckBox"   HeaderStyle="{DynamicResource CheckBoxHeaderStyle}">
+                        <DataGridTemplateColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <Border Width="30" BorderThickness="0">
+                                    <CheckBox 
+                                                    IsChecked="{Binding Path=DataContext.IsAllSelected, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Mode=TwoWay}"  
+                                                    VerticalAlignment="Center" HorizontalAlignment="Center" Margin="4,0,0,0" />
+                                </Border>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.HeaderTemplate>
+
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate DataType="{x:Type DataGridCell}">
+                                <Border x:Name="brd" Background="Transparent">
+                                    <CheckBox x:Name="chk" VerticalAlignment="Center" 
+                                                          IsChecked="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                                           />
+                                </Border>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="" CanUserSort="False">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button VerticalAlignment="Top"  Margin="0,5,0,5"
+                                                        CommandParameter="{Binding }" 
+                                                        Command="{Binding Path=DataContext.EditHospitalCommand, 
+                                    RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                                        Style="{DynamicResource EditButton}" >
+                                        <Button.ToolTip>
+                                        <TextBlock Text="Edit" />
+                                    </Button.ToolTip>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Header="" CanUserSort="False">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button VerticalAlignment="Top"  Margin="0,5,0,5"
+                                                        CommandParameter="{Binding }" 
+                                                        Command="{Binding Path=DataContext.PreviewCommand, 
+                                    RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                                        Style="{DynamicResource DeleteButton}" >
+                                    <Button.ToolTip>
+                                        <TextBlock Text="Delete" />
+                                    </Button.ToolTip>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Header="LOCAL ID" Width="0.18*" CanUserSort="True" SortMemberPath="Title">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock x:Name="txtTitle"  Margin="6" TextWrapping="Wrap"  Text="{Binding Hospital.DatasetHospitalId}" TextTrimming="CharacterEllipsis" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="HOSPITAL NAME" Width="0.30*" CanUserSort="True" SortMemberPath="Title">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock x:Name="txtTitle"  Margin="6" TextWrapping="Wrap"  Text="{Binding Hospital.Name}" TextTrimming="CharacterEllipsis" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="CATEGORY" Width="0.30*"  CanUserSort="True" SortMemberPath="Name">
+                        
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Categories}"  TextWrapping="Wrap"/>
+                                </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="REGION" Width="0.30*" CanUserSort="True" SortMemberPath="Name">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ComboBox ItemsSource="{Binding HospitalDataService.RegionViewModels, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name" 
+                                          SelectedValue="{Binding SelectedRegionViewModel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="CMS PROVIDER" Width="0.30*" CanUserSort="True" SortMemberPath="Name">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ComboBox ItemsSource="{Binding CmsCollection.CmsViewModels, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name"
+                                          SelectedValue="{Binding CmsCollection.SelectedCMS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                          />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </Grid>
+        <!-- ASSIGN CATEHORIES POPUP -->
+        <Popup x:Name="TopicsPopup"
+            IsOpen="{Binding IsCategoryEditOpen}" 
+            Panel.ZIndex="100"  
+            Placement="Center" AllowsTransparency="True" >
+            <Border BorderThickness="0" Background="#49AFAFAF" Height="{Binding ActualHeight, ElementName=UserControl}" Width="{Binding ActualWidth, ElementName=UserControl}">
+                <Border Background="{DynamicResource White}" BorderBrush="{DynamicResource MBlue}" BorderThickness="2" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="450" Height="400">
+                    <i:Interaction.Behaviors>
+                        <ei:MouseDragElementBehavior ConstrainToParentBounds="True"/>
+                    </i:Interaction.Behaviors>
+                    <Grid Margin="-2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="48.5"/>
+                            <RowDefinition/>
+                            <RowDefinition Height="61.856"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Margin="20,10" TextWrapping="Wrap" Text="Choose Categories to be assigned to selected hospitals" 
+                                   Style="{DynamicResource Subtopic}" VerticalAlignment="Center" FontSize="13.333"/>
+                        <Border BorderBrush="{DynamicResource MGrey3}"  BorderThickness="1" Margin="20,0" Grid.Row="1" Background="{DynamicResource MGrey1}">
+                            <ScrollViewer MaxHeight="300" Margin="0" d:LayoutOverrides="Height">
+
+                                <ItemsControl ItemsSource="{Binding HospitalCategoryViewModels}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel>
+                                                <Border x:Name="topicBorder" Padding="5,7,5,7" BorderThickness="0,0,0,1" Background="{DynamicResource MGrey1}">
+                                                    <CheckBox x:Name="chkTopic" 
+                										IsChecked="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                										Content="{Binding Name}" 
+                										Foreground="{DynamicResource MGrey5}" />
+                                                </Border>
+                                              </StackPanel>
+                                            <DataTemplate.Triggers>
+                                                <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                                    <Setter Property="Background" TargetName="topicBorder" Value="{DynamicResource MBlue}" />
+                                                    <Setter Property="Foreground" TargetName="chkTopic" Value="White" />
+                                                </DataTrigger>
+                                            </DataTemplate.Triggers>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </ScrollViewer>
+                        </Border>
+
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Orientation="Horizontal" >
+                            <Button Command="{Binding AssignCategoriesCommand}" CommandParameter="Cancel" Margin="0,0,20,0" Background="{DynamicResource MPink}" BorderBrush="{x:Null}"  Content="Cancel"  Width="70" Height="36"/>
+                            <Button Command="{Binding CommitCategoryAssigment}" CommandParameter="Save" Background="{DynamicResource MDGreen}" Foreground="White"  
+                                    BorderBrush="{x:Null}"  Content="Save"   Width="70" Height="36"/>
+                        </StackPanel>
+                    </Grid>
+
+                </Border>
+            </Border>
+        </Popup>
+    </Grid>
+</UserControl>

@@ -1,0 +1,172 @@
+/* Banner
+---------------------------------------- */
+.banner {
+  height: 300px;
+  max-width: 1080px;
+  background-image: url('../../base/assets/Healthcare_Providers.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 20px;
+  border-left: 1px solid #ddd;
+  border-bottom: 1px solid #BABDC0;
+}
+
+.banner .title-wrapper {
+  max-width: 700px;
+  display: table-cell;
+}
+
+.banner .title {
+  font-size: 50px;
+  position: relative;
+  background: rgba(255, 255, 255, .85);
+  padding: 6px;
+}
+
+.lt-ie9 .banner .title {
+  display: block;
+  background: none;
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#d8ffffff,endColorstr=#d8ffffff);
+  zoom: 1;
+}
+
+
+/* Search Form
+---------------------------------------- */
+.search-form {
+  background: #A0D2EC; /* #E3EBE3; #90C5DF;*/
+  padding: 20px;
+  margin-top: 20px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+
+.search-form.home {
+  margin-top: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+
+  -webkit-border-bottom-right-radius: 10px;
+  -webkit-border-bottom-left-radius: 10px;
+  -moz-border-radius-bottomright: 10px;
+  -moz-border-radius-bottomleft: 10px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.show_search-form,
+.hide_search-form {
+  display: block;
+  cursor: pointer;
+}
+
+/* Search Form Navigation
+---------------------------------------- */
+.search-form-nav {
+  padding: 0 0 0 10px; /* Disable Gutter */
+}
+
+.search-form-nav li {
+  list-style: none;
+}
+
+.search-form-nav li a,
+.search-form-nav li a:link,
+.search-form-nav li a:visited {
+  display: block;
+  background: #F8ED98;
+  padding: 8px 10px;
+  border-bottom: 1px solid #BABDC0;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.search-form-nav.small li a,
+.search-form-nav.small li a:link,
+.search-form-nav.small li a:visited {
+  display: block;
+  background: #F8ED98;
+  padding: 7px 10px 5px 10px;
+  border-bottom: 1px solid #BABDC0;
+  text-decoration: none;
+  font-size: 12px;
+}
+
+.search-form-nav li.first a {
+  border-top-left-radius: 10px;
+}
+
+.search-form-nav li.last a {
+  border-bottom-left-radius: 10px;
+}
+
+.search-form-nav li.selected a,
+.search-form-nav.small li.selected a {
+  background: #fff;
+  font-weight: bold;
+  color: #555;
+}
+
+/* Side Search
+---------------------------------------- */
+.side-search {
+  padding: 0;
+}
+
+.side-search .li-section-title {
+  padding: 15px 0 10px 10px;
+}
+
+.side-search li.item {
+  display: block;
+  background: #F8ED98;
+  border-left: 1px solid #BABDC0;
+  border-bottom: 1px solid #BABDC0;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.side-search li.item.first {
+  border-top-left-radius: 10px;
+  border-top: 1px solid #BABDC0;
+}
+
+.side-search li.item.last {
+  border-bottom-left-radius: 10px;
+}
+
+.side-search li.item.selected {
+  background: #fff;
+  position: relative;
+  left: 1px;
+  z-index: 1000;
+}
+
+.side-search li.item .title a,
+.side-search li.item .title a:link,
+.side-search li.item .title a:visited {
+  display: block;
+  text-decoration: none;
+  padding: 8px 10px;
+}
+
+.side-search li.item.selected .title a,
+.side-search li.item.selected .title a:link,
+.side-search li.item.selected .title a:visited {
+  color: #555;
+  font-weight: bold;
+}
+
+.side-search li.item .select-menu {
+  padding: 0 10px 10px 10px;
+}
+.side-search ul.ui-autocomplete li a {
+    color: #333333;
+}
+.side-search ul.ui-autocomplete li.ui-menu-item:hover a,
+.side-search ul.ui-autocomplete li.ui-state-focus {
+    font-weight: normal;
+}

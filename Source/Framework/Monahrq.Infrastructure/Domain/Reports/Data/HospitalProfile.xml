@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ReportManifest 
+  RptId="7AF51434-5745-4538-B972-193F58E737D7"
+  Name="Hospital Profile Report"
+  Category="Quality"
+  IsTrending="false" 
+  ConsumerPreviewImage="ConsumerHospitalProfile.png"
+  PreviewImage="HospitalProfile.png"
+  ShowInterpretationText="true">
+	<Audiences>
+		<Audience AudienceType="Consumers" />
+		<Audience AudienceType="Professionals" />
+	</Audiences>
+	<Datasets>
+		<Dataset Name="Hospital Compare Data"/>
+		<Dataset Name="Inpatient Discharge"/>
+		<Dataset Name="Medicare Provider Charge Data"/>
+		<Dataset Name="AHRQ-QI Composite Data"/>
+		<Dataset Name="AHRQ-QI Provider Data"/>
+	</Datasets>
+	<Filters>
+		<Filter Type="Display">
+			<Values>
+				<!--<FilterValue Name="All Payer Cost" />-->
+				<FilterValue Name="Basic Descriptive Data" />
+				<FilterValue Name="Cost and Charge Data (All Patients)" IsRadioButton="true" RadioGroupName="CostChargeDataGroup" Value="false" />
+				<FilterValue Name="Cost and Charge Data (Medicare)" IsRadioButton="true" RadioGroupName="CostChargeDataGroup" />
+				<FilterValue Name="Map" />
+				<FilterValue Name="Overall Patient Experience Ratings" />
+			</Values>
+		</Filter>
+	</Filters>
+	<Columns>
+	</Columns>
+	<ReportAttributes>
+		Display
+	</ReportAttributes>
+	<InterpretationText>
+		<![CDATA[<p><b>Quality Rating:</b> Includes hospital ratings for measures grouped by condition and topic. Ratings can be viewed at the national and state level. Click on the topics to expand and view measures.</p><p>Quality ratings are based on specific quality indicators. A quality indicator is a piece of information, usually a number, that shows how often patients had a particular experience when they received medical care. These experiences reflect a particular aspect of hospital quality. This report uses three different types of quality indicators.</p><p><b>General Information: </b>Includes information such as beds, phone, hospital type, and services available in the hospital</p>]]>
+	</InterpretationText>
+	<WebsitePages>
+    <WebsitePage>
+      Name="Hospital Profile"
+      Audience="Consumers"
+      Path="app/products/consumer/hospitals/views/profile.html"
+      Url="/hospitals/profile/"
+      UrlRaw="/profile/:id"
+      IsEditable="true">
+      <WebsitePageZones>
+        <WebsitePageZone Name="Header" CodePath=""/>
+        <WebsitePageZone Name="Footer" CodePath=""/>
+      </WebsitePageZones>
+    </WebsitePage>
+		<WebsitePage
+			Name="Hospital Profile - Quality Ratings [Profile]"
+			Audience="Professionals"
+			Path="app/products/professional/quality-ratings/views/profile.html"
+			Url="/quality-ratings/location"
+			UrlRaw="/profile/:id"
+			IsEditable="false">
+			<WebsitePageZones>
+				<WebsitePageZone Name="Header" CodePath="" />
+				<WebsitePageZone Name="Footer" CodePath="" />
+			</WebsitePageZones>
+		</WebsitePage>
+	</WebsitePages>
+</ReportManifest>

@@ -1,0 +1,154 @@
+<main class="location"
+      data-ng-intro-options="IntroOptions"
+      data-ng-intro-onexit="onExit"
+      data-ng-intro-oncomplete="onExit"
+      data-ng-intro-onbeforechange="beforeChangeEvent" 
+      data-ng-intro-method="walkthroughStart">
+
+    <section class="search--refine" role="search">
+        <div class="contain">
+            <div class="search--refine__title-group">
+                <h1 class="search--refine__title">Find hospitals in your area:</h1>
+            </div>
+            <form class="search-form" name="searchForm" novalidate>
+                <div class="search-form__contain" id="serch-form__contain">
+                    <div class="search-form__location">
+                        <label for="search-location">Enter Location:</label>
+                        <input type="text" id="search-location" name="location" placeholder="Enter address, city or zip code" data-ng-model="query.location" required>
+                        <span data-ng-if="searchForm.location.$error.required && showValidationErrors" class="form-error-message" role="alert">Error: Please enter a location</span>
+                    </div>
+                    <span class="search-form__next"></span>
+                    <div class="search-form__distance">
+                        <label for="search-distance">Select Distance Range:</label>
+                        <select id="search-distance" data-ng-class="{selectEmpty: !query.distance}" name="distance" data-ng-model="query.distance" data-ng-options="x as (x + ' Mile(s)') for x in zipDistances track by x" title="Maximum Distance">
+                            <option value="" selected disabled style="display:none;">Choose Maximum Distance</option>
+                        </select>
+                    </div>
+                    <span class="search-form__next"></span>
+                    <div class="search-form__action">
+                        <p data-ng-if="searchStatus === 'COMPLETED'" class="results-updated" role="alert">Results Updated</p>
+                        <button id="updateSearch" class="btn--primary" data-ng-click="updateSearch()">Show Results Below</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+    <div data-mh-cms-zone="'header'" data-mh-cms-zone-report-id="reportId" data-mh-cms-zone-product="'Consumer'"></div>
+    <section class="report" tabindex="-1">
+        <header class="report-header" data-ng-if="searchStatus === 'NOT_STARTED'">
+            <p class="report__no-results">Please enter a search in the form above.</p>
+        </header>
+        <header class="report-header" data-ng-if="searchStatus === 'SEARCHING'">
+            <div class="report-loading">
+                <div data-us-spinner></div>
+                <p>Searching...</p>
+            </div>
+        </header>
+        <header class="report-header--no-results" data-ng-if="searchStatus === 'NO_RESULTS'" role="alert">
+            <p class="report__no-results">Your search did not find any hospitals.</p>
+        </header>
+        <header class="report-header" data-ng-if="searchStatus === 'COMPLETED'">
+            <div class="report-header__compare-against">
+                <fieldset id="compareResultsWrapper">
+                    <legend>Compare Your Results To The:</legend>
+                    <label for="compareTo-national"><input type="radio" name="compareTo" id="compareTo-national" value="national" data-ng-model="query.compareTo">National Average</label>
+                    <label for="compareTo-state"><input type="radio" name="compareTo" id="compareTo-state" value="state" data-ng-model="query.compareTo">State Average</label>
+                </fieldset>
+            </div>
+            <div class="report-header__help">
+                <div data-mh-help-icon="'Help me understand this report'" data-mh-on-click="modalLegend()"></div>
+            </div>
+        </header>
+        <header class="report-header report-header--map" data-ng-if="searchStatus === 'COMPLETED'">
+            <p class="view-multiple-helper-text"><strong>There are {{model.length}} hospitals in your area.</strong><br>Select up to 5 hospitals from the list below to compare hospital ratings.<br>If you want to view ratings for only one hospital, click on the hospital name.</p>
+            <div class="report-header__map">
+                <img class="report-header__map-icon" src="themes/consumer/assets/images/static-map.jpg" alt="">
+                <div class="report-header__content">
+                    <a id="mapResultsLink" href="#" data-ng-click="gotoMap(); $event.preventDefault()">View these results on a map</a>
+                    <p><strong>Hospitals within {{query.distance}} miles of {{query.location}}</strong></p>
+                </div>
+            </div>
+        </header>
+        <div class="report-content" data-ng-if="searchStatus === 'COMPLETED'">
+            <div class="report__sort-by">
+                <label for="sortBy">Sort By:</label>
+                <select id="sortBy" data-ng-model="query.sort" data-ng-options="o.value as o.label for o in sortOptions.hospital" onkeyup="this.blur();this.focus()">
+                    <option value="" disabled>Select to Sort</option>
+                </select>
+            </div>
+            <div class="table-wrapper">
+                <table mh-sticky-table-header="model">
+                    <thead>
+                        <tr>
+                            <th class="compare-check" id="compareBtn">
+                                Select:
+                                <small>(To Compare)</small>
+                                <button class="btn--primary" tabindex="{{getCompareTabIndex()}}" data-ng-class="{disabled: !canCompare()}" data-ng-mouseover="$event.preventDefault(); showCompareHelpModal();" data-ng-click="gotoCompare()">Compare</button>
+                            </th>
+                            <th class="hospital-name">
+                                Hospital Name:
+                            </th>
+                            <th class="hospital-gen-info">General Information:</th>
+                            <th class="patient-recommendation" data-ng-if="!noRating">{{overallMeasureTitle}} <span data-mh-help-icon data-sr-label="overallMeasureTitle" data-mh-on-click="modalMeasure(config.HOSPITAL_OVERALL_ID)"></span></th>
+                        </tr>
+                        <!--<tr class="compare-sticky" sticky>
+                          <td colspan="4">
+                            <span class="compare-sticky-arrow">&nbsp;</span>
+                            <button class="btn--primary" tabindex="{{getCompareTabIndex()}}" data-ng-class="{disabled: !canCompare()}" data-ng-click="gotoCompare()">Compare Your Selected Hospitals</button>
+                          </td>
+                        </tr>-->
+                    </thead>
+                    <tbody>
+                        <tr data-ng-repeat="row in model track by $index" data-ng-init="$last && startWalkthrough();">
+                            <td id="check{{$index}}" class="compare-check"><input data-ng-click="toggleCompare(row.id)" title="Add to Compare" aria-label="Add {{row.name}} to the list of hospitals to compare" type="checkbox"></td>
+                            <td class="hospital">
+                                <a id="hospitalName{{$index}}" class="hospital__name" href="#" data-ui-sref="^.profile({id: row.id})">{{row.name}}</a>
+                                <p class="hospital__location">{{row.city}}, {{row.state}}</p>
+                                <p class="hospital__distance">({{distances[row.id]}} miles)</p>
+                            </td>
+                            <td class="hospital-gen-info">
+                                <dl>
+                                    <dt>Total Beds:</dt>
+                                    <dd>{{row.totalBeds}}</dd>
+                                    <dt>Phone Number:</dt>
+                                    <dd>{{row.phoneNumber | phone}}</dd>
+                                    <dt>Hospital Type:</dt>
+                                    <dd>{{row.hospitalType}}</dd>
+                                    <dt data-ng-show="row.parentOrganizationName">Health Care System:</dt>
+                                    <dd>{{row.parentOrganizationName}}</dd>
+                                </dl>
+                            </td>
+                            <td id="patient-rec{{$index}}" class="patient-recommendation" data-ng-if="!noRating">
+                                <div data-ng-if="query.compareTo == 'national'" data-mh-rating-symbol="row.natRating"></div>
+                                <div data-ng-if="query.compareTo == 'state'" data-mh-rating-symbol="row.peerRating"></div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <footer class="report-footer" data-ng-if="searchStatus === 'NO_RESULTS' || searchStatus === 'COMPLETED'">
+            <div data-ng-if="searchStatus === 'COMPLETED'">
+                <button class="btn--primary" data-ng-class="{disabled: !canCompare()}" data-ng-mouseover="$event.preventDefault(); showCompareHelpModal();" data-ng-click="gotoCompare()">Compare</button>
+                <p class="view-multiple-helper-text"><strong>There are {{model.length}} hospitals in your area.</strong><br>Select up to 5 hospitals from the list above to compare hospital ratings.<br>If you want to view ratings for only one hospital, click on the hospital name.</p>
+            </div>
+            <div class="change-search-area">
+                <label for="search-distance2">Not finding the hospitals you wanted?<br>Try changing your search area:</label>
+                <select id="search-distance2" data-ng-class="{selectEmpty: !query.distance}" name="distance" data-ng-model="query.distance" data-ng-options="x as (x + ' Mile(s)') for x in zipDistances track by x" title="Maximum Distance">
+                    <option value="" selected disabled style="display:none;">Choose Maximum Distance</option>
+                </select>
+                <button data-ng-click="updateSearch()">Update Results</button>
+                <p>Need help with your search? <a href="#" data-ui-sref="top.consumer.about-ratings({page: 'resourceHospitalQuality'})">Find help here</a>.</p>
+            </div>
+            <div data-ng-if="reportSettings.footer" class="report-footnotes" data-ng-bind-html="reportSettings.footer"></div>
+        </footer>
+    </section>
+    <div data-mh-cms-zone="'footer'" data-mh-cms-zone-report-id="reportId" data-mh-cms-zone-product="'Consumer'"></div>
+    <section class="compare-condition-banner" id="condition-menu" tabindex="-1">
+        <div class='contain'>
+            <h2 class='compare-condition-banner__title'>Compare hospitals by health condition or health-related topic</h2>
+            <p class='compare-condition-banner__subtitle'>Want to know how well hospitals in your area provide care for a certain health condition or health-related topic?</p>
+            <button data-ui-sref="top.consumer.hospitals.health-topics">Browse Health Topics</button>
+        </div>
+    </section>
+</main>

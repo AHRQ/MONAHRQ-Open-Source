@@ -1,0 +1,103 @@
+// ------------------------------------------------------------------- //
+//  Header
+// ------------------------------------------------------------------- //
+//  Notification bar
+
+.site-notification-bar {
+  height: 35px;
+  margin: 0; // Overwrite professional negative margins
+  background: $brand-grey;
+  font-size: $micro-size;
+
+  .contain {
+    position: relative;
+    height: 35px;
+    padding: 9px 0;
+    text-align: center;
+  }
+
+  p {
+    margin-bottom: 0;
+  }
+
+  a {
+    font-weight: 600;
+  }
+
+  p + a {
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: $base-font-color;
+    font-size: 22px;
+    text-decoration: none;
+  }
+}
+
+
+
+// ------------------------------------------------------------------- //
+//  Main header
+
+.site-header {
+  background: #fff;
+
+  .contain {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 150px;
+  }
+}
+
+.provider-logo img {
+  max-width: 300px;
+  max-height: 100px;
+}
+
+// Larger header on home page
+&.front .site-header .contain {
+  justify-content: space-around;
+}
+
+// IE Home Header
+&.front.lt-ieEdge .site-header .contain {
+  height: auto;
+  text-align: center;
+
+  .site-header__nav {
+    display: none;
+  }
+}
+
+
+
+// ------------------------------------------------------------------- //
+//  Header interior nav
+
+.site-header__nav {
+  ul {
+    width: auto;
+  }
+
+  li {
+    display: inline-block;
+    width: auto;
+    margin-left: 5px;
+  }
+}
+
+// Hide secondary nav on home
+&.front .site-header__nav {
+  display: none;
+}
+
+
+
+// ------------------------------------------------------------------- //
+//  Main nav
+
+// Pull content up behind nav
+.navigation + .page {
+  margin-top: -35px;
+}

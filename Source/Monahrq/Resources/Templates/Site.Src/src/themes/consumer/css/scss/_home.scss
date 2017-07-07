@@ -1,0 +1,204 @@
+// -------------------------------------------------------------------- //
+//  Home
+// -------------------------------------------------------------------- //
+
+.consumer-info-provider {
+  padding: 75px 0;
+  text-align: center;
+
+  .info-provider__title {
+    margin-bottom: 25px;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  p {
+    max-width: 850px;
+    margin: 0 auto;
+    font-size: 22px;
+  }
+}
+
+
+// -------------------------------------------------------------------- //
+//  Questions
+
+.consumer-questions {
+  @include clearfix;
+  padding: 75px 0;
+  background-color: #ededed;
+
+  aside {
+    float: right;
+    width: 445px;
+
+    img {
+      margin-bottom: 20px;
+    }
+
+    figcaption {
+      margin-top: 10px;
+      color: #808285;
+      font-size: 17px;
+      font-weight: 300;
+    }
+  }
+
+  .text-link {
+    display: block;
+    margin-top: 30px;
+  }
+}
+
+.consumer-question {
+  width: 500px;
+  font-size: 18px;
+
+  &:first-of-type {
+    margin-bottom: 45px;
+    padding-bottom: 35px;
+    border-bottom: 1px solid $base-border-color;
+  }
+}
+
+.consumer-question__title {
+  margin-bottom: 30px;
+  color: #444;
+  font-size: 27px;
+  font-weight: 700;
+}
+
+
+// -------------------------------------------------------------------- //
+//  Banner
+
+.consumer-banner--home {
+  position: relative;
+  min-height: 270px;
+  padding: 150px 0 30px;
+  background-image: url("../assets/images/better_decisions.jpg");
+  background-size: cover;
+  background-position: center top;
+  color: #fff;
+
+  .contain:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(#333, .7);
+  }
+}
+
+.consumer-banner__title {
+  position: relative;
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.consumer-banner__subtitle {
+  position: relative;
+  max-width: 650px;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+
+// -------------------------------------------------------------------- //
+//  Benefits
+
+.consumer-benefits {
+  @include clearfix;
+  padding: 50px 0 75px;
+
+  .consumer-benefits__title {
+    margin-bottom: 30px;
+    color: #444;
+    font-size: 27px;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  .consumer-benefits__use-cases {
+    float: left;
+    width: 50%;
+    margin-right: 5%;
+    padding-top: 20px;
+  }
+
+  aside {
+    float: right;
+    width: 45%;
+    margin-bottom: 60px;
+    padding: 40px 45px;
+    background-color: #ededed;
+    border-radius: 5px;
+    font-size: 16px;
+
+    .use-site__title {
+      margin-bottom: 15px;
+      font-size: 22px;
+      font-weight: 600;
+    }
+
+    ul {
+      margin-left: -.8em;
+    }
+
+    li {
+      padding-left: 1em;
+      text-indent: -.8em;
+
+      &::before {
+        content: ">";
+        margin-right: 5px;
+        font-size: 1.5em;
+        line-height: 1;
+        opacity: .5;
+      }
+    }
+
+    ul ul {
+      margin-top: 15px;
+      margin-left: 0;
+      font-size: 14px;
+    }
+  }
+
+  .btn--secondary {
+    clear: both;
+    display: block;
+    width: 280px;
+    margin: 0 auto;
+    padding: 10px;
+    font-size: 16px;
+    text-align: center;
+
+    &:after {
+      content: "";
+      display: inline-block;
+      width: 13px;
+      height: 12px;
+      margin-left: 10px;
+      background-image: url("../assets/images/monahrq-sprite.png");
+      background-position: -119px -13px;
+    }
+  }
+}
+
+.use-case {
+  margin-top: 0;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.3;
+
+  + p {
+    margin-bottom: 30px;
+  }
+}

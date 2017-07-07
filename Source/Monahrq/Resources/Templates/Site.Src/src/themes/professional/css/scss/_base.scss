@@ -1,0 +1,232 @@
+/* Body
+---------------------------------------- */
+body {
+  font-family: 'Droid Sans', Arial, sans-serif;
+  background: #eee;
+  color: #3E464C;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Droid Sans', Arial, sans-serif;
+}
+
+/* Wrapper
+---------------------------------------- */
+.wrapper {
+  width: 1142px;
+  margin: 20px auto;
+  background: #fff;
+  border: 1px solid #CACED1;
+  -moz-box-shadow: 0 1px 5px #DDD;
+  -webkit-box-shadow: 0 1px 5px #DDD;
+  box-shadow: 0 1px 5px #DDD;
+}
+
+/* Container
+---------------------------------------- */
+.container {
+  max-width: none !important;
+  /* Disable Responsiveness */
+  width: 1140px;
+  padding: 0 30px;
+}
+
+/* Bootstrap Overrides
+---------------------------------------- */
+.nav,
+.pagination,
+.carousel a,
+input,
+label,
+a,
+select,
+.list-group-item {
+  cursor: pointer;
+}
+
+a,
+a:link,
+a:visited {
+  color: #2d69a4;
+  text-decoration: underline;
+}
+
+ul {
+  padding-left: 0;
+  margin-left: 25px;
+}
+
+label {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+}
+
+.list-group.sidebar .list-group-item.active {
+  background: #2d69a4;
+  text-decoration: none;
+  text-shadow: none;
+  border: none;
+}
+
+.table {
+  margin-bottom: 0;
+}
+
+.table-bordered>thead>tr>th,
+.table-bordered>thead>tr>td {
+  border-width: 1px;
+}
+
+.table-bordered .no-border th,
+.table-bordered .no-border td {
+  border: none;
+}
+
+.table-bordered th.left-border {
+  border-left: 1px solid #ddd;
+}
+
+.table-bordered th.center {
+  text-align: center;
+}
+
+label.md-blockfix {
+  display: block;
+}
+
+.glyphicon {
+  margin-right: 2px;
+  margin-left: 2px;
+  padding: 0;
+}
+
+/* Help Icons
+---------------------------------------- */
+.help-icon a,
+.help-icon a:link,
+.help-icon a:visited {
+  font-size: 17px;
+  color: #ddd;
+  text-decoration: none;
+}
+
+.help-icon-contain:hover .help-icon a {
+  color: #111;
+}
+
+.dark .help-icon a,
+.dark .help-icon a:link,
+.dark .help-icon a:visited {
+  color: #777;
+}
+
+/* Page
+---------------------------------------- */
+.page {
+  padding-bottom: 20px;
+}
+
+.page-content {
+  padding: 20px;
+}
+
+.page-header {
+  margin: 30px 0 0;
+  border-bottom: none;
+  padding-bottom: 20px;
+}
+
+.page-header.border {
+  border-bottom: 1px solid #ddd;
+}
+
+/* Select
+---------------------------------------- */
+select {
+  width: 100%;
+}
+
+.selectEmpty {
+  color: gray;
+}
+
+#modal-header-title {
+  font-size: 18px;
+}
+
+/* Modal Override
+---------------------------------------- */
+.modal-content a {
+  word-wrap: break-word;
+}
+
+.no--shadow {
+  box-shadow: none;
+}
+
+.sticky-wrap {
+  overflow-x: auto;
+  overflow-y: hidden;
+  position: relative;
+  margin: 3em 0;
+  width: 100%;
+
+  table {
+    max-width: auto;
+  }
+}
+
+.sticky-wrap .sticky-thead,
+.sticky-wrap .sticky-col,
+.sticky-wrap .sticky-intersect {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  // left: 0;
+  transition: all .125s ease-in-out;
+  z-index: 50;
+  width: auto;/* Prevent table from stretching to full size */
+
+  td,
+  th {
+    background-color: #eee;
+  }
+}
+
+.sticky-wrap .sticky-thead {
+  box-shadow: 0 .25em .1em -0.1em rgba(0,0,0,.125);
+  z-index: 100;
+  width: 100%; /* Force stretch */
+
+  .lt-ieEdge & {
+    left: auto !important;
+    right: auto !important;
+  }
+}
+
+.sticky-wrap .sticky-intersect {
+  opacity: 1;
+  z-index: 150;
+}
+
+.sticky-wrap .sticky-intersect th {
+  background-color: #666;
+  color: #eee;
+}
+
+.sticky-wrap td,
+.sticky-wrap th {
+  // box-sizing: border-box;
+  padding: 10px;
+}
+
+.sticky-wrap.overflow-y {
+  overflow-y: auto;
+  max-height: 50vh;
+}

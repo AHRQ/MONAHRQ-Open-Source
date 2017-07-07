@@ -1,0 +1,16 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Monahrq.Theme;component/AppResources.xaml"/>
+        <ResourceDictionary Source="/Monahrq.Theme;component/MetroWindowResources.xaml"/>
+        <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Fonts.xaml"/>
+        <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Controls.Tooltip.xaml"/>
+        <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Controls.Buttons.xaml"/>
+        <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Styles.xaml"/>
+        <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.Buttons.xaml"/>
+        <ResourceDictionary Source="/Monahrq.Theme;component/Images/Images.xaml"/>
+        <ResourceDictionary Source="/Monahrq.Theme;component/Styles/ModernFrame.xaml"/>
+        <ResourceDictionary Source="/Monahrq.Theme;component/Styles/ModernTab.xaml"/>
+        <ResourceDictionary Source="/Monahrq.Theme;component/Styles/TransitioningContentControl.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>

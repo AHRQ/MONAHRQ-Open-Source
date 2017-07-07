@@ -1,0 +1,172 @@
+<?xml version="1.0"?>
+<SqlWorkbenchSqlProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="HospitalCompare">
+  <Items>
+    <LogicalFolder Name="Connections" Type="2" Sorted="true">
+      <Items>
+        <ConnectionNode Name="(local):BLUELIGHTNING\BLNAdmin">
+          <Created>2014-11-19T14:42:11.8701059-05:00</Created>
+          <Type>SQL</Type>
+          <Server>(local)</Server>
+          <UserName />
+          <Authentication>Windows Authentication</Authentication>
+          <InitialDB />
+          <LoginTimeout>15</LoginTimeout>
+          <ExecutionTimeout>0</ExecutionTimeout>
+          <ConnectionProtocol>NotSpecified</ConnectionProtocol>
+          <ApplicationName>Microsoft SQL Server Management Studio - Query</ApplicationName>
+        </ConnectionNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Queries" Type="0" Sorted="true">
+      <Items>
+        <FileNode Name="Sproc-spQualityGetDataByHospital.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Sproc-spQualityGetDataByHospital.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Sproc-spQualityGetDataByMeasure.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Sproc-spQualityGetDataByMeasure.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Sproc-spQualityGetHospitalCompareMeasures.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Sproc-spQualityGetHospitalCompareMeasures.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Sproc-spQualityGetMeasure.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Sproc-spQualityGetMeasure.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Sproc-spQualityGetMeasureTopicCategories.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Sproc-spQualityGetMeasureTopicCategories.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Sproc-spQualityGetMeasureTopics.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Sproc-spQualityGetMeasureTopics.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Sproc-spQualityGetQIMeasures.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Sproc-spQualityGetQIMeasures.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Sproc-spQualityInitializeHCBinary.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Sproc-spQualityInitializeHCBinary.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Sproc-spQualityInitializeHCCategorical.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Sproc-spQualityInitializeHCCategorical.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Sproc-spQualityInitializeHCOutcome.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Sproc-spQualityInitializeHCOutcome.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Sproc-spQualityInitializeHCProcess.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Sproc-spQualityInitializeHCProcess.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Sproc-spQualityInitializeHCRatio.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Sproc-spQualityInitializeHCRatio.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Sproc-spQualityInitializeHCScale.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Sproc-spQualityInitializeHCScale.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Sproc-spQualityInitializeHCYNM.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Sproc-spQualityInitializeHCYNM.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Sproc-spQualityInitializeQIComposite.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Sproc-spQualityInitializeQIComposite.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Sproc-spQualityInitializeQIProvider.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Sproc-spQualityInitializeQIProvider.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Sproc-spQualityInitializeQIProviderMCMC.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Sproc-spQualityInitializeQIProviderMCMC.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Sproc-spQualityInitializeQIVolume.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Sproc-spQualityInitializeQIVolume.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Table-Temp_Quality.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Table-Temp_Quality.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Table-Temp_Quality_Measures.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Table-Temp_Quality_Measures.sql</FullPath>
+        </FileNode>
+        <FileNode Name="UDF-fnQualityBarChartPercentage.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>UDF-fnQualityBarChartPercentage.sql</FullPath>
+        </FileNode>
+        <FileNode Name="UDF-fnQualityBullets.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>UDF-fnQualityBullets.sql</FullPath>
+        </FileNode>
+        <FileNode Name="UDF-fnQualityScaleByFootnote.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>UDF-fnQualityScaleByFootnote.sql</FullPath>
+        </FileNode>
+        <FileNode Name="UDF-fnQualitySelectedMeasureTitle.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>UDF-fnQualitySelectedMeasureTitle.sql</FullPath>
+        </FileNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Miscellaneous" Type="3" Sorted="true">
+      <Items />
+    </LogicalFolder>
+  </Items>
+</SqlWorkbenchSqlProject>

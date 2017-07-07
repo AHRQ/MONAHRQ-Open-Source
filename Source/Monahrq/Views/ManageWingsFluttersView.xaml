@@ -1,0 +1,439 @@
+﻿<UserControl x:Class="Monahrq.Views.ManageWingsFluttersView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:converters="clr-namespace:Monahrq.Theme.Converters;assembly=Monahrq.Theme"
+			 xmlns:mtx="http://schemas.monahrq.com/theme/xaml"
+             xmlns:controls="clr-namespace:Monahrq.Theme.Controls;assembly=Monahrq.Theme"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+	         xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+             xmlns:mahControls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             mc:Ignorable="d" d:DesignWidth="1012" d:DesignHeight="500" 
+             d:DataContext="{d:DesignData /SampleData/ManageWingFluttersViewModelSampleData1.xaml}">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.Buttons.xaml"/>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.DataGrid.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <!--<SolidColorBrush x:Key="MGrey4" Color="Gray"/>
+            <SolidColorBrush x:Key="MGrey5" Color="#FF626262"/>-->
+            <mtx:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+            <converters:InvertedBooleanConverter x:Key="InvertedBooleanConverter"/>
+            <!--<converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />-->
+            <converters:BooleanToStringConverter x:Key="BooleanToStringConverter" />
+            <Style x:Key="WingsFluttersButtonStyle" TargetType="Button">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding IsWingsView}" Value="true">
+                        <Setter Property="Content" Value="INSTALL NEW WING" />
+                        <Setter Property="Command" Value="{Binding ShowInstallWingPopUpCommand}" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding IsFluttersView}" Value="true">
+                        <Setter Property="Content" Value="INSTALL NEW FLUTTER" />
+                        <Setter Property="Command" Value="{Binding ShowInstallFlutterPopUpCommand}" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid  Background="{StaticResource MGrey1}">
+        <DockPanel>
+            <Grid Margin="15" DockPanel.Dock="Left">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60" /> <!--Header-->
+                    <RowDefinition Height="*" />  <!--Body-->
+                    <RowDefinition Height="60" /> <!--Footer-->
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Text="Manage Wings &amp; Flutters" Style="{StaticResource Header1}"  />
+                <!--Header-->
+
+                <!--Body-->
+                <Button x:Name="InstallButton" Grid.Row="1" Panel.ZIndex="2" CommandParameter="true" Style="{StaticResource WingsFluttersButtonStyle}" FontSize="12"
+                            MinWidth="100" Height="30" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,3,8,5" Padding="4,0,4,0" BorderThickness="0"
+                            Background="{StaticResource MDGreen}" Foreground="{StaticResource White}" >
+                </Button>
+                <TextBlock Grid.Row="1" Panel.ZIndex="1" Foreground="{StaticResource MGrey5}" 
+                           Visibility="{Binding IsWingsView, Converter={StaticResource BooleanToStringConverter}, ConverterParameter=Visible|Collapsed}"
+                           FontSize="14" Padding="0, 8, 0, 8"  VerticalAlignment="Top" HorizontalAlignment="Center">
+                        Insert a new open source Wing and/or manage already installed Wings.
+                </TextBlock>
+                <TextBlock Grid.Row="1" Panel.ZIndex="1" Foreground="{StaticResource MGrey5}" 
+                           Visibility="{Binding IsWingsView, Converter={StaticResource BooleanToStringConverter}, ConverterParameter=Collapsed|Visible}"
+                           FontSize="14" Padding="0, 8, 0, 8"  VerticalAlignment="Top" HorizontalAlignment="Center">
+                        Insert a new open source Flutter and/or manage already installed Flutters.
+                </TextBlock>
+                <!--<Grid  Grid.Row="1" Panel.ZIndex="1" VerticalAlignment="Stretch" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" /> --><!--Wings and Flutters tabs--><!--
+                    </Grid.RowDefinitions>-->
+
+                    <!--<StackPanel Grid.Row="1" Panel.ZIndex="1">-->
+                    <Border Grid.Row="1" Panel.ZIndex="1" Margin="4" Background="Transparent" >
+                            <TabControl  SelectedIndex="{Binding CurrentTabIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                        Style="{DynamicResource TabControlStyleLeft}"  VerticalAlignment="Stretch">
+                                <!--WING Datagrid-->
+                                <TabItem Header="Wings" Style="{StaticResource TabItemStyleLeft}" >
+                                    <Grid Background="{StaticResource MGrey2}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="72*"/>
+                                            <ColumnDefinition Width="9*"/>
+                                            <ColumnDefinition Width="887*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Border BorderBrush="{StaticResource MBlue}" BorderThickness="0,1" Grid.ColumnSpan="3" Margin="0,0,0,0">
+
+                                    <DataGrid  VerticalAlignment="Stretch"
+                                                ItemsSource="{Binding WingItems}" BorderBrush="{DynamicResource MGrey2}" 
+                                                HorizontalGridLinesBrush="{DynamicResource MGrey2}" VerticalGridLinesBrush="{DynamicResource MGrey2}" 
+                                                Foreground="{DynamicResource MGrey5}" Background="{DynamicResource White}" 
+                                                Margin="15,30,15,15"  AutoGenerateColumns="False" CanUserAddRows="False" 
+                                                CanUserDeleteRows="False" ColumnHeaderHeight="40" CanUserResizeRows="False" HeadersVisibility="Column" 
+						                        AlternationCount="2" SelectedItem="{Binding SelectedWingItem}"
+                                                SelectionMode="Single">
+
+                                        <DataGrid.Columns>
+                                                    <!-- BUTTONS -->
+                                                    <DataGridTemplateColumn Header=""  CanUserSort="False">
+                                                        <DataGridTemplateColumn.CellTemplate>
+                                                            <DataTemplate>
+                                                                <StackPanel Orientation="Horizontal">
+                                                                    <!--ENABLE
+                                                                    <Button Command="{Binding DataContext.EnableWingCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" CommandParameter="{Binding}"
+                                                                    Visibility="Collapsed"
+                                                                    VerticalAlignment="Top"  Margin="5" Height="22" Width="22"
+                                                                    Style="{StaticResource EditButton}" >
+                                                                        <Button.ToolTip>
+                                                                            <TextBlock Text="Enable" />
+                                                                        </Button.ToolTip>
+                                                                    </Button>-->
+
+                                                                    <!--DISABLE
+                                                                    <Button Command="{Binding DataContext.DisableWingCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" CommandParameter="{Binding}" 
+                                                                    Visibility="Collapsed"
+                                                                    VerticalAlignment="Top"  Margin="5" Height="22" Width="22"
+                                                                    Style="{StaticResource EditButton}" >
+                                                                        <Button.ToolTip>
+                                                                            <TextBlock Text="Disable" />
+                                                                        </Button.ToolTip>
+                                                                    </Button>-->
+                                                            <!--DOWNLOAD TEMPLATE-->
+                                                            <Button Command="{Binding DataContext.DownloadTemplateCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" CommandParameter="{Binding}"
+                                                                    VerticalAlignment="Top" Margin="5" Height="22" Width="22" IsEnabled="{Binding HasAssociatedTemplate}"
+                                                                    Style="{StaticResource DownloadButton}" >
+                                                                <Button.ToolTip>
+                                                                    <TextBlock Text="Download dataset template" />
+                                                                </Button.ToolTip>
+                                                            </Button>
+                                                           
+                                                            <!--UNINSTALL-->
+                                                            <Button Command="{Binding DataContext.UninstallWingCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" CommandParameter="{Binding}"
+                                                            VerticalAlignment="Top"  Margin="5" Height="22" Width="22"
+                                                            Style="{StaticResource DeleteButton}" >
+                                                                <Button.ToolTip>
+                                                                    <TextBlock Text="Uninstall" />
+                                                                </Button.ToolTip>
+                                                            </Button>
+
+                                                        </StackPanel>
+                                                            </DataTemplate>
+                                                        </DataGridTemplateColumn.CellTemplate>
+                                                    </DataGridTemplateColumn>
+                                                    <!-- END BUTTONS -->
+
+                                                    <DataGridTemplateColumn Header="Display Name" Width="0.16*"  CanUserSort="True" SortMemberPath="DisplayName">
+                                                        <DataGridTemplateColumn.CellTemplate>
+                                                            <DataTemplate>
+                                                                <TextBlock Margin="4"  TextWrapping="Wrap"  Text="{Binding DisplayName}" TextTrimming="CharacterEllipsis" />
+                                                            </DataTemplate>
+                                                        </DataGridTemplateColumn.CellTemplate>
+                                                    </DataGridTemplateColumn>
+
+                                                    <DataGridTemplateColumn Header="Publisher" Width="0.10*"  CanUserSort="True" SortMemberPath="Publisher">
+                                                        <DataGridTemplateColumn.CellTemplate>
+                                                            <DataTemplate>
+                                                                <TextBlock Margin="4"   Text="{Binding Publisher}" TextTrimming="CharacterEllipsis" />
+                                                            </DataTemplate>
+                                                        </DataGridTemplateColumn.CellTemplate>
+                                                    </DataGridTemplateColumn>
+
+                                                    <DataGridTemplateColumn Header="Publisher Email" Width="0.10*"  CanUserSort="True" SortMemberPath="PublisherEmail">
+                                                        <DataGridTemplateColumn.CellTemplate>
+                                                            <DataTemplate>
+                                                                <TextBlock Margin="4"   Text="{Binding PublisherEmail}" TextTrimming="CharacterEllipsis" />
+                                                            </DataTemplate>
+                                                        </DataGridTemplateColumn.CellTemplate>
+                                                    </DataGridTemplateColumn>
+
+                                                    <DataGridTemplateColumn Header="Publisher Website" Width="0.10*"  CanUserSort="True" SortMemberPath="PublisherWebsite">
+                                                        <DataGridTemplateColumn.CellTemplate>
+                                                            <DataTemplate>
+                                                                <TextBlock Margin="4"  Text="{Binding PublisherWebsite}" TextTrimming="CharacterEllipsis" />
+                                                            </DataTemplate>
+                                                        </DataGridTemplateColumn.CellTemplate>
+                                                    </DataGridTemplateColumn>
+
+
+
+                                                </DataGrid.Columns>
+                                            </DataGrid>
+
+                                        </Border>
+                                    </Grid>
+                                </TabItem>
+                                <!--FLUTTER Datagrid-->
+                        <TabItem Header="Flutters" Style="{StaticResource TabItemStyleLeft}" >
+                            <Grid Background="{StaticResource MGrey2}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="72*"/>
+                                    <ColumnDefinition Width="9*"/>
+                                    <ColumnDefinition Width="887*"/>
+                                </Grid.ColumnDefinitions>
+                                <Border BorderBrush="{StaticResource MBlue}" BorderThickness="0,1" Grid.ColumnSpan="3" Margin="0,0,0,0">
+
+                                    <DataGrid  VerticalAlignment="Stretch"
+                                                ItemsSource="{Binding FlutterItems}" BorderBrush="{DynamicResource MGrey2}" 
+                                                HorizontalGridLinesBrush="{DynamicResource MGrey2}" VerticalGridLinesBrush="{DynamicResource MGrey2}" 
+                                                Foreground="{DynamicResource MGrey5}" Background="{DynamicResource White}" 
+                                                Margin="15,30,15,15"  AutoGenerateColumns="False" CanUserAddRows="False" 
+                                                CanUserDeleteRows="False" ColumnHeaderHeight="40" CanUserResizeRows="False" HeadersVisibility="Column" 
+						                        AlternationCount="2" SelectedItem="{Binding SelectedFlutterItem}"
+                                                SelectionMode="Single">
+
+                                        <DataGrid.Columns>
+                                            <!-- BUTTONS -->
+                                            <DataGridTemplateColumn Header=""  CanUserSort="False" Width="40">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <StackPanel Orientation="Horizontal">
+
+                                                            <!--UNINSTALL-->
+                                                            <Button Command="{Binding DataContext.UninstallFlutterCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" CommandParameter="{Binding}"
+                                                                    VerticalAlignment="Top"  Margin="5" Height="22" Width="22"
+                                                                    Style="{DynamicResource DeleteButton}" >
+                                                                <Button.ToolTip>
+                                                                    <TextBlock Text="Uninstall" />
+                                                                </Button.ToolTip>
+                                                            </Button>
+                                                        </StackPanel>
+
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                            <!-- END BUTTONS -->
+
+                                            <DataGridTemplateColumn Header="Display Name" Width="0.16*"  CanUserSort="True" SortMemberPath="Name">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock Margin="4"  TextWrapping="Wrap"  Text="{Binding Name}" TextTrimming="CharacterEllipsis" />
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+
+                                            <DataGridTemplateColumn Header="Mapped Wing Report Types" Width="0.10*"  CanUserSort="True" SortMemberPath="AssociatedReports">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock Margin="4" Text="{Binding AssociatedReportsTypes}" TextTrimming="CharacterEllipsis" />
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+
+                                            <DataGridTemplateColumn Header="Flutter Location" Width="0.10*"  CanUserSort="True" SortMemberPath="FlutterPath">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock Margin="4"   Text="{Binding InstallPath}" TextTrimming="CharacterEllipsis" />
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+
+                                    <!--<ContentControl x:Name="HospitalsContainer" prism:RegionManager.RegionName="{x:Static mapping:RegionNames.Hospitals}" />-->
+                                </Border>
+                            </Grid>
+                        </TabItem>
+                            </TabControl>
+                        </Border>
+
+                <!--Footer-->
+                <StackPanel Grid.Row="2"  Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,0">
+                    <Button Content="Close" HorizontalAlignment="Right" Margin="0" Width="150" Height="36" Style="{StaticResource PlainButton}"
+                        Background="{StaticResource MDBlue}" VerticalAlignment="Center" Foreground="White" FontSize="16" FontFamily="Segoe UI Semibold"
+                        Command="{Binding CloseCommand}" Visibility="{Binding SaveButtonVisibility}"
+                         IsEnabled="{Binding IsBusy, Converter={StaticResource InvertedBooleanConverter}}" />
+                </StackPanel>
+                <!--End of Footer-->
+            </Grid>
+        </DockPanel>
+
+        <!--INSTALL WING POPUP-->
+        <controls:xPopup MinWidth="400" MaxWidth="600" MaxHeight="450" MinHeight="350"  
+                    Visibility="{Binding WingInstallPopupIsVisible, UpdateSourceTrigger=PropertyChanged
+                    , Converter={StaticResource BooleanToVisibilityConverter}, Mode=TwoWay}" >
+            <Border BorderThickness="1" BorderBrush="{StaticResource MGrey1}" Background="White" Padding="1">
+                <Grid HorizontalAlignment="Stretch">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition MaxWidth="530" MinWidth="400"/>
+                        <ColumnDefinition Width="70"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="40"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Background="{StaticResource MBlue}"
+                          controls:xPopup.IsDraggable="True" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="50"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Install New Open Source Wing" FontWeight="Bold" FontSize="15" Foreground="White" Margin="10,5,0,5" />
+                        <Button Grid.Column="1" Command="{Binding HideInstallWingPopUpCommand}" CommandParameter="false" Content="X" Style="{StaticResource CloseButton}" 
+                                Height="15" Width="20" Margin="0,5,-15,5"/>
+                    </Grid>
+                    <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Orientation="Horizontal" Margin="5,5" >
+                        <TextBox Text="{Binding SelectedWingFile, UpdateSourceTrigger=PropertyChanged}" mahControls:TextboxHelper.ClearTextButton="True" IsReadOnly="True" 
+                                 Margin="0,0,5,0" MinWidth="250" Width="Auto" MaxWidth="330" Height="30" FontSize="13" HorizontalAlignment="Stretch"  
+                                 VerticalContentAlignment="Center" Foreground="{StaticResource MGrey5}"  />
+                        <Button Command="{Binding SelectWingFileCommand}" Content="Browse" Height="30" HorizontalAlignment="Right"/>
+                    </StackPanel>
+                    <Button Grid.Column="1" Grid.Row="1" Command="{Binding InstallWingCommand}" Content="Install" Height="30" HorizontalAlignment="Stretch" Margin="0,0,10,0"/>
+
+                    <Grid Grid.Row="2" Grid.ColumnSpan="2"  Background="{StaticResource MGrey2}" Margin="5,10" >
+                        <ListBox x:Name="InstallLogList" ItemsSource="{Binding StatusLog, UpdateSourceTrigger=PropertyChanged}" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                BorderBrush="{StaticResource MGrey3}" >
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding}" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" Margin="4,1"
+                                    MaxWidth="{Binding ElementName=LogList, Path=InstallLogList}"/>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Grid>
+                    <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"  Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button Content="Close" HorizontalAlignment="Right" Style="{StaticResource PlainButton}" Margin="10,5" Width="100"
+                            Visibility="Collapsed"
+                                IsEnabled="{Binding WingInstalled, Converter={StaticResource InvertedBooleanConverter}}"
+                            Command="{Binding HideInstallWingPopUpCommand}" CommandParameter="false" />
+
+                        <Button Content="OK" HorizontalAlignment="Right" Style="{StaticResource PlainButton}" Margin="10,5" Width="100"
+                            IsEnabled="{Binding WingInstalled}"
+                            Command="{Binding HideInstallWingPopUpCommand}" CommandParameter="false" />
+
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </controls:xPopup>
+
+        <!--UNINSTALL POPUP-->
+        <controls:xPopup MinWidth="400" MaxWidth="600" MaxHeight="450" MinHeight="350"  
+            Visibility="{Binding ProgressPopupVisibility, UpdateSourceTrigger=PropertyChanged
+            , Converter={StaticResource BooleanToVisibilityConverter}, Mode=TwoWay}"   >
+            <Border BorderThickness="2" BorderBrush="{StaticResource MGrey1}" Background="White" Padding="1">
+                <Grid HorizontalAlignment="Stretch"  >
+
+                    <Grid.RowDefinitions >
+                        <RowDefinition Height="30"/> <!--Header-->
+                        <RowDefinition Height="*"/> <!--progress log body-->
+                        <RowDefinition Height="40"/> <!--OK CANCEL Buttons-->
+
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0"  Background="{StaticResource MBlue}" controls:xPopup.IsDraggable="True" >
+                        <TextBlock Text="{Binding UnistallWingName, StringFormat=Uninstall {0} }" FontWeight="Bold" FontSize="15" Foreground="White" Margin="10,5,0,5" />
+                        <Button Grid.Column="1" Command="{Binding CloseProgressPopUpCommand}" Content="X" Style="{StaticResource CloseButton}" 
+                                    Margin="5" Height="15" Width="20"  HorizontalAlignment="Right"/>
+                    </Grid>
+
+
+                    <Grid Grid.Row="1" Background="{StaticResource MGrey2}" Margin="5,10" >
+                        <ListBox x:Name="LogList" ItemsSource="{Binding StatusLog}" BorderBrush="{StaticResource MGrey3}"
+                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                            <ListBox.ItemTemplate >
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding}" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" Margin="4,1"
+                                    MaxWidth="{Binding ElementName=LogList, Path=ActualWidth}"   />
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Grid>
+                    <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"  Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button Content="Cancel" HorizontalAlignment="Right" Style="{StaticResource PlainButton}" Margin="10,5" Width="100"
+                            Visibility="Collapsed"
+                                IsEnabled="{Binding FlutterInstalled, Converter={StaticResource InvertedBooleanConverter}}"
+                            Command="{Binding HideInstallFlutterPopUpCommand}" CommandParameter="false" />
+
+                        <Button Content="OK" HorizontalAlignment="Right" Style="{StaticResource PlainButton}" Margin="10,5" Width="100"
+                            IsEnabled="{Binding UninstallInProgress, Converter={StaticResource InvertedBooleanConverter}}"
+                            Command="{Binding CloseProgressPopUpCommand}" CommandParameter="false" />
+
+                    </StackPanel>
+                    
+                </Grid>
+            </Border>
+        </controls:xPopup>
+
+        <!--INSTALL FLUTTER POPUP-->
+        <controls:xPopup MinWidth="400" MaxWidth="600" MaxHeight="450" MinHeight="350" 
+                Visibility="{Binding FlutterInstallPopupIsVisible, UpdateSourceTrigger=PropertyChanged
+                , Converter={StaticResource BooleanToVisibilityConverter}, Mode=TwoWay}">
+            <Border BorderThickness="1" BorderBrush="{StaticResource MGrey1}" Background="White" Padding="1">
+                <Grid HorizontalAlignment="Stretch">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition MaxWidth="530" MinWidth="400"/>
+                        <ColumnDefinition Width="70"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/> <!--Window Header-->
+                        <RowDefinition Height="40"/> <!--Flutter's pick-->
+                        <RowDefinition Height="*"/>  <!--status log-->
+                        <RowDefinition Height="40"/> <!--OK CANCEL Buttons-->
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Background="{StaticResource MBlue}"
+                          controls:xPopup.IsDraggable="True">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="50"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Install New Open Source Flutter" FontWeight="Bold" FontSize="15" Foreground="White" Margin="10,5,0,5" />
+                        <Button Grid.Column="1" Command="{Binding HideInstallFlutterPopUpCommand}" CommandParameter="false" Content="X" Style="{StaticResource CloseButton}" 
+                                Height="15" Width="20" Margin="0,5,-15,5"/>
+                    </Grid>
+                    <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Orientation="Horizontal" Margin="5,5" >
+                        <TextBox Text="{Binding SelectedFlutterFile, UpdateSourceTrigger=PropertyChanged}" mahControls:TextboxHelper.ClearTextButton="True" IsReadOnly="True" 
+                                 Margin="0,0,5,0" MinWidth="250" Width="Auto" MaxWidth="330" Height="30" FontSize="13" HorizontalAlignment="Stretch"  
+                                 VerticalContentAlignment="Center" Foreground="{StaticResource MGrey5}"  />
+                        <Button Command="{Binding SelectFlutterFileCommand}" Content="Browse" Height="30" HorizontalAlignment="Right"/>
+                    </StackPanel>
+                    <Button Grid.Column="1" Grid.Row="1" Command="{Binding InstallFlutterCommand}" Content="Install" Height="30" HorizontalAlignment="Stretch" Margin="0,0,5,0"/>
+
+                    <Grid Grid.Row="2" Grid.ColumnSpan="2"  Background="{StaticResource MGrey2}" Margin="5,10" >
+                        <ListBox x:Name="InstallFlutterLogList" ItemsSource="{Binding StatusLog}" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                BorderBrush="{StaticResource MGrey3}" >
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding}" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" Margin="4,1"
+                                    MaxWidth="{Binding ElementName=LogList, Path=InstallFlutterLogList}"/>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Grid>
+                    <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"  Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button Content="Cancel" HorizontalAlignment="Right" Style="{StaticResource PlainButton}" Margin="10,5" Width="100"
+                            Visibility="Collapsed"
+                                IsEnabled="{Binding FlutterInstalled, Converter={StaticResource InvertedBooleanConverter}}"
+                            Command="{Binding HideInstallFlutterPopUpCommand}" CommandParameter="false" />
+
+                        <Button Content="OK" HorizontalAlignment="Right" Style="{StaticResource PlainButton}" Margin="10,5" Width="100"
+                            IsEnabled="{Binding FlutterInstalled}"
+                            Command="{Binding HideInstallFlutterPopUpCommand}" CommandParameter="false" />
+
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </controls:xPopup>
+
+    </Grid>
+</UserControl>

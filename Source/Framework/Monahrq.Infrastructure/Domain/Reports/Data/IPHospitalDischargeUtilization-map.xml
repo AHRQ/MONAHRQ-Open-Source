@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ReportManifest Guid="2AAF7FBA-7102-4C66-8598-A70597E2F826"
+                Name="Inpatient Hospital Discharge Utilization Report - Map View"
+                Category="Utilization"
+                PreviewImage="IPHospitalDischargeUtilization-map.png"
+                RequiresCostToChargeRatio="true">
+  <Audiences>
+    <Audience AudienceType="Professionals" />
+  </Audiences>
+  <Datasets>
+    <Dataset Name="Inpatient Discharge"/>
+  </Datasets>
+  <ReportAttributes>
+    HospitalFilters DRGsDischargesFilters
+  </ReportAttributes>
+</ReportManifest>

@@ -1,0 +1,683 @@
+﻿<UserControl x:Class="Monahrq.Websites.Views.WebsiteBuildReportsTabsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             xmlns:behaviours="clr-namespace:Monahrq.Theme.Behaviors;assembly=Monahrq.Theme"
+             xmlns:converters="clr-namespace:Monahrq.Theme.Converters;assembly=Monahrq.Theme"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:converters2="clr-namespace:Monahrq.Websites.Converters"
+             xmlns:monahrqControls="clr-namespace:Monahrq.Theme.Controls;assembly=Monahrq.Theme"
+             xmlns:multiSelect="clr-namespace:Monahrq.Theme.Controls.MultiSelect;assembly=Monahrq.Theme"
+             mc:Ignorable="d"
+             d:DesignWidth="1000"
+             d:DesignHeight="900">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.Buttons.xaml" />
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.DataGrid.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <!--<vm:WebsiteReportsViewModel x:Key="WebsiteReportsViewModel"/>-->
+            <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+            <converters:CustomReportToStringConverter x:Key="CustomReportToStringConverter" />
+            <converters2:AudienceEnumDescriptionToStringConverter x:Key="AudienceEnumDescriptionToStringConverter" />
+            <converters:EnumerableToStringConverter x:Key="EnumerableToStringConverter" />
+            <converters2:TrendingYearConverter x:Key="TrendingYearConverter" />
+            <converters:InvertedBooleanConverter x:Key="InvertedBooleanConverter" />
+
+            <!--<converters:AudienceToListConverter x:Key="AudienceToListConverter" />
+            
+            <converters:AudienceEnumDescriptionToStringConverter x:Key="AudienceEnumDescriptionToStringConverter" />-->
+            <Style x:Key="NoRecordFound"
+                   TargetType="{x:Type TextBlock}">
+                <Setter Property="Background"
+                        Value="Transparent" />
+                <Setter Property="Visibility"
+                        Value="Collapsed" />
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding ReportsCollectionView.Count}"
+                                 Value="0">
+                        <Setter Property="Visibility"
+                                Value="Visible" />
+                        <Setter Property="Background">
+                            <Setter.Value>
+                                <VisualBrush Stretch="None">
+                                    <VisualBrush.Visual>
+                                        <TextBlock FontSize="14"
+                                                   Text="No reports found. Please select a valid dataset" />
+                                    </VisualBrush.Visual>
+                                </VisualBrush>
+                            </Setter.Value>
+                        </Setter>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding ReportsCollectionView.Count}"
+                                 Value="{x:Null}">
+                        <Setter Property="Background">
+                            <Setter.Value>
+                                <VisualBrush Stretch="None">
+                                    <VisualBrush.Visual>
+                                        <TextBlock FontSize="14"
+                                                   Text="No reports found. Please select a valid dataset" />
+                                    </VisualBrush.Visual>
+                                </VisualBrush>
+                            </Setter.Value>
+                        </Setter>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid x:Name="LayoutRoot">
+        <Grid Background="White">
+            <!-- CONTENT -->
+            <Grid x:Name="_gridHeader"
+                  Grid.Row="0">
+                <!-- CONTENT PANEL -->
+                <Border Padding="10"
+                        BorderThickness="0,1,0,0"
+                        BorderBrush="{DynamicResource MBlue}"
+                        Background="{DynamicResource MGrey2}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0"
+                              HorizontalAlignment="Stretch">
+                            <!--reports subheader -->
+                            <StackPanel  Grid.Column="0">
+                                <TextBlock Text="Reports"
+                                           Style="{StaticResource Header3}"
+                                           FontSize="18" />
+                                <TextBlock Text="Choose reports to include in your website.  Unchecking the reports will remove them from the generated website."
+                                           FontSize="12" />
+                            </StackPanel>
+
+                        </Grid>
+                        <!-- filter grid -->
+                        <Grid Grid.Row="1" Margin="0,10,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0"
+                                       Margin="0,5,5,5"
+                                       Text="Filter by:"
+                                       VerticalAlignment="Center" />
+                            <ComboBox Grid.Column="1"
+                                      Margin="5"
+                                      VerticalAlignment="Center"
+                                      Width="175"
+                                      ItemsSource="{Binding Filter}"
+                                      SelectedItem="{Binding SelectedFilter}"
+                                      DisplayMemberPath="Value" />
+                            <TextBox Grid.Column="2"
+                                     Margin="5"
+                                     VerticalAlignment="Center"
+                                     controls:TextboxHelper.ClearTextButton="True"
+                                     controls:TextboxHelper.Watermark="Enter text to filter results"
+                                     Width="170"
+                                     Text="{Binding FilterText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                     Height="21.96">
+                            </TextBox>
+                            <!-- Display the count of records that match the filter criteria -->
+                            <StackPanel Orientation="Horizontal" Grid.Column="3">
+                                <TextBlock Text="Total Reports:" VerticalAlignment="Center" Margin="5,0,3,0" Width="Auto" Foreground="{StaticResource MGrey5}" HorizontalAlignment="Left"/>
+                                <TextBlock Text="{Binding ReportsCollectionView.SourceCollection.Count}" VerticalAlignment="Center" Width="Auto"  Foreground="{StaticResource MGrey5}" HorizontalAlignment="Left"/>
+                                <TextBlock Text="Total Selected Reports:" VerticalAlignment="Center" Margin="5,0,3,0" Width="Auto" Foreground="{StaticResource MGrey5}" HorizontalAlignment="Left"/>
+                                <TextBlock Text="{Binding SelectedReportsCount, Mode=TwoWay}" VerticalAlignment="Center" Width="50"  Foreground="{StaticResource MGrey5}" HorizontalAlignment="Left"/>
+                            </StackPanel>
+                            <TextBlock Grid.Column="4"
+                                       Margin="0,5,5,5"
+                                       Text="Filter by Category:"
+                                       VerticalAlignment="Center" />
+                            <ComboBox Margin="5,5,0,5"
+                                      Grid.Column="5"
+                                      VerticalAlignment="Center"
+                                      Width="150"
+                                      ItemsSource="{Binding Categories}"
+                                      IsSynchronizedWithCurrentItem="True"
+                                      SelectedItem="{Binding SelectedCategory}" />
+                        </Grid>
+                        <!--<StackPanel Orientation="Vertical" Grid.Row="2">-->
+                        <!--END Filter Grid -->
+                        <Border BorderBrush="{StaticResource MGrey3}" BorderThickness="1" Grid.Row="2" >
+                            <!-- Data Grid-->
+                            <DataGrid x:Name="_reportsDataGrid" ItemsSource="{Binding ReportsCollectionView}" BorderBrush="{StaticResource MGrey2}" 
+                                      HorizontalGridLinesBrush="{DynamicResource MGrey2}" VerticalGridLinesBrush="{StaticResource MGrey2}" Foreground="{StaticResource MGrey5}" 
+                                      Background="{StaticResource White}" Margin="0,0,0,0" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" 
+                                      CanUserResizeRows="False" HeadersVisibility="Column" AlternationCount="2"                                      SelectionMode="Extended" SelectionUnit="CellOrRowHeader" VerticalScrollBarVisibility="Auto"
+                                      multiSelect:MultiSelect.IsEnabled="True" IsSynchronizedWithCurrentItem="False">
+
+                                <DataGrid.RowStyle>
+                                    <Style TargetType="{x:Type DataGridRow}">
+                                        <Style.Triggers>
+                                            <Trigger Property="IsSelected"
+                                                     Value="True">
+                                                <Setter Property="Background"
+                                                        Value="Transparent" />
+                                            </Trigger>
+                                            <!--<Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="{StaticResource MYellow2}"/>
+                                                </Trigger>-->
+                                        </Style.Triggers>
+                                    </Style>
+                                </DataGrid.RowStyle>
+                                <DataGrid.Columns>
+                                    <!-- BUTTONS -->
+
+                                    <DataGridTemplateColumn Header=""
+                                                            x:Name="_edit"
+                                                            CanUserSort="False" >
+                                        <DataGridTemplateColumn.HeaderTemplate>
+                                            <DataTemplate >
+                                                <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MinWidth="30">
+                                                    <CheckBox 
+                                                      IsChecked="{Binding DataContext.IsAllSelected, Mode=TwoWay,
+                                                        RelativeSource= {RelativeSource AncestorType={x:Type UserControl}}, 
+                                                        UpdateSourceTrigger=PropertyChanged}"
+                                                        Margin="8,9">
+                                                    <!--<i:Interaction.Triggers>
+                                                        <i:EventTrigger EventName="Checked">
+                                                                <i:InvokeCommandAction Command="{Binding Path=DataContext.SelectAllCommand, ElementName=_reportsDataGrid}"/>
+                                                        </i:EventTrigger>
+                                                        <i:EventTrigger EventName="Unchecked">
+                                                                <i:InvokeCommandAction Command="{Binding Path=DataContext.DeselectAllCommand, ElementName=_reportsDataGrid}"></i:InvokeCommandAction>
+                                                        </i:EventTrigger>
+                                                    </i:Interaction.Triggers>-->
+                                                    </CheckBox>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.HeaderTemplate>
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <StackPanel x:Name="brd" Background="Transparent" Width="30">
+                                                    <CheckBox x:Name="SelectionReports" IsChecked="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                              Margin="5,6" Tag="{Binding}" KeyUp="SelectionReports_KeyUp"
+                                                              PreviewMouseLeftButtonDown="ReportsDataGrid_OnChecked">
+                                                   
+                                                    </CheckBox>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+
+                                    <DataGridTemplateColumn Header="" Width=".12*" MinWidth="45" CanUserSort="False">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <!--PREVIEW-->
+                                                    <Button VerticalAlignment="Top"
+                                                            Margin="3"
+                                                            Height="22"
+                                                            Width="22"
+                                                            CommandParameter="{Binding }"
+                                                            Command="{Binding Path=DataContext.PreviewCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                                            Style="{DynamicResource PreviewButton}">
+                                                        <Button.ToolTip>
+                                                            <TextBlock Text="Preview" />
+                                                        </Button.ToolTip>
+                                                    </Button>
+                                                    <!--Trending-->
+                                                    <Button  Visibility="{Binding IsTrendingEnabled ,Converter={StaticResource BooleanToVisibilityConverter}}"
+                                                             VerticalAlignment="Top"
+                                                             CommandParameter="{Binding  }"
+                                                             Style="{StaticResource TrendingButton}"
+                                                             Margin="3"
+                                                             Height="22"
+                                                             Width="22"
+                                                             Command="{Binding Path=DataContext.OpenTrendingCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}">
+                                                        <Button.ToolTip>
+                                                            <TextBlock Text="Trending" />
+                                                        </Button.ToolTip>
+                                                    </Button>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+
+                                    <!-- END BUTTONS -->
+
+                                    <DataGridTemplateColumn Width="0.42*"
+                                                            MinWidth="100"
+                                                            CanUserSort="True"
+                                                            SortMemberPath="Name">
+                                        <DataGridTemplateColumn.Header>
+                                            <TextBlock Text="Report"
+                                                       TextWrapping="WrapWithOverflow"
+                                                       Foreground="White" />
+                                        </DataGridTemplateColumn.Header>
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Margin="6"
+                                                           TextWrapping="Wrap"
+                                                           Text="{Binding Name}"
+                                                           TextTrimming="CharacterEllipsis" />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+
+                                    <DataGridTemplateColumn Width="0.42*"
+                                                            MinWidth="50"
+                                                            CanUserSort="False">
+                                        <DataGridTemplateColumn.Header>
+                                            <TextBlock Text="Websites"
+                                                       TextWrapping="WrapWithOverflow"
+                                                       Foreground="White" />
+                                        </DataGridTemplateColumn.Header>
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Margin="6"
+                                                           TextWrapping="Wrap"
+                                                           MaxHeight="40"
+                                                           Text="{Binding Path=WebsitesForDisplay}"
+                                                           TextTrimming="CharacterEllipsis">
+                                                    <!--, Converter={StaticResource EnumerableToStringConverter}-->
+                                                    <TextBlock.ToolTip>
+                                                        <Border Width="150"
+                                                                Padding="5"
+                                                                Visibility="{Binding ShowWebsiteToolTip}">
+                                                            <TextBlock TextWrapping="Wrap"
+                                                                       Text="{Binding Path=WebsitesForDisplay}" />
+                                                        </Border>
+                                                    </TextBlock.ToolTip>
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+
+                                    <DataGridTemplateColumn Width="0.42*"
+                                                            MinWidth="100"
+                                                            CanUserSort="True"
+                                                            SortMemberPath="Type">
+                                        <DataGridTemplateColumn.Header>
+                                            <TextBlock Text="Type"
+                                                       TextWrapping="WrapWithOverflow"
+                                                       Foreground="White" />
+                                        </DataGridTemplateColumn.Header>
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock  Margin="6"
+                                                            TextWrapping="Wrap"
+                                                            Text="{Binding Path=Type}"
+                                                            TextTrimming="CharacterEllipsis" />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+
+                                    <DataGridTemplateColumn Width="0.25*"
+                                                            MinWidth="95"
+                                                            CanUserSort="True"
+                                                            SortMemberPath="Category">
+                                        <DataGridTemplateColumn.Header>
+                                            <TextBlock Text="Category"
+                                                       TextWrapping="WrapWithOverflow"
+                                                       Foreground="White" />
+                                        </DataGridTemplateColumn.Header>
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock  Margin="6"
+                                                            TextWrapping="Wrap"
+                                                            Text="{Binding Path=Category}"
+                                                            TextTrimming="CharacterEllipsis" />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+
+                                    <!-- display Yes/No for non-standard reports -->
+                                    <DataGridTemplateColumn CanUserSort="True"
+                                                            MinWidth="90"
+                                                            SortMemberPath="IsDefault">
+                                        <DataGridTemplateColumn.Header>
+                                            <TextBlock Text="Custom?"
+                                                       TextWrapping="WrapWithOverflow"
+                                                       Foreground="White" />
+                                        </DataGridTemplateColumn.Header>
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Margin="6"
+                                                           Text="{Binding Path=IsDefault, Converter={StaticResource CustomReportToStringConverter}}" />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+
+                                    <DataGridTemplateColumn Width="0.30*"
+                                                            MinWidth="80"
+                                                            CanUserSort="False">
+                                        <DataGridTemplateColumn.Header>
+                                            <TextBlock Text="Datasets"
+                                                       TextWrapping="WrapWithOverflow"
+                                                       Foreground="White" />
+                                        </DataGridTemplateColumn.Header>
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Margin="6"
+                                                           TextWrapping="Wrap"
+                                                           MaxHeight="40"
+                                                           Text="{Binding Path=Datasets, Converter={StaticResource EnumerableToStringConverter}}"
+                                                           TextTrimming="CharacterEllipsis">
+                                                    <TextBlock.ToolTip>
+                                                        <Border Width="150"
+                                                                Padding="5">
+                                                            <TextBlock TextWrapping="Wrap"
+                                                                       Text="{Binding Path=Datasets, Converter={StaticResource EnumerableToStringConverter}}" />
+                                                        </Border>
+                                                    </TextBlock.ToolTip>
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTemplateColumn Width="0.25*"
+                                                            MinWidth="130"
+                                                            CanUserSort="True"
+                                                            SortMemberPath="AudienceForDisplay">
+                                        <DataGridTemplateColumn.Header>
+                                            <TextBlock Text="Recommended Audience"
+                                                       TextWrapping="WrapWithOverflow"
+                                                       Foreground="White" />
+                                        </DataGridTemplateColumn.Header>
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock  Margin="6"
+                                                            TextWrapping="Wrap"
+                                                            Text="{Binding Path=AudienceForDisplay}" />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+
+                                </DataGrid.Columns>
+                            </DataGrid>
+
+                        </Border>
+                        <!--<TextBlock VerticalAlignment="Bottom" Text="To Multi-select items press Shift or Enter + Mouse Click any where on data grid except for the check box column." FontSize="14" FontWeight="Bold" Foreground="{StaticResource MGrey4}" />
+                        </StackPanel>-->
+                    </Grid>
+                </Border>
+
+                <monahrqControls:xPopup Visibility="{Binding IsOpen, Mode=TwoWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                        Panel.ZIndex="100"
+                                        Width="950"
+                                        monahrqControls:xPopup.IsDraggable="True"
+                                        MinHeight="450"
+                                        MaxHeight="500">
+                    <Border BorderThickness="1"
+                            Margin="15,20,20,20"
+                            Padding="10"
+                            Background="White"
+                            BorderBrush="{DynamicResource MBlue}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="60" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid Row="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition Width="50" />
+                                </Grid.ColumnDefinitions>
+                                <Button Grid.Column="1"
+                                        Command="{Binding ClosePreviewCommand}"
+                                        Content="X"
+                                        Style="{DynamicResource PlainButton}"
+                                        Foreground="White"
+                                        Background="{DynamicResource MPink}"
+                                        Width="32"
+                                        Height="32"
+                                        VerticalAlignment="tOP"
+                                        HorizontalAlignment="Right" />
+                                <StackPanel>
+                                    <TextBlock Text="PREVIEW REPORT:"
+                                               Style="{DynamicResource Subtopic}" />
+                                    <TextBlock Text="{Binding SelectedReport.Name}"
+                                               Style="{DynamicResource Header3}" />
+                                </StackPanel>
+                            </Grid>
+                            <Border Background="{DynamicResource MGrey1}"
+                                    Padding="20"
+                                    BorderThickness="1"
+                                    BorderBrush="{DynamicResource MBlue}"
+                                    Grid.Row="1">
+                                <Border BorderThickness="0"
+                                        BorderBrush="{DynamicResource MGrey4}">
+                                    <TabControl Style="{StaticResource TabControlStyleLeft}"
+                                                SelectedIndex="{Binding ActivePreviewImageTabIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                        <TabItem Style="{StaticResource TabItemStyleLeft}"
+                                                 Header="Professional"
+                                                 Visibility="{Binding SelectedReport.Report.HasProfessionalsAudience, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                            <Border BorderBrush="{DynamicResource MBlue}"
+                                                    BorderThickness="0,1,0,0"
+                                                    Margin="-1,0,0,0"
+                                                    Padding="0,10"
+                                                    Background="White"
+                                                    MinWidth="300"
+                                                    MinHeight="200">
+                                                <Border BorderThickness="1"
+                                                        BorderBrush="{StaticResource MGrey3}"
+                                                        Margin="10"
+                                                        MinWidth="300"
+                                                        MinHeight="200">
+                                                    <Image Source="{Binding SelectedReport.ProfessionalPreviewImage}"
+                                                           Stretch="Fill"
+                                                           HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center" />
+                                                </Border>
+                                            </Border>
+                                        </TabItem>
+                                        <TabItem Style="{StaticResource TabItemStyleLeft}"
+                                                 Header="Consumer"
+                                                 Visibility="{Binding SelectedReport.Report.HasConsumersAudience, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                            <Border BorderBrush="{DynamicResource MBlue}"
+                                                    BorderThickness="0,1,0,0"
+                                                    Margin="-1,0,0,0"
+                                                    Padding="0,10"
+                                                    Background="White"
+                                                    MinWidth="300"
+                                                    MinHeight="200">
+                                                <Border BorderThickness="1"
+                                                        BorderBrush="{StaticResource MGrey3}"
+                                                        Margin="10"
+                                                        MinWidth="300"
+                                                        MinHeight="200">
+                                                    <Image Source="{Binding SelectedReport.ConsumerPreviewImage}"
+                                                           Stretch="Fill"
+                                                           HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center" />
+                                                </Border>
+                                            </Border>
+                                        </TabItem>
+                                    </TabControl>
+                                </Border>
+                            </Border>
+                        </Grid>
+                    </Border>
+                </monahrqControls:xPopup>
+
+                <monahrqControls:xPopup Visibility="{Binding IsTrendingOpened, Mode=TwoWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                        Panel.ZIndex="100"
+                                        monahrqControls:xPopup.IsDraggable="True"
+                                        Width="500"
+                                        MinHeight="450"
+                                        MaxHeight="500">
+                    <Border Background="White"
+                            BorderBrush="{StaticResource MBlue}"
+                            BorderThickness="1">
+                        <Grid Background="{StaticResource MGrey1}"
+                              DataContext="{Binding SelectedReport}"
+                              Name="TrendinGrid">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="55" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="60" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0"
+                                       Grid.Row="0"
+                                       Margin="10"
+                                       Text="Choose Trending Period:"
+                                       Style="{StaticResource Header1}" />
+                            <Button Grid.Column="1"
+                                    Grid.Row="0"
+                                    Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=DataContext.CloseTrendingCommand}"
+                                    Content="X"
+                                    Style="{StaticResource PlainButton}"
+                                    Margin="10"
+                                    Foreground="White"
+                                    Background="{DynamicResource MPink}"
+                                    Width="32"
+                                    Height="32"
+                                    VerticalAlignment="Top"
+                                    HorizontalAlignment="Right" />
+                            <CheckBox Grid.Row="1"
+                                      Margin="10,0"
+                                      Name="chkQuarterlyTrending"
+                                      IsChecked="{Binding IsQuarterlyTrendingEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      Content="Enable Quarterly Trending" />
+                            <Grid  Grid.Row="2"
+                                   Grid.Column="0"
+                                   Grid.ColumnSpan="2"
+                                   Margin="0,10">
+                                <Grid.Resources>
+                                    <Color x:Key="ControlLightColor">#FFF7F7F7</Color>
+                                    <Color x:Key="BorderMediumColor">#FF888888</Color>
+                                    <Style  TargetType="ListView">
+                                        <Setter Property="SnapsToDevicePixels"
+                                                Value="true" />
+                                        <Setter Property="OverridesDefaultStyle"
+                                                Value="true" />
+                                        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility"
+                                                Value="Auto" />
+                                        <Setter Property="ScrollViewer.VerticalScrollBarVisibility"
+                                                Value="Auto" />
+                                        <Setter Property="ScrollViewer.CanContentScroll"
+                                                Value="true" />
+                                        <Setter Property="VerticalContentAlignment"
+                                                Value="Center" />
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="ListView">
+                                                    <Border Name="Border"
+                                                            BorderThickness="0">
+                                                        <Border.Background>
+                                                            <SolidColorBrush Color="{StaticResource ControlLightColor}" />
+                                                        </Border.Background>
+                                                        <Border.BorderBrush>
+                                                            <SolidColorBrush Color="{StaticResource BorderMediumColor}" />
+                                                        </Border.BorderBrush>
+                                                        <ScrollViewer Style="{DynamicResource {x:Static GridView.GridViewScrollViewerStyleKey}}">
+                                                            <ItemsPresenter />
+                                                        </ScrollViewer>
+                                                    </Border>
+                                                    <ControlTemplate.Triggers>
+                                                        <Trigger Property="IsGrouping"
+                                                                 Value="true">
+                                                            <Setter Property="ScrollViewer.CanContentScroll"
+                                                                    Value="false" />
+                                                        </Trigger>
+                                                        <Trigger Property="IsEnabled"
+                                                                 Value="false">
+                                                            <Setter TargetName="Border"
+                                                                    Property="Background">
+                                                                <Setter.Value>
+                                                                    <SolidColorBrush Color="{DynamicResource DisabledBorderLightColor}" />
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                        </Trigger>
+                                                    </ControlTemplate.Triggers>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                    <Style x:Key="ParentListViewItemContainerStyle"
+                                           TargetType="ListViewItem">
+                                        <Setter Property="Background"
+                                                Value="Transparent" />
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                                    <ContentPresenter />
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </Grid.Resources>
+                                <ListView Background="{StaticResource MGrey1}"
+                                          Margin="20,5"
+                                          ItemsSource="{Binding Years}"
+                                          BorderBrush="White"
+                                          ItemContainerStyle="{StaticResource ParentListViewItemContainerStyle}">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Expander IsExpanded="{Binding IsExpanded, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                                <Expander.Header>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <CheckBox IsEnabled="{Binding IsDefault, Converter={StaticResource InvertedBooleanConverter}}"
+                                                                  IsChecked="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                                  Content="{Binding Converter={StaticResource TrendingYearConverter}}" />
+                                                        <Label  Foreground="red"
+                                                                FontSize="10"
+                                                                Content="No Quarter is selected. Please select at least one quarter."
+                                                                Visibility="{Binding IsValid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                                    </StackPanel>
+                                                </Expander.Header>
+                                                <Expander.Content>
+                                                    <ListView Grid.ColumnSpan="2"
+                                                              Name="lstViewQuarters"
+                                                              Margin="20,5"
+                                                              ItemsSource="{Binding Quarters}"
+                                                              IsEnabled="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                              BorderBrush="White"
+                                                              Background="{StaticResource MGrey1}">
+                                                        <ListView.Resources>
+                                                            <Style TargetType="ListViewItem">
+                                                                <Style.Setters>
+                                                                    <Setter Property="BorderBrush"
+                                                                            Value="White" />
+                                                                    <Setter Property="BorderThickness"
+                                                                            Value="0" />
+                                                                </Style.Setters>
+                                                            </Style>
+                                                        </ListView.Resources>
+                                                        <ListView.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <CheckBox Width="{TemplateBinding Width}"
+                                                                          Margin="3,3,3,0"
+                                                                          IsEnabled="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=DataContext.SelectedReport.IsQuarterlyTrendingEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                                          Content="{Binding Text}"
+                                                                          IsChecked="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                            </DataTemplate>
+                                                        </ListView.ItemTemplate>
+                                                    </ListView>
+                                                </Expander.Content>
+                                            </Expander>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </Grid>
+                            <Button Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=DataContext.CloseTrendingCommand}"
+                                    Content="OK"
+                                    Grid.Row="3"
+                                    Margin="10"
+                                    HorizontalAlignment="Right"
+                                    Background="{DynamicResource MDGreen}"
+                                    Style="{StaticResource PlainButton}"
+                                    CommandParameter="{Binding }"
+                                    Width="100" />
+                        </Grid>
+                    </Border>
+                </monahrqControls:xPopup>
+                <TextBlock Style="{StaticResource NoRecordFound}" />
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

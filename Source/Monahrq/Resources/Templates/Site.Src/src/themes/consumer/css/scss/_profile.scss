@@ -1,0 +1,712 @@
+// -------------------------------------------------------------------- //
+//  Profile Pages
+// -------------------------------------------------------------------- //
+
+.profile-title h2 {
+  font-weight: 800;
+}
+
+.profile {
+  @include clearfix;
+}
+
+
+
+
+// -------------------------------------------------------------------- //
+//  Header Search Form
+
+.profile-search {
+  input {
+    border-radius: $base-border-radius 0 0 $base-border-radius;
+  }
+
+  .btn--primary {
+    width: 150px;
+    border-radius: 0 $base-border-radius $base-border-radius 0;
+  }
+}
+
+
+
+// -------------------------------------------------------------------- //
+//  Summary
+
+.profile-summary {
+  @include clearfix;
+  margin-bottom: 30px;
+  padding: 35px 0;
+  background-color: $brand-grey;
+}
+
+.profile-summary__overall {
+  text-align: center;
+}
+
+.profile-summary__title {
+  width: 250px;
+  margin: 0 auto 10px;
+  font-size: 18px;
+  line-height: 1.2;
+}
+
+.profile-summary__data {
+  width: 125px;
+  margin: 0 auto;
+  //font-size: 38px;
+  //font-weight: 800;
+  line-height: 1;
+  text-transform: uppercase;
+
+  .rating-symbol--text {
+    width: auto;
+    font-size: 18px;
+    text-align: center;
+  }
+}
+
+
+
+// -------------------------------------------------------------------- //
+//  Full Information
+
+.profile-facility-info,
+.profile-physician-info,
+.profile-physician-details {
+  float: left;
+  width: 300px;
+}
+
+.profile-facility-reports,
+.profile-physician-bio {
+  float: right;
+  width: calc(100% - 330px);
+}
+
+
+.profile-facility-info__location,
+.profile-physician-info__location {
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.facility-address-1,
+.facility-address-2,
+.facility-url,
+.facility-address-distance {
+  margin-bottom: 0;
+  line-height: 1;
+}
+
+.facility-url {
+  // color: $brand-teal;
+
+}
+
+.facility-address-distance {
+  color: #999;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.facility-map,
+.physician-map {
+  width: 300px;
+  height: 300px;
+  margin: 10px 0;
+  border: 1px solid $base-border-color;
+}
+
+.facility-info__title,
+.physician-info__title {
+  padding: 10px;
+  background-color: $brand-grey;
+  font-size: 18px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.profile-facility-info__description {
+  margin-bottom: 30px;
+}
+
+.general-info__list {
+  margin-bottom: 30px;
+
+  li {
+    @include clearfix;
+    display: table-row;
+  }
+
+  .general-info__label,
+  .general-info__data {
+    display: table-cell;
+    margin-bottom: 0;
+    padding: 10px 0;
+    line-height: 1.2;
+    vertical-align: middle;
+  }
+
+  .general-info__label {
+    width: 85%;
+    font-weight: 800;
+  }
+
+  .general-info__icon {
+    display: block;
+    width: 22px;
+    height: 16px;
+    margin: 0 auto;
+    background-image: url("../assets/images/monahrq-sprite.png");
+    background-position: -185px 0;
+
+    &.available {
+      background-position: -185px -18px;
+    }
+  }
+
+  .general-info__data {
+    text-align: center;
+  }
+}
+
+// Variation for Nursing Home Information
+.nursing-home-info {
+  td:nth-child(2) {
+    text-align: center;
+    vertical-align: middle;
+  }
+}
+
+.physician-info__general li {
+  padding: 5px 10px;
+}
+
+
+
+// -------------------------------------------------------------------- //
+//  Profile Reports
+
+.measures-tab header {
+  @include clearfix;
+  position: relative;
+
+  fieldset {
+    float: left;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    border: 0;
+  }
+
+  legend {
+    float: left;
+    width: auto;
+    margin: 0 15px 0 0;
+    border-bottom: 0;
+    color: $base-font-color;
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  label {
+    float: left;
+    font-size: 15px;
+
+    &:not(:last-child) {
+      margin-right: 15px;
+      padding-right: 15px;
+      border-right: 1px solid #ddd;
+    }
+  }
+}
+
+.report-overall-score{
+  float: right;
+  padding-left: 30px;
+  border-left: 1px solid $base-border-color;
+}
+
+.facility-report-compare {
+  float: right;
+  margin-bottom: 30px;
+
+  > * {
+    display: inline-block;
+    margin: 0;
+  }
+
+  select {
+    width: auto;
+  }
+}
+
+.panel-quality__subtitle {
+  padding: 10px 20px;
+  background-color: #efefef;
+  border-bottom: 1px solid $base-border-color;
+  font-weight: 700;
+}
+
+.profile-facility-reports,
+.profile-physician-bio {
+  .tabs {
+    @include clearfix;
+    clear: both;
+    margin-bottom: -2px;
+
+    // Tab
+    a {
+      float: left;
+      display: block;
+      min-width: 200px;
+      padding: 15px 25px;
+      background-color: $brand-grey;
+      border: 1px solid $base-border-color;
+      border-radius: 5px 5px 0 0;
+      color: #333;
+      font-size: 14px;
+      font-weight: 800;
+      line-height: 1.1;
+      text-align: center;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+  }
+
+  .tab.active a {
+    background-color: white;
+    border-bottom-width: 0;
+    text-decoration: underline;
+  }
+
+  .tab-panel {
+    padding-top: 2px; // Offset tab negative pull
+    border: 1px solid $base-border-color;
+
+    header {
+      clear: both;
+      padding: 20px;
+      border-bottom: 1px solid $base-border-color;
+
+      h3 {
+        // float: left;
+        font-size: 30px;
+        font-weight: 800;
+      }
+
+      p {
+        font-size: 14px;
+      }
+    }
+
+    // Sections
+    
+    [data-ng-click*="toggleTopic"],
+    [data-ng-click*="toggleSpecialty"],
+    [data-ng-click*="toggleInScore"],
+    [data-ng-click*="showHedis"] {
+      position: relative;
+      display: block;
+      width: 100%;
+      padding: 10px 20px;
+      background-color: transparent;
+      color: $base-font-color;
+      font-weight: 600;
+      line-height: 1.2;
+      text-align: left;
+      text-decoration: none;
+      
+      // Expand icon
+      &:after {
+        display: block;
+        position: absolute;
+        right: 20px;
+        top: 8px;
+        width: 120px;
+        height: 22px;
+        padding-right: 30px;
+        background-image: url("../assets/images/expand-collapse-arrows.png");
+        background-position: right -66px;
+        background-repeat: no-repeat;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 22px;
+        text-align: right;
+      }
+    }
+
+
+    [data-ng-click*="toggleTopic"],
+    [data-ng-click*="toggleSpecialty"],
+    [data-ng-click*="toggleInScore"] {
+      // Text
+      span[data-ng-if] {
+        float: right;
+        margin-right: 30px;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.2;
+      }
+
+
+      &[aria-expanded="true"]::after,
+      &.active:after {
+        background-position: right -22px;
+      }
+
+      &:disabled {
+        opacity: .25;
+      }
+
+      // Style subsections
+      // Commented out not property is if we only want
+      // the border for expandable tables.
+      /*&:not(:disabled)*/ + table {
+        border-top: 5px solid rgb(45, 172, 211);
+
+        + div {
+          margin: -20px 20px 20px;
+          padding: 20px;
+          background-color: #f9f9f9;
+          border: solid #ddd;
+          border-width: 0 1px 1px;
+
+          table {
+            width: 100%;
+            margin-right: 0;
+            margin-left: 0;
+            background-color: #fff;
+          }
+        }
+      }
+    } // END section toggles
+
+    
+    [data-ng-click*="toggleTopic"],
+    [data-ng-click*="toggleSpecialty"] {
+      &:hover {
+        color: $base-font-color;
+      }
+    }
+
+    [data-ng-click*="toggleTopic("],
+    [data-ng-click*="toggleInScore"],
+    [data-ng-click*="showHedis"] {
+      &::after {
+        content: "Show Ratings";
+      }
+
+      &[aria-expanded="true"]::after,
+      &.active::after {
+        content: "Hide Ratings";
+      }
+    }
+
+    [data-ng-click*="toggleSpecialty"] {
+      &::after {
+        content: "Show Physicians";
+        width: 135px;
+      }
+
+      &[aria-expanded="true"]::after,
+      &.active::after {
+        content: "Hide Physicians";
+      }
+    }
+
+    li {
+      border-bottom: 1px solid $base-border-color;
+
+      // Physician Specialty / Nested Ul's
+      ul {
+        padding: 0 20px 20px;
+      }
+
+      li {
+        border-bottom: none;
+      }
+    }
+
+    // Allow tables to scroll
+    [id*="ratings-"] {
+      // overflow-x: scroll;
+    }
+  }
+
+  table {
+    width: calc(100% - 40px);
+    margin: 0 20px 20px;
+  }
+
+  thead th {
+    vertical-align: middle;
+  }
+
+  tbody {
+    th {
+      width: 50%;
+      border-right: 1px solid $base-border-color;
+      border-bottom: 0;
+      color: $base-font-color;
+      font-size: 14px;
+      font-weight: 400;
+    }
+
+    td {
+      width: 25%;
+      border-bottom: 0;
+    }
+  }
+} // END profile-facility-reports
+
+#panel-practiceRatings {
+  .practice-ratings-quick-info {
+    li {
+      padding-left: 1em;
+      border-bottom: 0;
+      text-indent: -.8em;
+
+      &::before {
+        content: ">";
+        margin-right: 5px;
+        font-size: 1.5em;
+        line-height: 1;
+        opacity: .5;
+      }
+    }
+  }
+}
+
+.hospital-physician--listed {
+  display: block;
+  padding: 5px 10px;
+  font-size: 14px;
+}
+
+.profile-footer {
+  margin: 70px 0 90px;
+  background-color: transparent;
+
+  h2 {
+    max-width: 75%;
+    margin-bottom: 30px;
+    color: #444;
+    font-weight: 800;
+  }
+
+  ul {
+    flex-basis: 50%;
+    margin-left: -.8em;
+
+    a {
+      font-weight: 700;
+    }
+  }
+
+  li {
+    padding-left: 1em;
+    text-indent: -.8em;
+
+    &::before {
+      content: ">";
+      margin-right: 5px;
+      font-size: 1.5em;
+      line-height: 1;
+      opacity: .5;
+    }
+  }
+
+  .btn--primary {
+    align-self: flex-end;
+    height: 44px;
+    font-size: 16px;
+  }
+}
+
+
+
+// -------------------------------------------------------------------- //
+//  Hospital Quality Ratings Tab & Nursing Home Measures
+
+#panel-quality header,
+#panel-measures header {
+  @include clearfix;
+
+  h4 {
+    margin-bottom: 10px;
+  }
+
+  button[data-ng-click="showAll()"],
+  button[data-ng-click*="showCAHPS"] {
+    float: right;
+  }
+
+  .report-header__compare-against {
+    float: left;
+    margin-bottom: 10px;
+  }
+}
+
+
+
+
+
+// -------------------------------------------------------------------- //
+//  Nursing Home Profile Bottom Text
+
+.nursing-home-profile__helper {
+  padding: 25px;
+  font-size: 12px;
+}
+
+
+
+// -------------------------------------------------------------------- //
+//  Physician Info
+
+.profile-physician-bio {
+  .tab-panel {
+    header {
+      @include clearfix;
+      border-bottom: 0;
+    }
+
+    ul {
+      clear: both;
+    }
+
+    .physician-bio-stats {
+      padding: 0 20px;
+    }
+
+    dt {
+      float: left;
+      clear: left;
+      width: 225px;
+      margin-bottom: 10px;
+    }
+
+    dd {
+      display: block;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+  }
+}
+
+.physician-practices,
+.physician-other-locations {
+  margin: 15px 0 10px;
+  padding: 20px 20px 0;
+  border-top: 1px solid $base-border-color;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.physician-practice-group,
+.physician-affiliation-title {
+  float: left;
+  padding: 0 20px;
+  font-size: 16px;
+  font-weight: 800;
+  font-style: italic;
+  line-height: 35px;
+
+  + button {
+    float: right;
+    margin-right: 20px;
+  }
+}
+
+.physician-other-location {
+  margin-bottom: 15px;
+  padding: 0 20px;
+  border-bottom: 0 !important;
+
+  p {
+    margin-bottom: 0;
+    line-height: 1.2;
+  }
+}
+
+.physician-affiliations {
+  padding: 20px 0 !important;
+}
+
+.physician-affiliation-phone,
+.physician-affiliation-more-info {
+  font-size: 14px;
+}
+
+.physician-affiliation-phone,
+.physician-affiliation-more-info {
+  margin-top: 5px;
+}
+
+.physician-no-affiliations {
+  margin: 0;
+  padding: 0 20px;
+}
+
+#panel-practiceRatings {
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  div[data-ng-if="CAHPSReport.isLoaded"] {
+    margin-top: 20px;
+    padding-top: 20px;
+  }
+
+  h3 {
+    margin-bottom: 10px;
+  }
+
+  h4 {
+    float: left;
+    max-width: 75%;
+    margin-bottom: 15px;
+    margin-left: 20px;
+
+    + button:not(.mh-primary-button) {
+      float: right;
+      width: auto;
+      margin-right: 20px;
+      padding: 0;
+
+      &::after {
+        position: relative;
+        top: auto;
+        right: auto;
+      }
+    }
+
+    + button.mh-primary-button {
+      float: right;
+      width: auto;
+      margin-right: 20px;
+    }
+  }
+
+  .ratings-change-practice-label,
+  .ratings-change-practice {
+    display: inline-block;
+  }
+
+  .ratings-change-practice {
+    width: auto;
+  }
+}
+
+
+.medical-group-ratings-info {
+  font-size: 14px;
+  list-style: initial;
+
+  li {
+    border-bottom: 0;
+  }
+}

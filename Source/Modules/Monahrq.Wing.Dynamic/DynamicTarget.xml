@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Target xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="..\..\Monahrq.Infrastructure\Domain\WingTemplateXml.xsd"
+        Name="TestTarget" DbSchemaName="Targets_TestTarget"
+        IsReferenceTarget="false" DisplayOrder="10" AllowMultipleImports="true" Version="1.0.0" Publisher="Pantheon, Inc." PublisherEmail="monahrq-support@panth.com">
+  <Columns>
+    <Column Name="Column1" DataType="String" Description="Description 1" IsRequired="true" />
+    <Column Name="Column2" DataType="Int32" Description="Description 2" IsRequired="true" />
+    <Column Name="Column3" DataType="Int32" Description="Description 3" Scope="Race" />
+    <Column Name="Column4" DataType="String" Description="Description 4" IsRequired="true" />
+    <Column Name="Column5" DataType="Decimal" Description="Description 5" Scope="Custom" >
+      <!--<Scope Name="">
+        <values>
+          <value>kffkefkeeke</value>
+        </values>
+      </Scope>-->
+    </Column>
+  </Columns>
+  <ImportSteps Type="Simple" />
+  <Measures>
+    <Measure
+         Name="IQI 01"
+         MeasureType="QIvolume"
+         Source="AHRQ" HigherScoresAreBetter="true"
+         NQFID="361" NQFEndorsed="true"
+         RiskAdjustedMethod="obsv"
+         ScaleTarget="Provider" ScaleBy="1"
+         PerformMarginSuppression="false"
+         SuppressionDenominator="0" SuppressionNumerator="0">
+      <MeasureTitle Selected="Plain">
+        <Plain>Number of surgeries to remove part of the esophagus</Plain>
+        <Clinical>Esophageal Resection Volume</Clinical>
+      </MeasureTitle>
+      <StatePeerBenchmark CalculationMethod="Calculated_Mean">
+        <ProvidedBenchmark xsi:nil="true" />
+      </StatePeerBenchmark>
+      <Description>
+        How often a hospital did an operation to remove a diseased
+        portion of the esophagus (the tube leading from the throat to the stomach),
+        usually due to cancer.
+      </Description>
+      <Footnotes>1</Footnotes>
+      <Topics>
+        <Topic Name="">
+          <SubTopics>
+            <SubTopic Name="" />
+            <SubTopic Name="" />
+          </SubTopics>
+        </Topic>
+        <Topic Name="">
+          <SubTopics>
+            <SubTopic Name="" />
+            <SubTopic Name="" />
+          </SubTopics>
+        </Topic>
+      </Topics>
+    </Measure>
+  </Measures>
+  <Reports>
+    <ReportManifest Name="Hospital Profile Report" ShowInterpretationText="false"
+                    Category="Quality" PreviewImage="HospitalProfile.png">
+      <Audiences>
+        <Audience Type="Professionals" />
+        <Audience Type="Consumers" />
+      </Audiences>
+      <Datasets>
+        <Dataset Name="Hospital Compare Data"/>
+        <Dataset Name="Inpatient Discharge"/>
+        <Dataset Name="Medicare Provider Charge Data"/>
+      </Datasets>
+      <Filters>
+        <Filter Type="Hospital">
+          <FilterValue Name="Hospital Name" />
+          <FilterValue Name="Hospital Type" />
+          <FilterValue Name="Hospital Geolocation" />
+        </Filter>
+        <Filter Type="Display">
+          <FilterValue Name="Hospital Name"  />
+          <FilterValue Name="Hospital Type"  />
+          <FilterValue Name="Hospital Geolocation"  />
+        </Filter>
+      </Filters>
+      <ReportAttributes>
+        Display
+      </ReportAttributes>
+      <Columns>
+        <Column Name="Number of ED Visits" IsMeasure="true" MeasureCode="ED 01"/>
+        <Column Name="Number Admitted to Hospital Following ED Visit" IsMeasure="true" MeasureCode="ED 02"/>
+        <Column Name="Number of Deaths During ED Visit" IsMeasure="true" MeasureCode="ED 03"/>
+        <Column Name="Number of Deaths Post-Admission Following ED Visit" IsMeasure="true" MeasureCode="ED 04"/>
+      </Columns>
+    </ReportManifest>
+  </Reports>
+</Target>
+
+<!--<CreateTableScript>
+    <![CDATA[
+        IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Targets_TestTarget]') AND type in (N'U', N'TT'))
+        BEGIN
+          CREATE TABLE [dbo].[Targets_TestTarget](
+	          [Id] [int] IDENTITY(1,1) NOT NULL,
+            [Column1] [nvarchar](50) NOT NULL,
+	          [Column2] int NOT NULL,
+	          [Column3] [nvarchar](50) NULL,
+	          [Column4] [nvarchar](50) NULL,
+	          [Column5] [decimal](19, 9) NULL,
+	          [ContentItemRecord_Id] [int] NULL,
+          PRIMARY KEY CLUSTERED 
+          (
+	          [Id] ASC
+          )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+          ) ON [PRIMARY];
+        END
+      ]]>
+  </CreateTableScript>
+  <ImportSQLScript>
+    <![CDATA[
+        INSERT INTO [dbo].[Targets_TestTarget] (Column1, Column2, Column3, Column4, Column5,ContentItemRecord_Id)
+        VALUES ('@@Column1@@',@@Column2@@,'@@Column3@@','@@Column4@@', @@Column5@@,@@ContentItemRecord_Id@@);
+    ]]>
+  </ImportSQLScript>
+  <AddMeasuresScript>
+    <![CDATA[
+      if((select count(*) from [dbo].[Measures] where Name='TM-1')=0) 
+        begin
+		      declare @Target_ID as int =(select id from [dbo].[Wings_Features] where Name='TestTarget')   ;     
+        
+		      insert into [dbo].[Measures] (Name,[ClinicalTitle],[PolicyTitle],[Target_id],CalculationMethod) values ('TM-1','Test Measure 1','PolicyTitle',@Target_ID,'Calculated_Mean')
+          insert into [dbo].[Measures] (Name,[ClinicalTitle],[PolicyTitle],[Target_id],CalculationMethod) values ('TM-2','Test Measure 2','PolicyTitle',@Target_ID,'Calculated_Mean')
+          insert into [dbo].[Measures] (Name,[ClinicalTitle],[PolicyTitle],[Target_id],CalculationMethod) values ('TM-3','Test Measure 3','PolicyTitle',@Target_ID,'Calculated_Mean')
+        
+        END
+      ]]>
+  </AddMeasuresScript>
+  <AddReportsScript>
+    -->
+<!--<![CDATA[
+      if((select count(*) from [dbo].[Reports] where id=N'fced08ea-fd0a-4afd-ba9b-f3667927de0d')=0) 
+        begin
+        
+          insert into [dbo].[Reports] (id,Name,SourceTemplateXml) values (N'fced08ea-fd0a-4afd-ba9b-f3667927de0d',N'test report 1',N'<ReportManifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"><Columns> <Column Id="d1fbda17-2d19-470b-88d2-82aec0521342" Name="test"/></Columns></ReportManifest>')
+          insert into [dbo].[Reports] (id,Name,SourceTemplateXml) values (N'fced08ea-fd0a-4afd-ba9b-f3667927de0e',N'test report 2',N'<ReportManifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"><Columns> <Column Id="d1fbda17-2d19-470b-88d2-82aec0521342" Name="test"/></Columns></ReportManifest>')
+          insert into [dbo].[Reports] (id,Name,SourceTemplateXml) values (N'fced08ea-fd0a-4afd-ba9b-f3667927de0f',N'test report 3',N'<ReportManifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"><Columns> <Column Id="d1fbda17-2d19-470b-88d2-82aec0521342" Name="test"/></Columns></ReportManifest>')
+
+        end
+    ]]>-->
+<!--
+  </AddReportsScript>-->

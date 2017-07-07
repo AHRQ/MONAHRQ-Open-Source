@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ReportManifest RptId="{E5C24EC4-6583-41D8-87A1-9F45B143819B}"
+                Name="Hospital Spending by Claim Type Sample Report"
+                Category="Utilization"
+                ShowInterpretationText="false" IsTrending="false"
+                ConsumerPreviewImage="" PreviewImage=""
+                RequiresCostToChargeRatio="false">
+  <Audiences>
+    <Audience AudienceType="Professionals"/>
+  </Audiences>
+  <Datasets>
+    <Dataset Name="Hospital Spending by Claim Type"/>
+  </Datasets>
+  <Filters>
+    <Filter Type="Hospital">
+      <Values>
+        <FilterValue Name="Hospital Name" />
+        <FilterValue Name="Hospital Type" />
+        <FilterValue Name="Region" />
+        <FilterValue Name="County" />
+      </Values>
+    </Filter>
+  </Filters>
+  <ReportAttributes>
+    HospitalFilters
+  </ReportAttributes>
+  <Columns>
+    <Column IsMeasure="true" MeasureCode="HS-01" Name="Average spending per episode - Hospital"/>
+    <Column IsMeasure="true" MeasureCode="HS-02" Name="Average spending per episode - State"/>
+    <Column IsMeasure="true" MeasureCode="HS-03" Name="Average spending per episode - National"/>
+    <Column IsMeasure="true" MeasureCode="HS-04" Name="Percent spending per episode - Hospital"/>
+    <Column IsMeasure="true" MeasureCode="HS-05" Name="Percent spending per episode - State"/>
+    <Column IsMeasure="true" MeasureCode="HS-06" Name="Percent spending per episode - National"/>
+  </Columns>
+</ReportManifest>

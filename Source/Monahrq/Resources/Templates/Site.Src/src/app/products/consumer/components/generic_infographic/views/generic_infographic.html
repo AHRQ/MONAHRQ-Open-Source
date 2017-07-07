@@ -1,0 +1,151 @@
+<main class="infographic infographic--topic" data-ng-show="isDataLoaded()">
+  <div class="contain" data-ng-if="isDataLoaded()">
+    <header class="infographic__header">
+      <p class="infographic__social" data-ng-if="!isPreview()">
+        <span>Share:</span>
+        <a class='infographic__social--facebook' href="https://www.facebook.com/sharer/sharer.php?u={{shareURL}}">
+          <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <title>
+              Facebook
+            </title>
+            <path d="M28.444 0H3.556C1.6 0 0 1.6 0 3.556v24.888C0 30.402 1.6 32 3.556 32H16V19.556h-3.556v-4.4H16V11.51c0-3.846 2.155-6.548 6.695-6.548l3.205.003v4.63h-2.128c-1.767 0-2.44 1.328-2.44 2.558v3.004H25.9l-1.01 4.4h-3.557V32h7.11C30.4 32 32 30.402 32 28.444V3.556C32 1.6 30.4 0 28.444 0z" />
+          </svg>
+        </a>
+        <a class='infographic__social--twitter' href="https://twitter.com/home?status={{shareURL}}">
+          <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <title>
+              Twitter
+            </title>
+            <path d="M27.706 9.794c.012.26.017.52.017.78 0 7.984-6.075 17.188-17.184 17.188-3.414 0-6.586-1-9.26-2.716.474.056.954.085 1.44.085 2.832 0 5.435-.965 7.5-2.583-2.64-.05-4.873-1.793-5.64-4.193.367.068.746.105 1.135.105.552 0 1.087-.073 1.592-.21-2.763-.557-4.845-2.997-4.845-5.925v-.075c.815.452 1.748.724 2.736.756-1.62-1.084-2.688-2.93-2.688-5.028 0-1.106.298-2.144.82-3.037 2.977 3.657 7.43 6.06 12.45 6.313-.103-.443-.156-.903-.156-1.378 0-3.334 2.702-6.037 6.038-6.037 1.738 0 3.308.732 4.41 1.906 1.374-.272 2.667-.774 3.835-1.466-.45 1.41-1.41 2.594-2.656 3.34 1.224-.146 2.385-.468 3.47-.95-.81 1.214-1.834 2.276-3.014 3.126z" />
+          </svg>
+        </a>
+        <a class='infographic__social--email' href="mailto:recipient@address?&body={{shareURL}}">
+          <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <title>
+              Email
+            </title>
+            <path d="M1.02 7.286l13.334 7.163c.448.24 1.027.353 1.61.353.584 0 1.163-.114 1.61-.354.45-.24 12.467-6.698 13.334-7.164.87-.467 1.69-2.286.096-2.286H.926c-1.594 0-.773 1.82.094 2.286zm30.292 3.917c-.987.513-13.132 6.842-13.737 7.16-.604.315-1.027.353-1.61.353-.584 0-1.007-.038-1.61-.354-.606-.317-12.682-6.647-13.67-7.16-.692-.364-.685.06-.685.388v12.966c0 .746 1.006 1.777 1.778 1.777h28.444c.772 0 1.778-1.03 1.778-1.777V11.592c0-.327.007-.752-.688-.39z" />
+          </svg>
+        </a>
+      </p>
+      <h1 class="infographic__title">{{topic.Name}}</h1>
+      <div class="infographic__description-toggle" data-ng-if="isPreview()">
+        <a data-ng-click="showDesc= !showDesc;">
+          <span data-ng-if="!showDesc">What is it?</span>
+          <span data-ng-if="showDesc">Hide explanation</span>
+        </a>
+        <div class="infographic__description" data-ng-if="isPreview() && showDesc" data-ng-bind-html="topic.ConsumerDescription"></div>
+      </div>
+    </header>
+
+    <div class="infographic__content">
+      <div class="infographic__description" data-ng-if="!isPreview()">
+        <img src="themes/consumer/assets/infographic/doctor-female-1.png">
+        <div data-ng-bind-html="topic.ConsumerDescription"></div>
+        <img src="themes/consumer/assets/infographic/doctor-male-3.png">
+      </div>
+
+      <section class="infographic__facts" data-ng-if="topic.TopicFacts && topic.TopicFacts.length > 0">
+        <div class="infographic__fact" data-ng-repeat="fact in topic.TopicFacts">
+          <img class="fact__image" data-ng-src="{{fact.Image}}">
+          <p>{{fact.Text}}<sup data-ng-if="fact.Citation">1</sup></p>
+          <p data-ng-if="fact.Citation" class="fact__source"><sup>1</sup> <span data-ng-bind-html="fact.Citation"></span></p>
+        </div>
+      </section>
+
+      <div class="infographic__cta">
+        <button class="btn--primary" data-ui-sref="top.consumer.hospitals.topic({'topicId': topicCategoryId, 'focus': 'report'})">Start Comparing Hospitals for this topic</button>
+        <p>Comparing hospitals can help you spot safety concerns when planning a hospital visit.</p>
+      </div>
+
+      <section class="infographic__tips" data-ng-if="topic.TipsChecklist">
+        <h2>Tips / Checklist</h2>
+        <div data-ng-bind-html="topic.TipsChecklist"></div>
+      </section>
+
+      <div class="infographic__cta">
+        <button class="btn--primary" data-ui-sref="top.consumer.hospitals.topic({'topicId': topicCategoryId, 'focus': 'report'})">Start Comparing Hospitals for this topic</button>
+        <p>Comparing hospitals can help you make better health care decisions for you and your loved ones.</p>
+      </div>
+
+      <footer class="infographic__footer--preview" data-ng-if="isPreview()">
+        <a data-ng-if="showSurgicalSafetyLink == false" data-ui-sref="top.consumer.hospitals.infographic({id: topic.TopicCategoryID})">View the full report for more information</a>
+        <a data-ng-if="showSurgicalSafetyLink" data-ui-sref="top.consumer.infographic">View the full report for more information</a>
+        <a data-ng-if="showSurgicalLink" data-ui-sref="top.consumer.infographic">Get informed on surgical safety</a>
+      </footer>
+    </div>
+
+    <div data-ng-if="!isPreview()">
+      <section data-ng-if="report.measures.length > 0" class="infographic__measures">
+        <h2>How do hospitals in {{report.regionName}} perform on {{topic.Name}}?</h2>
+        <div class="measures__list">
+          <div class='measure' data-ng-repeat="x in report.measures">
+            <p class="measure__description">{{getMeasureTitle(x.name)}}</p>
+            <p class="measure__value">{{x.values[0]}}</p>
+          </div>
+        </div>
+        <div data-ng-if="showSurgicalLink" class="measures__risk">
+          <img src="themes/consumer/assets/infographic/doctor-male-1.png">
+          <p><strong>All surgeries involve some level of risk.</strong><br>Before your procedure we recommend you get informed on surgical safety.</p>
+          <button class="btn--primary" data-ui-sref="top.consumer.infographic">View the visual report for surgical safety</button>
+        </div>
+      </section>
+
+      <div class='infographic__clipboard'>
+        <p>Why Should You Compare?</p>
+        <div class="clipboard__intro">
+          <p><strong>All hospitals are not the same.</strong></p>
+          <p>Some are better overall, some are not so good. Some do well in some areas of care but not in others.</p>
+          <p><strong>Comparing hospitals helps:</strong></p>
+        </div>
+        <ul>
+          <li>Spot possible safety concerns for hospitals you are considering.</li>
+          <li>Make better health care decisions for you and your loved ones.</li>
+          <li>Show you how hospitals you are considering perform in critical safety areas.</li>
+        </ul>
+        <img class='clipboard__doctor' src='themes/consumer/assets/infographic/doctor-male-3.png' alt='Doctor illustration' />
+        <div class='clipboard__post-it'>
+          <p><strong>Talking with your doctor shows you want to be a partner in your care.</strong></p>
+          <p>It also helps remind your care team to take certain actions to keep you as safe as possible.</p>
+        </div>
+      </div>
+
+      <div class="infographic__cta">
+        <button class="btn--primary" data-ui-sref="top.consumer.hospitals.topic({'topicId': topicCategoryId, 'focus': 'report'})">Start Comparing Hospitals for this topic</button>
+        <p>Find hospitals that perform best in the areas you care about.</p>
+      </div>
+
+      <footer class="infographic__footer">
+        <!-- <p class="infographic__doctor-talk">Talking with your doctor shows you want to be a partner in your care. It also helps remind your care team to take certain actions to keep you as safe as possible.</p> -->
+
+        <p class="infographic__social--footer" data-ng-if="!isPreview()">
+          <span>Share:</span>
+          <a class='infographic__social--facebook' href="https://www.facebook.com/sharer/sharer.php?u={{shareURL}}">
+            <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+              <title>
+                Facebook
+              </title>
+              <path d="M28.444 0H3.556C1.6 0 0 1.6 0 3.556v24.888C0 30.402 1.6 32 3.556 32H16V19.556h-3.556v-4.4H16V11.51c0-3.846 2.155-6.548 6.695-6.548l3.205.003v4.63h-2.128c-1.767 0-2.44 1.328-2.44 2.558v3.004H25.9l-1.01 4.4h-3.557V32h7.11C30.4 32 32 30.402 32 28.444V3.556C32 1.6 30.4 0 28.444 0z" />
+            </svg>
+          </a>
+          <a class='infographic__social--twitter' href="https://twitter.com/home?status={{shareURL}}">
+            <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+              <title>
+                Twitter
+              </title>
+              <path d="M27.706 9.794c.012.26.017.52.017.78 0 7.984-6.075 17.188-17.184 17.188-3.414 0-6.586-1-9.26-2.716.474.056.954.085 1.44.085 2.832 0 5.435-.965 7.5-2.583-2.64-.05-4.873-1.793-5.64-4.193.367.068.746.105 1.135.105.552 0 1.087-.073 1.592-.21-2.763-.557-4.845-2.997-4.845-5.925v-.075c.815.452 1.748.724 2.736.756-1.62-1.084-2.688-2.93-2.688-5.028 0-1.106.298-2.144.82-3.037 2.977 3.657 7.43 6.06 12.45 6.313-.103-.443-.156-.903-.156-1.378 0-3.334 2.702-6.037 6.038-6.037 1.738 0 3.308.732 4.41 1.906 1.374-.272 2.667-.774 3.835-1.466-.45 1.41-1.41 2.594-2.656 3.34 1.224-.146 2.385-.468 3.47-.95-.81 1.214-1.834 2.276-3.014 3.126z" />
+            </svg>
+          </a>
+          <a class='infographic__social--email' href="mailto:recipient@address?&body={{shareURL}}">
+            <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+              <title>
+                Email
+              </title>
+              <path d="M1.02 7.286l13.334 7.163c.448.24 1.027.353 1.61.353.584 0 1.163-.114 1.61-.354.45-.24 12.467-6.698 13.334-7.164.87-.467 1.69-2.286.096-2.286H.926c-1.594 0-.773 1.82.094 2.286zm30.292 3.917c-.987.513-13.132 6.842-13.737 7.16-.604.315-1.027.353-1.61.353-.584 0-1.007-.038-1.61-.354-.606-.317-12.682-6.647-13.67-7.16-.692-.364-.685.06-.685.388v12.966c0 .746 1.006 1.777 1.778 1.777h28.444c.772 0 1.778-1.03 1.778-1.777V11.592c0-.327.007-.752-.688-.39z" />
+            </svg>
+          </a>
+        </p>
+      </footer>
+    </div>
+  </div>
+</main>

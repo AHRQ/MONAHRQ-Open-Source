@@ -1,0 +1,49 @@
+﻿<UserControl x:Class="Monahrq.Wing.Dynamic.Views.ProcessFileView"
+                              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      mc:Ignorable="d"
+                      d:DesignHeight="300" d:DesignWidth="300">
+
+    <ScrollViewer>
+        <!--<ItemsControl ItemsSource="{Binding DataContextObject.File}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>-->
+                    <StackPanel Margin="4">
+                        <TextBlock>
+                            <Run Text="Importing File: " FontWeight="Bold" />
+                            <Run Text="{Binding DataContextObject.File.FileName}" />
+                        </TextBlock>
+                        <TextBlock>
+                            <Run Text="Lines Read: " FontWeight="Bold" />
+                            <Run Text="{Binding DataContextObject.File.LinesDone}" />
+                        </TextBlock>
+                        <TextBlock>
+                            <Run Text="Errors lines: " FontWeight="Bold" />
+                            <Run Text="{Binding DataContextObject.File.LinesErrors}" />
+                        </TextBlock>
+                        <!--<TextBlock>
+                            <Run Text="Duplicate lines: " FontWeight="Bold" />
+                            <Run Text="{Binding DataContextObject.File.LinesDuplicated}" />
+                        </TextBlock>-->
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock FontWeight="Bold" Text="Progress :  " VerticalAlignment="Center" />
+                            <ProgressBar
+                                Value="{Binding DataContextObject.File.LinesDone}"
+                                Maximum="{Binding DataContextObject.File.TotalLines }"
+                                Height="16"
+                                BorderThickness="0"
+                                Foreground="Green"
+                                Background="Gainsboro"
+                                HorizontalAlignment="Left"
+                                BorderBrush="Transparent" Width="200" />
+                        </StackPanel>
+                    </StackPanel>
+                <!--</DataTemplate>
+            </ItemsControl.ItemTemplate>
+
+        </ItemsControl>-->
+    </ScrollViewer>
+</UserControl>

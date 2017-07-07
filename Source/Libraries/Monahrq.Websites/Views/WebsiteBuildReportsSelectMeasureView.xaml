@@ -1,0 +1,116 @@
+﻿<UserControl x:Class="Monahrq.Websites.Views.WebsiteBuildReportsSelectMeasureView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+	         xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+             xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             xmlns:Theme="clr-namespace:Monahrq.Theme.Converters;assembly=Monahrq.Theme"
+             xmlns:local="clr-namespace:Monahrq.Theme.Behaviors;assembly=Monahrq.Theme"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="800">
+    <!--xmlns:converters="clr-namespace:Monahrq.Websites.Converters"-->
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.Buttons.xaml"/>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.DataGrid.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <!--<model:ManageMeasuresViewModel x:Key="ManageMeasuresViewModel"/>-->
+            <!--<converters:TopicsListToStringConverter x:Key="TopicsListToStringConverter" />
+            <converters:WebsiteListToStringConverter x:Key="WebsiteListToStringConverter" />
+            <converters:HtmlToTextConverter x:Key="HtmlToTextConverter" />
+            <converters:ExpandAllMultiConverter x:Key="ExpandAllMultiConverter" />
+            <Theme:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>-->
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition x:Name="DataGridColumn" Width="{Binding UI.DataViewWidth, FallbackValue=0.7*, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <ColumnDefinition x:Name="SplitterColumn" Width="{Binding UI.SpliterWidth, FallbackValue=0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <ColumnDefinition x:Name="DetailsViewColumn" Width="{Binding UI.DetailViewWidth, FallbackValue=0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  />
+        </Grid.ColumnDefinitions>
+        <Border BorderThickness="1" Grid.Column="0" BorderBrush="{DynamicResource MGrey3}">
+            <DataGrid 
+                x:Name="ReportsDataGrid"
+                ItemsSource="{Binding ReportsCollectionView}"
+                BorderBrush="{DynamicResource MGrey2}" 
+                HorizontalGridLinesBrush="{DynamicResource MGrey2}" 
+                VerticalGridLinesBrush="{DynamicResource MGrey2}" 
+                Foreground="{DynamicResource MGrey5}"   
+                Background="{DynamicResource White}" 
+                Margin="0,0,0,0"  
+                AutoGenerateColumns="False" 
+				CanUserAddRows="False" 
+                CanUserDeleteRows="False" 
+                ColumnHeaderHeight="40" 
+                CanUserResizeRows="False" 
+                HeadersVisibility="Column" 
+				AlternationCount="2"
+                SelectionMode="Single" 
+                SelectedValue="{Binding SelectedReport}">
+                            
+              
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn x:Name="columnCheckBox" HeaderStyle="{DynamicResource CheckBoxHeaderStyle}">
+                        <DataGridTemplateColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <Border Width="30" BorderThickness="0">
+                                    <CheckBox 
+                                        IsChecked="{Binding Path=DataContext.IsAllSelected, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Mode=TwoWay}"  
+                                        VerticalAlignment="Center" HorizontalAlignment="Center" Margin="4,0,0,0" />
+                                </Border>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.HeaderTemplate>
+                                    
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate DataType="{x:Type DataGridCell}">
+                                <Border x:Name="brd" Background="Transparent">
+                                    <CheckBox x:Name="chk" VerticalAlignment="Center" 
+                                                IsChecked="{Binding IsSelectedForTopicAssignment, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                </Border>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                                   
+                    </DataGridTemplateColumn>
+                                
+                    <DataGridTemplateColumn Header="Report Type" Width="0.30*" x:Name="columnReportType" CanUserSort="False">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock x:Name="txtTitle"  Margin="6" TextWrapping="Wrap"  Text="{Binding ReportType}" TextTrimming="CharacterEllipsis" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <!-- TODO: Need to change this to a dropdown. -->
+                    <DataGridTemplateColumn Header="Report" Width="0.50*" x:Name="columnReport" CanUserSort="False">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Margin="6" TextWrapping="Wrap"  Text="{Binding Report}" VerticalAlignment="Top" TextTrimming="CharacterEllipsis" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Header="" x:Name="columnPreview" CanUserSort="False">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button VerticalAlignment="Center"  
+                                            CommandParameter="{Binding }" 
+                                            Command="{Binding Path=DataContext.NavigateToPreviewCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                            Style="{DynamicResource EditButton}" >
+                                    <Button.ToolTip>
+                                        <TextBlock Text="Preview" />
+                                    </Button.ToolTip>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+    </Grid>
+</UserControl>

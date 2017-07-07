@@ -1,0 +1,279 @@
+/* Header
+---------------------------------------- */
+.header .branding {
+  float: left;
+  padding: 30px 0;
+}
+
+.header .meta-nav {
+  float: right;
+  padding-top: 30px;
+  font-size: 12px;
+}
+
+// ------------------------------------------------------------------- //
+//  Notification bar
+
+.site-notification-bar {
+  height: 35px;
+  margin: 0 -30px;
+  background: #ccc;
+  font-size: 12px;
+
+  .contain {
+    position: relative;
+    height: 35px;
+    padding: 9px 0;
+    text-align: center;
+  }
+
+  p {
+    margin-bottom: 0;
+  }
+
+  a {
+    font-weight: 600;
+  }
+
+  p + a {
+    position: absolute;
+    right: 0;
+    top: 11px;
+  }
+}
+
+.hide-notification {
+  display: block;
+  width: 12px;
+  height: 12px;
+  background-image: url("../assets/images/monahrq-sprite.png");
+  background-position: -207px 0px;
+  cursor: pointer;
+}
+
+// -------------------------------------------------------------------- //
+//  Main navigation
+
+.nav--header {
+  position: relative;
+  width: 100%;
+
+  ul {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+      float: left;
+      position: static;
+      margin: 0;
+      list-style: none;
+    }
+
+    &.nav-tabs-tertiary {
+      width: calc(100% + 1px); // Border offset, yay!
+    }
+  } // END ul
+}
+
+.nav__link {
+  display: block;
+  padding: 10px 15px;
+  color: #3E464B;
+  text-decoration: none;
+
+  &.active {
+    font-weight: 700;
+    text-decoration: underline;
+  }
+}
+
+.nav-tabs {
+  border-bottom: 0;
+
+  > li > .nav__link {
+    margin-right: 5px;
+    border-radius: 5px 5px 0 0;
+
+    &.active {
+      position: relative;
+      z-index: 5;
+      margin: 0 5px -1px 0;
+      border: 0;
+
+      &:hover,
+      &:focus {
+        text-decoration: underline;
+        cursor: default;
+      }
+    }
+  }
+}
+
+.nav-tabs-secondary,
+.nav-tabs-tertiary {
+  position: absolute;
+  left: 0;
+}
+
+.nav-tabs-secondary {
+  padding: 5px 5px 0 !important;
+
+  .nav__link {
+    border-radius: 5px 5px 0 0;
+  }
+
+  .nav__link.active,
+  .nav__link.active:hover,
+  .nav__link.active:focus {
+    background-color: #fff;
+    color: #3e464c;
+  }
+}
+
+.nav-tabs-tertiary {
+  left: -1px;
+  background-color: #999;
+  border: solid #ddd;
+  border-width: 0 1px 1px;
+
+  .nav__link {
+    &.active {
+      margin-bottom: -1px;
+      color: #3E464B;
+      background-color: #fff;
+      border-bottom: 1px solid #fff;
+    }
+  }
+
+  .nav-tabs-tertiary {
+    background-color: #fff;
+
+    .nav__link.active {
+      border: 0;
+    }
+  }
+}
+
+
+
+// -------------------------------------------------------------------- //
+//  Create heights based on nav depth
+
+@for $i from 1 through 5 {
+  .nav-depth-#{$i} {
+    height: (41px * $i);
+  }
+}
+
+
+
+
+/* Sub Navigation
+---------------------------------------- */
+.sub-nav {
+  padding: 0px 15px;
+  margin-top: 20px;
+}
+
+.sub-nav.compare {
+  margin-top: 0;
+}
+
+
+
+/* OLD - Kept ICE */
+
+/* Nav
+---------------------------------------- */
+// .nav-tabs > li > a {
+//   margin-right: 5px;
+//   border-bottom: 1px solid #ddd;
+//   background: #ddd;
+//   text-decoration: none;
+// }
+//
+// .nav-tabs > li > a:hover,
+// .nav-tabs > li > a:focus {
+//   background: #ccc;
+//   text-decoration: underline;
+// }
+//
+// .nav-tabs > li.active > a,
+// .nav-tabs > li.active > a:hover,
+// .nav-tabs > li.active > a:focus {
+//   font-weight: bold;
+//   cursor: auto;
+//   text-decoration: underline;
+// }
+//
+// .nav-pills > li > a,
+// .nav-pills > li > button {
+//   position: relative;
+//   display: block;
+//   padding: 10px 15px;
+//   margin-left: 10px;
+//   font-size: 12px;
+//   background: #ddd;
+//   color: #2d69a4;
+//   text-decoration: none;
+// }
+//
+// .nav-pills>li.active>a,
+// .nav-pills>li.active>a:hover,
+// .nav-pills>li.active>a:focus {
+//   color: #3E464C;
+//   background-color: #ccc;
+// }
+//
+// .nav-pills>li>button:hover,
+// .nav-pills>li>button:focus {
+//   color: #2d69a4;
+//   background-color: #ccc;
+// }
+//
+// .nav-pills-sm > li > a {
+//   padding: 5px 10px;
+//   font-size: 12px;
+// }
+//
+// ul.nav {
+//   margin-left: 0;
+// }
+//
+// /* Secondary Nav
+// ---------------------------------------- */
+// ul.nav-tabs-secondary {
+//   margin-top: 15px;
+//   margin-bottom: 6px;
+//   border-bottom-color: #CAD2CA;
+//   background: none;
+// }
+//
+// ul.nav-tabs-secondary > li {
+//   padding: 0;
+//   width: auto;
+//   background: #E3EBE3;
+//   border-radius: 10px 10px 0 0;
+//   margin-right: 3px;
+//
+//   a {
+//     display: block;
+//     padding: 10px 50px 10px;
+//   }
+// }
+//
+// ul.nav-tabs-secondary > li:first-child {
+//   width: auto;
+// }
+//
+// ul.nav-tabs-secondary > li.active {
+//   background: #CAD2CA;
+//   width: auto;
+// }
+//
+// ul.nav-tabs-secondary.flutter > li {
+//   width: auto;
+//   padding-right: 0;
+// }

@@ -1,0 +1,223 @@
+﻿<UserControl x:Class="Monahrq.DataSets.Physician.Views.MedicalPracticeEditView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:viewModel="clr-namespace:Monahrq.DataSets.Physician.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="1200">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.Buttons.xaml"/>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.DataGrid.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid x:Name="grid_Header" Style="{DynamicResource RootContentGrid}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="90" x:Name="Header"/>
+                <RowDefinition Height="50" x:Name="MeasureTitle"/>
+                <RowDefinition x:Name="Tabs"/>
+                <RowDefinition Height="50" x:Name="Footer"/>
+            </Grid.RowDefinitions>
+
+            <!--HEADER -->
+            <StackPanel HorizontalAlignment="Left" Margin="0" Orientation="Vertical" VerticalAlignment="Center" >
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock  Text="Medical Practice" Style="{StaticResource Header1}" VerticalAlignment="Center" />
+                </StackPanel>
+                <TextBlock  Text="{Binding ViewLabel}"  Style="{StaticResource Subtopic}"  />
+            </StackPanel>
+
+            <Viewbox Grid.Row="1" Margin="0,0,400,0" Stretch="Fill" HorizontalAlignment="Left" StretchDirection="DownOnly">
+                <TextBlock Margin="0" Style="{DynamicResource Header3}" VerticalAlignment="Stretch" HorizontalAlignment="Left" TextWrapping="Wrap">
+                        <Run Text="{Binding Model.Name}"></Run>
+                </TextBlock>
+            </Viewbox>
+
+            <!--ATTRIBUTES -->
+            <Grid Background="{DynamicResource MGrey2}" Grid.Row="2" Margin="0,-50,0,0">
+                <Grid>
+                    <Border BorderBrush="{DynamicResource MBlue}" BorderThickness="0,1">
+                        <Grid Background="{StaticResource MGrey2}" Margin="10,25,10,0" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock  Grid.Row="0" Grid.Column="0" Foreground="{StaticResource MGrey5}" Margin="5,5,2,5" Text="Organization Legal Name" />
+                            <TextBox  Grid.Row="0" Grid.Column="1" Width="275" HorizontalAlignment="Left" Margin="5,5,2,5" 
+                                      Text="{Binding Model.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+
+                            <TextBlock Grid.Row="1" Grid.Column="0" Foreground="{StaticResource MGrey5}"  Margin="5,5,2,5" Text="Group Practice Pac ID" />
+                            <TextBox Grid.Row="1" Grid.Column="1" Width="275" HorizontalAlignment="Left" Margin="5,5,2,5" 
+                                     Text="{Binding Model.GroupPracticePacId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+
+                            <TextBlock  Grid.Row="2" Grid.Column="0" Foreground="{StaticResource MGrey5}" Margin="5,5,2,5" Text="# of Group Practice Members"/>
+                            <TextBox  Grid.Row="2" Grid.Column="1" Width="275" HorizontalAlignment="Left" Margin="5,5,2,5" 
+                                      Text="{Binding NumberOfMembers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, TargetNullValue=' '}"/>
+
+                            <Border Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="3" Margin="5">
+                                <StackPanel>
+                                    <StackPanel Margin="0,20,0,0">
+                                        <TextBlock  Style="{StaticResource Subtopic}" Foreground="{StaticResource MGrey5}"  Margin="0,5,0,0" Text="Address"  />
+                                        <Rectangle Height="1" Margin="0,2,10,5" Fill="{DynamicResource MGrey3}" />
+                                    </StackPanel>
+                                    <DataGrid Margin="10" Height="220"  BorderBrush="{StaticResource MGrey2}" HorizontalGridLinesBrush="{StaticResource MGrey2}" 
+                                  VerticalGridLinesBrush="{StaticResource MGrey2}" Foreground="{StaticResource MGrey5}" IsSynchronizedWithCurrentItem="True"
+                                  Background="{StaticResource White}" AutoGenerateColumns="False" SelectionUnit="FullRow" CanUserAddRows="False" SelectedItem="{Binding SelectedAddress}"
+                                  ColumnHeaderHeight="40" CanUserResizeRows="False" HeadersVisibility="Column" AlternationCount="2"  CanUserDeleteRows="False" 
+                                  ItemsSource="{Binding Model.Addresses, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top">
+                                        <DataGrid.Columns>
+                                            <DataGridTemplateColumn Header="" CanUserSort="False">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <Button VerticalAlignment="Top"  Margin="0,5,0,5" CommandParameter="{Binding}" Style="{StaticResource EditButton}"
+                                                            Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=DataContext.EditAddress}"  >
+                                                            <Button.ToolTip>
+                                                                <TextBlock Text="Edit" />
+                                                            </Button.ToolTip>
+                                                        </Button>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                            <DataGridTemplateColumn Header="" CanUserSort="False">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <Button VerticalAlignment="Top"  Margin="0,5,0,5" CommandParameter="{Binding}" Style="{StaticResource DeleteButton}"
+                                                                        Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=DataContext.RemoveAddress}"  >
+                                                            <Button.ToolTip>
+                                                                <TextBlock Text="Edit" />
+                                                            </Button.ToolTip>
+                                                        </Button>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                            <DataGridTemplateColumn Header="Street 1" Width=".17*" CanUserSort="True" SortMemberPath="Line1">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock Foreground="{StaticResource MGrey5}" Text="{Binding Line1}" />
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                            <DataGridTemplateColumn Header="Street 2" Width=".17*" CanUserSort="True" SortMemberPath="Line2">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock Foreground="{StaticResource MGrey5}" Text="{Binding Line2}" />
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                            <DataGridTemplateColumn Header="City" Width=".17*" CanUserSort="True" SortMemberPath="City">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock Foreground="{StaticResource MGrey5}" Text="{Binding City}" />
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                            <DataGridTemplateColumn Header="State" Width=".14*" CanUserSort="True" SortMemberPath="State">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock Foreground="{StaticResource MGrey5}" Text="{Binding State}" />
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                            <DataGridTemplateColumn Header="Zip Code" Width=".17*" CanUserSort="True" SortMemberPath="ZipCode">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock Foreground="{StaticResource MGrey5}" Text="{Binding ZipCode}" />
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </StackPanel>
+                            </Border>
+                            <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10">
+                                <Button Content="ADD ADDRESS" HorizontalAlignment="Right" Style="{StaticResource PlainButton}" Margin="10,5" Width="100"
+                                    Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=DataContext.AddNewAdress}"/>
+
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+
+                    <Border Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top" Width="550" Height="300"
+                                    Background="{StaticResource MGrey2}" BorderThickness="1" BorderBrush="{StaticResource MBlue}" 
+                                    Visibility="{Binding ShowAddressPopup}" Margin="0,125,0,0">
+                        <Grid VerticalAlignment="Top" DataContext="{Binding SelectedAddress}" Background="{StaticResource MGrey2}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition  Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Border Height="30" Background="{StaticResource MBlue}" Grid.Row="0">
+                                <TextBlock Text="Address"  VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Foreground="White" Margin="10,0" />
+                            </Border>
+                            <Grid Background="{StaticResource MGrey2}" Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width=".30*" />
+                                    <ColumnDefinition Width=".70*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <TextBlock  Foreground="{StaticResource MGrey5}" Grid.Row="0" Grid.Column="0" Margin="5,5,2,5" Text="Street Address 1" />
+                                <TextBlock  Foreground="{StaticResource MGrey5}" Grid.Row="1" Grid.Column="0" Margin="5,5,2,5" Text="Street Address 2" />
+                                <TextBlock  Foreground="{StaticResource MGrey5}" Grid.Row="2" Grid.Column="0" Margin="5,5,2,5" Text="Address Line 2 Suppressed" Visibility="Collapsed"/>
+                                <TextBlock  Foreground="{StaticResource MGrey5}" Grid.Row="3" Grid.Column="0" Margin="5,5,2,5" Text="City" />
+                                <TextBlock  Foreground="{StaticResource MGrey5}" Grid.Row="4" Grid.Column="0" Margin="5,5,2,5" Text="State" />
+                                <TextBlock  Foreground="{StaticResource MGrey5}" Grid.Row="5" Grid.Column="0" Margin="5,5,2,5" Text="ZIP Code " />
+
+                                <TextBox Grid.Row="0" Grid.Column="1" Margin="5,5,2,5" Text="{Binding Line1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                                <TextBox Grid.Row="1" Grid.Column="1" Margin="5,5,2,5" Text="{Binding Line2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                                <TextBox Grid.Row="2" Grid.Column="1" Margin="5,5,2,5" Visibility="Collapsed" />
+                                <TextBox Grid.Row="3" Grid.Column="1" Margin="5,5,2,5" Text="{Binding City, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                <ComboBox  Margin="5,5,2,5" Grid.Row="4" Grid.Column="1" 
+                                                                               ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=DataContext.AvailableStates}" 
+                                                                               SelectedValue="{Binding State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                                <TextBox Grid.Row="5" Grid.Column="1" Margin="5,5,2,5" Text="{Binding ZipCode, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True}"/>
+
+                                <StackPanel Grid.Row="6" Grid.Column="1"  Orientation="Horizontal" HorizontalAlignment="Right" Height="40">
+                                    <Button Content="Cancel" HorizontalAlignment="Right" Style="{StaticResource PlainButton}" CommandParameter="{Binding }" Margin="10,5" Width="100"
+                                                    Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=DataContext.CancelAddress}" />
+
+                                    <Button Content="OK" HorizontalAlignment="Right" Style="{StaticResource PlainButton}" CommandParameter="{Binding }" Margin="10,5" Width="100"
+                                                    Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=DataContext.SaveAddress}" />
+
+                                </StackPanel>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Grid>
+
+            <!--FOOTER -->
+            <Grid Grid.Row="3" Height="34" VerticalAlignment="Bottom" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.4*"/>
+                    <ColumnDefinition Width="0.4*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right" >
+                    <Button Content="Cancel" Command="{Binding CancelCommand}" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource PlainButton}"
+                            Foreground="White" Background="{StaticResource MPink}"  Height="36" Width="160" Margin="0,0,10,0"/>
+                    <Button Content="Save Changes" Command="{Binding SaveCommand}" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                Margin="0,0,10,0" Style="{StaticResource PlainButton}"
+                            Foreground="White" Background="{StaticResource MDGreen}"  Height="36"  Width="160"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

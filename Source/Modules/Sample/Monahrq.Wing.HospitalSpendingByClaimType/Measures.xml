@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<topics>
+  <category name="Sample" longTitle="Sample"
+            description="Sample">
+    <topic name="Medicare Hospital Spending by Claim Type"
+           description="Medicare Hospital Spending by Claim Type"
+           longTitle="Medicare Hospital Spending by Claim Type">
+      <measure name="Average spending per episode - Hospital"/>
+      <measure name="Average spending per episode - State"/>
+      <measure name="Average spending per episode - National"/>
+      <measure name="Percent spending per episode - Hospital"/>
+      <measure name="Percent spending per episode - State"/>
+      <measure name="Percent spending per episode - National"/>
+    </topic>
+  </category>
+</topics>

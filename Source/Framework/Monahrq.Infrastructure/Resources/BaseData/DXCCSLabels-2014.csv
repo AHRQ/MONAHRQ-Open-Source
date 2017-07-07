@@ -1,0 +1,282 @@
+DXCCSCategoryID,DXCCSID,DXCCSName
+1,1,Tuberculosis
+1,2,Septicemia (except in labor)
+1,3,Other bacterial infections
+1,4,Mycoses
+1,5,HIV infection
+1,6,Hepatitis
+1,7,Other viral infections
+1,8,Other infections; including parasitic
+1,9,Sexually transmitted infections (not HIV or hepatitis)
+1,10,Immunizations and screening for infectious disease
+2,11,Cancer of head and neck
+2,12,Cancer of esophagus
+2,13,Cancer of stomach
+2,14,Cancer of colon
+2,15,Cancer of rectum and anus
+2,16,Cancer of liver and intrahepatic bile duct
+2,17,Cancer of pancreas
+2,18,Cancer of other GI organs; peritoneum
+2,19,Cancer of bronchus; lung
+2,20,Cancer; other respiratory and intrathoracic
+2,21,Cancer of bone and connective tissue
+2,22,Melanomas of skin
+2,23,Other non-epithelial cancer of skin
+2,24,Cancer of breast
+2,25,Cancer of uterus
+2,26,Cancer of cervix
+2,27,Cancer of ovary
+2,28,Cancer of other female genital organs
+2,29,Cancer of prostate
+2,30,Cancer of testis
+2,31,Cancer of other male genital organs
+2,32,Cancer of bladder
+2,33,Cancer of kidney and renal pelvis
+2,34,Cancer of other urinary organs
+2,35,Cancer of brain and nervous system
+2,36,Cancer of thyroid
+2,37,Hodgkins disease
+2,38,Non-Hodgkins lymphoma
+2,39,Leukemias
+2,40,Multiple myeloma
+2,41,Cancer; other and unspecified primary
+2,42,Secondary malignancies
+2,43,Malignant neoplasm without specification of site
+2,44,Neoplasms of unspecified nature or uncertain behavior
+2,45,Maintenance chemotherapy; radiotherapy
+2,46,Benign neoplasm of uterus
+2,47,Other and unspecified benign neoplasm
+3,48,Thyroid disorders
+3,49,Diabetes mellitus without complication
+3,50,Diabetes mellitus with complications
+3,51,Other endocrine disorders
+3,52,Nutritional deficiencies
+3,53,Disorders of lipid metabolism
+3,54,Gout and other crystal arthropathies
+3,55,Fluid and electrolyte disorders
+3,56,Cystic fibrosis
+3,57,Immunity disorders
+3,58,Other nutritional; endocrine; and metabolic disorders
+4,59,Deficiency and other anemia
+4,60,Acute posthemorrhagic anemia
+4,61,Sickle cell anemia
+4,62,Coagulation and hemorrhagic disorders
+4,63,Diseases of white blood cells
+4,64,Other hematologic conditions
+6,76,Meningitis (except that caused by TB or STD)
+6,77,Encephalitis (except that caused by TB or STD)
+6,78,Other CNS infection and poliomyelitis
+6,79,Parkinsons disease
+6,80,Multiple sclerosis
+6,81,Other hereditary and degenerative nervous system conditions
+6,82,Paralysis
+6,83,Epilepsy; convulsions
+6,84,Headache; including migraine
+6,85,Coma; stupor; and brain damage
+6,86,Cataract
+6,87,Retinal detachments; defects; vascular occlusion; and retinopathy
+6,88,Glaucoma
+6,89,Blindness and vision defects
+6,90,Inflammation; infection of eye (except that caused by TB or STD)
+6,91,Other eye disorders
+6,92,Otitis media and related conditions
+6,93,Conditions associated with dizziness or vertigo
+6,94,Other ear and sense organ disorders
+6,95,Other nervous system disorders
+7,96,Heart valve disorders
+7,97,Peri-; endo-; and myocarditis; cardiomyopathy (except that caused by TB or STD)
+7,98,Essential hypertension
+7,99,Hypertension with complications and secondary hypertension
+7,100,Acute myocardial infarction
+7,101,Coronary atherosclerosis and other heart disease
+7,102,Nonspecific chest pain
+7,103,Pulmonary heart disease
+7,104,Other and ill-defined heart disease
+7,105,Conduction disorders
+7,106,Cardiac dysrhythmias
+7,107,Cardiac arrest and ventricular fibrillation
+7,108,Congestive heart failure; nonhypertensive
+7,109,Acute cerebrovascular disease
+7,110,Occlusion or stenosis of precerebral arteries
+7,111,Other and ill-defined cerebrovascular disease
+7,112,Transient cerebral ischemia
+7,113,Late effects of cerebrovascular disease
+7,114,Peripheral and visceral atherosclerosis
+7,115,Aortic; peripheral; and visceral artery aneurysms
+7,116,Aortic and peripheral arterial embolism or thrombosis
+7,117,Other circulatory disease
+7,118,Phlebitis; thrombophlebitis and thromboembolism
+7,119,Varicose veins of lower extremity
+7,120,Hemorrhoids
+7,121,Other diseases of veins and lymphatics
+8,122,Pneumonia (except that caused by TB or STD)
+8,123,Influenza
+8,124,Acute and chronic tonsillitis
+8,125,Acute bronchitis
+8,126,Other upper respiratory infections
+8,127,Chronic obstructive pulmonary disease and bronchiectasis
+8,128,Asthma
+8,129,Aspiration pneumonitis; food/vomitus
+8,130,Pleurisy; pneumothorax; pulmonary collapse
+8,131,Respiratory failure; insufficiency; arrest (adult)
+8,132,Lung disease due to external agents
+8,133,Other lower respiratory disease
+8,134,Other upper respiratory disease
+9,135,Intestinal infection
+9,136,Disorders of teeth and jaw
+9,137,Diseases of mouth; excluding dental
+9,138,Esophageal disorders
+9,139,Gastroduodenal ulcer (except hemorrhage)
+9,140,Gastritis and duodenitis
+9,141,Other disorders of stomach and duodenum
+9,142,Appendicitis and other appendiceal conditions
+9,143,Abdominal hernia
+9,144,Regional enteritis and ulcerative colitis
+9,145,Intestinal obstruction without hernia
+9,146,Diverticulosis and diverticulitis
+9,147,Anal and rectal conditions
+9,148,Peritonitis and intestinal abscess
+9,149,Biliary tract disease
+9,151,Other liver diseases
+9,152,Pancreatic disorders (not diabetes)
+9,153,Gastrointestinal hemorrhage
+9,154,Noninfectious gastroenteritis
+9,155,Other gastrointestinal disorders
+10,156,Nephritis; nephrosis; renal sclerosis
+10,157,Acute and unspecified renal failure
+10,158,Chronic kidney disease
+10,159,Urinary tract infections
+10,160,Calculus of urinary tract
+10,161,Other diseases of kidney and ureters
+10,162,Other diseases of bladder and urethra
+10,163,Genitourinary symptoms and ill-defined conditions
+10,164,Hyperplasia of prostate
+10,165,Inflammatory conditions of male genital organs
+10,166,Other male genital disorders
+10,167,Nonmalignant breast conditions
+10,168,Inflammatory diseases of female pelvic organs
+10,169,Endometriosis
+10,170,Prolapse of female genital organs
+10,171,Menstrual disorders
+10,172,Ovarian cyst
+10,173,Menopausal disorders
+10,174,Female infertility
+10,175,Other female genital disorders
+11,176,Contraceptive and procreative management
+11,177,Spontaneous abortion
+11,178,Induced abortion
+11,179,Postabortion complications
+11,180,Ectopic pregnancy
+11,181,Other complications of pregnancy
+11,182,Hemorrhage during pregnancy; abruptio placenta; placenta previa
+11,183,Hypertension complicating pregnancy; childbirth and the puerperium
+11,184,Early or threatened labor
+11,185,Prolonged pregnancy
+11,186,Diabetes or abnormal glucose tolerance complicating pregnancy; childbirth; or the puerperium
+11,187,Malposition; malpresentation
+11,188,Fetopelvic disproportion; obstruction
+11,189,Previous cesarean section
+11,190,Fetal distress and abnormal forces of labor
+11,191,Polyhydramnios and other problems of amniotic cavity
+11,192,Umbilical cord complication
+11,193,Trauma to perineum and vulva
+11,194,Forceps delivery
+11,195,Other complications of birth; puerperium affecting management of mother
+11,196,Normal pregnancy and/or delivery
+12,197,Skin and subcutaneous tissue infections
+12,198,Other inflammatory condition of skin
+12,199,Chronic ulcer of skin
+12,200,Other skin disorders
+13,201,Infective arthritis and osteomyelitis (except that caused by TB or STD)
+13,202,Rheumatoid arthritis and related disease
+13,203,Osteoarthritis
+13,204,Other non-traumatic joint disorders
+13,205,Spondylosis; intervertebral disc disorders; other back problems
+13,206,Osteoporosis
+13,207,Pathological fracture
+13,208,Acquired foot deformities
+13,209,Other acquired deformities
+13,210,Systemic lupus erythematosus and connective tissue disorders
+13,211,Other connective tissue disease
+13,212,Other bone disease and musculoskeletal deformities
+14,213,Cardiac and circulatory congenital anomalies
+14,214,Digestive congenital anomalies
+14,215,Genitourinary congenital anomalies
+14,216,Nervous system congenital anomalies
+14,217,Other congenital anomalies
+15,218,Liveborn
+15,219,Short gestation; low birth weight; and fetal growth retardation
+15,220,Intrauterine hypoxia and birth asphyxia
+15,221,Respiratory distress syndrome
+15,222,Hemolytic jaundice and perinatal jaundice
+15,223,Birth trauma
+15,224,Other perinatal conditions
+16,225,Joint disorders and dislocations; trauma-related
+16,226,Fracture of neck of femur (hip)
+16,227,Spinal cord injury
+16,228,Skull and face fractures
+16,229,Fracture of upper limb
+16,230,Fracture of lower limb
+16,231,Other fractures
+16,232,Sprains and strains
+16,233,Intracranial injury
+16,234,Crushing injury or internal injury
+16,235,Open wounds of head; neck; and trunk
+16,236,Open wounds of extremities
+16,237,Complication of device; implant or graft
+16,238,Complications of surgical procedures or medical care
+16,239,Superficial injury; contusion
+16,240,Burns
+16,241,Poisoning by psychotropic agents
+16,242,Poisoning by other medications and drugs
+16,243,Poisoning by nonmedicinal substances
+16,244,Other injuries and conditions due to external causes
+17,245,Syncope
+17,246,Fever of unknown origin
+17,247,Lymphadenitis
+17,248,Gangrene
+17,249,Shock
+17,250,Nausea and vomiting
+17,251,Abdominal pain
+17,252,Malaise and fatigue
+17,253,Allergic reactions
+17,254,Rehabilitation care; fitting of prostheses; and adjustment of devices
+17,255,Administrative/social admission
+17,256,Medical examination/evaluation
+17,257,Other aftercare
+17,258,Other screening for suspected conditions (not mental disorders or infectious disease)
+17,259,Residual codes; unclassified; all E codes (259 and 260)
+5,650,Adjustment disorders
+5,651,Anxiety disorders
+5,653,Delirium dementia and amnestic and other cognitive disorders
+5,656,Impulse control disorders not elsewhere classified
+5,658,Personality disorders
+5,659,Schizophrenia and other psychotic disorders
+5,660,Alcohol-related disorders
+5,661,Substance-related disorders
+5,662,Suicide and intentional self-inflicted injury
+5,6521,Conduct disorder
+5,6522,Oppositional defiant disorder
+5,6523,Attention deficit disorder and Attention deficit hyperactivity disorder
+5,6541,Communication disorders
+5,6542,Developmental disabilities
+5,6543,Intellectual disabilities
+5,6544,Learning disorders
+5,6545,Motor skill disorders
+5,6551,Elimination disorders
+5,6552,Other disorders of infancy  childhood  or adolescence
+5,6553,Pervasive developmental disorders
+5,6554,Tic disorders
+5,6571,Bipolar disorders
+5,6572,Depressive disorders
+5,6631,Codes related to mental health disorders
+5,6632,Codes related to substance-related disorders
+5,6701,Dissociative disorders
+5,6702,Eating disorders
+5,6703,Factitious disorders
+5,6704,Psychogenic disorders
+5,6705,Sexual and gender identity disorders
+5,6706,Sleep disorders
+5,6707,Somatoform disorders
+5,6708,Mental disorders due to general medical conditions not elsewhere classified
+5,6709,Other miscellaneous mental conditions

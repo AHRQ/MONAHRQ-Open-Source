@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <!-- ANY CHANGES IN THIS FILE MUST BE REPRESENTED IN ReportTemplate.cs -->
+  <xs:element name="ReportColumn" type="ReportColumn" />
+  <xs:complexType name="ReportColumn">
+    <xs:attribute name="Id"  type="Guid" use="optional" />
+    <xs:attribute name="Name" type="xs:string" />
+    <xs:attribute name="IsMeasure" type="xs:boolean" use="optional" default="false" />
+    <xs:attribute name="MeasureCode" type="xs:string" use="optional" />
+  </xs:complexType>
+  <xs:element name="Dataset" type="ReportDataset" />
+  <xs:complexType name="ReportDataset">
+    <xs:attribute name="Name" type="xs:string" use="required" />
+  </xs:complexType>
+  <xs:element name="ReportCategory" type="ReportCategory" />
+  <xs:simpleType name="ReportCategory">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Quality" />
+      <xs:enumeration value="Utilization" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ReportAttributeOption">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="HospitalFilters" />
+          <xs:enumeration value="DRGsDischargesFilters" />
+          <xs:enumeration value="ConditionsAndDiagnosisFilters" />
+          <xs:enumeration value="KeysForRatings" />
+          <xs:enumeration value="IncludedHospitals" />
+          <xs:enumeration value="ReportColumns" />
+          <xs:enumeration value="Display" />
+          <xs:enumeration value="CountyFilters"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:element name="ReportManifest" nillable="true" type="ReportManifest" />
+  <xs:complexType name="ReportManifest">
+    <xs:all>
+      <xs:element minOccurs="1" maxOccurs="1" name="Audiences" type="ArrayOfAudiences" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Datasets" type="ArrayOfDataset" />
+      <xs:element minOccurs="0" maxOccurs="1" name="IconSets" type="ArrayOfIconSets" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Filters" type="ArrayOfFilter" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ReportAttributes" type="ReportAttributeOption" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Columns" type="ArrayOfColumn" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Description" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="InterpretationText" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Header" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Footer" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ReportOutputSQL" type="xs:string" />
+    </xs:all>
+    <xs:attribute name="RptId"  type="xs:string" use="optional" />
+    <xs:attribute name="Name" type="xs:string" />
+    <xs:attribute name="PreviewImage" type="xs:string" use="optional" />
+    <xs:attribute name="ConsumerPreviewImage" type="xs:string" use="optional" />
+    <xs:attribute name="Category" type="ReportCategory" use="required" />
+    <xs:attribute name="IsTrending" type="xs:boolean" use="optional" default="false" />
+    <xs:attribute name="RequiresCmsProviderId" type="xs:boolean" default="false" use="optional" />
+    <xs:attribute name="RequiresCostToChargeRatio" type="xs:boolean" default="false" use="optional" />
+    <xs:attribute name="ShowInterpretationText" type="xs:boolean" default="true" use="optional" />
+    <xs:attribute name="Version" type="VersionType" default="1.0.0" use="optional" />
+    <xs:attribute name="OutputFileName" type="xs:string" default="report-data.js" use="optional" />
+    <xs:attribute name="OutputJsNamespace" type="xs:string" use="optional" />
+  </xs:complexType>
+  <xs:complexType name="ArrayOfDataset">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Dataset" nillable="true" type="ReportDataset" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfColumn">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Column" nillable="true" type="ReportColumn" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="Guid" type="Guid" />
+
+  <xs:simpleType name="Guid">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="ReportFilterTypeEnum">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">
+        This is test report filter type documentation.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ConditionsAndDiagnosis"/>
+      <xs:enumeration value="County"/>
+      <xs:enumeration value="Display"/>
+      <xs:enumeration value="DRGsDischarges"/>
+      <xs:enumeration value="Hospital"/>
+      <xs:enumeration value="PhysicianFilters"/>
+      <xs:enumeration value="NursingHomeFilters" />
+      <xs:enumeration value="GeoLocation" />
+      <xs:enumeration value="ActiveSections" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="VersionType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="((\d+)\.(\d+)\.(\d+))$"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="ArrayOfFilter">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Filter" nillable="true" type="RptManifestFilter" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="RptManifestFilter">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Values" nillable="true" type="ArrayOfFilterValues" />
+    </xs:sequence>
+    <xs:attribute name="Type" type="ReportFilterTypeEnum" use="required" />
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfFilterValues">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="unbounded" name="FilterValue" nillable="true" type="RptManifestFilterValue" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="RptManifestFilterValue">
+    <xs:attribute name="Name"  type="xs:string" use="required" />
+    <xs:attribute name="Value" type="xs:boolean" use="optional" default="true" />
+    <xs:attribute name="IsRadioButton" type="xs:boolean" use="optional" default="false" />
+    <xs:attribute name="RadioGroupName"  type="xs:string" use="optional" />
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfAudiences">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Audience" nillable="true" type="RptManifestAudience" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfIconSets">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="IconSet" nillable="true" type="ReportIconSet" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="RptManifestAudience" >
+    <xs:attribute name="AudienceType" use="required" type="Audience" />
+  </xs:complexType>
+
+  <xs:simpleType name="Audience">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Consumers" />
+		      <xs:enumeration value="Professionals" />
+          <!--xs:enumeration value="AllAudiences" /-->
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+
+  <xs:complexType name="ReportIconSet" >
+    <xs:attribute name="IconType" use="required" type="IconSetEnum" />
+  </xs:complexType>
+
+  <xs:simpleType name="IconSetEnum">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="IconSet1" />
+          <xs:enumeration value="IconSet2" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+</xs:schema>

@@ -1,0 +1,119 @@
+/* Wizard Component
+---------------------------------------- */
+/*.ud-wizard-tabs{
+  background: #E2F4FF;
+  padding: 0;
+  border-bottom: 10px solid #81BCE8
+}
+
+.ud-wizard-tabs li{
+  display: inline-block;
+  padding: 10px 0 10px 50px;
+  background: #E2F4FF;
+  width: 822px;
+  cursor: pointer;
+}
+
+.ud-wizard-tabs li a {
+  text-decoration:none;
+  color: #757A7E;
+}
+
+.ud-wizard-tabs li:first-child{
+  width: 254px;
+}
+
+.ud-wizard-tabs .active{
+  background: #81BCE8;
+}
+
+.ud-wizard-tabs .active a {
+  text-decoration: underline;
+  font-weight: bold;
+  color: #555;
+}
+*/
+
+.wizard {
+  border-bottom: 1px solid black;
+  margin:0 5px;
+}
+
+.wizard__step {
+  padding: 15px 10px 25px 10px;
+  border-right: 3px solid #E2F4FF;
+  min-height: 150px;
+}
+
+.wizard__step.last {
+  border-right: none;
+}
+
+.wizard__step.has-value {
+  .wizard__step-label,
+  .wizard__option-label {
+    color: black;
+  }
+}
+
+.wizard__step-label,
+.wizard__option-label {
+  color: #DEDEDE;
+}
+
+.wizard__step-label {
+  font-size: 25px;
+}
+
+.wizard__step .wizard__step-label.active {
+  color: red;
+}
+
+.wizard__option-label {
+  display: inline-block;
+  min-width: 90px;
+  margin-right: 5px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/*  .ud-wizard-content .lrg-label{
+    min-width: 100px;
+  }
+
+  .ud-wizard-content legend {
+    border-bottom: none;
+    margin-bottom: 0px;
+  }
+
+  .ud-wizard-content .wiz-step-explainer{
+    width: 350px;
+  }
+
+  .ud-wizard-content .zip-input{
+    width: 225px;
+    margin-left: 10px;
+  }
+
+.ud-wizard-content.compressed>div{
+  min-height: 108px;
+}
+
+.ud-wizard-content.compressed .wiz-step-num{
+  float: left;
+  margin-right: 10px;
+}
+
+.ud-wizard-content.compressed .wiz-step-name{
+  display: none;
+}
+
+.ud-wizard-content.compressed .form-control {
+  width: 200px;
+}
+
+.ud-wizard-content.compressed .form-control.zip-input {
+  width: 175px;
+  margin-left: 35px;
+}
+  */

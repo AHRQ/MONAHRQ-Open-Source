@@ -1,0 +1,42 @@
+// ------------------------------------------------------------------- //
+//  Basic Positioning (Type + T/L/B/R Values)
+//
+//  @include position(absolute, 10px 0 0 10px);
+// ------------------------------------------------------------------- //
+
+@mixin position($pos-type: relative, $pos-vals: 0 0 0 0) {
+
+  // If no position type designated, default to "relative"
+  @if type-of($pos-type) == list{
+    $pos-vals: $pos-type;
+    $pos-type: relative;
+  }
+
+  // Separate values into top, right, bottom, left
+  $top: nth($pos-vals, 1);
+  $right: nth($pos-vals, 2);
+  $bottom: nth($pos-vals, 3);
+  $left: nth($pos-vals, 4);
+
+  // Return position
+  position: $pos-type;
+
+  // Return values
+  // If value is a number and has a unit type, print value
+  // otherwise ignore
+  @if (type-of($top) == number and not unitless($top)){
+    top: $top;
+  }
+
+  @if (type-of($right) == number and not unitless($right)){
+    right: $right;
+  }
+
+  @if (type-of($bottom) == number and not unitless($bottom)){
+    bottom: $bottom;
+  }
+
+  @if (type-of($left) == number and not unitless($left)){
+    left: $left;
+  }
+}

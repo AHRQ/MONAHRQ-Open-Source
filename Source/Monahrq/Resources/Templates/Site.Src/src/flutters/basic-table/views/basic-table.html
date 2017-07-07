@@ -1,0 +1,34 @@
+<script type="text/ng-template" id="flutters/basic-table/views/basic-table.html">
+  <div class="BasicTableFlutter">
+    <h1 class="page-title">{{page.title}}</h1>
+    <div data-ng-bind-html="page.header" class="page-header"></div>
+
+    <table data-st-table="displayModel" data-st-safe-src="model" class="table data">
+      <thead>
+        <tr class="column-headings">
+          <th data-ng-repeat="col in table.columns" data-st-sort="{{col.name}}">{{col.label}}</th>
+        </tr>
+        <tr data-ng-if="table.hasGlobalSearch" class="global-search">
+          <th colspan="{{table.columns.length}}"><input data-st-search="" class="form-control" placeholder="Search" type="text" /></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-ng-repeat="row in displayModel">
+          <td data-ng-repeat="col in table.columns">
+            <span data-ng-if="!(col.format == 'html')">{{getValue(col.name, row)}}</span>
+            <span data-ng-if="col.format == 'html'" data-basic-table-flutter-compile="row[col.name]"></span>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr data-ng-if="table.hasPager" class="table-pager">
+          <td colspan="{{table.columns.length}}" class="text-center">
+            <div data-st-pagination="" data-st-items-by-page="itemsByPage" data-st-displayed-pages="10"></div>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <div data-ng-bind-html="page.footer" class="page-footer"></div>
+  </div>
+</script>

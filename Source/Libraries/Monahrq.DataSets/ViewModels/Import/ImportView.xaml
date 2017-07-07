@@ -1,0 +1,81 @@
+﻿<UserControl x:Class="Monahrq.DataSets.ViewModels.Import.ImportView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             xmlns:views="clr-namespace:Monahrq.DataSets.Views"             
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="800">
+    <Grid Background="White">
+        <Grid x:Name="ProgressGrid" Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="46" />
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid x:Name="HeaderGrid">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.50*"/>
+                    <ColumnDefinition Width="0.50*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Margin="0" TextWrapping="Wrap" Text="{Binding Status}" FontSize="26" Foreground="Gray" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+                <!-- Display dataset title and date in upper right corner -->
+                <StackPanel Grid.Column="1" d:LayoutOverrides="Height" VerticalAlignment="Top" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <views:DatasetTitlePeriod DataContext="{Binding DataContextObject.Entry}" />
+                </StackPanel>
+            </Grid>
+            <Grid x:Name="contentGrid1" Grid.Row="1" Margin="30,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" x:Name="progressStatsGrid">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height=".25*"/>
+                        <RowDefinition Height=".75*" />
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2">
+                        <Controls:MetroProgressBar Value="{Binding Path=CurrentProgress.Current, Mode=OneWay}" VerticalAlignment="Stretch" Foreground="#FF09CE1E" Background="#59D2D2D2" BorderBrush="#00000000" Margin="0,0,0,10" Maximum="{Binding CurrentProgress.Total, Mode=OneWay}"/>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Record"/>
+                                <TextBlock Margin="3,0,0,0" Text="{Binding Path=CurrentProgress.Current,  StringFormat='{}{0:N0}'}"/>
+                                <TextBlock Margin="3,0,0,0" Text="of"/>
+                                <TextBlock Margin="3,0,0,0" Text="{Binding Path=CurrentProgress.Total, StringFormat='{}{0:N0}'}"/>
+                            </StackPanel>
+                            </StackPanel>
+                </Grid>
+                <Grid x:Name="dataStatsGrid" Grid.Row="1" Margin="0,5,0,0">
+                    <!-- File Size, Records, Filename section -->
+                    <Border BorderThickness="1" Background="#FFDEDEDE" CornerRadius="5" Margin="20,10,20,0">
+                        <Grid Margin="5,5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="160" />
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25"/>
+                                <RowDefinition Height="25"/>
+                                <RowDefinition Height="25"/>
+                                <RowDefinition Height="25"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock TextWrapping="Wrap" Text="Statistics / Warnings" FontSize="16" Foreground="#FF393939" Grid.ColumnSpan="3"/>
+
+                            <TextBlock Grid.Row="1" Grid.Column="0" Text="Records Loaded:" HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="14" Foreground="#FF454444" Height="22"/>
+                            <TextBlock Grid.Row="2" Grid.Column="0" Text="Records Not Loaded:" TextWrapping="Wrap" FontSize="14" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="#FF454444"/>
+                            <TextBlock Grid.Row="3" Grid.Column="0" Text="Database Error Messages:" TextWrapping="Wrap" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="14" Foreground="#FF454444" Height="21"/>
+                            <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding RecordsLoaded, StringFormat='{}{0:N0}'}" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Foreground="#FF454444" />
+                            <TextBlock Grid.Row="2" Grid.Column="2" Text="{Binding RecordsNotLoaded, StringFormat='{}{0:N0}'}" TextWrapping="Wrap" HorizontalAlignment="Left" FontSize="14" Foreground="#FF454444" VerticalAlignment="Center" />
+                            <TextBlock Grid.Row="3" Grid.Column="2" Text="{Binding DatabaseErrorMessages, StringFormat='{}{0:N0}'}" TextWrapping="Wrap" HorizontalAlignment="Left" FontSize="14" Foreground="#FF454444" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>
+

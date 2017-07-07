@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Monahrq.Infrastructure.Entities.Domain.Hospitals.Hospital" Collapsed="true">
+    <Position X="1" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAGEQAAQgATAYAAACSBQAAAAgEAwGCBAgBAIBAAA=</HashCode>
+      <FileName>Domain\Hospitals\Hospital.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Monahrq.Infrastructure.Entities.Domain.Hospitals.HospitalCategory" Collapsed="true">
+    <Position X="10" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\Hospitals\HospitalCategory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Monahrq.Infrastructure.Entities.Domain.Hospitals.HospitalControl" Collapsed="true">
+    <Position X="12.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\Hospitals\HospitalControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Monahrq.Infrastructure.Entities.Domain.Hospitals.Region" Collapsed="true">
+    <Position X="5.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAIAAAIAAAAQAAIAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Domain\Hospitals\Region.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Monahrq.Infrastructure.Entities.Domain.Hospitals.HospitalPropertyItem" Collapsed="true">
+    <Position X="11" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\Hospitals\HospitalPropertyItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Monahrq.Infrastructure.Entities.Domain.Hospitals.CustomRegion" Collapsed="true">
+    <Position X="3.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>Domain\Hospitals\CustomRegion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Monahrq.Infrastructure.Entities.Domain.Hospitals.HealthReferralRegion" Collapsed="true">
+    <Position X="5.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAIIAAAAAAAAAAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>Domain\Hospitals\HealthReferralRegion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Monahrq.Infrastructure.Entities.Domain.Hospitals.HospitalRegistry" Collapsed="true">
+    <Position X="16.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAQAAACEAAAAAAACAAAAAAAAgAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Domain\Hospitals\HospitalRegistry.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Monahrq.Infrastructure.Entities.Domain.Hospitals.HospitalRegistryItem" Collapsed="true">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\Hospitals\HospitalRegistryItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Monahrq.Infrastructure.Entities.Domain.Hospitals.HospitalServiceArea" Collapsed="true">
+    <Position X="7.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAIIAAAAAAAAAAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>Domain\Hospitals\HospitalServiceArea.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Monahrq.Infrastructure.Entities.Domain.Hospitals.Mapping.HospitalRegionMapping" Collapsed="true">
+    <Position X="18.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\Hospitals\Mapping\HospitalRegionMapping.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Monahrq.Infrastructure.Entities.Domain.Hospitals.Mapping.HospitalRegionMappingEntry" Collapsed="true">
+    <Position X="14.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\Hospitals\Mapping\HospitalRegionMappingEntry.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Monahrq.Infrastructure.Entities.Domain.Hospitals.Maps.HospitalRegistryMap" Collapsed="true">
+    <Position X="18.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\Hospitals\Maps\HospitalMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Monahrq.Infrastructure.Entities.Domain.Hospitals.Maps.HospitalRegistryItemMap&lt;T&gt;" Collapsed="true">
+    <Position X="6.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\Hospitals\Maps\HospitalMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Monahrq.Infrastructure.Entities.Domain.Hospitals.Maps.HospitalMap" Collapsed="true">
+    <Position X="7.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\Hospitals\Maps\HospitalMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Monahrq.Infrastructure.Entities.Domain.Hospitals.Maps.RegionMap" Collapsed="true">
+    <Position X="5.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\Hospitals\Maps\HospitalMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Monahrq.Infrastructure.Entities.Domain.Hospitals.Maps.CustomRegionMap" Collapsed="true">
+    <Position X="14.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\Hospitals\Maps\HospitalMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Monahrq.Infrastructure.Entities.Domain.Hospitals.Maps.HealthReferralRegionMap" Collapsed="true">
+    <Position X="16.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\Hospitals\Maps\HospitalMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Monahrq.Infrastructure.Entities.Domain.Hospitals.Maps.HospitalServiceAreaMap" Collapsed="true">
+    <Position X="14.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\Hospitals\Maps\HospitalMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Monahrq.Infrastructure.Entities.Domain.Hospitals.Maps.HospitalPropertyItemMap&lt;T&gt;" Collapsed="true">
+    <Position X="1.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\Hospitals\Maps\HospitalMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Monahrq.Infrastructure.Entities.Domain.Hospitals.Maps.HospitalControlMap" Collapsed="true">
+    <Position X="0.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\Hospitals\Maps\HospitalMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Monahrq.Infrastructure.Entities.Domain.Hospitals.Maps.HospitalCategoryMap" Collapsed="true">
+    <Position X="2.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\Hospitals\Maps\HospitalMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

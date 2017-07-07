@@ -1,0 +1,44 @@
+﻿<Window x:Class="Monahrq.Views.CheckAndDownloadUpdateView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        ResizeMode="NoResize"
+        
+        WindowStartupLocation="CenterScreen"
+        Title="Update MONAHRQ" Height="235" Width="500">
+    <Grid>
+        <StackPanel Orientation="Vertical" Margin="0,20,0,0" Height="185" VerticalAlignment="Top">
+
+            <ProgressBar x:Name="frogressFileDownload" Value="{Binding DownloadProgress}" Height="20" Margin="10" />
+
+            <TextBlock x:Name="lbStatus" 
+                                   TextWrapping="Wrap" 
+                                   Text="{Binding DownloadStatus, FallbackValue='Initializing download...'}" 
+                                   FontSize="12" TextAlignment="Center" VerticalAlignment="Center" Margin="10,20,10,0" FontFamily="Segoe UI Semibold" HorizontalAlignment="Center" Height="20" Width="372"/>
+            <Grid Grid.IsSharedSizeScope="True" Margin="0,40,0,0" Height="40">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition  />
+                    <ColumnDefinition Width="150" />
+                    <ColumnDefinition  />
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition  />
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="1"
+            		x:Name="btnInstall"
+            		Content="INSTALL" 
+            		Command="{Binding InstallCommand}" 
+            		IsEnabled="{Binding ReadyToInstall}"
+            		Background="{DynamicResource MDGreen}"
+            		Foreground="White" Margin="0"  HorizontalAlignment="Right" 
+            		VerticalAlignment="Center" Width="150" Height="37"/>
+
+                <Button Grid.Column="3"
+            		x:Name="btnCancel"
+            		Background="{DynamicResource MGrey1}"
+            		Foreground="{DynamicResource MGrey5}"
+            		Content="CANCEL" Margin="0" HorizontalAlignment="Left" 
+            		VerticalAlignment="Center" Width="150" Height="37" Click="btnCancel_Click" />
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Window>

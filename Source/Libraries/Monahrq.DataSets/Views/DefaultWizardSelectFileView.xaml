@@ -1,0 +1,172 @@
+﻿<UserControl x:Class="Monahrq.DataSets.Views.DefaultWizardSelectFileView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:prism="clr-namespace:Microsoft.Practices.Prism.Regions;assembly=Microsoft.Practices.Prism"
+             xmlns:fileAdmin="clr-namespace:Monahrq.Default.DataProvider.Administration.File;assembly=Monahrq.Default"
+             xmlns:Validation="clr-namespace:Monahrq.Infrastructure.Validation;assembly=Monahrq.Infrastructure"             
+             xmlns:MonahrqValidation="clr-namespace:Monahrq.Sdk.Validation;assembly=Monahrq.Sdk"
+             xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             xmlns:model="clr-namespace:Monahrq.DataSets.Model"
+             xmlns:converters="http://schemas.monahrq.com/theme/xaml"
+             xmlns:controls="clr-namespace:Monahrq.Theme.Controls;assembly=Monahrq.Theme"
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="900">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.Buttons.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style TargetType="TextBox" BasedOn="{StaticResource CommonStyle}"/>
+            <Style TargetType="ComboBox" BasedOn="{StaticResource CommonStyle}"/>
+
+            <converters:EnumToBooleanConverter x:Key="EnumToBooleanConverter"/>
+        </ResourceDictionary>
+
+    </UserControl.Resources>
+    <Grid>
+        <ScrollViewer Padding="2,0,0,0" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto">
+            <Grid x:Name="Select_File_Grid"  ScrollViewer.VerticalScrollBarVisibility="Auto">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="75"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock x:Name="txtHeader" HorizontalAlignment="Left"
+                   TextWrapping="Wrap" Text="Use the Browse button to locate the data file you want to import. It may be a text file of comma separated values (.csv).  Required fields are indicated by asterisks(*) and red border."
+                   Margin="0" VerticalAlignment="Center" FontSize="16" Foreground="#FF585858" MaxWidth="850"/>
+                <!-- Content Grid -->
+                <Grid x:Name="contentGrid" Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="9*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid x:Name="contentLeftGrid" Margin="0,0,0,0" MinHeight="350" Height="Auto" MaxWidth="800" HorizontalAlignment="Left">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="78.776"/>
+                            <RowDefinition Height="78.776"/>
+                            <RowDefinition Height="0"/>
+                            <RowDefinition MinHeight="70" Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid x:Name="filenamegrid" Grid.Row="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="28"/>
+                                <RowDefinition Height="50"/>
+                            </Grid.RowDefinitions>
+                            <StackPanel Orientation="Horizontal" d:LayoutOverrides="Width" Margin="0" VerticalAlignment="Center">
+                                <TextBlock x:Name="lblTitle" Margin="0,0,0,-0.001" TextWrapping="Wrap" Text="* Enter Title:" Width="88" FontSize="16" Foreground="#FF585858"/>
+                                <TextBlock x:Name="lblTitleWarning" Margin="0,0,0,-0.001" TextWrapping="Wrap" Text="(Maximum length is 200 characters)" FontSize="16" Foreground="#FF919191" Width="315"/>
+                            </StackPanel>
+                            <TextBox x:Name="txtTitle" Height="34" Margin="0" TextWrapping="Wrap" Grid.Row="1" 
+                                 MaxLength="{Binding TitleMaxLength}" ToolTip="{x:Null}"
+                                 Controls:TextboxHelper.ClearTextButton="True"
+                                 Controls:TextboxHelper.Watermark="Enter title"
+                                 VerticalAlignment="Top" FontSize="16" Foreground="#FF585858"  VerticalContentAlignment="Center" >
+                                <TextBox.Text>
+                                    <Binding Path="Title" UpdateSourceTrigger="PropertyChanged">
+                                        <Binding.ValidationRules>
+                                            <Validation:StringRangeRule Min="1" Max="200" PropertyName="Website Name" ValidatesOnTargetUpdated="True" />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+                        </Grid>
+                        <Grid x:Name="timePeriodGrid" Margin="0,0,0,0.001" Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="28"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.482*"/>
+                                <ColumnDefinition Width="20.178"/>
+                                <ColumnDefinition Width="0.518*"/>
+
+                            </Grid.ColumnDefinitions>
+                            <TextBlock TextWrapping="Wrap" Text="Reported Quarter:" FontSize="16" Foreground="#FF585858" Visibility="Hidden"/>
+                            <ComboBox Height="34" ItemsSource="{Binding Quarters}"  SelectedValuePath="Id" SelectedValue="{Binding ReportingQuarter}"
+                                   Margin="0,0,0,0" FontSize="16" Foreground="#FF585858" Grid.Row="1" VerticalAlignment="Top"  Visibility="Hidden"/>
+
+                            <TextBlock TextWrapping="Wrap" Text="* Reported Year:" Grid.Column="0" FontSize="16" Foreground="#FF585858"/>
+                            <ComboBox Height="34" ItemsSource="{Binding Years}" Margin="0,0,0,0"  
+                                  Grid.Column="0" FontSize="16" Foreground="#FF585858" Grid.Row="1" VerticalAlignment="Top">
+                                <ComboBox.SelectedItem>
+                                    <Binding Path="SelectedYear" UpdateSourceTrigger="PropertyChanged">
+                                        <Binding.ValidationRules>
+                                            <MonahrqValidation:YearValidator FieldName="Reported Year" ValidatesOnTargetUpdated="True" />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </ComboBox.SelectedItem>
+                            </ComboBox>
+                        </Grid>
+
+                        <StackPanel Orientation="Vertical" Grid.Row="3">
+                            <StackPanel x:Name="FileSelect" Margin="0">
+                                <fileAdmin:FileDatasourceView DataContext="{Binding DatasourceModel}" />
+                            </StackPanel>
+                            <Grid Margin="0,20" >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30"/>
+                                    <RowDefinition Height="40"/>
+                                    <RowDefinition Height="50"/>
+                                    <RowDefinition Height="40"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Row="0" FontSize="16" Foreground="#FF585858" FontWeight="Bold"
+                                       Text="Import Data Element and Element Value Mapping" />
+                                <Grid Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="200"/>
+                                        <ColumnDefinition/>
+                                        <!--<ColumnDefinition/>-->
+                                    </Grid.ColumnDefinitions>
+                                    <RadioButton x:Name="UseExistingDatasetRadioButton" Grid.Column="0"
+                                         Content="Use existing mapping" GroupName="mappingType" 
+                                         FontSize="16" VerticalAlignment="Stretch" VerticalContentAlignment="Center" Margin="5,0" 
+                                         IsChecked="{Binding Path=SelectedMappingType, 
+                                                    Converter={StaticResource EnumToBooleanConverter}, 
+                                                    ConverterParameter={x:Static model:MappingType.ExistingDataSet},
+                                                    Mode=TwoWay}"/>
+                                    <!--<TextBlock Text="Current Datasets:" VerticalAlignment="Center" FontSize="16" Foreground="#FF585858" Margin="0,0,0,0" />-->
+                                    <ComboBox x:Name="ExistingDataComboBox" Grid.Column="1" Height="34" 
+                                          ItemsSource="{Binding Path=ExistingsDatasets, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                           DisplayMemberPath="Text" SelectedValuePath="Value" SelectedValue="{Binding SelectedMappingDatasetId, UpdateSourceTrigger=PropertyChanged}"
+                                          Width="Auto" MinWidth="250" MaxWidth="350" HorizontalAlignment="Left" VerticalContentAlignment="Center" FontSize="16"
+                                          IsEnabled="{Binding IsChecked, ElementName=UseExistingDatasetRadioButton}"/>
+                                </Grid>
+
+                                <Grid Grid.Row="2" Grid.ColumnSpan="2" MaxWidth="960" VerticalAlignment="Stretch" Margin="0,5,0,0" HorizontalAlignment="Left">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="200"/>
+                                        <ColumnDefinition MinWidth="400" Width="*"/>
+                                        <ColumnDefinition Width="100"/>
+                                    </Grid.ColumnDefinitions>
+                                    <RadioButton x:Name="UseMappingFileRadioButton" Grid.Column="0"
+                                         Content="Import mapping file" GroupName="mappingType" 
+                                         FontSize="16" VerticalAlignment="Stretch" VerticalContentAlignment="Center" Margin="5,0"
+                                         IsChecked="{Binding Path=SelectedMappingType, 
+                                                    Converter={StaticResource EnumToBooleanConverter}, 
+                                                    ConverterParameter={x:Static model:MappingType.ExistingFile},
+                                                    Mode=TwoWay}"/>
+                                    <TextBox Grid.Column="1" x:Name="MappingFileTextBox" FontSize="16" Width="Auto" Height="34" HorizontalAlignment="Stretch" Text="{Binding SelectDataMappingFile, UpdateSourceTrigger=PropertyChanged}"
+                                         Controls:TextboxHelper.ClearTextButton="True"
+                                         IsEnabled="{Binding IsChecked, ElementName=UseMappingFileRadioButton}">
+                                    </TextBox>
+                                    <!--<Button x:Name="BrowseMappingFileButton" Grid.Column="2" Content="BROWSE"  Margin="6,0,10,0" Height="34"
+                                        Foreground="{StaticResource White}" Background="{StaticResource MBlue}"
+                                         IsEnabled="{Binding IsChecked, ElementName=UseMappingFileRadioButton}"
+                                        Command="{Binding ExecuteMappingFileUpload}">
+                                    </Button>-->
+                                    <controls:MonahrqButton x:Name="BrowseMappingFileButton" Grid.Column="2" Content="BROWSE"
+                                                            Foreground="White" Style="{StaticResource MonahrqBlueStyle}" 
+                                                            IsEnabled="{Binding IsChecked, ElementName=UseMappingFileRadioButton}"
+                                                            Command="{Binding ExecuteMappingFileUpload}"
+                                                            BorderBrush="{x:Null}" Padding="5,0,5,0" Margin="5,0,10,0" Height="34" Width="80"/>
+                                </Grid>
+                            </Grid>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

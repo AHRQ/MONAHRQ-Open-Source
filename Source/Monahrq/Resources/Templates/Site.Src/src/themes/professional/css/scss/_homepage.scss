@@ -1,0 +1,183 @@
+.icon--hospital {
+  background-image: url("../assets/icons/dkblue_hospital.png");
+  height: 78px;
+  width: 76px;
+}
+.icon--nursing_homes {
+  background-image: url("../assets/icons/dkblue_nursing_home.png");
+  height: 78px;
+  width: 68px;
+}
+.icon--physician {
+  background-image: url("../assets/icons/dkblue_physician.png");
+  height: 78px;
+  width: 64px;
+}
+.icon--browse {
+  background-image: url("../assets/icons/dkblue_browse.png");
+  height: 78px;
+  width: 73px;
+}
+
+.page--home_page {
+  padding: 0;
+
+  .wrap {
+    padding: 0 30px;
+  }
+
+  .banner {
+    border-bottom: none;
+
+    .title {
+      margin-bottom: 40px;
+    }
+  }
+
+  h2, h3, h4 {
+    color: #000;
+    font-family: $openSans;
+    font-weight: 600;
+  }
+
+  p, ol, ul {
+    font-size: 16px;
+  }
+
+  ol, ul {
+    li {
+      margin-bottom: 10px;
+    }
+  }
+
+  .icon {
+    background-repeat: no-repeat;
+    background-position: center;
+    display: block;
+    margin: 0 auto
+  }
+
+  .page--home_page_feature {
+    margin-bottom: 30px;
+
+    .home {
+      // padding-top: 50px;
+    }
+
+    .row {
+      display: flex;
+    }
+
+    .col-xs-3, .col-xs-6 {
+      // background: #EFF4F8;
+      color: #414046;
+      align-items: stretch;
+      text-align: center;
+
+      header {
+        margin-bottom: 20px;
+      }
+
+      p {
+        min-height: 60px;
+      }
+    }
+
+    iframe {
+      margin-top: 23px;
+    }
+  }
+
+  .wrap__infographic_links {
+    .col-xs-6:first-of-type {
+      padding-left: 0;
+    }
+
+    .col-xs-6 p {
+      min-height: 110px;
+    }
+  }
+
+  .row {
+    margin-right: 0;
+    margin-left: 0;
+    border-radius: 0;
+  }
+
+  .col-xs-6 {
+    border-radius: 0;
+  }
+
+  .no-padding {
+    padding: 0;
+  }
+
+  .no-padding-top {
+    padding-top: 0;
+  }
+
+  .find-hospitals-cta {
+    padding: 0 0 20px;
+
+    h4 {
+      color: #676E71;
+      font-size: 16px;
+      font-weight: normal;
+      margin-top: 0;
+    }
+
+    .col-xs-12 {
+      margin-bottom: 20px;
+    }
+  }
+
+  .page-content .col-xs-6 ul {
+    margin-left: 45px;
+    margin-bottom: 45px;
+  }
+
+  .page-content .col-xs-6 h3 {
+    margin-bottom: 10px;
+  }
+
+  .section--footer {
+    padding: 60px 0 70px;
+    text-align: center;
+    background: #EFF4F8;
+
+    h3 {
+      margin-bottom: 30px;
+    }
+
+    button {
+      display: block;
+      margin: 10px auto;
+    }
+  }
+
+  .home {
+    header {
+      margin-bottom: 60px;
+    }
+  }
+
+  .homepage-content-image {
+    margin-bottom: 20px;
+  }
+
+  .btn-primary {
+    text-align: center;
+  }
+
+  .wrap--video {
+    padding: 50px 0;
+    margin: 45px 0 10px;
+    background: #eee;
+
+    h2 {
+      margin-top: 0;
+      font-weight: 700;
+      line-height: 1.25;
+    }
+  }
+}

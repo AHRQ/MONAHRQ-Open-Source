@@ -1,0 +1,126 @@
+<main class="physician-search"
+      data-ng-intro-options="IntroOptions"
+      data-ng-intro-onexit="onExit"
+      data-ng-intro-oncomplete="onExit"
+      data-ng-intro-onbeforechange="beforeChangeEvent"
+      data-ng-intro-method="walkthroughStart">
+
+    <section class="search--refine physician-search" role="search" data-mh-wizard>
+        <div class="contain">
+            <h1 class="search--refine__title">Find a Doctor:</h1>
+
+            <form class="search-form wizard">
+                <div class="search-form__contain" id="searchContainer">
+                    <div id="searchStepOne" data-mh-wizard-step step-num="1" step-visible="true">
+                        <div data-mh-wizard-step-option option-label="'Select a search type'">
+                            <select data-ng-class="{selectEmpty: !query.searchType}" data-ng-model="query.searchType" data-ng-options="x.id as x.name for x in searchTypeOptions" title="Search Type" onkeyup="this.blur();this.focus()">
+                                <option value="" selected disabled style="display:none;">Select an Option</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <span data-mh-wizard-step step-num="2" step-visible="query.searchType" step-option-switch="query.searchType" class="search-form__next"></span>
+
+                    <div id="searchStepTwo" data-mh-wizard-step step-num="2" step-visible="query.searchType" step-option-switch="query.searchType">
+                        <div data-mh-wizard-step-option option-switch-on="'name'" option-label="'Doctor Name'">
+                            <input type="text" data-ng-model="query.firstName" placeholder="First Name {{matchTypeName}}" />
+                            <input type="text" data-ng-model="query.lastName" placeholder="Last Name {{matchTypeName}}" />
+                        </div>
+
+                        <div data-mh-wizard-step-option option-switch-on="'location'" option-label="'Location'">
+                            <input type="text" data-ng-model="query.location" placeholder="{{matchTypeLocation}}" />
+                        </div>
+
+                        <div data-mh-wizard-step-option option-switch-on="'specialty'" option-label="'Specialty'">
+                            <select data-ng-class="{selectEmpty: !query.specialty}" data-ng-model="query.specialty" data-ng-options="x.id as x.name for x in specialtyOptions" title="Specialty">
+                                <option value="" selected disabled style="display:none;">Specialty</option>
+                            </select>
+                        </div>
+
+                        <div data-mh-wizard-step-option option-switch-on="'condition'" option-label="'Condition'">
+                            <div data-mh-autocomplete="uiaConditions" selected-id="query.condition"></div>
+                        </div>
+                    </div>
+
+                    <span data-mh-wizard-step step-num="3" step-visible="canSearch()" class="search-form__next"></span>
+
+                    <div id="searchStepThree" data-mh-wizard-step step-num="3" step-visible="canSearch()">
+                        <div data-mh-wizard-step-option>
+                            <p data-ng-if="searchStatus === 'COMPLETED'" class="results-updated" role="alert">Results Updated</p>
+                            <button class="btn--primary" data-ng-click="search()">Show Results Below</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <div data-mh-cms-zone="'header'" data-mh-cms-zone-report-id="reportId" data-mh-cms-zone-product="'Consumer'"></div>
+
+    <section class="report" tabindex="-1">
+        <header class="report-header" data-ng-if="searchStatus === 'NOT_STARTED'">
+            <p class="report__no-results">Please enter a search in the form above.</p>
+        </header>
+
+        <header class="report-header" data-ng-if="searchStatus === 'SEARCHING'">
+            <div class="report-loading">
+                <div data-us-spinner></div>
+                <p>Searching...</p>
+            </div>
+        </header>
+
+        <header class="report-header" data-ng-if="searchStatus === 'NO_RESULTS'" role="alert">
+            <p class="report__no-results">Your search did not find any doctors.</p>
+        </header>
+
+        <header class="report-header" data-ng-if="searchStatus === 'COMPLETED'">
+            <!--<div class="physician-help" data-mh-help-icon="'Help'"></div>-->
+            <p><strong>The star ratings below are for the Medical Group.</strong> Medical groups can range from small groups with several doctors to very large organizations with hundreds of doctors. Some medical groups offer their patients a better experience than others. A medical group with more stars is providing better care to their patients.</p>
+            <p>Note: <em>Physician Compare includes only doctors and other healthcare professionals who are currently accepting Medicare.</em></p>
+            <div class="report-header__help">
+                <div data-mh-help-icon="'Help me understand this report'" data-mh-on-click="modalLegend()"></div>
+            </div>
+        </header>
+
+        <div class="report-content physician-report" data-ng-if="searchStatus === 'COMPLETED'">
+            <div class="report__sort-by">
+                <label for="sortBy">Sort By:</label>
+                <select id="sortBy" data-ng-model="query.sort" data-ng-options="o.value as o.label for o in sortOptions" onkeyup="this.blur();this.focus()">
+                    <option value="" disabled>Select to Sort</option>
+                </select>
+            </div>
+
+            <div class="table-wrapper">
+                <table mh-sticky-table-header="tableModel">
+                    <thead>
+                        <tr id="resultsHeader">
+                            <th>Doctor Name</th>
+                            <th>Medical Group Name</th>
+                            <th data-ng-if="cahpsMeasureDef && hasCAHPS">Overall Medical Group Rating</th>
+                            <th>City</th>
+                            <th>ZIP Code</th>
+                            <th>State</th>
+                            <th>Primary Specialty</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-ng-repeat="row in tableModel track by $index" data-ng-init="$last && startWalkthrough();">
+                            <th scope="row" id="doc{{$index}}"><a data-ui-sref="top.consumer.physicians.profile({id:row.npi})">{{row.frst_nm + ' ' + row.lst_nm}}</a></th>
+                            <td>{{row.primaryPracticeName}}</td>
+                            <td id="cahps{{$index}}" data-ng-if="cahpsMeasureDef && hasCAHPS">
+                                <span data-mh-rating-nursing="getPracticeRating(row)"></span>
+                            </td>
+                            <td>{{row.cty}}</td>
+                            <td>{{row.zip | zip}}</td>
+                            <td>{{row.st}}</td>
+                            <td>{{row.pri_spec}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div data-ng-if="reportSettings.footer" class="report-footnotes" data-ng-bind-html="reportSettings.footer"></div>
+        </div>
+    </section>
+
+    <div data-mh-cms-zone="'footer'" data-mh-cms-zone-report-id="reportId" data-mh-cms-zone-product="'Consumer'"></div>
+</main>

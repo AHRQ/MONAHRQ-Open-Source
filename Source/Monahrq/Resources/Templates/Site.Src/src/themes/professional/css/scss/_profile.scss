@@ -1,0 +1,332 @@
+
+/* Profile
+---------------------------------------- */
+.basic-data {
+  margin-top: 20px;
+}
+
+.basic-data li {
+  margin: 10px 0;
+}
+
+.panel {
+  margin: 20px;
+  padding-bottom: 15px;
+}
+
+.panel.row {
+  padding-top: 15px;
+}
+
+.profile-panel-body {
+  padding: 0;
+}
+
+.profile-panel-body ul {
+  margin: 0;
+}
+
+.profile-panel-body li {
+  border-top: 1px solid #C9BEBE;
+}
+
+.profile-panel-body li a.condition-row-link,
+.profile-panel-body li a.condition-row-link:link,
+.profile-panel-body li a.condition-row-link:visited {
+  display: block;
+  padding: 10px 15px;
+  background: #fff url('../../base/assets/arrow-right_10.png') no-repeat 98% 12px;
+}
+
+.profile-panel-body li a.condition-row-link:hover,
+.profile-panel-body li a.condition-row-link:focus {
+  background: #eee url('../../base/assets/arrow-right_10.png') no-repeat 98% 12px;
+}
+.profile-panel-body li a.condition-row-link.active {
+  background: #eee url('../../base/assets/arrow-down_10.png') no-repeat 98% 12px;
+}
+
+.profile-panel-body .profile-data-table {
+  padding: 10px 15px 30px;
+  background: #fff;
+  font-size: 12px;
+}
+
+.profile-panel-body .profile-data-table table {
+  width: 100%;
+}
+
+.profile-panel-body .profile-data-table th {
+  background: #eee;
+  padding: 10px;
+}
+.profile-panel-body .profile-data-table td {
+  padding: 10px;
+  background: #fff;
+}
+.profile-panel-body .profile-data-table td.entity {
+  max-width: 200px;
+  min-width: 200px;
+}
+
+.page--physicians .panel, .page--physicians .profile-panel-body li {
+  border: none;
+  box-shadow: none;
+}
+
+.page--physicians .panel .nav-tabs li a {
+  &:focus {
+    outline: none!important;
+  }
+}
+
+.page--physicians .panel .basic_panel {
+  padding: 0 20px;
+}
+
+.page--physicians .panel .list__no_bullets {
+  list-style: none;
+
+  li {
+    padding-bottom: 5px;
+  }
+
+  .margin__break {
+    margin-bottom: 30px;
+  }
+}
+
+.page--physicians .panel .list__physician_affiliations {
+  margin-left: 10px;
+}
+
+.page--physicians aside .map {
+
+  p {
+    margin-bottom: 20px;
+  }
+
+  img {
+    margin-bottom: 10px;
+  }
+}
+
+.page--physicians aside .basic-data h3 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 15px 0;
+}
+
+.page--physicians .panel, .page--physicians .profile-panel-body li {
+  border: none;
+  box-shadow: none;
+}
+
+.page--physicians .panel .nav-tabs li a {
+  &:focus {
+    outline: none!important;
+  }
+}
+
+.page--physicians .panel .basic_panel {
+  padding: 0 20px;
+}
+
+.page--physicians .panel .list__no_bullets {
+  list-style: none;
+
+  li {
+    padding-bottom: 5px;
+  }
+
+  .margin__break {
+    margin-bottom: 30px;
+  }
+}
+
+.page--physicians .panel .list__physician_affiliations {
+  // margin-left: 0;
+}
+
+.page--physicians aside .map {
+
+  p {
+    margin-bottom: 20px;
+  }
+
+  img {
+    margin-bottom: 10px;
+  }
+}
+
+.page--physicians .general_info {
+  margin-bottom: 20px;
+}
+
+.page--physicians .panel .basic_panel {
+  margin-bottom: 15px;
+  border: solid #e3e3e3;
+  border-width: 0 1px 1px;
+
+  h3 {
+    margin-top: 0;
+    padding-top: 20px;
+  }
+
+  h4 {
+    font-weight: bold;
+    margin: 0;
+  }
+
+  ul {
+    margin-left: 0;
+  }
+}
+
+.page--physicians .list__physician_practice {
+  padding-right: 20px;
+
+  h5 {
+    float: left;
+    padding: 10px 0;
+    margin: 0;
+    font-size: 16px;
+  }
+
+  button {
+    float: right;
+  }
+
+  ul {
+    border-top: 1px solid #eee;
+    clear: both;
+  }
+}
+
+.page--physicians .list__physician_practice .list__no_bullets {
+  padding: 15px 5px;
+  margin-bottom: 0;
+  margin-left: 0;
+  list-style: none;
+
+  li {
+    margin-left: 35px;
+    margin-bottom: 0;
+    position: relative;
+    padding-bottom: 20px;
+
+    &::before {
+      content: "\e062";
+      position: absolute;
+      left: -35px;
+      top: 6px;
+      display: inline-block;
+      font-family: 'Glyphicons Halflings';
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      font-style: normal;
+      font-weight: normal;
+      line-height: 1;
+      font-size: 24px;
+      color: #F44740;
+    }
+  }
+
+  li p {
+    margin-bottom: 0px;
+    line-height: 1.15;
+  }
+}
+
+.qr-profile-compare {
+  width: 35%;
+  margin-left: 20px;
+}
+
+// New Medical Practice tabs
+.page--physicians .panel .basic_panel.basic_panel--medpractice {
+  padding: 0;
+
+  h3 {
+    padding: 20px 20px 0;
+  }
+
+  .condition-row-link {
+    background-color: #f4f4f4;
+    color: #3e464c;
+    font-weight: 800;
+
+    &[disabled="disabled"] {
+      background-image: none;
+      cursor: default;
+    }
+  }
+
+  .list-unstyled > li {
+    border-top: 1px solid #e3e3e3;
+  }
+
+  .profile-data-table {
+    padding: 0;
+
+    .condition-row-link {
+      background-color: #fff;
+
+    }
+  }
+
+  .table-wrapper-content {
+    padding: 0 20px 20px;
+    border-bottom: 1px solid #ddd;
+
+    .condition-row-link {
+      margin: 0 -20px;
+    }
+  }
+}
+
+.panel--practice-ratings {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  .ratings-change-practice-label {
+    margin-bottom: 10px;
+  }
+
+  .ratings-change-practice {
+    width: auto;
+  }
+
+  h4 {
+    float: left;
+    margin-bottom: 10px;
+
+    + button {
+      float: right;
+      margin-bottom: 10px;
+    }
+  }
+
+  .data {
+    margin-bottom: 10px;
+  }
+}
+
+[data-ng-if="hedisReport.isLoaded"],
+[data-ng-if="CAHPSReport.isLoaded"] {
+  clear: both;
+
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+[data-ng-if="hedisReport.isLoaded"] + [data-ng-if="CAHPSReport.isLoaded"] {
+  border-top: 1px solid #ddd;
+}
+

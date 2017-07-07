@@ -1,0 +1,16 @@
+bin
+obj
+thumbs.db
+.DS_Store
+.DS_Store?
+.sass-cache
+.vs
+*.user
+._*
+*.suo
+node_modules
+bower_components
+/Source/packages
+/Source/TestResults
+/Source/Monahrq/Resources/Templates/Site
+/Source/Monahrq/Resources/Templates/Site.Src/build

@@ -1,0 +1,114 @@
+// -------------------------------------------------------------------- //
+//  Consumer Modal Styles
+// -------------------------------------------------------------------- //
+
+.modal-header,
+.modal-body,
+.modal-footer {
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+
+// -------------------------------------------------------------------- //
+//  Modal Header
+
+.modal-header {
+  position: relative;
+  margin-bottom: 20px;
+  padding: 20px 20px 0;
+
+  .close {
+    @extend .btn--tertiary;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    opacity: 1;
+  }
+
+  // Help : Tab Styles
+  .nav-tabs {
+    margin-top: 10px;
+    margin-left: -15px;
+    border: 0;
+
+    a {
+      height: 30px;
+      margin: 0;
+      padding: 0 15px;
+      background: transparent;
+      border: 0;
+      border-radius: 0;
+      color: #999;
+      line-height: 30px;
+
+      &:hover {
+        border: 0;
+      }
+    }
+
+    li:first-child {
+      border-right: 1px solid $base-border-color;
+    }
+
+    .active a {
+      color: $base-font-color;
+      text-decoration: underline;
+    }
+  } // END nav-tabs
+} // END modal-header
+
+.modal-title {
+  padding-right: 40px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+
+// -------------------------------------------------------------------- //
+//  Modal Body
+
+.modal-body {
+  padding: 0 20px 20px;
+
+  ul {
+    margin: 0;
+  }
+
+  h5 {
+    margin-bottom: 10px;
+  }
+}
+
+
+// -------------------------------------------------------------------- //
+//  Modal Footer
+
+.modal-footer {
+  display: none;
+
+  // margin-top: 20px;
+  // padding: 0 20px 20px;
+
+  // .btn {
+  //   @extend .btn--secondary;
+  //   background-image: none;
+  // }
+}
+
+.modal-feedback .modal-footer {
+  display: block;
+  padding: 19px 20px 20px;
+  margin-top: 15px;
+  text-align: right;
+  border-top: 1px solid #e5e5e5;
+}

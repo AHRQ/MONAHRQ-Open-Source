@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="Monahrq.DataSets.ViewModels.Validation.ValidationSummaryListView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <StackPanel>
+        <TextBlock Text="Summary:" />
+        
+        <DataGrid HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                    HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
+                                    ItemsSource="{Binding}" 
+                                    AutoGenerateColumns="False"
+                                    ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                    ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                  Name="TheGrid">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding RecordNumber}" Header="Record #" />
+
+                <DataGridTextColumn Binding="{Binding ElementName}" Header="MONAHRQ Variable"/>
+
+                <DataGridTextColumn Binding="{Binding ResultType}" Header="Status"/>
+
+                <DataGridTextColumn Binding="{Binding Message}" Header="Message"/>
+
+            </DataGrid.Columns>
+        </DataGrid>
+    </StackPanel>
+
+</UserControl>

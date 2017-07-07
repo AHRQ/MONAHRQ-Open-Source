@@ -1,0 +1,7 @@
+<span data-ng-click="mhOnClick(); $event.stopPropagation(); $event.preventDefault();" class="help-label">{{label}}</span>
+<span data-ng-show="isVisible()" class="help-icon">
+  <button data-ng-click="mhOnClick(); $event.stopPropagation(); $event.preventDefault();" class="btn btn-link ">
+    <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+    <span class="sr-hidden">{{srLabel}}</span>
+  </button>
+</span>

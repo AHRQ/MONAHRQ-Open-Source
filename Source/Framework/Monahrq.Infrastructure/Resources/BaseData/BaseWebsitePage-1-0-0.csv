@@ -1,0 +1,30 @@
+Name,TemplateRelativePath,PublishRelativePath,PageType,ReportName,Audience,Url,IsEditable
+About Ratings,'app\products\consumer\pages\views\about-ratings.html',x,Static,,Consumers,'/about-ratings/',false
+Disclaimer,'app\products\consumer\pages\views\disclaimer.html',x,Static,,Consumers,'/disclaimer',true
+Footer,'app\products\consumer\pages\views\footer.html',x,Static,,Consumers,'/consumer',true
+Header,'app\products\consumer\pages\views\header.html',x,Static,,Consumers,'/consumer',true
+How To Use Our Quality Ratings,'app\products\consumer\pages\views\how-to-use.html',x,Static,,Consumers,'/how-to-use',true
+Index,'app\products\consumer\pages\views\index.html',x,Static,,Consumers,'/consumer',false
+Navigation,'app\products\consumer\pages\views\navigation.html',x,Static,,Consumers,'/consumer',false
+Resource - Avoiding Safety Problems,'app\products\consumer\pages\views\resource-avoiding-safety-problems.html',x,Static,,Consumers,'/about-ratings/resourceAvoidingSafetyProblems',true
+Find a Physician,'app\products\consumer\pages\views\resource-find-a-physician.html',x,Static,,Consumers,'/about-ratings/resourceFindAPhysician',true
+Hospital Quality,'app\products\consumer\pages\views\resource-hospital-quality.html',x,Static,,Consumers,'/about-ratings/resourceHospitalQuality',true
+Learn More About Quality,'app\products\consumer\pages\views\resource-learn-more-about-quality.html',x,Static,,Consumers,'/about-ratings/resourceLearnMoreAboutQuality',true
+Nursing Home Quality,'app\products\consumer\pages\views\resource-nursing-home-quality.html',x,Static,,Consumers,'/about-ratings/resourceNursingHomeQuality',true
+How To Use Site,'app\products\consumer\pages\views\resource-use-site.html',x,Static,,Consumers,'/about-ratings/',true
+What Is Health Care Quality,'app\products\consumer\pages\views\resource-what-is-health-care-quality.html',x,Static,,Consumers,'/about-ratings/resourceWhatIsHealthCareQuality',true
+Why Look At Health Care Quality,'app\products\consumer\pages\views\resource-why-look-health-care-quality.html',x,Static,,Consumers,'/about-ratings/resourceWhyLookHealthCareQuality',true
+Terms And Conditions,'app\products\consumer\pages\views\terms.html',x,Static,,Consumers,'/terms',true
+About Health Care Quality,'app\products\professional\pages\views\about-health-care-quality.html',x,Static,,Professionals,'/resources/AboutHealthCareQuality',true
+About Hospital Quality,'app\products\professional\pages\views\about-hospital-quality.html',x,Static,,Professionals,'/resources/AboutHospitalQuality',true
+About the Methodology,'app\products\professional\pages\views\about-methodology.html',x,Static,,Professionals,'/resources/Methods',true
+About Nursing Home Quality,'app\products\professional\pages\views\about-nursing-home-quality.html',x,Static,,Professionals,'/resources/AboutNursingHomeQuality',true
+About Physician Information,'app\products\professional\pages\views\about-physician.html',x,Static,,Professionals,'/resources/AboutPhysician',true
+About the Quality Ratings,'app\products\professional\pages\views\about-quality-ratings.html',x,Static,,Professionals,'/resources/AboutQualityRatings',true
+About Us,'app\products\professional\pages\views\about-us.html',x,Static,,Professionals,'/about-us',false
+Avoiding Safety Problems,'app\products\professional\pages\views\avoiding-safety-problems.html',x,Static,,Professionals,'/resources/AvoidingSafetyProblems',true
+Nursing Home - About The Methodology,'app\products\professional\pages\views\nh-about-methodology.html',x,Static,,Professionals,'/resources/NHMethods',true
+Nursing Home - About The Quality Ratings,'app\products\professional\pages\views\nh-about-quality-ratings.html',x,Static,,Professionals,'/resources/NHAboutQualityRatings',true
+Resources,'app\products\professional\pages\views\resources.html',x,Static,,Professionals,'/resources/',true
+Sitemap,'app\products\professional\pages\views\sitemap.html',x,Static,,Professionals,'/resources/SiteMap',true
+Definitions,'app\products\professional\pages\views\definitions.html',x,Static,,Professionals,'/resources/Definitions',true

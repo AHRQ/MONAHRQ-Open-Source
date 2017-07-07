@@ -1,0 +1,16 @@
+CategoryID,Description
+1,General
+2,Long Stay
+3,Religious Non-Medical Care Facility
+4,Psychiatric
+5,Rehabilitation
+6,Children's
+7,Distinct Part Psychiatric
+11,Medicaid Only Short-Term
+20,Transplant
+22,Medicaid Only General 
+23,Medicaid Only Children's Hospitals
+24,Medicaid Only Children's Psychiatric
+25,Medicaid Only Psychiatric
+26,Medicaid Only Rehabilitation
+27,Medicaid Only Long Stay

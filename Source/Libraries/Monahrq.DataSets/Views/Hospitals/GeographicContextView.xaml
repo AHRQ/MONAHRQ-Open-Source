@@ -1,0 +1,126 @@
+﻿<UserControl x:Class="Monahrq.DataSets.Views.Hospitals.GeographicContextView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:converters="clr-namespace:Monahrq.Theme.Converters;assembly=Monahrq.Theme"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.Buttons.xaml"/>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.DataGrid.xaml"/>
+
+            </ResourceDictionary.MergedDictionaries>
+            <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+            <converters:InvertedBooleanConverter x:Key="InvertedBooleanConverter"/>
+           
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid Background="{DynamicResource MGrey2}" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <StackPanel Margin="10,0">
+            <TextBlock Text="SELECT STATES FOR THE GEOGRAPHICAL CONTEXT " Style="{DynamicResource SectionHeader}" ></TextBlock>
+        </StackPanel>
+        <Grid Grid.Row="1" Margin="0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="254*"/>
+                <ColumnDefinition Width="3"/>
+                <ColumnDefinition Width="143*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal" Grid.ColumnSpan="3">
+                <ComboBox Margin="10,5" Height="28" MinWidth="100" ItemsSource="{Binding StateCollection}"
+                                              SelectedItem="{Binding SelectedState}" />
+                <Button Command="{Binding AddStateToContextCommand}"
+                	CommandParameter="{Binding SelectedState}"
+                	Content="ADD STATE TO MY CONTEXT"
+                	Style="{DynamicResource MonahrqArrowButtonRight}"
+                	Margin="5" Background="{DynamicResource MBlue}"
+                	Foreground="White"
+                	MinWidth="190"
+                	Height="28" FontWeight="Normal" FontStretch="UltraExpanded" />
+            </StackPanel>
+
+            <ItemsControl Grid.Row="1" Margin="10" ItemsSource="{Binding SelectedStates}" Grid.ColumnSpan="1">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel FlowDirection="LeftToRight" Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border x:Name="border" CornerRadius="3" BorderThickness="1" Margin="2"
+                                                    Background="{DynamicResource White}"
+                                                    BorderBrush="{DynamicResource MGrey3}" Width="70" Height="28"
+                                                    Padding="3,3,5,3">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{Binding }" HorizontalAlignment="Center"
+                                                               VerticalAlignment="Center"
+                                                               Style="{DynamicResource Subtopic}" />
+                                <Button Grid.Column="1" Width="10" Height="10" Background="White"
+                                                            Style="{DynamicResource MonahrqDataGridDeleteButton}" />
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <Rectangle Grid.Column="1" Grid.RowSpan="3" Margin="0,5,0,5" Fill="{DynamicResource MGrey1}" Width="1" />
+            <TextBlock Grid.Column="2" Text="STATISTICS" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       FontFamily="Segoi UI" FontWeight="DemiBold" FontSize="14" 
+                       Foreground="{DynamicResource MGrey4}" />
+            <Border Grid.Row="1" Grid.Column="2" Background="Transparent" Margin="10" MinWidth="140">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition  />
+                            <ColumnDefinition Width="5"/>
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Text="TOTAL REGIONS:" HorizontalAlignment="Right" Style="{DynamicResource Subtopic}" />
+                        <TextBlock Grid.Row="1" HorizontalAlignment="Right" Text="TOTAL HOSPITALS:" Style="{DynamicResource Subtopic}" />
+                        <TextBlock Grid.Row="0" Grid.Column="2" HorizontalAlignment="Left" Text="765" Foreground="{DynamicResource MGrey5}" Style="{DynamicResource Subtopic}" />
+                        <TextBlock Grid.Row="1" Grid.Column="2" HorizontalAlignment="Left" Text="386" Style="{DynamicResource Subtopic}" Foreground="{DynamicResource MGrey5}" />
+                    </Grid>
+                    <Button Grid.Row="1" Command="{Binding AddStateToContextCommand}"
+                                            CommandParameter="{Binding SelectedState}"
+                                            Content="AUTO MAP HOSPITALS" 
+                                            FontSize="14"
+                                            FontFamily="Segoe UI"
+                                            FontWeight="Normal"
+                                            FontStretch="UltraExpanded"
+                                            Style="{DynamicResource MonahrqArrowButtonRight}"
+                                            Margin="5" Background="{DynamicResource MBlue}"
+                                            Foreground="White"
+                            MinWidth="210" MaxWidth="210"
+                                            Height="36" />
+                </Grid>
+            </Border>
+        </Grid>
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-xs-3">
+    <h2>Learn About</h2>
+    <p>how patients in your area use the hospitals around them.</p>
+  </div>
+
+  <div class="col-xs-9 find-hospitals-cta utilization">
+    <div class="row">
+      <div data-ng-if="ReportConfigSvc.webElementAvailable('Utilization_AHSFind_Button')" data-ng-class="{'col-xs-6': !onlyOneSearch, 'col-xs-12': onlyOneSearch}">
+        <h3>Avoidable Hospital Stays</h3>
+        <p>An avoidable hospital stay is one that might have been avoided with better medical care outside of the hospital. High rates of avoidable hospital stays can point to possible breakdowns in health care in the community. Information about avoidable hospital stays is presented by county where patients live, not by where hospitals are located.</p>
+        <button data-ui-sref="top.professional.usage-data.avoidable-stays" class="btn btn-xlg btn-primary">Find more information <span class="sr-hidden">about Avoidable Hospital Stays</span></button>
+      </div>
+      <div data-ng-if="ReportConfigSvc.webElementAvailable('Utilization_ServiceUseFind_Button')" data-ng-class="{'col-xs-6': !onlyOneSearch, 'col-xs-12': onlyOneSearch}">
+        <h3>Health Care Service Use</h3>
+        <p>Information about service use tells you how many patients use specific hospital services, how often and for how many days a patient stays in the hospital, or how often people visit the Emergency Department. You can see this information for each hospital, county, and region.</p>
+        <button data-ui-sref="top.professional.usage-data.service-use" class="btn btn-xlg btn-primary">Find more information <span class="sr-hidden">about Service Use</span></button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<topics>
+  <category name="Utilization" longTitle="Utilization Statistics" 
+            description ="These statistics show how often a group of people use health care services in a defined area.">
+    <topic name="ED Utilization" longTitle="Emergency Department Treat and Release Utilizaton Statistics"
+           description="Weighted national estimates from HCUP Nationwide Emergency Department Sample (NEDS), Agency for Healthcare Research and Quality (AHRQ), based on data collected by individual States and provided to AHRQ by the States. Statistics based on estimates with a relative standard error (standard error / weighted estimate) greater than 0.30 or with standard error = 0 in the nationwide statistics (NIS, NEDS, and KID) are not reliable. These statistics are suppressed and are designated with an asterisk (*). The estimates of standard errors in HCUPnet were calculated using SUDAAN software. These estimates may differ slightly if other software packages are used to calculate variances." >
+      <measure name="Number of ED Visits" />
+      <measure name="Number Admitted to Hospital Following ED Visit"/>
+      <measure name="Number of Deaths During ED Visit"/>
+      <measure name="Number of Deaths Post-Admission Following ED Visit"/>
+
+      <!--<measures>
+        <measure name="Number of discharges"/>
+        <measure name="Mean charges in dollars"/>
+        <measure name="Mean costs in dollars"/>
+        <measure name="Mean total payments"/>
+      </measures>-->
+    </topic>
+  </category>
+</topics>

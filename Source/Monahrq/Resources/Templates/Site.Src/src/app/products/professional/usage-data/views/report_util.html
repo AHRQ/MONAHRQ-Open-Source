@@ -1,0 +1,133 @@
+<div data-ng-if="showReport()">
+
+<div class="row page-header">
+  <div class="col-md-12">
+    <h1>{{content.header.title}}</h1>
+    <div data-ng-bind-html="content.header.body"></div>
+  </div>
+</div>
+
+<div class="page-content clearfix">
+  <div class="utilization-tabs hidden-print" data-ng-class="{'full-width': !showSideSearch()}">
+    <ul class="nav nav-tabs">
+      <li data-ng-if="hasTab('table')" data-ng-class="{active: isActiveTab('table')}"><a href="#" data-ng-click="goToTable(); $event.preventDefault();">View Rates</a></li>
+      <li data-ng-if="hasTab('map')" data-ng-class="{active: isActiveTab('map')}"><a href="#" data-ng-click="goToMap(); $event.preventDefault();">View Map</a></li>
+    </ul>
+  </div>
+  <div class="clearfix"></div>
+
+  <div data-ng-if="showSideSearch()" class="col-xs-3 side-search hidden-print">
+    <div class="">
+      <ul class="list-unstyled">
+
+        <li data-ng-if="canShowNarrow('view-all-geo')" data-ng-class="{selected: isActiveNarrow('view-all-geo')}" class="first last item">
+        <div class="title"><a href="#" data-ng-click="toggleNarrow('view-all-geo'); narrowViewAll(); $event.preventDefault();">View All</a></div>
+        </li>
+
+        <li data-ng-if="canShowNarrow('view-all-clinical')" data-ng-class="{selected: isActiveNarrow('view-all-clinical')}" class="first last item">
+        <div class="title"><a href="#" data-ng-click="toggleNarrow('view-all-clinical'); narrowViewAll(); $event.preventDefault();">All Diagnoses</a></div>
+        </li>
+
+
+        <li class="li-section-title">Narrow by:</li>
+
+        <li data-ng-if="canShowNarrow('condition')" data-ng-class="{selected: isActiveNarrow('condition')}" class="first last item">
+        <div class="title"><a href="#" data-ng-click="toggleNarrow('condition'); $event.preventDefault();" role="tab" aria-controls="tabpanel-condition-or-topic" id="tab-condition-or-topic">Condition or Topic</a></div>
+        <div data-ng-show="isActiveNarrow('condition')" class="select-menu" role="tabpanel" aria-labeledby="tab-condition-or-topic" id="tabpanel-condition-or-topic" aria-hidden="{{!isActiveNarrow('condition')}}">
+          <div data-mh-autocomplete="uiaCCSNarrow" selected-id="query.narrowBy.value"></div>
+        </div>
+        </li>
+
+        <li data-ng-if="canShowNarrow('mdc')" data-ng-class="{selected: isActiveNarrow('mdc')}" class="first last item">
+        <div class="title"><a href="#" data-ng-click="toggleNarrow('mdc'); $event.preventDefault();" role="tab" aria-controls="tabpanel-mdc" id="tab-mdc">Major Diagnosis Category</a></div>
+        <div data-ng-show="isActiveNarrow('mdc')" class="select-menu" role="tabpanel" aria-labeledby="tab-mdc" id="tabpanel-mdc" aria-hidden="{{!isActiveNarrow('mdc')}}">
+          <div data-mh-autocomplete="uiaMDCNarrow" selected-id="query.narrowBy.value"></div>
+        </div>
+        </li>
+
+        <li data-ng-if="canShowNarrow('drg')" data-ng-class="{selected: isActiveNarrow('drg')}" class="first last item">
+        <div class="title"><a href="#" data-ng-click="toggleNarrow('drg'); $event.preventDefault();" role="tab" aria-controls="tabpanel-drg" id="tab-drg">Diagnosis Related Group</a></div>
+        <div data-ng-show="isActiveNarrow('drg')" class="select-menu" role="tabpanel" aria-labeledby="tab-drg" id="tabpanel-drg" aria-hidden="{{!isActiveNarrow('drg')}}">
+          <div data-mh-autocomplete="uiaDRGNarrow" selected-id="query.narrowBy.value"></div>
+        </div>
+        </li>
+
+        <li data-ng-if="canShowNarrow('procedure')" data-ng-class="{selected: isActiveNarrow('procedure')}" class="first last item">
+        <div class="title"><a href="#" data-ng-click="toggleNarrow('procedure'); $event.preventDefault();" role="tab" aria-controls="tabpanel-procedure" id="tab-procedure">Procedure</a></div>
+        <div data-ng-show="isActiveNarrow('procedure')" class="select-menu" role="tabpanel" aria-labeledby="tab-procedure" id="tabpanel-procedure" aria-hidden="{{!isActiveNarrow('procedure')}}">
+          <div data-mh-autocomplete="uiaPRCCSNarrow" selected-id="query.narrowBy.value"></div>
+        </div>
+        </li>
+
+        <li data-ng-if="canShowNarrow('county')" data-ng-class="{selected: isActiveNarrow('county')}" class="first item">
+        <div class="title"><a href="#" data-ng-click="toggleNarrow('county'); $event.preventDefault();" role="tab" aria-controls="tabpanel-hospital-county" id="tab-hospital-county">Hospital County</a></div>
+        <div data-ng-show="isActiveNarrow('county')" class="select-menu" role="tabpanel" aria-labeledby="tab-hospital-county" aria-hidden="{{!isActiveNarrow('county')}}" id="tabpanel-hospital-county">
+          <div data-mh-autocomplete="uiaCountiesNarrow" selected-id="query.narrowBy.value"></div>
+        </div>
+        </li>
+
+        <li data-ng-if="canShowNarrow('patientcounty')" data-ng-class="{selected: isActiveNarrow('patientcounty')}" class="first item">
+        <div class="title"><a href="#" data-ng-click="toggleNarrow('patientcounty'); $event.preventDefault();" role="tab" aria-controls="tabpanel-patientcounty" id="tab-patientcounty">Patient County</a></div>
+        <div data-ng-show="isActiveNarrow('patientcounty')" class="select-menu" role="tabpanel" aria-labelledby="tab-patientcounty" aria-hidden="{{!isActiveNarrow('patientcounty')}}" id="tabpanel-patientcounty">
+          <div data-mh-autocomplete="uiaPatientCountiesNarrow" data-selected-id="query.narrowBy.value"></div>
+        </div>
+        </li>
+
+        <li data-ng-if="canShowNarrow('region')" data-ng-class="{selected: isActiveNarrow('region')}" class="item">
+        <div class="title"><a href="#" data-ng-click="toggleNarrow('region'); $event.preventDefault();" role="tab" aria-controls="tabpanel-region" id="tab-region">Geographic Region</a></div>
+        <div data-ng-show="isActiveNarrow('region')" class="select-menu" role="tabpanel" aria-labeledby="tab-region" aria-hidden="{{!isActiveNarrow('region')}}" id="tabpanel-region">
+          <select class="form-control" data-ng-class="{selectEmpty: !query.narrowBy.value}" data-ng-change="query.narrowBy.name='region'" data-ng-model="query.narrowBy.value" data-ng-options="v.RegionID as v.Name for v in hospitalRegions" id="search-region" title="Select a Region">
+            <option value="" selected disabled style="display:none;">Select a Region</option>
+          </select>
+         </div>
+        </li>
+
+        <li data-ng-if="canShowNarrow('patientregion')" data-ng-class="{selected: isActiveNarrow('patientregion')}" class="first item">
+        <div class="title"><a href="#" data-ng-click="toggleNarrow('patientregion'); $event.preventDefault();" role="tab" aria-controls="tabpanel-patientregion" id="tab-patientregion">Patient Region</a></div>
+        <div data-ng-show="isActiveNarrow('patientregion')" class="select-menu" role="tabpanel" aria-labeledby="tab-patientregion" aria-hidden="{{!isActiveNarrow('patientregion')}}" id="tabpanel-patientregion">
+          <select class="form-control" data-ng-class="{selectEmpty: !query.narrowBy.value}" data-ng-change="query.narrowBy.name='patientregion'" data-ng-model="query.narrowBy.value" data-ng-options="v.RegionID as v.Name for v in patientRegions" id="search-patientregion" title="Select a Region">
+            <option value="" selected disabled style="display:none;">Select a Region</option>
+          </select>
+        </div>
+        </li>
+
+        <li data-ng-if="canShowNarrow('zip')" data-ng-class="{selected: isActiveNarrow('zip')}" class="item">
+        <div class="title"><a href="#" data-ng-click="toggleNarrow('zip'); $event.preventDefault();" role="tab" aria-controls="tabpanel-zip" id="tab-zip">ZIP Code</a></div>
+        <div data-ng-show="isActiveNarrow('zip')" role="tabpanel" aria-labeledby="tab-zip" aria-hidden="{{!isActiveNarrow('zip')}}" id="tabpanel-zip">
+          <div data-ng-show="isActiveNarrow('zip')"  class="select-menu">
+            <select class="form-control" data-ng-class="{selectEmpty: !query.narrowBy.value2}" data-ng-change="checkZipNarrow()" data-ng-model="query.narrowBy.value2" data-ng-options="v  as (v + ' Mile(s)') for v in zipDistances track by v" id="search-radius" title="Select a Radius">
+              <option value="" selected disabled style="display:none;">Select a Radius</option>
+            </select>
+          </div>
+          <div data-ng-show="isActiveNarrow('zip')" class="select-menu">
+            <input id="search-zip" class="zip-input form-control" type="text" name="zip" data-ng-model="query.narrowBy.value" data-ng-change="checkZipNarrow()" placeholder="Zip Code"/>
+          </div>
+        </div>
+        </li>
+
+        <li data-ng-if="canShowNarrow('hospital')" data-ng-class="{selected: isActiveNarrow('hospital')}" class="item">
+        <div class="title"><a href="#" data-ng-click="toggleNarrow('hospital'); $event.preventDefault();" role="tab" aria-controls="tabpanel-hospital" id="tab-hospital">Hospital Name</a></div>
+        <div data-ng-show="isActiveNarrow('hospital')" class="select-menu" role="tabpanel" aria-labeledby="tab-hospital" aria-hidden="{{!isActiveNarrow('hospital')}}" id="tabpanel-hospital">
+          <div mh-autocomplete="uiaHospitalsNarrow" selected-id="query.narrowBy.value"></div>
+        </div>
+        </li>
+
+        <li data-ng-if="canShowNarrow('hospitalType')" data-ng-class="{selected: isActiveNarrow('hospitalType')}" class="last item">
+        <div class="title"><a href="#" data-ng-click="toggleNarrow('hospitalType'); $event.preventDefault();" role="tab" aria-controls="tabpanel-hospitalType" id="tab-hospitalType">Type of Hospital</a></div>
+        <div data-ng-show="isActiveNarrow('hospitalType')" class="select-menu" role="tabpanel" aria-labeledby="tab-hospitalType" aria-hidden="{{!isActiveNarrow('hospitalType')}}" id="tabpanel-hospitalType">
+          <select class="form-control" data-ng-class="{selectEmpty: !query.narrowBy.value}" data-ng-change="query.narrowBy.name='hospitalType'" data-ng-model="query.narrowBy.value" data-ng-options="v.HospitalTypeID as v.Name for v in hospitalTypes" id="search-hosp-type" title="Select a Type of Hospital">
+            <option value="" selected disabled style="display:none;">Select a Type of Hospital</option>
+          </select>
+        </div>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+
+
+
+  <div data-ui-view="ud-report-content"></div>
+</div>
+
+</div>

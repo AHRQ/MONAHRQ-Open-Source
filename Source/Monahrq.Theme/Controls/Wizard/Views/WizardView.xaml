@@ -1,0 +1,131 @@
+﻿<UserControl x:Class="Monahrq.Theme.Controls.Wizard.Views.WizardView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             xmlns:local="clr-namespace:Monahrq.Theme.Controls.Wizard.Views"
+             xmlns:viewModel="clr-namespace:Monahrq.Theme.Controls.Wizard.Models"
+             xmlns:helpers="clr-namespace:Monahrq.Theme.Controls.Wizard.Helpers"
+             xmlns:helpers2="clr-namespace:Monahrq.Theme.Controls.Wizard.Helpers" d:DesignWidth="621.357" d:DesignHeight="494.263">
+    
+
+    <Grid Background="#FFD4D4D4">
+    	<Grid.RowDefinitions>
+    		<RowDefinition/>
+    		<RowDefinition Height="72.162"/>
+    	</Grid.RowDefinitions>
+
+		<Grid Margin="0">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition />
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="112.5" />
+				<RowDefinition/>
+			</Grid.RowDefinitions>
+
+			<!-- WIZARD STEP LISTING -->
+
+			<!-- current step -->
+
+			<!-- current step -->
+
+			<Grid x:Name="HeaderGrid" Margin="10">
+				<!-- current step -->
+				<Grid x:Name="Header" Margin="5">
+					<!-- WIZARD STEP LISTING -->
+					<HeaderedContentControl Header="Inpatient ED Data" Margin="0">
+						<ItemsControl ItemsSource="{Binding StepGroups}"
+							ItemTemplate="{DynamicResource WizardGroupTemplate}" ItemsPanel="{DynamicResource StepLayoutTemplate}"  />
+					</HeaderedContentControl>
+
+				</Grid>
+
+			</Grid>
+
+			<!-- current step -->
+			<Grid x:Name="Content" Grid.Row="1" Margin="0">
+				<!-- current step -->
+				<Border
+					Grid.Row="0">
+					<!--When "content" is set, that sets the DataContext of this element-->
+					<Grid Margin="20,0,20,20">
+						<!--When "content" is set, that sets the DataContext of this element-->
+						<HeaderedContentControl Content="{Binding CurrentLinkedListStep.Value.ViewModel}"
+							Header="{Binding CurrentLinkedListStep.Value.ViewModel.DisplayName}" 
+							HorizontalAlignment="Right" Height="75.5" VerticalAlignment="Bottom" Width="63.357" Visibility="Collapsed">
+							<HeaderedContentControl.Resources>
+								<helpers2:StepTemplateConverter x:Key="stepTemplateConverter" />
+							</HeaderedContentControl.Resources>
+							<HeaderedContentControl.Style>
+								<Style BasedOn="{StaticResource {x:Type HeaderedContentControl}}"
+									TargetType="{x:Type HeaderedContentControl}">
+									<!--This "watches" the value of CurrentLinkedListStep and updates the template (current step xaml) when it changes.
+                            So totally and completely seems like it needs a DataTrigger or an EventTrigger, no?
+                            Path when referenced this way (by finding ancestor) must include "DataContext"-->
+									<Setter Property="ContentTemplate"
+										Value="{Binding DataContext.CurrentLinkedListStep.Value, Converter={StaticResource stepTemplateConverter}, RelativeSource={RelativeSource AncestorType={x:Type UserControl}, Mode=FindAncestor}}" />
+								</Style>
+							</HeaderedContentControl.Style>
+						
+						</HeaderedContentControl>
+					
+						<ContentControl Content="{Binding CurrentLinkedListStep.Value.ViewModel}">
+							<ContentControl.Resources>
+								<helpers2:StepTemplateConverter x:Key="stepTemplateConverter" />
+							</ContentControl.Resources>
+							<ContentControl.Style>
+								<Style  TargetType="{x:Type ContentControl}">
+									<Setter Property="ContentTemplate"
+										Value="{Binding DataContext.CurrentLinkedListStep.Value, Converter={StaticResource stepTemplateConverter}, RelativeSource={RelativeSource AncestorType={x:Type UserControl}, Mode=FindAncestor}}" />
+								</Style>
+							</ContentControl.Style>
+						</ContentControl>
+					</Grid>
+				</Border>
+			</Grid>
+		</Grid>
+		<Border x:Name="Footer" Grid.Column="0"
+			Grid.Row="1"
+			Background="White">
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="Auto" />
+				</Grid.ColumnDefinitions>
+
+					<!-- PRICE (remove, this is specific to CupOfCoffee) -->
+				<TextBlock Grid.Column="1"
+					Text="{Binding BusinessObject.Price, StringFormat=c}"
+					VerticalAlignment="Center" Visibility="Collapsed" />
+
+					<!-- NAVIGATION BUTTONS -->
+				<Grid Grid.Column="1"
+					Grid.IsSharedSizeScope="True" Grid.ColumnSpan="2">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="180.727" />
+						<ColumnDefinition Width="117.436" />
+						<ColumnDefinition  />
+						<ColumnDefinition Width="225.589"/>
+					</Grid.ColumnDefinitions>
+					<Button Grid.Column="0"
+						x:Name="btnBack"
+						Grid.Row="0"
+						Command="{Binding MovePreviousCommand}"
+						Content="Back" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Height="37" />
+					<Button Grid.Column="3"
+						x:Name="btnNext"
+						Command="{Binding MoveNextCommand}"
+						
+						Margin="0" Background="#FF6CC2FF" HorizontalAlignment="Center" VerticalAlignment="Center" Width="180" Height="37" Content="Continue to the next Step" />
+					<Button Grid.Column="1"
+						Grid.Row="0"
+						Command="{Binding CancelCommand}"
+						Content="Cancel" Background="#FF00A507" HorizontalAlignment="Center" Margin="0" Width="80" VerticalAlignment="Center" Height="37" />
+				</Grid>
+			</Grid>
+		</Border>
+	</Grid>
+</UserControl>

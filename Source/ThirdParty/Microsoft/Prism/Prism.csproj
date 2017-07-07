@@ -1,0 +1,503 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{77138947-1D13-4E22-AEE0-5D0DD046CA34}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Microsoft.Practices.Prism</RootNamespace>
+    <AssemblyName>Microsoft.Practices.Prism</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <DocumentationFile>bin\Debug\Microsoft.Practices.Prism.XML</DocumentationFile>
+    <CodeAnalysisRules>
+    </CodeAnalysisRules>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <NoWarn>0612</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisRules>
+    </CodeAnalysisRules>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DocumentationFile>bin\Release\Microsoft.Practices.Prism.XML</DocumentationFile>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <NoWarn>0612</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
+    <DocumentationFile>bin\Debug\Microsoft.Practices.Prism.XML</DocumentationFile>
+    <NoWarn>0612</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>CODE_ANALYSIS;TRACE</DefineConstants>
+    <DocumentationFile>bin\Release\Microsoft.Practices.Prism.XML</DocumentationFile>
+    <Optimize>true</Optimize>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <NoWarn>0612</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
+    <DocumentationFile>bin\Debug\Microsoft.Practices.Prism.XML</DocumentationFile>
+    <NoWarn>0612</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>CODE_ANALYSIS;TRACE</DefineConstants>
+    <DocumentationFile>bin\Release\Microsoft.Practices.Prism.XML</DocumentationFile>
+    <Optimize>true</Optimize>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <NoWarn>0612</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'CustomConfiguration|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\CustomConfiguration\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
+    <DocumentationFile>bin\Debug\Microsoft.Practices.Prism.XML</DocumentationFile>
+    <NoWarn>0612</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'CustomConfiguration|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\CustomConfiguration\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
+    <DocumentationFile>bin\Debug\Microsoft.Practices.Prism.XML</DocumentationFile>
+    <NoWarn>0612</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'CustomConfiguration|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\CustomConfiguration\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
+    <DocumentationFile>bin\Debug\Microsoft.Practices.Prism.XML</DocumentationFile>
+    <NoWarn>0612</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\CommonServiceLocator.1.2\lib\portable-windows8+net40+sl5+windowsphone8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\CommonAssemblyInfo.cs">
+      <Link>CommonAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Bootstrapper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Commands\ButtonBaseClickCommandBehavior.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Commands\Click.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Commands\CommandBehaviorBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Commands\CompositeCommand.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Commands\DelegateCommand.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Commands\DelegateCommandBase.cs" />
+    <Compile Include="Commands\WeakEventHandlerManager.Desktop.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Events\BackgroundEventSubscription.cs" />
+    <Compile Include="Events\CompositePresentationEvent.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Events\DataEventArgs.cs" />
+    <Compile Include="Events\DefaultDispatcher.Desktop.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Events\DelegateReference.cs" />
+    <Compile Include="Events\DispatcherEventSubscription.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Events\EventAggregator.cs" />
+    <Compile Include="Events\EventBase.cs" />
+    <Compile Include="Events\EventSubscription.cs" />
+    <Compile Include="Events\IDelegateReference.cs" />
+    <Compile Include="Events\IDispatcherFacade.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Events\IEventAggregator.cs" />
+    <Compile Include="Events\IEventSubscription.cs" />
+    <Compile Include="Events\SubscriptionToken.cs" />
+    <Compile Include="Events\ThreadOption.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Events\WeakDelegatesManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="IActiveAware.cs" />
+    <Compile Include="ListDictionary.cs" />
+    <Compile Include="Logging\Category.cs" />
+    <Compile Include="Logging\EmptyLogger.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Logging\ILoggerFacade.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Logging\Priority.cs" />
+    <Compile Include="Logging\TextLogger.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Logging\TraceLogger.Desktop.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Modularity\AssemblyResolver.Desktop.cs" />
+    <Compile Include="Modularity\ConfigurationStore.Desktop.cs" />
+    <Compile Include="Modularity\FileModuleTypeLoader.Desktop.cs" />
+    <Compile Include="Modularity\IAssemblyResolver.Desktop.cs" />
+    <Compile Include="Modularity\ModularityException.cs" />
+    <Compile Include="Modularity\ModularityException.Desktop.cs" />
+    <Compile Include="Modularity\LoadModuleCompletedEventArgs.cs" />
+    <Compile Include="Modularity\ModuleDownloadProgressChangedEventArgs.cs" />
+    <Compile Include="Modularity\ModuleInfo.Desktop.cs" />
+    <Compile Include="Modularity\ModuleNotFoundException.Desktop.cs" />
+    <Compile Include="Modularity\CyclicDependencyFoundException.cs" />
+    <Compile Include="Modularity\DuplicateModuleException.Desktop.cs" />
+    <Compile Include="Modularity\IModule.cs" />
+    <Compile Include="Modularity\IModuleCatalog.cs" />
+    <Compile Include="Modularity\IModuleInitializer.cs" />
+    <Compile Include="Modularity\IModuleManager.cs" />
+    <Compile Include="Modularity\IModuleTypeLoader.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Modularity\ModuleInfoGroupExtensions.cs" />
+    <Compile Include="Modularity\ModuleManager.cs" />
+    <Compile Include="Modularity\ModuleAttribute.Desktop.cs" />
+    <Compile Include="Modularity\ModuleCatalog.cs" />
+    <Compile Include="Modularity\ModuleConfigurationElement.Desktop.cs" />
+    <Compile Include="Modularity\ModuleConfigurationElementCollection.Desktop.cs" />
+    <Compile Include="Modularity\ModuleDependencyAttribute.Desktop.cs" />
+    <Compile Include="Modularity\ModuleDependencyCollection.Desktop.cs" />
+    <Compile Include="Modularity\ModuleDependencyConfigurationElement.Desktop.cs" />
+    <Compile Include="Modularity\ModuleDependencySolver.cs" />
+    <Compile Include="Modularity\InitializationMode.cs" />
+    <Compile Include="Modularity\ModuleInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Modularity\ModuleInfoGroup.cs" />
+    <Compile Include="Modularity\ModuleInitializer.cs" />
+    <Compile Include="Modularity\ModuleManager.Desktop.cs" />
+    <Compile Include="Modularity\ModuleNotFoundException.cs" />
+    <Compile Include="Modularity\ModuleTypeLoadingException.cs" />
+    <Compile Include="Modularity\ModulesConfigurationSection.Desktop.cs" />
+    <Compile Include="Modularity\ModuleState.cs" />
+    <Compile Include="Modularity\CyclicDependencyFoundException.Desktop.cs" />
+    <Compile Include="ObservableObject.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Regions\AllActiveRegion.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Regions\Behaviors\AutoPopulateRegionBehavior.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Regions\Behaviors\BindRegionContextToDependencyObjectBehavior.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Regions\Behaviors\ClearChildViewsRegionBehavior.cs" />
+    <Compile Include="Regions\Behaviors\DelayedRegionCreationBehavior.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Regions\Behaviors\IHostAwareRegionBehavior.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Regions\Behaviors\RegionActiveAwareBehavior.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Regions\Behaviors\RegionCreationException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Regions\Behaviors\RegionCreationException.Desktop.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Regions\Behaviors\RegionMemberLifetimeBehavior.cs" />
+    <Compile Include="Regions\Behaviors\RegionManagerRegistrationBehavior.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Regions\Behaviors\SelectorItemsSourceSyncBehavior.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Regions\Behaviors\SyncRegionContextWithHostBehavior.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Regions\ContentControlRegionAdapter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Regions\DefaultRegionManagerAccessor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Regions\INavigateAsync.cs" />
+    <Compile Include="Regions\INavigationAware.cs" />
+    <Compile Include="Regions\IRegionMemberLifetime.cs" />
+    <Compile Include="Regions\IRegionNavigationContentLoader.cs" />
+    <Compile Include="Regions\IRegionBehaviorFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Regions\IRegionManagerAccessor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Regions\IRegionNavigationJournal.cs" />
+    <Compile Include="Regions\IRegionNavigationJournalEntry.cs" />
+    <Compile Include="Regions\IRegionNavigationService.cs" />
+    <Compile Include="Regions\ItemMetadata.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Regions\ItemsControlRegionAdapter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Regions\IConfirmNavigationRequest.cs" />
+    <Compile Include="Regions\NavigationAsyncExtensions.cs" />
+    <Compile Include="Regions\RegionMemberLifetimeAttribute.cs" />
+    <Compile Include="Regions\RegionNavigationContentLoader.cs" />
+    <Compile Include="Regions\NavigationContext.cs" />
+    <Compile Include="Regions\NavigationResult.cs" />
+    <Compile Include="Regions\Region.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Regions\RegionAdapterBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Regions\RegionAdapterMappings.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Regions\RegionBehavior.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Regions\RegionBehaviorCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Regions\RegionBehaviorFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Regions\RegionContext.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Regions\RegionManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Regions\RegionNavigationEventArgs.cs" />
+    <Compile Include="Regions\RegionNavigationFailedEventArgs.cs" />
+    <Compile Include="Regions\RegionNavigationJournal.cs" />
+    <Compile Include="Regions\RegionNavigationJournalEntry.cs" />
+    <Compile Include="Regions\RegionViewRegistry.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Regions\SelectorRegionAdapter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Regions\SingleActiveRegion.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Regions\SyncActiveStateAttribute.cs" />
+    <Compile Include="Regions\UpdateRegionsException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Regions\UpdateRegionsException.Desktop.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Regions\ViewRegisteredEventArgs.cs" />
+    <Compile Include="Regions\IRegion.cs" />
+    <Compile Include="Regions\IRegionAdapter.cs" />
+    <Compile Include="Regions\IRegionBehavior.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Regions\IRegionBehaviorCollection.cs" />
+    <Compile Include="Regions\IRegionViewRegistry.cs" />
+    <Compile Include="Regions\IRegionManager.cs" />
+    <Compile Include="Regions\IViewsCollection.cs" />
+    <Compile Include="Regions\RegionManagerExtensions.cs" />
+    <Compile Include="Regions\ViewRegistrationException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Regions\ViewRegistrationException.Desktop.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Regions\ViewsCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Regions\ViewsCollection.Desktop.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Regions\ViewSortHintAttribute.cs" />
+    <Compile Include="ServiceLocatorExtensions.cs" />
+    <Compile Include="ViewModel\ErrorsContainer.cs" />
+    <Compile Include="UriParsingHelper.cs" />
+    <Compile Include="UriQuery.cs" />
+    <Compile Include="ViewModel\NotificationObject.cs" />
+    <Compile Include="ViewModel\PropertySupport.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CollectionExtensions.cs" />
+    <Compile Include="ExceptionExtensions.cs" />
+    <Compile Include="Modularity\ConfigurationModuleCatalog.Desktop.cs" />
+    <Compile Include="Modularity\DirectoryModuleCatalog.Desktop.cs" />
+    <Compile Include="Modularity\DuplicateModuleException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Modularity\IConfigurationStore.Desktop.cs" />
+    <Compile Include="Modularity\IModuleCatalogItem.cs" />
+    <Compile Include="Modularity\ModuleInitializeException.cs" />
+    <Compile Include="Modularity\ModuleInitializeException.Desktop.cs" />
+    <Compile Include="Modularity\ModuleTypeLoadingException.Desktop.cs" />
+    <Compile Include="Modularity\ModuleTypeLoaderNotFoundException.cs" />
+    <Compile Include="Modularity\ModuleTypeLoaderNotFoundException.Desktop.cs" />
+    <Compile Include="Regions\IRegionCollection.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Regions\RegionNavigationService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties ProjectLinkerExcludeFilter="\\wpf;\\silverlight;\.wpf;\.silverlight;\.xaml" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

@@ -1,0 +1,19 @@
+<span data-ng-switch on="mhRatingSymbol" class="rating-symbol">
+  <span data-ng-switch-when="1">
+    <img class="rating-symbol--img" width="30" height="30"  alt="" src="themes/base/assets/symbol_above.png">
+    <span class="rating-symbol--title">Better</span>
+    <span class="rating-symbol--subtitle">than average</span>
+  </span>
+  <span data-ng-switch-when="2">
+    <img class="rating-symbol--img" width="30" height="30"  alt="" src="themes/base/assets/symbol_at.png">
+    <span class="rating-symbol--title">Average</span>
+    <span class="rating-symbol--subtitle"></span>
+  </span>
+  <span data-ng-switch-when="3">
+    <img class="rating-symbol--img" width="30" height="30"  alt="" src="themes/base/assets/symbol_below.png">
+    <span class="rating-symbol--title">Below</span>
+    <span class="rating-symbol--subtitle">average</span>
+  </span>
+  <span class="rating-symbol--text" data-ng-switch-when="-3">Not compared</span>
+  <span class="rating-symbol--text" data-ng-switch-default>Not enough data<br>to report</span>
+</span>

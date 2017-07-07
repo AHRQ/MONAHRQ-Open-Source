@@ -1,0 +1,70 @@
+﻿<UserControl x:Class="Monahrq.Views.ManageSettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:prism="clr-namespace:Microsoft.Practices.Prism.Regions;assembly=Microsoft.Practices.Prism"
+             mc:Ignorable="d" d:DesignWidth="1078" d:DesignHeight="735">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.Buttons.xaml"/>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.DataGrid.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <!--<UserControl.Background>
+        <SolidColorBrush Color="{StaticResource DarkBackgroundGradientStart}" />
+    </UserControl.Background>-->
+    <Grid x:Name="LayoutRoot" Margin="10,30">
+        <TabControl x:Name="TabSettings" Style="{DynamicResource TabControlStyle}" IsSynchronizedWithCurrentItem="true" SelectedIndex="{Binding ActiveTabItemIndex, Mode=TwoWay}">
+            <TabItem  Header="Database Connection" Style="{DynamicResource TabItemStyle}" FontFamily="Segoe UI Semibold" DataContext="{Binding TabItems[0]}"
+                      IsEnabled="{Binding NavigationDisabled}">
+                <Grid Background="#FFE5E5E5">
+                    <Border BorderBrush="{DynamicResource MBlue}" BorderThickness="0,1">
+                        <ItemsControl x:Name="DbConnectControl" Width="Auto" Height="Auto"
+                                      prism:RegionManager.RegionName="DatabaseManagerRegion"
+                                      HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <Grid/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                        </ItemsControl>
+                    </Border>
+                </Grid>
+                </TabItem>
+            <TabItem  Header="Other Connections" Style="{DynamicResource TabItemStyle}" FontFamily="Segoe UI Semibold" DataContext="{Binding TabItems[1]}"
+                      IsEnabled="{Binding NavigationDisabled}">
+                <Grid Background="#FFE5E5E5">
+                    <Border BorderBrush="{DynamicResource MBlue}" BorderThickness="0,1">
+                        <ItemsControl x:Name="OtherDbConnectControl" Width="Auto" Height="Auto"
+                                      prism:RegionManager.RegionName="DbConnectionsManagerRegion"
+                                      HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <Grid/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                        </ItemsControl>
+                    </Border>
+                </Grid>
+            </TabItem>
+            <TabItem  Header="Manage Wings &amp; Flutters" Style="{StaticResource TabItemStyle}" FontFamily="Segoe UI Semibold" DataContext="{Binding TabItems[2]}" IsEnabled="{Binding NavigationDisabled}">
+                <Grid Background="#FFE5E5E5">
+                    <Border BorderBrush="{StaticResource MBlue}" BorderThickness="0,1">
+                        <ItemsControl x:Name="ManageWingsFluttersControl" Width="Auto" Height="Auto"
+						  prism:RegionManager.RegionName="ManageWingsFluttersRegion"
+						  HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <Grid/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                        </ItemsControl>
+                    </Border>
+                </Grid>
+            </TabItem>
+        </TabControl> 
+    </Grid>
+</UserControl>

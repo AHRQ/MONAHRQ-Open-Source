@@ -1,0 +1,416 @@
+﻿<UserControl x:Class="Monahrq.Reports.Views.ReportDetailsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:mtx="http://schemas.monahrq.com/theme/xaml"
+             xmlns:Ui="clr-namespace:Monahrq.Reports.ViewModels"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d" 
+             xmlns:selector="clr-namespace:Monahrq.Reports.Converters"
+             xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             xmlns:converters="clr-namespace:Monahrq.Theme.Converters;assembly=Monahrq.Theme"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:local="clr-namespace:Monahrq.Theme.Behaviors;assembly=Monahrq.Theme"
+             d:DesignHeight="700" d:DesignWidth="900">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.Buttons.xaml"/>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.DataGrid.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <converters:CustomReportToStringConverter x:Key="CustomReportToStringConverter" />
+            <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+            <converters:ListToStringConverter x:Key="ListToStringConverter" />
+            <converters:InvertedBooleanConverter x:Key="InvertedBooleanConverter" />
+            <selector:TabVisibilityConverter x:Key="TabVisibilityConverter" />
+            <selector:FilterTypeDisplayNameConverter x:Key="DisplayNameConverter" />
+
+            <DataTemplate x:Key="ListViewValuesDataTemplate">
+                <Border Background="White" Height="30" BorderThickness="0,1,0,0" BorderBrush="{StaticResource MGrey2}" Padding="0,0,0,2" >
+                    <StackPanel Margin="12,0" Orientation="Horizontal">
+                        <CheckBox VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,5" IsChecked="{Binding Value, Mode=TwoWay}" Checked="ToggleButton_OnChecked" 
+                                  Tag="{Binding RadioGroupName}" />
+                        <TextBlock Text="{Binding Name}" VerticalAlignment="Center" Foreground="{StaticResource MGrey5}" Margin="10,5"/>
+                    </StackPanel>
+                </Border>
+            </DataTemplate>
+
+            <Style TargetType="{x:Type ListView}" x:Key="FiltersListViewStyle">
+                <Setter Property="BorderThickness" Value="1,0,1,1" />
+                <Setter Property="BorderBrush" Value="{StaticResource MGrey3}" />
+                <Setter Property="ItemTemplate">
+                    <Setter.Value>
+                        <DataTemplate>
+                            <ListView ItemsSource="{Binding Values }" ItemTemplate="{StaticResource ListViewValuesDataTemplate}" />
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style TargetType="{x:Type ListView}" x:Key="ColumnsListViewStyle">
+                <Setter Property="BorderThickness" Value="1,0,1,1" />
+                <Setter Property="BorderBrush" Value="{StaticResource MGrey3}" />
+                <Setter Property="ItemTemplate">
+                    <Setter.Value>
+                        <DataTemplate>
+                            <Border Background="White" Height="30" BorderThickness="0,1,0,0" BorderBrush="{StaticResource MGrey2}" Padding="0,0,0,2" >
+                                <StackPanel Margin="12,0" Orientation="Horizontal">
+                                    <CheckBox IsChecked="{Binding IsIncluded, Mode=TwoWay}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,5" Visibility="Collapsed" />
+                                    <TextBlock Text="{Binding Name }" VerticalAlignment="Center" Foreground="{StaticResource MGrey5}" Margin="10,5"/>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="RatingListBoxStyle" TargetType="{x:Type ListBox}">
+                <Setter Property ="ItemTemplate">
+                    <Setter.Value>
+                        <DataTemplate>
+                            <Border Background="White" BorderBrush="{StaticResource MGrey2}" >
+                                <Grid>
+                                    <Border BorderBrush="{StaticResource MGrey2}" BorderThickness="0,0.5">
+                                        <StackPanel Orientation="Horizontal" Margin="8,5">
+                                            <RadioButton GroupName="iconSet" VerticalAlignment="Center" Content="{Binding Name}" IsChecked="{Binding IsIncluded}" 
+                                                         HorizontalAlignment="Center" Margin="5,8.5,5,5" Checked="RadioButton_OnChecked" />
+                                            <Image Margin="5" Source="{Binding AverageImage}" Stretch="None" />
+                                            <Image Margin="5" Source="{Binding BelowImage}" Stretch="None" />
+                                            <Image Margin="5" Source="{Binding BestImage}" Stretch="None" />
+                                            <Image Margin="5" Source="{Binding BetterImage}" Stretch="None" />
+                                            <Image Margin="5" Source="{Binding NotEnoughDataImage}" Stretch="None" />
+                                        </StackPanel>
+                                    </Border>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+
+        </ResourceDictionary>
+
+    </UserControl.Resources>
+    <Grid Background="White">
+        <!-- CONTENT -->
+        <Grid x:Name="_gridHeader" Style="{StaticResource RootContentGrid}" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <!--HEADER -->
+            <Grid Margin="0,20,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Button Style="{StaticResource MonahrqArrowButtonLeft}" 
+                            FontSize="12" VerticalAlignment="Center"
+                            Command="{Binding NavigateAllReports}"
+                            HorizontalAlignment="Left"
+                            Content="All Reports" Width="160" Height="32"></Button>
+                <StackPanel Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" 
+                                Visibility="{Binding Model.IsDefaultReport, Converter={StaticResource BooleanToVisibilityConverter}}"  >
+                    <TextBlock Text="REPORT TEMPLATE" Style="{StaticResource Header3}" HorizontalAlignment="Right"/>
+                    <Button Content="Create new report based on this template" Width="256" Height="42" Background="{StaticResource MBlue}"
+                                Foreground="White" IsEnabled="True"
+                                HorizontalAlignment="Right" Style="{StaticResource AddDataFileButton}" Command="{Binding NewReportCommand}"/>
+
+                </StackPanel>
+                <StackPanel Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="{Binding IsUserCreatedInstance, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Hidden}" >
+                    <TextBlock Text="USER CREATED REPORT" Grid.Column="1" Style="{StaticResource Header3}" HorizontalAlignment="Right"/>
+                    <TextBlock TextWrapping="Wrap" Text="{Binding Model.Name, Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=False}" Grid.Column="1" Style="{StaticResource Subtopic}" HorizontalAlignment="Right"/>
+                </StackPanel>
+
+            </Grid>
+
+            <Grid Grid.Row="1" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition  />
+                    <ColumnDefinition Width="303" />
+                </Grid.ColumnDefinitions>
+
+                <!--REPORT Type AND HEADER ABOVE TAB -->
+                <Border Grid.Row="0"  Grid.Column="0" >
+                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" >
+                        <TextBlock Text="{Binding Model.Category}" Style="{StaticResource Subtopic}" FontSize="18"  Margin="0,5"/>
+                        <TextBlock Text="{Binding Model.SourceTemplate.Name}" Style="{StaticResource Subtopic}" FontSize="14" />
+                    </StackPanel>
+                </Border>
+
+                <!-- MAIN TAB -->
+                <TabControl Grid.Row="0" Grid.Column="0" x:Name="MainTabControl" Grid.ColumnSpan="2" Style="{StaticResource TabControlStyle}" Margin="0,30,0,0" Grid.RowSpan="2" SelectedIndex="{Binding ActiveTabIndex}">
+                    <TabItem Header="Name and Description" Style="{StaticResource TabItemStyle}">
+                        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                            <Grid Background="{StaticResource MGrey2}">
+                                <Border BorderBrush="{StaticResource MBlue}" BorderThickness="0,1" Padding="20,10">
+                                    <Grid Margin="0,10,0,0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="450*" />
+                                            <ColumnDefinition Width="15"/>
+                                            <ColumnDefinition Width="215*" MaxWidth="350"/>
+                                        </Grid.ColumnDefinitions>
+                                        <!--AUDIENCE -->
+                                        <!--<StackPanel Grid.Column="2" VerticalAlignment="Stretch" DataContext="{Binding Audience }" >-->
+                                        <TextBlock Visibility="{Binding Model.IsDefaultReport, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Hidden}"
+                                                   Foreground="{StaticResource MGrey5}" TextWrapping="Wrap"  FontWeight="Bold">
+                                                <Run Text="This is a baselined report within MONAHRQ and cannot be edited.  To clone and then customize this report, please click on the &quot;Create new report based on this template&quot; button. " />
+                                        </TextBlock>
+                                        <StackPanel Grid.Row="1" Grid.Column="0">
+                                            <TextBlock Text="Report Title" Style="{StaticResource Subtopic}"  Margin="0,5"/>
+                                            <TextBox x:Name="txtTitle" Height="32" Margin="0" TextWrapping="Wrap" 
+                                                     AutomationProperties.AutomationId="ReportTitle"   
+                                                     Controls:TextboxHelper.ClearTextButton="True"
+                                                        Controls:TextboxHelper.Watermark="Enter title"
+                                                            FontSize="14" 
+                                                            IsEnabled="{Binding IsUserCreatedInstance}"
+                                                            Foreground="{StaticResource MGrey5}" 
+                                                            Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" >
+                                                <i:Interaction.Behaviors>
+                                                    <local:TextBoxChangedBehavior/>
+                                                </i:Interaction.Behaviors>
+                                            </TextBox>
+                                        </StackPanel>
+
+                                        <StackPanel Grid.Row="1" Grid.Column="2" VerticalAlignment="Stretch" IsEnabled="{Binding IsUserCreatedInstance}"  >
+                                            <TextBlock Text="Audiences" Style="{StaticResource Subtopic}" />
+                                            <Border Background="{StaticResource MGrey1}" CornerRadius="2.5" Padding="6" Margin="0,6">
+                                                <!--<ItemsControl ItemsSource="{Binding AttributeSet}" IsEnabled="{Binding IsUserCreatedInstance}">-->
+                                                <!--<ItemsControl ItemsSource="{Binding Audiences}" IsEnabled="{Binding IsUserCreatedInstance}">
+                                                    <ItemsControl.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <CheckBox IsChecked="{Binding IsSelected, UpdateSourceTrigger=PropertyChanged}" Content="{Binding  Caption}"  
+                                                                            IsEnabled="{Binding RelativeSource={RelativeSource FindAncestor,  AncestorType={x:Type Grid}}, Path=DataContext.IsUserCreatedInstance}"
+                                                                            Foreground="{StaticResource MGrey5}" Margin="10,5"/>
+                                                        </DataTemplate>
+                                                    </ItemsControl.ItemTemplate>
+                                                </ItemsControl>-->
+
+                                                <StackPanel Orientation="Vertical" DataContext="{Binding Model}" AutomationProperties.AutomationId="Audiences" >
+                                                    <CheckBox Content="Consumers" FontSize="13" Margin="5,10,0,0" VerticalContentAlignment="Center"
+                                                        IsChecked="{Binding HasConsumersAudience, Mode=TwoWay}" AutomationProperties.AutomationId="HasConsumersAudience" />
+                                                    <CheckBox  Content="Healthcare Professionals" FontSize="13" Margin="5,10,0,10" VerticalContentAlignment="Center"
+                                                        IsChecked="{Binding HasProfessionalsAudience, Mode=TwoWay}" AutomationProperties.AutomationId="HasProfessionalsAudience" />
+                                                </StackPanel>
+                                            </Border>
+                                        </StackPanel>
+
+                                        <Grid Grid.Row="2" Grid.Column="0" Margin="0,5">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition />
+                                            </Grid.RowDefinitions>
+                                            <TextBlock Text="Report Description" Style="{StaticResource Subtopic}" Margin="0,5"/>
+                                            <Border Grid.Row="1"  BorderThickness="1" BorderBrush="{StaticResource MGrey3}">
+                                                <TextBox Text="{Binding Model.Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged , TargetNullValue=''}" 
+                                                         AutomationProperties.AutomationId="ReportDescription"
+                                                         IsEnabled="{Binding IsUserCreatedInstance}" 
+                                                                AcceptsReturn="True"
+                                                                TextWrapping="Wrap"/>
+                                            </Border>
+                                        </Grid>
+
+                                        <Grid Grid.Row="2" Grid.Column="2" VerticalAlignment="Stretch"  Margin="0,5">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="26"/>
+                                                <RowDefinition Height="4*" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+
+                                            <TextBlock Grid.Row="0"  Margin="0,5" Style="{StaticResource Subtopic}" Text="Footnotes" />
+                                            <TextBox Grid.Row="1"  VerticalAlignment="Stretch" Text="{Binding Footnote , UpdateSourceTrigger=PropertyChanged}"
+                                                     AutomationProperties.AutomationId="Footnotes"
+                                                     IsEnabled="{Binding IsUserCreatedInstance}" 
+                                                            Margin="0,0,0,5" TextWrapping="Wrap" MaxWidth="350"/>
+                                            <StackPanel Grid.Row="2" Orientation="Vertical">
+                                                <Grid  Grid.Row="2">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="26"  />
+                                                        <RowDefinition Height="Auto" />
+                                                    </Grid.RowDefinitions>
+                                                    <!--<Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="3*"/>
+                                                </Grid.ColumnDefinitions>-->
+
+                                                    <CheckBox Grid.Row="0"  IsChecked="{Binding Model.ShowInterpretationText , Mode=TwoWay}" Margin="5"
+                                                              IsEnabled="{Binding IsUserCreatedInstance}" AutomationProperties.AutomationId="ShowHowToCheckBox">
+                                                        <TextBlock Text="Show how do I interpret content?" Style="{StaticResource Subtopic}"/>
+                                                    </CheckBox>
+
+                                                    <TextBox Grid.Row="1" IsEnabled="{Binding IsCustomAndShowInterpretation}" Margin="1,0,0,1" MaxLength="4000" 
+                                                             Width="Auto" TextWrapping="Wrap" Text="{Binding Model.InterpretationText, Mode=TwoWay}" MaxWidth="350"  />
+                                                </Grid>
+                                            </StackPanel>
+                                        </Grid>
+
+                                        <StackPanel Grid.Row="3" Grid.Column="0" Margin="0,5">
+                                            <StackPanel Orientation="Horizontal" Margin="0,5">
+                                                <TextBlock Text="Report Type: " Style="{StaticResource Subtopic}" Width="80"/>
+                                                <TextBlock Text="{Binding Model.SourceTemplate.Name}" Style="{StaticResource Subtopic}"/>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal" Margin="0,5">
+                                                <TextBlock Text="Websites:" Style="{DynamicResource Subtopic}" Width="80"/>
+                                                <TextBlock Text="{Binding Model.WebsitesForReportDisplay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource Subtopic}" />
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal" Margin="0,5">
+                                                <TextBlock Text="Custom?" Style="{StaticResource Subtopic}" Width="80" />
+                                                <TextBlock Text="{Binding Model.IsDefaultReport, Converter={StaticResource CustomReportToStringConverter}}" Style="{StaticResource Subtopic}" />
+                                            </StackPanel>
+                                            <!---->
+                                            </StackPanel>
+                                        </Grid>
+                                    </Border>
+                                </Grid>
+                            </ScrollViewer>
+                        </TabItem>
+                    <TabItem Header="Report Attributes" Style="{StaticResource TabItemStyle}" Visibility="{Binding HasAttributes, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Grid Background="{StaticResource MGrey2}">
+                            <Border BorderBrush="{StaticResource MBlue}" BorderThickness="0,1" Padding="20,10">
+                                <TabControl ItemsSource="{Binding }" Style="{StaticResource TabControlStyleLeft}" SelectedIndex="{Binding ReportAttributesTabIndex, Mode=TwoWay}"
+                                            ItemContainerStyle="{StaticResource TabItemStyleLeft}"  IsSynchronizedWithCurrentItem="True">
+                                    <TabItem  Visibility="{Binding Model.Filters.Count, Converter={StaticResource TabVisibilityConverter}, ConverterParameter=Filters}" Header="Filters" >
+                                        <Border BorderBrush="{StaticResource MBlue}" BorderThickness="0,1" Padding="20,10">
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition />
+                                                </Grid.RowDefinitions>
+                                                <StackPanel Grid.Row="0" Margin="0,10">
+                                                    <TextBlock Text="Select the filtering options for this report."  FontSize="14" Style="{StaticResource Subtopic}"  Visibility="{Binding Path=IsUserCreatedInstance, Converter={mtx:BooleanToVisibilityConverter IsInverted=True}}"/>
+                                                    <TextBlock Text="Select the filtering options for this report. Only the checked items will appear in your report, on your website." 
+                                                               Visibility="{Binding Path=IsUserCreatedInstance, Converter={StaticResource BooleanToVisibilityConverter}}" FontSize="14" Style="{StaticResource Subtopic}"/>
+                                                </StackPanel>
+                                                <ListView ItemsSource="{Binding FilterCollectionView, Mode=TwoWay}" Grid.Row="1" Margin="0,10" Style="{StaticResource FiltersListViewStyle}"
+                                                          IsEnabled="{Binding  RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType=UserControl}, Path=DataContext.IsUserCreatedInstance}">
+                                                   <ListView.GroupStyle>
+                                                       <GroupStyle>
+                                                           <GroupStyle.HeaderTemplate>
+                                                               <DataTemplate>
+                                                                    <Border Background="{StaticResource MDBlue}" Height="30" BorderThickness="0,1,0,0" Margin="-1,-1,0,-1" BorderBrush="{StaticResource MGrey2}" >
+                                                                        <Grid>
+                                                                            <Grid.ColumnDefinitions>
+                                                                                <ColumnDefinition Width="Auto" />
+                                                                                <ColumnDefinition />
+                                                                            </Grid.ColumnDefinitions>
+                                                                            <Rectangle Grid.Column="0" Width="16" Height="18" Margin="10,5">
+                                                                                <Rectangle.Fill>
+                                                                                    <VisualBrush>
+                                                                                        <VisualBrush.Visual>
+                                                                                            <Canvas Width="76" Height="76" Clip="F1 M 0,0L 76,0L 76,76L 0,76L 0,0">
+                                                                                                <Path Width="38" Height="38" Canvas.Left="19" Canvas.Top="19" Stretch="Fill" Fill="{StaticResource White}" 
+                                                          Data="F1 M 23,19L 53,19L 56.9999,25.0001L 57,27L 19,27L 19,25.0001L 23,19 Z M 19,42L 19,29L 57,29L 57,42L 19,42 Z M 34,33L 34,35L 42,35L 42,33L 34,33 Z M 19,57L 19,44L 56.9999,44L 57,57L 19,57 Z M 34,48L 34,50L 42,50L 42,48L 34,48 Z "/>
+                                                                                            </Canvas>
+                                                                                        </VisualBrush.Visual>
+                                                                                    </VisualBrush>
+                                                                                </Rectangle.Fill>
+                                                                            </Rectangle>
+                                                                            <TextBlock Grid.Column="1" Text="{Binding Name, Converter={StaticResource DisplayNameConverter}}"  Foreground="White" VerticalAlignment="Center" Style="{StaticResource Subtopic}" Margin="10,5"/>
+                                                                        </Grid>
+                                                                    </Border>
+                                                               </DataTemplate>
+                                                           </GroupStyle.HeaderTemplate>
+                                                       </GroupStyle>
+                                                   </ListView.GroupStyle>
+                                                </ListView>
+                                            </Grid>
+                                        </Border>
+                                     </TabItem>
+                                    <TabItem Visibility="{Binding Model.Columns.Count, Converter={StaticResource TabVisibilityConverter}, ConverterParameter=Columns}" Header="Report Columns">
+                                        <Border BorderBrush="{StaticResource MBlue}" BorderThickness="0,1" Padding="20,10">
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition />
+                                                </Grid.RowDefinitions>
+                                                <StackPanel Grid.Row="0" Margin="0,10">
+                                                    <TextBlock Text="Select the columns for this report."  FontSize="14" Style="{StaticResource Subtopic}"  Visibility="{Binding Path=IsUserCreatedInstance, Converter={mtx:BooleanToVisibilityConverter IsInverted=True}}"/>
+                                                    <TextBlock Text="Select the columns for this report. Only the checked items will appear in your report, on your website." 
+                                                               Visibility="{Binding Path=IsUserCreatedInstance, Converter={StaticResource BooleanToVisibilityConverter}}" FontSize="14" Style="{StaticResource Subtopic}"/>
+                                                </StackPanel>
+                                                <ListView ItemsSource="{Binding Model.Columns, Mode=TwoWay}"
+														  Grid.Row="1"
+														  Margin="0,10"
+														  Style="{StaticResource ColumnsListViewStyle}" 
+														  IsEnabled="False">
+                                                </ListView>
+                                                         <!-- IsEnabled="{Binding  RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType=UserControl}, Path=DataContext.IsUserCreatedInstance}"> -->
+                                            </Grid>
+                                        </Border>
+                                    </TabItem>
+                                    <TabItem Visibility="{Binding Model.ComparisonKeyIcons.Count, Converter={StaticResource TabVisibilityConverter}, ConverterParameter=Icons}" Header="Comparison Keys" >
+                                        <Border BorderBrush="{StaticResource MBlue}" BorderThickness="0,1" Padding="20,10">
+                                            <Grid Background="{StaticResource MGrey2}">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <StackPanel Grid.Row="0" Margin="0,10">
+                                                    <TextBlock Text="Select a quality rating icons set to display for this quality report. Please note-  By default, the first key set will be selected."  FontSize="14" Style="{StaticResource Subtopic}"/>
+                                                </StackPanel>
+                                                <Border Grid.Row="1" BorderBrush="{StaticResource MGrey2}" BorderThickness="1,1,1,1">
+                                                    <ListBox ItemsSource="{Binding Model.ComparisonKeyIcons}" Margin="0,10"
+                                                             BorderThickness="0" Style="{StaticResource RatingListBoxStyle}" SelectedItem="{Binding SelectedIconSet}"
+                                                             IsEnabled="{Binding  RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType=UserControl}, Path=DataContext.IsUserCreatedInstance}">
+                                                    </ListBox>
+                                                </Border>
+                                            </Grid>    
+                                        </Border>
+                                     </TabItem>
+                                </TabControl>
+                            </Border>
+                       </Grid>
+                    </TabItem>
+                    <TabItem Header="Preview Sample Template" Style="{StaticResource TabItemStyle}" >
+                        <Border Background="{StaticResource MGrey2}">
+                            <TabControl Style="{StaticResource TabControlStyleLeft}" Margin="10,10" SelectedIndex="{Binding ActivePreviewImageTabIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"> 
+                                <TabItem Header="Professional" Style="{StaticResource TabItemStyleLeft}" Visibility="{Binding Model.HasProfessionalsAudience, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <Border BorderBrush="{StaticResource MBlue}" BorderThickness="0,1" Padding="10,5" Background="White">
+                                        <Border BorderThickness="1" BorderBrush="{StaticResource MGrey3}" Margin="10" MinWidth="300" MinHeight="200" >
+                                            <Image Source="{Binding ProfessionalPreviewImage}" MaxHeight="500" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                     </Border>
+                                    </Border>  
+                                    </TabItem>
+                                <TabItem Header="Consumer" Style="{StaticResource TabItemStyleLeft}" Visibility="{Binding Model.HasConsumersAudience, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <Border BorderBrush="{StaticResource MBlue}" BorderThickness="0,1" Padding="10,5" Background="White">
+                                        <Border BorderThickness="1" BorderBrush="{StaticResource MGrey3}" Margin="10" MinWidth="300" MinHeight="200" >
+                                            <Image Source="{Binding ConsumerPreviewImage}" MaxHeight="500" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </Border>
+                                </TabItem>
+                            </TabControl> 
+                        </Border>
+                    </TabItem>
+                </TabControl>
+ 
+                               <!-- SAVE?CANCEL -->
+                                            <Grid Row="2" Column="0"  Grid.ColumnSpan="2" Margin="0,10">
+                                                <Grid Height="34" VerticalAlignment="Bottom" >
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="0.4*"/>
+                                                        <ColumnDefinition Width="0.4*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right" >
+                                                        <Button Content="Cancel" Command="{Binding NavigateAllReports}" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource PlainButton}"
+                                    Foreground="White" Background="{StaticResource MPink}"  Height="36" Width="160" Margin="0,0,10,0"/>
+                                                        <Button Command="{Binding SaveCommand}" Content="Save Changes" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource PlainButton}"
+                                    Foreground="White" Background="{StaticResource MDGreen}"  Height="36"  Width="160"  IsEnabled="{Binding IsUserCreatedInstance}"/>
+                                                    </StackPanel>
+                                                </Grid>
+                                            </Grid>
+                                    </Grid>
+                            </Grid>
+            </Grid>
+</UserControl>

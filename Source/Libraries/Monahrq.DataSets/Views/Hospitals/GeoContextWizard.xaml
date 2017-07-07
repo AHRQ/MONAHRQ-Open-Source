@@ -1,0 +1,290 @@
+﻿<UserControl x:Class="Monahrq.DataSets.Views.Hospitals.GeoContextWizard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             xmlns:viewModel="clr-namespace:Monahrq.Theme.Controls.Wizard.Models;assembly=Monahrq.Theme"
+             xmlns:helpers="clr-namespace:Monahrq.Theme.Controls.Wizard.Helpers;assembly=Monahrq.Theme"
+             xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             d:DesignHeight="500" d:DesignWidth="900" Background="White">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.Buttons.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <ItemsPanelTemplate x:Key="StepLayoutTemplate">
+            <UniformGrid IsItemsHost="True" Columns="{Binding Items.Count, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}"/>
+        </ItemsPanelTemplate>
+        <!-- WIZARD STEP TEMPLATE -->
+        <DataTemplate x:Key="WizardGroupTemplate">
+            <Grid x:Name="bdOuter"
+			    Height="Auto"
+			    Margin="0"
+			    Opacity="0.5"
+			    SnapsToDevicePixels="True" Width="Auto">
+                    <TextBlock x:Name="txt"
+				    Text="{Binding DisplayName}" 
+                               HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,0" FontSize="16" FontWeight="Bold" />
+            </Grid>
+
+            <DataTemplate.Triggers>
+                <DataTrigger Binding="{Binding ViewModel.IsCurrentStep}" Value="True">
+                    <Setter TargetName="txt" Property="FontWeight" Value="Bold" />
+                    <Setter TargetName="bdOuter" Property="Opacity" Value="1" />
+                </DataTrigger>
+
+                <!-- show/hide steps (must be relevant and visited to be visible) -->
+                <DataTrigger Binding="{Binding Relevant}"
+				Value="False">
+                    <Setter TargetName="bdOuter" Property="Visibility" Value="Visible" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Visited}" Value="False">
+                    <Setter TargetName="bdOuter" Property="Visibility" Value="Collapsed" />
+                </DataTrigger>
+            </DataTemplate.Triggers>
+        </DataTemplate>
+        <!-- HEADERED CONTENT CONTROL STYLE -->
+    <Style TargetType="{x:Type HeaderedContentControl}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type HeaderedContentControl}">
+                    <Border Height="Auto" CornerRadius="3.5" Background="White">
+                        <Grid Height="Auto" Width="Auto">
+                            <Grid.ColumnDefinitions>
+                                    <ColumnDefinition MinWidth="150" MaxWidth="341"/>
+                                    <ColumnDefinition MinWidth="500" />                 <!-- trying to make the long descriptions in step 3+ fit at 1024x768 -->
+                            </Grid.ColumnDefinitions>
+                            <ContentPresenter ContentSource="Header"
+                    				TextBlock.FontSize="22"
+                    				TextBlock.FontWeight="DemiBold"
+                    				TextBlock.Foreground="#FF7CABDA"
+                                    Margin="10,0,0,0" 
+                    				HorizontalAlignment="Left"
+                    				VerticalAlignment="Center" Content="{Binding DataTypeDisplayName}" />
+                            
+                            <!-- Display text descriptions of wizard progress -->
+                            <Grid Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Border Height="Auto" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="White" CornerRadius="5" BorderBrush="#FF7C7B7B" Margin="2" Padding="2">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="0.578*"/>
+                                            <RowDefinition Height="9.879"/>
+                                            <RowDefinition Height="0.422*"/>
+                                        </Grid.RowDefinitions>
+                                        <ContentPresenter ContentSource="Content" Grid.RowSpan="1" />
+                                        <Border Grid.Row="1" BorderThickness="0" Margin="8,0" CornerRadius="3" Background="{x:Null}">
+
+                                                <controls:MetroProgressBar Minimum="0" Maximum="{Binding MaxGroupProgress}" SmallChange="0.5" LargeChange="1" Value="{Binding CurrentGroupIndex}" Foreground="#FF00CA03" Background="#59DCDADA"/>
+
+                                        </Border>
+                                        <ItemsControl Grid.Row="2" HorizontalAlignment="Stretch" Margin="0,4,0,-4" 
+                                                          ItemTemplate="{DynamicResource wizardStepTemplate}" 
+                                                          ItemsSource="{Binding CurrentGroupSteps}" 
+                                                          ItemsPanel="{DynamicResource StepLayoutTemplate}"/>
+                                    </Grid>
+                                </Border>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- WIZARD STEP TEMPLATE -->
+    <DataTemplate x:Key="wizardStepTemplate">
+        <Grid x:Name="bdOuter" Height="Auto" Margin="0" Opacity="1" SnapsToDevicePixels="True" Width="Auto">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="3.45"/>
+            </Grid.RowDefinitions>
+            <Border x:Name="bdInner"
+        			Background="{x:Null}"
+        			BorderBrush="{x:Null}"
+        			BorderThickness="0"
+        			CornerRadius="0"
+        			Padding="0" Margin="0" d:LayoutOverrides="Width, Height" Grid.RowSpan="1" Grid.Row="1" Opacity="1">
+                <!-- We need a grid here because it defaults to elements stacked directly on top of one another -->
+                <Grid Width="17.698" HorizontalAlignment="Center" Margin="0,-0.284,0,-7.772">
+                    <Path x:Name="arrow" Data="M5.4996665,1.7275618 L8.0934167,5.166286 10.405916,1.6968055 z" Opacity="1" Fill="White" Margin="0" Stretch="Fill" Stroke="White" HorizontalAlignment="Center" VerticalAlignment="Top" Height="10.794" Width="16.399"/>
+                </Grid>
+            </Border>
+            <TextBlock x:Name="txt" Text="{Binding ViewModel.DisplayName}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,0" />
+        </Grid>
+
+        <DataTemplate.Triggers>
+            <DataTrigger Binding="{Binding Path=ViewModel.IsCurrentStep}" Value="True">
+                <Setter TargetName="txt" Property="FontWeight" Value="Bold" />
+                <Setter TargetName="arrow" Property="Opacity" Value="1"/>
+            </DataTrigger>
+
+            <DataTrigger Binding="{Binding Path=ViewModel.IsCurrentStep}" Value="False">
+                <Setter TargetName="bdInner" Property="Visibility" Value="Collapsed"/>
+            </DataTrigger>
+
+            <!-- show/hide steps (must be relevant and visited to be visible) -->
+            <!-- <DataTrigger Binding="{Binding Path=Relevant}"
+                             Value="False">
+                    <Setter TargetName="bdOuter"
+                            Property="Visibility"
+                            Value="Visible" />
+                </DataTrigger>-->
+            <DataTrigger Binding="{Binding Path=Visited}" Value="False">
+                <!-- <Setter TargetName="bdOuter"
+                            Property="Visibility"
+                            Value="Collapsed" />-->
+                <Setter TargetName="bdInner" Property="Visibility" Value="Collapsed"/>
+            </DataTrigger>
+        </DataTemplate.Triggers>
+    </DataTemplate>
+            </ResourceDictionary>
+    </UserControl.Resources>
+
+    
+        <Grid  Margin="20,20,20,20">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="72.162"/>
+        </Grid.RowDefinitions>
+        <Border BorderBrush="{DynamicResource MGrey3}" BorderThickness="1" Background="{DynamicResource MGrey2}">
+            <Grid Margin="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="112.5" />
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <!-- WIZARD STEP LISTING -->
+
+            <!-- current step -->
+
+            <Grid x:Name="HeaderGrid" Margin="10">
+                <!-- current step -->
+                <Grid x:Name="Header" Margin="5">
+                    <!-- WIZARD STEP LISTING -->
+                    <HeaderedContentControl Margin="0">
+                        <ItemsControl ItemsSource="{Binding StepGroups}"
+							ItemTemplate="{DynamicResource WizardGroupTemplate}" 
+                                      ItemsPanel="{DynamicResource StepLayoutTemplate}"  />
+                    </HeaderedContentControl>
+                </Grid>
+            </Grid>
+
+            <!-- current step -->
+            <Grid x:Name="Content" Grid.Row="1" Margin="0">
+                <!-- current step -->
+                <Border>
+                    <!--When "content" is set, that sets the DataContext of this element-->
+                    <Grid Margin="20,0,20,20">
+                        <!--When "content" is set, that sets the DataContext of this element-->
+                        <HeaderedContentControl Content="{Binding CurrentLinkedListStep.Value.ViewModel}"
+							Header="{Binding CurrentLinkedListStep.Value.ViewModel.DisplayName}" 
+							HorizontalAlignment="Right" Height="75.5" VerticalAlignment="Bottom" Width="63.357" Visibility="Collapsed">
+                            <HeaderedContentControl.Resources>
+                                <helpers:StepTemplateConverter x:Key="stepTemplateConverter" />
+                            </HeaderedContentControl.Resources>
+                            <HeaderedContentControl.Style>
+                                <Style BasedOn="{StaticResource {x:Type HeaderedContentControl}}"
+									TargetType="{x:Type HeaderedContentControl}">
+                                    <!--This "watches" the value of CurrentLinkedListStep and updates the template (current step xaml) when it changes.
+                            So totally and completely seems like it needs a DataTrigger or an EventTrigger, no?
+                            Path when referenced this way (by finding ancestor) must include "DataContext"-->
+                                    <Setter Property="ContentTemplate"
+										Value="{Binding DataContext.CurrentLinkedListStep.Value, Converter={StaticResource stepTemplateConverter}, RelativeSource={RelativeSource AncestorType={x:Type UserControl}, Mode=FindAncestor}}" />
+                                </Style>
+                            </HeaderedContentControl.Style>
+
+                        </HeaderedContentControl>
+                        <ContentControl Content="{Binding CurrentLinkedListStep.Value.ViewModel}" 
+                                        VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch">
+                            <ContentControl.Resources>
+                                <helpers:StepTemplateConverter x:Key="stepTemplateConverter" />
+                            </ContentControl.Resources>
+                            <ContentControl.Style>
+                                <Style  TargetType="{x:Type ContentControl}">
+                                    <Setter Property="ContentTemplate"
+										Value="{Binding DataContext.CurrentLinkedListStep.Value, Converter={StaticResource stepTemplateConverter}, RelativeSource={RelativeSource AncestorType={x:Type UserControl}, Mode=FindAncestor}}" />
+                                </Style>
+                            </ContentControl.Style>
+                        </ContentControl>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Grid>
+        </Border>
+        <Border x:Name="Footer" Grid.Column="0"
+			Grid.Row="1"
+			Background="White">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="1"
+					Text="{Binding BusinessObject.Price, StringFormat=c}"
+					VerticalAlignment="Center" Visibility="Collapsed" />
+
+                <!-- NAVIGATION BUTTONS -->
+                <Grid Grid.Column="1"
+					Grid.IsSharedSizeScope="True" Grid.ColumnSpan="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="180.727" />
+                        <ColumnDefinition Width="117" />
+                        <ColumnDefinition  />
+                        <ColumnDefinition Width="300"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0"
+						x:Name="btnBack"
+						Command="{Binding MovePreviousCommand}"
+                            Background="{DynamicResource MGrey2}"
+                            Foreground="{DynamicResource MGrey5}"
+                        Style="{DynamicResource MonahrqArrowButtonLeft}"
+						Content="BACK" Margin="0" HorizontalAlignment="Left" 
+                            VerticalAlignment="Center" Width="150" Height="37" />
+                    <Button Grid.Column="1"
+						Command="{Binding CancelCommand}" 
+                            Style="{DynamicResource PlainButton}" 
+                            Foreground="{DynamicResource MGrey5}"
+                            Content="Cancel" 
+                            Background="{DynamicResource MPink}" 
+                            BorderBrush="{x:Null}" 
+                            HorizontalAlignment="Stretch" 
+                            Margin="0"  
+                            VerticalAlignment="Center" 
+                            Height="36" />
+                    <Button Grid.Column="3"
+						x:Name="btnNext"
+                        Visibility="{Binding MoveNextVisible}"
+						Command="{Binding MoveNextCommand}" 
+                        Style="{DynamicResource MonahrqArrowButtonRight}"    
+						Margin="0"  HorizontalAlignment="Right" 
+                            Background="{DynamicResource MDGreen}"
+                            Foreground="White"
+                            VerticalAlignment="Center" 
+                            Width="250" Height="37" 
+                            Content="CONTINUE TO THE NEXT STEP" />
+                    <Button Grid.Column="3"
+						x:Name="btnFinish"
+						Command="{Binding ImportCompleteCommand}" 
+                            Visibility="{Binding ImportCompleteVisible}"
+                        Style="{DynamicResource MonahrqArrowButtonRight}" 
+                             Background="{DynamicResource MDGreen}"
+                            Foreground="{DynamicResource MGrey5}"
+						Margin="0"  HorizontalAlignment="Right" 
+                            VerticalAlignment="Center" Width="250" Height="37" Content="DONE" />
+                </Grid>
+            </Grid>
+        </Border>
+    </Grid>
+  
+</UserControl>

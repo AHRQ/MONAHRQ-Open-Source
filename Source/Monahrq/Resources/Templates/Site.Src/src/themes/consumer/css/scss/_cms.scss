@@ -1,0 +1,25 @@
+// -------------------------------------------------------------------- //
+//  CMS Zones
+// -------------------------------------------------------------------- //
+
+.cms-zone {
+  background-color: #fafafa;
+
+  .contain:not(:empty) {
+    padding: 50px 0;
+  }
+}
+
+.cms-zone--header,
+.cms-zone--footer {
+  border-style: solid;
+  border-color: $base-border-color;
+}
+
+.cms-zone--header {
+  border-width: 0 0 1px;
+}
+
+.cms-zone--footer {
+  border-width: 1px 0 0;
+}

@@ -1,0 +1,63 @@
+<div data-ng-if="showTable()" id="countyTable">
+
+  <div class="row page-header border clearfix">
+    <div class="col-md-8"><h2>{{county}}</h2></div>
+    <div class="col-md-3">
+      <button data-copy-element=".page-header .col-md-12&.page-header .col-md-8&#table-wrapper" data-clipboard-target="#copy-text-container" class="btn select-to-copy-btn md-top">Select Report to Copy <span class="glyphicon glyphicon-cloud-download"></span></button>
+      <div id="copy-text-container"></div>
+    </div>
+    <div class="col-md-1 legend-icon-wrapper"><h6 data-mh-help-icon data-mh-on-click="modalLegend()"></h6></div>
+  </div>
+
+  <div id="table-wrapper">
+  <div class="table-wrapper" data-ng-repeat="topic in topics">
+  <h3>{{topic.name}}</h3>
+  <table class="data table table-bordered" id="county-data-table">
+    <thead>
+      <tr class="no-border">
+        <th></th>
+        <th class="left-border center" colspan="4">Rates</th>
+        <th class="left-border center" colspan="6">Cost Savings</th>
+      </tr>
+      <tr>
+        <th class="entity-large">Measure</th>
+        <th>Numerator</th>
+        <th>Denominator</th>
+        <th>Observed Rate</th>
+        <th>Risk-Adjusted Rate</th>
+        <th>10%</th>
+        <th>30%</th>
+        <th>50%</th>
+        <th class="custom">
+          <div class="clearfix">
+            <div class="pull-left"><input class="form-control input-sm" type="text" data-ng-model="topicUserPcts[topic.id]" value="" title="Custom Percentage" placeholder="Custom Percentage"></div>
+            <div class="pull-left"><button class="btn btn-default btn-xs" data-ng-click="updateUserPct()"><span aria-hidden="true">Go</span><span class="sr-hidden">Calculate a custom percentage for {{topic.name}}</span></button></div>
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr data-ng-repeat="m in topic.measures">
+        <td>{{m.measure}}</td>
+        <td>{{filterValue('number', 0, m.numerator)}}</td>
+        <td>{{filterValue('number', 0, m.denominator)}}</td>
+        <td>{{filterValue('number', 2, m.observedRate)}}</td>
+        <td>{{filterValue('number', 2, m.mapRate)}}</td>
+        <td>{{filterMoneyValue('number', 2, m.pct10)}}</td>
+        <td>{{filterMoneyValue('number', 2, m.pct30)}}</td>
+        <td>{{filterMoneyValue('number', 2, m.pct50)}}</td>
+        <td>{{m.pctUser ? filterMoneyValue('number', 2, m.pctUser) : null}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  </div>
+
+  <div class="report-footer" data-ng-bind-html="reportSettings.footer"></div>
+  <!--<div class="footnotes">
+    <br/>
+    <p><span class="marker">*</span><span class="note">Cost savings are based on charges that have been adjusted to costs, using hospital-specific cost-to-charge ratios.</span></p>
+  </div>-->
+
+  </div>
+

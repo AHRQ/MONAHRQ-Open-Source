@@ -1,0 +1,43 @@
+<UserControl x:Class="Monahrq.DataSets.Views.Hospitals.HospitalsMainView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:Hospitals="clr-namespace:Monahrq.DataSets.ViewModels.Hospitals"
+             xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             xmlns:MonahrqRegions="clr-namespace:Monahrq.Sdk.Regions;assembly=Monahrq.Sdk"
+             xmlns:prism="clr-namespace:Microsoft.Practices.Prism.Regions;assembly=Microsoft.Practices.Prism"
+             xmlns:converters="clr-namespace:Monahrq.Theme.Converters;assembly=Monahrq.Theme"
+             xmlns:mui="clr-namespace:Monahrq.Theme.Controls.ModernUI;assembly=Monahrq.Theme"
+             xmlns:Presentation="clr-namespace:Monahrq.Theme.Controls.ModernUI.Presentation;assembly=Monahrq.Theme"
+             mc:Ignorable="d" 
+            d:DesignHeight="700" d:DesignWidth="900">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.Buttons.xaml"/>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.DataGrid.xaml"/>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/ModernTab.xaml"/>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/ModernFrame.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+            <converters:InvertedBooleanConverter x:Key="InvertedBooleanConverter"/>
+            <!--<Hospitals:ImportModeRadioCheckedConverter x:Key="importModeConverter" />-->
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Border Margin="0,0,-1,0" Background="{DynamicResource MGrey2}" Padding="10" >
+            <!--<ItemsControl  x:Name="_hospitalsPanel" prism:RegionManager.RegionName="{x:Static MonahrqRegions:RegionNames.HospitalsContentRegion}"
+                                  HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" >
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <Grid />
+                    </ItemsPanelTemplate>
+
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>-->
+            
+            <TextBlock Text="MAIN HOSPITAL VIEW " VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="22"/>
+        </Border>
+    </Grid>
+</UserControl>

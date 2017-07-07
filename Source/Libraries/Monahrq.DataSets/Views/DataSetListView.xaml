@@ -1,0 +1,446 @@
+﻿<UserControl	x:Class="Monahrq.DataSets.Views.DataSetListView"
+				xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+				xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+				xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+				xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+				xmlns:mtx="http://schemas.monahrq.com/theme/xaml"
+                mc:Ignorable="d" 
+				xmlns:controls="clr-namespace:Monahrq.Theme.Controls;assembly=Monahrq.Theme"
+				xmlns:views="clr-namespace:Monahrq.DataSets.Views"
+                xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                xmlns:converters="clr-namespace:Monahrq.DataSets.Converters"
+				Background="Transparent" d:DesignHeight="600" d:DesignWidth="800" >
+
+    <!--xmlns:dsconverters="clr-namespace:Monahrq.DataSets.Converters"-->
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.Buttons.xaml"/>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.DataGrid.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <converters:RowsImportedColumnVisibilityConverter x:Key="RowsImportedColumnVisibilityConverter" />
+            <mtx:EnumToDescriptionConverter x:Key="EnumToDescriptionConverter" />
+            <mtx:InvertedBooleanConverter x:Key="Inverter"/>
+            <mtx:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+            <mtx:NullToVisibilityConverter x:Key="NullToVisibilityConverter"/>
+        </ResourceDictionary>
+        
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid x:Name="DataSetsView" Background="{DynamicResource MGrey2}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid x:Name="header" Visibility="Collapsed">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="586"/>
+                </Grid.ColumnDefinitions>
+                <Grid>
+                    <TextBlock Margin="20,0,0,0" Style="{DynamicResource Header1}" 
+                           TextWrapping="Wrap" Text="Data Sets" HorizontalAlignment="Left" 
+                           VerticalAlignment="Center" 
+                           Foreground="{DynamicResource MGrey5}"/>
+                </Grid>
+            </Grid>
+            <Grid x:Name="content" Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.2*" />
+                    <ColumnDefinition Width="4*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- DATA SET LIST -->
+                <ListBox x:Name="DataSetsListBox" Margin="0,10,5,30" ItemsSource="{Binding DataTypesList}" Tag="{Binding }" SelectedItem="{Binding SelectedDataType, Mode=TwoWay}">
+                    <ListBox.ContextMenu>
+                        <ContextMenu DataContext="{Binding Path=PlacementTarget.Tag, RelativeSource={RelativeSource Self}}">
+                            <MenuItem Header="Import new"  Command="{Binding ImportDataFileClick}" />
+                        </ContextMenu>
+                    </ListBox.ContextMenu>
+                    <!--<i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <i:InvokeCommandAction Command="{Binding SelectedItemChangedCommand}"  CommandParameter="{Binding ElementName=DataSetsListBox, Path=SelectedItem}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>-->
+                    <ListBox.ItemTemplate>
+                        <DataTemplate DataType="ListBoxItem">
+                            <Grid Margin="5,10,5,10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40"/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="26"/>
+                                </Grid.ColumnDefinitions>
+                                <Border Grid.Column="0" Padding="8,6">
+                                    <Rectangle   StrokeThickness="0" Height="22" Width="20">
+                                        <Rectangle.Fill>
+                                            <VisualBrush Visual="{DynamicResource appbar_database_dark}" />
+                                        </Rectangle.Fill>
+                                    </Rectangle>
+                                </Border>
+                                <StackPanel Orientation="Horizontal" Margin="8,5,5,5" Grid.Column="1">
+                                    <TextBlock x:Name="dataName" TextWrapping="Wrap" Text="{Binding DataTypeName}" Margin="0,0,3,0" Height="Auto" Width="180"
+                                           Foreground="{StaticResource MGrey5}" FontSize="16"/>
+                                </StackPanel>
+
+                                <!-- Show the count of imported files for each type -->
+                                <TextBlock Grid.Column="2"  x:Name="count"
+                                       Text="{Binding RecordsList.Count}" 
+                                       Margin="0" 
+                                       VerticalAlignment="Center"
+                                       Foreground="{StaticResource MGrey4}" 
+                                       Style="{DynamicResource Subtopic}"
+                                       Height="Auto"/>
+                            </Grid>
+                            <DataTemplate.Triggers>
+                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource  Mode=FindAncestor, AncestorType={x:Type ListBoxItem}}, Path=IsSelected}" Value="True">
+                                    <Setter TargetName="dataName" Property="Foreground" Value="White" />
+                                    <Setter TargetName="count" Property="Foreground" Value="White" />
+                                </DataTrigger>
+                            </DataTemplate.Triggers>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+                <Border BorderThickness="1" Grid.Column="1" Margin="10,0,10,10" Padding="10,10" CornerRadius="0" >
+                    <Grid Margin="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="76.5"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Border BorderThickness="1" Margin="10,10,10,5" CornerRadius="5">
+                            <Grid Margin="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="152"/>
+                                </Grid.ColumnDefinitions>
+                                <controls:MonahrqButton Content="Import new" Command="{Binding ImportDataFileClick}"  
+                                    Style="{StaticResource MonahrqBlueStyle}" SymbolDirection="Right" SymbolType="Import" HorizontalContentAlignment="Left" Padding="20, 0, 0, 0"
+                                    Margin="8,0,10,0" Grid.Column="1"  VerticalAlignment="Center" Height="35.25"/>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock x:Name="txtDataHeader" TextWrapping="Wrap" Text="{Binding SelectedDataType.DataTypeName, FallbackValue='Data Type Name'}" FontSize="24" Foreground="{StaticResource MBlue}" VerticalAlignment="Top"/>
+                                    <TextBlock x:Name="txtSataDescription" Grid.Row="1" 
+                                           TextWrapping="Wrap" 
+                                           Text="{Binding SelectedDataType.Description, FallbackValue='Data type description goes here'}" 
+                                           VerticalAlignment="Center" Foreground="{StaticResource MGrey5}"/>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                        <Border Grid.Row="1"  Margin="10" BorderThickness="1" BorderBrush="{StaticResource MGrey3}" >
+                            <!--  Style="{StaticResource TestBorderGrid}"> -->
+                            <DataGrid 
+                            ItemsSource="{Binding SelectedDataType.RecordsList}"
+                            AutoGenerateColumns="False" 
+                            BorderBrush="{StaticResource MGrey2}" 
+                            HorizontalGridLinesBrush="{StaticResource MGrey2}" 
+                            VerticalGridLinesBrush="{StaticResource MGrey2}" 
+                            Foreground="{StaticResource MGrey5}"   
+                            Background="{StaticResource White}" 
+                            HeadersVisibility="Column" 
+                            AlternatingRowBackground="{StaticResource MGrey1}" 
+                            RowBackground="White" 
+                            SelectionUnit="FullRow"
+                            IsReadOnly="True" MinRowHeight="60">
+                                <DataGrid.Resources>
+
+                                    <Style TargetType="DataGridCell">
+                                        <Style.Triggers>
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter Property="Background" Value="{StaticResource MYellow}" />
+                                                <Setter Property="Foreground" Value="{StaticResource MGrey5}" />
+                                                <Setter Property="BorderThickness" Value="0"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+
+                                    <Style TargetType="DataGridRow">
+                                        <Setter Property="Height" Value="50" />
+                                        <Style.Triggers>
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter Property="Background" Value="{StaticResource MYellow}" />
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+
+                                    <mtx:ConverterSequence x:Key="DRGColumnVisibility">
+                                        <mtx:ExpressionConverter>
+                                            <mtx:ExpressionConverter.Expression>
+                                                <![CDATA[	"{0}" == "Inpatient Discharge"	]]>
+                                            </mtx:ExpressionConverter.Expression>
+                                        </mtx:ExpressionConverter>
+                                        <mtx:BooleanToVisibilityConverter  UseHidden="false" />
+                                    </mtx:ConverterSequence>
+                                    <mtx:ConverterSequence x:Key="VersionColumnVisibility">
+                                        <mtx:ExpressionConverter>
+                                            <mtx:ExpressionConverter.Expression>
+                                                <![CDATA["{0}" == "Nursing Home Compare Data"	 ||
+														 "{0}" == "Hospital Compare Data"		]]>
+                                            </mtx:ExpressionConverter.Expression>
+                                        </mtx:ExpressionConverter>
+                                        <mtx:BooleanToVisibilityConverter  UseHidden="false" />
+                                    </mtx:ConverterSequence>
+                                    <mtx:ConverterSequence x:Key="RowsImportedColumnVisibility">
+                                        <mtx:ExpressionConverter>
+                                            <mtx:ExpressionConverter.Expression>
+                                                <![CDATA["{0}" == "Inpatient Discharge"	||
+														 "{0}" == "ED Treat And Release" ||
+														 "{0}" == "CG-CAHPS Survey Results Data" ||
+														 "{0}" == "NH-CAHPS Survey Results Data"	]]>
+                                            </mtx:ExpressionConverter.Expression>
+                                        </mtx:ExpressionConverter>
+                                        <mtx:BooleanToVisibilityConverter  UseHidden="false" />
+                                    </mtx:ConverterSequence>
+                                    <mtx:ConverterSequence x:Key="ReportYearColumnVisibility">
+                                        <mtx:ExpressionConverter>
+                                            <mtx:ExpressionConverter.Expression>
+                                                <![CDATA["{0}" != "Nursing Home Compare Data"	 &&
+														 "{0}" != "Hospital Compare Data"		&&
+                                                         "{0}" != "Physician Data"]]>
+                                            </mtx:ExpressionConverter.Expression>
+                                        </mtx:ExpressionConverter>
+                                        <mtx:BooleanToVisibilityConverter  UseHidden="False" />
+                                    </mtx:ConverterSequence>
+                                    <mtx:ConverterSequence x:Key="DefaultColumnVisibility">
+                                        <mtx:ExpressionConverter>
+                                            <mtx:ExpressionConverter.Expression>
+                                                <![CDATA["{0}" != "Inpatient Discharge"	&&
+														 "{0}" != "Medicare Provider Charge Data" &&
+														 "{0}" != "Nursing Home Compare Data"	]]>
+                                            </mtx:ExpressionConverter.Expression>
+                                        </mtx:ExpressionConverter>
+                                        <mtx:BooleanToVisibilityConverter  UseHidden="false" />
+                                    </mtx:ConverterSequence>
+                                    <mtx:ConverterSequence x:Key="ReImportButtonVisibility">
+                                        <mtx:ExpressionConverter>
+                                            <mtx:ExpressionConverter.Expression>
+                                                <![CDATA["{0}" != "Medicare Provider Charge Data" &&
+                                                         "{0}" != "Physician Data" ]]>
+                                            </mtx:ExpressionConverter.Expression>
+                                        </mtx:ExpressionConverter>
+                                        <mtx:BooleanToVisibilityConverter  UseHidden="false" />
+                                    </mtx:ConverterSequence>
+                                </DataGrid.Resources>
+                                <DataGrid.Columns>
+                                    <DataGridTemplateColumn Width="0.45*">
+                                        <DataGridTemplateColumn.Header>
+                                            <TextBlock Text="Data record name" TextWrapping="Wrap" Foreground="White" MinWidth="100" />
+                                        </DataGridTemplateColumn.Header>
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <StackPanel>
+                                                <TextBlock Text="{Binding Entry.File}" Margin="5" HorizontalAlignment="Left" VerticalAlignment="Center"  TextWrapping="Wrap" Padding="5"  />
+                                            </StackPanel>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+
+                                    <!-- Report Quater Column -->
+                                    <DataGridTemplateColumn Width="0.0026*" Visibility="Collapsed">
+                                        <DataGridTemplateColumn.Header>
+											<TextBlock Text="Reporting Quarter" TextWrapping="WrapWithOverflow" Foreground="White" MinWidth="50" />
+                                        </DataGridTemplateColumn.Header>
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <StackPanel>
+                                                <TextBlock  Text="{Binding Entry.ReportingQuarter}" Margin="5" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="WrapWithOverflow" Padding="5" />
+                                            </StackPanel>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <!-- Report Year Column -->
+                                    <DataGridTemplateColumn Width="0.28*">
+                                        <DataGridTemplateColumn.Visibility>
+                                            <mtx:BindTo Path="#DataSetsListBox.SelectedItem.DataTypeName" SourceReference="Absolute"  Converter="{StaticResource ResourceKey=ReportYearColumnVisibility}" />
+                                        </DataGridTemplateColumn.Visibility>
+                                        <DataGridTemplateColumn.Header>
+											<TextBlock Text="Reporting Year" TextWrapping="WrapWithOverflow" Foreground="White" MinWidth="50" />
+                                        </DataGridTemplateColumn.Header>
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <StackPanel>
+                                                <TextBlock  Text="{Binding Entry.ReportingYear}" Margin="5" HorizontalAlignment="Center" VerticalAlignment="Center"  TextWrapping="WrapWithOverflow" Padding="5" />
+                                            </StackPanel>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <!-- Version Column -->
+                                    <DataGridTemplateColumn Width="0.15*">
+                                        <DataGridTemplateColumn.Visibility>
+                                            <mtx:BindTo Path="#DataSetsListBox.SelectedItem.DataTypeName" SourceReference="Absolute"  Converter="{StaticResource ResourceKey=VersionColumnVisibility}" />
+                                        </DataGridTemplateColumn.Visibility>
+                                        <DataGridTemplateColumn.Header>
+											<TextBlock Text="Version" TextWrapping="WrapWithOverflow" Foreground="White" MinWidth="50" />
+                                        </DataGridTemplateColumn.Header>
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <StackPanel>
+                                                <TextBlock  Margin="5" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="5" >
+                                                    <TextBlock.Text>
+                                                        <MultiBinding Converter="{mtx:FormatConverter FormatString={}{0} {1}}">
+                                                            <mtx:BindTo Path="Entry.VersionMonth" />
+                                                            <mtx:BindTo Path="Entry.VersionYear" />
+                                                        </MultiBinding>
+                                                    </TextBlock.Text>
+                                                </TextBlock>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <!-- DRG Column -->
+                                    <DataGridTemplateColumn Width="0.3*">
+                                        <DataGridTemplateColumn.Visibility>
+                                            <mtx:BindTo Path="#DataSetsListBox.SelectedItem.DataTypeName" SourceReference="Absolute" Converter="{StaticResource ResourceKey=DRGColumnVisibility}" />
+                                        </DataGridTemplateColumn.Visibility>
+                                        <DataGridTemplateColumn.Header>
+											<TextBlock Text="DRG/MDC Status" TextWrapping="WrapWithOverflow" Foreground="White" MinWidth="50" />
+                                        </DataGridTemplateColumn.Header>
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <StackPanel>
+                                                <TextBlock  Text="{Binding Entry.DRGMDCMappingStatus, Converter={StaticResource EnumToDescriptionConverter}}" Margin="5" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                                        TextWrapping="WrapWithOverflow" Padding="0"   />
+                                                    <!--<Button Content="Refresh" Margin="5,0,0,0"  
+                                                            Command="{Binding {Binding Path=DataContext.RefreshCommand, RelativeSource={RelativeSource  Mode=FindAncestor, AncestorType={x:Type UserControl}}}}" CommandParameter="{Binding Path=Entry}"/>-->
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <!-- Data Imported Column -->
+
+                                    <DataGridTemplateColumn Width="0.20*" x:Name="RowsImportedColumn">
+                                        <DataGridTemplateColumn.Visibility>
+                                            <mtx:BindTo Path="#DataSetsListBox.SelectedItem.DataTypeName" SourceReference="Absolute" Converter="{StaticResource ResourceKey=RowsImportedColumnVisibility}" />
+                                        </DataGridTemplateColumn.Visibility>
+                                        <DataGridTemplateColumn.Header>
+                                            <TextBlock Text="# of Rows Imported" TextWrapping="WrapWithOverflow" Foreground="White" MinWidth="50" />
+                                        </DataGridTemplateColumn.Header>
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Background="{StaticResource MGrey1}">
+                                                <TextBlock x:Name="RowsImported" Text="{Binding Entry.NumberOfRowsImportedAsString, TargetNullValue='-'}" 
+                                                           FontWeight="Bold" MinWidth="50" Margin="5"
+                                                           HorizontalAlignment="Center" VerticalAlignment="Center" Padding="5" >
+                                                    <!--<TextBlock.Text>
+                                                        <MultiBinding StringFormat="{}{0} of {1}">
+                                                            <Binding Path="Entry.RowsImported" />
+                                                            <Binding Path="Entry.TotalRows" />
+                                                        </MultiBinding>
+                                                    </TextBlock.Text>-->
+                                                </TextBlock>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <!-- Data Imported Column -->
+                                    <DataGridTemplateColumn Width="0.28*">
+                                        <DataGridTemplateColumn.Header>
+											<TextBlock Text="Date Imported" TextWrapping="WrapWithOverflow" Foreground="White" MinWidth="50" />
+                                        </DataGridTemplateColumn.Header>
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <StackPanel>
+                                                    <TextBlock  Text="{Binding Entry.DateImported}" Margin="5" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="5"  />
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <!-- Button Column -->
+                                    <DataGridTemplateColumn Header="">
+                                        <!-- Delete -->
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal">
+
+                                                    <Button 
+												Style="{StaticResource AddButton}" 
+                                                AutomationProperties.AutomationId="RunGrouperButtonAutomationID"
+                                                VerticalAlignment="Center"		
+                                                HorizontalAlignment="Center"
+                                                Margin="3,5,3,5"
+                                                ToolTip="Start DRC/MDC mapping process for this dataset."
+                                                IsEnabled="{Binding EnableGrouperProcessing}"
+                                                Command="{Binding ProcessRecordCommand}" CommandParameter="{Binding}">
+                                                        <Button.Visibility>
+                                                            <mtx:BindTo Path="#DataSetsListBox.SelectedItem.DataTypeName" Converter="{StaticResource ResourceKey=DRGColumnVisibility}" />
+                                                        </Button.Visibility>
+                                                    </Button>
+
+                                                    <Button 
+												AutomationProperties.AutomationId="EditButtonAutomationID"
+                                                Style="{StaticResource EditButton}" 
+                                                VerticalAlignment="Center"		
+                                                HorizontalAlignment="Center"
+                                                Margin="3,5,3,5"
+                                                ToolTip="Edit the metadata for this dataset."
+                                                Command="{Binding Path=DataContext.EditDatasetMetadataCommand, RelativeSource={RelativeSource  Mode=FindAncestor, AncestorType={x:Type UserControl}}}" 
+                                                    CommandParameter="{Binding}"/>
+
+                                                    <Button x:Name="ReImportButton" AutomationProperties.AutomationId="ReImportButtonAutomationID"
+                                                 Command="{Binding Path=DataContext.ImportDataFileClick, RelativeSource={RelativeSource  Mode=FindAncestor, AncestorType={x:Type UserControl}}}" 
+                                                 CommandParameter="{Binding}" ToolTip="Re-Import Dataset"
+                                    Style="{StaticResource ReImportButton}" HorizontalContentAlignment="Left"
+                                    Margin="3,3,3,3" VerticalAlignment="Center">
+                                                        <Button.Visibility>
+                                                            <mtx:BindTo Path="#DataSetsListBox.SelectedItem.DataTypeName" SourceReference="Absolute"  Converter="{StaticResource ResourceKey=ReImportButtonVisibility}" />
+                                                        </Button.Visibility>
+                                                    </Button>
+
+                                                    <Button AutomationProperties.AutomationId="DeleteButtonAutomationID"
+													Style="{StaticResource DeleteButton}"
+                                                    Background="{StaticResource MPink}"
+													VerticalAlignment="Center"
+													HorizontalAlignment="Center"
+													ToolTip="Delete dataset."
+													Margin="3,5,3,5"
+													IsEnabled="{Binding Path=IsCurrentlyProcessing, Converter={StaticResource Inverter}}"
+													Command="{Binding DeleteRecordCommand}"
+													CommandParameter="{Binding}" />
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Border>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Grid>
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="650" Height="475" >
+            <controls:xPopup x:Name="DatasetMetadataPopup" Width="650" Height="475" 
+                             Visibility="{Binding ShowDatasetMetadataPopUp, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}, Mode=TwoWay}"   >
+                <Border Height="450" Width="600" BorderThickness="1" BorderBrush="{StaticResource MGrey4}" Background="{StaticResource MGrey2}" Padding="1">
+                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition />
+                            <RowDefinition Height="40"/>
+                        </Grid.RowDefinitions>
+                        <DockPanel Grid.Row="0" Background="{StaticResource MBlue}" HorizontalAlignment="Stretch" Cursor="Hand" controls:xPopup.IsDraggable="True">
+                            <TextBlock Text="EDIT DATASET" FontWeight="Bold" FontSize="15" Foreground="White" Margin="10,5,0,5" HorizontalAlignment="Left" DockPanel.Dock="Left" />
+                            <Button  DockPanel.Dock="Right" HorizontalAlignment="Right"
+                            Command="{Binding HideDatasetMetadataPopUpCommand}" Content="X" Style="{StaticResource CloseButton}"  
+                            Height="15" Width="20" Margin="0,5,5,5"/>
+                        </DockPanel>
+                        <StackPanel Grid.Row="1" Orientation="Horizontal">
+                            <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MaxWidth="610">
+                                <views:DefaultDatasetMetadataView DataContext="{Binding Path=DataContext.SelectedDataSet, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}" />
+                            </ScrollViewer>
+                        </StackPanel>
+                        <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Button AutomationProperties.AutomationId="CancelButtonAutomationID" Content="Cancel" HorizontalAlignment="Right" Style="{StaticResource PlainButton}" Margin="10,5" Width="100"
+                            Command="{Binding HideDatasetMetadataPopUpCommand}" />
+
+                            <Button AutomationProperties.AutomationId="SaveButtonAutomationID" Content="Save" HorizontalAlignment="Right" Style="{StaticResource PlainButton}" Margin="10,5" Width="100" Background="{StaticResource MGreen}"
+                            Command="{Binding UpdateDatasetMetadataCommand}" />
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </controls:xPopup>
+        </Grid>
+    </Grid>
+</UserControl>

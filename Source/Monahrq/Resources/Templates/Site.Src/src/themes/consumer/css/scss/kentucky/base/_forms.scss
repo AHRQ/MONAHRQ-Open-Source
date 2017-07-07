@@ -1,0 +1,143 @@
+// ------------------------------------------------------------------- //
+//  Form Element Normalization
+//
+//  General styles to better standardize / simplify default form
+//  elements.
+// ------------------------------------------------------------------- //
+
+fieldset {
+  margin: 0 0 ($base-spacing / 2);
+  padding: $base-spacing;
+  background: lighten($base-border-color, 10);
+  border: $base-border;
+}
+
+input,
+label,
+select {
+  display: block;
+  font-family: $form-font-family;
+  font-size: $form-font-size;
+}
+
+label {
+  margin-bottom: $base-spacing / 4;
+  font-weight: bold;
+
+  &.required:after {
+    content: "*";
+  }
+
+  abbr {
+    display: none;
+  }
+}
+
+textarea,
+#{$all-text-inputs},
+select[multiple=multiple] {
+  width: 100%;
+  min-height: 43px; // Match select boxes
+  margin-bottom: $base-spacing / 2;
+  padding: ($base-spacing / 3);
+  background-color: white;
+  border: 1px solid $form-border-color;
+  border-radius: $form-border-radius;
+  font-family: $form-font-family;
+  font-size: $form-font-size;
+  box-shadow: $form-box-shadow;
+  transition: border-color, .3s;
+
+  &:hover {
+    border-color: $form-border-color-hover;
+  }
+
+  &:focus {
+    box-shadow: $form-box-shadow-focus;
+    outline: none;
+  }
+}
+
+textarea {
+  resize: vertical;
+}
+
+input[type="search"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  display: inline;
+  margin-right: $base-spacing / 4;
+}
+
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  // -moz-appearance: none; Doesn't function as expected
+  appearance: none;
+  display: inline-block;
+  width: 24px;
+  height: 19px;
+  margin: 0 5px -4px 0;
+  background-image: url("../assets/images/monahrq-sprite.png");
+  background-position: -94px 0;
+
+  &:checked {
+    background-position: -94px -19px;
+  }
+}
+
+input[type="file"] {
+  width: 100%;
+  padding-bottom: $base-spacing / 2;
+}
+
+select {
+  // -webkit-appearance: none;
+  // -moz-appearance: none;
+  // appearance: none;
+  width: 100%;
+  max-width: 100%;
+  height: 43px;
+  margin-bottom: $base-spacing;
+  padding: 0 15px;
+  background-color: #fff;
+  background-image: /*url("../assets/images/select-arrow.png"),*/
+                    linear-gradient(to top, #e7e8e8 0%, #fff 100%);
+  background-repeat: no-repeat;
+  border: 1px solid $base-border-color;
+  border-radius: $base-border-radius;
+
+  &::-ms-expand {
+    display: none;
+  }
+}
+
+.form-error-message {
+  position: absolute;
+  width: 100%;
+  height: 30px;
+  margin-top: 10px;
+  padding: 5px 20px;
+  background-color: #d32a2a;
+  border-radius: $base-border-radius;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.4;
+  text-align: center;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -8px;
+    left: calc(50% - 8px);
+    width: 0;
+  	height: 0;
+  	border-left: 8px solid transparent;
+  	border-right: 8px solid transparent;
+  	border-bottom: 8px solid #d32a2a;
+  }
+}

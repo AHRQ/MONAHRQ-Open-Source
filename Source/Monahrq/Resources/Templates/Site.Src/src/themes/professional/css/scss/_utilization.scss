@@ -1,0 +1,103 @@
+/* Utilization
+---------------------------------------- */
+.usage-data-header {
+  border-bottom: 1px solid #ddd;
+}
+
+.usage-data-header .navigation {
+  margin-top: 30px;
+}
+
+.nav-tabs.mega {
+  border-bottom: none;
+  position: relative;
+  top: 1px;
+}
+
+.nav-tabs.mega li {
+  max-width: 280px;
+  font-size: 12px;
+}
+.nav-tabs.mega li .title {
+  font-size: 14px;
+}
+.nav-tabs.mega li.active .title {
+  font-weight: bold;
+}
+.nav-tabs.mega li.active a,
+.nav-tabs.mega li.active a:link,
+.nav-tabs.mega li.active a:visited {
+  font-weight: normal;
+}
+
+.flow-list {
+  font-size: 12px;
+  line-height: 22px;
+  margin-left: 10px;
+  width: 40%;
+}
+
+.map.large {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.map-legend li {
+  float: left;
+  margin-right: 25px;
+}
+
+.map-legend li .legend-color {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: #ddd;
+  margin-right: 5px;
+  position: relative;
+  top: 3px;
+  border: 1px solid #555;
+}
+
+.map-legend li .legend-color.no-data {
+  background: #808080;
+}
+.map-legend li .legend-color.zero {
+  background: #0066cc;
+}
+.map-legend li .legend-color.one {
+  background: #0582ff;
+}
+.map-legend li .legend-color.two {
+  background: #5fb8ef;
+}
+.map-legend li .legend-color.three {
+  background: #a6e1fc;
+}
+.map-legend li .legend-color.four {
+  background: #e7fdff;
+}
+
+.utilization-tabs {
+  position: relative;
+  top: 1px;
+  z-index: 1000;
+  margin-left: 280px;
+}
+
+.utilization-tabs.full-width {
+  margin-left: 0;
+}
+
+.utilization-table {
+  padding: 20px;
+  border: 1px solid #BABDC0;
+}
+
+.trending-toggle {
+  margin-left: 20px;
+}
+
+.mixed-icd-msg {
+  color: #ff0000;
+  font-weight: bold;
+}

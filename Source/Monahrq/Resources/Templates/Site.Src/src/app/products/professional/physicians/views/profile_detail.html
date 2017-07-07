@@ -1,0 +1,182 @@
+<div class="panel panel-default" id="physician-ratings-panel" role="tabpanel" aria-hidden="false">
+  <div class="panel-body profile-panel-body">
+    <div class="nursing-tabs">
+      <ul class="nav nav-tabs">
+        <li id="gen-info-tab" role="tab" aria-controls="gen-info" data-ng-class="{active: tab === 'gen-info'}">
+          <a href="#" data-ng-click="goToTab('gen-info'); $event.preventDefault()">General Information</a>
+        </li>
+        <li id="affiliations-tab" role="tab" aria-controls="affiliations" data-ng-class="{active: tab === 'affiliations'}">
+          <a href="#" data-ng-click="goToTab('affiliations'); $event.preventDefault()">Hospital Affiliations</a>
+        </li>
+        <li data-ng-if="hedisReport.isLoaded || CAHPSReport.isLoaded" id="ratings-tab" role="tab" aria-controls="ratings" data-ng-class="{active: tab === 'ratings'}">
+          <a href="#" data-ng-click="goToTab('ratings'); $event.preventDefault()">Medical Group Ratings</a>
+        </li>
+      </ul><!-- /.nav.nav-tabs -->
+    </div><!-- /.nursing-tabs -->
+    <div data-ng-show="tab === 'gen-info'" class="basic_panel">
+      <div class="general_info">
+        <h3>{{physicianName}}</h3>
+        <ul class="list__no_bullets list__physician_affiliations">
+          <li><strong>Gender:</strong> {{genInfo.gender}}</li>
+          <li data-ng-if="!config.DE_IDENTIFICATION"><strong>NPI ID:</strong> {{genInfo.npi}}</li>
+          <li data-ng-if="config.DE_IDENTIFICATION"><strong>NPI ID:</strong> 0000000000</li>
+          <li><strong>PAC ID:</strong> {{genInfo.pacID}}</li>
+          <li class=""margin__break><strong>Professional Enrollment ID:</strong> {{genInfo.enrollID}}</li>
+          <li ng-show="genInfo.cred"><strong>Degrees:</strong> {{genInfo.cred}}</li>
+          <li ng-show="genInfo.gradYear"><strong>Graduated:</strong> {{genInfo.gradYear}}</li>
+          <li ng-show="genInfo.school"><strong>Medical School:</strong> {{genInfo.school}}</li>
+          <li ng-show="genInfo.primarySpecialty"><strong>Primary Specialty:</strong> {{genInfo.primarySpecialty}}</li>
+          <li ng-show="genInfo.secondarySpecialty"><strong>Secondary Specialty:</strong> {{genInfo.secondarySpecialty}}</li>
+        </ul><!-- /.list__physician_affiliations -->
+      </div><!-- /.general_info -->
+
+      <h4 data-ng-if="hasPractices()">Practices</h4>
+      <div class="list__physician_practice" data-ng-repeat="practice in physicianData.practices">
+        <h5>{{practice.org_lgl_nm}}</h5>
+        <button data-ng-if="hedisReport.isLoaded || CAHPSReport.isLoaded" data-ng-click="selectPractice(practice.org_pac_id)">Show Ratings</button>
+        <ul class="list__no_bullets list__physician_affiliations">
+          <li data-ng-repeat="addr in practice.addresses">
+            <p ng-show="addr.adr_ln_1">{{addr.adr_ln_1}}</p>
+            <p ng-show="addr.adr_ln_2">{{addr.adr_ln_2}}</p>
+            <p>{{addr.cty}}, {{addr.st}} {{addr.zip | zip}}</p>
+          </li>
+        </ul>
+      </div>
+
+      <h4 data-ng-if="physicianData.addresses.length > 0 && physicianData.addresses[0].zip">Other Addresses</h4>
+      <ul class="list__no_bullets list__physician_affiliations" data-ng-if="physicianData.addresses.length > 0 && physicianData.addresses[0].zip">
+        <li data-ng-repeat="addr in physicianData.addresses">
+          <p ng-show="addr.adr_ln_1">{{addr.adr_ln_1}}</p>
+          <p ng-show="addr.adr_ln_2">{{addr.adr_ln_2}}</p>
+          <p ng-show="addr.cty">{{addr.cty}}, {{addr.st}} {{addr.zip | zip}}</p>
+        </li>
+      </ul>
+
+    </div><!-- /.basic-panel -->
+    <div data-ng-show="tab === 'affiliations'" class="basic_panel">
+      <div data-ng-if="genInfo.hospitalProfiles.length == 0" class="block__physicians_affiliations">
+        <h3>No Affiliation(s) Reported</h3>
+      </div>
+      <div data-ng-repeat="hospital in genInfo.hospitalProfiles" class="block__physicians_affiliations">
+        <h3>{{hospital.name}}</h3>
+        <ul class="list__no_bullets list__physician_affiliations">
+          <li>{{hospital.address}}</li>
+          <li>{{hospital.city}}, {{hospital.state}} {{hospital.zip | zip}}</li>
+          <li><strong>Phone:</strong> {{hospital.phoneNumber | phone}}</li>
+          <li></li><a href="#" data-ui-sref="top.professional.quality-ratings.profile({id:hospital.id})">More Information</a></li>
+        </ul><!-- /.list__physician_affiliations-->
+      </div><!-- /.block__physicians_affiliations -->
+    </div><!-- /.basic-panel -->
+
+    <div data-ng-show="tab === 'ratings'" class="basic_panel panel--practice-ratings">
+      <header>
+        <h3>Medical group ratings for {{reportSettings.activePractice.name}}</h3>
+        <label for="" class="ratings-change-practice-label">Change Practice:</label>
+        <select class="ratings-change-practice"
+                data-ng-if="numPractices() > 1"
+                data-ng-options="item as item.name for item in practices track by item.id"
+                data-ng-model="reportSettings.activePractice"
+                data-ng-change="loadCAHPSData()"></select>
+        <p data-ng-if="reportSettings.activePractice.numMembers">Report contains rates and ratings from {{reportSettings.activePractice.numMembers}} doctors in the practice</p>
+        <ul class="practice-ratings-quick-info ng-scope">
+            <li class="ng-scope">The ratings shown are for the entire medical group, combining results for each provider.</li>
+            <li class="ng-scope">Medical groups can range from small groups with several doctors to very large organizations with hundreds of doctors.</li>
+            <li class="ng-scope">Some medical groups offer their patients a better experience than others.</li>
+        </ul>
+        <br />
+      </header>
+
+      <div data-ng-if="hedisReport.isLoaded">
+        <h4>Medical Group Ratings of Medical Care for Diabetes, Asthma, High Blood Pressure, and COPD 
+        	<span data-mh-help-icon="'&nbsp;'" label="TEST" data-sr-label="'Help for Medical Group Ratings of Medical Care for Diabetes, Asthma, High Blood Pressure, and COPD'" data-mh-on-click="modalReport('HEDIS')"></span>
+        </h4>
+
+        <button aria-expanded="{{reportSettings.showHedis}}" aria-controls="hedis-table" data-ng-click="reportSettings.showHedis = !reportSettings.showHedis" data-ng-class="{'active': reportSettings.showHedis}">
+          <span data-ng-if="!reportSettings.showHedis">Show Ratings</span>
+          <span data-ng-if="reportSettings.showHedis">Hide Ratings</span>
+        </button>
+        
+        <table data-ng-if="hedisReport.isLoaded && reportSettings.showHedis" class="data">
+          <thead>
+          <tr>
+            <th>Measures</th>
+            <th>Rates</th>
+            <th data-ng-if="hedisReport.hasPeer">{{config.website_GeographicDescription}} Average Rates</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr data-ng-repeat="row in hedisReport.groupedRows[reportSettings.activePractice.id]">
+            <td>{{row.name}} <span data-mh-help-icon="'&nbsp;'" data-sr-label="'Help for ' + row.name" data-mh-on-click="modalMeasureHedis(row.measureId)"></span> </td>
+            <td>{{row.physicianRate}}</td>
+            <td data-ng-if="hedisReport.hasPeer">{{row.peerRate}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+<!--    </div>
+
+    <div data-ng-show="tab === 'medpractice'" class="basic_panel basic_panel--medpractice">-->
+
+    <div data-ng-if="CAHPSReport.isLoaded && !CAHPSReport.isEmpty(CAHPSReport)">
+      <h4>Medical Group Patient Survey Results
+          <span data-mh-help-icon="'&nbsp;'" data-sr-label="'Medical Group Patient Survey Results'" data-mh-on-click="modalReport('CAHPS')"></span></h4>
+      <ul class="list-unstyled" data-ng-if="CAHPSReport.isLoaded">
+        <li data-ng-repeat="topicCat in CAHPSReport.topicCategories" class="condition-row" >
+          <div data-ng-if="CAHPSReport.getTopics(CAHPSReport, topicCat).length != 0">
+              <a href="#" class="condition-row-link" aria-expanded="{{showTopicCat(topicCat.TopicCategoryID)}}" aria-controls="ratings-{{topicCat.TopicCategoryID}}" data-ng-click="toggleTopicCat(topicCat.TopicCategoryID); toggleAllTopics(topicCat.TopicCategoryID); $event.preventDefault();" data-ng-class="{'active': showTopicCat(topicCat.TopicCategoryID)}">{{topicCat.Name}}
+                  <span data-mh-help-icon="'&nbsp;'" data-sr-label="'Help for ' + topicCat.Name" data-mh-on-click="modalTopicCategory(topicCat.TopicCategoryID)"></span></a>
+
+              <div data-ng-if="showTopicCat(topicCat.TopicCategoryID)" class="profile-data-table table-wrapper">
+                <div class="table-wrapper-content" data-ng-repeat="topic in CAHPSReport.getTopics(CAHPSReport, topicCat)">
+                  <a href="#" style="text-decoration:none" class="condition-row-link" aria-expanded="{{showTopic(topic.TopicID)}}" aria-controls="ratings-{{topic.TopicID}}" data-ng-click="toggleTopic(topic.TopicID); $event.preventDefault();" data-ng-class="{'active': showTopic(topic.TopicID)}" data-ng-disabled="CAHPSReport.getMeasureDefs(CAHPSReport, topic).length == 0">
+                    <span class="sr-hidden">{{topic.Name}}</span>&nbsp;
+                  </a>
+
+                  <table class="table table-bordered data">
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th>Rating</th>
+                        <th>Rate</th>
+                        <th>{{config.website_GeographicDescription}} Average Rate</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>{{CAHPSReport.getOverallMeasureDef(CAHPSReport, topic).SelectedTitle}} <span data-mh-help-icon="'&nbsp;'" data-sr-label="'Help for ' + CAHPSReport.getOverallMeasureDef(CAHPSReport, topic).SelectedTitleConsumer" data-mh-on-click="modalMeasure(CAHPSReport.getOverallMeasureDef(CAHPSReport, topic).MeasureID)"></span></td>
+                        <td><span data-mh-rating-nursing="CAHPSReport.getOverallMeasure(CAHPSReport, topic).PeerRating"></span></td>
+                        <td>{{CAHPSReport.getOverallMeasure(CAHPSReport, topic).Rate}}</td>
+                        <td>{{CAHPSReport.getOverallMeasure(CAHPSReport, topic).PeerRate}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <table class="table table-bordered data" data-ng-if="showTopic(topic.TopicID)" data-ng-repeat="measureDefs in CAHPSReport.getGroupedMeasureDefs(CAHPSReport, topic)">
+                    <thead>
+                    <tr>
+                      <th></th>
+                      <th data-ng-repeat="label in CAHPSReport.getQuestionLabels(measureDefs[0])" style="width: auto">{{label}}</th>
+                    </tr>
+                    </thead>
+                    <tbody data-ng-repeat="measureDef in measureDefs">
+                    <tr>
+                      <td>{{measureDef.SelectedTitle}} <span data-mh-help-icon="'&nbsp;'" data-sr-label="'Help for ' + measureDef.SelectedTitleConsumer" data-mh-on-click="modalMeasure(measureDef.MeasureID)"></span></td>
+                        
+                      <td data-ng-repeat="label in CAHPSReport.getQuestionLabels(measureDefs[0])"
+                          data-ng-init="tempMeasures = CAHPSReport.getMeasure(CAHPSReport, measureDef.MeasureID, physicianId).CAHPSResponseValues">
+                          {{coalesce(tempMeasures[$index],'-')}}
+                      </td>
+
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+

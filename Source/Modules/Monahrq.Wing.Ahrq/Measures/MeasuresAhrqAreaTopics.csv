@@ -1,0 +1,30 @@
+MeasureCode,TopicCategory,TopicName,UsedForInfographic
+IQI 26,Avoidable Stays Maps,Procedure Rates,False
+IQI 27,Avoidable Stays Maps,Procedure Rates,False
+IQI 28,Avoidable Stays Maps,Procedure Rates,False
+IQI 29,Avoidable Stays Maps,Procedure Rates,False
+PQI 01,Avoidable Stays Maps,Diabetes,False
+PQI 02,Avoidable Stays Maps,Other Conditions,False
+PQI 03,Avoidable Stays Maps,Diabetes,False
+PQI 05,Avoidable Stays Maps,Chronic Lung Conditions,False
+PQI 07,Avoidable Stays Maps,Heart Conditions,False
+PQI 08,Avoidable Stays Maps,Heart Conditions,False
+PQI 09,Avoidable Stays Maps,Other Conditions,False
+PQI 10,Avoidable Stays Maps,Other Conditions,False
+PQI 11,Avoidable Stays Maps,Other Conditions,False
+PQI 12,Avoidable Stays Maps,Other Conditions,False
+PQI 13,Avoidable Stays Maps,Heart Conditions,False
+PQI 14,Avoidable Stays Maps,Diabetes,False
+PQI 15,Avoidable Stays Maps,Chronic Lung Conditions,False
+PQI 16,Avoidable Stays Maps,Diabetes,False
+PQI 90,Avoidable Stays Maps,Summary scores,False
+PQI 91,Avoidable Stays Maps,Summary scores,False
+PQI 92,Avoidable Stays Maps,Summary scores,False
+PSI 21,Avoidable Stays Maps,Patient Safety,False
+PSI 22,Avoidable Stays Maps,Patient Safety,False
+PSI 23,Avoidable Stays Maps,Patient Safety,False
+PSI 24,Avoidable Stays Maps,Patient Safety,False
+PSI 25,Avoidable Stays Maps,Patient Safety,False
+PSI 26,Avoidable Stays Maps,Patient Safety,False
+PSI 27,Avoidable Stays Maps,Patient Safety,False
+PSI 27,Surgical patient safety,Results of Care,False

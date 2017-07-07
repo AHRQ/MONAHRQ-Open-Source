@@ -1,0 +1,11 @@
+<div role="alertdialog"
+     aria-labelledby="modal-header-title"
+     aria-describedby="modal-content"
+     tabindex="-1"
+     id="modalWindow"
+     class="modal fade {{ windowClass }}"
+     data-ng-class="{in: animate}"
+     data-ng-style="{'z-index': 1050 + index*10, display: 'block'}"
+     data-ng-click="close($event)">
+  <div class="modal-dialog" data-modal-focus><div id="modal-content" class="modal-content" data-ng-transclude></div></div>
+</div>

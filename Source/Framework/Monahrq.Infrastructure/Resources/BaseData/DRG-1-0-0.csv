@@ -1,0 +1,595 @@
+DRG,MDC,Description,FirstYear,LastYear
+1,1,Craniotomy age >17 except for trauma,0,2002
+1,1,Craniotomy age >17 w cc,2003,9999
+2,1,Craniotomy age >17 w/o cc,2003,9999
+2,1,Craniotomy for trauma age >17,0,2002
+3,1,Craniotomy age 0-17,0,9999
+4,1,Spinal procedures,0,9999
+5,1,Extracranial vascular procedures,0,9999
+6,1,Carpal tunnel release,0,9999
+7,1,Periph & cranial nerve & other nerv syst proc w CC,0,9999
+8,1,Periph & cranial nerve & other nerv syst proc w/o CC,0,9999
+9,1,Spinal disorders & injuries,0,9999
+10,1,Nervous system neoplasms w CC,0,9999
+11,1,Nervous system neoplasms w/o CC,0,9999
+12,1,Degenerative nervous system disorders,0,9999
+13,1,Multiple sclerosis & cerebellar ataxia,0,9999
+14,1,Intracranial hemorrhage & stroke w infarct,2003,9999
+14,1,Specific cerebrovascular disorders except tia,0,2002
+15,1,Nonspecific cva & precerebral occlusion w/o infarct,2003,9999
+15,1,Transient ischemic attack & precerebral occlusions,0,2002
+16,1,Nonspecific cerebrovascular disorders w CC,0,9999
+17,1,Nonspecific cerebrovascular disorders w/o CC,0,9999
+18,1,Cranial & peripheral nerve disorders w CC,0,9999
+19,1,Cranial & peripheral nerve disorders w/o CC,0,9999
+20,1,Nervous system infection except viral meningitis,0,9999
+21,1,Viral meningitis,0,9999
+22,1,Hypertensive encephalopathy,0,9999
+23,1,Nontraumatic stupor & coma,0,9999
+24,1,Seizure & headache age >17 w CC,0,9999
+25,1,Seizure & headache age >17 w/o CC,0,9999
+26,1,Seizure & headache age 0-17,0,9999
+27,1,"Traumatic stupor & coma, coma >1 hr",0,9999
+28,1,"Traumatic stupor & coma, coma <1 hr age >17 w CC",0,9999
+29,1,"Traumatic stupor & coma, coma <1 hr age >17 w/o CC",0,9999
+30,1,"Traumatic stupor & coma, coma <1 hr age 0-17",0,9999
+31,1,Concussion age >17 w CC,0,9999
+32,1,Concussion age >17 w/o CC,0,9999
+33,1,Concussion age 0-17,0,9999
+34,1,Other disorders of nervous system w CC,0,9999
+35,1,Other disorders of nervous system w/o CC,0,9999
+36,2,Retinal procedures,0,9999
+37,2,Orbital procedures,0,9999
+38,2,Primary iris procedures,0,9999
+39,2,Lens procedures with or without vitrectomy,0,9999
+40,2,Extraocular procedures except orbit age >17,0,9999
+41,2,Extraocular procedures except orbit age 0-17,0,9999
+42,2,"Intraocular procedures except retina, iris & lens",0,9999
+43,2,Hyphema,0,9999
+44,2,Acute major eye infections,0,9999
+45,2,Neurological eye disorders,0,9999
+46,2,Other disorders of the eye age >17 w CC,0,9999
+47,2,Other disorders of the eye age >17 w/o CC,0,9999
+48,2,Other disorders of the eye age 0-17,0,9999
+49,3,Major head & neck procedures,0,9999
+50,3,Sialoadenectomy,0,9999
+51,3,Salivary gland procedures except sialoadenectomy,0,9999
+52,3,Cleft lip & palate repair,0,9999
+53,3,Sinus & mastoid procedures age >17,0,9999
+54,3,Sinus & mastoid procedures age 0-17,0,9999
+55,3,"Miscellaneous ear, nose, mouth & throat procedures",0,9999
+56,3,Rhinoplasty,0,9999
+57,3,"T&A proc, except tonsillectomy &/or adenoidectomy only, age>17",0,9999
+58,3,"T&A proc, except tonsillectomy &/or adenoidectomy only, age 0-17",0,9999
+59,3,"Tonsillectomy &/or adenoidectomy only, age >17",0,9999
+60,3,"Tonsillectomy &/or adenoidectomy only, age 0-17",0,9999
+61,3,Myringotomy w tube insertion age >17,0,9999
+62,3,Myringotomy w tube insertion age 0-17,0,9999
+63,3,"Other ear, nose, mouth & throat O.R. procedures",0,9999
+64,3,"Ear, nose, mouth & throat malignancy",0,9999
+65,3,Dysequilibrium,0,9999
+66,3,Epistaxis,0,9999
+67,3,Epiglottitis,0,9999
+68,3,Otitis media & URI age >17 w CC,0,9999
+69,3,Otitis media & URI age >17 w/o CC,0,9999
+70,3,Otitis media & URI age 0-17,0,9999
+71,3,Laryngotracheitis,0,9999
+72,3,Nasal trauma & deformity,0,9999
+73,3,"Other ear, nose, mouth & throat diagnoses age >17",0,9999
+74,3,"Other ear, nose, mouth & throat diagnoses age 0-17",0,9999
+75,4,Major chest procedures,0,9999
+76,4,Other resp system O.R. procedures w CC,0,9999
+77,4,Other resp system O.R. procedures w/o CC,0,9999
+78,4,Pulmonary embolism,0,9999
+79,4,Respiratory infections & inflammations age >17 w CC,0,9999
+80,4,Respiratory infections & inflammations age >17 w/o CC,0,9999
+81,4,Respiratory infections & inflammations age 0-17,0,9999
+82,4,Respiratory neoplasms,0,9999
+83,4,Major chest trauma w CC,0,9999
+84,4,Major chest trauma w/o CC,0,9999
+85,4,Pleural effusion w CC,0,9999
+86,4,Pleural effusion w/o CC,0,9999
+87,4,Pulmonary edema & respiratory failure,0,9999
+88,4,Chronic obstructive pulmonary disease,0,9999
+89,4,Simple pneumonia & pleurisy age >17 w CC,0,9999
+90,4,Simple pneumonia & pleurisy age >17 w/o CC,0,9999
+91,4,Simple pneumonia & pleurisy age 0-17,0,9999
+92,4,Interstitial lung disease w CC,0,9999
+93,4,Interstitial lung disease w/o CC,0,9999
+94,4,Pneumothorax w CC,0,9999
+95,4,Pneumothorax w/o CC,0,9999
+96,4,Bronchitis & asthma age >17 w CC,0,9999
+97,4,Bronchitis & asthma age >17 w/o CC,0,9999
+98,4,Bronchitis & asthma age 0-17,0,9999
+99,4,Respiratory signs & symptoms w CC,0,9999
+100,4,Respiratory signs & symptoms w/o CC,0,9999
+101,4,Other respiratory system diagnoses w CC,0,9999
+102,4,Other respiratory system diagnoses w/o CC,0,9999
+103,77,Heart transplant,0,9999
+104,5,Cardiac valve & other major cardiothoracic proc w cardiac cath,1999,9999
+104,5,Cardiac valve procedures w cardiac cath,0,1998
+105,5,Cardiac valve & other major cardiothoracic proc w/o cardiac cath,1999,9999
+105,5,Cardiac valve procedures w/o cardiac cath,0,1998
+106,5,Coronary bypass w cardiac cath,0,1998
+106,5,Coronary bypass w ptca,1999,9999
+107,5,Coronary bypass w cardiac cath,1999,9999
+107,5,Coronary bypass w/o cardiac cath,0,1998
+108,5,Other cardiothoracic procedures,0,9999
+109,5,Coronary bypass w/o cardiac cath,0,1999
+109,5,Coronary bypass w/o ptca or cardiac cath,2000,9999
+110,5,Major cardiovascular procedures w CC,0,9999
+111,5,Major cardiovascular procedures w/o CC,0,9999
+112,5,Percutaneous cardiovascular procedures,0,9999
+113,5,Amputation for circ system disorders except upper limb & toe,0,9999
+114,5,Upper limb & toe amputation for circ system disorders,0,9999
+115,5,"Prm card pacem impl w AMI,hrt fail or shk",0,1997
+115,5,"Prm card pacem impl w AMI,hrt fail or shk,or aicd lead or gnrtr proc",1998,9999
+116,5,Other permanent cardiac pacemaker implant,1998,9999
+116,5,Other permanent cardiac pacemaker implant or ptca w coronary artery stent implnt,0,1997
+117,5,Cardiac pacemaker revision except device replacement,0,9999
+118,5,Cardiac pacemaker device replacement,0,9999
+119,5,Vein ligation & stripping,0,9999
+120,5,Other circulatory system O.R. procedures,0,9999
+121,5,"Circulatory disorders w AMI & major comp, discharged alive",0,9999
+122,5,"Circulatory disorders w AMI w/o major comp, discharged alive",0,9999
+123,5,"Circulatory disorders w AMI, expired",0,9999
+124,5,"Circulatory disorders except AMI, w card cath & complex diag",0,9999
+125,5,"Circulatory disorders except AMI, w card cath w/o complex diag",0,9999
+126,5,Acute & subacute endocarditis,0,9999
+127,5,Heart failure & shock,0,9999
+128,5,Deep vein thrombophlebitis,0,9999
+129,5,"Cardiac arrest, unexplained",0,9999
+130,5,Peripheral vascular disorders w CC,0,9999
+131,5,Peripheral vascular disorders w/o CC,0,9999
+132,5,Atherosclerosis w CC,0,9999
+133,5,Atherosclerosis w/o CC,0,9999
+134,5,Hypertension,0,9999
+135,5,Cardiac congenital & valvular disorders age >17 w CC,0,9999
+136,5,Cardiac congenital & valvular disorders age >17 w/o CC,0,9999
+137,5,Cardiac congenital & valvular disorders age 0-17,0,9999
+138,5,Cardiac arrhythmia & conduction disorders w CC,0,9999
+139,5,Cardiac arrhythmia & conduction disorders w/o CC,0,9999
+140,5,Angina pectoris,0,9999
+141,5,Syncope & collapse w CC,0,9999
+142,5,Syncope & collapse w/o CC,0,9999
+143,5,Chest pain,0,9999
+144,5,Other circulatory system diagnoses w CC,0,9999
+145,5,Other circulatory system diagnoses w/o CC,0,9999
+146,6,Rectal resection w CC,0,9999
+147,6,Rectal resection w/o CC,0,9999
+148,6,Major small & large bowel procedures w CC,0,9999
+149,6,Major small & large bowel procedures w/o CC,0,9999
+150,6,Peritoneal adhesiolysis w CC,0,9999
+151,6,Peritoneal adhesiolysis w/o CC,0,9999
+152,6,Minor small & large bowel procedures w CC,0,9999
+153,6,Minor small & large bowel procedures w/o CC,0,9999
+154,6,"Stomach, esophageal & duodenal procedures age >17 w CC",0,9999
+155,6,"Stomach, esophageal & duodenal procedures age >17 w/o CC",0,9999
+156,6,"Stomach, esophageal & duodenal procedures age 0-17",0,9999
+157,6,Anal & stomal procedures w CC,0,9999
+158,6,Anal & stomal procedures w/o CC,0,9999
+159,6,Hernia procedures except inguinal & femoral age >17 w CC,0,9999
+160,6,Hernia procedures except inguinal & femoral age >17 w/o CC,0,9999
+161,6,Inguinal & femoral hernia procedures age >17 w CC,0,9999
+162,6,Inguinal & femoral hernia procedures age >17 w/o CC,0,9999
+163,6,Hernia procedures age 0-17,0,9999
+164,6,Appendectomy w complicated principal diag w CC,0,9999
+165,6,Appendectomy w complicated principal diag w/o CC,0,9999
+166,6,Appendectomy w/o complicated principal diag w CC,0,9999
+167,6,Appendectomy w/o complicated principal diag w/o CC,0,9999
+168,3,Mouth procedures w CC,0,9999
+169,3,Mouth procedures w/o CC,0,9999
+170,6,Other digestive system O.R. procedures w CC,0,9999
+171,6,Other digestive system O.R. procedures w/o CC,0,9999
+172,6,Digestive malignancy w CC,0,9999
+173,6,Digestive malignancy w/o CC,0,9999
+174,6,G.I. hemorrhage w CC,0,9999
+175,6,G.I. hemorrhage w/o CC,0,9999
+176,6,Complicated peptic ulcer,0,9999
+177,6,Uncomplicated peptic ulcer w CC,0,9999
+178,6,Uncomplicated peptic ulcer w/o CC,0,9999
+179,6,Inflammatory bowel disease,0,9999
+180,6,G.I. obstruction w CC,0,9999
+181,6,G.I. obstruction w/o CC,0,9999
+182,6,"Esophagitis, gastroent & misc digest disorders age >17 w CC",0,9999
+183,6,"Esophagitis, gastroent & misc digest disorders age >17 w/o CC",0,9999
+184,6,"Esophagitis, gastroent & misc digest disorders age 0-17",0,9999
+185,3,"Dental & oral dis except extractions & restorations, age >17",0,9999
+186,3,"Dental & oral dis except extractions & restorations, age 0-17",0,9999
+187,3,Dental extractions & restorations,0,9999
+188,6,Other digestive system diagnoses age >17 w CC,0,9999
+189,6,Other digestive system diagnoses age >17 w/o CC,0,9999
+190,6,Other digestive system diagnoses age 0-17,0,9999
+191,7,"Pancreas, liver & shunt procedures w CC",0,9999
+192,7,"Pancreas, liver & shunt procedures w/o CC",0,9999
+193,7,Biliary tract proc except only cholecyst w or w/o C.D.E. w CC,0,9999
+194,7,Biliary tract proc except only cholecyst w or w/o C.D.E. w/o CC,0,9999
+195,7,Cholecystectomy w C.D.E. w CC,0,9999
+196,7,Cholecystectomy w C.D.E. w/o CC,0,9999
+197,7,Cholecystectomy except by laparoscope w/o C.D.E. w CC,0,9999
+198,7,Cholecystectomy except by laparoscope w/o C.D.E. w/o CC,0,9999
+199,7,Hepatobiliary diagnostic procedure for malignancy,0,9999
+200,7,Hepatobiliary diagnostic procedure for non-malignancy,0,9999
+201,7,Other hepatobiliary or pancreas O.R. procedures,0,9999
+202,7,Cirrhosis & alcoholic hepatitis,0,9999
+203,7,Malignancy of hepatobiliary system or pancreas,0,9999
+204,7,Disorders of pancreas except malignancy,0,9999
+205,7,"Disorders of liver except malig,cirr,alc hepa w CC",0,9999
+206,7,"Disorders of liver except malig,cirr,alc hepa w/o CC",0,9999
+207,7,Disorders of the biliary tract w CC,0,9999
+208,7,Disorders of the biliary tract w/o CC,0,9999
+209,8,Major joint & limb reattachment procedures of lower extremity,0,9999
+210,8,Hip & femur procedures except major joint age >17 w CC,0,9999
+211,8,Hip & femur procedures except major joint age >17 w/o CC,0,9999
+212,8,Hip & femur procedures except major joint age 0-17,0,9999
+213,8,Amputation for musculoskeletal system & conn tissue disorders,0,9999
+214,8,Back & neck procedures w CC,0,9999
+215,8,Back & neck procedures w/o CC,0,9999
+216,8,Biopsies of musculoskeletal system & connective tissue,0,9999
+217,8,"Wnd debrid & skn grft except hand,for muscskelet & conn tiss dis",0,9999
+218,8,"Lower extrem & humer proc except hip, foot,femur age >17 w CC",0,9999
+219,8,"Lower extrem & humer proc except hip, foot,femur age >17 w/o CC",0,9999
+220,8,"Lower extrem & humer proc except hip, foot,femur age 0-17",0,9999
+221,8,Knee procedures w CC,0,9999
+222,8,Knee procedures w/o CC,0,9999
+223,8,"Major shoulder/elbow proc, or other upper extremity proc w CC",0,9999
+224,8,"Shoulder,elbow or forearm proc,exc major joint proc, w/o CC",0,9999
+225,8,Foot procedures,0,9999
+226,8,Soft tissue procedures w CC,0,9999
+227,8,Soft tissue procedures w/o CC,0,9999
+228,8,"Major thumb or joint proc,or oth hand or wrist proc w CC",0,9999
+229,8,"Hand or wrist proc, except major joint proc, w/o CC",0,9999
+230,8,Local excision & removal of int fix devices of hip & femur,0,9999
+231,8,Local excision & removal of int fix devices except hip & femur,0,9999
+232,8,Arthroscopy,0,9999
+233,8,Other musculoskelet sys & conn tiss O.R. proc w CC,0,9999
+234,8,Other musculoskelet sys & conn tiss O.R. proc w/o CC,0,9999
+235,8,Fractures of femur,0,9999
+236,8,Fractures of hip & pelvis,0,9999
+237,8,"Sprains, strains, & dislocations of hip, pelvis & thigh",0,9999
+238,8,Osteomyelitis,0,9999
+239,8,Pathological fractures & musculoskeletal & conn tiss malignancy,0,9999
+240,8,Connective tissue disorders w CC,0,9999
+241,8,Connective tissue disorders w/o CC,0,9999
+242,8,Septic arthritis,0,9999
+243,8,Medical back problems,0,9999
+244,8,Bone diseases & specific arthropathies w CC,0,9999
+245,8,Bone diseases & specific arthropathies w/o CC,0,9999
+246,8,Non-specific arthropathies,0,9999
+247,8,Signs & symptoms of musculoskeletal system & conn tissue,0,9999
+248,8,"Tendonitis, myositis & bursitis",0,9999
+249,8,"Aftercare, musculoskeletal system & connective tissue",0,9999
+250,8,"Fx, sprn, strn & disl of forearm, hand, foot age >17 w CC",0,9999
+251,8,"Fx, sprn, strn & disl of forearm, hand, foot age >17 w/o CC",0,9999
+252,8,"Fx, sprn, strn & disl of forearm, hand, foot age 0-17",0,9999
+253,8,"Fx, sprn, strn & disl of uparm, lowleg ex foot age >17 w CC",0,9999
+254,8,"Fx, sprn, strn & disl of uparm, lowleg ex foot age >17 w/o CC",0,9999
+255,8,"Fx, sprn, strn & disl of uparm, lowleg ex foot age 0-17",0,9999
+256,8,Other musculoskeletal system & connective tissue diagnoses,0,9999
+257,9,Total mastectomy for malignancy w CC,0,9999
+258,9,Total mastectomy for malignancy w/o CC,0,9999
+259,9,Subtotal mastectomy for malignancy w CC,0,9999
+260,9,Subtotal mastectomy for malignancy w/o CC,0,9999
+261,9,Breast proc for non-malignancy except biopsy & local excision,0,9999
+262,9,Breast biopsy & local excision for non-malignancy,0,9999
+263,9,Skin graft &/or debrid for skn ulcer or cellulitis w CC,0,9999
+264,9,Skin graft &/or debrid for skn ulcer or cellulitis w/o CC,0,9999
+265,9,Skin graft &/or debrid except for skin ulcer or cellulitis w CC,0,9999
+266,9,Skin graft &/or debrid except for skin ulcer or cellulitis w/o CC,0,9999
+267,9,Perianal & pilonidal procedures,0,9999
+268,9,"Skin, subcutaneous tissue & breast plastic procedures",0,9999
+269,9,"Other skin, subcut tiss & breast proc w CC",0,9999
+270,9,"Other skin, subcut tiss & breast proc w/o CC",0,9999
+271,9,Skin ulcers,0,9999
+272,9,Major skin disorders w CC,0,9999
+273,9,Major skin disorders w/o CC,0,9999
+274,9,Malignant breast disorders w CC,0,9999
+275,9,Malignant breast disorders w/o CC,0,9999
+276,9,Non-maligant breast disorders,0,9999
+277,9,Cellulitis age >17 w CC,0,9999
+278,9,Cellulitis age >17 w/o CC,0,9999
+279,9,Cellulitis age 0-17,0,9999
+280,9,"Trauma to the skin, subcut tiss & breast age >17 w CC",0,9999
+281,9,"Trauma to the skin, subcut tiss & breast age >17 w/o CC",0,9999
+282,9,"Trauma to the skin, subcut tiss & breast age 0-17",0,9999
+283,9,Minor skin disorders w CC,0,9999
+284,9,Minor skin disorders w/o CC,0,9999
+285,10,"Amputat of lower limb for endocrine,nutrit,& metabol disorders",0,9999
+286,10,Adrenal & pituitary procedures,0,9999
+287,10,"Skin grafts & wound debrid for endoc, nutrit & metab disorders",0,9999
+288,10,O.R. procedures for obesity,0,9999
+289,10,Parathyroid procedures,0,9999
+290,10,Thyroid procedures,0,9999
+291,10,Thyroglossal procedures,0,9999
+292,10,"Other endocrine, nutrit & metab O.R. proc w CC",0,9999
+293,10,"Other endocrine, nutrit & metab O.R. proc w/o CC",0,9999
+294,10,Diabetes age >35,0,9999
+295,10,Diabetes age 0-35,0,9999
+296,10,Nutritional & misc metabolic disorders age >17 w CC,0,9999
+297,10,Nutritional & misc metabolic disorders age >17 w/o CC,0,9999
+298,10,Nutritional & misc metabolic disorders age 0-17,0,9999
+299,10,Inborn errors of metabolism,0,9999
+300,10,Endocrine disorders w CC,0,9999
+301,10,Endocrine disorders w/o CC,0,9999
+302,11,Kidney transplant,0,9999
+303,11,"Kidney,ureter & major bladder procedures for neoplasm",0,9999
+304,11,"Kidney,ureter & major bladder proc for non-neopl w CC",0,9999
+305,11,"Kidney,ureter & major bladder proc for non-neopl w/o CC",0,9999
+306,11,Prostatectomy w CC,0,9999
+307,11,Prostatectomy w/o CC,0,9999
+308,11,Minor bladder procedures w CC,0,9999
+309,11,Minor bladder procedures w/o CC,0,9999
+310,11,Transurethral procedures w CC,0,9999
+311,11,Transurethral procedures w/o CC,0,9999
+312,11,"Urethral procedures, age >17 w CC",0,9999
+313,11,"Urethral procedures, age >17 w/o CC",0,9999
+314,11,"Urethral procedures, age 0-17",0,9999
+315,11,Other kidney & urinary tract O.R. procedures,0,9999
+316,11,Renal failure,0,9999
+317,11,Admit for renal dialysis,0,9999
+318,11,Kidney & urinary tract neoplasms w CC,0,9999
+319,11,Kidney & urinary tract neoplasms w/o CC,0,9999
+320,11,Kidney & urinary tract infections age >17 w CC,0,9999
+321,11,Kidney & urinary tract infections age >17 w/o CC,0,9999
+322,11,Kidney & urinary tract infections age 0-17,0,9999
+323,11,"Urinary stones w CC, &/or esw lithotripsy",0,9999
+324,11,Urinary stones w/o CC,0,9999
+325,11,Kidney & urinary tract signs & symptoms age >17 w CC,0,9999
+326,11,Kidney & urinary tract signs & symptoms age >17 w/o CC,0,9999
+327,11,Kidney & urinary tract signs & symptoms age 0-17,0,9999
+328,11,Urethral stricture age >17 w CC,0,9999
+329,11,Urethral stricture age >17 w/o CC,0,9999
+330,11,Urethral stricture age 0-17,0,9999
+331,11,Other kidney & urinary tract diagnoses age >17 w CC,0,9999
+332,11,Other kidney & urinary tract diagnoses age >17 w/o CC,0,9999
+333,11,Other kidney & urinary tract diagnoses age 0-17,0,9999
+334,12,Major male pelvic procedures w CC,0,9999
+335,12,Major male pelvic procedures w/o CC,0,9999
+336,12,Transurethral prostatectomy w CC,0,9999
+337,12,Transurethral prostatectomy w/o CC,0,9999
+338,12,"Testes procedures, for malignancy",0,9999
+339,12,"Testes procedures, non-malignancy age >17",0,9999
+340,12,"Testes procedures, non-malignancy age 0-17",0,9999
+341,12,Penis procedures,0,9999
+342,12,Circumcision age >17,0,9999
+343,12,Circumcision age 0-17,0,9999
+344,12,Other male reproductive system O.R. procedures for malignancy,0,9999
+345,12,Other male reproductive system O.R. proc except for malignancy,0,9999
+346,12,"Malignancy, male reproductive system, w CC",0,9999
+347,12,"Malignancy, male reproductive system, w/o CC",0,9999
+348,12,Benign prostatic hypertrophy w CC,0,9999
+349,12,Benign prostatic hypertrophy w/o CC,0,9999
+350,12,Inflammation of the male reproductive system,0,9999
+351,12,"Sterilization, Male",0,9999
+352,12,Other male reproductive system diagnoses,0,9999
+353,13,"Pelvic evisceration, radical hysterectomy & radical vulvectomy",0,9999
+354,13,"Uterine,adnexa proc for non-ovarian/adnexal malig w CC",0,9999
+355,13,"Uterine,adnexa proc for non-ovarian/adnexal malig w/o CC",0,9999
+356,13,Female reproductive system reconstructive procedures,0,9999
+357,13,Uterine & adnexa proc for ovarian or adnexal malignancy,0,9999
+358,13,Uterine & adnexa proc for non-malignancy w CC,0,9999
+359,13,Uterine & adnexa proc for non-malignancy w/o CC,0,9999
+360,13,"Vagina, cervix & vulva procedures",0,9999
+361,13,Laparoscopy & incisional tubal interruption,0,9999
+362,13,Endoscopic tubal interruption,0,9999
+363,13,"D&C, conization & radio-implant, for malignancy",0,9999
+364,13,"D&C, conization except for malignancy",0,9999
+365,13,Other female reproductive system O.R. procedures,0,9999
+366,13,"Malignancy, female reproductive system w CC",0,9999
+367,13,"Malignancy, female reproductive system w/o CC",0,9999
+368,13,"Infections, female reproductive system",0,9999
+369,13,Menstrual & other female reproductive system disorders,0,9999
+370,14,Cesarean section w CC,0,9999
+371,14,Cesarean section w/o CC,0,9999
+372,14,Vaginal delivery w complicating diagnoses,0,9999
+373,14,Vaginal delivery w/o complicating diagnoses,0,9999
+374,14,Vaginal delivery w sterilization &/or D&C,0,9999
+375,14,Vaginal delivery w O.R. proc except steril &/or D&C,0,9999
+376,14,Postpartum & post abortion diagnoses w/o O.R. procedure,0,9999
+377,14,Postpartum & post abortion diagnoses w O.R. procedure,0,9999
+378,14,Ectopic pregnancy,0,9999
+379,14,Threatened abortion,0,9999
+380,14,Abortion w/o D&C,0,9999
+381,14,"Abortion w D&C, aspiration curettage or hysterotomy",0,9999
+382,14,False labor,0,9999
+383,14,Other antepartum diagnoses w medical complications,0,9999
+384,14,Other antepartum diagnoses w/o medical complications,0,9999
+385,15,"Neonates, died or transferred to another acute care facility",0,9999
+386,15,"Extreme immaturity or respiratory distress syndrome, neonate",0,9999
+387,15,Prematurity w major problems,0,9999
+388,15,Prematurity w/o major problems,0,9999
+389,15,Full term neonate w major problems,0,9999
+390,15,Neonate w other significant problems,0,9999
+391,15,Normal newborn,0,9999
+392,16,Splenectomy age >17,0,9999
+393,16,Splenectomy age 0-17,0,9999
+394,16,Other O.R. procedures of the blood and blood forming organs,0,9999
+395,16,Red blood cell disorders age >17,0,9999
+396,16,Red blood cell disorders age 0-17,0,9999
+397,16,Coagulation disorders,0,9999
+398,16,Reticuloendothelial & immunity disorders w CC,0,9999
+399,16,Reticuloendothelial & immunity disorders w/o CC,0,9999
+400,17,Lymphoma & leukemia w major O.R. procedure,0,9999
+401,17,Lymphoma & non-acute leukemia w other O.R. proc w CC,0,9999
+402,17,Lymphoma & non-acute leukemia w other O.R. proc w/o CC,0,9999
+403,17,Lymphoma & non-acute leukemia w CC,0,9999
+404,17,Lymphoma & non-acute leukemia w/o CC,0,9999
+405,17,Acute leukemia w/o major O.R. procedure age 0-17,0,9999
+406,17,Myeloprolif disord or poorly diff neopl w maj O.R.proc w CC,0,9999
+407,17,Myeloprolif disord or poorly diff neopl w maj O.R.proc w/o CC,0,9999
+408,17,Myeloprolif disord or poorly diff neopl w other O.R.proc,0,9999
+409,17,Radiotherapy,0,9999
+410,17,Chemotherapy w/o acute leukemia as secondary diagnosis,0,9999
+411,17,History of malignancy w/o endoscopy,0,9999
+412,17,History of malignancy w endoscopy,0,9999
+413,17,Other myeloprolif dis or poorly diff neopl diag w CC,0,9999
+414,17,Other myeloprolif dis or poorly diff neopl diag w/o CC,0,9999
+415,18,O.R. procedure for infectious & parasitic diseases,0,9999
+416,18,Septicemia age >17,0,9999
+417,18,Septicemia age 0-17,0,9999
+418,18,Postoperative & post-traumatic infections,0,9999
+419,18,Fever of unknown origin age >17 w CC,0,9999
+420,18,Fever of unknown origin age >17 w/o CC,0,9999
+421,18,Viral illness age >17,0,9999
+422,18,Viral illness & fever of unknown origin age 0-17,0,9999
+423,18,Other infectious & parasitic diseases diagnoses,0,9999
+424,19,O.R. procedure w principal diagnoses of mental illness,0,9999
+425,19,Acute adjust react & disturbances of psychosocial dysfunction,0,1999
+425,19,Acute adjust reaction & psychosocial dysfunction,2000,9999
+426,19,Depressive neuroses,0,9999
+427,19,Neuroses except depressive,0,9999
+428,19,Disorders of personality & impulse control,0,9999
+429,19,Organic disturbances & mental retardation,0,9999
+430,19,Psychoses,0,9999
+431,19,Childhood mental disorders,0,9999
+432,19,Other mental disorder diagnoses,0,9999
+433,20,"Alcohol/drug abuse or dependence, left ama",0,9999
+434,20,"Alc/drug abuse or depend, detox or oth sympt treat w CC",0,9999
+435,20,"Alc/drug abuse or depend, detox or oth sympt treat w/o CC",0,9999
+436,20,Alc/drug dependence w rehabilitation therapy,0,9999
+437,20,"Alc/drug dependence, combined rehab & detox therapy",0,9999
+439,21,Skin grafts for injuries,0,9999
+440,21,Wound debridements for injuries,0,9999
+441,21,Hand procedures for injuries,0,9999
+442,21,Other O.R. procedures for injuries w CC,0,9999
+443,21,Other O.R. procedures for injuries w/o CC,0,9999
+444,21,Traumatic injury age >17 w CC,0,9999
+445,21,Traumatic injury age >17 w/o CC,0,9999
+446,21,Traumatic injury age 0-17,0,9999
+447,21,Allergic reactions age >17,0,9999
+448,21,Allergic reactions age 0-17,0,9999
+449,21,Poisoning & toxic effects of drugs age >17 w CC,0,9999
+450,21,Poisoning & toxic effects of drugs age >17 w/o CC,0,9999
+451,21,Poisoning & toxic effects of drugs age 0-17,0,9999
+452,21,Complications of treatment w CC,0,9999
+453,21,Complications of treatment w/o CC,0,9999
+454,21,"Other injury, poisoning & toxic effect diag w CC",0,9999
+455,21,"Other injury, poisoning & toxic effect diag w/o CC",0,9999
+456,22,"Burns, transferred to another acute care facility",0,9999
+457,22,Extensive burns w/o O.R. procedure,0,9999
+458,22,Non-extensive burns w skin graft,0,9999
+459,22,Non-extensive burns w wound debridement or other O.R. proc,0,9999
+460,22,Non-extensive burns w/o O.R. procedure,0,9999
+461,23,O.R. proc w diagnoses of other contact w health services,0,9999
+462,23,Rehabilitation,0,9999
+463,23,Signs & symptoms w CC,0,9999
+464,23,Signs & symptoms w/o CC,0,9999
+465,23,Aftercare w history of malignancy as secondary diagnosis,0,9999
+466,23,Aftercare w/o history of malignancy as secondary diagnosis,0,9999
+467,23,Other factors influencing health status,0,9999
+468,88,Extensive O.R. procedure unrelated to principal diagnosis,0,9999
+469,88,Principal diagnosis invalid as discharge diagnosis,0,9999
+470,88,Ungroupable,0,9999
+471,8,Bilateral or multiple major joint procs of lower extremity,0,9999
+472,22,Extensive burns w O.R. procedure,0,9999
+473,17,Acute leukemia w/o major O.R. procedure age >17,0,9999
+475,4,Respiratory system diagnosis with ventilator support,0,9999
+476,88,Prostatic O.R. procedure unrelated to principal diagnosis,0,9999
+477,88,Non-extensive O.R. procedure unrelated to principal diagnosis,0,9999
+478,5,Other vascular procedures w CC,0,9999
+479,5,Other vascular procedures w/o CC,0,9999
+480,77,Liver transplant,0,9999
+481,77,Bone marrow transplant,0,9999
+482,77,"Tracheostomy for face,mouth & neck diagnoses",0,9999
+483,77,"Tracheostomy except for face,mouth & neck diagnoses",0,2002
+483,77,"Tracheostomy w mech vent 96+ hrs or pdx except face,mouth & neck diag",2003,9999
+484,24,Craniotomy for multiple significant trauma,0,9999
+485,24,"Limb reattachment, hip and femur proc for multiple significant trauma",0,9999
+486,24,Other O.R. procedures for multiple significant trauma,0,9999
+487,24,Other multiple significant trauma,0,9999
+488,25,HIV w extensive O.R. procedure,0,9999
+489,25,HIV w major related condition,0,9999
+490,25,HIV w or w/o other related condition,0,9999
+491,8,Major joint & limb reattachment procedures of upper extremity,0,9999
+492,17,Chemo w acute leukemia as sdx or w use of high dose chemo agent,2004,9999
+492,17,Chemotherapy w acute leukemia as secondary diagnosis,0,2003
+493,7,Laparoscopic cholecystectomy w/o C.D.E. w CC,0,9999
+494,7,Laparoscopic cholecystectomy w/o C.D.E. w/o CC,0,9999
+495,77,Lung transplant,0,9999
+496,8,Combined anterior/posterior spinal fusion,0,9999
+497,8,Spinal fusion except cervical w cc,2002,9999
+497,8,Spinal fusion w cc,0,2001
+498,8,Spinal fusion except cervical w/o cc,2002,9999
+498,8,Spinal fusion w/o cc,0,2001
+499,8,Back & neck procedures except spinal fusion w CC,0,9999
+500,8,Back & neck procedures except spinal fusion w/o CC,0,9999
+501,8,Knee procedures w pdx of infection w CC,0,9999
+502,8,Knee procedures w pdx of infection w/o CC,0,9999
+503,8,Knee procedures w/o pdx of infection,0,9999
+504,22,Extensive 3rd degree burns w skin graft,0,9999
+505,22,Extensive 3rd degree burns w/o skin graft,0,9999
+506,22,Full thickness burn w skin graft or inhal inj w cc or sig trauma,0,9999
+507,22,Full thickness burn w skin graft or inhal inj w/o cc or sig trauma,0,9999
+508,22,Full thickness burn w/o skin graft or inhal inj w cc or sig trauma,0,9999
+509,22,Full thickness burn w/o skin graft or inhal inj w/o cc or sig trauma,0,9999
+510,22,Non-extensive burns w cc or significant trauma,0,9999
+511,22,Non-extensive burns w/o cc or significant trauma,0,9999
+512,77,Simultaneous pancreas/kidney transplant,0,9999
+513,77,Pancreas transplant,0,9999
+514,5,Cardiac defibrillator implant w cardiac cath,0,9999
+515,5,Cardiac defibrillator implant w/o cardiac cath,0,9999
+516,5,Percutaneous cardiovascular procedures w ami,0,9999
+517,5,Percutaneous cardiovasc proc w coronary artery stent w/o ami,0,2002
+517,5,Percutaneous cardiovascular proc w non-drug eluting stent w/o ami,2003,9999
+518,5,Percutaneous cardiovasc proc w/o coronary artery stent or ami,0,9999
+519,8,Cervical spinal fusion w cc,0,9999
+520,8,Cervical spinal fusion w/o cc,0,9999
+521,20,Alcohol/drug abuse or dependence w cc,0,9999
+522,20,Alcohol/drug abuse or dependence w rehab therapy w/o cc,0,9999
+523,20,Alcohol/drug abuse or dependence w/o rehab therapy w/o cc,0,9999
+524,1,Transient ischemia,0,9999
+525,5,Heart assist system implant,0,9999
+526,5,Percutaneous cardiovascular proc w drug-eluting stent w ami,0,9999
+527,5,Percutaneous cardiovascular proc w drug-eluting stent w/o ami,0,9999
+528,1,Intracranial vascular procedures w pdx hemorrhage,0,9999
+529,1,Ventricular shunt procedures w cc,0,9999
+530,1,Ventricular shunt procedures w/o cc,0,9999
+531,1,Spinal procedures w cc,0,9999
+532,1,Spinal procedures w/o cc,0,9999
+533,1,Extracranial procedures w cc,0,9999
+534,1,Extracranial procedures w/o cc,0,9999
+535,5,Cardiac defib implant w cardiac cath w ami/hf/shock,0,9999
+536,5,Cardiac defib implant w cardiac cath w/o ami/hf/shock,0,9999
+537,8,Local excision & removal of int fix devices except hip & femur w cc,0,9999
+538,8,Local excision & removal of int fix devices except hip & femur w/o cc,0,9999
+539,17,Lymphoma & leukemia w major o.r. procedure w cc,0,9999
+540,17,Lymphoma & leukemia w major o.r. procedure w/o cc,0,9999
+541,77,"Trach w mv 96+ hrs or pdx exc face, mouth & neck diag w maj o.r.",0,9999
+542,77,"Trach w mv 96+ hrs or pdx exc face, mouth & neck diag w/o maj o.r.",0,9999
+543,1,Craniotomy w implant of chemo agent or acute complex cns pdx,0,9999
+544,8,Major joint replacement or reattachment of lower extremity,0,9999
+545,8,Revision of hip or knee replacement,0,9999
+546,8,Spinal fusion exc cerv with curvature of the spine or malig,0,9999
+547,5,Coronary bypass w cardiac cath w major cv dx,0,9999
+548,5,Coronary bypass w cardiac cath w/o major cv dx,0,9999
+549,5,Coronary bypass w/o cardiac cath w major cv dx,0,9999
+550,5,Coronary bypass w/o cardiac cath w/o major cv dx,0,9999
+551,5,Permanent cardiac pacemaker impl w maj cv dx or aicd lead or gnrtr,0,9999
+552,5,Other permanent cardiac pacemaker implant w/o major cv dx,0,9999
+553,5,Other vascular procedures w cc w major cv dx,0,9999
+554,5,Other vascular procedures w cc w/o major cv dx,0,9999
+555,5,Percutaneous cardiovascular proc w major cv dx,0,9999
+556,5,Percutaneous cardiovasc proc w non-drug-eluting stent w/o maj cv,0,9999
+557,5,Percutaneous cardiovascular proc w drug-eluting stent w major c,0,9999
+558,5,Percutaneous cardiovascular proc w drug-eluting stent w/o maj cv,0,9999
+559,1,Acute ischemic stroke with use of thrombolytic agent,0,9999
+560,1,Bacterial & tuberculous infections of nervous system,0,9999
+561,1,Non-bacterial infections of nervous system except viral meningitis,0,9999
+562,1,Seizure age >17 w cc,0,9999
+563,1,Seizure age >17 w/o cc,0,9999
+564,1,Headaches age >17,0,9999
+565,4,Respiratory system diagnosis with ventilator support 96+ hours,0,9999
+566,4,Respiratory system diagnosis with ventilator support <96 hours,0,9999
+567,6,"Stomach, esophageal & duodenal proc age >17 w cc w major gi dx",0,9999
+568,6,"Stomach, esophageal & duodenal proc age >17 w cc w/o major gi dx",0,9999
+569,6,Major small & large bowel procedures w cc w major gi dx,0,9999
+570,6,Major small & large bowel procedures w cc w/o major gi dx,0,9999
+571,6,Major esophageal disorders,0,9999
+572,6,Major gastrointestinal disorders and peritoneal infections,0,9999
+573,11,Major bladder procedures,0,9999
+574,16,Major hematologic/immunologic diag exc sickle cell crisis & coagul,0,9999
+575,18,Septicemia w mv 96+ hours age >17,0,9999
+576,18,Septicemia w/o mv 96+ hours age >17,0,9999
+577,1,Carotid artery stent procedure,0,9999
+578,18,Infectious & parasitic diseases w o.r. procedure,0,9999
+579,18,Postoperative or post-traumatic infections w o.r. procedure,0,9999

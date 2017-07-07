@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="Monahrq.DataSets.Physician.Views.PhysicianMappingView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:prism="clr-namespace:Microsoft.Practices.Prism.Regions;assembly=Microsoft.Practices.Prism"
+             xmlns:mapping="clr-namespace:Monahrq.Sdk.Regions;assembly=Monahrq.Infrastructure"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="900">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.Buttons.xaml"/>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.DataGrid.xaml"/>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/ModernTab.xaml"/>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/ModernFrame.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <TabControl SelectedIndex="{Binding CurrentTabIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TabControlStyleLeft}" >
+            <TabItem Header="Physicians" Style="{StaticResource TabItemStyleLeft}" DataContext="{Binding TabItems[0]}">
+                <Border BorderBrush="{StaticResource MBlue}" BorderThickness="0,1,0,0" Margin="-1,0,0,0" Padding="0,10">
+                    <ContentControl x:Name="PhysicianContainer" prism:RegionManager.RegionName="{x:Static mapping:RegionNames.PhysicianListView}"  />
+                </Border>
+            </TabItem>
+            <TabItem Header="Medical Practices" Style="{StaticResource TabItemStyleLeft}" DataContext="{Binding TabItems[1]}">
+                <Border BorderBrush="{StaticResource MBlue}" BorderThickness="0,1,0,0" Margin="-1,0,0,0" Padding="0,10">
+                    <ContentControl x:Name="MedicalPracticeContainer" prism:RegionManager.RegionName="{x:Static mapping:RegionNames.MedicalPracticesView}" />
+                </Border>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</UserControl>

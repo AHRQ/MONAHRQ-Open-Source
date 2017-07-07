@@ -1,0 +1,115 @@
+<div data-ng-if="showTable()" data-ng-switch="getReportType()" class="utilization-table col-xs-9">
+
+  <div data-ng-switch-when="default">
+    <div class="report-header" data-ng-bind-html="reportSettings.header"></div>
+    <div class="row clearfix hidden-print">
+      <div data-ng-if="!isMissingReport()" class="col-md-3">
+        <div data-ng-if="query.level.type == 'summary'" class="sort">
+          <label for="sortBy">Sort by:</label>
+          <select id="sortBy" data-ng-model="query.sortBy" data-ng-options="x.id as x.name for x in sortByOptions" class="form-control input-sm"></select>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div data-ng-if="showViewBy()" class="sort">
+          <label for="viewBy">View by:</label>
+          <select id="viewBy" data-ng-model="query.viewBy" data-ng-options="x.id as x.name for x in viewByOptions[query.groupBy.groupBy]" class="form-control input-sm view-selector"></select>
+        </div>
+      </div>
+
+      <div data-ng-if="!isMissingReport()" class="col-md-4">
+        <button data-copy-element=".page-header .col-md-12&#select-to-copy" data-clipboard-target="#copy-text-container" class="btn select-to-copy-btn md-top">Select Report to Copy<span class="glyphicon glyphicon-cloud-download"></span></button>
+        <div id="copy-text-container"></div>
+      </div>
+
+      <div data-ng-if="!isMissingReport()" class="col-md-2 legend-icon-wrapper"><h6 data-mh-help-icon data-mh-on-click="modalLegend()"></h6></div>
+    </div>
+
+    <div data-ng-if="isMissingReport()">
+      <p class="infobar bg-warning">Report data is not available for this search. Please try selecting a different dimension from View By, or changing the search criteria.</p>
+      <div data-ng-if="query.level.type == 'detail'"><strong><a href="#" data-ng-click="drillup(); $event.preventDefault();">Back to summary</a></strong></div>
+    </div>
+
+    <div id="select-to-copy" data-ng-if="!isMissingReport()">
+      <div class="row">
+        <div class="col-md-10 dynamic-caption"><span>{{tableTitle}}</span></div>
+        <div class="col-md-2 text-right dynamic-caption">{{reportingYear}}</div>
+      </div>
+      <div data-ng-if="query.level.type == 'detail'"><strong><a href="#" data-ng-click="drillup(); $event.preventDefault();">Back to summary</a></strong></div>
+      <div class="table-wrapper">
+        <table class="utilization-table utilization-table-hospital data select-to-copy">
+          <thead>
+          <tr>
+            <th data-ng-repeat="c in columns" class="{{c.class}}">{{c.title}}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr data-ng-if="query.level.type == 'summary' && (numOfYears > 1 || numOfQuarters > 1)" class="super-row">
+            <td data-ng-repeat="c in columns">
+              <a data-ng-if="c.name != 'ViewBy'" href="#" data-ng-click="onTrendingMeasureTable(c); $event.preventDefault();" class="btn-trends">View Trends</a>
+            </td>
+          </tr>
+          <tr class="super-row">
+            <td data-ng-repeat="c in columns" data-ng-switch on="c.name">
+          <span data-ng-switch-when="ViewBy">
+            <strong data-ng-if="query.groupBy.reportType == 'ed'">TOTAL U.S. in 2011</strong>
+            <strong data-ng-if="query.groupBy.reportType != 'ed'">TOTAL U.S. in {{reportingYear}}</strong>
+            <br />
+          </span>
+              <span data-ng-switch-default>{{getCell(c.name, nationalData)}}</span>
+            </td>
+          </tr>
+          <tr data-ng-if="query.level.type == 'summary'" class="super-row">
+            <td data-ng-repeat="c in columns" data-ng-switch on="c.name">
+              <span data-ng-switch-when="ViewBy">
+                <div><strong>ALL COMBINED</strong></div>
+                <a href="#" data-ng-click="drilldownCombined(); $event.preventDefault();">View combined report</a><br/>
+                <a href="#" data-ng-if="numOfYears > 1 || numOfQuarters > 1" data-ng-click="onTrendingTable(totalData, true); $event.preventDefault();" class="needs-space-top btn-trends">View Trends</a>
+              </span>
+              <span data-ng-switch-default>{{getCell(c.name, totalData)}}</span>
+            </td>
+          </tr>
+          </tbody>
+          <tbody data-ng-repeat="rowset in tableData">
+          <tr data-ng-if="rowset.group" class="super-row2">
+            <td data-ng-repeat="c in columns" data-ng-switch on="c.name">
+          <span data-ng-switch-when="ViewBy">
+            <b><span data-ng-if="query.level.type == 'summary'">{{rowset.group.title}}: </span>{{rowset.group.ViewBy}}</b>
+          </span>
+              <span data-ng-if="false" data-ng-switch-default>{{getCell(c.name, rowset.group)}}</span>
+            </td>
+          </tr>
+          <tr data-ng-if="showGroupRows(rowset)" data-ng-repeat="row in rowset.rows">
+            <td data-ng-repeat="c in columns" data-ng-switch on="c.name">
+          <span data-ng-switch-when="ViewBy" data-ng-switch on="query.level.type">
+            <span data-ng-switch-when="summary">
+              <a href="#" data-ng-click="drilldown(row); $event.preventDefault();">{{getCell(c.name, row)}}</a><br/>
+              <a href="#" data-ng-if="numOfYears > 1 || numOfQuarters > 1"  data-ng-click="onTrendingTable(row); $event.preventDefault();" class="needs-space-top btn-trends">View Trends</a>
+            </span>
+            <span data-ng-switch-when="detail">
+              <span>{{getCell(c.name, row)}}</span><br/>
+              <a href="#" data-ng-if="numOfYears > 1 || numOfQuarters > 1" data-ng-click="onTrendingTable(row); $event.preventDefault();" class="needs-space-top btn-trends">View Trends</a>
+            </span>
+          </span>
+              <span data-ng-switch-default>{{getCell(c.name, row)}}</span>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div  data-ng-if="!isMissingReport()" class="report-footer" data-ng-bind-html="reportSettings.footer"></div>
+    <!--<div class="footnotes">
+      <p data-ng-repeat="f in content.footnotes" class="footnote"><span class="marker">{{f.marker}}</span> <span data-ng-bind-html="f.body" class="note"></span></p>
+    </div>-->
+  </div>
+
+  <div data-ng-switch-when="trending">
+    <div data-ng-include="'app/products/professional/usage-data/views/table_trending_util.html'" data-ng-controller="UDTableTrendingUtilCtrl"></div>
+  </div>
+
+  <div data-ng-switch-when="trendingByMeasure">
+    <div data-ng-include="'app/products/professional/usage-data/views/table_trending_measure_util.html'" data-ng-controller="UDTableTrendingMeasureUtilCtrl"></div>
+  </div>
+</div>
+

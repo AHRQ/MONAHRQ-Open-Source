@@ -1,0 +1,19 @@
+<div data-ng-if="showQRSearch">
+  <div class="search-form" data-ui-view="qr-search"></div>
+</div>
+
+<div class="row page-content">
+  <div class="col-xs-6">
+    <h1>{{content.left.title}}</h1>
+    <div data-ng-bind-html="content.left.body"></div>
+  </div>
+  <div data-ng-if="ReportConfigSvc.webElementAvailable('Quality_ConditionTopic_Tab')" class="col-xs-6">
+    <h2>{{content.right.title}}</h2>
+    <div data-ng-bind-html="content.right.body"></div>
+    <ul class="list-group">
+      <li data-ng-repeat="topic in topics">
+        <a href="#" data-ng-click="gotoTopic(topic.TopicCategoryID); $event.preventDefault();">{{ topic.Name }}<span data-mh-help-icon="'&nbsp;'" data-mh-on-click="modalTopicCategory(topic.TopicCategoryID)"></span></a>
+      </li>
+    </ul>
+  </div>
+</div>

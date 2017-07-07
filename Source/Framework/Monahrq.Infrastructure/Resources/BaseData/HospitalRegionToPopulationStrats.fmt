@@ -1,0 +1,8 @@
+10.0
+6
+1  SQLCHAR  0  12  ","     2  RegionType       ""
+2  SQLCHAR  0  12  ","     3  RegionID         ""
+3  SQLCHAR  0  12  ","     4  CatID            ""
+4  SQLCHAR  0  12  ","     5  CatVal           ""
+5  SQLCHAR  0  12  ","     6  Year             ""
+6  SQLCHAR  0  12  "\r\n"  7  Population       ""

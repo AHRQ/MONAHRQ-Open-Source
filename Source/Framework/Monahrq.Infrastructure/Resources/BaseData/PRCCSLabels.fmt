@@ -1,0 +1,5 @@
+10.0
+3
+1  SQLCHAR  0  0  ","     2  PRCCSCategoryID      ""
+2  SQLCHAR  0  0  ","     3  PRCCSID              ""
+3  SQLCHAR  0  0  "\r\n"  4  PRCCSName            ""

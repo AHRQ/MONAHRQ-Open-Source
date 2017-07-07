@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ReportManifest RptId="64B545BF-D183-4F0D-8ABC-6643FF39F5DF"
+                Name="Nursing Home Infographic Report"
+                Category="Quality"
+				IsTrending="false"
+				ShowInterpretationText="true" ConsumerPreviewImage="Infographics.png"
+                PreviewImage="Infographics.png"
+                RequiresCostToChargeRatio="false">
+	<Audiences>
+		<Audience AudienceType="Consumers" />
+	</Audiences>
+	<Datasets>
+		<Dataset Name="Nursing Home Compare Data"/>
+	</Datasets>
+	<Filters>
+		<Filter Type="ActiveSections">
+			<Values>
+				<FilterValue Name="Quality Section" />
+				<FilterValue Name="Health Inspection Section" />
+			</Values>
+		</Filter>
+	</Filters>
+	<ReportAttributes />
+	<!--ReportColumns-->
+	<Columns>
+		<Column IsMeasure="true" MeasureCode="NH-HI-01" Name="Overall Deficiencies" />
+		<Column IsMeasure="true" MeasureCode="NH-HI-04" Name="How many health-related standards  nursing home failed to meet" />
+		<Column IsMeasure="true" MeasureCode="NH-HI-05" Name="How many fire safety standards nursing home failed to meet" />
+		<Column IsMeasure="true" MeasureCode="NH-QM-01" Name="Overall Quality" />
+	</Columns>
+	<InterpretationText />
+</ReportManifest>

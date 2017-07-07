@@ -1,0 +1,164 @@
+<main>
+  <header class="resource__header">
+    <div class="contain">
+      <h1>About This Site</h1>
+      <p>Information about the ratings and how to use this site.</p>
+    </div>
+  </header>
+
+  <section class="resource__content">
+    <div class="contain">
+      <nav class="resource__nav">
+        <ul>
+          <li><h3 class="resource__nav-title">Overview</h3></li>
+          <!--<a class="resource__nav-link" data-ng-click="setPage('resourceHowToUseSite'); $event.preventDefault();" data-ng-class="{active: activePage() === 'resourceHowToUseSite'}">How to Use This Site</a>-->
+
+          <li><button class="resource__nav-link" data-ng-click="setPage('resourceWhatIsHealthCareQuality'); $event.preventDefault();" data-ng-class="{active: activePage() === 'resourceWhatIsHealthCareQuality'}">
+            What is health care quality?
+            <span class="sr-hidden" data-ng-if="activePage() === 'resourceWhatIsHealthCareQuality'"> is active</span>
+          </button></li>
+          <li><button class="resource__nav-link" data-ng-click="setPage('resourceWhyLookHealthCareQuality'); $event.preventDefault();" data-ng-class="{active: activePage() === 'resourceWhyLookHealthCareQuality'}">
+            Why should I look at health care quality information?
+            <span class="sr-hidden" data-ng-if="activePage() === 'resourceWhyLookHealthCareQuality'"> is active</span>
+          </button></li>
+          <!-- <a class="resource__nav-link" data-ng-click="setPage('resourceHealthCareQualityHelpMe'); $event.preventDefault();" data-ng-class="{active: activePage() === 'resourceHealthCareQualityHelpMe'}">What can I do with information about health care quality? How can it help me?</a> -->
+          <li><button class="resource__nav-link" data-ng-click="setPage('resourceLearnMoreAboutQuality'); $event.preventDefault();" data-ng-class="{active: activePage() === 'resourceLearnMoreAboutQuality'}">
+            Where can I learn more about health care quality?
+            <span class="sr-hidden" data-ng-if="activePage() === 'resourceLearnMoreAboutQuality'"> is active</span>
+          </button></li>
+          <li><button class="resource__nav-link" data-ng-click="setPage('resourceAvoidingSafetyProblems'); $event.preventDefault();" data-ng-class="{active: activePage() === 'resourceAvoidingSafetyProblems'}">
+            Avoiding safety problems when you have surgery
+            <span class="sr-hidden" data-ng-if="activePage() === 'resourceAvoidingSafetyProblems'"> is active</span>
+          </button></li>
+        </ul>
+
+        <ul>
+          <li><h3 class="resource__nav-title">About the Ratings</h3></li>
+          <li><button data-ng-if="ConsumerReportConfigSvc.hasEntity('HOSPITAL')" class="resource__nav-link" data-ng-click="setPage('resourceHospitalQuality'); $event.preventDefault();" data-ng-class="{active: activePage() === 'resourceHospitalQuality'}">
+            Hospital Quality
+            <span class="sr-hidden" data-ng-if="activePage() === 'resourceHospitalQuality'"> is active</span>
+          </button></li>
+          <li><button data-ng-if="ConsumerReportConfigSvc.hasEntity('NURSINGHOME')" class="resource__nav-link" data-ng-click="setPage('resourceNursingHomeQuality'); $event.preventDefault();" data-ng-class="{active: activePage() === 'resourceNursingHomeQuality'}">
+            Nursing Home Quality
+            <span class="sr-hidden" data-ng-if="activePage() === 'resourceNursingHomeQuality'"> is active</span>
+          </button></li>
+          <li><button data-ng-if="ConsumerReportConfigSvc.hasEntity('PHYSICIAN')" class="resource__nav-link" data-ng-click="setPage('resourceFindAPhysician'); $event.preventDefault();" data-ng-class="{active: activePage() === 'resourceFindAPhysician'}">
+            Find a Doctor
+            <span class="sr-hidden" data-ng-if="activePage() === 'resourceFindAPhysician'"> is active</span>
+          </button></li>
+        </ul>
+      </nav>
+
+      <section class="resource__content-panel" tabindex="-1" data-ng-switch="activePage()">
+        <!-- OVERVIEW -->
+        <!--<div data-ng-switch-when="resourceHowToUseSite">
+          <div data-ng-include="'app/products/consumer/pages/views/resource-use-site.html'"></div>
+        </div>-->
+        <div data-ng-switch-when="resourceWhatIsHealthCareQuality">
+          <div data-ng-include="'app/products/consumer/pages/views/resource-what-is-health-care-quality.html'"></div>
+        </div>
+        <div data-ng-switch-when="resourceWhyLookHealthCareQuality">
+          <div data-ng-include="'app/products/consumer/pages/views/resource-why-look-health-care-quality.html'"></div>
+        </div>
+        <!-- <div data-ng-switch-when="resourceHealthCareQualityHelpMe">
+          <div data-ng-include="'app/products/consumer/pages/views/resource-health-care-quality-help-me.html'"></div>
+        </div> -->
+        <div data-ng-switch-when="resourceLearnMoreAboutQuality">
+          <div data-ng-include="'app/products/consumer/pages/views/resource-learn-more-about-quality.html'"></div>
+        </div>
+        <div data-ng-switch-when="resourceAvoidingSafetyProblems">
+          <div data-ng-include="'app/products/consumer/pages/views/resource-avoiding-safety-problems.html'"></div>
+        </div>
+
+
+        <!-- ABOUT THE RATINGS -->
+        <div data-ng-switch-when="resourceHospitalQuality">
+          <div data-ng-include="'app/products/consumer/pages/views/resource-hospital-quality.html'"></div>
+        </div>
+        <div data-ng-switch-when="resourceNursingHomeQuality">
+          <div data-ng-include="'app/products/consumer/pages/views/resource-nursing-home-quality.html'"></div>
+        </div>
+        <div data-ng-switch-when="resourceFindAPhysician">
+          <div data-ng-include="'app/products/consumer/pages/views/resource-find-a-physician.html'"></div>
+        </div>
+
+      </section>
+    </div>
+  </section>
+
+  <section class='about__get-started'>
+    <div class='contain'>
+      <h2>Get started using the site</h2>
+      <div class='get-started-block' data-ng-if="ConsumerReportConfigSvc.hasEntity('HOSPITAL')">
+        <img src='themes/consumer/assets/infographic/doctor-male.png' alt=''>
+        <h3>Compare Hospitals</h3>
+        <a ui-sref="top.consumer.hospitals.location">Get Started</a>
+      </div>
+      <div class='get-started-block' data-ng-if="ConsumerReportConfigSvc.hasEntity('NURSINGHOME')">
+        <img src='themes/consumer/assets/infographic/doctor-female.png' alt=''>
+        <h3>Compare Nursing Homes</h3>
+        <a ui-sref="top.consumer.nursing-homes.location">Get Started</a>
+      </div>
+      <div class='get-started-block' data-ng-if="ConsumerReportConfigSvc.hasEntity('PHYSICIAN')">
+        <img src='themes/consumer/assets/infographic/doctor-old.png' alt=''>
+        <h3>Find Doctors</h3>
+        <a ui-sref="top.consumer.physicians.search">Get Started</a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <header class="resource__header">
+      <div class="contain">
+        <h2>How To Use Our Quality Ratings</h2>
+      </div>
+    </header>
+
+    <section id="how-to-use--content" class="page" tabindex="-1">
+      <section id="howToUseThisSite" class="consumer-benefits">
+        <div class="contain">
+          <section class="consumer-benefits__use-cases">
+            <p class="use-case">Use our quality ratings to learn about a health care facility that you or someone you care about will go to for treatment.</p>
+            <p>
+
+              <a data-ng-if="ConsumerReportConfigSvc.hasEntity('HOSPITAL')" href="#" data-ui-sref="top.consumer.hospitals.profile">Find a hospital</a>
+              <span data-ng-if="ConsumerReportConfigSvc.hasEntities(['HOSPITAL', 'NURSINGHOME'])">or</span>
+              <a data-ng-if="ConsumerReportConfigSvc.hasEntity('NURSINGHOME')" href="#" data-ui-sref="top.consumer.nursing-homes.profile">find a nursing home</a>
+              by name.
+            </p>
+
+            <p class="use-case">Choose from a list of health care facilities in your area to see how they do and compare them. What does each one do well?  What could each one do better?</p>
+            <p>
+
+              <a data-ng-if="ConsumerReportConfigSvc.hasEntity('HOSPITAL')" href="#" data-ui-sref="top.consumer.hospitals.location">Find a hospital by location</a>
+              <span data-ng-if="ConsumerReportConfigSvc.hasEntities(['HOSPITAL', 'NURSINGHOME'])">or</span>
+              <a data-ng-if="ConsumerReportConfigSvc.hasEntity('NURSINGHOME')" href="#" data-ui-sref="top.consumer.nursing-homes.location">Find a nursing home by location</a>.
+            </p>
+
+            <div data-ng-if="ConsumerReportConfigSvc.hasEntity('HOSPITAL')">
+              <p class="use-case">Concerned about how well hospitals perform for different conditions, or on different topics? We have ratings on many different illnesses, procedures and other topics.</p>
+              <p><a href="#" data-ui-sref="top.consumer.hospitals.health-topics">Compare hospitals by a health topic </a> that you care about.</p>
+            </div>
+          </section>
+
+          <aside class="consumer-benefits__use-site">
+            <p class="use-site__title">Use the ratings on this site to:</p>
+            <ul>
+              <li>Choose a {{getEntityGroupTitle()}} where you want to get your care</li>
+              <li>Advise a family member or friend about what the ratings say</li>
+              <li>If you don’t have a choice of health care facility:
+                <ul>
+                  <li>Identify problems at the {{getEntityGroupTitle()}} you have to use</li>
+                  <li>Talk about these problems with your doctor to get their help</li>
+                  <li>Make sure a loved one visits you regularly; ask them to watch out for the problems that worry you</li>
+                </ul>
+              </li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+    </section>
+  </section>
+
+  <section id="condition-menu" tabindex="-1" data-mhc-hospital-topic-menu=""></section>
+</main>

@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F0D3E98F-6AA3-462C-A84A-8C9F95BEB722}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Monahrq.Wing.AhaCms</RootNamespace>
+    <AssemblyName>Monahrq.Wing.AhaCms</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AhaCmsTarget.cs" />
+    <Compile Include="Migrations.cs" />
+    <Compile Include="Target.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WizardSteps.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Microsoft\Prism_Library\Prism.MefExtensions\Prism.MefExtensions.csproj">
+      <Project>{6ed61550-8e7a-42c6-9b30-380c6f97ed55}</Project>
+      <Name>Prism.MefExtensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Microsoft\Prism_Library\Prism\Prism.csproj">
+      <Project>{77138947-1d13-4e22-aee0-5d0dd046ca34}</Project>
+      <Name>Prism</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Monahrq.DataSets\Monahrq.DataSets.csproj">
+      <Project>{ab509ef6-0c79-4cfe-914b-d3d71d5f7626}</Project>
+      <Name>Monahrq.DataSets</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Monahrq.Infrastructure.Entities\Monahrq.Infrastructure.Entities.csproj">
+      <Project>{06d766fe-499b-4c6f-85fa-190f4d72f0f5}</Project>
+      <Name>Monahrq.Infrastructure.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Monahrq.Infrastructure\Monahrq.Infrastructure.csproj">
+      <Project>{36f8dedc-eecc-48d2-b900-7c02c671ba1b}</Project>
+      <Name>Monahrq.Infrastructure %28Monahrq.Infrastructure\Monahrq.Infrastructure%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Monahrq.Sdk\Monahrq.Sdk.csproj">
+      <Project>{75ace9c7-d049-437b-bba8-7b8cdde19a13}</Project>
+      <Name>Monahrq.Sdk</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Monahrq.Theme\Monahrq.Theme.csproj">
+      <Project>{27ea8b7b-fcae-4264-a3cb-68de78b46675}</Project>
+      <Name>Monahrq.Theme</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

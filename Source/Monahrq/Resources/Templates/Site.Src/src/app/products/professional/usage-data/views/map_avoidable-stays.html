@@ -1,0 +1,29 @@
+<div id="map" role="tabpanel" aria-labeledby="map-tab" aria-hidden="false">
+<br/>
+
+<div class="row">
+  <div class="col-md-1 pull-right legend-icon-wrapper"><h6 data-mh-help-icon data-mh-on-click="modalLegend()"></h6></div>
+</div>
+
+<div class="map-legend" data-ng-if="!config.DE_IDENTIFICATION">
+  <ul class="list-unstyled clearfix">
+    <li data-ng-if="band.low != null" data-ng-repeat="band in getBands()">
+      <span class="legend-color {{band.styleClass}}">&nbsp;</span>
+      <span data-ng-if="band.id == -1">Not enough data</span>
+      <span data-ng-if="band.id >= 0">{{band.low}} - {{band.high}}</span>
+    </li>
+  </ul>
+  <p class="text-left">{{legend.scale.source}} per {{legend.scale.scaleBy | number}} {{legend.scale.label}}</p>
+</div>
+
+<div class="map large">
+    <div data-ng-if="!config.DE_IDENTIFICATION" data-ui-map="mapModel.myMap" data-ui-options="mapOptions" class="map-canvas"></div>
+    <div data-ng-if="config.DE_IDENTIFICATION" class="map-canvas">
+      <img src="themes/professional/assets/demo-map.png">
+    </div>
+  </div>
+</div>
+<p data-ng-if="config.DE_IDENTIFICATION" style="text-align:center">* For demonstration purposes, this is a static map based on fabricated data. A non-demonstration website will use an interactive map.</p>
+
+<div class="report-footer" data-ng-bind-html="reportSettings.footer"></div>
+</div>

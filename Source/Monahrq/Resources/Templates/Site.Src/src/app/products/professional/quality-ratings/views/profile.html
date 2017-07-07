@@ -1,0 +1,37 @@
+<div data-mh-cms-zone="'header'" data-mh-cms-zone-report-id="reportId" data-mh-cms-zone-product="'Professional'"></div>
+<div data-ui-view="qr-search-location" class="hidden-print"></div>
+
+<div class="page-header border">
+  <h1>Summary of Hospital Information: {{hospitalProfile.name}}</h1>
+</div>
+
+<div class="row">
+  <div class="col-xs-4">
+    <div data-ui-view="qr-profile-hospital"></div>
+  </div>
+
+  <div class="col-xs-8">
+    <div class="page-content">
+      <div class="navigation">
+        <ul class="nav nav-tabs">
+          <li data-ng-if="ReportConfigSvc.webElementAvailable('Quality_ConditionTopicExplore_Button')" data-ng-class="{active: isActiveTab('quality-ratings')}" role="tab" aria-controls="quality-ratings-tabpanel" id="quality-ratings-tab"><a href="#" data-ng-click="setActiveTab('quality-ratings'); $event.preventDefault()">Quality Ratings</a></li>
+          <li data-ng-if="ReportConfigSvc.qrProfileHasCCData()" data-ng-class="{active: isActiveTab('utilization')}" id="utilization-tab" aria-controls="utilization-tabpanel" role="tab" ><a href="#" data-ng-click="setActiveTab('utilization'); $event.preventDefault()">Utilization</a></li>
+          <li data-ng-if="ReportConfigSvc.webElementAvailable('Physician_Tab')" data-ng-class="{active: isActiveTab('physicians')}" id="physicians-tab" aria-controls="physicians-tabpanel" role="tab" ><a href="#" data-ng-click="setActiveTab('physicians'); $event.preventDefault()">Clinicians with Admitting Privileges</a></li>
+        </ul>
+      </div>
+    </div>
+    <div data-ng-if="ReportConfigSvc.webElementAvailable('Quality_ConditionTopicExplore_Button')" data-ng-show="isActiveTab('quality-ratings')">
+      <div data-ng-if="ReportConfigSvc.qrProfileHasPE()" data-ui-view="qr-profile-patient-experience"></div>
+      <div data-ui-view="qr-profile-ratings"></div>
+    </div>
+    <div data-ng-if="ReportConfigSvc.qrProfileHasCCData()" data-ng-show="isActiveTab('utilization')">
+      <div data-ui-view="qr-profile-utilization"></div>
+    </div>
+    <div data-ng-if="ReportConfigSvc.webElementAvailable('Physician_Tab')" data-ng-show="isActiveTab('physicians')">
+      <div data-ui-view="qr-profile-physicians"></div>
+    </div>
+
+    <div class="report-footer" data-ng-bind-html="reportSettings.footer"></div>
+  </div>
+</div>
+<div data-mh-cms-zone="'footer'" data-mh-cms-zone-report-id="reportId" data-mh-cms-zone-product="'Professional'"></div>

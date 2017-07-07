@@ -1,0 +1,169 @@
+<div data-ng-if="haveSearched" class="row page-header" id="table-condition-header">
+  <div class="col-md-12">
+    <h1 data-mh-help-icon="getTopicCategoryName()" data-mh-on-click="modalTopicCategory(query.topic)" data-mh-is-visible="hasTopicHelp()"></h1>
+    <h2 data-mh-help-icon="getTopicName()" data-mh-on-click="modalTopic(query.subtopic)" data-mh-is-visible="hasSubtopicHelp()"></h2>
+    <br/>
+  </div>
+</div>
+
+<div data-ng-if="!haveSearched" class="main-initial">
+  <h1>{{content.main.title}}</h1>
+  <div data-ng-bind-html="content.main.body"></div>
+</div>
+
+  <div data-ng-if="haveSearched" class="main-table">
+    <div class="col-md-12 filters hidden-print">
+      <div class="row qr-sort-by-filter">
+        <div class="col-md-2">
+          <label for="ddSortBy">Sort by:</label>
+          <select class="form-control" id="ddSortBy" data-ng-model="query.sortBy">
+            <option data-ng-repeat="x in sortOptions" value="{{x.id}}">{{x.name}}</option>
+          </select>
+        </div>
+        <div class="col-md-2" data-ng-if="!showRawData()">
+          <label for="ddCompareTo" data-mh-help-icon="'Compared To:'" data-mh-on-click="modalQR('UIHELP_COMPARE')" class="md-blockfix"></label>
+          <select class="form-control" id="ddCompareTo" data-ng-model="query.comparedTo" data-ng-change="updateCompare()">
+            <option value="nat">National Average</option>
+            <option value="peer">{{config.website_GeographicDescription}} Average</option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <label for="ddDisplayType">Display Type:</label>
+          <select id="ddDisplayType" class="form-control display-type-toggle" data-ng-model="query.displayType" data-ng-change="displayTypeChanged()">
+            <option data-ng-if="ReportConfigSvc.webElementAvailable('Quality_Cond_Display_Symbols_Dropdown')" value="symbols">Symbols</option>
+            <option data-ng-if="ReportConfigSvc.webElementAvailable('Quality_Cond_Display_SymbolsAndRAR_Dropdown')" value="symbols_rar">Symbols &amp; Details</option>
+            <option data-ng-if="ReportConfigSvc.webElementAvailable('Quality_Cond_Display_BarChart_Dropdown')" value="bar_charts">Bar Charts</option>
+            <option data-ng-if="ReportConfigSvc.webElementAvailable('Quality_Cond_Display_RawData_Dropdown')" value="raw_data">Raw Data</option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <button data-copy-element=".page-header .col-md-12&#table-wrapper"  data-clipboard-target="#copy-text-container" class="btn select-to-copy-btn md-top">Select Report to Copy <span class="glyphicon glyphicon-cloud-download"></span></button>
+          <div id="copy-text-container"></div>
+        </div>
+        <div class="col-md-2 text-right"><h6 data-mh-help-icon data-mh-on-click="modalLegend(query.displayType)"></h6></div>
+      </div>
+
+      <div class="row qr-sort-by-filter" data-ng-if="showRawData()">
+        <div class="col-md-8">
+          <label id="qr-raw-data-label" data-mh-help-icon="'Viewing Raw Data for:'" data-mh-on-click="modalMeasure(query.measure)" class="md-blockfix"></label>
+          <select class="form-control" data-ng-model="query.measure" data-ng-options="c.MeasureID as c.SelectedTitle for c in columnsPrimary">
+          </select>
+        </div>
+        <div class="col-md-4">&nbsp;</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!--<div data-ng-if="haveSearched">
+    <div data-ng-hide="showRawData()" data-mh-top-scroll="'#table-wrapper'" class="col-md-12 table-wrapper-prefix" id="table-wrapper-prefix"></div>
+  </div>-->
+  <div data-ng-if="haveSearched" class="col-md-12 table-wrapper condition" id="table-wrapper">
+    <table id="condition-data-table" data-ng-if="!showRawData()" class="data" data-compare-size="{{columnsPrimary.length + 2}}" mh-sticky-table-header="columnsPrimary">
+      <thead>
+      <tr>
+        <th data-ng-if="showCompare()" class="compare">Select hospitals to compare <span style="display: inline-block;" class="compare-action" aria-hidden="true" data-ng-mouseover="$event.preventDefault(); showCompareHelpModal();"><button data-ng-click="compareHospitals()" data-ng-class="{disabled: !canCompare()}" class="compare-btn btn btn-default btn-xs">Compare</button></span></th>
+        <th scope="row" class="entity">Hospital Name</th>
+        <th data-ng-repeat="c in columnsPrimary">
+          <button class="btn btn-link btn-column" data-ng-click="modalMeasure(c.MeasureID)">{{c.SelectedTitle}}</button>
+        </th>
+      </tr>
+      </thead>
+      <tbody data-ng-if="showChart() || showRAR()">
+        <tr class="super-row" data-ng-if="showRatingMeasures('mean')">
+          <td colspan="{{getColspan()}}"></td>
+          <td data-ng-repeat="c in columnsPrimary">
+            <div><strong>{{c[ratingHeadingLabelFor('mean')]}}</strong><br/>
+              <span data-ng-if="c[ratingHeadingValueFor('mean')] != -1">{{c[ratingHeadingValueFor('mean')]}}</span>
+              <span data-ng-if="c[ratingHeadingValueFor('mean')] == -1">&nbsp;</span>
+            </div>
+          </td>
+        </tr>
+        <tr class="super-row" data-ng-if="showRatingMeasures('top10')">
+          <td colspan="{{getColspan()}}"></td>
+          <td data-ng-repeat="c in columnsPrimary">
+            <div><strong>{{c[ratingHeadingLabelFor('top10')]}}</strong><br/>
+              <span data-ng-if="c[ratingHeadingValueFor('top10')] != -1">{{c[ratingHeadingValueFor('top10')]}}</span>
+              <span data-ng-if="c[ratingHeadingValueFor('top10')] == -1">&nbsp;</span>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+      <tbody data-ng-if="showChart()">
+        <tr class="super-row">
+          <td colspan="{{getColspan()}}"></td>
+          <td data-ng-repeat="c in columnsPrimary">
+            <div class="bar-chart-arrow-wrapper" data-ng-if="showCompareLegend(c)" data-mh-compare-direction data-higher-scores-are-better="c.HigherScoresAreBetter" />
+          </td>
+        </tr>
+      </tbody>
+      <tbody>
+        <tr data-ng-repeat="row in modelPrimary">
+          <td data-ng-if="showCompare()" class="compare"><input data-ng-click="toggleHospitalCompare(row.HospitalID)" title="Add to Compare" aria-label="Add {{row.Name}} to the list of hospitals to compare" type="checkbox"></td>
+          <th class="entity"><a data-ui-sref="top.professional.quality-ratings.profile({id:row.HospitalID})">{{ row.Name }}</a></th>
+          <td data-ng-repeat="c in columnsPrimary">
+            <div data-mh-rating-symbol="row[c.MeasureID].NatRating" data-ng-if="showSymbol(row[c.MeasureID]) && !showPeer()"></div>
+            <div data-mh-rating-symbol="row[c.MeasureID].PeerRating" data-ng-if="showSymbol(row[c.MeasureID]) && showPeer()"></div>
+            <div data-ng-if="showRAR(row[c.MeasureID])" class="rating-rar">
+              <span data-ng-if="row[c.MeasureID].RateAndCI != '-'">{{row[c.MeasureID].RateAndCI}}</span>
+              <span data-ng-if="row[c.MeasureID].RateAndCI == '-' && !showSymbol(row[c.MeasureID])">Not enough data<br>to report</span>
+            </div>
+            <div data-bar-chart="row[c.MeasureID][compareFilledField]" label="row[c.MeasureID].RateAndCI" data-average="row[c.MeasureID][compareRatingField]" data-ng-if="showChart()"></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+
+    <table id="condition-data-table" data-ng-if="showRawData()" class="data" mh-sticky-table-header="columnsRawData">
+      <thead>
+       <tr>
+        <th data-ng-if="showCompare()" class="compare" rowspan="3">Select hospitals to compare <span class="compare-action" aria-hidden="true"><button data-ng-click="compareHospitals()" data-ng-class="{disabled: !canCompare()}" class="compare-btn btn btn-default btn-xs">Compare</button></span></th>
+        <th class="entity">Hospital Name</th>
+        <th data-ng-repeat="c in columnsRawData" data-ng-bind-html="c.name"></th>
+      </tr>
+      </thead>
+      <tbody>
+        <tr data-ng-if="showRatingRaw('nat')" class="super-row">
+          <td data-ng-if="showCompare()"></td>
+          <td>
+            <strong>{{rawMeasure['NatLabel']}}</strong><br/>
+            <strong>{{rawMeasure['NatTop10Label']}}</strong>
+          </td>
+          <td data-ng-repeat="c in columnsRawData">
+            <span>{{c.natRating ? c.natRating : '&nbsp;'}}</span><br/>
+            <span>{{c.natTop10Rating ? c.natTop10Rating : '&nbsp;'}}</span>
+          </td>
+        </tr>
+        <tr data-ng-if="showRatingRaw('peer')" class="super-row">
+          <td data-ng-if="showCompare()"></td>
+          <td>
+            <strong>{{rawMeasure['PeerLabel']}}</strong><br/>
+            <strong>{{rawMeasure['PeerTop10Label']}}</strong>
+          </td>
+          <td data-ng-repeat="c in columnsRawData">
+            <span>{{c.peerRating ? c.peerRating : '&nbsp;'}}</span><br/>
+            <span>{{c.peerTop10Rating ? c.peerTop10Rating : '&nbsp;'}}</span>
+          </td>
+        </tr>
+
+        <tr data-ng-repeat="row in modelRawData">
+          <td data-ng-if="showCompare()" class="compare"><input data-ng-click="toggleHospitalCompare(row.HospitalID)" title="Add to Compare" type="checkbox"></td>
+          <th scope="row" class="entity"><a ui-sref="top.professional.quality-ratings.profile({id:row.HospitalID})">{{ row.Name }}</a></th>
+          <td data-ng-repeat="c in columnsRawData">{{getCell(c.id, row)}}</td>
+       </tr>
+      </tbody>
+    </table>
+
+    <div class="report-footer" data-ng-bind-html="reportSettings.footer"></div>
+    <!--<div class="footnotes">
+      <p data-ng-repeat="f in content.footnotes" class="footnote"><span class="marker">{{f.marker}}</span><span data-ng-bind-html="f.body" class="note"></span></p>
+    </div>
+
+    <div class="footnotes" data-ng-switch on="query.displayType">
+      <p data-ng-switch-when="bar_charts"><span class="marker"></span><span class="note">Figures presented are per 1000 cases</span></p>
+      <p data-ng-switch-when="raw_data"><span class="marker"></span><span class="note">(-)Indicates there are not enough data for this hospital</span></p>
+    </div>-->
+
+    <div data-ng-if="showCompare()" class="compare-action"><button data-ng-if="!showRawData()" data-ng-click="compareHospitals()" data-ng-class="{disabled: !canCompare()}" class="compare-btn btn btn-default btn-xs skip">Compare</button></div>
+</div>

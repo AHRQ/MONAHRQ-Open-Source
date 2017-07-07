@@ -1,0 +1,699 @@
+﻿<UserControl x:Class="Monahrq.DataSets.Physician.Views.PhysicianDetailView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:mtx="http://schemas.monahrq.com/theme/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:viewModel="clr-namespace:Monahrq.DataSets.Physician.ViewModels"
+             xmlns:localControl="clr-namespace:Monahrq.DataSets.Physician.Views"
+             xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             xmlns:converters1="clr-namespace:Monahrq.Theme.Converters;assembly=Monahrq.Theme"
+             mc:Ignorable="d" d:DataContext="{d:DesignInstance viewModel:PhysicianDetailViewModel}"
+             d:DesignHeight="800" d:DesignWidth="1200">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.Buttons.xaml"/>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.DataGrid.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <converters1:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+            <localControl:ErrorMessageVisibilityConverter x:Key="ErrorMessageVisibilityConverter" />
+            <sys:Boolean x:Key="BoolTrue">True</sys:Boolean>
+            <sys:Boolean x:Key="BoolFalse">False</sys:Boolean>
+            <DataTemplate x:Key="DataTemplateMedicalPractice">
+                <Border Margin="0,0,0,5" BorderThickness="1,.5,1,.5" BorderBrush="{StaticResource MGrey3}"
+                        Background="{StaticResource MGrey2}" CornerRadius="0,0,7,7">
+                    <Border.Effect>
+                        <DropShadowEffect />
+                    </Border.Effect>
+                    <Grid Background="{StaticResource MGrey2}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="400"/>
+                            <ColumnDefinition Width="60" />
+                            <ColumnDefinition Width="700"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Column="0" Grid.Row="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0">
+                                <TextBlock Foreground="{StaticResource MGrey5}" Margin="5,5,2,5" Text="Organization Legal Name" />
+                                <TextBox Margin="5,5,2,5" Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="0">
+                                <TextBlock Foreground="{StaticResource MGrey5}"  Margin="5,5,2,5" Text="Group Practice Pac ID" />
+                                <TextBox Margin="5,5,2,5" Text="{Binding GroupPracticePacId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="0">
+                                <TextBlock  Foreground="{StaticResource MGrey5}" Margin="5,5,2,5" Text="# of Group Practice Members"/>
+                                <TextBox Margin="5,5,2,5" Text="{Binding NumberofGroupPracticeMembers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                            </StackPanel>
+                        </Grid>
+
+                        <DataGrid Margin="0,10,0,0" Height="150" Grid.Row="0" Grid.Column="2" BorderBrush="{StaticResource MGrey2}" HorizontalGridLinesBrush="{StaticResource MGrey2}" 
+                                  VerticalGridLinesBrush="{StaticResource MGrey2}" Foreground="{StaticResource MGrey5}" IsSynchronizedWithCurrentItem="True"
+                                  Background="{StaticResource White}" AutoGenerateColumns="False" SelectionUnit="FullRow" CanUserAddRows="False"
+                                  ColumnHeaderHeight="40" CanUserResizeRows="False" HeadersVisibility="Column" AlternationCount="2"  CanUserDeleteRows="False" 
+                                  ItemsSource="{Binding Addresses, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn Header="" CanUserSort="False">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button VerticalAlignment="Top"  Margin="0,5,0,5" CommandParameter="{Binding}" Style="{StaticResource EditButton}"
+                                                            Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=DataContext.EditAddress}"  >
+                                                <Button.ToolTip>
+                                                    <TextBlock Text="Edit" />
+                                                </Button.ToolTip>
+                                            </Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Header="" CanUserSort="False">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button VerticalAlignment="Top"  Margin="0,5,0,5" CommandParameter="{Binding}" Style="{StaticResource DeleteButton}"
+                                                                        Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=DataContext.RemoveAddress}"  >
+                                                <Button.ToolTip>
+                                                    <TextBlock Text="Edit" />
+                                                </Button.ToolTip>
+                                            </Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Header="Street" Width="150" CanUserSort="True" SortMemberPath="Line1">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Foreground="{StaticResource MGrey5}" Text="{Binding Line1}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Header="City" Width="150" CanUserSort="True" SortMemberPath="City">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Foreground="{StaticResource MGrey5}" Text="{Binding City}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Header="State" Width="100" CanUserSort="True" SortMemberPath="State">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Foreground="{StaticResource MGrey5}" Text="{Binding State}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Header="Zip Code" Width="150" CanUserSort="True" SortMemberPath="ZipCode">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Foreground="{StaticResource MGrey5}" Text="{Binding ZipCode}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                        <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10">
+                            <Button Content="DELETE" HorizontalAlignment="Right" Style="{StaticResource PlainButton}" CommandParameter="{Binding }" Margin="10,5" Width="100"
+                                    Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=DataContext.RemoveMedicalPractice}"
+                                    IsEnabled="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ListBoxItem}, Path=IsSelected}"/>
+
+                            <Button Content="ADD ADDRESS" HorizontalAlignment="Right" Style="{StaticResource PlainButton}" CommandParameter="{Binding }" Margin="10,5" Width="100"
+                                    Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=DataContext.AddNewAdress}"
+                                    IsEnabled="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ListBoxItem}, Path=IsSelected}"/>
+
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </DataTemplate>
+            <Style x:Key="NoRecordFound" TargetType="{x:Type TextBlock}">
+                <Setter Property="Margin" Value="0,40,0,0" />
+                <Setter Property="Padding" Value="0,0,0,30" />
+                <Setter Property="HorizontalAlignment" Value="Center" />
+                <Setter Property="FontWeight" Value="SemiBold" />
+                <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                <Setter Property="FontSize" Value="13" />
+                <Setter Property="Foreground" Value="Black" />
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Visibility" Value="Collapsed"/>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Count}" Value="0">
+                        <Setter Property="Visibility" Value="Visible"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Count}" Value="{x:Null}">
+                        <Setter Property="Visibility" Value="Visible"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid x:Name="grid_Header" Grid.Row="2"  Style="{DynamicResource RootContentGrid}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="90" x:Name="Header"/>
+                <RowDefinition Height="50" x:Name="MeasureTitle"/>
+                <RowDefinition Height="*"  x:Name="Tabs"/>
+                <RowDefinition Height="50" x:Name="Footer"/>
+            </Grid.RowDefinitions>
+
+            <!--HEADER -->
+            <StackPanel HorizontalAlignment="Left" Margin="0" Orientation="Vertical" VerticalAlignment="Center" >
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Physician" Style="{StaticResource Header1}" VerticalAlignment="Center" />
+                </StackPanel>
+                <TextBlock Text="{Binding ViewLabel}"  Style="{StaticResource Subtopic}"  />
+            </StackPanel>
+
+            <Viewbox Grid.Row="1" Margin="0,0,400,0" Stretch="Fill" HorizontalAlignment="Left" StretchDirection="DownOnly">
+                <TextBlock Margin="0" Style="{DynamicResource Header3}" VerticalAlignment="Stretch" HorizontalAlignment="Left" TextWrapping="Wrap">
+                        <Run Text="{Binding Model.Name}"></Run>
+                </TextBlock>
+            </Viewbox>
+
+            <!--ATTRIBUTES -->
+            <Border Margin="0,-50,0,0" Background="{StaticResource MGrey2}" Padding="20,10" Grid.Row="2">
+                <DockPanel VerticalAlignment="Stretch">
+					<TextBlock  Grid.Column="2" Grid.Row="3" Text="* Must click the Save button to store the modifications" Foreground="Red" HorizontalAlignment="Right" Margin="0,0,0,-25" DockPanel.Dock="Top" />
+					<TabControl Background="{StaticResource MGrey2}" Style="{DynamicResource TabControlStyleLeft}" 
+								SelectedIndex="{Binding SelectedTabIndex}" DockPanel.Dock="Top" >
+						<TabItem Header="Physician Information" Style="{StaticResource TabItemStyleLeft}" x:Name="TabItemPhysicianInformation">
+							<Border BorderBrush="{StaticResource MBlue}" BorderThickness="0,1,0,0" Margin="-1,0,0,0">
+								<Grid ScrollViewer.VerticalScrollBarVisibility="Auto">
+									<Border BorderBrush="{StaticResource MBlue}" BorderThickness="0,1">
+										<Grid Margin="0,10,0,0"  >
+											<Grid.ColumnDefinitions>
+												<ColumnDefinition Width="*"/>
+												<ColumnDefinition Width="40" />
+												<ColumnDefinition Width="*"/>
+											</Grid.ColumnDefinitions>
+											<Grid.RowDefinitions>
+												<RowDefinition Height="Auto" />
+												<RowDefinition Height="*"/>
+												<RowDefinition Height="Auto" />
+												<RowDefinition Height="Auto" />
+											</Grid.RowDefinitions>
+											<StackPanel Grid.Row="0"  Grid.Column="0">
+												<TextBlock Text="PHYSICIAN IDENTIFICATION" Style="{StaticResource Subtopic}" Foreground="{StaticResource MGrey5}" />
+												<Rectangle Height="1" Margin="0,2,10,5" Fill="{DynamicResource MGrey3}" />
+											</StackPanel>
+											<StackPanel Grid.Row="0" Grid.Column="2">
+												<TextBlock Text="MEDICAL CREDENTIALS" Style="{StaticResource Subtopic}" Foreground="{StaticResource MGrey5}" />
+												<Rectangle Height="1" Margin="0,2,10,5" Fill="{DynamicResource MGrey3}" />
+											</StackPanel>
+
+											<Border Width="1" BorderThickness="1" Height="auto" Grid.Row="1" Margin="5" Grid.Column="1" BorderBrush="{StaticResource MGrey3}" />
+
+											<!-- Physician Identification -->
+											<Grid Grid.Column="0" Grid.Row="1">
+												<Grid.ColumnDefinitions>
+													<ColumnDefinition Width="Auto" />
+													<ColumnDefinition Width="*"/>
+												</Grid.ColumnDefinitions>
+												<Grid.RowDefinitions>
+													<RowDefinition Height="Auto"/>
+													<RowDefinition Height="Auto"/>
+													<RowDefinition Height="Auto"/>
+													<RowDefinition Height="Auto"/>
+													<RowDefinition Height="Auto"/>
+													<RowDefinition Height="Auto"/>
+													<RowDefinition Height="Auto"/>
+													<RowDefinition Height="Auto"/>
+													<RowDefinition Height="Auto"/>
+													<RowDefinition Height="Auto"/>
+												</Grid.RowDefinitions>
+
+												<TextBlock Foreground="{StaticResource MGrey5}" Grid.Row="0" Grid.Column="0" Margin="5,5,2,5" Text="Last Name" />
+												<TextBlock Foreground="{StaticResource MGrey5}" Grid.Row="1" Grid.Column="0" Margin="5,5,2,5" Text="First Name" />
+												<TextBlock Foreground="{StaticResource MGrey5}" Grid.Row="2" Grid.Column="0" Margin="5,5,2,5" Text="Middle Name" />
+												<TextBlock Foreground="{StaticResource MGrey5}" Grid.Row="3" Grid.Column="0" Margin="5,5,2,5" Text="Suffix" />
+												<TextBlock Foreground="{StaticResource MGrey5}" Grid.Row="4" Grid.Column="0" Margin="5,5,2,5" Text="NPI" />
+												<TextBlock Foreground="{StaticResource MGrey5}" Grid.Row="5" Grid.Column="0" Margin="5,5,2,5" Text="Professional Enrollment ID" />
+												<TextBlock Foreground="{StaticResource MGrey5}" Grid.Row="6" Grid.Column="0" Margin="5,5,2,5" Text="PAC ID" />
+												<TextBlock Foreground="{StaticResource MGrey5}" Grid.Row="7" Grid.Column="0" Margin="5,5,2,5" Text="Gender" />
+												<TextBlock Foreground="{StaticResource MGrey5}" Grid.Row="8" Grid.Column="0" Margin="5,5,2,5" Text="Foreign Language" />
+
+												<TextBox Grid.Row="0" Grid.Column="1" Margin="5,5,2,5" Text="{Binding Model.LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+												<TextBox Grid.Row="1" Grid.Column="1" Margin="5,5,2,5" Text="{Binding Model.FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+												<TextBox Grid.Row="2" Grid.Column="1" Margin="5,5,2,5" Text="{Binding Model.MiddleName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+												<TextBox Grid.Row="3" Grid.Column="1" Margin="5,5,2,5" Text="{Binding Model.Suffix, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+												<TextBox Grid.Row="4" Grid.Column="1" Margin="5,5,2,5" Text="{Binding Model.Npi, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, TargetNullValue='', FallbackValue=''}"/>
+												<TextBox Grid.Row="5" Grid.Column="1" Margin="5,5,2,5" Text="{Binding Model.ProfEnrollId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+												<TextBox Grid.Row="6" Grid.Column="1" Margin="5,5,2,5" Text="{Binding Model.PacId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+												<ComboBox Grid.Row="7" Grid.Column="1" Margin="5,5,2,5" ItemsSource="{Binding GenderList}" 
+                                                SelectedValue="{Binding SelectedGender, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+												<TextBox Grid.Row="8" Grid.Column="1" Margin="5,5,2,5" controls:TextboxHelper.Watermark="Enter comma separated list of languages" 
+                                                Text="{Binding Languages, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+											</Grid>
+
+											<!-- Medical Credentials -->
+											<ScrollViewer Grid.Column="2" Grid.Row="1" Padding="2,0,0,0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+												<Grid ScrollViewer.VerticalScrollBarVisibility="Auto">
+													<Grid.ColumnDefinitions>
+														<ColumnDefinition Width="Auto" />
+														<ColumnDefinition Width="*"/>
+													</Grid.ColumnDefinitions>
+													<Grid.RowDefinitions>
+														<RowDefinition Height="Auto"/>
+														<RowDefinition Height="Auto"/>
+														<RowDefinition Height="Auto"/>
+														<RowDefinition Height="Auto"/>
+														<RowDefinition Height="Auto"/>
+														<RowDefinition Height="Auto"/>
+														<RowDefinition Height="Auto"/>
+														<RowDefinition Height="Auto"/>
+														<RowDefinition Height="Auto"/>
+														<RowDefinition Height="Auto"/>
+														<RowDefinition Height="Auto"/>
+														<RowDefinition Height="Auto"/>
+													</Grid.RowDefinitions>
+
+													<TextBlock Foreground="{StaticResource MGrey5}" Grid.Row="0" Grid.Column="0" Margin="5,5,2,5" Text="Credential" />
+													<TextBlock Foreground="{StaticResource MGrey5}" Grid.Row="1" Grid.Column="0" Margin="5,5,2,5" Text="Medical school" />
+													<TextBlock Foreground="{StaticResource MGrey5}" Grid.Row="2" Grid.Column="0" Margin="5,5,2,5" Text="Graduation  Year" />
+													<TextBlock Foreground="{StaticResource MGrey5}" Grid.Row="3" Grid.Column="0" Margin="5,5,2,5" Text="Primary Specialty" />
+													<TextBlock Foreground="{StaticResource MGrey5}" Grid.Row="4" Grid.Column="0" Margin="5,5,2,5" Text="Secondary Specialty 1" />
+													<TextBlock Foreground="{StaticResource MGrey5}" Grid.Row="5" Grid.Column="0" Margin="5,5,2,5" Text="Secondary Specialty 2" />
+													<TextBlock Foreground="{StaticResource MGrey5}" Grid.Row="6" Grid.Column="0" Margin="5,5,2,5" Text="Secondary Specialty 3" />
+													<TextBlock Foreground="{StaticResource MGrey5}" Grid.Row="7" Grid.Column="0" Margin="5,5,2,5" Text="Secondary Specialty 4" />
+													<CheckBox  Foreground="{StaticResource MGrey5}" Grid.Row="8" Grid.Column="0" Margin="5,5,2,5" Content="Council Board Certification" IsThreeState="False" 
+																IsChecked="{Binding Model.CouncilBoardCertification, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+
+													<StackPanel Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,25,0,0">
+														<TextBlock Text="MEDICARE ASSIGNMENT/ PARTICIPATION" Style="{StaticResource Subtopic}" Foreground="{StaticResource MGrey5}" />
+														<Rectangle Height="1" Margin="0,2,10,5" Fill="{DynamicResource MGrey3}" />
+													</StackPanel>
+													<TextBox Grid.Row="0" Grid.Column="1" Margin="5,5,2,5" Text="{Binding Model.Credentials, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+													<TextBox Grid.Row="1" Grid.Column="1" Margin="5,5,2,5" Text="{Binding Model.MedicalSchoolName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+													<TextBox Grid.Row="2" Grid.Column="1" Margin="5,5,2,5" Text="{Binding Model.GraduationYear, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, TargetNullValue=''}"/>
+
+													<ComboBox Grid.Row="3" Grid.Column="1" Margin="5,5,2,5" ItemsSource="{Binding SpecialtyList}" SelectedValue="{Binding  Model.PrimarySpecialty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+													<ComboBox Grid.Row="4" Grid.Column="1" Margin="5,5,2,5" ItemsSource="{Binding SpecialtyList}" SelectedValue="{Binding  Model.SecondarySpecialty1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+													<ComboBox Grid.Row="5" Grid.Column="1" Margin="5,5,2,5" ItemsSource="{Binding SpecialtyList}" SelectedValue="{Binding  Model.SecondarySpecialty2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+													<ComboBox Grid.Row="6" Grid.Column="1" Margin="5,5,2,5" ItemsSource="{Binding SpecialtyList}" SelectedValue="{Binding  Model.SecondarySpecialty3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+													<ComboBox Grid.Row="7" Grid.Column="1" Margin="5,5,2,5" ItemsSource="{Binding SpecialtyList}" SelectedValue="{Binding  Model.SecondarySpecialty4, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+
+													<!--
+																	<TextBox Grid.Row="3" Grid.Column="1" Margin="5,5,2,5" Text="{Binding Model.PrimarySpecialty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+																	<TextBox Grid.Row="4" Grid.Column="1" Margin="5,5,2,5" Text="{Binding Model.SecondarySpecialty1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+																	<TextBox Grid.Row="5" Grid.Column="1" Margin="5,5,2,5" Text="{Binding Model.SecondarySpecialty2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+																	<TextBox Grid.Row="6" Grid.Column="1" Margin="5,5,2,5" Text="{Binding Model.SecondarySpecialty3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+																	<TextBox Grid.Row="7" Grid.Column="1" Margin="5,5,2,5" Text="{Binding Model.SecondarySpecialty4, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+																	-->
+
+													<!-- 
+																	<StackPanel Grid.Row="10" Grid.Column="0" Orientation="Horizontal">
+																		<TextBlock Margin="5,5,2,5" Text="Physician accepts Medicare Assignment" VerticalAlignment="Top" />
+																		<StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
+																			<ListBox ItemsSource="{Binding MedicalAssignementList}" SelectionMode="Single" IsSynchronizedWithCurrentItem="True"
+																					SelectedValue="{Binding SelectedMedicalAssignement, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+																				<ListBox.ItemContainerStyle>
+																					<Style TargetType="{x:Type ListBoxItem}">
+																						<Setter Property="Margin" Value="0,2,0,0" />
+																						<Setter Property="Template">
+																							<Setter.Value>
+																								<ControlTemplate TargetType="{x:Type ListBoxItem}">
+																									<RadioButton Content="{TemplateBinding Content}" Foreground="{StaticResource MGrey5}" FontSize="16"
+																												IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsSelected}">
+																									</RadioButton>
+																								</ControlTemplate>
+																							</Setter.Value>
+																						</Setter>
+																					</Style>
+																				</ListBox.ItemContainerStyle>
+																			</ListBox>
+																		</StackPanel>
+																	</StackPanel> -->
+                                                    <TextBlock Grid.Row="10" Grid.Column="0" Margin="5,10,2,5" Text="Physician accepts Medicare Assignment" VerticalAlignment="Top" Foreground="{StaticResource MGrey5}" />
+                                                    <!--<StackPanel Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">-->
+														
+														<!--<StackPanel Orientation="Vertical" VerticalAlignment="Bottom">-->
+                                                        <ListBox  Grid.Row="10" Grid.Column="1" ItemsSource="{Binding MedicalAssignementList}" SelectionMode="Single" IsSynchronizedWithCurrentItem="True"
+																			SelectedValue="{Binding SelectedMedicalAssignement, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+																<ListBox.ItemContainerStyle>
+																	<Style TargetType="{x:Type ListBoxItem}">
+                                                                <Setter Property="Margin" Value="5,5,2,5" />
+																		<Setter Property="Template">
+																			<Setter.Value>
+																				<ControlTemplate TargetType="{x:Type ListBoxItem}">
+																					<StackPanel Orientation="Horizontal" >
+																						<RadioButton  Content="{mtx:BindTo Path=EnumName}" Foreground="{StaticResource MGrey5}" FontSize="14" Width="40"
+																										IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsSelected}" />
+																						<TextBlock Text="{mtx:BindTo Path=EnumDescription}" Foreground="{StaticResource MGrey5}" FontSize="14" Margin="3,0,0,0" VerticalAlignment="Center" />
+																					</StackPanel>
+																				</ControlTemplate>
+																			</Setter.Value>
+																		</Setter>
+																	</Style>
+																</ListBox.ItemContainerStyle>
+															</ListBox>
+														<!--</StackPanel>-->
+													<!--</StackPanel>-->
+													<!-- 
+																	<RadioButton Content="Shown Option" GroupName="Opt"  />
+																	<StackPanel Grid.Row="10" Grid.Column="0" Orientation="Horizontal">
+																		<TextBlock Foreground="{StaticResource MGrey5}" Margin="5,5,2,5" Text="Physician accepts Medicare Assignment" VerticalAlignment="Top" />
+																		<CheckBox  Foreground="{StaticResource MGrey5}" Margin="5,5,2,5" IsThreeState="False" >
+																			<CheckBox.IsChecked>
+																				<Binding Path="SelectedMedicalAssignement" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+																					<Binding.Converter>
+																						<mtx:MapConverter>
+																							<mtx:Mapping From="Y" To="{StaticResource BoolTrue}" />
+																							<mtx:Mapping From="M" To="{StaticResource BoolFalse}" />
+																						</mtx:MapConverter>
+																					</Binding.Converter>
+																				</Binding>
+																			</CheckBox.IsChecked>
+																		</CheckBox> 
+																	</StackPanel> -->
+
+													<StackPanel Grid.Row="11" Grid.Column="0" Orientation="Vertical">
+														<!--<CheckBox  Foreground="{StaticResource MGrey5}" Margin="5,5,2,5" Content="Participating in eRx"  IsThreeState="False" IsChecked="{Binding Model.ParticipatesInERX, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Top" />-->
+                                                        <CheckBox  Foreground="{StaticResource MGrey5}" Margin="5,5,2,5" Content="Participating in PQRS" IsThreeState="False" IsChecked="{Binding Model.ParticipatesInPQRS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Top" />
+                                                        <CheckBox  Foreground="{StaticResource MGrey5}" Margin="5,5,2,5" Content="Participating in EHR " IsThreeState="False" IsChecked="{Binding Model.ParticipatesInEHR, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Top" />
+													</StackPanel>
+												</Grid>
+											</ScrollViewer>
+
+										<!--<TextBlock Grid.Column="2" Grid.Row="3" Text="* Must click the Save button to store the modifications" Foreground="Red" />-->
+										</Grid>
+									</Border>
+								</Grid>
+                        </Border>
+                    </TabItem>
+                    <TabItem Header="Hospital Affiliation and Locations" Style="{StaticResource TabItemStyleLeft}">
+                        <Border BorderBrush="{StaticResource MBlue}" BorderThickness="0,1,0,0" Margin="-1,0,0,0">
+                            <!-- Medical Practice -->
+                            <Grid Margin="0,10,0,0" VerticalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="40" />
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <Grid Grid.Column="0" Grid.Row="1"  x:Name="GridHospitalAffiliation">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+                                        <TextBlock Text="HOSPITALS" Style="{StaticResource Subtopic}" Foreground="{StaticResource MGrey5}" />
+                                        <Rectangle Height="1" Margin="0,2,10,5" Fill="{DynamicResource MGrey3}" />
+                                    </StackPanel>
+
+                                    <ComboBox Name="ComboBoxHospitals" IsEditable="True" Grid.Row="1" Grid.Column="0"  HorizontalAlignment="Stretch" VerticalAlignment="Center"  Margin="5" IsSynchronizedWithCurrentItem="True" 
+													ItemsSource="{Binding}" DataContext="{Binding HospitalAffiliationList, Mode=OneWay}" SelectedValuePath="Value" IsTextSearchEnabled="True"
+													DisplayMemberPath="Value"  controls:TextboxHelper.Watermark="Please enter the hospital name or CMS provider ID" IsSelected="{Binding IsSelected}"
+													Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=DataContext.SearchText, UpdateSourceTrigger=PropertyChanged}"
+													DataContextChanged="OnComboBoxHospitalsDataContextChanged" Loaded="OnComboBoxHospitalsLoaded">
+
+                                    </ComboBox>
+                                    <Button Grid.Row="1" Grid.Column="1" Margin="5" Content="Add Hospital" Style="{DynamicResource PlainButton}"
+                                                    Command="{Binding AddHospitalAffiliation}" CommandParameter="{Binding ElementName=ComboBoxHospitals, Path=Text}"/>
+                                    <Grid  Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,20">
+                                        <ListView ItemsSource="{Binding Hospitals}" MinHeight="80">
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Grid Margin="5 0 0 0">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="70" />
+                                                        </Grid.ColumnDefinitions>
+                                                        <TextBlock Grid.Column="0" Text="{Binding}" />
+                                                        <Button Command="{Binding DataContext.RemoveHospitalAffiliation, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}, Mode=FindAncestor}}"
+                                                                        CommandParameter="{Binding }" Content="Button" Grid.Column="1" 
+                                                                        Style="{DynamicResource MonahrqDataGridDeleteButton}" HorizontalAlignment="Center" 
+                                                                        VerticalAlignment="Center" Width="15" Height="15" Foreground="{DynamicResource MGrey5}" />
+                                                    </Grid>
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
+                                        </ListView>
+                                        <TextBlock DataContext="{Binding Hospitals}" Style="{StaticResource NoRecordFound}" >
+                                            <Run>No Hospital Affiliation</Run>
+                                        </TextBlock>
+                                    </Grid>
+                                </Grid>
+
+                                <Border BorderBrush="{StaticResource MGrey4}" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" BorderThickness="1" Margin="10" Width="1" />
+
+                                <Grid Grid.Row="1" Grid.Column="2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+                                        <TextBlock Text="LOCATIONS" Style="{StaticResource Subtopic}" Foreground="{StaticResource MGrey5}" />
+                                        <Rectangle Height="1" Margin="0,2,10,5" Fill="{DynamicResource MGrey3}" />
+                                    </StackPanel>
+
+                                    <Button Grid.Row="1" Grid.Column="1" Width="200" HorizontalAlignment="Right" Margin="5,10" Command="{Binding AddNewAdress}"
+                                        Content="Add Location" Style="{StaticResource PlainButton}"  />
+
+                                    <!--<localControl:MedicalPracticeAddress DataContext="{Binding PhysicianAddressList}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                                                                         IsDeleteButtonVisible="True" IsMedicalPracticeNameVisible="False" IsAddressSelectable="False" IsEditButtonVisible="False" 
+                                                                             RemoveCommand="{Binding ElementName=grid_Header, Path=DataContext.RemoveAddress}"  />-->
+
+                                    <Grid	Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+											ScrollViewer.CanContentScroll="True"
+											ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+											ScrollViewer.VerticalScrollBarVisibility="Auto">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <DataGrid BorderBrush="{StaticResource MGrey2}" HorizontalGridLinesBrush="{StaticResource MGrey2}" DataContext="{Binding PhysicianAddressList}"
+												  VerticalGridLinesBrush="{StaticResource MGrey2}" Foreground="{StaticResource MGrey5}" IsSynchronizedWithCurrentItem="True" 
+												  Background="{StaticResource White}" AutoGenerateColumns="False" SelectionUnit="FullRow" CanUserAddRows="False"  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1"
+												  ColumnHeaderHeight="40" CanUserResizeRows="False" HeadersVisibility="Column" AlternationCount="2"  CanUserDeleteRows="False" 
+												  ItemsSource="{Binding }" Height="470">
+                                            <!-- 				<DataGrid.Height>
+												<mtx:BindTo Path="ancestor.Grid.ActualHeight" Converter="{mtx:PercentOfConverter Percent=1}"/>
+											</DataGrid.Height> -->
+                                            <DataGrid.Columns>
+                                                <DataGridTemplateColumn Header="" CanUserSort="False">
+                                                    <DataGridTemplateColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <Button VerticalAlignment="Top"  Margin="0,5,0,5" CommandParameter="{Binding}" Style="{StaticResource DeleteButton}" 
+																		Command="{Binding ElementName=grid_Header, Path=DataContext.RemoveAddress}">
+                                                                    <Button.ToolTip>
+                                                                        <TextBlock Text="Delete" />
+                                                                    </Button.ToolTip>
+                                                                </Button>
+                                                            </StackPanel>
+                                                        </DataTemplate>
+                                                    </DataGridTemplateColumn.CellTemplate>
+                                                </DataGridTemplateColumn>
+                                                <!-- 
+												<DataGridTemplateColumn Header="" CanUserSort="True" SortMemberPath="IsSelected" 
+																		Visibility="{Binding RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}, Path=IsAddressSelectable, Converter={StaticResource BooleanToVisibilityConverter} }">
+													<DataGridTemplateColumn.CellTemplate>
+														<DataTemplate>
+															<CheckBox Foreground="{StaticResource MGrey5}" HorizontalAlignment="Center" VerticalAlignment="Center" 
+																	  IsChecked="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="False" />
+														</DataTemplate>
+													</DataGridTemplateColumn.CellTemplate>
+												</DataGridTemplateColumn> -->
+
+                                                <DataGridTemplateColumn Header="Name" Width=".40*" CanUserSort="True" SortMemberPath="MedicalPracticeName" 
+										Visibility="{Binding RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}, Path=IsMedicalPracticeNameVisible, Converter={StaticResource BooleanToVisibilityConverter} }">
+                                                    <DataGridTemplateColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <TextBlock Foreground="{StaticResource MGrey5}" Text="{Binding MedicalPracticeName}" />
+                                                        </DataTemplate>
+                                                    </DataGridTemplateColumn.CellTemplate>
+                                                </DataGridTemplateColumn>
+                                                <DataGridTemplateColumn Header="Street 1" Width=".20*" CanUserSort="True" SortMemberPath="Line1">
+                                                    <DataGridTemplateColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <TextBlock Foreground="{StaticResource MGrey5}" Text="{Binding Line1}" />
+                                                        </DataTemplate>
+                                                    </DataGridTemplateColumn.CellTemplate>
+                                                </DataGridTemplateColumn>
+                                                <DataGridTemplateColumn Header="Street 2" Width=".10*" CanUserSort="True" SortMemberPath="Line2">
+                                                    <DataGridTemplateColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <TextBlock Foreground="{StaticResource MGrey5}" Text="{Binding Line2}" />
+                                                        </DataTemplate>
+                                                    </DataGridTemplateColumn.CellTemplate>
+                                                </DataGridTemplateColumn>
+                                                <DataGridTemplateColumn Header="City" Width=".15*" CanUserSort="True" SortMemberPath="City">
+                                                    <DataGridTemplateColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <TextBlock Foreground="{StaticResource MGrey5}" Text="{Binding City}" />
+                                                        </DataTemplate>
+                                                    </DataGridTemplateColumn.CellTemplate>
+                                                </DataGridTemplateColumn>
+                                                <DataGridTemplateColumn Header="State" Width=".10*" CanUserSort="True" SortMemberPath="State">
+                                                    <DataGridTemplateColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <TextBlock Foreground="{StaticResource MGrey5}" Text="{Binding State}" />
+                                                        </DataTemplate>
+                                                    </DataGridTemplateColumn.CellTemplate>
+                                                </DataGridTemplateColumn>
+                                                <DataGridTemplateColumn Header="Zip Code" Width=".10*" CanUserSort="True" SortMemberPath="ZipCode">
+                                                    <DataGridTemplateColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <TextBlock Foreground="{StaticResource MGrey5}" Text="{Binding ZipCode}" />
+                                                        </DataTemplate>
+                                                    </DataGridTemplateColumn.CellTemplate>
+                                                </DataGridTemplateColumn>
+                                            </DataGrid.Columns>
+
+                                            <i:Interaction.Behaviors>
+                                                <mtx:DataGridScollBehavior />
+                                            </i:Interaction.Behaviors>
+                                        </DataGrid>
+                                    </Grid>
+
+                                    <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Text="No Address Found" Style="{StaticResource NoRecordFound}" TextWrapping="Wrap" Margin="5,50,0,0" DataContext="{Binding PhysicianAddressList}" />
+
+                                </Grid>
+
+                                <Border Grid.ColumnSpan="3" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="750" Height="325"
+                                            Background="{StaticResource MGrey2}" BorderThickness="1" BorderBrush="{StaticResource MBlue}" Visibility="{Binding ShowAddressPopup}">
+                                    <Grid VerticalAlignment="Top" Background="{StaticResource MGrey2}">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition  Height="*"/>
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Border Height="30" Background="{StaticResource MBlue}" Grid.Row="0" Grid.ColumnSpan="2">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition />
+                                                    <ColumnDefinition />
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Text="New Location" Grid.Column="0"  VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Foreground="White" Margin="10,0" />
+                                                <Button Grid.Column="1" Style="{StaticResource CloseButton}" HorizontalAlignment="Right" CommandParameter="{Binding }" Margin="10,5" Width="25"
+                                                        Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=DataContext.CancelAddress}" />
+                                            </Grid>
+                                        </Border>
+
+                                        <ItemsControl ItemsSource="{Binding NewLocationOptions}" Grid.Row="1" Grid.Column="0" Margin="0,0,5,0">
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <RadioButton GroupName="NewLocation" Content="{Binding Text}" IsChecked="{Binding IsSelected}" Margin="5,1"/>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+
+                                        <StackPanel HorizontalAlignment="Right" VerticalAlignment="Top" Orientation="Horizontal" Grid.Column="1" Grid.Row="1" 
+                                                    Visibility="{Binding IsSearchingMedicalPractice, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                            <TextBox Width="400" Height="30" Margin="5,5,2,5" controls:TextboxHelper.Watermark="Enter Medical Practice Name"
+                                                     Text="{Binding SearchMedicalPracticeText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                                            <Button Width="60" HorizontalAlignment="Right" Margin="5,10" Command="{Binding LookupMedicalPractice}" 
+                                                    Content="SEARCH" Style="{StaticResource PlainButton}"  />
+                                        </StackPanel>
+
+                                        <Grid Grid.Column="0" Grid.ColumnSpan="2" Background="{StaticResource MGrey2}"  Grid.Row="2"  DataContext="{Binding SelectedAddress}" Height="225" Margin="10,0"
+                                              Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=DataContext.IsSearchingMedicalPractice, Converter={mtx:BooleanToVisibilityConverter IsInverted=True}}">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width=".25*" />
+                                                <ColumnDefinition Width=".75*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="*" />
+                                            </Grid.RowDefinitions>
+                                            <TextBlock  Foreground="{StaticResource MGrey5}" Grid.Row="0" Grid.Column="0" Margin="5,5,2,5" Text="Street Address 1" />
+                                            <TextBlock  Foreground="{StaticResource MGrey5}" Grid.Row="1" Grid.Column="0" Margin="5,5,2,5" Text="Street Address 2" />
+                                            <TextBlock  Foreground="{StaticResource MGrey5}" Grid.Row="2" Grid.Column="0" Margin="5,5,2,5" Text="Address Line 2 Suppressed" Visibility="Collapsed" />
+                                            <TextBlock  Foreground="{StaticResource MGrey5}" Grid.Row="3" Grid.Column="0" Margin="5,5,2,5" Text="City" />
+                                            <TextBlock  Foreground="{StaticResource MGrey5}" Grid.Row="4" Grid.Column="0" Margin="5,5,2,5" Text="State" />
+                                            <TextBlock  Foreground="{StaticResource MGrey5}" Grid.Row="5" Grid.Column="0" Margin="5,5,2,5" Text="ZIP Code " />
+
+                                            <TextBox Grid.Row="0" Grid.Column="1" Margin="5,5,2,5" Text="{Binding Line1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                                            <TextBox Grid.Row="1" Grid.Column="1" Margin="5,5,2,5" Text="{Binding Line2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                                            <TextBox Grid.Row="2" Grid.Column="1" Margin="5,5,2,5" Visibility="Collapsed" />
+                                            <TextBox Grid.Row="3" Grid.Column="1" Margin="5,5,2,5" Text="{Binding City, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                            <ComboBox  Margin="5,5,2,5" Grid.Row="4" Grid.Column="1" DisplayMemberPath="Name" SelectedValuePath="Abbreviation"
+                                                                               ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=DataContext.AvailableStates}" 
+                                                                               SelectedValue="{Binding State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                                            <TextBox Grid.Row="5" Grid.Column="1" Margin="5,5,2,5" Text="{Binding ZipCode, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True}"/>
+                                        </Grid>
+
+                                        <localControl:MedicalPracticeAddress DataContext="{Binding PossibleMedicalPractices}" IsMedicalPracticeNameVisible="False" IsAddressSelectable="True" IsDeleteButtonVisible="False" IsEditButtonVisible="False"
+                                                                             Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl, AncestorLevel=1}, Path=DataContext.IsSearchingMedicalPractice, Converter={StaticResource BooleanToVisibilityConverter}}" 
+                                                                             Height="215" Grid.Column="0"  Grid.ColumnSpan="2" Margin="5,0" Grid.Row="2" />
+
+                                        <TextBlock Grid.ColumnSpan="2" Grid.Column="0" Text="Medical Practice not found" Style="{StaticResource NoRecordFound}" Grid.Row="2" TextWrapping="Wrap" Margin="5,0">
+                                            <TextBlock.Visibility>
+                                                <MultiBinding Converter="{StaticResource ErrorMessageVisibilityConverter}">
+                                                    <Binding  Path="DataContext.IsSearchingMedicalPractice" RelativeSource="{RelativeSource FindAncestor, AncestorType=UserControl, AncestorLevel=1}" />
+                                                    <Binding Path="PossibleMedicalPractices" />
+                                                    <Binding Path="SearchMedicalPracticeText" />
+                                                </MultiBinding>
+                                            </TextBlock.Visibility>
+                                        </TextBlock>
+
+                                        <StackPanel Grid.Column="1" Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Height="40">
+                                            <Button Content="Cancel" HorizontalAlignment="Right" Style="{StaticResource PlainButton}" CommandParameter="{Binding }" Margin="10,5" Width="100"
+                                                    Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=DataContext.CancelAddress}" />
+
+                                            <Button Content="OK" HorizontalAlignment="Right" Style="{StaticResource PlainButton}" CommandParameter="{Binding }" Margin="10,5" Width="100"
+                                                    Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=DataContext.SaveAddress}" />
+
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+
+                                <!--<TextBlock  Grid.Column="2" Grid.Row="3" Text="* Must click the Save button to store the modifications" Foreground="Red" />-->
+                            </Grid>
+                        </Border>
+                    </TabItem>
+                </TabControl>
+                </DockPanel>
+            </Border>
+
+            <!--FOOTER -->
+            <Grid Grid.Row="3" Height="34" VerticalAlignment="Bottom" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.4*"/>
+                    <ColumnDefinition Width="0.4*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right" >
+                    <Button Content="Cancel" Command="{Binding CancelCommand}" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource PlainButton}"
+                            Foreground="White" Background="{StaticResource MPink}"  Height="36" Width="160" Margin="0,0,10,0"/>
+                    <Button Content="Save Changes" Command="{Binding SaveCommand}" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                Margin="0,0,10,0" Style="{StaticResource PlainButton}"
+                            Foreground="White" Background="{StaticResource MDGreen}"  Height="36"  Width="160"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

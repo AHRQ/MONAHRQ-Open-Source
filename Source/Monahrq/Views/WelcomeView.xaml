@@ -1,0 +1,230 @@
+﻿<UserControl x:Class="Monahrq.Views.WelcomeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:sdk="clr-namespace:Monahrq.Sdk.Regions;assembly=Monahrq.Infrastructure"
+             mc:Ignorable="d" 
+             d:DesignHeight="656" d:DesignWidth="892" Background="Transparent">
+    <UserControl.Resources>
+        <DataTemplate x:Key="TutorialListBoxDataTemplate1">
+            <Border BorderBrush="{StaticResource MGrey3}" BorderThickness="1">
+                <Grid Width="350">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.Column="0" Background="{StaticResource MGrey2}" Height="100">
+                        <Rectangle>
+                            <Rectangle.Fill>
+                                <VisualBrush Visual="{StaticResource appbar_people_right}" />
+                            </Rectangle.Fill>
+                        </Rectangle>
+                    </Border>
+                    <StackPanel Grid.Column="1" Margin="5">
+                        <TextBlock Text="{Binding}"  Foreground="{StaticResource MGrey5}" FontWeight="Bold" />
+                        <Button Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Left" FontSize="13">
+                            <Hyperlink  NavigateUri="http://ahrq.gov/downloads/monahrq/ppt/What_is_MONAHRQ.pptx" Background="Transparent" RequestNavigate="Hyperlink_RequestNavigate">
+                                <TextBlock FontSize="13" TextWrapping="Wrap" Text="What Is MONAHRQ? " Foreground="{DynamicResource MGrey5}" />
+                            </Hyperlink>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </DataTemplate>
+        <DataTemplate x:Key="TutorialListBoxDataTemplate2">
+            <Border BorderBrush="{StaticResource MGrey3}" BorderThickness="1">
+                <Grid Width="350">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.Column="0" Background="{StaticResource MGrey2}" Height="100">
+                        <Rectangle>
+                            <Rectangle.Fill>
+                                <VisualBrush Visual="{StaticResource appbar_people_right}" />
+                            </Rectangle.Fill>
+                        </Rectangle>
+                    </Border>
+                    <StackPanel Grid.Column="1" Margin="5">
+                        <TextBlock Text="{Binding}"  Foreground="{StaticResource MGrey5}" FontWeight="Bold" />
+                        <Button Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Left" FontSize="13">
+                            <Hyperlink  NavigateUri="http://www.ahrq.gov/downloads/monahrq/ppt/MONAHRQ_Website_Report_Types.pptx" Background="Transparent" RequestNavigate="Hyperlink_RequestNavigate">
+                                <TextBlock FontSize="13" TextWrapping="Wrap" Text="What Types of Websites and Reports Can MONAHRQ Generate?"  Foreground="{DynamicResource MGrey5}" />
+                            </Hyperlink>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </DataTemplate>
+        <DataTemplate x:Key="TutorialListBoxDataTemplate3">
+            <Border BorderBrush="{StaticResource MGrey3}" BorderThickness="1">
+                <Grid Width="350">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.Column="0" Background="{StaticResource MGrey2}" Height="100">
+                        <Rectangle>
+                            <Rectangle.Fill>
+                                <VisualBrush Visual="{StaticResource appbar_people_right}" />
+                            </Rectangle.Fill>
+                        </Rectangle>
+                    </Border>
+                    <StackPanel Grid.Column="1" Margin="5">
+                        <TextBlock Text="{Binding}"  Foreground="{StaticResource MGrey5}" FontWeight="Bold" />
+                        <Button Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Left" FontSize="13">
+                            <Hyperlink  NavigateUri="http://www.ahrq.gov/downloads/monahrq/ppt/MONAHRQ_Get_Started.pptx" Background="Transparent" RequestNavigate="Hyperlink_RequestNavigate">
+                                <TextBlock FontSize="13" TextWrapping="Wrap" Text="How to Get Started with MONAHRQ"  Foreground="{DynamicResource MGrey5}" />
+                            </Hyperlink>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </DataTemplate>
+        <DataTemplate x:Key="TutorialListBoxDataTemplate4">
+            <Border BorderBrush="{StaticResource MGrey3}" BorderThickness="1">
+                <Grid Width="350">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.Column="0" Background="{StaticResource MGrey2}" Height="100">
+                        <Rectangle>
+                            <Rectangle.Fill>
+                                <VisualBrush Visual="{StaticResource appbar_people_right}" />
+                            </Rectangle.Fill>
+                        </Rectangle>
+                    </Border>
+                    <StackPanel Grid.Column="1" Margin="5">
+                        <TextBlock Text="{Binding}"  Foreground="{StaticResource MGrey5}" FontWeight="Bold" />
+                        <Button Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Left" FontSize="13">
+                            <Hyperlink  NavigateUri="http://www.ahrq.gov/downloads/monahrq/ppt/MONAHRQ_Health_Care_Reporting.pptx" Background="Transparent" RequestNavigate="Hyperlink_RequestNavigate">
+                                <TextBlock FontSize="13" TextWrapping="Wrap" Text="Why Use MONAHRQ for Health Care Reporting?"  Foreground="{DynamicResource MGrey5}" />
+                            </Hyperlink>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </DataTemplate>
+        <DataTemplate x:Key="TutorialListBoxDataTemplate5">
+            <Border BorderBrush="{StaticResource MGrey3}" BorderThickness="1">
+                <Grid Width="350">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.Column="0" Background="{StaticResource MGrey2}" Height="100">
+                        <Rectangle>
+                            <Rectangle.Fill>
+                                <VisualBrush Visual="{StaticResource appbar_people_right}" />
+                            </Rectangle.Fill>
+                        </Rectangle>
+                    </Border>
+                    <StackPanel Grid.Column="1" Margin="5">
+                        <TextBlock Text="{Binding}"  Foreground="{StaticResource MGrey5}" FontWeight="Bold" />
+                        <Button Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Left" FontSize="13">
+                            <Hyperlink  NavigateUri="http://www.ahrq.gov/downloads/monahrq/ppt/Value_of_HealthCare_Measurement_Reporting.pptx" Background="Transparent" RequestNavigate="Hyperlink_RequestNavigate">
+                                <TextBlock FontSize="13" TextWrapping="Wrap" Text="What Is the Value of Health Care Measurement and Reporting?"  Foreground="{DynamicResource MGrey5}" />
+                            </Hyperlink>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </DataTemplate>
+        <DataTemplate x:Key="TutorialListBoxDataTemplate6">
+            <Border BorderBrush="{StaticResource MGrey3}" BorderThickness="1">
+                <Grid Width="350">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.Column="0" Background="{StaticResource MGrey2}" Height="100">
+                        <Rectangle>
+                            <Rectangle.Fill>
+                                <VisualBrush Visual="{StaticResource appbar_people_right}" />
+                            </Rectangle.Fill>
+                        </Rectangle>
+                    </Border>
+                    <StackPanel Grid.Column="1" Margin="5">
+                        <TextBlock Text="{Binding}"  Foreground="{StaticResource MGrey5}" FontWeight="Bold" />
+                        <Button Background="{x:Null}" BorderBrush="Transparent" HorizontalAlignment="Left" FontSize="13" Foreground="{x:Null}">
+                            <Hyperlink  NavigateUri="http://www.ahrq.gov/downloads/monahrq/ppt/MONAHRQ_Future_Releases.pptx"  Foreground="{x:Null}" RequestNavigate="Hyperlink_RequestNavigate">
+                                <TextBlock FontSize="13" TextWrapping="Wrap" Text="Future Plans for MONAHRQ and How to Get Involved"  Foreground="{DynamicResource MGrey5}" />
+                            </Hyperlink>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </DataTemplate>
+        <ItemsPanelTemplate x:Key="TutorialsLayout">
+            <WrapPanel/>
+        </ItemsPanelTemplate>
+
+    </UserControl.Resources>
+    <Grid x:Name="LayoutRoot">
+        <Border BorderThickness="1" Background="White">
+            <Grid Margin="-1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="1" VerticalAlignment="Center" Margin="7,0,0,0" >
+                    <Button Name="BtnCreateNewSite"  Content="Create a new website" Style="{DynamicResource MonahrqArrowButtonRight}" 
+                            Background="YellowGreen" Foreground="White" FontSize="22" FontWeight="Normal"
+                            Margin="0,0,0,20" Width="400" HorizontalAlignment="Left" Height="60"  Command="{Binding NavigateToViewCommand}" CommandParameter="{x:Static sdk:ViewNames.WebsiteManageView}"/>
+                    <StackPanel Orientation="Horizontal" >
+                        <Button x:Name="btnData" Command="{Binding NavigateToViewCommand}" CommandParameter="{x:Static sdk:ViewNames.MainDataSetView}" Content="Import new data" Margin="0,0,7,0" VerticalAlignment="Center" Width="170" Height="36" HorizontalAlignment="Left" Style="{DynamicResource MonahrqArrowButtonRight}" Background="{DynamicResource MBlue}" Foreground="White" FontSize="12" />
+                        <Button x:Name="btnMeasures" Command="{Binding NavigateToViewCommand}" CommandParameter="{x:Static sdk:ViewNames.MainMeasuresView}" Content="Define measures" Margin="0,0,7,0" VerticalAlignment="Center" Width="170" Height="36" HorizontalAlignment="Left" Style="{DynamicResource MonahrqArrowButtonRight}" Background="{DynamicResource MBlue}" Foreground="White" FontSize="12" />
+                        <Button x:Name="btnReports" Command="{Binding NavigateToViewCommand}" CommandParameter="{x:Static sdk:ViewNames.MainReportView}" Content="Preview reports" Margin="0,0,7,0" VerticalAlignment="Center" Width="170" Height="36" HorizontalAlignment="Left" Style="{DynamicResource MonahrqArrowButtonRight}" Background="{DynamicResource MBlue}" Foreground="White" FontSize="12" />
+                        <Button x:Name="btnWebsite" Command="{Binding NavigateToViewCommand}" CommandParameter="{x:Static sdk:ViewNames.WebsiteCollectionView}"  Content="Generate website" Margin="0,0,7,0" VerticalAlignment="Center" Width="170" Height="36" HorizontalAlignment="Left" Style="{DynamicResource MonahrqArrowButtonRight}" Background="{DynamicResource MBlue}" Foreground="White" FontSize="12" />
+                    </StackPanel>
+                </StackPanel>
+                <Grid Grid.RowSpan="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="245"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Margin="20">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock TextWrapping="Wrap" Text="Welcome to MONAHRQ!" FontSize="32" Foreground="#FF565656" Margin="0,10" HorizontalAlignment="Left" VerticalAlignment="Center" Height="43" Width="352"/>
+                        <StackPanel Margin="0" Grid.Row="1" MinWidth="500" MaxWidth="580" HorizontalAlignment="Left">
+                            <TextBlock TextWrapping="Wrap" 
+                                       Text="MONAHRQ is free, MS Windows-based software that enables you to generate a data-driven website containing heath care performance reports. It is developed by the Agency for Healthcare Research and Quality (AHRQ), the federal government's leading agency for quality of health care in the United States and part of the Department of Health and Human Services (DHHS)." 
+                                       FontSize="14" FontFamily="Segoe UI" Style="{DynamicResource Subtopic}" />
+
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Column="1" Margin="20" Visibility="Collapsed">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="28.518"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock FontWeight="Normal" Foreground="{DynamicResource MGrey4}" HorizontalAlignment="Right" TextWrapping="Wrap" Text="Step-by-step instructions for how to use MONAHRQ" TextAlignment="Right"/>
+                        <Path Grid.Column="1" Data="M180.663,5.5 L180.663,24.5 196.16299,16 z" Fill="{DynamicResource MGrey5}" Height="19" Margin="6,5.5,9,0" Stretch="Fill" VerticalAlignment="Top"/>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="2" Margin="20,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="64.34"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock TextWrapping="Wrap" Text="Tutorials:" FontSize="32" Foreground="#FF565656" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Center" d:LayoutOverrides="HorizontalAlignment"/>
+                    <ItemsControl Grid.Row="1" Margin="0,0,0,20" BorderBrush="{x:Null}" ItemsPanel="{DynamicResource TutorialsLayout}">
+                        <ListBoxItem ContentTemplate="{DynamicResource TutorialListBoxDataTemplate1}"/>
+                        <ListBoxItem ContentTemplate="{DynamicResource TutorialListBoxDataTemplate2}"/>
+                        <ListBoxItem ContentTemplate="{DynamicResource TutorialListBoxDataTemplate3}"/>
+                        <ListBoxItem ContentTemplate="{DynamicResource TutorialListBoxDataTemplate4}"/>
+                        <ListBoxItem ContentTemplate="{DynamicResource TutorialListBoxDataTemplate5}"/>
+                        <ListBoxItem ContentTemplate="{DynamicResource TutorialListBoxDataTemplate6}"/>
+                    </ItemsControl>
+                </Grid>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

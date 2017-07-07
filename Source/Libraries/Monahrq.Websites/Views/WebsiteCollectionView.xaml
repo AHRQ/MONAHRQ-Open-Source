@@ -1,0 +1,103 @@
+﻿<UserControl x:Class="Monahrq.Websites.Views.WebsiteCollectionView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:views="clr-namespace:Monahrq.Websites.Views"
+             mc:Ignorable="d" 
+             d:DesignWidth="1078" d:DesignHeight="735">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.Buttons.xaml"/>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.DataGrid.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+      
+        <DataTemplate x:Key="WebsiteListingItemTemplate">
+            <Grid>
+                <views:WebsiteListingControl Margin="0,0,-0.001,0" d:LayoutOverrides="Width, Height" DataContext="{Binding }"/>
+            </Grid>
+        </DataTemplate>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    
+    <Grid x:Name="WebsiteGrid" Background="White">
+        <Grid x:Name="CurrentWebsitesGrid" Margin="30,20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="122"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="446.292"/>
+                </Grid.ColumnDefinitions>
+                <Grid>
+                    <StackPanel Margin="0" Orientation="Vertical"  VerticalAlignment="Center">
+                        <TextBlock Margin="0,0,0,10" TextWrapping="Wrap" Text="Current Websites" VerticalAlignment="Center" FontSize="32" FontWeight="Bold" Foreground="{DynamicResource MGrey5}"
+                                   d:LayoutOverrides="Width"/>
+                        <StackPanel Orientation="Horizontal" Height="31.5" d:LayoutOverrides="Width">
+                            <TextBlock Margin="0,0,10,0" TextWrapping="Wrap" Text="Sort by:" VerticalAlignment="Center" FontSize="16" Foreground="{DynamicResource MGrey5}"/>
+                            <ComboBox Width="195" ItemsSource="{Binding SortEnumeration}" 
+                                      FontSize="16" 
+                                      Foreground="{DynamicResource MGrey5}"
+                                      SelectedItem="{Binding SelectedSort}"
+                                      />
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+                <Button Command="{Binding NewWebsiteCommand}" Content="Create a New Website " Grid.Column="1" Margin="0" Style="{DynamicResource MonahrqArrowButtonRight}" 
+                        Background="{DynamicResource MBlue}" Foreground="White" FontSize="18.667" VerticalAlignment="Center" Height="51.5"/>
+            </Grid>
+            <Grid x:Name="Content" Grid.Row="1">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" BorderBrush="{DynamicResource MGrey2}">
+                        <ItemsControl ItemsSource="{Binding WebsitesCVS.View}" ItemTemplate="{DynamicResource WebsiteListingItemTemplate}" />
+                </ScrollViewer>
+            </Grid>
+            
+            <!-- NO WEBSITES VIEW -->
+            <!-- show this if there are no websites -->
+            <Grid Visibility="Collapsed" x:Name="_noWebsitesView" Background="{DynamicResource MGrey1}" Grid.Row="0" 
+                  Grid.RowSpan="2">
+                <Grid.Style>
+                    <Style TargetType="Grid" >
+                        <Style.Triggers>
+
+                            <DataTrigger Binding="{Binding WebsiteViewModels.Count, RelativeSource={RelativeSource AncestorType=UserControl}}"  Value="0">
+                                <Setter Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                            <!--<MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding WebsitesCVS.Count, RelativeSource={RelativeSource AncestorType=UserControl}}" Value=""/>
+                                    <Condition Binding="{Binding Path=State}" Value="OR" />
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="Background" Value="Cyan" />
+                            </MultiDataTrigger>-->
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Style>
+                <Border BorderBrush="{DynamicResource MGrey4}" BorderThickness="1">
+                    <Grid Width="Auto" VerticalAlignment="Center" HorizontalAlignment="Center" >
+                       
+                            <StackPanel Margin="0" Orientation="Vertical"  VerticalAlignment="Center">
+                                <TextBlock Margin="0,0,0,10" TextWrapping="Wrap" 
+                                           Text="Currently there are NO WEBSITES, please" 
+                                           VerticalAlignment="Center" FontSize="32" FontWeight="Bold" Foreground="{DynamicResource MGrey5}"
+                                   d:LayoutOverrides="Width"/>
+                                
+                        
+                        <Button Command="{Binding NewWebsiteCommand}" 
+                                Content="Start a new WEBSITE PROJECT" Grid.Column="1" 
+                                Margin="0" 
+                                Style="{DynamicResource MonahrqArrowButtonRight}" 
+                        Background="{DynamicResource MBlue}" 
+                                Foreground="White" FontSize="18.667" 
+                                VerticalAlignment="Center" Height="51.5"/>
+                        </StackPanel>
+                    </Grid>
+      
+                </Border>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

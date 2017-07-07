@@ -1,0 +1,14 @@
+<section class="info_section info_section__one">
+  <div class="wrap__content">
+    <h1>Visual Report Citations</h1>
+    <ul>
+      <li data-ng-repeat="cite in report.citationData">
+        <strong>{{cite.citationTitle}}</strong><br/>
+        <div data-ng-bind-html="cite.citationBody"></div>
+      </li>
+    </ul>
+    <p>
+      <a href="#" data-ui-sref="top.consumer.infographic">Return to Visual Report</a>
+    </p>
+  </div><!-- /.wrap__content -->
+</section><!-- /.info_section__one -->

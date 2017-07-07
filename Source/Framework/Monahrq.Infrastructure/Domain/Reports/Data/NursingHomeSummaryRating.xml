@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ReportManifest RptId="BA52B7B2-F4C8-4831-B910-1D036B94AE75"
+                Name="Find nursing home with overall and domain level summary ratings report"
+                Category="Quality"
+				IsTrending="false" ConsumerPreviewImage="ConsumerNursingHomeComparisonByOverallRatings.png"
+				ShowInterpretationText="true"
+                PreviewImage="NursingHomeOverallSummaryProfessional.png"
+                RequiresCostToChargeRatio="false">
+	<Audiences>
+		<Audience AudienceType="Professionals" />
+		<Audience AudienceType="Consumers" />
+	</Audiences>
+	<Datasets>
+		<Dataset Name="Nursing Home Compare Data"/>
+		<Dataset Name="NH-CAHPS Survey Results Data"/>
+		<Dataset Name="Nursing Home Deficiency Matrix Data"/>
+	</Datasets>
+	<Filters>
+		<Filter Type="NursingHomeFilters">
+			<Values>
+				<FilterValue Name="Nursing Home Name" />
+				<FilterValue Name="Nursing Home Type (Medicare/Medicaid/Both)" />
+				<FilterValue Name="In Hospital" />
+				<!-- <FilterValue Name="Overall Ratings" /><FilterValue Name="Overall Ratings" /> -->
+			</Values>
+		</Filter>
+		<Filter Type="GeoLocation">
+			<Values>
+				<FilterValue Name="County" />
+				<FilterValue Name="Zip" />
+			</Values>
+		</Filter>
+		<Filter Type="Display">
+			<Values>
+				<FilterValue Name="Show on Map" />
+			</Values>
+		</Filter>
+	</Filters>
+	<ReportAttributes />
+	<!--ReportColumns-->
+	<Columns>
+		<Column IsMeasure="true" MeasureCode="NH-OA-01" Name="Overall Rating" />
+		<Column IsMeasure="true" MeasureCode="NH-HI-01" Name="Overall Health Inspection" />
+		<Column IsMeasure="true" MeasureCode="NH-QM-01" Name="Overall Quality" />
+		<Column IsMeasure="true" MeasureCode="NH-SD-01" Name="Overall Staff Available" />
+		<Column IsMeasure="true" MeasureCode="Q46" Name="Meeting Basic Needs: Help with Eating, Drinking, and Toileting" />
+		<Column IsMeasure="true" MeasureCode="Q50" Name="Nurses/Aides' Kindness/ Respect Towards Resident" />
+		<Column IsMeasure="true" MeasureCode="Q57" Name="Nursing Home Provides Information/ Encourages Respondent Involvement" />
+		<Column IsMeasure="true" MeasureCode="Q64" Name="Nursing Home Staffing, Care of Belongings, and Cleanliness" />
+	</Columns>
+	<InterpretationText>
+		<![CDATA[<p><strong>How to interpret content</strong>
+    <br>Each rating in the report is shown as a simple image along with a word or two. The words will tell you how a particular nursing home compares to the average rating of the other homes in the area. Going from best to worst, the rating will show that a nursing home is:
+    <ul>
+        <li><span class="ng-scope ng-isolate-scope"><span class="rating-nursing">
+  <img width="155" height="24" src="themes/base/assets/stars_5.png" class=""><br>
+  <span class="rating-nursing--title ng-binding">Much better than average</span>
+  <span class="rating-nursing--subtitle ng-binding"> </span>
+</span></li>
+        <li><span class="ng-scope ng-isolate-scope"><span class="rating-nursing">
+  <img  height="24" src="themes/base/assets/stars_4.png" class=""><br>
+  <span class="rating-nursing--title ng-binding">Better than average</span>
+  <span class="rating-nursing--subtitle ng-binding"> </span>
+</span></li>
+        <li><span class="ng-scope ng-isolate-scope"><span class="rating-nursing">
+  <img width="155" height="24" src="themes/base/assets/stars_3.png" class=""><br>
+  <span class="rating-nursing--title ng-binding">Average</span>
+  <span class="rating-nursing--subtitle ng-binding"> </span>
+</span></li>
+        <li><span class="ng-scope ng-isolate-scope"><span class="rating-nursing">
+  <img  width="155" height="24" src="themes/base/assets/stars_2.png" class=""><br>
+  <span class="rating-nursing--title ng-binding">Below average</span>
+  <span class="rating-nursing--subtitle ng-binding"> </span>
+</span></li>
+        <li><span class="ng-scope ng-isolate-scope"><span class="rating-nursing">
+  <img width="155" height="24" src="themes/base/assets/stars_1.png" class=""><br>
+  <span class="rating-nursing--title ng-binding">Much below average</span>
+  <span class="rating-nursing--subtitle ng-binding"> </span>
+</span></li>
+    </ul>
+    <br><strong>The information on this website comes from two sources:</strong>
+    <br>1. Yearly health and safety inspections of each nursing home that are done by state agencies. Health and safety information, and staffing information, come from reports on these inspections.
+    <br>2. Monthly information that each nursing home submits to the federal government about each resident. Quality information comes from this information source.
+    <br>
+    <br><strong>Whatâ€™s here?</strong>
+    <br>There are three types of information in this Report:
+    <ul>
+        <li><strong>Quality Information</strong>, such as whether residents are receiving appropriate care what is happening to their health and ability to function</li>
+        <li><strong>Health and Safety Information</strong>, such as number of health and safety problems found when state agencies did an inspection</li>
+        <li><strong>Staffing Information</strong>, such as the number of nursing home staff available to care for residents during their stay</li>
+    </ul>
+    <br>This information helps you compare nursing homes to each other and see which are better. You can compare up to 5 nursing homes in terms of their Overall Score, their Inspection Score, their Quality Score and their Staffing Score.
+    <br>
+    <br><strong>How can I use this information?</strong>
+    <br>You can use this information to:
+    <ul>
+        <li>help you choose a nursing home for yourself</li>
+        <li>provide useful information for your loved ones if they need nursing home care</li>
+        <li>encourage nursing homes to improve their quality</li>
+    </ul>
+</p>]]>
+	</InterpretationText>
+	<WebsitePages>
+		<WebsitePage
+				Name="Nursing Home listing with overall rating"
+				Audience="Consumers"
+				Path="app/products/consumer/nursing-homes/views/location.html"
+				Url="/nursing-homes/location"
+				UrlRaw="/nursing-homes/location?location&amp;distance"
+				IsEditable="true">
+			<WebsitePageZones>
+				<WebsitePageZone Name="Header" CodePath=""/>
+				<WebsitePageZone Name="Footer" CodePath=""/>
+			</WebsitePageZones>
+		</WebsitePage>
+		<WebsitePage
+				Name="Nursing Home listing with overall rating"
+				Audience="Professionals"
+				Path="app/products/professional/nursing-homes/views/location.html"
+				Url="/nursing-homes/location"
+				UrlRaw=""
+				IsEditable="true">
+			<WebsitePageZones>
+				<WebsitePageZone Name="Header" CodePath="" />
+				<WebsitePageZone Name="Footer" CodePath="" />
+			</WebsitePageZones>
+		</WebsitePage>
+	</WebsitePages>
+</ReportManifest>

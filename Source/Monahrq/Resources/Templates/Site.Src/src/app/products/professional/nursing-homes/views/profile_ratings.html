@@ -1,0 +1,211 @@
+<div class="panel panel-default" id="nursing-home-ratings-tabpanel" role="tabpanel" aria-hidden="false">
+    <div class="panel-heading">
+        <h3 class="panel-title">Nursing Home Measures</h3>
+    </div>
+    <div class="panel-body profile-panel-body">
+
+        <ul class="list-unstyled">
+            <li data-ng-repeat="topic in topics" class="condition-row" data-ng-if="hasOverallMeasure(topic.OverallMeasure)">
+                <a aria-expanded="{{showTopic(topic.TopicID)}}" aria-controls="ratings-{{topic.TopicID}}" href="#" data-ng-click="toggleTopic(topic.TopicID); $event.preventDefault();" class="condition-row-link" data-ng-class="{'active': showTopic(topic.TopicID)}">{{topic.Name}}<span data-mh-help-icon="'&nbsp;'" data-mh-on-click="modalTopic(topic.TopicID)"></span></a>
+
+                <div id="ratings-{{topic.TopicID}}" data-ng-if="showTopic(topic.TopicID)" class="profile-data-table table-wrapper">
+
+                    <table class="table table-bordered data" data-ng-if="!topic.SubsetInScore">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Rating</th>
+                                <th>Rate</th>
+                                <th>National Rate</th>
+                                <th>Peer Rate</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td class="entity"><a href="#" data-ng-click="modalMeasure(topic.OverallMeasure); $event.preventDefault()">{{getMeasureTitle(topic.OverallMeasure)}}</a></td>
+                                <td>
+                                    <div data-mh-rating-nursing="getRating(ratings[topic.OverallMeasure])"></div>
+                                </td>
+                                <td>
+                                    <div>{{ratings[topic.OverallMeasure].Rate}}</div>
+                                </td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                            </tr>
+                            <tr data-ng-repeat="measure in topic.measures">
+                                <td class="entity"><a href="#" data-ng-click="modalMeasure(measure.MeasureID); $event.preventDefault()">{{measure.SelectedTitle}}</a></td>
+                                <td>
+                                    <div data-mh-rating-nursing="getRating(ratings[measure.MeasureID])"></div>
+                                </td>
+                                <td>
+                                    <div>{{ratings[measure.MeasureID].Rate}}</div>
+                                </td>
+                                <td>
+                                    <div>{{ratings[measure.MeasureID].NatRate}}</div>
+                                </td>
+                                <td>
+                                    <div>{{ratings[measure.MeasureID].PeerRate}}</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div data-ng-if="topic.SubsetInScore" class="quality_tables__wrap">
+                        <table class="table table-bordered data" data-ng-if="hasOverallMeasure(topic.OverallMeasure)">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Rating</th>
+                                    <th>Rate</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr>
+                                    <td class="entity"><a href="#" data-ng-click="modalMeasure(topic.OverallMeasure); $event.preventDefault()">{{getMeasureTitle(topic.OverallMeasure)}}</a></td>
+                                    <td>
+                                        <div data-mh-rating-nursing="getRating(ratings[topic.OverallMeasure])"></div>
+                                    </td>
+                                    <td>
+                                        <div>{{ratings[topic.OverallMeasure].Rate}}</div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="table table-bordered data" ng-repeat="(typeGroupName, typeGroup) in topic.groupByType">
+                            <thead>
+                                <tr>
+                                    <th>{{typeGroupName}}<span class="dark" data-mh-help-icon="'&nbsp;'" data-mh-on-click="modalGroup(topic.TopicID, typeGroupName)"></span></th>
+                                    <th>Rating</th>
+                                    <th>Rate</th>
+                                    <th>National Rate</th>
+                                    <th>Peer Rate</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr class="super-row">
+                                    <td colspan="5" class="row">
+                                        <span class="col-md-8">Measures used in summary scores<span class="dark" data-mh-help-icon="'&nbsp;'" data-mh-on-click="modalInSummary(topic.TopicID, 'inSummary')"></span></span>
+                                        <a href="#" class="col-md-4 text-right" data-ng-click="toggleInScore(typeGroupName + '-inSummary'); $event.preventDefault();" data-ng-if="typeGroup[true].length > 0">
+                                            <span data-ng-show="!showInScore(typeGroupName + '-inSummary')">Show Measures</span>
+                                            <span data-ng-show="showInScore(typeGroupName + '-inSummary')">Hide Measures</span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tbody ng-if="showInScore(typeGroupName + '-inSummary')">
+                                <tr data-ng-repeat="measure in typeGroup[true]">
+                                    <td class="entity"><a href="#" data-ng-click="modalMeasure(measure.MeasureID); $event.preventDefault()">{{measure.SelectedTitle}}</a></td>
+                                    <td><div data-mh-rating-nursing="getRating(ratings[measure.MeasureID])"></div></td>
+                                    <td>
+                                        <div>{{ratings[measure.MeasureID].Rate}}</div>
+                                    </td>
+                                    <td>
+                                        <div>{{ratings[measure.MeasureID].NatRate}}</div>
+                                    </td>
+                                    <td>
+                                        <div>{{ratings[measure.MeasureID].PeerRate}}</div>
+                                    </td>
+                                </tr>
+                            </tbody>
+
+                            <tbody>
+                                <tr class="super-row">
+                                    <td colspan="5" class="row">
+                                        <span class="col-md-8">Measures not used in summary scores<span class="dark" data-mh-help-icon="'&nbsp;'" data-mh-on-click="modalInSummary(topic.TopicID, 'notInSummary')"></span></span>
+                                        <a href="#" class="col-md-4 text-right" data-ng-click="toggleInScore(typeGroupName + '-notInSummary'); $event.preventDefault();" data-ng-if="typeGroup[false].length > 0">
+                                            <span data-ng-show="!showInScore(typeGroupName + '-notInSummary')">Show Measures</span>
+                                            <span data-ng-show="showInScore(typeGroupName + '-notInSummary')">Hide Measures</span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tbody ng-if="showInScore(typeGroupName + '-notInSummary')">
+                                <tr data-ng-repeat="measure in typeGroup[false]">
+                                    <td class="entity"><a href="#" data-ng-click="modalMeasure(measure.MeasureID); $event.preventDefault()">{{measure.SelectedTitle}}</a></td>
+                                    <td><div data-mh-rating-nursing="getRating(ratings[measure.MeasureID])"></div></td>
+                                    <td>
+                                        <div>{{ratings[measure.MeasureID].Rate}}</div>
+                                    </td>
+                                    <td>
+                                        <div>{{ratings[measure.MeasureID].NatRate}}</div>
+                                    </td>
+                                    <td>
+                                        <div>{{ratings[measure.MeasureID].PeerRate}}</div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div> <!-- END Nursing Home Measures panel -->
+
+<div class="panel panel-default" id="nursing-home-ratings-tabpanel" role="tabpanel" aria-hidden="false">
+    <div class="panel-heading" data-ng-if="CAHPSReport.isLoaded && query.comparedTo === 'peer' && !CAHPSReport.isEmpty(CAHPSReport)">
+        <h3 class="panel-title">
+            Survey Summary - Overall Rating of Care
+            <span class="help-icon" style="position:relative">
+                <a class="btn btn-link" data-ng-click="showModalMeasureHeader(); $event.preventDefault()" href="#">
+                    <span class="glyphicon glyphicon-question-sign" style="color: #666"></span>
+                </a>
+            </span>
+            <a style="float:right;" aria-expanded="{{CAHPSReport.showCAHPS}}" aria-controls="ratings-cahps" data-ng-click="CAHPSReport.showCAHPS = !CAHPSReport.showCAHPS; showLoadedCAHPSTopics();" data-ng-class="{'active': CAHPSReport.showCAHPS}">
+                <span data-ng-if="!CAHPSReport.showCAHPS">Show Ratings</span>
+                <span data-ng-if="CAHPSReport.showCAHPS">Hide Ratings</span>
+            </a>
+        </h3>
+    </div>
+    <div class="panel-body profile-panel-body">
+        <ul class="list-unstyled" data-ng-if="CAHPSReport.showCAHPS">
+            <li class="condition-row" data-ng-repeat="topic in CAHPSReport.topics">
+                <a aria-expanded="{{showTopic(topic.TopicID)}}" aria-controls="ratings-{{topic.TopicID}}" href="#" data-ng-click="toggleTopic(topic.TopicID); $event.preventDefault();" data-ng-class="{'active': showTopic(topic.TopicID)}" data-ng-disabled="CAHPSReport.getMeasureDefs(CAHPSReport, topic).length == 0" class="condition-row-link">
+                    {{topic.Name}}<span data-mh-help-icon="'&nbsp;'" data-mh-on-click="modalTopic(topic.TopicID)"></span>
+                </a>
+
+                <div class="profile-data-table table-wrapper" data-ng-if="CAHPSReport.showCAHPS">
+                    <table class="table table-bordered data">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Rating</th>
+                                <th>Rate</th>
+                                <th>{{config.website_GeographicDescription}} Average Rate</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{CAHPSReport.getOverallMeasureDef(CAHPSReport, topic).SelectedTitle}} <span data-mh-help-icon data-sr-label="'Help for ' + CAHPSReport.getOverallMeasureDef(CAHPSReport, topic).SelectedTitleConsumer" data-mh-on-click="modalMeasure(CAHPSReport.getOverallMeasureDef(CAHPSReport, topic).MeasureID)"></span></td>
+                                <td><span data-mh-rating-nursing="CAHPSReport.getOverallMeasure(CAHPSReport, topic, nhid).PeerRating"></span></td>
+                                <td>{{CAHPSReport.getOverallMeasure(CAHPSReport, topic, nhid).Rate}}</td>
+                                <td>{{CAHPSReport.getOverallMeasure(CAHPSReport, topic, nhid).PeerRate}}</td>
+                            </tr>
+                        </tbody>
+                    </table> <!-- END initial rating table -->
+
+                    <table class="table table-bordered data" data-ng-if="showTopic(topic.TopicID)" data-ng-repeat="measureDefs in CAHPSReport.getGroupedMeasureDefs(CAHPSReport, topic)">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th data-ng-repeat="label in CAHPSReport.getQuestionLabels(measureDefs[0])" style="width: auto">{{label}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-ng-repeat="measureDef in measureDefs">
+                                <td>{{measureDef.SelectedTitle}} <span data-mh-help-icon data-sr-label="'Help for ' + measureDef.SelectedTitleConsumer" data-mh-on-click="modalMeasure(measureDef.MeasureID)"></span></td>
+                                <td data-ng-repeat="label in CAHPSReport.getQuestionLabels(measureDefs[0])"
+                                    data-ng-init="tempMeasures = CAHPSReport.getMeasure(CAHPSReport, measureDef.MeasureID, nhid).CAHPSResponseValues">
+                                    {{coalesce(tempMeasures[$index],'-')}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div> <!-- END Survey Summary panel -->

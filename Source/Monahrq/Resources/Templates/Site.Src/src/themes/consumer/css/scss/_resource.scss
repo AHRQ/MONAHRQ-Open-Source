@@ -1,0 +1,248 @@
+// -------------------------------------------------------------------- //
+//  Resources Page
+// -------------------------------------------------------------------- //
+//  Hero
+
+.resource__header {
+  padding: 75px 0 50px;
+
+  h2 {
+    font-weight: 700;
+  }
+}
+
+
+
+// -------------------------------------------------------------------- //
+//  Main Content Area
+
+.resource__content {
+  position: relative;
+  z-index: 2;
+  margin: 30px 0 60px;
+
+  .contain {
+    display: flex;
+  }
+}
+
+.resource__nav {
+  position: relative;
+  flex: 0 1 40%;
+  background-color: $brand-grey;
+  border: solid $base-border-color;
+  border-width: 1px 0 1px 1px;
+}
+
+.resource__content-panel {
+  flex: 1 1 100%;
+  border: 1px solid $base-border-color;
+}
+
+
+
+// -------------------------------------------------------------------- //
+//  Nav
+
+.resource__nav-title {
+  padding: 10px 25px;
+  background-color: #ccc;
+  font-weight: 600;
+
+  &:nth-of-type(2) {
+    margin-top: 20px;
+  }
+}
+
+.resource__nav-link {
+  display: block;
+  width: 100%;
+  padding: 10px 25px;
+  background-color: transparent;
+  border-top: 1px solid $base-border-color;
+  border-radius: 0;
+  color: $base-font-color;
+  font-weight: 400;
+  line-height: 1.2;
+  text-align: left;
+  text-decoration: none;
+  white-space: normal;
+
+  &:hover,
+  &:focus {
+    background-color: #ddd;
+    color: $base-font-color;
+  }
+
+  &.active {
+    margin: 0 -1px 0 0;
+    background: #fff;
+    border: solid $base-border-color;
+    border-width: 1px 0;
+    text-decoration: underline;
+  }
+}
+
+
+
+// -------------------------------------------------------------------- //
+//  Content
+
+.resource__content-panel {
+  padding: 15px 25px;
+
+  h2, h3, h4, h5 {
+    margin-bottom: 15px;
+    font-weight: 700;
+  }
+
+  h3, h4, h5 {
+    margin-top: 30px;
+  }
+
+  p {
+    line-height: 1.2;
+  }
+
+  ul ul {
+    margin-top: 10px;
+  }
+
+  ul {
+    margin-left: -.8em;
+  }
+
+  li {
+    padding-left: 1em;
+    text-indent: -.8em;
+
+    &::before {
+      content: ">";
+      margin-right: 5px;
+      font-size: 1.5em;
+      line-height: 1;
+      opacity: .5;
+    }
+  }
+}
+
+.resource__sub-content {
+  border: solid $base-border-color;
+  border-width: 1px 1px 0;
+
+  &:last-of-type {
+    border-bottom: 1px solid $base-border-color;
+  }
+}
+
+.resource__toggle {
+  position: relative;
+  display: block;
+  width: 100%;
+  background-color: transparent;
+  color: $base-font-color;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: left;
+  text-decoration: none;
+
+  &:hover {
+    color: $base-font-color;
+  }
+
+  button {
+    display: block;
+    width: 100%;
+    padding: 10px 20px;
+    color: #333;
+    background: transparent;
+    text-decoration: underline;
+    text-align: left;
+
+    &:hover {
+      color: #333;
+      background-color: transparent;
+    }
+  }
+
+  // Expand icon
+  button:after {
+    content: "";
+    display: block;
+    position: absolute;
+    right: 20px;
+    top: 8px;
+    width: 22px;
+    height: 22px;
+    background-image: url("../assets/images/monahrq-sprite.png");
+    background-position: -145px -66px;
+  }
+
+  &.active button:after {
+    background-position: -145px -22px;
+  }
+}
+
+.resource__toggle-content {
+  padding: 10px 20px;
+
+  em {
+    display: block;
+  }
+}
+
+
+// Override professional
+.about-methodology aside {
+  background-color: $brand-grey;
+
+  h4:first-of-type {
+    margin-top: 0;
+  }
+}
+
+
+
+// -------------------------------------------------------------------- //
+//  Get Started
+
+.about__get-started {
+  margin-bottom: 120px;
+  
+  .contain {
+    @include clearfix;
+  }
+
+  h2 {
+    margin: 0 0 70px;
+    text-align: center;
+  }
+}
+
+.get-started-block {
+  float: left;
+  position: relative;
+  display: block;
+  width: 320px;
+  height: 80px;
+  overflow: visible;
+  padding: 18px 0 0 90px;
+  background-color: #f4f4f4;
+  border: 1px solid #eee;
+
+  &:not(:last-of-type) {
+    margin-right: 20px;
+  }
+
+  img {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    height: 170px;
+    transform: translateY(-50%);
+  }
+
+  h3 {
+    font-size: 18px;
+  }
+}

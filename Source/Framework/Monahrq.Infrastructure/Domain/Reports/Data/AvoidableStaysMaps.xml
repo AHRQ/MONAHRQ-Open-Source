@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ReportManifest RptId="2AAF7FBA-7102-4C66-8598-A70597E2F833" Name="Avoidable Stays Maps" ShowInterpretationText="true"
+                Category="Utilization"
+				IsTrending="false" ConsumerPreviewImage=""
+				PreviewImage="AvoidableStaysMaps.png" RequiresCmsProviderId="true" RequiresCostToChargeRatio="true" >
+	<Audiences>
+		<Audience AudienceType="Professionals" />
+	</Audiences>
+	<Datasets>
+		<Dataset Name="AHRQ-QI Area Data"/>
+	</Datasets>
+	<ReportAttributes>
+		None
+	</ReportAttributes>
+	<!--ReportColumns-->
+	<Columns />
+	<!--<Column Name="Numerator"/>
+    <Column Name="Denominator"/>
+    <Column Name="Rates"/>
+    <Column Name="Cost Savings"/>
+  </Columns>-->
+	<Header>
+		<![CDATA[<p> An avoidable hospital stay is one that might have been avoided with better medical care outside of the hospital. For example, a diabetes patient who receives good care from her primary care physician might not need a hospital stay for diabetes complications. Hospital stays like these are not always avoidable, but they are potentially avoidable with good quality health care.
+	</p>]]>
+	</Header>
+	<InterpretationText>
+		<![CDATA[<p>How do I interpret the maps?</p>
+	<p>The maps show the number of hospital stays in each county for each 1,000, 10,000, or 100,000 county residents.  Darker colors represent higher rates, and lighter colors represent lower rates.  Counties are labeled with numbers with the county names below the map.<br/><br/>Map colors are assigned based on quintiles.  When there are not enough data to report a value, the map color is grey.<br/><br/><a href="#/resources/Methods" >Learn more about the county rates.</a></p>]]>
+	</InterpretationText>
+	<WebsitePages>
+		<WebsitePage
+			Name="Avoidable Stays [Topic Map]"
+			Audience="Professionals"
+			Path="app/products/professional/usage-data/views/avoidable-stays.html"
+			Url="/utilization/avoidable-stays?reportType=topic"
+			UrlRaw="/utilization/avoidable-stays?reportType&amp;county&amp;topics&amp;topic&amp;measure&amp;displayType"
+			IsEditable="true">
+			<WebsitePageZones>
+				<WebsitePageZone Name="Header" CodePath=""/>
+				<WebsitePageZone Name="Footer" CodePath=""/>
+			</WebsitePageZones>
+		</WebsitePage>
+	</WebsitePages>
+</ReportManifest>

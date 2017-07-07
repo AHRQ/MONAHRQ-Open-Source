@@ -1,0 +1,10 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    
+    <BitmapImage x:Key="Logo_Color_Tagline" UriSource="/Monahrq.Theme;component/Images/MONAHRQ_Color_ThickOutlines.png" />
+    <BitmapImage x:Key="Logo_Color" UriSource="/Monahrq.Theme;component/Images/MONAHRQ_Color_ThickOutlines_Tagline.png" />
+    <BitmapImage x:Key="Logo_ARHQ" UriSource="/Monahrq.Theme;component/Images/arhq-logo.jpg" />
+    <BitmapImage x:Key="Drag_Drop_Anchor" UriSource="/Monahrq.Theme;component/Images/DragDropAnchor.png" />
+    
+</ResourceDictionary>

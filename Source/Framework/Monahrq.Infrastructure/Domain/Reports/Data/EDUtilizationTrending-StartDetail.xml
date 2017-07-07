@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ReportManifest RptId="4A2747DC-6B9D-4C77-963D-37B9B8112047"
+                Name="ED Utilization detailed Report (stratified report) – Trending Report"
+                Category="Utilization"  ShowInterpretationText="true"
+				IsTrending="true" ConsumerPreviewImage="ED_Util_DetailReport_TrendsReport.png"
+                PreviewImage="ED_Util_DetailReport_TrendsReport.png"
+                RequiresCostToChargeRatio="true">
+	<Audiences>
+		<Audience AudienceType="Professionals" />
+	</Audiences>
+	<Datasets>
+		<Dataset Name="ED Treat And Release"/>
+	</Datasets>
+	<Filters>
+		<Filter Type="Hospital">
+			<Values>
+				<FilterValue Name="Hospital Name" />
+				<FilterValue Name="Hospital Type" />
+				<FilterValue Name="Region" />
+				<FilterValue Name="County" />
+			</Values>
+		</Filter>
+		<Filter Type="ConditionsAndDiagnosis">
+			<Values>
+				<FilterValue Name="Health Condition or Topic" />
+			</Values>
+		</Filter>
+	</Filters>
+	<ReportAttributes>
+		HospitalFilters ConditionsAndDiagnosisFilters
+	</ReportAttributes>
+	<!--ReportColumns-->
+	<Columns>
+		<Column IsMeasure="true" MeasureCode="ED-01" Name="Number of ED Visits" />
+		<Column IsMeasure="true" MeasureCode="ED-02" Name="Number Admitted to Hospital Following ED Visit" />
+		<Column IsMeasure="true" MeasureCode="ED-03" Name="Number of Deaths During ED Visit" />
+		<Column IsMeasure="true" MeasureCode="ED-04" Name="Number of Deaths Post-Admission Following ED Visit" />
+	</Columns>
+	<Header>
+		<![CDATA[<p> Emergency department utilization refers to patients’ use of hospital services through the hospital’s emergency department. Clicking ‘View Trends’ will display changes in data over time for the selected category, such as a utilization measure or hospital.
+	</p>]]>
+	</Header>
+	<InterpretationText />
+	<WebsitePages>
+		<WebsitePage
+			Name="Service Use [ED Detail Trending]"
+			Audience="Professionals"
+			Path="app/products/professional/usage-data/views/service-use.html"
+			Url="/utilization/service-use?viewBy=hospital&amp;reportType=ed"
+			UrlRaw="/usage-data/service-use?viewBy&amp;reportType&amp;displayType&amp;levelType&amp;levelValue&amp;levelViewBy&amp;groupBy&amp;dimension&amp;value&amp;value2"
+			IsEditable="true">
+			<WebsitePageZones>
+				<WebsitePageZone Name="Header" CodePath="" />
+				<WebsitePageZone Name="Footer" CodePath="" />
+			</WebsitePageZones>
+		</WebsitePage>
+	</WebsitePages>
+</ReportManifest>

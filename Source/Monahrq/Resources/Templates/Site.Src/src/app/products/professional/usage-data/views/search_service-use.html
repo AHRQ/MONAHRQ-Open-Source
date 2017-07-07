@@ -1,0 +1,103 @@
+<!--<ul class="ud-wizard-tabs">
+  <li data-ng-if="ReportConfigSvc.webElementAvailable('Utilization_AHS_Tab')"><a href="#" data-ui-sref="top.professional.usage-data.avoidable-stays">Avoidable Hospital Stays</a></li>
+  <li class="active"><a href="#" data-ui-sref="top.professional.usage-data.service-use"><strong>Service Use</strong></a></li>
+</ul>-->
+
+<div data-ng-if="navActive('top.professional.usage-data.service-use')" class="row ud-wizard-content" data-ng-class="{'compressed': query.groupBy.value}">
+  <div class="col-md-2 has-value">
+    <span class="wiz-step-num" data-ng-class="{active: isActiveStep('viewBy')}">1</span> <span class="wiz-step-name">View By</span>
+    <span class="wiz-step-fields">
+      <span data-ng-if="ReportConfigSvc.webElementAvailable('ServiceUse_ViewBy_Hospital_Radio')"><label for="su_view-by_hospital">Hospital</label> <input data-ng-model="query.groupBy.viewBy" type="radio" id="su_view-by_hospital" name="su_view-by" value="hospital" /></span><br/>
+      <span data-ng-if="ReportConfigSvc.webElementAvailable('ServiceUse_ViewBy_Population_Radio')"><label for="su_view-by_population">Population</label> <input data-ng-model="query.groupBy.viewBy" type="radio" id="su_view-by_population" name="su_view-by" value="population" /></span>
+    </span>
+  </div>
+  <div class="col-md-2" data-ng-class="{'has-value': query.groupBy.viewBy}">
+    <span class="wiz-step-num"  data-ng-class="{active: isActiveStep('reportType')}">2</span> <span class="wiz-step-name">Report Type</span>
+    <span data-ng-if="query.groupBy.viewBy == 'hospital'" class="wiz-step-fields" data-ng-if="query.groupBy.viewBy">
+      <span data-ng-if="ReportConfigSvc.webElementAvailable('ServiceUse_Hosp_ReportType_Inpatient_Radio')" class="option-row"><label for="su_report-type_idd">Inpatient</label> <input data-ng-model="query.groupBy.reportType" type="radio" id="su_report-type_idd" name="su_report-type" value="id" /></span><br/>
+      <span data-ng-if="ReportConfigSvc.webElementAvailable('ServiceUse_Hosp_ReportType_Emergency_Radio')" class="option-row"><label for="su_report-type_edd">Emergency Dept.</label> <input data-ng-model="query.groupBy.reportType" type="radio" id="su_report-type_edd" name="su_report-type" value="ed" /></span>
+    </span>
+    <span data-ng-if="query.groupBy.viewBy == 'population'" class="wiz-step-fields" data-ng-if="query.groupBy.viewBy">
+      <span data-ng-if="ReportConfigSvc.webElementAvailable('County_ViewRates_Tab')"><label for="su_report-type_county">County</label> <input data-ng-model="query.groupBy.reportType" type="radio" id="su_report-type_county" name="su_report-type" value="county" /></span><br/>
+      <span data-ng-if="ReportConfigSvc.webElementAvailable('Region_ViewRates_Tab')"><label for="su_report-type_region">Region</label> <input data-ng-model="query.groupBy.reportType" type="radio" id="su_report-type_region" name="su_report-type" value="region" /></span>
+    </span>
+  </div>
+  <div class="col-md-2" data-ng-class="{'has-value': query.groupBy.reportType}">
+    <span class="wiz-step-num" data-ng-class="{active: isActiveStep('groupBy')}">3</span> <span class="wiz-step-name">Group By</span>
+    <span class="wiz-step-fields" data-ng-if="query.groupBy.reportType">
+      <label for="su_group-by_geo">Locale</label> <input data-ng-model="query.groupBy.groupBy" type="radio" id="su_group-by_geo" name="su_group-by" value="geo" /><br/>
+      <label for="su_group-by_clinical">Clinical</label> <input data-ng-model="query.groupBy.groupBy" type="radio" id="su_group-by_clinical" name="su_group-by" value="clinical" />
+    </span>
+  </div>
+  <div data-ng-if="dimensionOptions.length != 1" class="col-md-3 su-select-wrap" data-ng-class="{'has-value': query.groupBy.groupBy}">
+    <span class="wiz-step-num" data-ng-class="{active: isActiveStep('dimension')}">4</span> <span class="wiz-step-name">Select Dimension</span>
+    <span class="wiz-step-fields" data-ng-if="query.groupBy.groupBy">
+      <select class="form-control" data-ng-class="{selectEmpty: !query.groupBy.dimension}" data-ng-model="query.groupBy.dimension" data-ng-options="d.id as d.name for d in dimensionOptions" title="Select a Dimension">
+        <option value="" selected disabled style="display:none;">Select a Dimension</option>
+      </select>
+     </span>
+  </div>
+  <div class="col-md-3 su-select-wrap last" data-ng-class="{'has-value': query.groupBy.dimension}">
+    <span class="wiz-step-num" data-ng-class="{active: isActiveStep('value')}">
+      {{ dimensionOptions.length == 1 ? '4' : '5' }}
+    </span>
+    <span data-ng-if="dimensionOptions.length == 1 && query.groupBy.groupBy == 'geo'" class="wiz-step-name">Select Locale</span>
+    <span data-ng-if="dimensionOptions.length != 1 || query.groupBy.groupBy == 'clinical'" class="wiz-step-name">Specify Value</span>
+    <span data-ng-if="query.groupBy.dimension" class="wiz-step-fields">
+      <span data-ng-if="query.groupBy.dimension == 'county'">
+        <div data-mh-autocomplete="uiaCounties" selected-id="query.groupBy.value"></div>
+      </span>
+
+      <span data-ng-if="query.groupBy.dimension == 'patientcounty'">
+        <div data-mh-autocomplete="uiaPatientCounties" data-selected-id="query.groupBy.value"></div>
+      </span>
+
+      <span data-ng-if="query.groupBy.dimension == 'region'">
+        <select class="form-control" data-ng-class="{selectEmpty: !query.groupBy.value}" id="search-regions" data-ng-model="query.groupBy.value" data-ng-options="v.RegionID as v.Name for v in hospitalRegions" title="Select a Region">
+          <option value="" selected disabled style="display:none;">Select a Region</option>
+        </select>
+      </span>
+
+      <span data-ng-if="query.groupBy.dimension == 'patientregion'">
+        <select class="form-control" data-ng-class="{selectEmpty: !query.groupBy.value}" id="search-patient-regions" data-ng-model="query.groupBy.value" data-ng-options="v.RegionID as v.Name for v in patientRegions" title="Select a Region">
+          <option value="" selected disabled style="display:none;">Select a Region</option>
+        </select>
+      </span>
+
+
+      <span data-ng-if="query.groupBy.dimension == 'hospital'">
+        <div data-mh-autocomplete="uiaHospitals" selected-id="query.groupBy.value"></div>
+      </span>
+
+      <span data-ng-if="query.groupBy.dimension == 'zip'">
+        <input class="form-control zip-input" type="text" id="search-zip-code" data-ng-model="query.groupBy.value" placeholder="Zip Code" />
+        <select class="form-control zip-radius" data-ng-class="{selectEmpty: !query.groupBy.value2}" id="search-zip-distances" data-ng-model="query.groupBy.value2" title="Radius">
+          <option value="" selected disabled style="display:none;">Radius</option>
+          <option data-ng-repeat="x in zipDistances" value="{{ x }}">{{ x }} Mile(s)</option>
+        </select>
+      </span>
+
+      <span data-ng-if="query.groupBy.dimension == 'hospitalType'">
+        <select class="form-control" data-ng-class="{selectEmpty: !query.groupBy.value}" id="search-hospital-types" data-ng-model="query.groupBy.value" data-ng-options="h.HospitalTypeID as h.Name for h in hospitalTypes" title="Select a Hospital Type">
+          <option value="" selected disabled style="display:none;">Select a Hospital Type</option>
+        </select>
+      </span>
+
+      <span data-ng-if="query.groupBy.dimension == 'condition'">
+        <div data-mh-autocomplete="uiaCCS" selected-id="query.groupBy.value"></div>
+      </span>
+
+      <span data-ng-if="query.groupBy.dimension == 'mdc'">
+        <div data-mh-autocomplete="uiaMDC" selected-id="query.groupBy.value"></div>
+      </span>
+
+      <span data-ng-if="query.groupBy.dimension == 'drg'">
+        <div data-mh-autocomplete="uiaDRG" selected-id="query.groupBy.value"></div>
+      </span>
+
+      <span data-ng-if="query.groupBy.dimension == 'procedure'">
+        <div data-mh-autocomplete="uiaPRCCS" selected-id="query.groupBy.value"></div>
+      </span>
+    </span>
+  </div>
+</div>

@@ -1,0 +1,55 @@
+MeasureCode,TopicCategory,TopicName,UsedForInfographic
+IQI 01,Surgeries for Specific Health Conditions,Practice Patterns,False
+IQI 02,Surgeries for Specific Health Conditions,Practice Patterns,False
+IQI 04,Surgeries for Specific Health Conditions,Practice Patterns,False
+IQI 05,Heart surgeries and procedures,Results of care,False
+IQI 06,Heart surgeries and procedures,Results of care,False
+IQI 07,Stroke,Results of care,False
+IQI 08,Surgeries for Specific Health Conditions,Results of care – Deaths,True
+IQI 09,Surgeries for Specific Health Conditions,Results of care – Deaths,True
+IQI 11,Surgeries for Specific Health Conditions,Results of care – Deaths,True
+IQI 12,Heart surgeries and procedures,Results of care,True
+IQI 13,Surgeries for Specific Health Conditions,Results of care – Deaths,False
+IQI 14,Hip or Knee Replacement Surgery,Results of care,False
+IQI 15,Heart attack and chest pain,Results of care,False
+IQI 16,Heart failure,Results of care,True
+IQI 17,Stroke,Results of care,True
+IQI 18,Patient safety ,Results of care - Deaths,False
+IQI 19,Patient safety ,Results of care - Deaths,False
+IQI 20,Pneumonia,Results of care,True
+IQI 21,Childbirth,Practice patterns,False
+IQI 22,Childbirth,Practice patterns,False
+IQI 23,Surgeries for Specific Health Conditions,Practice patterns,False
+IQI 24,Surgeries for Specific Health Conditions,Recommended care,False
+IQI 25,Heart surgeries and procedures,Recommended care,False
+IQI 30,Heart surgeries and procedures,Results of care,False
+IQI 31,Stroke,Results of care,False
+IQI 32,Heart attack and chest pain,Results of care,False
+IQI 33,Childbirth,Practice patterns,False
+IQI 34,Childbirth,Practice patterns,False
+PSI 02,Patient safety,Results of care - Deaths,True
+PSI 03,Patient safety,Results of care - Complications,False
+PSI 04,Surgical patient safety,Results of care,False
+PSI 05,Surgical Patient safety,Results of care,True
+PSI 05,Patient safety,Results of care - Complications,True
+PSI 06,Patient safety,Results of care - Complications,True
+PSI 07,Patient safety,Results of care - Complications,True
+PSI 08,Surgical patient safety,Results of care,False
+PSI 09,Surgical patient safety,Results of care,False
+PSI 10,Surgical patient safety,Results of care,False
+PSI 11,Surgical patient safety,Results of care,False
+PSI 12,Surgical patient safety,Results of care,False
+PSI 13,Surgical patient safety,Results of care,False
+PSI 14,Surgical patient safety,Results of care,False
+PSI 15,Surgical Patient safety,Results of care,True
+PSI 15,Patient safety,Results of care - Complications,True
+PSI 16,Patient safety ,Results of care - Complications,True
+PSI 17,Childbirth,Results of care,False
+PSI 18,Childbirth,Results of care,False
+PSI 19,Childbirth,Results of care,False
+IQI 14,Health Care Cost and Quality,Hip replacement surgery,True
+IQI 14_QNTY,Health Care Cost and Quality,Hip replacement surgery,False
+IQI 14_COST,Health Care Cost and Quality,Hip replacement surgery,False
+IQI 12,Health Care Cost and Quality,Heart Surgeries and Procedures,True
+IQI 12_QNTY,Health Care Cost and Quality,Heart Surgeries and Procedures,False
+IQI 12_COST,Health Care Cost and Quality,Heart Surgeries and Procedures,False

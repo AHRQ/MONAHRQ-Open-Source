@@ -1,0 +1,10 @@
+<nav class="main-nav" role="navigation" aria-label="Site Navigation">
+  <ul>
+    <li class="main-nav__item" data-ng-repeat="item in menu">
+      <a href="" class="main-nav__link" data-ng-class="{active: navActive(item.route.activeName)}" data-ui-sref="{{item.route.name}}">
+        <span data-ng-bind-html="item.label"></span>
+        <span class="sr-hidden" data-ng-if="navActive(item.route.activeName)"> is active</span>
+      </a>
+    </li>
+  </ul>
+</nav>

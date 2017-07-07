@@ -1,0 +1,18 @@
+<main>
+  <header class="resource__header">
+    <div class="contain">
+      <h1>Additional Reports</h1>
+    </div>
+  </header>
+  <section class="resource__content">
+	<div class="contain">
+        <div style="min-height: 200px">
+            <ul>
+                <li data-ng-repeat="flutter in flutters">
+                    <a href="#" data-ng-click="menuClick(getPrimaryMenu(flutter.id)); $event.preventDefault();">{{flutter.displayName}}</a>
+                </li>
+            </ul>
+        </div>
+	</div>
+  </section>
+ </main>

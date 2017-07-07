@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ReportManifest RptId="9D45AFA3-2D1C-48E6-9B9F-77746DF75C63"
+                Name="Utilization Rates by Region, Detail Report (Population) – Trending Report"
+                Category="Utilization"
+				IsTrending="true"
+				ShowInterpretationText="true" ConsumerPreviewImage=""
+                PreviewImage="RegionRatesTrendingDetail.png"
+                RequiresCostToChargeRatio="false">
+	<Audiences>
+		<Audience AudienceType="Professionals" />
+	</Audiences>
+	<Datasets>
+		<Dataset Name="Inpatient Discharge"/>
+	</Datasets>
+	<Filters>
+		<Filter Type="DRGsDischarges">
+			<Values>
+				<FilterValue Name="Major Diagnosis Category" />
+				<FilterValue Name="Diagnosis Related Group" />
+				<FilterValue Name="Health Condition or Topic" />
+				<FilterValue Name="Procedure" />
+			</Values>
+		</Filter>
+	</Filters>
+	<ReportAttributes>
+		DRGsDischargesFilters
+	</ReportAttributes>
+	<Columns>
+		<Column IsMeasure="true" MeasureCode="IP-12" Name="Number of Discharges for Region" />
+		<Column IsMeasure="true" MeasureCode="IP-13" Name="Mean costs in dollars for Region" />
+		<Column IsMeasure="true" MeasureCode="IP-14" Name="Median cost in dollars for Region" />
+		<Column IsMeasure="true" MeasureCode="IP-15" Name="Rate of Discharges for Region (Per 1,000 Persons)" />
+	</Columns>
+	<Header>
+		<![CDATA[<p> Region rates show use of hospital services by patients region , such as the number and length of hospital stays for different health conditions or procedures. These rates are based on region where patients live, not where the hospitals they visit are located.
+	</p>]]>
+	</Header>
+	<InterpretationText />
+	<WebsitePages>
+		<WebsitePage
+			Name="Service Use [Region Detail Trending]"
+			Audience="Professionals"
+			Path="app/products/professional/usage-data/views/service-use.html"
+			Url="/utilization/service-use?viewBy=population&amp;reportType=region"
+			UrlRaw="/usage-data/service-use?viewBy&amp;reportType&amp;displayType&amp;levelType&amp;levelValue&amp;levelViewBy&amp;groupBy&amp;dimension&amp;value&amp;value2"
+			IsEditable="true">
+			<WebsitePageZones>
+				<WebsitePageZone Name="Header" CodePath=""/>
+				<WebsitePageZone Name="Footer" CodePath=""/>
+			</WebsitePageZones>
+		</WebsitePage>
+	</WebsitePages>
+</ReportManifest>

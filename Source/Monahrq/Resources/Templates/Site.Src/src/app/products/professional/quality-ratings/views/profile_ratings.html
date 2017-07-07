@@ -1,0 +1,46 @@
+<div class="qr-profile-compare">
+  <label for="ddComparedTo" class="md-blockfix">Compared To:</label>
+  <select class="form-control" id="ddComparedTo" data-ng-model="query.comparedTo" data-ng-change="updateCompare()">
+    <option value="nat">National Average</option>
+    <option value="peer">{{config.website_GeographicDescription}} Average</option>
+  </select>
+</div>
+
+<div class="panel panel-default" id="quality-ratings-tabpanel" aria-labeledby="quality-ratings-tab" role="tabpanel" aria-hidden="false">
+  <div class="panel-heading">
+    <h3 class="panel-title">Ratings for Health Conditions and Topics</h3>
+  </div>
+  <div class="panel-body profile-panel-body">
+    <ul class="list-unstyled">
+      <li data-ng-repeat="topicCat in topicCats" class="condition-row">
+      <a aria-expanded="{{showTopic(topicCat.TopicCategoryID)}}" aria-controls="ratings-{{topicCat.TopicCategoryID}}" href="#" data-ng-click="toggleTopic(topicCat.TopicCategoryID); $event.preventDefault();" class="condition-row-link" data-ng-class="{'active': showTopic(topicCat.TopicCategoryID)}">{{getTopicCategoryName(topicCat.TopicCategoryID)}}<span data-mh-help-icon="'&nbsp;'" data-mh-on-click="modalTopicCategory(topicCat.TopicCategoryID)"></span>
+      </a>
+
+      <div id="ratings-{{topicCat.TopicCategoryID}}" data-ng-if="showTopic(topicCat.TopicCategoryID)" data-ng-repeat="topic in topicCat.topics" class="profile-data-table">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th><a data-ui-sref="top.professional.quality-ratings.condition({topic: topicCat.TopicCategoryID, subtopic: topic.TopicID})">{{topic.Name}}</a><span class="dark" data-mh-help-icon="'&nbsp;'" data-mh-on-click="modalTopic(topic.TopicID)"></span>
+</th>
+              <th>Rating</th>
+              <th>Risk-Adjusted Rates</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-ng-repeat="m in model[topic.TopicID]">
+              <td class="entity">{{m.title}}</td>
+              <td><div data-mh-rating-symbol="m.data[ratingField]"></div></td>
+              <td>
+                <span data-ng-if="m.data.RateAndCI != '-'">{{m.data.RateAndCI}}</span>
+                <span data-ng-if="m.data.RateAndCI == '-'">Not enough data<br>to report</span>
+              </td>
+            </tr>
+         </tbody>
+        </table>
+      </div>
+      </li>
+
+    </ul>
+  </div>
+</div>
+

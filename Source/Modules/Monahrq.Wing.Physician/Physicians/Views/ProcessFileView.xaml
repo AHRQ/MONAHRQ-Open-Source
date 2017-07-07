@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="Monahrq.Wing.Physician.Physicians.Views.ProcessFileView"
+                              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                              xmlns:converters="clr-namespace:Monahrq.Theme.Converters;assembly=Monahrq.Theme"
+                              xmlns:behaviors="clr-namespace:Monahrq.Theme.Behaviors;assembly=Monahrq.Theme"
+                              mc:Ignorable="d"
+                      d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <converters:BooleanToStringConverter x:Key="BooleanToStringConverter"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid  >
+            <Grid Visibility="{Binding UseApiForPhysicians, Converter={StaticResource BooleanToStringConverter}
+                , ConverterParameter=Collapsed|Visible}"  >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Text="Data import log:" />
+                <ListBox Grid.Row="1" ItemsSource="{Binding LogFile}" Background="White" behaviors:ListBoxBehavior.ScrollOnNewItem="true" />
+            </Grid>
+
+        </Grid>
+        <TextBlock DockPanel.Dock="Bottom" Text="Physician dataset information saved successfully. Your generated website will get the most current Physician dataset as it becomes available via the data.medicare.gov website."
+                    FontSize="13" FontWeight="SemiBold" Foreground="Red" TextWrapping="Wrap" Margin="0,30"
+        Visibility="{Binding UseApiForPhysicians, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+    </Grid>
+</UserControl>

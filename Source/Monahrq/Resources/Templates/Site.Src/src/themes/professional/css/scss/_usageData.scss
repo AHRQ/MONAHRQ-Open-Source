@@ -1,0 +1,407 @@
+/* Usage data wizard
+---------------------------------------- */
+.ud-wizard-tabs{
+  background: #E2F4FF;
+  padding: 0;
+  border-bottom: 10px solid #81BCE8
+}
+
+.ud-wizard-tabs li{
+  display: inline-block;
+  padding: 10px 0 10px 50px;
+  background: #E2F4FF;
+  width: 822px;
+  cursor: pointer;
+}
+
+.ud-wizard-tabs li a {
+  text-decoration:none;
+  color: #757A7E;
+}
+
+.ud-wizard-tabs li:first-child{
+  width: 254px;
+}
+
+.ud-wizard-tabs .active{
+  background: #81BCE8;
+}
+
+.ud-wizard-tabs .active a {
+  text-decoration: underline;
+  font-weight: bold;
+  color: #555;
+}
+
+.ud-wizard-content{
+  border-bottom: 1px solid black;
+  margin:0 5px;
+}
+
+.ud-wizard-content>div,
+.ud-wizard-content > fieldset{
+  padding: 15px 10px 25px 10px;
+  border-right: 3px solid #E2F4FF;
+  min-height: 150px;
+}
+
+.ud-wizard-ahs fieldset {
+  position: relative;
+  padding-top: 50px;
+}
+
+.ud-wizard-ahs legend {
+  position: absolute;
+  top:15px;
+}
+
+.ud-wizard-content .wiz-step-num,
+.ud-wizard-content .wiz-step-name{
+  color: #DEDEDE;
+}
+
+.ud-wizard-content .has-value .wiz-step-num,
+.ud-wizard-content .has-value .wiz-step-name{
+  color: black;
+}
+
+.ud-wizard-content .wiz-step-num.active {
+  color: red;
+}
+
+.ud-wizard-content .last{
+  border-right: none;
+}
+
+.ud-wizard-content label{
+  display: inline-block;
+  min-width: 90px;
+  text-align: right;
+  margin-right: 5px;
+}
+
+.ud-wizard-content .lrg-label{
+  min-width: 100px;
+}
+
+.ud-wizard-content .wiz-step-num{
+  font-size: 25px;
+}
+.ud-wizard-content .wiz-step-name{
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.ud-wizard-content legend {
+  border-bottom: none;
+  margin-bottom: 0px;
+}
+
+.ud-wizard-content .wiz-step-explainer{
+  width: 350px;
+}
+
+.ud-wizard-content .zip-input{
+  width: 225px;
+  margin-left: 10px;
+}
+
+.ud-wizard-content.compressed>div{
+  min-height: 108px;
+}
+
+.ud-wizard-content.compressed .wiz-step-num{
+  float: left;
+  margin-right: 10px;
+}
+
+.ud-wizard-content.compressed .wiz-step-name{
+  display: none;
+}
+
+.ud-wizard-content.compressed .form-control {
+  width: 200px;
+}
+
+.ud-wizard-content.compressed .form-control.zip-input {
+  width: 175px;
+  margin-left: 35px;
+}
+
+#qr-raw-data-label {
+  margin-top: 20px;
+}
+
+.sort .form-control{
+  max-width: 250px;
+}
+
+.map-canvas {
+  width: 1040px;
+  height: 700px;
+  margin: auto;
+}
+
+.topicList{
+  padding: 15px 0;
+}
+
+.topicList .topic{
+  width: 350px;
+  float: left;
+  padding: 5px;
+}
+
+.topicList .topic label {
+  text-align: left;
+}
+
+.ud-wizard-search {
+  clear: both;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.ud-report .utilization-tabs{
+  margin-left: 0;
+}
+
+.compare-header{
+  cursor: pointer;
+}
+
+.about-methodology ul{
+  margin-left: 25px;
+}
+
+.about-methodology .bold-span{
+  font-weight: bold;
+  display: inline-block;
+  padding-right: 5px;
+}
+
+.about-methodology .unstyledAnchor{
+  cursor: default;
+  text-decoration:none;
+  font-size: 15px;
+  margin-top: 25px;
+  display: block;
+  color: #555;
+}
+
+.about-methodology sup a {
+  text-decoration: none;
+}
+
+.about-methodology aside {
+  background: rgba(#E0F5FF, .35);
+  padding: 20px;
+  margin: 0 0 20px 20px;
+  float: right;
+  width: 45%;
+  max-width: 360px;
+}
+
+.about-methodology blockquote {
+  border: 5px solid #EEE;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.about-methodology .footer--references {
+  margin-top: 25px;
+  border-top: 1px solid #eee;
+}
+
+.bar-chart-wrapper{
+  margin: 0 auto;
+}
+
+.barchart-color-legend{
+  list-style: none;
+  float: right;
+}
+
+.barchart-color-legend li{
+  color: #12688c;
+  display: inline;
+  margin-right: 13px;
+}
+
+.barchart-color-legend li .swatch{
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  margin-right: 3px;
+}
+
+.bar-chart-arrow{
+  text-transform: uppercase;
+  color: #00688e;
+  font-weight: bold
+}
+
+.bar-chart-arrow .arrow{
+  display: inline-block;
+  width: 7px;
+  height: 16px;
+  background: url('../assets/barchart_arrows.png') 0 0 no-repeat;
+  margin: 0 3px;
+}
+
+.bar-chart-arrow .arrow.longer-arrow{
+  background-position: 0 -16px;
+}
+
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  padding: 0;
+}
+
+.table-wrapper.condition {
+  overflow-x: visible;
+}
+
+.option-row {
+  float: right;
+  margin-right: 25px;
+}
+
+.has-value .wiz-step-fields .option-row {
+  margin-right: 0px;
+}
+
+.modal-body ul .swatch{
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+}
+.modal-body ul .avg .swatch{
+  background-color: #fdc738;
+}
+.modal-body ul .above-avg .swatch{
+  background-color: #23b286;
+}
+.modal-body ul .below-avg .swatch{
+  background-color: #11678b;
+}
+
+.select-report-copy {
+  float:right;
+}
+
+ul.list-group li:last-child a{
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom: 1px solid #ccc;
+}
+
+ul.list-group li:first-child a{
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+
+ul.list-group li{
+  list-style:none;
+}
+
+ul.list-group li a{
+  border-top: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  display: block;
+  padding: 10px 10px;
+}
+
+ul.list-group a:visited,
+ul.list-group a:active{
+  color: #555;
+}
+
+
+ul.list-group li a.active{
+  background: #245D9C;
+  color: #fff;
+  text-decoration: none;
+}
+
+ul.list-group li a.active:hover,
+ul.list-group li a.active:focus {
+  background: #245D9C;
+}
+
+ul.list-group li a:hover,
+ul.list-group li a:focus {
+  background: #eee;
+}
+
+.select-to-copy-btn{
+  border-radius: 5px;
+  background: #E3EBE3;
+  padding: 5px 10px;
+  font-size: 12px;
+  float: left;
+  margin-top: 35px;
+  text-decoration: none;
+  color: #2a6496;
+}
+.select-to-copy-btn .glyphicon{
+  color: #2a6496;
+}
+.select-to-copy-btn.md-top{
+  margin-top: 20px;
+}
+.select-to-copy-btn.no-top{
+  margin-top: 0;
+}
+
+ul.list-group {
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+
+  li {
+    a {
+      border-left: none;
+      border-right: none;
+    }
+  }
+}
+
+ul.list-group li h3 {
+  margin: 0;
+  padding-bottom: 5px;
+}
+
+ul.list-group li span.menu-item, ul.list-group li h3 {
+  font-size: 16px;
+}
+
+ul.list-group li span.menu-item {
+  display: block;
+  padding: 15px 15px 5px;
+  margin: 0;
+  border-top: 1px solid #ccc;
+  font-weight: bold;
+}
+
+.sidebar {
+  &, & ul {
+    margin-left: 0;
+  }
+
+  ul {
+    // padding-bottom: 20px;
+
+    li {
+
+        a {
+          border-top: 0;
+          border-bottom: none!important;
+          border-radius: 0!important;
+          // padding-bottom: 0;
+          padding-left: 30px;
+        }
+    }
+  }
+}

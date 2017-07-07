@@ -1,0 +1,286 @@
+DXCCS,Description,FirstYear,LastYear
+1,Tuberculosis,0,9999
+2,Septicemia (except in labor),0,9999
+3,Bacterial infection; unspecified site,0,9999
+4,Mycoses,0,9999
+5,HIV infection,0,9999
+6,Hepatitis,0,9999
+7,Viral infection,0,9999
+8,Other infections; including parasitic,0,9999
+9,Sexually transmitted infections (not HIV or hepatitis),0,9999
+10,Immunizations and screening for infectious disease,0,9999
+11,Cancer of head and neck,0,9999
+12,Cancer of esophagus,0,9999
+13,Cancer of stomach,0,9999
+14,Cancer of colon,0,9999
+15,Cancer of rectum and anus,0,9999
+16,Cancer of liver and intrahepatic bile duct,0,9999
+17,Cancer of pancreas,0,9999
+18,Cancer of other GI organs; peritoneum,0,9999
+19,Cancer of bronchus; lung,0,9999
+20,Cancer; other respiratory and intrathoracic,0,9999
+21,Cancer of bone and connective tissue,0,9999
+22,Melanomas of skin,0,9999
+23,Other non-epithelial cancer of skin,0,9999
+24,Cancer of breast,0,9999
+25,Cancer of uterus,0,9999
+26,Cancer of cervix,0,9999
+27,Cancer of ovary,0,9999
+28,Cancer of other female genital organs,0,9999
+29,Cancer of prostate,0,9999
+30,Cancer of testis,0,9999
+31,Cancer of other male genital organs,0,9999
+32,Cancer of bladder,0,9999
+33,Cancer of kidney and renal pelvis,0,9999
+34,Cancer of other urinary organs,0,9999
+35,Cancer of brain and nervous system,0,9999
+36,Cancer of thyroid,0,9999
+37,Hodgkin`s disease,0,9999
+38,Non-Hodgkin`s lymphoma,0,9999
+39,Leukemias,0,9999
+40,Multiple myeloma,0,9999
+41,Cancer; other and unspecified primary,0,9999
+42,Secondary malignancies,0,9999
+43,Malignant neoplasm without specification of site,0,9999
+44,Neoplasms of unspecified nature or uncertain behavior,0,9999
+45,Maintenance chemotherapy; radiotherapy,0,9999
+46,Benign neoplasm of uterus,0,9999
+47,Other and unspecified benign neoplasm,0,9999
+48,Thyroid disorders,0,9999
+49,Diabetes mellitus without complication,0,9999
+50,Diabetes mellitus with complications,0,9999
+51,Other endocrine disorders,0,9999
+52,Nutritional deficiencies,0,9999
+53,Disorders of lipid metabolism,0,9999
+54,Gout and other crystal arthropathies,0,9999
+55,Fluid and electrolyte disorders,0,9999
+56,Cystic fibrosis,0,9999
+57,Immunity disorders,0,9999
+58,Other nutritional; endocrine; and metabolic disorders,0,9999
+59,Deficiency and other anemia,0,9999
+60,Acute posthemorrhagic anemia,0,9999
+61,Sickle cell anemia,0,9999
+62,Coagulation and hemorrhagic disorders,0,9999
+63,Diseases of white blood cells,0,9999
+64,Other hematologic conditions,0,9999
+650,Adjustment disorders,0,9999
+651,Anxiety disorders,0,9999
+652,"Attention-deficit, conduct, and disruptive behavior disorders",0,9999
+653,"Delirium, dementia, and amnestic and other cognitive disorders",0,9999
+654,Developmental disorders,0,9999
+655,"Disorders usually diagnosed in infancy, childhood, or adolescence",0,9999
+656,"Impulse control disorders, NEC",0,9999
+657,Mood disorders,0,9999
+658,Personality disorders,0,9999
+659,Schizophrenia and other psychotic disorders,0,9999
+660,Alcohol-related disorders,0,9999
+661,Substance-related disorders,0,9999
+662,Suicide and intentional self-inflicted injury,0,9999
+663,Screening and history of mental health and substance abuse codes,0,9999
+670,Miscellaneous disorders    ,0,9999
+76,Meningitis (except that caused by tuberculosis or sexually transmitted disease),0,9999
+77,Encephalitis (except that caused by tuberculosis or sexually transmitted disease),0,9999
+78,Other CNS infection and poliomyelitis,0,9999
+79,Parkinson`s disease,0,9999
+80,Multiple sclerosis,0,9999
+81,Other hereditary and degenerative nervous system conditions,0,9999
+82,Paralysis,0,9999
+83,Epilepsy; convulsions,0,9999
+84,Headache; including migraine,0,9999
+85,Coma; stupor; and brain damage,0,9999
+86,Cataract,0,9999
+87,Retinal detachments; defects; vascular occlusion; and retinopathy,0,9999
+88,Glaucoma,0,9999
+89,Blindness and vision defects,0,9999
+90,Inflammation; infection of eye (except that caused by tuberculosis or sexually transmitteddisease),0,9999
+91,Other eye disorders,0,9999
+92,Otitis media and related conditions,0,9999
+93,Conditions associated with dizziness or vertigo,0,9999
+94,Other ear and sense organ disorders,0,9999
+95,Other nervous system disorders,0,9999
+96,Heart valve disorders,0,9999
+97,Peri-; endo-; and myocarditis; cardiomyopathy (except that caused by tuberculosis or sexually transmitted disease),0,9999
+98,Essential hypertension,0,9999
+99,Hypertension with complications and secondary hypertension,0,9999
+100,Acute myocardial infarction,0,9999
+101,Coronary atherosclerosis and other heart disease,0,9999
+102,Nonspecific chest pain,0,9999
+103,Pulmonary heart disease,0,9999
+104,Other and ill-defined heart disease,0,9999
+105,Conduction disorders,0,9999
+106,Cardiac dysrhythmias,0,9999
+107,Cardiac arrest and ventricular fibrillation,0,9999
+108,Congestive heart failure; nonhypertensive,0,9999
+109,Acute cerebrovascular disease,0,9999
+110,Occlusion or stenosis of precerebral arteries,0,9999
+111,Other and ill-defined cerebrovascular disease,0,9999
+112,Transient cerebral ischemia,0,9999
+113,Late effects of cerebrovascular disease,0,9999
+114,Peripheral and visceral atherosclerosis,0,9999
+115,Aortic; peripheral; and visceral artery aneurysms,0,9999
+116,Aortic and peripheral arterial embolism or thrombosis,0,9999
+117,Other circulatory disease,0,9999
+118,Phlebitis; thrombophlebitis and thromboembolism,0,9999
+119,Varicose veins of lower extremity,0,9999
+120,Hemorrhoids,0,9999
+121,Other diseases of veins and lymphatics,0,9999
+122,Pneumonia (except that caused by tuberculosis or sexually transmitted disease),0,9999
+123,Influenza,0,9999
+124,Acute and chronic tonsillitis,0,9999
+125,Acute bronchitis,0,9999
+126,Other upper respiratory infections,0,9999
+127,Chronic obstructive pulmonary disease and bronchiectasis,0,9999
+128,Asthma,0,9999
+129,Aspiration pneumonitis; food/vomitus,0,9999
+130,Pleurisy; pneumothorax; pulmonary collapse,0,9999
+131,Respiratory failure; insufficiency; arrest (adult),0,9999
+132,Lung disease due to external agents,0,9999
+133,Other lower respiratory disease,0,9999
+134,Other upper respiratory disease,0,9999
+135,Intestinal infection,0,9999
+136,Disorders of teeth and jaw,0,9999
+137,Diseases of mouth; excluding dental,0,9999
+138,Esophageal disorders,0,9999
+139,Gastroduodenal ulcer (except hemorrhage),0,9999
+140,Gastritis and duodenitis,0,9999
+141,Other disorders of stomach and duodenum,0,9999
+142,Appendicitis and other appendiceal conditions,0,9999
+143,Abdominal hernia,0,9999
+144,Regional enteritis and ulcerative colitis,0,9999
+145,Intestinal obstruction without hernia,0,9999
+146,Diverticulosis and diverticulitis,0,9999
+147,Anal and rectal conditions,0,9999
+148,Peritonitis and intestinal abscess,0,9999
+149,Biliary tract disease,0,9999
+150,Liver disease; alcohol-related,0,9999
+151,Other liver diseases,0,9999
+152,Pancreatic disorders (not diabetes),0,9999
+153,Gastrointestinal hemorrhage,0,9999
+154,Noninfectious gastroenteritis,0,9999
+155,Other gastrointestinal disorders,0,9999
+156,Nephritis; nephrosis; renal sclerosis,0,9999
+157,Acute and unspecified renal failure,0,9999
+158,Chronic kidney disease,0,9999
+159,Urinary tract infections,0,9999
+160,Calculus of urinary tract,0,9999
+161,Other diseases of kidney and ureters,0,9999
+162,Other diseases of bladder and urethra,0,9999
+163,Genitourinary symptoms and ill-defined conditions,0,9999
+164,Hyperplasia of prostate,0,9999
+165,Inflammatory conditions of male genital organs,0,9999
+166,Other male genital disorders,0,9999
+167,Nonmalignant breast conditions,0,9999
+168,Inflammatory diseases of female pelvic organs,0,9999
+169,Endometriosis,0,9999
+170,Prolapse of female genital organs,0,9999
+171,Menstrual disorders,0,9999
+172,Ovarian cyst,0,9999
+173,Menopausal disorders,0,9999
+174,Female infertility,0,9999
+175,Other female genital disorders,0,9999
+176,Contraceptive and procreative management,0,9999
+177,Spontaneous abortion,0,9999
+178,Induced abortion,0,9999
+179,Postabortion complications,0,9999
+180,Ectopic pregnancy,0,9999
+181,Other complications of pregnancy,0,9999
+182,Hemorrhage during pregnancy; abruptio placenta; placenta previa,0,9999
+183,Hypertension complicating pregnancy; childbirth and the puerperium,0,9999
+184,Early or threatened labor,0,9999
+185,Prolonged pregnancy,0,9999
+186,Diabetes or abnormal glucose tolerance complicating pregnancy; childbirth; or the puerperium,0,9999
+187,Malposition; malpresentation,0,9999
+188,Fetopelvic disproportion; obstruction,0,9999
+189,Previous C-section,0,9999
+190,Fetal distress and abnormal forces of labor,0,9999
+191,Polyhydramnios and other problems of amniotic cavity,0,9999
+192,Umbilical cord complication,0,9999
+193,OB-related trauma to perineum and vulva,0,9999
+194,Forceps delivery,0,9999
+195,Other complications of birth; puerperium affecting management of mother,0,9999
+196,Normal pregnancy and/or delivery,0,9999
+197,Skin and subcutaneous tissue infections,0,9999
+198,Other inflammatory condition of skin,0,9999
+199,Chronic ulcer of skin,0,9999
+200,Other skin disorders,0,9999
+201,Infective arthritis and osteomyelitis (except that caused by tuberculosis or sexually transmitted disease),0,9999
+202,Rheumatoid arthritis and related disease,0,9999
+203,Osteoarthritis,0,9999
+204,Other non-traumatic joint disorders,0,9999
+205,Spondylosis; intervertebral disc disorders; other back problems,0,9999
+206,Osteoporosis,0,9999
+207,Pathological fracture,0,9999
+208,Acquired foot deformities,0,9999
+209,Other acquired deformities,0,9999
+210,Systemic lupus erythematosus and connective tissue disorders,0,9999
+211,Other connective tissue disease,0,9999
+212,Other bone disease and musculoskeletal deformities,0,9999
+213,Cardiac and circulatory congenital anomalies,0,9999
+214,Digestive congenital anomalies,0,9999
+215,Genitourinary congenital anomalies,0,9999
+216,Nervous system congenital anomalies,0,9999
+217,Other congenital anomalies,0,9999
+218,Liveborn,0,9999
+219,Short gestation; low birth weight; and fetal growth retardation,0,9999
+220,Intrauterine hypoxia and birth asphyxia,0,9999
+221,Respiratory distress syndrome,0,9999
+222,Hemolytic jaundice and perinatal jaundice,0,9999
+223,Birth trauma,0,9999
+224,Other perinatal conditions,0,9999
+225,Joint disorders and dislocations; trauma-related,0,9999
+226,Fracture of neck of femur (hip),0,9999
+227,Spinal cord injury,0,9999
+228,Skull and face fractures,0,9999
+229,Fracture of upper limb,0,9999
+230,Fracture of lower limb,0,9999
+231,Other fractures,0,9999
+232,Sprains and strains,0,9999
+233,Intracranial injury,0,9999
+234,Crushing injury or internal injury,0,9999
+235,Open wounds of head; neck; and trunk,0,9999
+236,Open wounds of extremities,0,9999
+237,Complication of device; implant or graft,0,9999
+238,Complications of surgical procedures or medical care,0,9999
+239,Superficial injury; contusion,0,9999
+240,Burns,0,9999
+241,Poisoning by psychotropic agents,0,9999
+242,Poisoning by other medications and drugs,0,9999
+243,Poisoning by nonmedicinal substances,0,9999
+244,Other injuries and conditions due to external causes,0,9999
+245,Syncope,0,9999
+246,Fever of unknown origin,0,9999
+247,Lymphadenitis,0,9999
+248,Gangrene,0,9999
+249,Shock,0,9999
+250,Nausea and vomiting,0,9999
+251,Abdominal pain,0,9999
+252,Malaise and fatigue,0,9999
+253,Allergic reactions,0,9999
+254,Rehabilitation care; fitting of prostheses; and adjustment of devices,0,9999
+255,Administrative/social admission,0,9999
+256,Medical examination/evaluation,0,9999
+257,Other aftercare,0,9999
+258,Other screening for suspected conditions (not mental disorders or infectious disease),0,9999
+259,Residual codes; unclassified,0,9999
+260,E Codes: All (external causes of injury and poisoning),0,9999
+2601,E Codes: Cut/pierceb,0,9999
+2602,E Codes: Drowning/submersion,0,9999
+2603,E Codes: Fall,0,9999
+2604,E Codes: Fire/burn,0,9999
+2605,E Codes: Firearm,0,9999
+2606,E Codes: Machinery,0,9999
+2607,E Codes: Motor vehicle traffic (MVT),0,9999
+2608,E Codes: Pedal cyclist; not MVT,0,9999
+2609,E Codes: Pedestrian; not MVT,0,9999
+2610,E Codes: Transport; not MVT,0,9999
+2611,E Codes: Natural/environment,0,9999
+2612,E Codes: Overexertion,0,9999
+2613,E Codes: Poisoning,0,9999
+2614,E Codes: Struck by; against,0,9999
+2615,E Codes: Suffocation,0,9999
+2616,E Codes: Adverse effects of medical care,0,9999
+2617,E Codes: Adverse effects of medical drugs,0,9999
+2618,E Codes: Other specified and classifiable,0,9999
+2619,E Codes: Other specified; NEC,0,9999
+2620,E Codes: Unspecified,0,9999
+2621,E Codes: Place of occurrence,0,9999

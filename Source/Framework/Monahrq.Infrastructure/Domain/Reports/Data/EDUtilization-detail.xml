@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ReportManifest RptId="2AAF7FBA-7102-4C66-8598-A70597E2F828"
+                Name="ED Utilization Detailed Report" ShowInterpretationText="true"
+                Category="Utilization"
+				IsTrending="false" ConsumerPreviewImage="EDUtilization-detail.png"
+				PreviewImage="EDUtilization-detail.png" >
+	<Audiences>
+		<Audience AudienceType="Professionals" />
+	</Audiences>
+	<Datasets>
+		<Dataset Name="ED Treat And Release"/>
+	</Datasets>
+	<Filters>
+		<Filter Type="Hospital">
+			<Values>
+				<FilterValue Name="Hospital Name" />
+				<FilterValue Name="Hospital Type" />
+				<FilterValue Name="Region" />
+				<FilterValue Name="County" />
+			</Values>
+		</Filter>
+		<Filter Type="ConditionsAndDiagnosis">
+			<Values>
+				<FilterValue Name="Health Condition or Topic" />
+			</Values>
+		</Filter>
+	</Filters>
+	<ReportAttributes>
+		HospitalFilters ConditionsAndDiagnosisFilters
+	</ReportAttributes>
+	<!--ReportColumns-->
+	<Columns>
+		<Column IsMeasure="true" MeasureCode="ED-01" Name="Number of ED Visits" />
+		<Column IsMeasure="true" MeasureCode="ED-02" Name="Number Admitted to Hospital Following ED Visit" />
+		<Column IsMeasure="true" MeasureCode="ED-03" Name="Number of Deaths During ED Visit" />
+		<Column IsMeasure="true" MeasureCode="ED-04" Name="Number of Deaths Post-Admission Following ED Visit" />
+	</Columns>
+	<Header>
+		<![CDATA[<p> Emergency department utilization refers to patients’ use of hospital services through the hospital’s emergency department. Clicking ‘View Trends’ will display changes in data over time for the selected category, such as a utilization measure or hospital.
+	</p>]]>
+	</Header>
+	<Footer>
+		<![CDATA[<p> Weighted national estimates from HCUP Nationwide Inpatient Sample (NIS), 2009, Agency for Healthcare Research and Quality (AHRQ), based on data collected by individual States and provided to AHRQ by the States. Total number of weighted discharges in the U.S. based on HCUP NIS = 39,434,956. Statistics based on estimates with a relative standard error (standard error / weighted estimate) greater than 0.30 or with standard error = 0 are not reliable, and are designated with a †.<br/> All statistics are unadjusted.
+	</p>]]>
+	</Footer>
+	<InterpretationText>
+		<![CDATA[ <P>How do I interpret the table?</p>
+	<p>Information is provided for each selected hospital by condition or procedure grouping.  Select the titles in the top row to sort the results.  Tables may include the following.<br/><br/><b>Total US: </b>National numbers are weighted estimates from the <a href="http://www.hcup-us.ahrq.gov/" target="_blank">HCUP Nationwide Inpatient Sample</a> (NIS), 2011, Agency for Healthcare Research and Quality (AHRQ).<br/><br/><b>Total US region: </b>Regional categories are defined by the Census Bureau: Midwest, Northeast, South, and West.  Numbers for each region are weighted estimates from the <a href="http://www.hcup-us.ahrq.gov/" target="_blank">HCUP Nationwide Inpatient Sample</a> (NIS), 2011, Agency for Healthcare Research and Quality (AHRQ). <br/><br/><b>Total of all hospitals in this Website: </b>Numbers are presented for all hospitals included in this Website.<br/><br/><b>Hospitals: </b>Previously chosen hospitals are listed.  You can select a hospital from the list for more detailed results.  Detailed results include characteristics of each hospital stay (age, gender, payer, and race).<br/><br/><b>Hospital County: </b>The county for each hospital is provided.<br/><br/><b># ED Visits:</b> The total number of visits to the Emergency Department of the selected hospital.<br/><br/><b># Admitted to Hospital Following ED Visit:</b> The number of patients who visited the Emergency Department and were subsequently admitted to the Hospital.<br/><br/><b># of Deaths During ED Visit:</b> The number of patient deaths in the Emergency Department.<br/><br/><b># Deaths Post-Admission Following ED Visit:</b> The number of patient deaths post-admission to the hospital following a visit to the Emergency Department.<br/><br/>If you select a specific hospital you will get following.<br/><br/><b>Age group: </b>Patient age in years is based on the admission date to the hospital and date of birth.  The number of stays in each age is reported.<br/><br/><b>Gender: </b>The number of males and females is reported for the selected hospital and condition or procedure.<br/><br/><b>Payer: </b>Payer is the expected payer for the hospital stay. Payers are grouped into general categories: Medicaid, Medicare, private insurance, uninsured, other, and missing.  The number of stays for each payer category is reported for the selected hospital and condition or procedure.<br/><br/><b>Race: </b>Race/ethnicity of the patient as listed in the medical record.  Racial and ethnic categories are collapsed into larger groups based on US Census Bureau designations.<br/><br/>You may notice some special codes in the tables.<br/><br/><b>Dash (-): </b>A dash is reported when there are not enough data for the given selection.  There are many reasons there may not be enough data to report.<br/><br/><b>Small number suppression: </b>Small raw numbers may be suppressed to protect patient confidentiality.  In this case, a &quot;c&quot; appears.</p>	
+]]>
+	</InterpretationText>
+	<WebsitePages>
+		<WebsitePage
+			Name="Service Use [ED Detail]"
+			Audience="Professionals"
+			Path="app/products/professional/usage-data/views/service-use.html"
+			Url="/utilization/service-use?viewBy=hospital&amp;reportType=ed"
+			UrlRaw="/usage-data/service-use?viewBy&amp;reportType&amp;displayType&amp;levelType&amp;levelValue&amp;levelViewBy&amp;groupBy&amp;dimension&amp;value&amp;value2"
+			IsEditable="true">
+			<WebsitePageZones>
+				<WebsitePageZone Name="Header" CodePath=""/>
+				<WebsitePageZone Name="Footer" CodePath=""/>
+			</WebsitePageZones>
+		</WebsitePage>
+	</WebsitePages>
+</ReportManifest>

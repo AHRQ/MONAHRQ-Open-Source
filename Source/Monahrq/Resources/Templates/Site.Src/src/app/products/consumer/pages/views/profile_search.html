@@ -1,0 +1,88 @@
+<main class="profile">
+  <section class="search--refine" role="search">
+    <div class="contain">
+      <div class="search--refine__title-group">
+        <h1 class="search--refine__title">Find another {{entityName}}</h1>
+      </div>
+
+      <form class="search-form find-another" name="searchForm" novalidate>
+        <div class="search-form__contain">
+          <div class="search-form__location">
+            <label for="search-query">Enter name:</label>
+            <input type="text" id="search-query" name="name" placeholder="Enter a {{entityName}} name" data-ng-model="query.name" required>
+            <span data-ng-if="searchForm.name.$error.required && showValidationErrors" class="form-error-message">Error: Please enter a name</span>
+          </div>
+
+          <div class="search-form__action">
+            <button class="btn--primary" data-ng-click="search()">Search</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section class="report" tabindex="-1">
+    <header class="report-header" data-ng-if="!hasSearch">
+      <h2>Enter your search above</h2>
+    </header>
+    <header class="report-header" data-ng-if="hasSearch && !hasResult">
+      <h2>Your search did not find anything</h2>
+    </header>
+    <header class="report-header" data-ng-if="hasResult">
+      <h2>Search Results</h2>
+    </header>
+
+    <div class="report-content search-results" data-ng-if="hasResult">
+
+      <table data-ng-if="query.type === 'hospital'">
+        <thead>
+          <th><h3>Hospitals</h3></th>
+          <th>Location</th>
+        </thead>
+        <tbody>
+          <tr data-ng-if="hospitalResults.length == 0">
+            <td><p>No hospitals found</p></td>
+          </tr>
+          <tr data-ng-repeat="h in hospitalResults">
+            <td><a href="#" data-ui-sref="top.consumer.hospitals.profile({id: h.id})">{{h.name}}</a></td>
+            <td>{{h.city}}, {{h.state}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table data-ng-if="query.type === 'nursing'">
+        <thead>
+          <th><h3>Nursing Homes</h3></th>
+          <th>Location</th>
+        </thead>
+        <tbody>
+          <tr data-ng-if="nursingHomeResults.length == 0">
+            <td><p>No nursing homes found</p></td>
+          </tr>
+          <tr data-ng-repeat="n in nursingHomeResults">
+            <td><a href="#" data-ui-sref="top.consumer.nursing-homes.profile({id: n.id})">{{n.name}}</a></td>
+            <td>{{n.city}}, {{n.state}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table data-ng-if="query.type === 'physician'">
+        <thead>
+          <th><h3>Physicians</h3></th>
+          <th>Location</th>
+        </thead>
+        <tbody>
+          <tr data-ng-if="physicianResults.length == 0">
+            <td><p>No physicians found</p></td>
+          </tr>
+          <tr data-ng-repeat="p in physicianResults">
+            <td><a href="#" data-ui-sref="top.consumer.physicians.profile({id: p.id})">{{p.name}}</a></td>
+            <td>{{p.city}}, {{p.state}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    </div>
+  </section>
+
+</main>

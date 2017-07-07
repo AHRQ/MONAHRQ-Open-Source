@@ -1,0 +1,80 @@
+<div class="page-header">
+  <h1>About the Quality Ratings</h1>
+
+  <div data-ng-if="ReportConfigSvc.webElementAvailable('Resource_AboutQR_Hospital')">
+    <h2>Hospital Quality Ratings</h2>
+    <ul class="toc">
+      <li data-ng-repeat="category in measureTopicCategories"><a href="#" data-scroll-to="qr-{{category.TopicCategoryID}}"><em>{{category.Name}}</em></a></li>
+    </ul>
+  </div>
+
+  <div data-ng-if="ReportConfigSvc.webElementAvailable('Resource_AboutQR_AHS')">
+    <h2>Avoidable Hospital Stays</h2>
+    <ul class="toc">
+      <li data-ng-repeat="ahsTopic in ahsTopics"><a href="#" data-scroll-to="ahs-{{ahsTopic.id}}"><em>{{ahsTopic.name}}</em></a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="">
+
+  <div data-ng-if="ReportConfigSvc.webElementAvailable('Resource_AboutQR_Hospital')">
+    <h3>Hospital Quality Ratings</h3>
+    <div data-ng-repeat="category in measureTopicCategories" class="topic-category">
+      <h4 id="qr-{{category.TopicCategoryID}}">{{category.Name}}</h4>
+      <p data-ng-bind-html="category.Description"></p>
+
+      <div data-ng-repeat="topic in getTopicsFor(category.TopicCategoryID)" class="topic">
+        <div>
+          <h5 style="float:left">{{topic.Name}}</h5>
+          <div class="measure-toggle" style="float:right">
+            <button data-ng-if="!isTopicVisible(topic.TopicID)" data-ng-click="toggleTopic(topic.TopicID);" class="btn btn-default btn-xs">Show Measures »</button>
+            <button data-ng-if="isTopicVisible(topic.TopicID)" data-ng-click="toggleTopic(topic.TopicID);" class="btn btn-default btn-xs">« Hide Measures</button>
+          </div>
+        </div>
+        <div style="clear:both"></div>
+        <div data-ng-if="isTopicVisible(topic.TopicID)" class="measures-wrapper">
+          <p data-ng-bind-html="topic.Description"></p>
+          <div data-ng-repeat="measureId in topic.Measures" class="measure">
+            <h6><strong>{{measureDefs[measureId].SelectedTitle}}</strong></h6>
+            <p data-ng-if="measureDefs[measureId].MeasureDescription" data-ng-bind-html="measureDefs[measureId].MeasureDescription"></p>
+            <p data-ng-if="measureDefs[measureId].Bullets" data-ng-bind-html="measureDefs[measureId].Bullets"></p>
+            <p data-ng-if="measureDefs[measureId].ClinicalTitle"><u>Clinical Title:</u> {{measureDefs[measureId].ClinicalTitle}}</p>
+            <p data-ng-if="measureDefs[measureId].MeasuresName"><u>Measure Code:</u> {{measureDefs[measureId].MeasuresName}}</p>
+            <p data-ng-if="measureDefs[measureId].fStatisticsAvailable"><u>Statistics Available:</u> {{measureDefs[measureId].fStatisticsAvailable}}</p>
+            <p data-ng-if="measureDefs[measureId].DataSourceURL"><u>Data Source:</u> <a href="{{measureDefs[measureId].DataSourceURL}}" target="_blank">{{measureDefs[measureId].DataSourceURLTitle}}</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div data-ng-if="ReportConfigSvc.webElementAvailable('Resource_AboutQR_AHS')">
+    <h3>Avoidable Hospital Stays</h3>
+    <div data-ng-repeat="topic in ahsTopics" class="topic">
+      <div>
+        <h4 id="ahs-{{topic.id}}" style="float:left">{{topic.name}}</h4>
+        <div class="measure-toggle" style="float:right">
+          <button data-ng-if="!isTopicVisible(topic.id)" data-ng-click="toggleTopic(topic.id)" class="btn btn-default btn-xs">Show Measures »</button>
+          <button data-ng-if="isTopicVisible(topic.id)" data-ng-click="toggleTopic(topic.id)" class="btn btn-default btn-xs">« Hide Measures</button>
+        </div>
+      </div>
+      <div style="clear:both"></div>
+      <div data-ng-if="isTopicVisible(topic.id)" class="measures-wrapper">
+        <div data-ng-repeat="measure in topic.measures" class="measure">
+          <h6><strong>{{measureDefs[measure.MeasureId].MeasuresName}}</strong></h6>
+          <h6><strong>{{measureDefs[measure.MeasureId].SelectedTitle}}</strong></h6>
+          <p data-ng-if="measureDefs[measure.MeasureId].MeasureDescription" data-ng-bind-html="measureDefs[measure.MeasureId].MeasureDescription"></p>
+          <p data-ng-if="measureDefs[measure.MeasureId].Bullets" data-ng-bind-html="measureDefs[measure.MeasureId].Bullets"></p>
+          <p data-ng-if="measureDefs[measure.MeasureId].ClinicalTitle"><u>Clinical Title:</u> {{measureDefs[measure.MeasureId].ClinicalTitle}}</p>
+          <p data-ng-if="measureDefs[measure.MeasureId].MeasuresName"><u>Measure Code:</u> {{measureDefs[measure.MeasureId].MeasuresName}}</p>
+          <p data-ng-if="measureDefs[measure.MeasureId].fStatisticsAvailable"><u>Statistics Available:</u> {{measureDefs[measure.MeasureId].fStatisticsAvailable}}</p>
+          <p data-ng-if="measureDefs[measure.MeasureId].DataSourceURL"><u>Data Source:</u> <a href="{{measureDefs[measure.MeasureId].DataSourceURL}}" target="_blank">{{measureDefs[measure.MeasureId].DataSourceURLTitle}}</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+

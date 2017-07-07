@@ -1,0 +1,130 @@
+// All tables have a surrogate Id column as the primary key.
+// All tables here use singular name convention.
+// Underscores in table names signify many-to-many relationship.
+
+class ReportTemplate
+{
+                int Id;
+                string Name;
+}
+
+class Report
+{
+    int Id;
+    string Name;
+    int ReportTemplateId;               // fkey
+    string Description;
+    string Footnote;
+}
+
+class ReportCategory
+{
+    int Id;
+    int Name;
+}
+
+class Audience
+{
+    int Id;
+    int Name;
+}
+
+class ReportTemplate_Audience
+{
+    int Id;
+    int ReportTemplateId;                               // fkey
+    int AudienceId;                                             // fkey
+}
+
+class FilterSet
+{
+    int Id;
+    string Name;
+}
+
+class ReportFilter
+{
+    int Id;
+    string Name;
+    int FilterSetId;                               // fkey
+}
+
+class Report_ReportFilter
+{
+    int Id;
+    int ReportId;                                  // fkey
+    int ReportFilterId;                        // fkey
+}
+
+class Column
+{
+    int Id;
+    string Name;
+}
+
+class Report_Column
+{
+    int Id;
+    int ReportId;                                  // fkey
+    int ColumnId;                                 // fkey
+}
+
+class Hospital
+{
+    int Id;
+    string Name;
+    double CCR;
+    string CmsName;
+    int DSHOSPID;
+    string Address;
+    string City;
+    string State;
+    string Zip;
+    int HourOpenTime;                                                     // 2400 military time
+    int HourCloseTime;                                                     // 2400 military time
+    string Facility;                                 
+    int TypeOfControlId;                                                  // fkey
+    int TotalBeds;
+    int Revenue;
+    int TotalDischarges;
+    int TotalPatientDays;
+}
+
+class HospitalProfileItem
+{
+    int Id;
+    string Name;
+}
+
+class Report_HospitalProfileItem
+{
+    int Id;
+    int ReportId;                                                  // fkey
+    int HospitalProfileItemId;                         // fkey
+}
+
+ 
+
+class Report_HospitalCategory
+{
+    int Id;
+    int ReportId;                                                                  // fkey
+    int HospitalCategoryId;                                              // fkey
+}
+
+class Hospital_Region
+{
+    int Id;
+    int HospitalId;                                                                // fkey
+    int RegionId;                                                                  // fkey
+}
+
+class Region
+{
+    int Id;
+    string Name;
+    string State;                                                  // or this could be normalized to be a fkey to a State reference table
+    int IMPORT_REGION_ID;                                          // what is this???
+}
+
+ 

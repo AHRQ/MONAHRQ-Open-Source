@@ -1,0 +1,130 @@
+/* PLEASE DO NOT REMOVE NUGGETS FOR THIS FILE. WE NEED FOR ALLOWABLE HOST USER CSS OVERRIDES!!!! */
+
+/* Bootstrap Overrides
+---------------------------------------- */
+
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:hover,
+.nav-pills > li.active > a:focus {
+    color: [@@bodyTextColor@@]; /* Body Text | #3E464C */
+}
+
+a,
+a:link,
+a:visited {
+    color: [@@linkTextColor@@]; /* Linked Text | #2d69a4 */
+}
+
+.list-group.sidebar .list-group-item.active {
+    background: [@@linkTextColor@@]; /* Unknown | #2d69a4 */
+    /* NEEDS TEXT COLOR NUGGET */
+}
+
+.btn-primary {
+    background: [@@accentColor@@]; /* Primary Buttons | #F8ED98; */
+    border-color: [@@accentColor@@]; /* Primary Buttons | #F8ED98; */
+    color: [@@foregroundColor@@];
+}
+
+/* Body
+---------------------------------------- */
+body {
+    font-family: [@@website_Font@@]; /* 'Droid Sans', Arial, sans-serif; */
+    color: [@@bodyTextColor@@]; /* Body Text | #3E464C */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: [@@website_Font@@]; /*  'Droid Sans', Arial, sans-serif;*/
+}
+
+/* ---------- Nav tabs
+---------------------------------------- */
+.nav-tabs > li > .nav__link {
+  color: [@@brandColor@@];
+}
+
+.nav-tabs > li > .nav__link.active,
+.nav-tabs > li > .nav__link.active:hover,
+.nav-tabs > li > .nav__link.active:focus {
+  background-color: [@@brandColor@@];
+  color: [@@foregroundColor@@];
+}
+
+.nav-tabs-secondary {
+  background-color: [@@brandColor@@];
+}
+
+.nav-tabs-secondary .nav__link {
+  color: [@@foregroundColor@@];
+}
+
+
+/* ---------- Search Form
+---------------------------------------- */
+.search-form {
+    background: [@@brandColor@@]; /* Search Area | #A0D2EC */
+    color: [@@foregroundColor@@];
+}
+
+/* ---------- Search Form Navigation
+---------------------------------------- */
+.search-form-nav li a,
+.search-form-nav li a:link,
+.search-form-nav li a:visited {
+    background: [@@accent2Color@@]; /* Nav | #E3EBE3; */
+    color: [@@foregroundColor@@];
+}
+
+.search-form-nav.small li a,
+.search-form-nav.small li a:link,
+.search-form-nav.small li a:visited {
+    background: [@@accent2Color@@]; /* Nav | #E3EBE3 */
+    color: [@@foregroundColor@@];
+}
+
+/* ---------- Side Search
+---------------------------------------- */
+.side-search li.item {
+    background: [@@accentColor@@]; /* Nav | #F8ED98 */
+}
+.side-search li.item a {
+    color: [@@foregroundColor@@];
+}
+
+
+/* ---------- Usage data wizard
+---------------------------------------- */
+.ud-wizard-tabs {
+    background: [@@backgroundColor@@]; /* Background | #E0F5FF */
+    border-bottom: 10px solid [@@brandColor@@]; /* Search Area | #A0D7EC */
+    margin-left: 0;
+    color: [@@foregroundColor@@];
+}
+
+    .ud-wizard-tabs div {
+        background: [@@backgroundColor@@]; /* Background | #E0F5FF */
+        color: [@@foregroundColor@@];
+    }
+
+    .ud-wizard-tabs .active {
+        background: [@@brandColor@@]; /* Search Area | #A0D7EC */
+        color: [@@foregroundColor@@];
+    }
+
+.ud-wizard-content > div {
+    border-right: 3px solid [@@backgroundColor@@]; /* Background | #E0F5FF */
+}
+
+.ud-wizard-content.first:not(.last) {
+    border-bottom: 3px solid [@@backgroundColor@@]; /* Background | #E0F5FF */
+}
+
+
+/* ---------- Resources
+---------------------------------------- */
+
+ul.list-group li a.active:hover,
+ul.list-group li a.active:focus {
+    background-color: [@@brandColor@@]; /* Nav | #A0D7EC */
+    color: [@@foregroundColor@@];
+}

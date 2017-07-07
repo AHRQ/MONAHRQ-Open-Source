@@ -1,0 +1,20 @@
+<section aria-labeledby="physicians-tab" role="tabpanel" aria-hidden="false">
+    <header>
+      <h4>Select a topic from the list below to see which physicians specialize in that topic</h4>
+    </header>
+    <div>
+      <ul>
+        <li data-ng-repeat="(key, group) in model">
+          <button data-ng-click="toggleSpecialty(key)" data-ng-class="{active: showSpecialty(key)}">{{key}}</button>
+
+          <div data-ng-if="showSpecialty(key)">
+            <ul>
+              <li data-ng-repeat="row in group">
+                <a class="hospital-physician--listed" data-ui-sref="top.consumer.physicians.profile({id:row.npi})">{{row.frst_nm}} {{row.lst_nm}}</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>

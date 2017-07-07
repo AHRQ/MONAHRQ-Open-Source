@@ -1,0 +1,121 @@
+// ------------------------------------------------------------------- //
+//  Project Settings
+//
+//  This file houses variables related to brand and overall stylistic
+//  elements (fonts, sizes, colors, etc.) that should be used across
+//  the site.
+//
+//  This is a basic set for initial functionality but any project-
+//  related variables that need to be global should exist in this file.
+//
+//  Local variables should still exist in the file in which they are
+//  required.
+// ------------------------------------------------------------------- //
+
+
+// ------------------------------------------------------------------- //
+//  Typography
+
+@import url("http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700");
+
+$base-font-family:   "Open Sans", Helvetica, Arial, sans-serif;
+
+
+
+// ------------------------------------------------------------------- //
+//  Font Sizes
+
+$base-font-size: 16px;
+
+$h1-font-size: 34px;
+$h2-font-size: 28px;
+$h3-font-size: 24px;
+$h4-font-size: 22px;
+$h5-font-size: 18px;
+$h6-font-size: 16px;
+
+$micro-size: 12px;
+
+
+// ------------------------------------------------------------------- //
+//  Line Height
+
+$base-line-height:   1.5;
+$header-line-height: 1.2;
+
+
+
+// ------------------------------------------------------------------- //
+//  Other Sizes
+
+$base-border-radius: 3px;
+
+$base-spacing: 20px;
+
+
+
+// ------------------------------------------------------------------- //
+//  Colors
+
+//  Brand
+$brand-blue:       #3778a8;
+$brand-blue-dark:  #1c3c54;
+
+$brand-grey: #e4e4e4;
+
+$brand-orange: #f78f40;
+
+//  Background Color
+$base-background-color: #fff;
+
+//  Font Colors
+$base-font-color:   #414042;
+$base-accent-color: $brand-blue-dark;
+
+//  Link Colors
+$base-link-color:  $brand-blue;
+$hover-link-color: shade($base-link-color, 15%);
+
+//  Button Colors
+$base-button-color:  $base-link-color;
+$hover-button-color: $hover-link-color;
+
+//  Border Colors
+$base-border-color: #ddd;
+$base-border: 1px solid $base-border-color;
+
+
+
+// ------------------------------------------------------------------- //
+//  Forms
+
+$form-border-color:       $base-border-color;
+$form-border-color-hover: shade($base-border-color, 10%);
+$form-border-color-focus: $base-accent-color;
+$form-border-radius:      $base-border-radius;
+
+$form-box-shadow: inset 0 1px 3px rgba(black, .1);
+$form-box-shadow-focus: $form-box-shadow,
+                        0 0 5px rgba($form-border-color-focus, .5);
+
+$form-font-family: $base-font-family;
+$form-font-size:   $base-font-size;
+
+
+
+// ------------------------------------------------------------------- //
+//  Media Queries
+
+$mobile:  480px;
+$tablet:  990px;
+$desktop: 1200px;
+
+
+
+// ------------------------------------------------------------------- //
+//  Z-Index Map
+
+$z-map: ("base":    0,
+         "nav":     10,
+         "overlay": 20,
+         "modal":   30);

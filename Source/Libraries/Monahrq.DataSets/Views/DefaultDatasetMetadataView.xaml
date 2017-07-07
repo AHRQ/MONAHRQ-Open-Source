@@ -1,0 +1,224 @@
+﻿<UserControl x:Class="Monahrq.DataSets.Views.DefaultDatasetMetadataView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:validation1="clr-namespace:Monahrq.Sdk.Validation;assembly=Monahrq.Sdk"
+             xmlns:local="clr-namespace:Monahrq.DataSets.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="475" d:DesignWidth="650">
+    <!--DataContext="{Binding SelectedDataSet}"-->
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.Buttons.xaml"/>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.DataGrid.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <DataTemplate x:Key="DefaultDataTemplate">
+                <Grid x:Name="DatasetMetaGrid">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="28"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="28"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="20"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Horizontal" Margin="0" VerticalAlignment="Center" Grid.Row="0">
+                        <TextBlock x:Name="lblTitle" Margin="0,0,0,-0.001" TextWrapping="NoWrap" Text="* Enter Title:" Width="88" FontSize="16" Foreground="#FF585858"/>
+                        <TextBlock x:Name="lblTitleWarning" Margin="0,0,0,-0.001" TextWrapping="Wrap" Text="(Maximum length is 200 characters)" FontSize="16" Foreground="#FF919191" Width="315"/>
+                    </StackPanel>
+                    <TextBox x:Name="txtTitle" AutomationProperties.AutomationId="TitleAutomationID" Height="34" Margin="0,0,5,10" TextWrapping="Wrap"
+                             Grid.Column="0" Grid.Row="1"
+                             MaxLength="200" ToolTip="{x:Null}" Width="500"
+                                 controls:TextboxHelper.ClearTextButton="True"
+                                 controls:TextboxHelper.Watermark="Enter title"
+                                 VerticalAlignment="Top" FontSize="16" Foreground="#FF585858"  >
+                        <TextBox.Text>
+                            <Binding Path="DatasetTitle" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" ValidatesOnNotifyDataErrors="True">
+                                <Binding.ValidationRules>
+                                    <validation1:IsNotNullValidator FieldName="Title" ValidatesOnTargetUpdated="True" />
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                    <TextBlock TextWrapping="NoWrap" Text="* Reported Year:" Grid.Row="2" FontSize="16" Foreground="#FF585858" />
+                    <ComboBox Grid.Row="3" Grid.Column="0"  Width="250"
+                              AutomationProperties.AutomationId="ReportingYearAutomationID" 
+                              ItemsSource="{Binding YearItems, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Margin="0" 
+                              FontSize="16" Foreground="#FF585858" Height="34" HorizontalAlignment="Left">
+                        <ComboBox.SelectedItem>
+                            <Binding Path="SelectedYear" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" ValidatesOnNotifyDataErrors="True">
+                                <Binding.ValidationRules>
+                                    <validation1:YearValidator FieldName="Reporting Year" ValidatesOnTargetUpdated="True" />
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </ComboBox.SelectedItem>
+                    </ComboBox>
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="HospitalNursingHomeCompareTemplate">
+                <Grid x:Name="DatasetMetaGrid">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="20"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="28"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Horizontal" d:LayoutOverrides="Width" Margin="0" VerticalAlignment="Center">
+                        <TextBlock x:Name="lblTitle" Margin="0,0,0,-0.001" TextWrapping="Wrap" Text="* Enter Title:" Width="88" FontSize="16" Foreground="#FF585858"/>
+                        <TextBlock x:Name="lblTitleWarning" Margin="0,0,0,-0.001" TextWrapping="Wrap" Text="(Maximum length is 200 characters)" FontSize="16" Foreground="#FF919191" Width="315"/>
+                    </StackPanel>
+                    <TextBox x:Name="txtTitle" AutomationProperties.AutomationId="TitleAutomationID" Margin="0,0,5,10" TextWrapping="Wrap" Grid.Row="1"
+                             MaxLength="200" ToolTip="{x:Null}" Width="500"
+                                 controls:TextboxHelper.ClearTextButton="True"
+                                 controls:TextboxHelper.Watermark="Enter title"
+                                 VerticalAlignment="Top" FontSize="16" Foreground="#FF585858"  >
+                        <TextBox.Text>
+                            <Binding Path="DatasetTitle" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" ValidatesOnNotifyDataErrors="True">
+                                <Binding.ValidationRules>
+                                    <validation1:IsNotNullValidator FieldName="Title" ValidatesOnTargetUpdated="True" />
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                    <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="0">
+                        <TextBlock Margin="2,2,10,2" Foreground="{StaticResource MGrey5}" FontSize="16">
+                        * Date Released by CMS:
+                        </TextBlock>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox Name="SelectMonth"  Margin="2" Width="120" Text="{Binding Dataset.VersionMonth}" />
+                            <TextBlock>/</TextBlock>
+                            <TextBox Name="SelectYear" Margin="2" Width="80" Text="{Binding Dataset.VersionYear}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="PhysicianDataTemplate">
+                <Grid HorizontalAlignment="Stretch">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="20"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="28"/>
+                        <RowDefinition Height="185"/>
+                        <RowDefinition Height="28"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="* Please select one or more states" Margin="2,0"  Foreground="{StaticResource MGrey5}" FontSize="16"/>
+                    <ListView  Grid.Row="1" Grid.Column="0" x:Name="StatesListView" AutomationProperties.AutomationId="ProviderStatesAutomationID"
+                               ItemsSource="{Binding StatesItems}" SelectionMode="Multiple" 
+                               SelectedValuePath="Value" DisplayMemberPath="Text" Height="175" Width="275"
+                               Background="White" FontSize="14" BorderThickness="2" Margin="5,0,5,0"
+                          HorizontalAlignment="Left" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                            <ListView.SelectedItem>
+                            <Binding ElementName="StatesListView" Path="SelectedValue" ValidatesOnNotifyDataErrors="True">
+                                    <Binding.ValidationRules>
+                                        <validation1:IsNotNullValidator FieldName="Selected states" ValidatesOnTargetUpdated="True" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </ListView.SelectedItem>
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="{x:Type ListBoxItem}">
+                                    <Setter Property="IsSelected" Value="{Binding Path=IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                <Style.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Background" >
+                                            <Setter.Value>
+                                                <SolidColorBrush Color="#FF3886A8"/>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="False">
+                                        <Setter Property="Background" >
+                                            <Setter.Value>
+                                                <SolidColorBrush Color="White"/>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Trigger>
+                                </Style.Triggers>
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                        </ListView>
+                    <TextBlock  Margin="2" Grid.Row="2" Grid.Column="0">
+                            <TextBlock.Inlines >
+                                <Span Foreground="{StaticResource MGrey5}" FontSize="16">* Enter Title:</Span>
+                                <Span Foreground="{StaticResource MGrey4}" FontSize="16">(Maximum length is 200 characters)</Span>
+                            </TextBlock.Inlines>
+                        </TextBlock>
+                    <TextBox Grid.Row="3" Grid.Column="0" AutomationProperties.AutomationId="TitleAutomationID" Margin="2" MaxLength="201" FontSize="16"
+                             Foreground="{StaticResource MGrey5}" HorizontalAlignment="Left" ToolTip="{x:Null}" Width="500" Height="34" VerticalContentAlignment="Center">
+                            <TextBox.Text>
+                            <Binding Path="DatasetTitle" UpdateSourceTrigger="PropertyChanged" ValidatesOnNotifyDataErrors="True">
+                                    <Binding.ValidationRules>
+                                    <validation1:IsNotNullValidator FieldName="Title" ValidatesOnTargetUpdated="True" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                            <TextBox.Style>
+                                <Style TargetType="{x:Type TextBox}">
+                                    <Style.Triggers>
+                                        <Trigger Property="Validation.HasError" Value="true">
+                                            <Setter Property="ToolTip" Value="{x:Null}"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBox.Style>
+                        </TextBox>
+                    <ListBox Grid.Row="4" Grid.Column="0" ItemsSource="{Binding PhysicianManagementOption}" SelectionMode="Single" IsSynchronizedWithCurrentItem="True"
+                         SelectedValue="{Binding Path=SelectedManagement, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="{x:Type ListBoxItem}">
+                                    <Setter Property="Margin" Value="0,2,0,0" />
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                            <RadioButton Foreground="{StaticResource MGrey5}"
+                                                     IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsSelected}">
+                                                <TextBlock Text="{TemplateBinding Content}"  TextWrapping="Wrap" FontSize="16" VerticalAlignment="Stretch" MaxWidth="500" />
+                                                </RadioButton>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+                        <!--<ListBox.Triggers>
+                            <DataTrigger Binding="{Binding SelectedValue}" Value="{Binding REAL_TIME_MANAGEMENT}">
+                                <Setter Property="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsSelected}" Value="True" />
+                            </DataTrigger>
+                        </ListBox.Triggers>-->
+                        </ListBox>
+                </Grid>
+            </DataTemplate>
+            <local:DatasetTemplateSelector x:Key="DatasetTemplateSelector" DefaultTemplate="{StaticResource DefaultDataTemplate}"/>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid x:Name="EditDatasetGrid" ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="85"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Vertical">
+                <TextBlock x:Name="HeaderText" 
+                   TextWrapping="Wrap" Text="{Binding Path=DatasetTypeName, FallbackValue='Data Type Name'}" FontSize="24" Foreground="{StaticResource MBlue}" VerticalAlignment="Top"/>
+            <TextBlock x:Name="RequireText" 
+                   TextWrapping="Wrap" Text="Required fields are indicated by an asterisks(*) and red border."
+                   Margin="0,10,0,0" VerticalAlignment="Center" FontSize="14" Foreground="#FF585858"/>
+            </StackPanel>
+            <ContentControl x:Name="DatasetMetadataContainer" Grid.Row="1" Content="{Binding}" HorizontalAlignment="Left" HorizontalContentAlignment="Left"
+                            ContentTemplateSelector="{StaticResource DatasetTemplateSelector}" />
+            <!--  ContentTemplate="{StaticResource DefaultDataTemplate}"
+                            Path=DataContext, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=UserControl} -->
+        </Grid>
+    </Grid>
+</UserControl>

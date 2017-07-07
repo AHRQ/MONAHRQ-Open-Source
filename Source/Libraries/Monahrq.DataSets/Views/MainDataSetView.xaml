@@ -1,0 +1,146 @@
+﻿<UserControl x:Class="Monahrq.DataSets.Views.MainDataSetView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:ui="clr-namespace:Monahrq.DataSets.ViewModels"
+             xmlns:converters="clr-namespace:Monahrq.Theme.Converters;assembly=Monahrq.Theme"
+             xmlns:MonahrqRegions="clr-namespace:Monahrq.Sdk.Regions;assembly=Monahrq.Infrastructure"
+             xmlns:ns="clr-namespace:Monahrq.DataSets.Views"
+             xmlns:prism="clr-namespace:Microsoft.Practices.Prism.Regions;assembly=Microsoft.Practices.Prism"
+             xmlns:controls="clr-namespace:Monahrq.Theme.Controls;assembly=Monahrq.Theme"
+             mc:Ignorable="d" d:DataContext="{d:DesignInstance ui:MainDataSetViewModel}"
+             d:DesignHeight="800" d:DesignWidth="900">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.Buttons.xaml"/>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.DataGrid.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+            <converters:InvertedBooleanConverter x:Key="InvertedBooleanConverter" />
+            <ns:HeaderConverter x:Key="HeaderConverter" />
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid Background="White">
+        <Grid Style="{StaticResource RootContentGrid}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <!--HEADER -->
+            <StackPanel Grid.Column="0" HorizontalAlignment="Left" Margin="0,10,0,0" Orientation="Vertical" VerticalAlignment="Center" >
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock  Text="Data Sets" Style="{StaticResource Header1}" VerticalAlignment="Center" />
+                    <TextBlock Style="{StaticResource Header1}" Text=" > " VerticalAlignment="Center"/>
+                    <TextBlock Style="{StaticResource Header1}" Text="{Binding ElementName=_tabControl, Path=SelectedValue.Header}" VerticalAlignment="Center"/>
+                </StackPanel>
+                <TextBlock  Text="MANAGE YOUR DATA FILES"  Style="{StaticResource Subtopic}"  />
+                <TextBlock Text="{Binding ElementName=_tabControl, Path=SelectedValue.Header, Converter={StaticResource HeaderConverter}}" Style="{StaticResource Subtopic}"  />
+                <controls:MonahrqButton Content="IMPORT NEW DATAFILE" Visibility="Collapsed"
+                        Command="{Binding AddReportCommand}" Width="180" Height="24" SymbolDirection="Right" SymbolType="Import"
+                        FontSize="11" Margin="0,20,0,0" Style="{StaticResource MonahrqBlueStyle}"  VerticalAlignment="Top" HorizontalAlignment="Right" />
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Grid.Row="0" Margin="0,10,0,0">
+                <controls:MonahrqButton HorizontalAlignment="Right" Width="250" Command="{Binding NewGeoContextCommand}" FontSize="12"
+                        FontWeight="Normal" Height="36" SymbolDirection="Right"
+                        Content="NEW GEOGRAPHIC CONTEXT" Style="{DynamicResource MonahrqBlueStyle}" />
+            </StackPanel>
+
+            <TabControl x:Name="_tabControl" Grid.Row="1"  SelectedIndex="{Binding ActiveTabItemIndex, Mode=TwoWay}" Grid.ColumnSpan="2" Grid.Column="0"
+                        Style="{StaticResource TabControlStyle}"  Margin="0,-15,0,0" >
+                <TabItem x:Name="MeasureDataTab" Header="Manage Measures Data" Style="{StaticResource TabItemStyle}"
+                         IsEnabled="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=DataContext.IsRegionContextVisible, Converter={StaticResource InvertedBooleanConverter}}" >
+                    <Grid Background="{StaticResource MGrey2}">
+                        <Border BorderBrush="{StaticResource MBlue}" BorderThickness="0,1" Padding="20,10" Margin="0,0,-1,0" Background="{StaticResource MGrey2}">
+                            <ItemsControl  x:Name="theDataListView"  Width="Auto" Height="Auto"
+                                  prism:RegionManager.RegionName="{x:Static MonahrqRegions:RegionNames.DataSetsRegion}"
+                                  HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" >
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <Grid />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                            </ItemsControl>
+                        </Border>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Manage Hospital Data" Style="{StaticResource TabItemStyle}" x:Name="hospitalTAB" DataContext="{Binding TabItems[1]}" 
+                         IsEnabled="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=DataContext.IsRegionContextVisible, Converter={StaticResource InvertedBooleanConverter}}" >
+                    <Grid Background="{StaticResource MGrey2}">
+                        <Border BorderBrush="{StaticResource MBlue}" BorderThickness="0,1" Padding="0" Margin="0,0,-1,0" >
+                            <ItemsControl  x:Name="_hospitalsPanel" Width="Auto" Height="Auto"
+                                  prism:RegionManager.RegionName="{x:Static MonahrqRegions:RegionNames.HospitalsMainRegion}"
+                                  HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" >
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <Grid/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                            </ItemsControl>
+                        </Border>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Nursing Home Data" Style="{StaticResource TabItemStyle}" DataContext="{Binding TabItems[2]}"
+                                         IsEnabled="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=DataContext.IsRegionContextVisible, Converter={StaticResource InvertedBooleanConverter}}" >
+                    <Grid Background="{StaticResource MGrey2}">
+                        <Border BorderBrush="{StaticResource MBlue}" BorderThickness="0,1" Padding="20,10" Margin="0,0,-1,0" Background="{StaticResource MGrey2}">
+                            <ItemsControl  x:Name="tbNursingHomeDataView"  Width="Auto" Height="Auto"
+                                  prism:RegionManager.RegionName="{x:Static MonahrqRegions:RegionNames.NursingHomes}"
+                                  HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" >
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <Grid />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                            </ItemsControl>
+                        </Border>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Physician Data" Style="{StaticResource TabItemStyle}" DataContext="{Binding TabItems[3]}" 
+                         IsEnabled="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=DataContext.IsRegionContextVisible, Converter={StaticResource InvertedBooleanConverter}}" >
+                    <Grid Background="{StaticResource MGrey2}">
+                        <Border BorderBrush="{StaticResource MBlue}" BorderThickness="0,1" Padding="20,10" Margin="0,0,-1,0" Background="{StaticResource MGrey2}">
+                            <ItemsControl  x:Name="tbPhysicianControl"  Width="Auto" Height="Auto"
+                                  prism:RegionManager.RegionName="{x:Static MonahrqRegions:RegionNames.PhysicianMappingView}"
+                                  HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" >
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <Grid />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                            </ItemsControl>
+                        </Border>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+
+            <!-- Set Region Context-->
+            <Border Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="1"  Background="White" BorderThickness="1" Padding="5"
+                    BorderBrush="{StaticResource MBlue}" Width="600" Height="500" HorizontalAlignment="Center"  VerticalAlignment="Center"
+                    Visibility="{Binding IsRegionContextVisible, Converter={StaticResource BooleanToVisibilityConverter}}" >
+                <!-- -->
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Label Content="Region and State Selection" FontWeight="SemiBold" Background="{StaticResource MGrey2}" />
+                    <ItemsControl Grid.Row="1" prism:RegionManager.RegionName="{x:Static MonahrqRegions:ViewNames.ContextView}"  
+                              HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" DataContext="{Binding ContextViewModel}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <Grid/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,566 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:include schemaLocation="ReportManifest.xsd" />
+  <xs:element name="Target" nillable="false">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">
+        This is test documentation
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Columns" minOccurs="1" maxOccurs="1" >
+          <xs:annotation>
+            <xs:documentation xml:lang="en">
+              This is test documentation
+            </xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="Column">
+                <xs:complexType>
+                  <xs:attribute name="Name" type="xs:string" use="required"  >
+                    <xs:annotation>
+                      <xs:documentation xml:lang="en">
+                        This is test documentation
+                      </xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="DataType" type="DataTypeEnum" use="required">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="en">
+                        This is test documentation
+                      </xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="Description" type="xs:string" use="optional" >
+                    <xs:annotation>
+                      <xs:documentation xml:lang="en">
+                        This is test documentation
+                      </xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="Scope" type="DynamicScopeEnum" use="optional" default="None" >
+                    <xs:annotation>
+                      <xs:documentation xml:lang="en">
+                        This is test documentation
+                      </xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="IsRequired" type="xs:boolean" use="optional" default="false"  >
+                    <xs:annotation>
+                      <xs:documentation xml:lang="en">
+                        This is IsRequired attribute documentation
+                      </xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="IsUnique" type="xs:boolean" use="optional" default="false"  >
+                    <xs:annotation>
+                      <xs:documentation xml:lang="en">
+                        This is IsUnique attribute documentation
+                      </xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="Scale" type="xs:integer" use="optional" default="-1" >
+                    <xs:annotation>
+                      <xs:documentation xml:lang="en">
+                        This is decimal scale attribute documentation
+                      </xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="Precision" type="xs:integer" use="optional" default="-1">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="en">
+                        This is decimal precision attribute documentation
+                      </xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="Length" type="xs:integer" use="optional" default="-1">
+                    <xs:annotation>
+                      <xs:documentation xml:lang="en">
+                        This is string length attribute documentation
+                      </xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="ImportSteps" minOccurs="1" maxOccurs="1" nillable="false">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">
+              This is test documentation
+            </xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:attribute name="Type" type="DynamicStepTypeEnum" use="required"/>
+          </xs:complexType>
+        </xs:element>
+        
+        <!--<xs:element name="CreateTableScript" type="xs:string" nillable="true">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">
+              <![CDATA[This is test Create Table Script documentation.]]>
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>-->
+        <!--<xs:element name="ImportSQLScript" minOccurs="0" maxOccurs="1" type="xs:string" nillable="true">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">
+              This is test documentation
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>-->
+        <!--<xs:element name="AddMeasuresScript" type="xs:string" nillable="true">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">
+              <![CDATA[This is test Add Measures Script  documentation.]]>
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>-->
+        <!--<xs:element name="AddReportsScript" type="xs:string" nillable="true">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">
+              <![CDATA[This is test Add Reports Script  documentation.]]>
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>-->
+
+        <xs:element name="Measures" minOccurs="0" maxOccurs="1" >
+          <xs:annotation>
+            <xs:documentation xml:lang="en">
+              This is list of associated measures.
+            </xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Measure" type="Measure" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">
+                    This is a associated measure.
+                  </xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="Reports" minOccurs="1" maxOccurs="1" >
+          <xs:annotation>
+            <xs:documentation xml:lang="en">
+              This is associated reports
+            </xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ReportManifest" type="ReportManifest" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">
+                    This is a associated measure.
+                  </xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+      </xs:sequence>
+      <xs:attribute name="Id" type="guid" use="optional"  >
+        <xs:annotation>
+          <xs:documentation xml:lang="en">
+            This is test documentation
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="Name" type="xs:string" use="required"  >
+        <xs:annotation>
+          <xs:documentation xml:lang="en">
+            This is test documentation
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DbSchemaName" type="xs:string" use="required"  >
+        <xs:annotation>
+          <xs:documentation xml:lang="en">
+            This is test documentation
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="Description" type="xs:string" use="optional"  >
+        <xs:annotation>
+          <xs:documentation xml:lang="en">
+            This is test documentation
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="IsReferenceTarget" type="xs:boolean" use="optional" default="false"  >
+        <xs:annotation>
+          <xs:documentation xml:lang="en">
+            This is test documentation
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="AllowMultipleImports" type="xs:boolean" use="optional" default="true" >
+        <xs:annotation>
+          <xs:documentation xml:lang="en">
+            If true, allows the wing target dataset to be imported multiple times. Otherwise, is a single import wing target dataset. The default value is true.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DisplayOrder" type="xs:integer" use="optional" default="999"  >
+        <xs:annotation>
+          <xs:documentation xml:lang="en">
+            This is test documentation
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+
+      <xs:attribute name="Version" type="VersionType" use="required" >
+        <xs:annotation>
+          <xs:documentation xml:lang="en">
+            Version for Custom Wing Target.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="IsDisabled" type="xs:boolean" use="optional" default="false"  >
+        <xs:annotation>
+          <xs:documentation xml:lang="en">
+            This is test documentation
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="Publisher" type="xs:string" use="required"  >
+        <xs:annotation>
+          <xs:documentation xml:lang="en">
+            This is test documentation
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="PublisherEmail" type="xs:string" use="required"  >
+        <xs:annotation>
+          <xs:documentation xml:lang="en">
+            This is test documentation
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="PublisherWebsite" type="xs:string" use="optional"  >
+        <xs:annotation>
+          <xs:documentation xml:lang="en">
+            This is test documentation
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="TempateFileName" type="xs:string" use="optional"  >
+        <xs:annotation>
+          <xs:documentation xml:lang="en">
+            This is file name of the wing dataset target template file name.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <!--
+      <xs:attribute name="Id" type="guid" use="required"  >
+        <xs:annotation>
+          <xs:documentation xml:lang="en">
+            This is test documentation
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="Name" type="xs:string" use="required"  >
+        <xs:annotation>
+          <xs:documentation xml:lang="en">
+            This is test documentation
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="Description" type="xs:string" use="optional"  >
+        <xs:annotation>
+          <xs:documentation xml:lang="en">
+            This is test documentation
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DependsOnModuleNames" type="xs:string" use="optional"  >
+        <xs:annotation>
+          <xs:documentation xml:lang="en">
+            This is test documentation
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DisplayOrder" type="xs:integer" use="optional" default="999"  >
+        <xs:annotation>
+          <xs:documentation xml:lang="en">
+            This is test documentation
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+
+    </xs:complexType>
+  </xs:element>-->
+
+  <!--<xs:simpleType name="VersionType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="((\d+)\.(\d+)\.(\d+))$"/>
+    </xs:restriction>
+  </xs:simpleType>-->
+
+  <xs:simpleType name="DynamicStepTypeEnum">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">
+        This is test documentation
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Simple"/>
+      <xs:enumeration value="Full"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="DynamicScopeEnum">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">
+        This is test documentation
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None"/>
+      <xs:enumeration value="AdmissionSource"/>
+      <xs:enumeration value="AdmissionType"/>
+      <xs:enumeration value="DischargeDisposition"/>
+      <xs:enumeration value="EDServices"/>
+      <xs:enumeration value="PointOfOrigin"/>
+      <xs:enumeration value="PrimaryPayer"/>
+      <xs:enumeration value="Race"/>
+      <xs:enumeration value="Sex"/>
+      <xs:enumeration value="Custom"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="DataTypeEnum">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">
+        This is test documentation
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Boolean"/>
+      <xs:enumeration value="Date"/>
+      <xs:enumeration value="DateTime"/>
+      <xs:enumeration value="Decimal"/>
+      <xs:enumeration value="Double"/>
+      <xs:enumeration value="Guid"/>
+      <xs:enumeration value="Int16"/>
+      <xs:enumeration value="Int32"/>
+      <xs:enumeration value="Int64"/>
+      <xs:enumeration value="Object"/>
+      <xs:enumeration value="SByte"/>
+      <xs:enumeration value="Single"/>
+      <xs:enumeration value="String"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="guid">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">
+        The representation of a GUID, generally the id of an element.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Measure -->
+ <xs:complexType  name="Measure">
+      <xs:sequence>
+        <xs:element name="MeasureTitle" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">
+              The measure title.
+            </xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Plain" type="xs:string">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">
+                    The measure plain title
+                  </xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="ConsumerPlain" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">
+                    The consumer audience measure plain title
+                  </xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="Clinical" type="xs:string">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">
+                    The measure clinical title
+                  </xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="Selected" type="SelectedMeasuretitleEnum" default="Clinical" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="StatePeerBenchmark" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:attribute name="ProvidedBenchmark" type="xs:string" />
+            <xs:attribute name="CalculationMethod" type="StatePeerBenchmarkCalculationMethod" default="Calculated_Mean" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Description" type="xs:string" />
+        <xs:element name="ConsumerDescription" type="xs:string" minOccurs="0" maxOccurs="1" />
+        <xs:element name="Footnotes" type="xs:string" />
+        <xs:element name="Topics" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element minOccurs="0" maxOccurs="unbounded" name="Topic">
+                <xs:complexType>
+                   <xs:sequence>
+                    <xs:element name="SubTopics">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element minOccurs="0" maxOccurs="unbounded" name="SubTopic">
+                            <xs:complexType>
+                              <xs:attribute name="Name" type="xs:string" use="required" />
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="LongTitle" type="xs:string" />
+                    <xs:element name="Description" type="xs:string" />
+                    <xs:element name="ConsumerDescription" type="xs:string" />
+                     <xs:element name="Facts">
+                       <xs:complexType>
+                         <xs:sequence>
+                           <xs:element minOccurs="0" maxOccurs="2" name="Fact">
+                             <xs:complexType>
+                               <xs:sequence>
+                                 <xs:element name="Text" type="xs:string" />
+                                 <xs:element name="CitationText" type="xs:string" />
+                               </xs:sequence>
+                               <xs:attribute name="Name" type="xs:string" use="required" />
+                               <xs:attribute name="ImagePath" type="xs:string" use="optional" />
+                             </xs:complexType>
+                           </xs:element>
+                         </xs:sequence>
+                       </xs:complexType>
+                     </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="Name" type="xs:string" use="required" />
+                  <xs:attribute name="Type" type="TopicTypeEnum" default="Hospital" use="optional" />
+                  <xs:attribute name ="WingTargetName"  type="xs:string" use="optional"/>
+                  <xs:attribute name="CategoryType" type="TopicCategoryTypeEnum" default="Topic" use="optional" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="Name" type="xs:string" use="required">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">
+            This is the measure name.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="MeasureType" type="xs:string" use="required" />
+      <xs:attribute name="Source" type="xs:string" use="required" />
+      <xs:attribute name="NQFEndorsed" type="xs:boolean" default="false"/>
+      <xs:attribute name="NQFID" type="xs:string" />
+      <xs:attribute name="HigherScoresAreBetter" type="xs:boolean" default="false" />
+      <xs:attribute name="UpperBound" type="xs:string" use="optional" />
+      <xs:attribute name="LowerBound" type="xs:string" use="optional" />
+      <xs:attribute name="SuppressionDenominator" type="xs:string" use="optional" />
+      <xs:attribute name="SuppressionNumerator" type="xs:string" use="optional"/>
+      <xs:attribute name="PerformMarginSuppression" type="xs:boolean" />
+      <xs:attribute name="ScaleBy" type="xs:string" use="optional" />
+      <xs:attribute name="ScaleTarget" type="xs:string" use="optional" />
+      <xs:attribute name="RiskAdjustedMethod" type="xs:string" use="optional" />
+      <xs:attribute name="RateLabel" type="xs:string" use="optional" />
+      <xs:attribute name="NationalBenchmark" type="xs:string" />
+      <xs:attribute name="IsExistingMeasure" type="xs:boolean" default="false" />
+      <xs:attribute name="SupportsCost" type="xs:boolean" default="false" />
+      <xs:attribute name="MeasureCode" type="xs:string" use="optional" />
+    </xs:complexType>
+
+  <xs:simpleType name="SelectedMeasuretitleEnum">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">
+        This is the default selected measure title type.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Plain"/>
+      <xs:enumeration value="Clinical"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="StatePeerBenchmarkCalculationMethod">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">
+        This is the State Peer Benchmark Calculation Method type.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Calculated_Mean"/>
+      <xs:enumeration value="Calculated_Median"/>
+      <xs:enumeration value="Provided"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="TopicTypeEnum">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">
+        This is the topic type enumeration.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Hospital"/>
+      <xs:enumeration value="NursingHome"/>
+      <xs:enumeration value="Physicans"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="TopicCategoryTypeEnum">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">
+        This is the topic category type enumeration.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Condition">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">
+            This is the a topic condition.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Topic">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">
+            This is the a topic.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="emptystring">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="emptyordecimal">
+    <xs:union memberTypes="emptystring xs:decimal" />
+  </xs:simpleType>
+</xs:schema>

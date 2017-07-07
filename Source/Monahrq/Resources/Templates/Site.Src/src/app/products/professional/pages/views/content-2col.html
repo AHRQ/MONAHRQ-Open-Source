@@ -1,0 +1,20 @@
+<div class="row clearfix">
+
+  <div class="col-xs-3 page-content">
+    <br />
+    <div class="list-group sidebar">
+      <a data-ng-repeat="link in content.sidebar" data-scroll-to="{{link.location}}" class="list-group-item">{{link.title}}</a>
+    </div>
+  </div>
+
+  <div class="col-xs-9 page-content">
+
+    <div class="page-header">
+      <h2>{{content.header.title}}</h2>
+      <p class="lead">{{content.header.lead}}</p>
+    </div>
+
+    <div data-ng-bind-html="content.bodyTrusted"></div>
+  </div>			
+</div>	
+

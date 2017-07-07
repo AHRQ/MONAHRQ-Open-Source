@@ -1,0 +1,268 @@
+<header class="header__page info_section">
+  <div class="wrap__content">
+    <h1>Need Surgery?</h1>
+    <p class="header__page--subheader">Make Sure You are Safe as Possible</p>
+    <div class="header__page--blockquote">
+      <p>American health care <strong>saves millions of lives through treatment and surgery</strong>.</p>
+      <p>However, when things go wrong the effect can be devastating and expensive.</p>
+    </div><!-- /.header__page--blockquote -->
+    <div class="icon-doctor doctor-male" title="Male doctor illustration"></div><!-- /.icon-doctor -->
+    <div class="icon-doctor doctor-female" title="Female doctor illustration"></div><!-- /.icon-doctor -->
+  </div><!-- /.wrap__content -->
+</header><!-- /.header__page -->
+<section class="info_section info_section__one">
+  <div class="wrap__content">
+    <ul class="info__list container">
+      <li class="info__item item--one col-xs-6">
+        <div class="info__item--data short_data">
+            <div style="width: 110px; margin-left: auto; margin-right: auto; ">
+                Each year in the United States
+            </div>
+            <div style="text-transform: lowercase">about</div>
+          <strong>{{getMeasureValue("INF-GRPH-NAT-01", 0)}}</strong>
+        </div><!-- /.info__item--data -->
+        <p class="info__item--footer">
+          patients develop an <strong>infection</strong> at their <strong>surgical site</strong><a href="#" data-ng-click="modalCitations('citation_1'); $event.preventDefault()" class="link--annotated"><sup>1</sup></a>
+        </p><!-- /.info__item--footer -->
+      </li><!-- /.info__item -->
+      <li class="info__item item--two col-xs-6">
+        <div class="info__item--data">
+            <div style="width: 110px; margin-left: auto; margin-right: auto; ">
+                Each year in the United States
+            </div>
+            <div style="text-transform: lowercase">about</div>
+          <strong>{{getMeasureValue("INF-GRPH-NAT-02", 0)}}</strong>
+        </div><!-- /.info__item--data -->
+        <p class="info__item--footer">
+          patients <strong>accidentally get cut</strong> or have a <strong>hole poked</strong> in an organ that was not part of the surgery<a href="#"  data-ng-click="modalCitations('citation_2'); $event.preventDefault()" class="link--annotated"><sup>2</sup></a>
+        </p><!-- /.info__item--footer -->
+      </li><!-- /.info__item -->
+    </ul> <!-- /.info__list -->
+    <div class="info__item info__item--full_width">
+      <h2>
+        <strong>Surgery patients are {{getMeasureValue("INF-GRPH-NAT-04", 0)}} times more likely to die</strong>
+      </h2><!-- /.info__item--data -->
+      <p class="info__item--footer">
+        when a surgical mistake happens
+      </p><!-- /.info__item--footer -->
+    </div><!-- /.info__item -->
+  </div><!-- /.wrap__content -->
+</section><!-- /.info_section__one -->
+<section class="info_section info_section__two">
+  <div class="wrap__content container">
+  <div class="col-xs-5">
+    <figure>
+      <img src="themes/professional/assets/infographic/icon-hospital.png" alt="Hospital" />
+    </figure>
+  </div>
+    <div class="col-xs-7">
+      <p>
+        The good news is that doctors, nurses, and hospitals are improving patient safety, especially for surgery.
+      </p>
+      <p>
+        Many hospitals have very good surgical safety ratings, but others don’t.
+      </p>
+      <p>
+        <strong>Everyone can do better.</strong>
+      </p>
+    </div><!-- /.col-xs-7 -->
+    <span class="icon--wrap icon--ambulance" title="Ambulance Icon"></span>
+  </div><!-- /.wrap__content -->
+</section><!-- /.info_section__two -->
+<section data-ng-if="activeSection(1) === true" class="info_section info_section__three">
+  <div class="wrap__content">
+    <header class="info_section--header">
+      <h2>
+        <span class="unbold">Mistakes happen during surgery even in {{report.regionName}}!</span> In one year<a href="#" data-ng-click="modalCitations('citation_3'); $event.preventDefault()" class="link--annotated"><sup>3</sup></a>, in our own backyard:
+      </h2>
+    </header><!-- /.info_section--header -->
+    <ul class="info__list container">
+      <li class="info__item col-xs-4">
+        <span class="info--figure">{{getMeasureValue("PSI 05", 0)}}</span>
+        patients had a <strong>surgical tool accidentally left</strong> in their body<a href="#" data-ng-click="modalCitations('citation_4'); $event.preventDefault()" class="link--annotated"><sup>4</sup></a>
+      </li><!-- /.info__item -->
+      <li class="info__item col-xs-4">
+        <small class="subheader">In</small>
+        <span class="info--figure">{{getMeasureValue("PSI 06", 0)}}%</span>
+        of surgeries, the surgeon <strong>accidentally made a hole in the patient’s lung</strong><a href="#" data-ng-click="modalCitations('citation_5'); $event.preventDefault()" class="link--annotated"><sup>5</sup></a>
+      </li><!-- /.info__item -->
+      <li class="info__item col-xs-4">
+        <small class="subheader">In</small>
+        <span class="info--figure">{{getMeasureValue("PSI 15", 0)}}%</span>
+        of surgeries, <strong>an organ</strong> that was not part of the surgery <strong>was cut or punctured accidentally</strong><a href="#"  data-ng-click="modalCitations('citation_6'); $event.preventDefault()" class="link--annotated"><sup>6</sup></a>
+      </li><!-- /.info__item -->
+      <li class="info__item col-xs-4">
+        <small class="subheader">In</small>
+        <span class="info--figure">{{getMeasureValue("PSI 14", 0)}}%</span>
+        of surgeries, <strong>the surgical wound</strong> on on the patient’s stomach or pelvic area <strong>split open</strong><a href="#" data-ng-click="modalCitations('citation_7'); $event.preventDefault()" class="link--annotated"><sup>7</sup></a>
+      </li><!-- /.info__item -->
+      <li class="info__item col-xs-4">
+        <span class="info--figure">{{getMeasureValue("PSI 16", 0)}}</span>
+        patients had unexpected <strong>reactions to blood transfusions</strong><a href="#" class="link--annotated" data-ng-click="modalCitations('citation_8'); $event.preventDefault()"><sup>8</sup></a>
+      </li><!-- /.info__item -->
+    </ul><!-- /.info__list -->
+    <blockquote>
+      <p>All of us need to know how often surgical problems happen and if things are getting better.</p>
+    </blockquote>
+  </div><!-- /.wrap__content -->
+</section><!-- /.info_section__three -->
+<section class="info_section info_section__four">
+  <div class="wrap__content">
+    <header class="info_section--header">
+      <h2>
+        <span class="unbold">Fortunately,</span> doctors and nurses know what should be done before, during and after surgery to prevent problems<a href="#" class="link--annotated" data-ng-click="modalCitations('citation_9'); $event.preventDefault()"><sup title="Citation #9: See Below placeholder placeholder placeholder">9</sup></a>.
+      </h2>
+    </header><!-- /.info_section--header -->
+    <div class="info__fact_wrap deco--clipboard container clearfix">
+      <span class="deco--clip">
+        <hr />
+        <hr />
+      </span>
+      <h3>For Example:</h3>
+      <ul class="info__list info--bullets col-xs-5 col-xs-offset-1">
+        <li class="info__item">Certain types of antibiotics should be given to the patient an hour before surgery, then stopped within 24 hours after surgery.</li><!-- /.info__item -->
+        <li class="info__item">The patient&rsquo;s temperature should be kept warm and stable.</li><!-- /.info__item -->
+        <li class="info__item">To prevent blood clots, special &lsquo;pressure&rsquo; socks should be used to keep blood flowing in the patient&rsquo;s legs. And the foot of the patient&rsquo;s bed should be raised.</li><!-- /.info__item -->
+        <li class="info__item">If a catheter was required to help empty a patient's bladder, it should be removed within two days after surgery.</li><!-- /.list--item -->
+      </ul><!-- /.info__list -->
+      <blockquote class="col-xs-4">
+        <p>Many hospitals take these steps with every surgery patient. But some don’t, and that puts patients at risk.</p>
+      </blockquote>
+      <div class="icon-doctor doctor-old"></div><!-- /.icon-doctor -->
+    </div><!-- /.info__fact_wrap -->
+  </div><!-- /.wrap__content -->
+</section><!-- /.info_section__four -->
+<section data-ng-if="activeSection(2) === true"  class="info_section info_section__five">
+  <div class="wrap__content">
+    <header class="info_section--header">
+      <h2>How safe is the surgery for patients in {{report.regionName}}<a href="#" class="link--annotated" data-ng-click="modalCitations('citation_10'); $event.preventDefault()"><sup>10</sup></a>?</h2>
+      <h3 class="dec--border">
+        <span class="dec--border--text">out of 100 patients</span>
+      </h3><!-- /.dec--border -->
+    </header><!-- /.info_section--header -->
+    <div class="info__fact_wrap">
+      <ul class="info__list container">
+        <li class="info__item col-xs-2">
+          <figure>
+            <img src="themes/professional/assets/infographic/icon-clock-circle.png" alt="Time Icon" />
+            <figcaption>
+              <h3>{{getMeasureValue("SCIP-INF-1", 0)}}</h3>
+              <p>received an antibiotic at the right time before surgery<a href="#" class="link--annotated" data-ng-click="modalCitations('citation_11'); $event.preventDefault()"><sup>11</sup></a></p>
+            </figcaption>
+          </figure>
+        </li><!-- /.info__item -->
+        <li class="info__item col-xs-2">
+          <figure>
+            <img src="themes/professional/assets/infographic/icon-pills-circle.png" alt="Anti-biotics Icon" />
+            <figcaption>
+              <h3>{{getMeasureValue("SCIP-INF-2", 0)}}</h3>
+              <p>were given the right kind of antibiotic before surgery<a href="#" class="link--annotated" data-ng-click="modalCitations('citation_12'); $event.preventDefault()"><sup>12</sup></a></p>
+            </figcaption>
+          </figure>
+        </li><!-- /.info__item -->
+        <li class="info__item col-xs-2">
+          <figure>
+            <img src="themes/professional/assets/infographic/icon-thermometer.png" alt="Thermometer Icon" />
+            <figcaption>
+              <h3>{{getMeasureValue("SCIP-INF-10", 0)}}</h3>
+              <p>had body temperatures managed during and after surgery<a href="#" class="link--annotated" data-ng-click="modalCitations('citation_13'); $event.preventDefault()"><sup>13</sup></a></p>
+            </figcaption>
+          </figure>
+        </li><!-- /.info__item -->
+        <li class="info__item col-xs-2">
+          <figure>
+            <img src="themes/professional/assets/infographic/icon-heart-circle.png" alt="Heart Icon" />
+            <figcaption>
+              <h3>{{getMeasureValue("SCIP-VTE-2", 0)}}</h3>
+              <p>received treatments to prevent blood clots after surgery<a href="#" class="link--annotated" data-ng-click="modalCitations('citation_14'); $event.preventDefault()"><sup>14</sup></a></p>
+            </figcaption>
+          </figure>
+        </li><!-- /.info__item -->
+        <li class="info__item col-xs-2">
+          <figure>
+            <img src="themes/professional/assets/infographic/icon-cal-circle.png" alt="Calendar Icon" />
+            <figcaption>
+              <h3>{{getMeasureValue("SCIP-INF-9", 0)}}</h3>
+              <p>who needed a catheter during their procedure had it removed within two days after surgery<a href="#" class="link--annotated" data-ng-click="modalCitations('citation_15'); $event.preventDefault()"><sup>15</sup></a></p>
+            </figcaption>
+          </figure>
+        </li><!-- /.info__item -->
+      </ul><!-- /.info__list -->
+    </div><!-- /.info__fact_wrap -->
+  </div><!-- /.wrap__content -->
+</section><!-- /.info_section__five -->
+<section class="info_section info_section__six">
+  <div class="wrap__content">
+    <header class="info_section--header">
+      <h2>Tips to Be as Safe as Possible Before, During and After Surgery</h2>
+    </header><!-- /.info_section--header -->
+    <ul class="info__list container">
+      <li class="info__item col-xs-4">
+        <figure>
+          <img src="themes/professional/assets/infographic/icon-files.png" alt="Documents" />
+        </figure>
+        <div class="info--bullets">
+          <h3>Do Your Homework</h3>
+          <ul class="info__list">
+            <li class="info__item">
+              <p>Understand there are ways to keep patients safe during surgery, and these actions should be taken with every patient, for every surgery</p>
+            </li><!-- /.info__item -->
+            <li class="info__item">
+              <p>Know the safe surgery ratings for your hospital – visit <a href="{{report.siteURL}}">{{report.siteName}}</a></p>
+            </li><!-- /.info__item -->
+          </ul><!-- /.info__list -->
+        </div><!-- /.info--bullets -->
+      </li><!-- /.info__item -->
+      <li class="info__item col-xs-4">
+        <figure>
+          <img src="themes/professional/assets/infographic/icon-who.png" alt="WHO clipboard" />
+        </figure>
+        <div class="info--bullets">
+          <h3>Talk About Your Safety</h3>
+          <ul class="info__list">
+            <li class="info__item">
+              <p>Take a copy of this list (and your hospital’s ratings) to talk with your doctor about what to expect when you have surgery</p>
+            </li><!-- /.info__item -->
+            <li class="info__item">
+              <p>Ask your doctor to use the <em>World Health Organization Safe Surgery Checklist<a href="#" class="link--annotated" data-ng-click="modalCitations('citation_16'); $event.preventDefault()"><sup>16</sup></a></em> which is proven to reduce the risk of death and complications from surgery<a href="#" class="link--annotated" data-ng-click="modalCitations('citation_17'); $event.preventDefault()"><sup>17</sup></a></p>
+            </li><!-- /.info__item -->
+          </ul><!-- /.info__list -->
+        </div><!-- /.info--bullets -->
+      </li><!-- /.info__item -->
+      <li class="info__item col-xs-4">
+        <figure>
+          <img src="themes/professional/assets/infographic/icon-family.png" alt="A Nuclear Family" />
+        </figure>
+        <div class="info--bullets">
+          <h3>Have A Team On Your Side</h3>
+          <ul class="info__list">
+            <li class="info__item">
+              <p>Bring someone with you to ask questions and listen when you see your doctor or are in the hospital</p>
+            </li><!-- /.info__item -->
+            <li class="info__item">
+              <p>If people are not paying attention to your concerns, talk to the hospital’s patient advocate service – their job is to help you.</p>
+            </li><!-- /.info__item -->
+          </ul><!-- /.info__list -->
+        </div><!-- /.info--bullets -->
+      </li><!-- /.info__item -->
+    </ul><!-- /.info__list -->
+  </div><!-- /.wrap__content -->
+</section><!-- /.info_section__six -->
+<footer class="footer__page info_section">
+  <div class="wrap__content container">
+    <div class="col-xs-8">
+      <h2><span class="unbold">Talking with your doctor shows <br /> you want to be a</span> partner in your care.</h2>
+      <p>It also helps remind your care team to take certain actions to keep you as safe as possible <em>before, during and after surgery.</em></p>
+    </div><!-- /.col-xs-9 -->
+    <div class="col-xs-4">
+      <h3>For more information visit</h3>
+      <a href="#" data-ng-click="gotoHome(); $event.preventDefault()" class="btn btn--orange">{{report.siteName}}</a>
+    </div><!-- /.col-xs-3 -->
+  </div><!-- /.wrap__content -->
+  <div class="footer__page--meta clearfix">
+    <p><a href="#" ui-sref="top.professional.infographic.footnotes">Click here</a> to view citations and footnotes | Site statistics provided by <a href="http://www.ahrq.gov/">AHRQ</a></p>
+  </div><!-- /.footer__page--meta -->
+</footer><!-- /.footer__page -->
+<!-- <ul>
+  <li data-ng-repeat="item in items">{{item}}</li>
+</ul> -->

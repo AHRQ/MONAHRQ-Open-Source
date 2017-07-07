@@ -1,0 +1,641 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <UICulture>en-US</UICulture>
+    <ExpressionBlendVersion>5.0.40218.0</ExpressionBlendVersion>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{27EA8B7B-FCAE-4264-A3CB-68DE78B46675}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Monahrq.Theme</RootNamespace>
+    <AssemblyName>Monahrq.Theme</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'CustomConfiguration|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\CustomConfiguration\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'CustomConfiguration|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\CustomConfiguration\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'CustomConfiguration|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\CustomConfiguration\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="ExpressionEvaluator, Version=2.0.1.0, Culture=neutral, PublicKeyToken=90d9f15d622e2348, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExpressionEvaluator.2.0.1.0\lib\net40\ExpressionEvaluator.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro, Version=0.10.0.0, Culture=neutral, PublicKeyToken=f4fb5a3c4d1e5b4f, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.0.10.1.1\lib\net45\MahApps.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.1.2\lib\portable-windows8+net40+sl5+windowsphone8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="PresentationFramework.Aero" />
+    <Reference Include="PresentationFramework.Aero2" />
+    <Reference Include="PresentationFramework.AeroLite" />
+    <Reference Include="PresentationFramework.Classic" />
+    <Reference Include="PropertyChanged, Version=1.50.3.0, Culture=neutral, PublicKeyToken=ee3ee20bcf148ddd, processorArchitecture=MSIL">
+      <HintPath>..\packages\PropertyChanged.Fody.1.50.3\lib\dotnet\PropertyChanged.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Expression.Interaction.3.0.40218.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\MonahrqAssemblyInfo.cs">
+      <Link>Properties\MonahrqAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Actions\CloseTabItemAction.cs" />
+    <Compile Include="Adapters\TabControlRegionAdapter.cs" />
+    <Compile Include="Behaviors\MouseDragPopupBehavior.cs" />
+    <Compile Include="Behaviors\AutoScrollTextBoxBehavior.cs" />
+    <Compile Include="Behaviors\ClearChildViewsRegionBehavior.cs" />
+    <Compile Include="Behaviors\DataGridScollBehavior.cs" />
+    <Compile Include="Behaviors\DeferedAction.cs" />
+    <Compile Include="Behaviors\GridViewColumnResize.cs" />
+    <Compile Include="Behaviors\ListBoxBehavior.cs" />
+    <Compile Include="Behaviors\MultiSelectionBehavior.cs" />
+    <Compile Include="Behaviors\RegionManagerAwareBehavior.cs" />
+    <Compile Include="Behaviors\DialogActivationBehavior.cs" />
+    <Compile Include="Behaviors\IRegionManagerAware.cs" />
+    <Compile Include="Behaviors\RegionPopupBehaviors.cs" />
+    <Compile Include="Behaviors\ReturnCommandBehavior.cs" />
+    <Compile Include="Behaviors\TextBoxChangedBehavior.cs" />
+    <Compile Include="Behaviors\WindowDialogActivationBehavior.cs" />
+    <Compile Include="Controls\ComboBoxEx.cs" />
+    <Compile Include="Controls\DockPanelSplitter.cs" />
+    <Compile Include="Controls\HeaderedScrollViewer.cs" />
+    <Compile Include="Controls\MappingGridButton.cs" />
+    <Compile Include="Controls\ModernUI\BBCodeBlock.cs" />
+    <Compile Include="Controls\ModernUI\BBCode\BBCodeLexer.cs" />
+    <Compile Include="Controls\ModernUI\BBCode\BBCodeParser.cs" />
+    <Compile Include="Controls\ModernUI\BBCode\CharBuffer.cs" />
+    <Compile Include="Controls\ModernUI\BBCode\Lexer.cs" />
+    <Compile Include="Controls\ModernUI\BBCode\ParseException.cs" />
+    <Compile Include="Controls\ModernUI\BBCode\Parser.cs" />
+    <Compile Include="Controls\ModernUI\BBCode\Token.cs" />
+    <Compile Include="Controls\ModernUI\BBCode\TokenBuffer.cs" />
+    <Compile Include="Controls\ModernUI\ModernFrame.cs" />
+    <Compile Include="Controls\ModernUI\ModernTab.cs" />
+    <Compile Include="Controls\ModernUI\Presentation\DefaultContentLoader.cs" />
+    <Compile Include="Controls\ModernUI\Presentation\DefaultLinkNavigator.cs" />
+    <Compile Include="Controls\ModernUI\Presentation\IContent.cs" />
+    <Compile Include="Controls\ModernUI\Presentation\IContentLoader.cs" />
+    <Compile Include="Controls\ModernUI\Presentation\LinkCollection.cs" />
+    <Compile Include="Controls\ModernUI\Presentation\NavigationHelper.cs" />
+    <Compile Include="Controls\ModernUI\Presentation\SourceEventArgs.cs" />
+    <Compile Include="Controls\ModernUI\Presentation\VisualTreeHelperEx.cs" />
+    <Compile Include="Controls\ModernUI\TransitioningContentControl.cs" />
+    <Compile Include="Controls\MonahrqButton.cs" />
+    <Compile Include="Controls\MonahrqTabControl.cs" />
+    <Compile Include="Controls\MonahrqTabItem.cs" />
+    <Compile Include="Controls\MonahrqTextBlock.cs" />
+    <Compile Include="Controls\MultiSelect\MonahrqDataGrid.cs" />
+    <Compile Include="Controls\MultiSelect\MultiSelect.cs" />
+    <Compile Include="Controls\Pagination\PagingControl.cs" />
+    <Compile Include="Controls\RadioButtonEx.cs" />
+    <Compile Include="Controls\PopupEx.cs" />
+    <Compile Include="Controls\RoutedEventHelper.cs" />
+    <Compile Include="Controls\Tab\TabItemViewModel.cs" />
+    <Compile Include="Controls\Wizard\Helpers\BinaryDecisionHelper.cs" />
+    <Compile Include="Controls\Wizard\Helpers\Extensions.cs" />
+    <Compile Include="Controls\Wizard\Helpers\RelayCommand.cs" />
+    <Compile Include="Controls\Wizard\Helpers\RouteModifier.cs" />
+    <Compile Include="Controls\Wizard\Helpers\StepTemplateConverter.cs" />
+    <Compile Include="Controls\Wizard\Models\CompleteStep.cs" />
+    <Compile Include="Controls\Wizard\Models\Data\DataWizardViewModel.cs" />
+    <Compile Include="Controls\Wizard\Models\Data\ModelBase.cs" />
+    <Compile Include="Controls\Wizard\Models\IProgressState.cs" />
+    <Compile Include="Controls\Wizard\Models\IStepCollection.cs" />
+    <Compile Include="Controls\Wizard\Models\IWizardDataContextObject.cs" />
+    <Compile Include="Controls\Wizard\Models\OptionGroupViewModel.cs" />
+    <Compile Include="Controls\Wizard\Models\OptionViewModel.cs" />
+    <Compile Include="Controls\Wizard\Models\RouteOptionViewModel.cs" />
+    <Compile Include="Controls\Wizard\Models\StepCollection.cs" />
+    <Compile Include="Controls\Wizard\Models\StepGroup.cs" />
+    <Compile Include="Controls\Wizard\Models\StepManager.cs" />
+    <Compile Include="Controls\Wizard\Models\WizardContextRequestEventArgs.cs" />
+    <Compile Include="Controls\Wizard\Models\WizardStepViewModelBase.cs" />
+    <Compile Include="Controls\Wizard\Models\WizardViewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controls\Wizard\Views\MultiOptionGroupView.xaml.cs" />
+    <Compile Include="Controls\Wizard\Views\SingleOptionGroupView.xaml.cs" />
+    <Compile Include="Controls\Wizard\Views\WizardView.xaml.cs" />
+    <Compile Include="Controls\WpfRichText.Ex\AttachedProperties\RichTextboxAssistant.cs" />
+    <Compile Include="Controls\WpfRichText.Ex\Commands\CommandReference.cs" />
+    <Compile Include="Controls\WpfRichText.Ex\Commands\DelegateCommand.cs" />
+    <Compile Include="Controls\WpfRichText.Ex\Controls\RichTextEditor.xaml.cs">
+      <DependentUpon>RichTextEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\WpfRichText.Ex\Properties\Resources.Designer.cs" />
+    <Compile Include="Controls\WpfRichText.Ex\Properties\Settings.Designer.cs" />
+    <Compile Include="Controls\WpfRichText.Ex\XamlToHtmlParser\HtmlCssParser.cs" />
+    <Compile Include="Controls\WpfRichText.Ex\XamlToHtmlParser\HtmlFromXamlConverter.cs" />
+    <Compile Include="Controls\WpfRichText.Ex\XamlToHtmlParser\HtmlLexicalAnalyzer.cs" />
+    <Compile Include="Controls\WpfRichText.Ex\XamlToHtmlParser\HtmlParser.cs" />
+    <Compile Include="Controls\WpfRichText.Ex\XamlToHtmlParser\HtmlSchema.cs" />
+    <Compile Include="Controls\WpfRichText.Ex\XamlToHtmlParser\HtmlTokenType.cs" />
+    <Compile Include="Controls\WpfRichText.Ex\XamlToHtmlParser\HtmlToXamlConverter.cs" />
+    <Compile Include="Controls\xPopup\OverrideCursor.cs" />
+    <Compile Include="Controls\xPopup\PopupAdorner.cs" />
+    <Compile Include="Controls\xPopup\xPopup.cs" />
+    <Compile Include="Converters\BooleanToStringConverter.cs" />
+    <Compile Include="Converters\CustomReportToStringConverter.cs" />
+    <Compile Include="Converters\DescriptionAttributeConverter.cs" />
+    <Compile Include="Converters\EnumerableToStringConverter.cs" />
+    <Compile Include="Converters\EnumListToStringConverter.cs" />
+    <Compile Include="Converters\EnumToDescriptionConverter.cs" />
+    <Compile Include="Converters\EnumToValueConverter.cs" />
+    <Compile Include="Converters\ErrorCollectionConverter.cs" />
+    <Compile Include="Converters\ExpandAllMultiConverter.cs" />
+    <Compile Include="Converters\HtmlToTextConverter.cs" />
+    <Compile Include="Converters\ListToStringConverter.cs" />
+    <Compile Include="Converters\MButtonLeftToVisibilityConverter.cs" />
+    <Compile Include="Converters\MButtonRightToVisibilityConverter.cs" />
+    <Compile Include="Converters\MeasureTypeVisisbility.cs" />
+    <Compile Include="Converters\MSymbolTypeConverter.cs" />
+    <Compile Include="Converters\BooleanToVisibilityConverter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Converters\CaseConverter.cs" />
+    <Compile Include="Converters\ConverterAccumulator.cs" />
+    <Compile Include="Converters\ConverterSequence.cs" />
+    <Compile Include="Converters\DateTimeConversionMode.cs" />
+    <Compile Include="Converters\DateTimeConverter.cs" />
+    <Compile Include="Converters\ExpressionConverter.cs" />
+    <Compile Include="Converters\FallbackBehavior.cs" />
+    <Compile Include="Converters\FormatConverter.cs" />
+    <Compile Include="Converters\Indexer.cs" />
+    <Compile Include="Converters\MapConverter.cs" />
+    <Compile Include="Converters\Mapping.cs" />
+    <Compile Include="Converters\PagingPageSizeConverter.cs" />
+    <Compile Include="Converters\PercentOfConverter.cs" />
+    <Compile Include="Converters\TypeConverter.cs" />
+    <Compile Include="Converters\NullableBooleanConverter.cs" />
+    <Compile Include="Converters\ToLowerConverter.cs" />
+    <Compile Include="Converters\ValueConverterGroup.cs" />
+    <Compile Include="Converters\ZeroFilterVisibilityConverter.cs" />
+    <Compile Include="Events\NavigationEvent.cs" />
+    <Compile Include="Events\PopupDialogEvents.cs" />
+    <Compile Include="MarkupExtensions\BindToExtension.cs" />
+    <Compile Include="MarkupExtensions\BooleanToVisibilityConverterExtension.cs" />
+    <Compile Include="MarkupExtensions\CaseConverterExtension.cs" />
+    <Compile Include="MarkupExtensions\ConverterSequenceExtension.cs" />
+    <Compile Include="MarkupExtensions\PercentOfConverterExtension.cs" />
+    <Compile Include="MarkupExtensions\DateTimeConverterExtension.cs" />
+    <Compile Include="MarkupExtensions\ExpressionConverterExtension.cs" />
+    <Compile Include="MarkupExtensions\FormatConverterExtension.cs" />
+    <Compile Include="MarkupExtensions\MultiStyleExtension.cs" />
+    <Compile Include="Extensions\StyleExtensions.cs" />
+    <Compile Include="Helpers\BackgroundObservableCollection.cs" />
+    <Compile Include="Helpers\UIHelper.cs" />
+    <Compile Include="MarkupExtensions\SequenceExtension.cs" />
+    <Compile Include="MarkupExtensions\TypeConverterExtension.cs" />
+    <Compile Include="PopupDialog\IPopupDialogService.cs" />
+    <Compile Include="PopupDialog\IPopupDialogView.cs" />
+    <Compile Include="PopupDialog\IPopupDialogViewModel.cs" />
+    <Compile Include="PopupDialog\PopupDialogButtons.cs" />
+    <Compile Include="PopupDialog\PopupDialogButtonVisibilityConverter.cs" />
+    <Compile Include="PopupDialog\PopupDialogService.cs" />
+    <Compile Include="PopupDialog\PopupDialogView.xaml.cs">
+      <DependentUpon>PopupDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PopupDialog\PopupDialogViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Adapters\DockPanelRegionAdapter.cs" />
+    <Compile Include="Adapters\StackPanelRegionAdapter.cs" />
+    <Compile Include="Controls\GenericAppTree\AppTreeContainer.cs" />
+    <Compile Include="Controls\GenericAppTree\AppTreeGenerator.cs" />
+    <Compile Include="Controls\GenericAppTree\AppTreeItem.cs" />
+    <Compile Include="Controls\GenericAppTree\AppTreeNode.cs" />
+    <Compile Include="Controls\GenericAppTree\IAppTreeDataProvider.cs" />
+    <Compile Include="Controls\GenericAppTree\RelayCommand.cs" />
+    <Compile Include="Controls\SafeRaise.cs" />
+    <Compile Include="Controls\ToggleSwitch.cs" />
+    <Compile Include="Converters\CurrencyConverter.cs" />
+    <Compile Include="Converters\DateTimeToSensibleStringConverter.cs" />
+    <Compile Include="Converters\DecimalToColorConverter.cs" />
+    <Compile Include="Converters\DivideByTwoConverter.cs" />
+    <Compile Include="Converters\EnumToBooleanConverter.cs" />
+    <Compile Include="Converters\ErrorConverter.cs" />
+    <Compile Include="Converters\InvertedBooleanConverter.cs" />
+    <Compile Include="Converters\MarkupConverter.cs" />
+    <Compile Include="Converters\NullToVisibilityConverter.cs" />
+    <Compile Include="Converters\OffOnConverter.cs" />
+    <Compile Include="Converters\PercentConverter.cs" />
+    <Compile Include="Converters\StringCaseConverter.cs" />
+    <Compile Include="Converters\StringNullOrEmptyToVisibilityConverter.cs" />
+    <Compile Include="Converters\StringToNullableNumberConverter.cs" />
+    <Compile Include="Converters\ThicknessToDoubleConverter.cs" />
+    <Compile Include="Converters\ToUpperConverter.cs" />
+    <Compile Include="Events\MessageUpdateEvent.cs" />
+    <Compile Include="IWindow.cs" />
+    <Compile Include="Styles\ModalPopupStyleProvider.cs" />
+    <Compile Include="WindowWrapper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ahrq_logo_small.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\ahrq_logo_small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Butterfly.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Monahrq-Butterfly-logo-full.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="MetroWindowResources.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="AppResources.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Styles\AppTreeStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Styles\ButtonStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Styles\ComboBoxStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Styles\Controls.Buttons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Styles\Controls.Tooltip.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Styles\DataGridStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Styles\Fonts.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Styles\GroupBoxStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Styles\ListBoxStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Styles\MenuStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Styles\ScrollBarStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Styles\Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Styles\TabControlStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Styles\TextBoxStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Styles\WindowStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Styles\DockPanelSplitter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Framework\Monahrq.Infrastructure\Monahrq.Infrastructure.csproj">
+      <Project>{36f8dedc-eecc-48d2-b900-7c02c671ba1b}</Project>
+      <Name>Monahrq.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework\Monahrq.Sdk\Monahrq.Sdk.csproj">
+      <Project>{75ace9c7-d049-437b-bba8-7b8cdde19a13}</Project>
+      <Name>Monahrq.Sdk</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ThirdParty\Microsoft\Prism.Interactivity\Prism.Interactivity.csproj">
+      <Project>{de856812-a32c-4866-801e-af396d711942}</Project>
+      <Name>Prism.Interactivity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ThirdParty\Microsoft\Prism\Prism.csproj">
+      <Project>{77138947-1d13-4e22-aee0-5d0dd046ca34}</Project>
+      <Name>Prism</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Controls\WpfRichText.Ex\Properties\Settings.settings" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Controls\Wizard\Views\MonarhqStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Wizard\Views\MultiOptionGroupView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Wizard\Views\SingleOptionGroupView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Wizard\Views\WizardView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\WpfRichText.Ex\Controls\RichTextEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Images\Images.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MonahrqResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PopupDialog\PopupDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Icons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Controls.ToggleSwitch.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\ControlValidationStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\ScrollViewerStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\ModernFrame.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\ModernTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Monahrq.Buttons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Monahrq.DataGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Monahrq.Styles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\TransitioningContentControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\error.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\arhq-logo.jpg" />
+    <Resource Include="Images\btn_iha_monahrq.png" />
+    <Resource Include="Images\MONAHRQ_Color_ThickOutlines.png" />
+    <Resource Include="Images\MONAHRQ_Color_ThickOutlines_Tagline.png" />
+    <Resource Include="Controls\WpfRichText.Ex\Controls\Images\charactergrowfont.png" />
+    <Resource Include="Controls\WpfRichText.Ex\Controls\Images\charactershrinkfont.png" />
+    <Resource Include="Controls\WpfRichText.Ex\Controls\Images\editcopy.png" />
+    <Resource Include="Controls\WpfRichText.Ex\Controls\Images\editcut.png" />
+    <Resource Include="Controls\WpfRichText.Ex\Controls\Images\editpaste.png" />
+    <Resource Include="Controls\WpfRichText.Ex\Controls\Images\editredo.png" />
+    <Resource Include="Controls\WpfRichText.Ex\Controls\Images\editundo.png" />
+    <Resource Include="Controls\WpfRichText.Ex\Controls\Images\fileopen.png" />
+    <Resource Include="Controls\WpfRichText.Ex\Controls\Images\filesave.png" />
+    <Resource Include="Controls\WpfRichText.Ex\Controls\Images\listbullets.png" />
+    <Resource Include="Controls\WpfRichText.Ex\Controls\Images\listnumbering.png" />
+    <Resource Include="Controls\WpfRichText.Ex\Controls\Images\paragraphcenterjustify.png" />
+    <Resource Include="Controls\WpfRichText.Ex\Controls\Images\paragraphdecreaseindentation.png" />
+    <Resource Include="Controls\WpfRichText.Ex\Controls\Images\paragraphfulljustify.png" />
+    <Resource Include="Controls\WpfRichText.Ex\Controls\Images\paragraphincreaseindentation.png" />
+    <Resource Include="Controls\WpfRichText.Ex\Controls\Images\paragraphleftjustify.png" />
+    <Resource Include="Controls\WpfRichText.Ex\Controls\Images\paragraphrightjustify.png" />
+    <Resource Include="Images\DragDropAnchor.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\mapping-down-arrow.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\check-mark.png" />
+    <Resource Include="Images\error-exclaimation.png" />
+    <Resource Include="Converters\___TOC - Converter.txt" />
+    <Resource Include="MarkupExtensions\__TOC-MarkupExtensions.txt" />
+    <Resource Include="FodyWeavers.xml" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Controls\WpfRichText.Ex\Properties\Resources.resx" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\PropertyChanged.Fody.1.50.3\build\dotnet\PropertyChanged.Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\PropertyChanged.Fody.1.50.3\build\dotnet\PropertyChanged.Fody.targets'))" />
+    <Error Condition="!Exists('..\packages\Fody.1.29.3\build\dotnet\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.1.29.3\build\dotnet\Fody.targets'))" />
+    <!--<Error Condition="!Exists('..\packages\Fody.1.29.2\build\dotnet\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.1.29.2\build\dotnet\Fody.targets'))" />-->
+  </Target>
+  <Import Project="..\packages\PropertyChanged.Fody.1.50.3\build\dotnet\PropertyChanged.Fody.targets" Condition="Exists('..\packages\PropertyChanged.Fody.1.50.3\build\dotnet\PropertyChanged.Fody.targets')" />
+  <Import Project="..\packages\Fody.1.29.3\build\dotnet\Fody.targets" Condition="Exists('..\packages\Fody.1.29.3\build\dotnet\Fody.targets')" />
+  <!--<Import Project="..\packages\Fody.1.29.2\build\dotnet\Fody.targets" Condition="Exists('..\packages\Fody.1.29.2\build\dotnet\Fody.targets')" />-->
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

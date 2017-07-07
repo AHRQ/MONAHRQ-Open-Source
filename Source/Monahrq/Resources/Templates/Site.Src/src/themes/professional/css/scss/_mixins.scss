@@ -1,0 +1,43 @@
+// Mixins
+  // Fonts
+  @mixin sourceSans($weight) {
+    font-family: $sourceSans;
+
+    @if $weight == 'regular' {
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    @if $weight == 'italic' {
+      font-weight: 400;
+      font-style: italic;
+    }
+
+    @if $weight == 'semibold' {
+      font-weight: 600;
+      font-style: normal;
+    }
+    
+    @if $weight == 'semibold italic' {
+      font-weight: 600;
+      font-style: italic;
+    }
+
+    @if $weight == 'bold' {
+      font-weight: 700;
+      font-style: normal;
+    }
+
+    @if $weight == 'black' {
+      font-weight: 900;
+      font-style: normal;
+    }
+  }
+
+  @mixin transition($transition...) {
+    -webkit-transition: $transition;
+    -moz-transition: $transition;
+    -o-transition: $transition;
+    -ms-transition: $transition;
+    transition: $transition;
+  }

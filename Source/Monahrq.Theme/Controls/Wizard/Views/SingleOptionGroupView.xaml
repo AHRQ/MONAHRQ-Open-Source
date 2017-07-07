@@ -1,0 +1,53 @@
+﻿<UserControl x:Class="Monahrq.Theme.Controls.Wizard.Views.SingleOptionGroupView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <Style TargetType="StackPanel"
+               x:Key="messageStyle">
+            <Setter Property="Margin"
+                    Value="12,0,0,0" />
+            <Setter Property="VerticalAlignment"
+                    Value="Top" />
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <GroupBox x:Name="grp"
+                  Header="{Binding Path=DisplayName}"
+                  Padding="2">
+            <!--Binds to object of type OptionGroupViewModel-->
+            <ItemsControl ItemsSource="{Binding Path=OptionModels}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <!--An OptionGroup must consist of radio buttons -->
+                        <StackPanel Orientation="Horizontal">
+                            <RadioButton GroupName="{Binding RelativeSource={RelativeSource AncestorType=GroupBox}, Path=DataContext.DisplayName}"
+                                         Margin="2,0,0,0"
+                                         IsEnabled="{Binding Path=Enabled}"
+                                         IsChecked="{Binding Path=IsSelected}" />
+                            <!--The label's target is the RadioButton above, but it can't be named-->
+                            <Label Target="{Binding RelativeSource={RelativeSource AncestorType=StackPanel}, Path=Children[0]}"
+                                   VerticalAlignment="Center">
+                                <!--StringFormat adds leading underscore for key accelerator-->
+                                <AccessText Text="{Binding Path=DisplayName, StringFormat=_{0}}" />
+                            </Label>
+                            <StackPanel Style="{StaticResource ResourceKey=messageStyle}">
+                                <ItemsControl  ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=StackPanel}, Path=Children[0].DataContext.Messages}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Label  Content="{Binding}"
+                                                    Foreground="Salmon"></Label>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </GroupBox>
+    </Grid>
+</UserControl>

@@ -1,0 +1,11 @@
+10.0
+9
+1  SQLCHAR  0  0  ","     2  ID                   ""
+2  SQLCHAR  0  0  ","     3  NumEdVisits          ""
+3  SQLCHAR  0  0  ","     4  NumEdVisitsStdErr    ""
+4  SQLCHAR  0  0  ","     5  NumAdmitHosp         ""
+5  SQLCHAR  0  0  ","     6  NumAdmitHospStdErr   ""
+6  SQLCHAR  0  0  ","     7  DiedEd               ""
+7  SQLCHAR  0  0  ","     8  DiedEdStdErr         ""
+8  SQLCHAR  0  0  ","     9  DiedHosp             ""
+9  SQLCHAR  0  0  "\r\n"  10 DiedHospStdErr       ""

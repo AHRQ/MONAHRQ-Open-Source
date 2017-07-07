@@ -1,0 +1,283 @@
+// -------------------------------------------------------------------- //
+//  IE Styles
+// -------------------------------------------------------------------- //
+
+&.lt-ieEdge {
+  // Form elements
+  input[type="checkbox"] {
+    background-image: none;
+  }
+
+  select {
+    padding: 0;
+    background-color: white;
+    background-image: none;
+  }
+
+  // ----------------------------------------------------------------- //
+  // Site header
+  .site-header .contain {
+    display: table;
+
+    .provider-logo,
+    .site-header__nav {
+      display: table-cell;
+      vertical-align: middle;
+    }
+
+    .provider-logo {
+      padding: 30px 0;
+    }
+
+    .site-header__nav {
+      float: none;
+      text-align: right;
+    }
+  }
+
+  // ----------------------------------------------------------------- //
+  // Site header mini-nav
+  .site-header__nav {
+    float: right;
+  }
+
+  // ----------------------------------------------------------------- //
+  // Site nav
+  nav[role='navigation'] ul {
+    display: table;
+    table-layout: fixed;
+
+    li {
+      display: table-cell;
+      vertical-align: middle;
+    }
+  }
+
+  // ----------------------------------------------------------------- //
+  // Site footer
+  .footer-nav {
+    padding: 10px 0;
+    text-align: center;
+
+    .footer-nav__link {
+      margin: 0 10px;
+    }
+  }
+
+  // ----------------------------------------------------------------- //
+  // Site footer company display
+  .about__companies {
+    float: right;
+
+    p {
+      float: right;
+      clear: both;
+      margin-right: 30px;
+    }
+  }
+
+  // ----------------------------------------------------------------- //
+  // Site footer additional info
+  .about__secondary {
+    clear: both;
+  }
+
+  // ----------------------------------------------------------------- //
+  // Section searches
+  .search-form__next,
+  .physician-search .search-form__next {
+    float: left;
+    display: block;
+    margin-top: 30px;
+  }
+
+  .search-combo-box__contain select {
+    padding-left: 25px;
+    padding-right: 0;
+    background-image: none;
+  }
+
+  .search-form__location,
+  .search-form__distance,
+  .search-form__zip {
+    float: left;
+    width: 25%;
+
+    // Distance select
+    select {
+      padding-right: 0;
+      background-color: white;
+    }
+  }
+
+  .search-form__action {
+    float: left;
+
+    .btn--primary {
+      // margin-top: 23px;
+    }
+
+    .results-updated + .btn--primary {
+      margin-top: 0;
+    }
+  }
+
+  .results-updated {
+    margin-top: -3px;
+    margin-bottom: 2px;
+  }
+
+  .wizard__step {
+    float: left;
+  }
+
+  // ----------------------------------------------------------------- //
+  // Section individual profiles
+  .profile-search .search-form__location,
+  .physician-search .search-form__location {
+    width: calc(100% - 150px);
+  }
+
+
+
+  // ----------------------------------------------------------------- //
+  // Topics
+  .toggle-topics,
+  .toggle-all-subtopics,
+  .toggle-subtopic,
+  .toggle-compared-data,
+  .toggle-subtopic-measures {
+    top: calc(50% - 11px);
+  }
+
+  // ----------------------------------------------------------------- //
+  // Reports
+  .report-header__comparing,
+  .report-header__conditions-concerns,
+  .report-footer {
+    @include clearfix;
+  }
+
+  .report-footer div[data-ng-if="hasResults"] {
+    float: left;
+
+    .btn--primary {
+      float: left;
+    }
+
+    .view-multiple-helper-text {
+      clear: both;
+    }
+  }
+
+  .change-search-area {
+    float: right;
+  }
+
+
+  // ----------------------------------------------------------------- //
+  // Resources
+  .resource__content .contain {
+    @include clearfix;
+    margin-bottom: 60px;
+  }
+
+  .resource__nav {
+    float: left;
+    width: 300px;
+  }
+
+  .resource__content-panel {
+    float: left;
+    width: 660px;
+  }
+
+  // ----------------------------------------------------------------- //
+  // Infographics
+  .health-topics__list {
+    @include clearfix;
+  }
+
+  .health-topic {
+    float: left;
+    width: 30%;
+    margin-right: 5%;
+
+    &:nth-child(3n) {
+      margin-right: 0;
+    }
+  }
+
+  .infographic__facts {
+    @include clearfix;
+  }
+
+  .infographic__fact {
+    float: left;
+    width: 490px;
+
+    &:nth-child(odd) {
+      margin-right: 20px;
+    }
+  }
+
+  .infographic__tips > div {
+    @include clearfix;
+  }
+
+  .infographic__tip {
+    float: left;
+    width: 30%;
+    margin-right: 5%;
+
+    &:nth-child(3n) {
+      margin-right: 0;
+    }
+  }
+
+  .inspections__measures
+  .safety__measures {
+    @include clearfix;
+  }
+
+  .inspections__measure,
+  .safety__measure {
+    float: left;
+  }
+
+  .inspections__measure {
+    width: 310px;
+    margin: 0 10px;
+  }
+
+  .safety__measure {
+    width: 190px;
+    margin: 0 5px;
+  }
+
+  .footer__closing-statement {
+    img {
+      float: left;
+    }
+
+    p {
+      overflow: hidden;
+    }
+  }
+
+  .infographic__quality__low-rating {
+    @include clearfix;
+
+    > p {
+      float: left;
+      width: 245px;
+      margin-right: 120px;
+    }
+
+    ul {
+      float: right;
+      width: 500px;
+      margin-left: 0;
+    }
+  }
+}

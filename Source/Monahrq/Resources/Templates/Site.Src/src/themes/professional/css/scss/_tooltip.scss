@@ -1,0 +1,20 @@
+// -------------------------------------------------------------------- //
+//  Tooltips
+// -------------------------------------------------------------------- //
+
+.tooltip.left {
+    .tooltip-inner {
+        padding: 5px 10px;
+        color: #ffffff;
+        background-color: #da8009;
+        font-weight: bold;
+    }
+    
+    .tooltip-arrow {
+        border-left-color: #da8009;
+    }
+}
+
+.tooltip.in {
+    opacity: 1;
+}

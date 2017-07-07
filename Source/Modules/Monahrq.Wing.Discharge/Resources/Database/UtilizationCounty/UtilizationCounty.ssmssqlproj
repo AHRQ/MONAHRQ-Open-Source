@@ -1,0 +1,130 @@
+<?xml version="1.0"?>
+<SqlWorkbenchSqlProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="UtilizationCounty">
+  <Items>
+    <LogicalFolder Name="Connections" Type="2" Sorted="true">
+      <Items>
+        <ConnectionNode Name="(local):BLUELIGHTNING\BLNAdmin">
+          <Created>2014-09-03T09:09:24.0737678-04:00</Created>
+          <Type>SQL</Type>
+          <Server>(local)</Server>
+          <UserName />
+          <Authentication>Windows Authentication</Authentication>
+          <InitialDB />
+          <LoginTimeout>15</LoginTimeout>
+          <ExecutionTimeout>0</ExecutionTimeout>
+          <ConnectionProtocol>NotSpecified</ConnectionProtocol>
+          <ApplicationName>Microsoft SQL Server Management Studio - Query</ApplicationName>
+        </ConnectionNode>
+        <ConnectionNode Name="JPVSURFACE\SQLEX2008R2:BLUELIGHTNING\BLNAdmin">
+          <Created>2014-09-12T08:46:32.7725561-04:00</Created>
+          <Type>SQL</Type>
+          <Server>JPVSURFACE\SQLEX2008R2</Server>
+          <UserName />
+          <Authentication>Windows Authentication</Authentication>
+          <InitialDB>Monahrq5Test2</InitialDB>
+          <LoginTimeout>15</LoginTimeout>
+          <ExecutionTimeout>0</ExecutionTimeout>
+          <ConnectionProtocol>NotSpecified</ConnectionProtocol>
+          <ApplicationName>Microsoft SQL Server Management Studio - Query</ApplicationName>
+        </ConnectionNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Queries" Type="0" Sorted="true">
+      <Items>
+        <FileNode Name="Sproc-spUtilCountyAddRateDischargesToAllCombined.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Sproc-spUtilCountyAddRateDischargesToAllCombined.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Sproc-spUtilCountyAddRateDischargesToCounty.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Sproc-spUtilCountyAddRateDischargesToCounty.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Sproc-spUtilCountyGetDetailData.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Sproc-spUtilCountyGetDetailData.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Sproc-spUtilCountyGetRecordsInIPTarget.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:JPVSURFACE\SQLEX2008R2:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>JPVSURFACE\SQLEX2008R2</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Sproc-spUtilCountyGetRecordsInIPTarget.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Sproc-spUtilCountyGetSummaryDataByClinical.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Sproc-spUtilCountyGetSummaryDataByClinical.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Sproc-spUtilCountyGetSummaryDataByGeo.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Sproc-spUtilCountyGetSummaryDataByGeo.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Sproc-spUtilCountyInitializeDRG.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Sproc-spUtilCountyInitializeDRG.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Sproc-spUtilCountyInitializeDXCCS.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Sproc-spUtilCountyInitializeDXCCS.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Sproc-spUtilCountyInitializeMDC.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Sproc-spUtilCountyInitializeMDC.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Sproc-spUtilCountyInitializePRCCS.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Sproc-spUtilCountyInitializePRCCS.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Table-TempUtilCountyCounty.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Table-TempUtilCountyCounty.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Table-TempUtilCountyPrep.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Table-TempUtilCountyPrep.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Test-MemoryUsage.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:JPVSURFACE\SQLEX2008R2:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>JPVSURFACE\SQLEX2008R2</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Test-MemoryUsage.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Test-NewPopulationStratsAggregation.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Test-NewPopulationStratsAggregation.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Test-TableSizes.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:JPVSURFACE\SQLEX2008R2:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>JPVSURFACE\SQLEX2008R2</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Test-TableSizes.sql</FullPath>
+        </FileNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Miscellaneous" Type="3" Sorted="true">
+      <Items />
+    </LogicalFolder>
+  </Items>
+</SqlWorkbenchSqlProject>

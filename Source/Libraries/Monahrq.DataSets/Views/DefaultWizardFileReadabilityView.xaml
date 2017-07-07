@@ -1,0 +1,88 @@
+﻿<UserControl x:Class="Monahrq.DataSets.Views.DefaultWizardFileReadabilityView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             xmlns:utils="clr-namespace:Monahrq.Sdk.Behaviors;assembly=Monahrq.Sdk"
+             xmlns:views="clr-namespace:Monahrq.DataSets.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="800" Loaded="UserControl_Loaded">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.Buttons.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid x:Name="ProgressGrid" Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <DockPanel ClipToBounds="True" Margin="10,0,10,0">
+            <TextBlock Text="Checking File Readability" DockPanel.Dock="Left" FontSize="26" Foreground="{DynamicResource MGrey5}" VerticalAlignment="Top" MinWidth="300"/>
+
+            <!-- Display dataset title and date in upper right corner. Use Dock=Right -->
+            <views:DatasetTitlePeriod 
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Right"
+                    DockPanel.Dock="Right" 
+                    ClipToBounds="True" 
+                    DataContext="{Binding DataContextObject.CurrentContentItem}" />
+        </DockPanel>
+
+        <Grid x:Name="contentGrid1" Grid.Row="1" Margin="30,0">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid x:Name="progressStatsGrid">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="55.165"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <StackPanel HorizontalAlignment="Left" Margin="0,0,0,0" Orientation="Vertical" VerticalAlignment="Center">
+                        <TextBlock Text="{Binding Status}" Margin="0" TextWrapping="Wrap"  FontSize="18" 
+                                       Foreground="{DynamicResource MGrey5}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <Controls:MetroProgressBar Grid.Row="1" 
+                                                   Value="{Binding CurrentProgress.Current, Mode=OneWay}" 
+                                                   VerticalAlignment="Stretch" Foreground="{DynamicResource MBlue}" Background="{DynamicResource White}" 
+                                                   BorderBrush="{DynamicResource MGrey5}" Margin="0,0,0,10" 
+                                                   Maximum="{Binding CurrentProgress.Total, Mode=OneWay}"/>
+                </Grid>
+                <Grid Grid.Row="1" Margin="0,10,0,0" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="220"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="47*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="File size:" Margin="0" TextWrapping="Wrap" FontSize="14" Foreground="{DynamicResource MGrey5}" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                    <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal">
+                        <TextBlock  Text="{Binding FileSize, StringFormat='{}{0:N0}'}" Margin="0" TextWrapping="Wrap" FontSize="14" Foreground="{DynamicResource MGrey5}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                        <TextBlock  Text=" bytes" Margin="0" TextWrapping="Wrap" FontSize="14" Foreground="{DynamicResource MGrey5}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                    </StackPanel>
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Records read:" Margin="0" FontSize="14" Foreground="{DynamicResource MGrey5}" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Right" />
+                    <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Horizontal">
+                        <TextBlock Text="{Binding CurrentProgress.Current, Mode=OneWay, StringFormat='{}{0:N0}'}" Margin="0" TextWrapping="Wrap" FontSize="14" Foreground="{DynamicResource MGrey5}" VerticalAlignment="Center" HorizontalAlignment="Left" d:LayoutOverrides="Height" />
+                        <TextBlock Text=" of " Margin="0" TextWrapping="Wrap" FontSize="14" Foreground="{DynamicResource MGrey5}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                        <TextBlock Text="{Binding CurrentProgress.Total, Mode=OneWay, StringFormat='{}{0:N0}'}" Margin="0" TextWrapping="Wrap" FontSize="14" Foreground="{DynamicResource MGrey5}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                    </StackPanel>
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="File name:" Margin="0" TextWrapping="Wrap" FontSize="14" Foreground="{DynamicResource MGrey5}" VerticalAlignment="Center" HorizontalAlignment="Right" />
+                    <TextBlock Grid.Row="2" Grid.Column="2" Text="{Binding CurrentFile}" Margin="0" TextWrapping="Wrap" FontSize="14" Foreground="{DynamicResource MGrey5}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

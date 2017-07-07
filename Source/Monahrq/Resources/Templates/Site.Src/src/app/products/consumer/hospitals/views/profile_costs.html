@@ -1,0 +1,25 @@
+<section aria-labeledby="costs-tab" role="tabpanel" aria-hidden="false">
+  <header>
+    <h4>Average Medicare out of pocket costs based on the 25 most frequent health problems</h4>
+    <p>Also known as Diagnosis Related Groups (DRGs).</p>
+  </header>
+
+  <div>
+  <table>
+    <thead>
+    <tr>
+      <th>Health Problem</th>
+      <th>Number of people seen</th>
+      <th>Average cost</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr data-ng-repeat="drg in drgs track by $index">
+      <th>{{drg.Description}}</th>
+      <td>{{drgData.hospital[drg.Id].NumDischarges}}</td>
+      <td>{{drgData.hospital[drg.Id].MeanCost | nfcurrency}}</td>
+    </tr>
+    </tbody>
+  </table>
+  </div>
+</section>

@@ -1,0 +1,74 @@
+﻿<UserControl x:Class="Monahrq.Wing.Dynamic.Views.SelectSourceView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mahControls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             xmlns:converters="clr-namespace:Monahrq.Theme.Converters;assembly=Monahrq.Theme"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="600">
+
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="MGrey4" Color="Gray"/>
+        <SolidColorBrush x:Key="MGrey5" Color="#FF626262"/>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+    <Grid VerticalAlignment="Top">
+        <StackPanel Background="Red" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,0,20"
+                    Visibility="{Binding IsTargetDisabled, Converter={StaticResource BooleanToVisibilityConverter}}" >
+            <TextBlock Text="{Binding DisableMessage}" FontSize="14" Foreground="White" Margin="0, 20"/>
+        </StackPanel>
+        <Grid VerticalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="6*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0" Grid.Column="0" VerticalAlignment="Top">
+                <TextBlock  Text="Use the Browse button to locate the data file(s) you want to import."
+                        FontSize="18" Foreground="{StaticResource MGrey5}" HorizontalAlignment="Left" Margin="2,10,2,10" />
+                <TextBlock  Margin="2">
+                    <TextBlock.Inlines >
+                        <Span Foreground="{StaticResource MGrey5}" FontSize="16">Enter Title:</Span>
+                        <Span Foreground="{StaticResource MGrey4}" FontSize="16">(Maximum length is 200 characters)</Span>
+                    </TextBlock.Inlines>
+                </TextBlock>
+                <TextBox 
+                    Margin="2"
+                    MaxLength="200"
+                    Width="600"
+                    FontSize="16"
+                    Foreground="{StaticResource MGrey5}"
+                    HorizontalAlignment="Left"
+                    Text="{Binding Title , UpdateSourceTrigger=PropertyChanged}"/>
+                <StackPanel  Margin="2" MaxWidth="500" HorizontalAlignment="Left">
+                    <TextBlock Text="Reported Year:" FontSize="16" Foreground="{StaticResource MGrey5}" VerticalAlignment="Bottom" Margin="0,0,0,0"/>
+                    <ComboBox Height="34" Width="225" ItemsSource="{Binding Years}" SelectedItem="{Binding SelectedYear}" Margin="0,0,0,0"  />
+                    <!--<TextBlock  Text="Reported Quarter:" FontSize="16" Foreground="{StaticResource MGrey5}" VerticalAlignment="Bottom" Visibility="Collapsed"/>-->
+                    <!--<ComboBox Height="34" Width="225" ItemsSource="{Binding Quarters}" SelectedItem="{Binding SelectedQuarter}" HorizontalAlignment="Left" Visibility="Collapsed" />-->
+                </StackPanel>
+                <!--</StackPanel>
+           
+            <StackPanel  Grid.Row="1" VerticalAlignment="Stretch">-->
+                <TextBlock Text="Please browse for your input data file." Margin="2,0,0,5" Foreground="{StaticResource MGrey5}" FontSize="16"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="100"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="120"/>
+                    </Grid.RowDefinitions>
+                    <!--<TextBox Grid.Column="0" Grid.Row="0" Text="{Binding SelectedFile, UpdateSourceTrigger=PropertyChanged}" FontSize="16" Foreground="{StaticResource MGrey5}" HorizontalAlignment="Stretch" Margin="10" />-->
+                    <TextBox Text="{Binding SelectedFile, UpdateSourceTrigger=PropertyChanged}"  mahControls:TextboxHelper.ClearTextButton="True"  IsReadOnly="True" Margin="5,0,5,0" Width="Auto" FontSize="16"  Foreground="{StaticResource MGrey5}"  />
+                    <Button Grid.Column="1" Grid.Row="0" Command="{Binding SelectFileCommand}" Content="Browse" Height="30"/>
+                </Grid>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

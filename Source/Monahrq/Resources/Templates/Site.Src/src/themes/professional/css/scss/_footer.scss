@@ -1,0 +1,150 @@
+/* Footer
+---------------------------------------- */
+.footer {
+  padding: 20px;
+  background: #fafafa;
+  border-top: 1px solid #ddd;
+}
+
+.footer .title {
+  border-bottom: 1px solid #ddd;
+  margin: 10px 0;
+}
+
+div.utilization-table div.dynamic-caption{
+  font-weight: bold;
+  font-size: 1.4em;
+}
+
+
+.homepage-content-image {
+  max-width: 500px;
+  max-height: 300px;
+  margin-bottom: 10px;
+
+  img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
+.branding img {
+  height: 80px;
+  max-width: 500px;
+}
+
+/* Footer headings
+---------------------------------------- */
+.footer h2.title {
+  font-size: 14px;
+  line-height: 1.428571429;
+}
+
+
+.qr-sort-by-filter{
+  position: relative;
+  margin-left: 0;
+}
+
+.legend-icon-wrapper {
+  position: relative;
+  height:59px;
+}
+
+.legend-icon {
+  position: absolute;
+  z-index: 5;
+  bottom: 0;
+  margin-bottom: 0px;
+}
+
+.legend-overlay.modal-header  {
+  border-bottom: none;
+}
+
+.legend-overlay.modal-body ul{
+  margin: 0px 0 0 30px;
+  width: 490px;
+}
+
+.legend-overlay.modal-body ul li{
+  list-style: none;
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #C4C8C7;
+  width: 100%;
+}
+
+.legend-overlay.modal-body ul li span{
+  font-size: 11px;
+  color: #646464;
+  line-height: 1;
+  margin-right: 5px;
+}
+
+.legend-overlay.modal-body ul li img{
+  margin-right: 5px;
+}
+
+.find-hospitals-cta{
+  // background: #fff;
+  border-radius: 15px;
+  // width:74%;
+}
+
+.find-hospitals-cta.utilization .col-xs-6 p{
+  min-height: 135px;
+}
+
+.find-hospitals-cta .col-xs-6, .find-hospitals-cta .col-xs-12 {
+  padding: 15px;
+}
+
+.find-hospitals-cta .col-xs-6 p.narrow {
+  width: 75%;
+}
+
+.btn.btn-xlg.btn-primary{
+  color: #fff;
+  text-decoration: none;
+}
+
+.height-align{
+  margin-top: 10px;
+}
+
+.display-type-toggle{
+  min-width: 215px;
+}
+
+.help-icon{
+  display: inline-block;
+  margin-top: -6px;
+}
+
+.help-icon span{
+   font-size: 17px;
+    color: #ddd;
+    text-decoration: none;
+}
+
+.dark .help-icon span{
+  color: #666;
+}
+
+
+// -------------------------------------------------------------------- //
+//  Footer nav
+
+.nav--footer {
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .nav__link {
+    padding: 0;
+  }
+}

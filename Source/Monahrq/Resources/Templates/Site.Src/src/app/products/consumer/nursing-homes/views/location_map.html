@@ -1,0 +1,100 @@
+<main>
+
+  <section class="search--refine" role="search">
+    <div class="contain">
+      <div class="search--refine__title-group">
+        <h1 class="search--refine__title">Compare nursing homes by location:</h1>
+      </div>
+
+      <form class="search-form" name="searchForm" novalidate>
+        <div class="search-form__contain">
+          <div class="search-form__location">
+            <label for="search-location">Enter Location:</label>
+            <input type="text" id="search-location" name="location" placeholder="Enter address, city or zip code" data-ng-model="query.location" required>
+            <span data-ng-if="searchForm.location.$error.required && showValidationErrors" class="form-error-message" role="alert">Error: Please enter a location</span>
+          </div>
+
+          <span class="search-form__next"></span>
+
+          <div class="search-form__distance">
+            <label for="search-distance">Select Distance:</label>
+            <select id="search-distance" data-ng-class="{selectEmpty: !query.distance}" name="distance" data-ng-model="query.distance" data-ng-options="x as (x + ' Mile(s)') for x in zipDistances track by x" title="Maximum Distance">
+              <option value="" selected disabled style="display:none;">Choose Maximum Distance</option>
+            </select>
+          </div>
+
+          <span class="search-form__next"></span>
+
+          <div class="search-form__action">
+            <p data-ng-if="searchStatus === 'COMPLETED'" class="results-updated" role="alert">Results Updated</p>
+            <button class="btn--primary" data-ng-click="updateSearch()">Show Results Below</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <div data-mh-cms-zone="'header'" data-mh-cms-zone-report-id="reportId" data-mh-cms-zone-product="'Consumer'"></div>
+
+  <section class="report" tabindex="-1">
+    <header class="report-header" data-ng-if="searchStatus === 'NOT_STARTED'">
+      <p>Please enter a search in the form above.</p>
+    </header>
+
+    <header class="report-header" data-ng-if="searchStatus === 'SEARCHING'">
+      <div class="report-loading">
+        <div data-us-spinner></div>
+        <p>Searching...</p>
+      </div>
+    </header>
+
+    <header class="report-header" data-ng-if="searchStatus === 'NO_RESULTS'" role="alert">
+      <p>Your search did not find any nursing homes.</p>
+    </header>
+
+    <header class="report-header" data-ng-if="searchStatus === 'COMPLETED'">
+      <a href="#" data-ng-click="gotoTable(); $event.preventDefault()">View these results in a table</a>
+      <p>Nursing homes within {{query.distance}} miles of {{query.location}}</p>
+    </header>
+
+    <div class="report--content" data-ng-show="searchStatus === 'COMPLETED'">
+      <div ng-repeat="marker in mapModel.markers" ui-map-marker="mapModel.markers[$index]" ui-event="{'map-mouseover': 'openMarkerInfo(marker)'}"></div>
+
+      <div ui-map-info-window="infoWindow" class="clearfix">
+        <div class="info_window__wrapper compare_nursing_homes">
+          <h2>{{mapModel.currentMarkerData.name}}</h2>
+          <p class="info__window__adr">{{mapModel.currentMarkerData.address}}</p>
+          <p ng-hide="missingRating" class="info__window__rating"><strong class="col-md-4">Overall Rating:</strong><span class="info__window__rating col-md-8" data-mh-rating-nursing="mapModel.currentMarkerData.overallRating"></span></p>
+          <p ng-show="mapModel.currentMarkerData.overallInspection" class="info__window__rating"><strong class="col-md-4">Overall Inspection:</strong><span class="info__window__rating col-md-8" data-mh-rating-nursing="mapModel.currentMarkerData.overallInspection"></span></p>
+          <p ng-show="mapModel.currentMarkerData.overallQuality" class="info__window__rating"><strong class="col-md-4">Overall Quality:</strong><span class="info__window__rating col-md-8" data-mh-rating-nursing="mapModel.currentMarkerData.overallQuality"></span></p>
+          <p ng-show="mapModel.currentMarkerData.overallStaffing" class="info__window__rating"><strong class="col-md-4">Overall Staffing:</strong><span class="info__window__rating col-md-8" data-mh-rating-nursing="mapModel.currentMarkerData.overallStaffing"></span></p>
+          <p ng-show="mapModel.currentMarkerData.overallFamily" class="info__window__rating"><strong class="col-md-4">Rating of Care by Resident's Family:</strong><span class="info__window__rating col-md-8" data-mh-rating-nursing="mapModel.currentMarkerData.overallFamily"></span></p>
+          <p><a href="#" data-ui-sref="^.profile({id: mapModel.currentMarkerData.id})">View Profile</a></p>
+        </div><!-- /.inf__wrapper -->
+      </div>
+
+      <div class="map large">
+        <div data-ng-if="!config.DE_IDENTIFICATION" data-ui-map="mapModel.map" data-ui-options="mapOptions" class="map-canvas" title="Geographic map of search results"></div>
+        <div data-ng-if="config.DE_IDENTIFICATION" class="map-canvas">
+          <img src="themes/consumer/assets/images/demo-map.png" alt="Example Map">
+        </div>
+      </div>
+      <p data-ng-if="config.DE_IDENTIFICATION" style="text-align:center">* For demonstration purposes, this is a static map based on fabricated data. A non-demonstration website will use an interactive map.</p>
+    </div>
+
+    <footer class="report-footer" data-ng-if="searchStatus === 'NO_RESULTS' || searchStatus === 'COMPLETED'">
+      <div>
+        <label for="search-distance2">Try changing your search area for different results:</label>
+        <select id="search-distance2" data-ng-class="{selectEmpty: !query.distance}" name="distance" data-ng-model="query.distance" data-ng-options="x as (x + ' Mile(s)') for x in zipDistances track by x" title="Maximum Distance">
+          <option value="" selected disabled style="display:none;">Choose Maximum Distance</option>
+        </select>
+        <button class="btn--primary" data-ng-click="updateSearch()">Update Results</button>
+      </div>
+
+      <p>Need help with your search? <a href="#" data-ui-sref="top.consumer.about-ratings({page: 'resourceNursingHomeQuality'})">Find help here</a>.</p>
+    </footer>
+
+  </section>
+
+  <div data-mh-cms-zone="'footer'" data-mh-cms-zone-report-id="reportId" data-mh-cms-zone-product="'Consumer'"></div>
+</main>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ReportManifest RptId="87E04110-46B0-4CAE-9592-022C3111FAC7"
+                Name="Nursing home profile report with summary and individual measure score by domain"
+                Category="Quality"
+				IsTrending="false"
+				ShowInterpretationText="true" ConsumerPreviewImage="ConsumerNursingHomeProfile.png"
+                PreviewImage="NursingHome_ProfileReport_Summary - MQ60.jpg"
+                RequiresCostToChargeRatio="false">
+	<Audiences>
+		<Audience AudienceType="Professionals" />
+		<Audience AudienceType="Consumers" />
+	</Audiences>
+	<Datasets>
+		<Dataset Name="Nursing Home Compare Data"/>
+		<Dataset Name="NH-CAHPS Survey Results Data"/>
+		<Dataset Name="Nursing Home Deficiency Matrix Data"/>
+	</Datasets>
+	<Filters >
+		<Filter Type="Display">
+			<Values>
+				<FilterValue Name="Basic Descriptive Data" />
+				<FilterValue Name="Map" />
+				<FilterValue Name="Overall Score" />
+				<FilterValue Name="Quality Measures" />
+				<FilterValue Name="Health Inspection" />
+				<FilterValue Name="Staffing" />
+			</Values>
+		</Filter>
+	</Filters>
+	<ReportAttributes />
+	<Footer>
+		<![CDATA[<p> The information on this website should be interpreted cautiously as there are both strengths and weaknesses associated with the data. You may want to use information from many different sources to learn about a nursing home’s quality, such as the long term care ombudsman's office in your state or the state agency that inspects nursing homes. Many experts strongly recommend visiting a nursing home in person before deciding to choose it for yourself or your loved one.
+	</p>]]>
+	</Footer>
+	<!--ReportColumns-->
+	<Columns />
+	<!--<Column Name="Number of discharges"/>
+    <Column Name="Mean cost in dollars"/>
+    <Column Name="Rate of Discharges Per 1000 Persons"/>
+  </Columns>-->
+	<InterpretationText >
+		<![CDATA[<p><strong style="line-height:1.6">Ownership Type:</strong><span style="line-height:1.6">&nbsp; Nursing homes can be owned by private for-profit corporations, non-profit organizations, religious affiliated organizations or government agencies.</span></p>
+<p><strong>Number of Certified Beds:</strong>&nbsp; Certified beds are beds in the nursing home that have been approved by the federal government.&nbsp; Larger nursing homes have more beds.&nbsp;</p>
+<p><strong>Number of Residents in Certified Beds:</strong> Certified beds are beds in the nursing home that have been approved by the federal government.&nbsp; When a nursing home has fewer residents in beds than the number of certified beds, they should have room for new residents.&nbsp;</p>
+<p><strong>Provider Type:</strong> Whether the nursing home participates in the federal Medicare program, the Medicaid program, or both.</p>
+<p><strong>Is the nursing home located in a hospital?</strong></p>
+<p><strong>Is the nursing home located in a continuing care retirement community?</strong> A continuing care retirement community is a place that offers different levels of care for older people, including independent living, assisted living, and skilled nursing.</p>
+<p><strong>Date first approved to provide Medicare and Medicaid services</strong></p>
+<p><strong>Special Focus Facility:</strong> Special Focus Facilities (SFF) are nursing homes that have:</p>
+<ul>
+<li><strong>More health and safety problems</strong> than other nursing homes (about twice the average number of deficiencies),</li>
+<li><strong>More serious problems</strong> than most other nursing homes (including harm or injury experienced by residents), and</li>
+<li><strong>A pattern of serious problems</strong>that has continued <strong>over a long time</strong></li>
+</ul>
+<p>The federal government requires that Special Focus nursing homes be inspected twice as often&nbsp; as other nursing homes (about twice per year). These visits are used to see whether the nursing home has improved the identified problems or is in need of disciplinary action.</p>
+<p><strong>Does the nursing home have a resident and family council?&nbsp;</strong>Resident and Family Councils are organized groups of nursing home residents, or their family members, who meet to share ideas and concerns that matter to patients. Under federal law, all nursing home residents and their families have the right to form a council and hold regular meetings. Nursing home must provide meeting space and must listen to the council&rsquo;s concerns and recommendations, but staff or visitors can attend meetings only if invited. Nursing homes may have councils that represent residents, or families, or both</p>
+<p><strong>Accreditation:</strong>Nursing homes can choose to be &ldquo;accredited&rdquo; by one or more organization that determines if a given facility meets its standards.&nbsp; Some very good nursing homes, however, do not choose to be accredited.</p>
+]]>
+	</InterpretationText>
+	<WebsitePages>
+		<WebsitePage
+			Name="Nursing Home Profile"
+			Audience="Consumers"
+			Path="app/products/consumer/nursing-homes/views/profile.html"
+			Url="/nursing-homes/profile/"
+			UrlRaw="/profile/:id"
+			IsEditable="true">
+			<WebsitePageZones>
+				<WebsitePageZone Name="Header" CodePath=""/>
+				<WebsitePageZone Name="Footer" CodePath=""/>
+			</WebsitePageZones>
+		</WebsitePage>
+		<WebsitePage
+			Name="Nursing Home Profile"
+			Audience="Professionals"
+			Path="app/products/professional/nursing-homes/views/profile.html"
+			Url="/nursing-homes/location"
+			UrlRaw="/profile/:id"
+			IsEditable="true">
+			<WebsitePageZones>
+				<WebsitePageZone Name="Header" CodePath=""/>
+				<WebsitePageZone Name="Footer" CodePath=""/>
+			</WebsitePageZones>
+		</WebsitePage>
+	</WebsitePages>
+</ReportManifest>

@@ -1,0 +1,173 @@
+/*
+ * Basic Table Flutter Config
+ */
+$.monahrq.Flutter.Configs.BasicTableFlutter = {
+  // Uniquely identify this flutter config. This id appears in the flutter registry.
+  id: 'gov.ahrq.BasicTableFlutter',
+  // User-friendly name for the flutter.
+  displayName: 'Basic Table Flutter',
+  // The angular module to which the flutter adds its components.
+  moduleName: 'flutters.BasicTableFlutter',
+
+  // What files are loaded as part of the flutter. Relative to the modulePath from the registry.
+  assets: {
+    scripts: ['basic-table.js', 'vendor/angular-smart-table/dist/smart-table.min.js'],
+    styles: ['basic-table.css'],
+    templates: ['views/basic-table.html']
+  },
+
+
+  // What menu links the flutter adds to the monahrq navigation.
+  menuItems: [
+    {
+      // What menu this item should be added to. Currently only 'main' is supported, for the top nav.
+      menu: 'main',
+      // An identifier for this menu item.
+      id: 'gov.ahrq.BasicTableFlutter.Menus.MainTab',
+
+      // What report this menu item points to. Should match the 'id' field in reports.
+      reportId: 'gov.ahrq.BasicTableFlutter.Reports.HCUP',
+
+      // Label for menu item.
+      label: 'HCUP Report',
+
+      // Sort order.
+      priority: 1,
+
+      // If we can only display one menu item, which should it be.
+      primary: true,
+
+      // CSS classes to add to menu item.
+      classes: [],
+
+      // The ui-router state this menu item activates.
+      route: {
+        // State name.
+        name: 'top.flutters.BasicTableFlutter',
+        // Any extra state parameters (eg, if you want to set a default search).
+        params: []
+      }
+    },
+
+    // A menu item to access the second report
+    {
+      menu: 'main',
+      id: 'gov.ahrq.BasicTableFlutter.Menus.MainTab2',
+      reportId: 'gov.ahrq.BasicTableFlutter.Reports.HCUP2',
+      label: 'HCUP Report (2)',
+      priority: 2,
+      primary: false,
+      classes: [],
+      reportLink: 'gov.ahrq.BasicTableFlutter.Reports.HCUP2'
+    }
+  ],
+
+  reportLinks: [
+    {
+      linkId: 'gov.ahrq.BasicTableFlutter.Reports.HCUP2',
+      targetFlutterId: 'gov.ahrq.BasicTableFlutter', // only for cross-flutter links
+      targetReportId: 'gov.ahrq.BasicTableFlutter.Reports.HCUP2',
+      route: {
+       name: 'top.flutters.BasicTableFlutter',
+       params: []
+      }
+    },
+    {
+      linkId: 'gov.ahrq.BasicTableFlutter.Reports.HCUP2a',
+      targetReportId: 'gov.ahrq.BasicTableFlutter.Reports.HCUP2Child',
+      route: {
+        name: 'top.flutters.BasicTableFlutter',
+        params: [
+          {
+            name: 'county_name',
+            rowSource: 'county_name' // from the current report row
+          },
+          {
+            name: 'county_name',
+            literalSource: 'Bob' // given as-is as a literal string
+          },
+          {
+            name: 'foo',
+            paramSource: 'foo' //  pulls from current page's parameters
+          }
+        ]
+      }
+    }
+  ],
+
+  // What reports the flutter provides. A report is usually a combination of a flutter and a wing.
+  reports: [
+    {
+      // Unique identifier for the report
+      id: 'gov.ahrq.BasicTableFlutter.Reports.HCUP',
+      // User-friendly name for the report
+      displayName: 'HCUP County Hospital Stays',
+
+      // Every report must allow displaying basic information on its page.
+      page: {
+        title: "HCUP County Hospital Stays",
+        header: "page header",
+        footer: "page footer"
+      },
+
+      // Because each flutter may visualize data differently, it may define its own configuration for how data is
+      // loaded and displayed.
+      custom: {
+        table: {
+          hasGlobalSearch: true,
+          hasPager: true,
+          columns: [
+            {name: 'county_name', label: 'County Name'},
+            {name: 'total_number_of_discharges', label: 'Total Number of Discharges', format: 'number'},
+            {name: 'mean_los', label: 'Mean Length of Stay', format: 'number', formatOptions: [2]},
+            {name: 'mean_cost_stay', label: 'Mean Cost of Stay', format: 'nfcurrency'}
+          ]
+        },
+        report: {
+          rootObj: "Flutters.HCUPCountyHospitalStaysData.Report",
+          reportName: 'Summary',
+          reportDir: 'Data/Wings/HCUP/',
+          filePrefix: 'summary'
+        }
+      }
+    },
+
+    // An example of a second report
+    {
+      // Unique identifier for the report
+      id: 'gov.ahrq.BasicTableFlutter.Reports.HCUP2',
+      // User-friendly name for the report
+      displayName: 'HCUP County Hospital Stays (2)',
+
+      // Every report must allow displaying basic information on its page.
+      page: {
+        title: "HCUP County Hospital Stays (2)",
+        header: "page header",
+        footer: "page footer"
+      },
+
+      // Because each flutter may visualize data differently, it may define its own configuration for how data is
+      // loaded and displayed.
+      custom: {
+        table: {
+          hasGlobalSearch: false,
+          hasPager: false,
+          columns: [
+            {
+              name: 'county_name',
+              label: 'County Name',
+              reportLink: 'gov.ahrq.BasicTableFlutter.Reports.HCUP2a'
+            },
+            {name: 'total_number_of_discharges', label: 'Total Number of Discharges', format: 'number'}
+          ]
+        },
+        report: {
+          rootObj: "Flutters.HCUPCountyHospitalStaysData.Report",
+          reportName: 'Summary',
+          reportDir: 'Data/Wings/HCUP/',
+          filePrefix: 'summary'
+        }
+      }
+    }
+  ]
+};

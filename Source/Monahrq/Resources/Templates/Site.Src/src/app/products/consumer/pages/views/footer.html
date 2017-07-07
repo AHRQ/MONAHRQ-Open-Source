@@ -1,0 +1,34 @@
+<footer class="site-footer" role="contentinfo">
+
+  <div data-mh-menu="consumerMenu" data-nav-class="'nav--footer'"></div>
+
+  <section class="site-footer__about">
+    <div class="contain">
+      <h4 class="about-us__title">About Us</h4>
+      <p class="about-us__content" data-ng-bind-html="pgAboutUs.footerContent"></p>
+
+      <div class="about__companies">
+        <img src="" alt="Provider Logo" data-ng-src="{{config.products.consumer.website_LogoImagePath}}" >
+        <img src="themes/consumer/assets/images/monahrq-logo--footer.png" alt="MONAHRQ Input Your Data. Output your website." class="monahrq-footer-logo">
+        <p><span>Version: {{VERSION}}</span></p>
+        <p><span>A Project of the U.S. Department of Health and Human Services</span></p>
+      </div>
+
+      <div class="about__secondary">
+        <aside>
+          <p>Are you a health care professional looking for <a href="#" data-ui-sref="top.professional.home">Service Use Rates</a>?</p>
+        </aside>
+        <!--<ul class="about__legal">
+          <li><a href="#" data-ui-sref="top.consumer.terms">Terms and Conditions</a></li>
+          <li><a href="#" data-ui-sref="top.consumer.disclaimer">Disclaimer</a></li>
+        </ul>-->
+      </div>
+    </div>
+  </section>
+</footer>
+<div class="helpTrigger" data-ng-show="showFooterBar && showGuideTool" data-ng-intro-options="IntroOptions" data-ng-intro-method="walkthroughStart" data-ng-intro-onbeforechange="beforeChangeEvent" data-ng-intro-onexit="exitEvent" data-ng-intro-oncomplete="searchComplete">
+    <div class="helpTrigger__tab" data-ng-click="toggleHelpLinks();">{{showHelpLinks == true ? 'Close' : 'Open' }} Help<span class="glyphicon glyphicon-question-sign"></span></div>
+    <div class="helpTrigger__text" data-ng-show="showHelpLinks">
+        <p><span class="helpTrigger__text-ratingsLink">Looking for <a href="index.html#/consumer/about-site/resourceHospitalQuality">information about the ratings on this site</a></span><span class="helpTrigger__helpLink">Need some help finding what you're looking for? <a ng-click="walkthroughStart();">Run a quick informative tutorial to get started</a>!</span></p>
+    </div>
+</div><!-- /helpTrigger -->

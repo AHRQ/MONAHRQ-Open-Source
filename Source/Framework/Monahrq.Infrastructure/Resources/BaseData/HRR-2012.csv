@@ -1,0 +1,307 @@
+HRRNumber,HRRCity,HRRState
+1,Birmingham,AL
+2,Dothan,AL
+5,Huntsville,AL
+6,Mobile,AL
+7,Montgomery,AL
+9,Tuscaloosa,AL
+10,Anchorage,AK
+11,Mesa,AZ
+12,Phoenix,AZ
+14,Sun City,AZ
+15,Tucson,AZ
+16,Fort Smith,AR
+18,Jonesboro,AR
+19,Little Rock,AR
+21,Springdale,AR
+22,Texarkana,AR
+23,Orange County,CA
+25,Bakersfield,CA
+31,Chico,CA
+33,Contra Costa County,CA
+43,Fresno,CA
+56,Los Angeles,CA
+58,Modesto,CA
+62,Napa,CA
+65,Alameda County,CA
+69,Palm Springs/Rancho Mira,CA
+73,Redding,CA
+77,Sacramento,CA
+78,Salinas,CA
+79,San Bernardino,CA
+80,San Diego,CA
+81,San Francisco,CA
+82,San Jose,CA
+83,San Luis Obispo,CA
+85,San Mateo County,CA
+86,Santa Barbara,CA
+87,Santa Cruz,CA
+89,Santa Rosa,CA
+91,Stockton,CA
+96,Ventura,CA
+101,Boulder,CO
+102,Colorado Springs,CO
+103,Denver,CO
+104,Fort Collins,CO
+105,Grand Junction,CO
+106,Greeley,CO
+107,Pueblo,CO
+109,Bridgeport,CT
+110,Hartford,CT
+111,New Haven,CT
+112,Wilmington,DE
+113,Washington,DC
+115,Bradenton,FL
+116,Clearwater,FL
+118,Fort Lauderdale,FL
+119,Fort Myers,FL
+120,Gainesville,FL
+122,Hudson,FL
+123,Jacksonville,FL
+124,Lakeland,FL
+127,Miami,FL
+129,Ocala,FL
+130,Orlando,FL
+131,Ormond Beach,FL
+133,Panama City,FL
+134,Pensacola,FL
+137,Sarasota,FL
+139,St. Petersburg,FL
+140,Tallahassee,FL
+141,Tampa,FL
+142,Albany,GA
+144,Atlanta,GA
+145,Augusta,GA
+146,Columbus,GA
+147,Macon,GA
+148,Rome,GA
+149,Savannah,GA
+150,Honolulu,HI
+151,Boise,ID
+152,Idaho Falls,ID
+154,Aurora,IL
+155,Blue Island,IL
+156,Chicago,IL
+158,Elgin,IL
+161,Evanston,IL
+163,Hinsdale,IL
+164,Joliet,IL
+166,Melrose Park,IL
+170,Peoria,IL
+171,Rockford,IL
+172,Springfield,IL
+173,Urbana,IL
+175,Bloomington,IL
+179,Evansville,IN
+180,Fort Wayne,IN
+181,Gary,IN
+183,Indianapolis,IN
+184,Lafayette,IN
+185,Muncie,IN
+186,Munster,IN
+187,South Bend,IN
+188,Terre Haute,IN
+190,Cedar Rapids,IA
+191,Davenport,IA
+192,Des Moines,IA
+193,Dubuque,IA
+194,Iowa City,IA
+195,Mason City,IA
+196,Sioux City,IA
+197,Waterloo,IA
+200,Topeka,KS
+201,Wichita,KS
+203,Covington,KY
+204,Lexington,KY
+205,Louisville,KY
+207,Owensboro,KY
+208,Paducah,KY
+209,Alexandria,LA
+210,Baton Rouge,LA
+212,Houma,LA
+213,Lafayette,LA
+214,Lake Charles,LA
+216,Metairie,LA
+217,Monroe,LA
+218,New Orleans,LA
+219,Shreveport,LA
+220,Slidell,LA
+221,Bangor,ME
+222,Portland,ME
+223,Baltimore,MD
+225,Salisbury,MD
+226,Takoma Park,MD
+227,Boston,MA
+230,Springfield,MA
+231,Worcester,MA
+232,Ann Arbor,MI
+233,Dearborn,MI
+234,Detroit,MI
+235,Flint,MI
+236,Grand Rapids,MI
+238,Kalamazoo,MI
+239,Lansing,MI
+240,Marquette,MI
+242,Muskegon,MI
+243,Petoskey,MI
+244,Pontiac,MI
+245,Royal Oak,MI
+246,Saginaw,MI
+248,St. Joseph,MI
+249,Traverse City,MI
+250,Duluth,MN
+251,Minneapolis,MN
+253,Rochester,MN
+254,St. Cloud,MN
+256,St. Paul,MN
+257,Gulfport,MS
+258,Hattiesburg,MS
+259,Jackson,MS
+260,Meridian,MS
+261,Oxford,MS
+262,Tupelo,MS
+263,Cape Girardeau,MO
+264,Columbia,MO
+267,Joplin,MO
+268,Kansas City,MO
+270,Springfield,MO
+273,St. Louis,MO
+274,Billings,MT
+275,Great Falls,MT
+276,Missoula,MT
+277,Lincoln,NE
+278,Omaha,NE
+279,Las Vegas,NV
+280,Reno,NV
+281,Lebanon,NH
+282,Manchester,NH
+283,Camden,NJ
+284,Hackensack,NJ
+285,Morristown,NJ
+288,New Brunswick,NJ
+289,Newark,NJ
+291,Paterson,NJ
+292,Ridgewood,NJ
+293,Albuquerque,NM
+295,Albany,NY
+296,Binghamton,NY
+297,Bronx,NY
+299,Buffalo,NY
+300,Elmira,NY
+301,East Long Island,NY
+303,Manhattan,NY
+304,Rochester,NY
+307,Syracuse,NY
+308,White Plains,NY
+309,Asheville,NC
+311,Charlotte,NC
+312,Durham,NC
+313,Greensboro,NC
+314,Greenville,NC
+315,Hickory,NC
+318,Raleigh,NC
+319,Wilmington,NC
+320,Winston-Salem,NC
+321,Bismarck,ND
+322,Fargo/Moorhead MN,ND
+323,Grand Forks,ND
+324,Minot,ND
+325,Akron,OH
+326,Canton,OH
+327,Cincinnati,OH
+328,Cleveland,OH
+329,Columbus,OH
+330,Dayton,OH
+331,Elyria,OH
+332,Kettering,OH
+334,Toledo,OH
+335,Youngstown,OH
+336,Lawton,OK
+339,Oklahoma City,OK
+340,Tulsa,OK
+341,Bend,OR
+342,Eugene,OR
+343,Medford,OR
+344,Portland,OR
+345,Salem,OR
+346,Allentown,PA
+347,Altoona,PA
+350,Danville,PA
+351,Erie,PA
+352,Harrisburg,PA
+354,Johnstown,PA
+355,Lancaster,PA
+356,Philadelphia,PA
+357,Pittsburgh,PA
+358,Reading,PA
+359,Sayre,PA
+360,Scranton,PA
+362,Wilkes-Barre,PA
+363,York,PA
+364,Providence,RI
+365,Charleston,SC
+366,Columbia,SC
+367,Florence,SC
+368,Greenville,SC
+369,Spartanburg,SC
+370,Rapid City,SD
+371,Sioux Falls,SD
+373,Chattanooga,TN
+374,Jackson,TN
+375,Johnson City,TN
+376,Kingsport,TN
+377,Knoxville,TN
+379,Memphis,TN
+380,Nashville,TN
+382,Abilene,TX
+383,Amarillo,TX
+385,Austin,TX
+386,Beaumont,TX
+388,Bryan,TX
+390,Corpus Christi,TX
+391,Dallas,TX
+393,El Paso,TX
+394,Fort Worth,TX
+396,Harlingen,TX
+397,Houston,TX
+399,Longview,TX
+400,Lubbock,TX
+402,McAllen,TX
+406,Odessa,TX
+411,San Angelo,TX
+412,San Antonio,TX
+413,Temple,TX
+416,Tyler,TX
+417,Victoria,TX
+418,Waco,TX
+420,Wichita Falls,TX
+421,Ogden,UT
+422,Provo,UT
+423,Salt Lake City,UT
+424,Burlington,VT
+426,Arlington,VA
+427,Charlottesville,VA
+428,Lynchburg,VA
+429,Newport News,VA
+430,Norfolk,VA
+431,Richmond,VA
+432,Roanoke,VA
+435,Winchester,VA
+437,Everett,WA
+438,Olympia,WA
+439,Seattle,WA
+440,Spokane,WA
+441,Tacoma,WA
+442,Yakima,WA
+443,Charleston,WV
+444,Huntington,WV
+445,Morgantown,WV
+446,Appleton,WI
+447,Green Bay,WI
+448,La Crosse,WI
+449,Madison,WI
+450,Marshfield,WI
+451,Milwaukee,WI
+452,Neenah,WI
+456,Wausau,WI
+457,Casper,WY

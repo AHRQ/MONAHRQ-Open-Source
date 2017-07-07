@@ -1,0 +1,35 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:Monahrq.Theme.Controls">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Monahrq.Theme;component/AppResources.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+    <Style x:Key="{x:Type controls:HeaderedScrollViewer}" TargetType="controls:HeaderedScrollViewer">
+        <!--<Style x:Key="StandardHeaderedScrollViewer" TargetType="controls:HeaderedScrollViewer">-->
+            <Setter Property="Template">
+                <Setter.Value>
+                <ControlTemplate  TargetType="controls:HeaderedScrollViewer">
+                        <Grid x:Name="Grid" Background="{TemplateBinding Background}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <ContentPresenter Grid.Row="0" Content="{TemplateBinding Header}" />
+                            <Rectangle  Grid.Row="2" Grid.Column="1"  x:Name="Corner" Fill="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+                            <ScrollContentPresenter Grid.Row="1" Grid.Column="0" x:Name="PART_ScrollContentPresenter" CanContentScroll="{TemplateBinding CanContentScroll}" CanHorizontallyScroll="False" CanVerticallyScroll="False" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}"   Margin="{TemplateBinding Padding}"/>
+                            <ScrollBar Grid.Row="0" Grid.RowSpan="4"  Grid.Column="1" x:Name="PART_VerticalScrollBar" AutomationProperties.AutomationId="VerticalScrollBar" Cursor="Arrow"   Maximum="{TemplateBinding ScrollableHeight}" Minimum="0" Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" Value="{Binding VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" ViewportSize="{TemplateBinding ViewportHeight}"/>
+                            <ScrollBar Grid.Row="2" Grid.Column="0" x:Name="PART_HorizontalScrollBar" AutomationProperties.AutomationId="HorizontalScrollBar" Cursor="Arrow"  Maximum="{TemplateBinding ScrollableWidth}" Minimum="0" Orientation="Horizontal"  Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}" Value="{Binding HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" ViewportSize="{TemplateBinding ViewportWidth}"/>
+                            <ContentPresenter Grid.Row="3" Content="{TemplateBinding Footer}" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            
+        </Style>
+</ResourceDictionary>

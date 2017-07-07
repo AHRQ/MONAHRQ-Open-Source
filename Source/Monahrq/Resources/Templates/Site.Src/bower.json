@@ -1,0 +1,38 @@
+{
+  "name": "monahrq",
+  "version": "7.0.0",
+  "dependencies": {
+    "d3": "3.3.13",
+    "angular": "1.4.8",
+    "json3": "3.3.2",
+    "es5-shim": "4.3.1",
+    "jquery": "1.11.3",
+    "underscore": "1.8.3",
+	"angular-charts": "0.2.6",
+    "angular-resource": "1.4.8",
+    "angular-cookies": "1.4.8",
+    "angular-sanitize": "1.4.8",
+    "angular-ui-router": "0.2.15",
+    "bootstrap": "3.0.3",
+    "angular-ui-bootstrap": "angular-ui-bootstrap#7a1a11eb75",
+    "angular-ui-map": "0.5.0",
+    "jsnlog": "2.7.11",
+    "jquery-ui": "1.11.4",
+    "ui-autocomplete": "0.6.1",
+    "oclazyload": "1.0.9",
+    "angular-sticky": "*",
+    "xhr-xdr-adapter": "*",
+    "angular-spinner": "0.8.0",
+    "angular-placeholder-shim": "0.3.1",
+	"clipboard": "1.5.12",
+    "angular-intro.js": "^2.1.1",
+	"ngSticky": "1.7.9"
+  },
+  "devDependencies": {
+    "angular-mocks": "1.4.8",
+    "angular-scenario": "1.4.8"
+  },
+  "resolutions": {
+    "angular": "1.4.8"
+  }
+}

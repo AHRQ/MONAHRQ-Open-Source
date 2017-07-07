@@ -1,0 +1,247 @@
+<main class="compare">
+
+  <section class="search--refine" role="search">
+    <div class="contain">
+      <div class="search--refine__title-group">
+        <h1 class="search--refine__title">Comparing nursing homes:</h1>
+      </div>
+    </div>
+  </section>
+
+  <div data-mh-cms-zone="'header'" data-mh-cms-zone-report-id="reportId" data-mh-cms-zone-product="'Consumer'"></div>
+
+  <section class="report" tabindex="-1">
+    <header class="report-header">
+      <div class="report-header__compare-against">
+        <fieldset>
+        <legend>Compare Results To:</legend>
+        <label for="compareTo-national"><input type="radio" name="compareTo" id="compareTo-national" value="national" data-ng-model="query.compareTo">National Average</label>
+        <label for="compareTo-state"><input type="radio" name="compareTo" id="compareTo-state" value="state" data-ng-model="query.compareTo">State Average</label>
+        <label for="compareTo-county"><input type="radio" name="compareTo" id="compareTo-county" value="county" data-ng-model="query.compareTo">County Average</label>
+        </fieldset>
+      </div>
+
+      <div class="report-header__help">
+        <div data-mh-help-icon="'Help me understand this report'" data-mh-on-click="modalLegend()"></div>
+      </div>
+
+      <table class="report-header__comparing" data-compare-size="{{columns.length}}" sticky use-placeholder role="presentation">
+        <th class="report-header__comparing-label">
+          <h2>Nursing homes you selected:</h2>
+          <button data-ng-click="backToReport($event)">Select different nursing homes</button>
+        </th>
+        <td class="report-header__comparing-items" data-ng-repeat="col in columns">
+          <a href="#" data-ui-sref="^.profile({id: col.id})">{{col.name}}</a>
+        </td>
+      </table>
+    </header>
+
+    <div class="report-content" data-xng-if="hasResults">
+
+      <div class="toggle-all-subtopics-container">
+        <button class="toggle-all-subtopics" data-ng-click="toggleSection('topics', topics)" aria-expanded="{{showSection('topics', topics)}}">{{getSectionStateName('topics', topics)}}</button>
+      </div>
+
+
+      <div class="compared-topic" data-ng-if="overallMeasure">
+        <header>
+          <h2>{{overallMeasure.SelectedTitleConsumer}}</h2>
+          <div data-ng-bind-html="overallMeasure.MeasureDescriptionConsumer"></div>
+        </header>
+
+        <div>
+          <table data-compare-size="{{columns.length}}">
+            <thead>
+              <tr class="compare-hidden-header">
+                <td></td>
+                <th class="sr-hidden" scope="col" data-ng-repeat="col in columns">{{col.name}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>{{getMeasureTitle(overallMeasure.MeasureID)}} <span data-mh-help-icon data-sr-label="'Help for ' + getMeasureTitle(overallMeasure.MeasureID)" data-mh-on-click="modalMeasure(overallMeasure.MeasureID)"></span></th>
+                <td data-ng-repeat="col in columns">
+                  <div data-ng-if="query.compareTo === 'state'" data-mh-rating-nursing="model[col.id][overallMeasure.MeasureID].PeerRating"></div>
+                  <div data-ng-if="query.compareTo === 'national'" data-mh-rating-nursing="model[col.id][overallMeasure.MeasureID].NatRating"></div>
+                  <div data-ng-if="query.compareTo === 'county'" data-mh-rating-nursing="model[col.id][overallMeasure.MeasureID].CountyRating"></div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+      <div class="compared-topic" data-ng-repeat="topic in topics" data-ng-if="hasOverallMeasure(topic.OverallMeasure)">
+        <header>
+          <h2>{{topic.Name}} <span data-mh-help-icon data-sr-label="'Help for ' + topic.Name" data-mh-on-click="modalTopic(topic.TopicID)"></span></h2>
+          <!--<div data-ng-bind-html="topic.Description"></div>-->
+          <button class="toggle-compared-data" data-ng-click="toggleSection('topic', topic)" aria-controls="ratings-{{topic.TopicID}}" aria-expanded="{{showSection('topic', topic)}}">{{getSectionStateName('topic', topic)}}</button>
+        </header>
+
+        <div id="ratings-{{topic.TopicID}}">
+
+          <table data-compare-size="{{columns.length}}" data-ng-if="!topic.SubsetInScore">
+            <thead>
+              <tr class="compare-hidden-header">
+                <td></td>
+                <th class="sr-hidden" scope="col" data-ng-repeat="col in columns">{{col.name}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>{{getMeasureTitle(topic.OverallMeasure)}} <span data-mh-help-icon data-sr-label="'Help for ' + getMeasureTitle(topic.OverallMeasure)" data-mh-on-click="modalMeasure(topic.OverallMeasure)"></span></th>
+                <td data-ng-repeat="col in columns">
+                  <div data-ng-if="query.compareTo === 'state'" data-mh-rating-nursing="model[col.id][topic.OverallMeasure].PeerRating"></div>
+                  <div data-ng-if="query.compareTo === 'national'" data-mh-rating-nursing="model[col.id][topic.OverallMeasure].NatRating"></div>
+                  <div data-ng-if="query.compareTo === 'county'" data-mh-rating-nursing="model[col.id][topic.OverallMeasure].CountyRating"></div>
+                </td>
+              </tr>
+            </tbody>
+            <tbody data-ng-if="showSection('topic', topic)">
+              <tr data-ng-if="topic.TopicID != overallRatingsTopic" data-ng-repeat="measure in topic.measures" >
+                <th>{{measure.SelectedTitleConsumer}} <span data-mh-help-icon data-sr-label="'Help for ' + measure.SelectedTitleConsumer" data-mh-on-click="modalMeasure(measure.MeasureID)"></span></th>
+                <td data-ng-repeat="col in columns">
+                  <div>{{model[col.id][measure.MeasureID].Rate}}</div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div data-ng-if="topic.SubsetInScore">
+            <table data-compare-size="{{columns.length}}" >
+              <thead>
+                <tr class="compare-hidden-header">
+                  <td></td>
+                  <th class="sr-hidden" scope="col" data-ng-repeat="col in columns">{{col.name}}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>{{getMeasureTitle(topic.OverallMeasure)}} <span data-mh-help-icon data-sr-label="'Help for ' + getMeasureTitle(topic.OverallMeasure)" data-mh-on-click="modalMeasure(topic.OverallMeasure)"></span></th>
+                  <td data-ng-repeat="col in columns">
+                    <div data-ng-if="query.compareTo === 'state'" data-mh-rating-nursing="model[col.id][topic.OverallMeasure].PeerRating"></div>
+                    <div data-ng-if="query.compareTo === 'national'" data-mh-rating-nursing="model[col.id][topic.OverallMeasure].NatRating"></div>
+                    <div data-ng-if="query.compareTo === 'county'" data-mh-rating-nursing="model[col.id][topic.OverallMeasure].CountyRating"></div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="toggle-all-subtopics-container" data-ng-if="showSection('topic', topic)">
+              <button class="toggle-all-subtopics" data-ng-click="toggleSection('topicGroups', topic)" aria-expanded="{{showSection('topicGroups', topic)}}">{{getSectionStateName('topicGroups', topic)}}</button>
+            </div>
+
+            <div data-ng-if="showSection('topic', topic)">
+              <div class="compared-subtopic" ng-repeat="(typeGroupName, typeGroup) in topic.groupByType">
+                <div class="compared-subtopic__header">
+                  <h3 class="compared-title">{{typeGroupName}}</h3>
+                  <button class="toggle-subtopic" data-ng-click="toggleSection('subtopic', typeGroupName)" aria-controls="subtopic-{{typeGroupName}}-in subtopic-{{typeGroupName}}-notIn" aria-expanded="{{showSection('subtopic', typeGroupName)}}">{{getSectionStateName('subtopic', typeGroupName)}}</button>
+                </div>
+
+                <div class="summary-measures__header" id="subtopic-{{typeGroupName}}-in" data-ng-if="showSection('subtopic', typeGroupName)">
+                  <h4>Measures used in summary scores</h4>
+                  <button class="toggle-subtopic-measures" data-ng-click="toggleSection('inScore', typeGroupName)" aria-controls="measure-{{typeGroupName}}-in" aria-expanded="{{showSection('inScore', typeGroupName)}}">{{getSectionStateName('inScore', typeGroupName)}}</button>
+                </div>
+                <table data-compare-size="{{columns.length}}" id="measure-{{typeGroupName}}-in" data-ng-if="showSection('inScore', typeGroupName)">
+                  <thead>
+                    <tr class="compare-hidden-header">
+                      <td></td>
+                      <th class="sr-hidden" scope="col" data-ng-repeat="col in columns">{{col.name}}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr data-ng-repeat="measure in typeGroup[true]" >
+                      <th>{{measure.SelectedTitleConsumer}} <span data-mh-help-icon data-sr-label="'Help for ' + measure.SelectedTitleConsumer" data-mh-on-click="modalMeasure(measure.MeasureID)"></span></th>
+                      <td data-ng-repeat="col in columns">
+                        <div>{{model[col.id][measure.MeasureID].Rate}}</div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <div class="summary-measures__header" id="subtopic-{{typeGroupName}}-notIn" data-ng-if="showSection('subtopic', typeGroupName)">
+                  <h4>Measures not used in summary scores</h4>
+                  <button class="toggle-subtopic-measures" data-ng-click="toggleSection('notInScore', typeGroupName)" aria-controls="measure-{{typeGroupName}}-notIn" aria-expanded="{{showSection('notInScore', typeGroupName)}}">{{getSectionStateName('notInScore', typeGroupName)}}</button>
+                </div>
+                <table data-compare-size="{{columns.length}}" id="measure{{typeGroupName}}-notIn" data-ng-if="showSection('notInScore', typeGroupName)">
+                  <thead>
+                    <tr class="compare-hidden-header">
+                      <td></td>
+                      <th class="sr-hidden" scope="col" data-ng-repeat="col in columns">{{col.name}}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr data-ng-repeat="measure in typeGroup[false]" >
+                      <th>{{measure.SelectedTitleConsumer}} <span data-mh-help-icon data-sr-label="'Help for ' + measure.SelectedTitleConsumer" data-mh-on-click="modalMeasure(measure.MeasureID)"></span></th>
+                      <td data-ng-repeat="col in columns">
+                        <div>{{model[col.id][measure.MeasureID].Rate}}</div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+      </div>
+    </div>
+
+      <div data-ng-if="CAHPSReport.isLoaded && query.compareTo === 'state' && !CAHPSReport.isEmpty(CAHPSReport)">
+          <h2>
+              Survey Summary - Overall Rating of Care
+              <span class="help-icon" style="position:relative">
+                  <a class="btn btn-link" data-ng-click="showModalMeasureHeader(); $event.preventDefault()" href="#">
+                      <span class="glyphicon glyphicon-info-sign" style="color: #666"></span>
+                  </a>
+              </span>
+          </h2>   
+          <div class="compared-topic" data-ng-repeat="topic in CAHPSReport.topics">
+            <header>
+                <h2>{{topic.Name}}</h2>
+                <div data-ng-bind-html="topic.Description"></div>
+                <button class="toggle-compared-data" data-ng-click="toggleSection('CAHPSTopic', topic)" aria-expanded="{{showSection('CAHPSTopic', topic)}}">{{getSectionStateName('CAHPSTopic', topic)}}</button>
+            </header>
+            <table data-compare-size="{{columns.length}}">
+                <thead>
+                <tr class="compare-hidden-header">
+                  <td></td>
+                  <th class="sr-hidden" scope="col" data-ng-repeat="col in columns">{{col.name}}</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <th>{{CAHPSReport.getOverallMeasureDef(CAHPSReport, topic).SelectedTitleConsumer}} <span data-mh-help-icon data-sr-label="'Help for ' + CAHPSReport.getOverallMeasureDef(CAHPSReport, topic).SelectedTitleConsumer" data-mh-on-click="modalMeasure(CAHPSReport.getOverallMeasureDef(CAHPSReport, topic).MeasureID)"></span></th>
+                  <td data-ng-repeat="col in columns">
+                    <span data-mh-rating-nursing="CAHPSReport.getOverallMeasure(CAHPSReport, topic, col.id).PeerRating"></span>
+                  </td>
+                </tr>
+                </tbody>
+            </table>
+            <div data-ng-if="showSection('CAHPSTopic', topic)">
+                <table data-compare-size="{{columns.length}}" data-ng-repeat="measureDefs in CAHPSReport.getGroupedMeasureDefs(CAHPSReport, topic)">
+                    <thead>
+                        <tr class="compare-hidden-header">
+                            <td></td>
+                            <th class="sr-hidden" scope="col" data-ng-repeat="col in columns">{{col.name}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-ng-repeat="measureDef in measureDefs">
+                            <th>{{measureDef.SelectedTitle}} <span data-mh-help-icon data-sr-label="'Help for ' + measureDef.SelectedTitleConsumer" data-mh-on-click="modalMeasure(measureDef.MeasureID)"></span></th>
+                            <td data-ng-repeat="col in columns" data-ng-init="tempMeasures = CAHPSReport.getMeasure(CAHPSReport, measureDef.MeasureID, col.id)">
+                                {{tempMeasures['Rate']}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+          </div>
+      </div>
+
+      <div data-ng-if="reportSettings.footer" class="report-footnotes" data-ng-bind-html="reportSettings.footer"></div>
+    </div>
+  </section>
+
+  <div data-mh-cms-zone="'footer'" data-mh-cms-zone-report-id="reportId" data-mh-cms-zone-product="'Consumer'"></div>
+</main>

@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ReportManifest Category="Quality" Id="9D88A906-BEF0-41E4-8E5F-F925B5A7FE10" >
+  <Audiences>Professionals Consumers</Audiences>
+  <ReportAttributes>HospitalFilters DRGsDischargesFilters ConditionsAndDiagnosisFilters</ReportAttributes>
+  <Columns>
+    <Column Id="3087F5D6-A69B-4AAB-8CC3-8338D419E3DC" Name="SomeCol"/>
+  </Columns> 
+</ReportManifest>

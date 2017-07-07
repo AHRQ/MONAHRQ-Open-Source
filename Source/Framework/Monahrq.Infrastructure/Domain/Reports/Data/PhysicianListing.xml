@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ReportManifest RptId="E007BB9C-E539-41D6-9D06-FF52F8A15BF6"
+                Name="Physician Listing Report"
+                Category="Utilization"
+				IsTrending="false" ConsumerPreviewImage="ConsumerDoctorSearchBySpeciality1.png"
+				ShowInterpretationText="true"
+                PreviewImage="Physician_FindPhysicianReport.png"
+                RequiresCostToChargeRatio="false">
+	<Audiences>
+		<Audience AudienceType="Professionals" />
+		<Audience AudienceType="Consumers" />
+	</Audiences>
+	<Datasets>
+		<Dataset Name="Physician Data"/>
+		<Dataset Name="CG-CAHPS Survey Results Data"/>
+		<Dataset Name="Medical Practice HEDIS Measures Data"/>
+	</Datasets>
+	<Filters>
+		<Filter Type="PhysicianFilters">
+			<Values>
+				<FilterValue Name="Physician Name" />
+				<FilterValue Name="Practice Name" />
+				<FilterValue Name="Geo Location" />
+				<FilterValue Name="Zip" />
+				<FilterValue Name="Specialty" />
+				<FilterValue Name="Medical Practice" />
+			</Values>
+		</Filter>
+	</Filters>
+	<ReportAttributes />
+	<Columns>
+		<Column IsMeasure="false" Name="Physician Name" />
+		<Column IsMeasure="false" Name="Practice Name" />
+		<Column IsMeasure="false" Name="City" />
+		<Column IsMeasure="false" Name="Zip Code" />
+		<Column IsMeasure="false" Name="State" />
+		<Column IsMeasure="false" Name="Primary Specialty" />
+	</Columns>
+	<!--ReportColumns-->
+	<Columns />
+	<!--<Column Name="Number of discharges"/>
+    <Column Name="Mean cost in dollars"/>
+    <Column Name="Rate of Discharges Per 1000 Persons"/>
+  </Columns>-->
+	<InterpretationText>
+		<![CDATA[
+		<p><strong>How do I interpret?</strong></p>
+		<p>The star rating shown is the rating for the entire medical group, combining results for each provider in the medical group. A provider may include your primary care doctor, nurse practitioner, physician assistant, or other health care provider. Medical groups can range from small groups with several doctors to very large organizations with hundreds of doctors. A medical group with more stars is providing better care to their patients.</p>
+		<p><strong>How can I use this information?</strong></p>
+		<p>You can use this information to help you choose a provider or medical group for yourself or a family member, or encourage medical groups to improve their quality.</p>
+		<p><strong>What should I do next?</strong></p>
+		<p>Doctors are listed by Name, Medical Practice Name and Medical Practice Rating, City, ZIP Code, State, or Primary Specialty. You can sort by any one of these categories to view the doctors in your area. When you are ready to learn more about a provider, you can click on the doctor’s name to view their full profile.</p>
+		]]>
+	</InterpretationText>
+	<WebsitePages>
+		<WebsitePage
+				Name="Physician Listing"
+				Audience="Consumers"
+				Path="app/products/consumer/physicians/views/search.html"
+				Url="/physicians/search?searchType=1"
+				UrlRaw="/physicians/search?searchType&amp;firstName&amp;lastName&amp;practiceName&amp;location&amp;specialty&amp;condition"
+				IsEditable="true">
+			<WebsitePageZones>
+				<WebsitePageZone Name="Header" CodePath=""/>
+				<WebsitePageZone Name="Footer" CodePath=""/>
+			</WebsitePageZones>
+		</WebsitePage>
+		<WebsitePage
+				Name="Find Physician"
+				Audience="Professionals"
+				Path="app/products/professional/physicians/views/physician-find.html"
+				Url="/physicians/find-physician"
+				UrlRaw="/find-physician?searchType&amp;firstName&amp;lastName&amp;practiceName&amp;city&amp;zip&amp;specialty&amp;condition"
+				IsEditable="true">
+			<WebsitePageZones>
+				<WebsitePageZone Name="Header" CodePath="" />
+				<WebsitePageZone Name="Footer" CodePath="" />
+			</WebsitePageZones>
+		</WebsitePage>
+	</WebsitePages>
+</ReportManifest>

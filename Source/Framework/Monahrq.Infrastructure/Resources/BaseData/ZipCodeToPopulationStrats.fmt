@@ -1,0 +1,7 @@
+10.0
+5
+1  SQLCHAR  0  12  ","     2  ZipCode          ""
+2  SQLCHAR  0  12  ","     3  CatID            ""
+3  SQLCHAR  0  12  ","     4  CatVal           ""
+4  SQLCHAR  0  12  ","     5  Year             ""
+5  SQLCHAR  0  12  "\r\n"  6  Population       ""

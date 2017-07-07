@@ -1,0 +1,32 @@
+/* Autocomplete 
+---------------------------------------- */
+.ui-autocomplete { 
+  cursor:pointer;
+  height:200px;
+  max-height:200px !important;
+  overflow-y:scroll;
+  overflow-x:hidden;
+  z-index: 9999;
+  background: #fff;
+}
+
+.ui-autocomplete-category {
+  font-weight: bold;
+  padding-left: 12px;
+}
+
+.ui-autocomplete .ui-menu-item a {
+  text-decoration: none;
+}
+
+.ui-menu .ui-menu-item {
+  padding-left: 12px;
+}
+
+.ui-autocomplete-categories.ui-menu .ui-menu-item {
+  padding-left: 22px;
+}
+
+.ui-autocomplete-categories.ui-menu .ui-menu-item:first-child {
+  padding-left: 12px;
+}

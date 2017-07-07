@@ -1,0 +1,227 @@
+﻿<UserControl x:Class="Monahrq.DataSets.Views.DataImportValueMapView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:c="clr-namespace:Monahrq.Theme.Converters;assembly=Monahrq.Theme"
+             xmlns:prism="clr-namespace:Microsoft.Practices.Prism.Regions;assembly=Microsoft.Practices.Prism"
+             xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             xmlns:controls1="clr-namespace:Monahrq.Theme.Controls;assembly=Monahrq.Theme"
+             mc:Ignorable="d" d:DesignHeight="400" d:DesignWidth="800"
+             Background="Transparent">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.Buttons.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid x:Name="DataImportValueMapping" Margin="6">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="71.5" />
+            <!-- Header -->
+            <RowDefinition Height="Auto" />
+            <!-- Title Block -->
+            <RowDefinition Height="Auto" />
+            <!-- Filter Header -->
+            <RowDefinition Height="46" />
+            <!-- Filters -->
+            <RowDefinition Height="*" />
+            <!-- Main Content -->
+            <RowDefinition Height="60" />
+            <!-- Button Bar -->
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" x:Name="Header">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="300" />
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <Label Content="Inpatient Hospital Discharge Data"  />
+                <!--<Label Content="Inpatient Hospital Discharge Data" Content="{Binding Path=DataFileType}"/>-->
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="File Size:" />
+                    <Label Content="{Binding Path=DataFileSize}" Width="100" HorizontalContentAlignment="Right" />
+                    <Label Content="-" />
+                    <Label Content="Records:" />
+                    <Label Content="{Binding Path=DataFileRecords}" Width="100" HorizontalContentAlignment="Right" />
+                    <Label Content="-" />
+                    <Label Content="File:" />
+                    <Label Content="{Binding Path=DataFileName}" />
+                </StackPanel>
+            </StackPanel>
+            <TextBlock Grid.Column="1">
+                Progress bar goes here.
+            </TextBlock>
+        </Grid>
+        <Grid Grid.Row="1" x:Name="TitleBlock">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="200" />
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <TextBlock Margin="4" Text="Map Each Value to a Meaning:" />
+                <TextBlock Margin="4" TextWrapping="Wrap"
+                           Text="--- no binding yet ---" />
+            </StackPanel>
+            <controls1:MonahrqButton Style="{StaticResource MonahrqGreyStyley}" Grid.Column="1" Height="30" Width="130" Margin="0,0,3,0" Content="Import Mapping" Command="{Binding ImportMappingClick}" />
+        </Grid>
+        <Grid Grid.Row="2" x:Name="FilterHeader">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Content="MONAHRQ Fields:" />
+            <Label Grid.Column="1" Content="Your Fields:" />
+        </Grid>
+        <Grid Grid.Row="3" x:Name="Filters" Background="#4385B2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="260" />
+            </Grid.ColumnDefinitions>
+            <TextBox Grid.Column="0" Width="150" Height="30" Margin="6,0,0,0" HorizontalAlignment="Left" TextAlignment="Left" Text="{Binding Path=MonahrqFilter}" />
+            <TextBox Grid.Column="1" Width="150" Height="30" Margin="6,0,0,0" HorizontalAlignment="Left" TextAlignment="Left" Text="{Binding Path=UserFilter}" />
+            <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                <Label Content="Sort By:" Foreground="White" Height="30" />
+                <ComboBox Width="150" Height="30" />
+                <controls1:MonahrqButton Style="{StaticResource MonahrqGreyStyle}" Height="30" Width="30" Margin="6" />
+            </StackPanel>
+        </Grid>
+
+        <ListView Grid.Row="4" x:Name="ParentData" ItemsSource="{Binding MockData}">
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Vertical" VerticalAlignment="Top">
+                                        <TextBlock Text="{Binding Path=Name}" Margin="6,6,6,3" HorizontalAlignment="Left" />
+                                        <TextBlock Text="{Binding Path=ShortDescription}" Margin="6,6,6,3" HorizontalAlignment="Left" />
+                                        <TextBlock Text="{Binding Path=LongDescription}" Margin="6,6,6,3" HorizontalAlignment="Left" />
+                                        <ComboBox ItemsSource="{Binding Values, Mode=OneWay}"
+                                                                  SelectedValuePath="ID" DisplayMemberPath="Description" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                        <ListBox ItemsSource="{Binding ClientValues}">
+                                            <ListBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="80" />
+                                                            <ColumnDefinition Width="100" />
+                                                            <ColumnDefinition />
+                                                        </Grid.ColumnDefinitions>
+                                                        <TextBlock Grid.Column="0" Text="{Binding ClientValue}" />
+                                                        <TextBlock Grid.Column="1" Text="REPRESENTS:" />
+                                                        <!--<ComboBox Grid.Column="2"
+                                                                  ItemsSource="{Binding Path=Values, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+                                                                  SelectedValuePath="ID" DisplayMemberPath="Description" SelectedValue="{Binding MonahrqID}"  /> -->
+                                                        <ComboBox Grid.Column="2"
+                                                                  ItemsSource="{Binding Path=Values, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}, Mode=OneWay}"
+                                                                  SelectedValuePath="ID" DisplayMemberPath="Description" SelectedValue="{Binding MonahrqID}"  />
+                                                        <!--<ComboBox Grid.Column="2"
+                                                                  ItemsSource="{Binding Path=DataContext.Values, ElementName=ParentData, Mode=OneWay}"
+                                                                  SelectedValuePath="ID" DisplayMemberPath="Description" SelectedValue="{Binding MonahrqID}"  />-->
+                                                        <!-- RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListView}} -->
+                                                    </Grid>
+                                                </DataTemplate>
+                                            </ListBox.ItemTemplate>
+                                        </ListBox>
+                                        <!--<ComboBox Width="200" Height="30" ItemsSource="{Binding Values, Mode=TwoWay}" SelectedValuePath="ID" DisplayMemberPath="Description" />-->
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+
+        <!--
+        <DataGrid Grid.Row="4" ItemsSource="{Binding MockData}">
+            <ListBox Grid.Column="0" x:Name="MasterData" ItemsSource="{Binding MockData}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="{Binding Path=Name}" Margin="6,6,6,3" HorizontalAlignment="Left" />
+                            <TextBlock Text="{Binding Path=ShortDescription}" Margin="6,6,6,3" HorizontalAlignment="Left" />
+                            <TextBlock Text="{Binding Path=LongDescription}" Margin="6,6,6,3" HorizontalAlignment="Left" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                <ListBox ItemsSource="{Binding ElementName=MasterData, Path=ClientValues}">
+                    {Binding ElementName=MasterData, Path=ClientValues}"> ItemsSource="{Binding Path=ClientValues}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Grid.Column="0" Text="{Binding ClientValue}" Margin="6,6,6,3" HorizontalAlignment="Left" VerticalAlignment="Center"  />
+                                <TextBlock Grid.Column="1" Text="REPRESENTS:" Margin="6,6,6,3" HorizontalAlignment="Left" VerticalAlignment="Center"  />
+                                <TextBlock Grid.Column="2" Text="{Binding MonahrqID}" Margin="6,6,6,3" HorizontalAlignment="Left" VerticalAlignment="Center"  />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </StackPanel>
+        </DataGrid>
+-->
+
+        <!--        <ItemsControl Grid.Row="4" x:Name="MainContent" ItemsSource="{Binding MockData}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="{Binding Name}" Margin="6,6,6,3" HorizontalAlignment="Left" />
+                    <TextBlock Text="{Binding ShortDescription}" Margin="6,6,6,3" HorizontalAlignment="Left" />
+                    <TextBlock Text="{Binding LongDescription}" Margin="6,6,6,3" HorizontalAlignment="Left" />
+                </StackPanel>
+                <DataGrid ItemsSource="{Binding Path=ClientValues, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}">
+                    <DataGridTemplateColumn Width="150">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Grid.Column="0" Text="{Binding ClientValue}" Margin="6,6,6,3" HorizontalAlignment="Left" VerticalAlignment="Center"  />
+                                    <TextBlock Grid.Column="1" Text="REPRESENTS:" Margin="6,6,6,3" HorizontalAlignment="Left" VerticalAlignment="Center"  />
+                                    <TextBlock Grid.Column="2" Text="{Binding MonahrqID}" Margin="6,6,6,3" HorizontalAlignment="Left" VerticalAlignment="Center"  />
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid>
+            </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>-->
+
+        <Grid Grid.Row="5" x:Name="ButtonBar" Background="White">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="170" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left">
+                    <controls1:MonahrqButton Style="{StaticResource MonahrqGreyStyle}" Height="30" Width="150" Content="Cancel" Command="{Binding CancelClick}" />
+                </StackPanel>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <controls1:MonahrqButton Style="{StaticResource MonahrqGreyStyle}" Height="30" Width="80" Margin="0,0,3,0" Content="Back" Command="{Binding BackClick}" />
+                    <controls1:MonahrqButton Style="{StaticResource MonahrqGreyStyle}" Height="30" Width="80" Margin="0,0,3,0" Content="Next" Command="{Binding NextClick}" />
+                    <controls1:MonahrqButton Style="{StaticResource MonahrqGreyStyle}" Height="30" Width="130" Margin="0,0,3,0" Content="Check Mappings" Command="{Binding CheckMappingsClick}" />
+                    <controls1:MonahrqButton Style="{StaticResource MonahrqGreyStyle}" Height="30" Width="80" Margin="0,0,3,0" Content="Save" Command="{Binding SaveClick}" />
+                    <controls1:MonahrqButton Style="{StaticResource MonahrqGreyStyle}" Height="30" Width="190" Content="Save &amp; Continue to Next Step" Command="{Binding NextStepClick}" />
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+
+</UserControl>

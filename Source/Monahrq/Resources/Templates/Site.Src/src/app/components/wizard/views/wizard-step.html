@@ -1,0 +1,5 @@
+<div class="wizard__step" data-ng-class="{'has-value': true}" data-ng-show="vm.isVisible()">
+  <span class="wizard__step-label" data-ng-class="{active: vm.isActive()}">{{stepLabel}}</span>
+  <span class="wizard__option-label">{{optionLabel}}</span>
+  <div data-ng-transclude></div>
+</div>

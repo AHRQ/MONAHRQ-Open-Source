@@ -1,0 +1,31 @@
+<div class="panel panel-default" id="physicians-tabpanel" aria-labledby="" role="tabpanel" aria-hidden="false">
+  <div class="panel-heading">
+    <h3 class="panel-title"></h3>
+  </div>
+  <div class="panel-body profile-panel-body">
+
+    <ul class="list-unstyled">
+      <li data-ng-repeat="(key, group) in model" class="condition-row">
+      <a data-ng-click="toggleSpecialty(key)" data-ng-class="{active: showSpecialty(key)}" class="condition-row-link">{{key}}</a>
+
+      <div data-ng-if="showSpecialty(key)" class="profile-data-table">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Physician</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-ng-repeat="row in group">
+              <td>
+                <a data-ui-sref="top.professional.physicians.profile({id:row.npi})">{{row.frst_nm}} {{row.lst_nm}}</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      </li>
+    </ul>
+
+  </div>
+</div>

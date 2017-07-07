@@ -1,0 +1,46 @@
+<div class="profile-physician-info">
+  <div class="profile-physician-info__location">
+    <p class="facility-address-1">{{physicianData.adr_ln_1}}</p>
+    <p class="facility-address-2">{{physicianData.cty}}, {{physicianData.st}} {{physicianData.zip | zip}}</p>
+    <div data-ng-if="ConsumerReportConfigSvc.qrProfileHasMap(reportId)" class="map">
+      <img class="facility-map" data-ng-src="{{gMap}}" alt="" />
+    </div>
+  </div>
+
+  <div class="profile-physician-info__general">
+    <h3 class="physician-info__title">Medicare Assignment / Participation in improvement programs</h3>
+    <ul class="general-info__list">
+      <li>
+        <p class="general-info__label" ng-show="genInfo.assgn == 'Y'">Doctor accepts Medicare approved amount as payment in full.</p>
+        <p class="general-info__label" ng-show="genInfo.assgn == 'M'">Professional may accept Medicare Assignment.</p>
+      </li>
+      <!--<li>
+        <p class="general-info__label">Participation in Electronic Prescribing program:</p>
+        <div class="general-info__data">
+          <span class="general-info__icon" ng-class="{'available': genInfo.erx}">
+            <span class="sr-hidden" ng-if="genInfo.erx">Available</span>
+            <span class="sr-hidden" ng-if="!genInfo.erx">Unavailable</span>
+          </span>
+        </div>
+      </li>-->
+      <li>
+        <p class="general-info__label">Participation in Physician Quality Reporting System:</p>
+        <div class="general-info__data">
+          <span class="general-info__icon" ng-class="{'available': genInfo.pqrs}">
+            <span class="sr-hidden" ng-if="genInfo.pqrs">Available</span>
+            <span class="sr-hidden" ng-if="!genInfo.pqrs">Unavailable</span>
+          </span>
+        </div>
+      </li>
+      <li>
+        <p class="general-info__label">Participation in Electronic Health Records program:</p>
+        <div class="general-info__data">
+          <span class="general-info__icon" ng-class="{'available': genInfo.ehr}">
+            <span class="sr-hidden" ng-if="genInfo.ehr">Available</span>
+            <span class="sr-hidden" ng-if="!genInfo.ehr">Unavailable</span>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

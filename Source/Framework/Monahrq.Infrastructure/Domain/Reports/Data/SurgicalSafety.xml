@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ReportManifest RptId="64B545BF-D183-4F0D-8ABC-6643FF39F5DD"
+                Name="Infographics Report -  Surgical Safety"
+                Category="Utilization"
+				IsTrending="false"
+				ShowInterpretationText="true" ConsumerPreviewImage="Infographics.png"
+                PreviewImage="Infographics.png"
+                RequiresCostToChargeRatio="false">
+	<Audiences>
+		<Audience AudienceType="Consumers" />
+		<Audience AudienceType="Professionals" />
+	</Audiences>
+	<Datasets>
+		<Dataset Name="AHRQ-QI Provider Data"/>
+		<Dataset Name="Hospital Compare Data"/>
+	</Datasets>
+	<Filters>
+		<Filter Type="ActiveSections">
+			<Values>
+				<FilterValue Name="CMS Measures" />
+				<FilterValue Name="AHRQ QI Measures" />
+			</Values>
+		</Filter>
+	</Filters>
+	<ReportAttributes />
+	<!--ReportColumns-->
+	<Columns>
+		<Column IsMeasure="false" MeasureCode="PSI 05" Name="Number of times a surgical tool was accidentally left in a patient's body during surgery" />
+		<Column IsMeasure="false" MeasureCode="PSI 06" Name="How often the hospital accidentally makes a hole in a patient's lung" />
+		<Column IsMeasure="true" MeasureCode="PSI 14" Name="How often a surgical wound in the stomach or pelvic area split open after surgery." />
+		<Column IsMeasure="false" MeasureCode="PSI 15" Name="How often patients accidentally get cut or have a hole poked in an organ that was not part of the surgery" />
+		<Column IsMeasure="false" MeasureCode="PSI 16" Name="Number of patients who get a blood transfusion and have a problem or reaction to the blood they get" />
+		<Column IsMeasure="false" MeasureCode="SCIP-INF-1" Name="Antibiotics given one hour before surgery" />
+		<Column IsMeasure="false" MeasureCode="SCIP-INF-10" Name="Preventing low body temperature during and after surgery" />
+		<Column IsMeasure="false" MeasureCode="SCIP-INF-2" Name="Right antibiotics given to surgery patients" />
+		<Column IsMeasure="false" MeasureCode="SCIP-INF-9" Name="Urinary catheters removed on the first or second day after surgery" />
+		<Column IsMeasure="false" MeasureCode="SCIP-VTE-2" Name="Surgery patients prescribed treatment to prevent blood clots at the right time" />
+	</Columns>
+	<Footer>
+		<![CDATA[<p> Click here to view citations and footnotes | Site statistics provided by AHRQ
+	</p>]]>
+	</Footer>
+	<InterpretationText />
+	<WebsitePages>
+		<WebsitePage
+			Name="Service Use [ED Summary Trending]"
+			Audience="Professionals"
+			Path="app/products/professional/usage-data/views/service-use.html"
+			Url="/utilization/service-use"
+			UrlRaw="/usage-data/service-use?viewBy&amp;reportType&amp;displayType&amp;levelType&amp;levelValue&amp;levelViewBy&amp;groupBy&amp;dimension&amp;value&amp;value2"
+			IsEditable="true">
+			<WebsitePageZones>
+				<WebsitePageZone Name="Header" CodePath="" />
+				<WebsitePageZone Name="Footer" CodePath="" />
+			</WebsitePageZones>
+		</WebsitePage>
+	</WebsitePages>
+</ReportManifest>

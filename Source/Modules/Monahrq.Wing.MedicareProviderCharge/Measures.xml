@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<measures>
+      <measure name="Number of discharges"/>
+      <measure name="Mean charges in dollars"/>
+      <measure name="Mean costs in dollars"/>
+      <measure name="Mean total payments"/>
+</measures>

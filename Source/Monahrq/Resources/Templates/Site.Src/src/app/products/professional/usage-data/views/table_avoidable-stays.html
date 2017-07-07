@@ -1,0 +1,114 @@
+<div id="map" role="tabpanel" aria-labedby="rates-tab" aria-hidden="true">
+<div id="rates" data-ng-if="showTable()">
+  <div class="page-header border clearfix">
+    <div class="row hidden-print">
+      <div class="col-md-4">
+        <label for="sortBy">Sort by:</label>
+        <select class="form-control" id="sortBy" data-ng-model="query.sortBy">
+          <option value="name.asc">County Name (A to Z)</option>
+          <option value="name.desc">County Name (Z to A)</option>
+          <option value="numerator.desc">Numerator (High to low)</option>
+          <option value="numerator.asc">Numerator (Low to high)</option>
+          <option value="denominator.dec">Denominator (High to low)</option>
+          <option value="denominator.asc">Denominator (Low to high)</option>
+          <option value="riskAdjRate.desc">Risk-Adjusted Rate (High to low)</option>
+          <option value="riskAdjRate.asc">Risk-Adjusted Rate (Low to high)</option>
+          <option value="pct10.desc">Cost of Savings of 10% (High to low)</option>
+          <option value="pct10.asc">Cost of Savings of 10% (Low to high)</option>
+          <option value="pct20.desc">Cost of Savings of 20% (High to low)</option>
+          <option value="pct20.asc">Cost of Savings of 20% (Low to high)</option>
+          <option value="pct30.desc">Cost of Savings of 30% (High to low)</option>
+          <option value="pct30.asc">Cost of Savings of 30% (Low to high)</option>
+          <option value="pct40.desc">Cost of Savings of 40% (High to low)</option>
+          <option value="pct40.asc">Cost of Savings of 40% (Low to high)</option>
+          <option value="pct50.desc">Cost of Savings of 50% (High to low)</option>
+          <option value="pct50.asc">Cost of Savings of 50% (Low to high)</option>
+          <option value="topicUserPcts.desc">Cost of Savings of Custom Percentage (High to low)</option>
+          <option value="topicUserPcts.asc">Cost of Savings of Custom Percentage (Low to high)</option>
+        </select>
+      </div>
+      <div class="col-md-2">&nbsp;</div>
+      <div class="col-md-5">
+        <br/>
+        <ul class="select-report-copy nav nav-pills nav-pills-sm">
+          <li> 
+			<!--START: [MONNGBD-6] copy table data and header-->
+            <button class="btn select-to-copy-btn md-top" data-clipboard-target="#copy-text-container" data-copy-element="#table-condition-header .col-md-12&#table-wrapper">
+              Select Report to Copy
+              <span class="glyphicon glyphicon-cloud-download"></span>
+            </button>
+            <div id="copy-text-container"></div>
+            <!--END [MONNGBD-6] copy table data and header-->
+         </li>
+        </ul>
+      </div>
+      <div class="col-md-1 legend-icon-wrapper"><h6 data-mh-help-icon data-mh-on-click="modalLegend()"></h6></div>
+  </div>
+    </div>
+  </div>
+
+  <div class="table-wrapper" id="table-wrapper">
+    <table class="data table table-bordered" id="rates-data-table">
+      <thead>
+        <tr class="no-border">
+          <th></th>
+          <th class="left-border center" colspan="4">Yearly Rates of Hospital Stays</th>
+          <th class="left-border center" colspan="6">Yearly Cost Savings per Percentage Reduction in Number of Avoidable Stays.</th>
+        </tr>
+        <tr>
+          <th>County</th>
+          <th>Number of Hospital Stays</th>
+          <th>Number of County Residents</th>
+          <th>Observed Rate per 100,000 Residents</th>
+          <th>Risk-Adjusted Rate per 100,000 Residents</th>
+          <th>10%</th>
+          <th>20%</th>
+          <th>30%</th>
+          <th>40%</th>
+          <th>50%</th>
+          <th class="custom">
+            <div class="clearfix">
+              <div class="pull-left"><input class="input-sm" type="text" data-ng-model="model.topicUserPcts" value="" title="Custom Percentage" placeholder="Custom Percentage"></div>
+              <div class="pull-left"><button class="btn btn-default btn-xs" data-ng-click="updatePct()"><span aria-hidden="true">Go</span><span class="sr-hidden">Calculate a custom percentage</span></button></div>
+            </div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-ng-repeat="c in selectedAhsCounties">
+          <td>{{c.name}}</td>
+          <td>{{filterValue('number', 0, c.numerator)}}</td>
+          <td>{{filterValue('number', 0, c.denominator)}}</td>
+          <td>{{filterValue('number', 2, c.observedRate)}}</td>
+          <td>{{filterValue('number', 2, c.riskAdjRate)}}</td>
+          <td>{{filterMoneyValue('number', 2, c.pct10)}}</td>
+          <td>{{filterMoneyValue('number', 2, c.pct20)}}</td>
+          <td>{{filterMoneyValue('number', 2, c.pct30)}}</td>
+          <td>{{filterMoneyValue('number', 2, c.pct40)}}</td>
+          <td>{{filterMoneyValue('number', 2, c.pct50)}}</td>
+          <td>{{c.pctUser ? filterMoneyValue('number', 2, c.pctUser) : null}}</td>
+        </tr>
+        <tr data-ng-show="totalRow">
+          <td><strong>Total</strong></td>
+          <td>{{filterValue('number', 0, totalRow.numerator)}}</td>
+          <td>{{filterValue('number', 0, totalRow.denominator)}}</td>
+          <td>{{filterValue('number', 2, totalRow.observedRate)}}</td>
+          <td>{{filterValue('number', 2, totalRow.riskAdjRate)}}</td>
+          <td>{{filterMoneyValue('number', 2, totalRow.pct10)}}</td>
+          <td>{{filterMoneyValue('number', 2, totalRow.pct20)}}</td>
+          <td>{{filterMoneyValue('number', 2, totalRow.pct30)}}</td>
+          <td>{{filterMoneyValue('number', 2, totalRow.pct40)}}</td>
+          <td>{{filterMoneyValue('number', 2, totalRow.pct50)}}</td>
+          <td>{{totalRow.pctUser ? filterMoneyValue('number', 2, totalRow.pctUser) : null}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="report-footer" data-ng-bind-html="reportSettings.footer"></div>
+  <!--<div class="footnotes">
+    <p><span class="marker">*</span><span class="note">Cost savings are based on charges that have been adjusted to costs, using hospital-specific cost-to-charge ratios.</span></p>
+    <p><span class="marker"></span><span class="note">Values based on 10(numerator suppression value) or fewer discharges are suppressed to protect confidentiality of patients and are designated with a "c".</span></p>
+  </div>
+  -->
+</div>
+

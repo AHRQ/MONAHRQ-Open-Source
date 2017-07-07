@@ -1,0 +1,63 @@
+<!--<ul class="ud-wizard-tabs">
+  <li class="active"><a href="#" data-ui-sref="top.professional.usage-data.avoidable-stays"><strong>Avoidable Hospital Stays</strong></a></li>
+  <li data-ng-if="ReportConfigSvc.webElementAvailable('Utilization_ServiceUse_Tab')"><a href="#" data-ui-sref="top.professional.usage-data.service-use">Service Use</a></li>
+</ul>-->
+
+<div data-ng-if="navActive('top.professional.usage-data.avoidable-stays')" class="ud-wizard-ahs">
+
+<div class="row ud-wizard-content first" data-ng-class="{'last': !query.county.county}">
+  <fieldset class="col-md-2 has-value">
+    <legend><span class="wiz-step-num" data-ng-class="{active: isActiveStep('reportType')}">1</span><span class="wiz-step-name">Find By:</span></legend>
+    <span class="wiz-step-fields">
+      <span data-ng-if="ReportConfigSvc.webElementAvailable('AHS_ConditionTopic_Radio')"><label class="lrg-label" for="topic">Condition/Topic</label><input id="topic" type="radio" name="reportType" value="topic" data-ng-model="query.reportType"></span><br />
+      <span data-ng-if="ReportConfigSvc.webElementAvailable('AHS_SpecificCounty_Radio')"><label class="lrg-label" for="county">Specific County</label><input id="county" type="radio" name="reportType" value="county" data-ng-model="query.reportType"></span>
+    </span>
+  </fieldset>
+  <div class="col-md-4" data-ng-if="!query.reportType">
+    <span class="wiz-step-num">2</span>
+  </div>
+  <fieldset class="col-md-4" data-ng-if="query.reportType == 'topic'" data-ng-class="{'has-value': query.reportType}">
+    <legend><span class="wiz-step-num" data-ng-class="{active: isActiveStep('topic')}">2</span><span class="wiz-step-name">Choose Condition</span></legend>
+    <span class="wiz-step-fields">
+        <select class="form-control" data-ng-class="{selectEmpty: !query.topic.topic}" id="search-topic" data-ng-model="query.topic.topic" data-ng-options="t.id as t.name for t in ahsTopics" title="Select a Condition or Topic">
+          <option value="" selected disabled style="display:none;">Select a Condition or Topic</option>
+        </select>
+    </span>
+  </fieldset>
+  <fieldset class="col-md-4 last" data-ng-if="query.reportType == 'county'" data-ng-class="{'has-value': query.reportType}">
+    <legend><span class="wiz-step-num" data-ng-class="{active: isActiveStep('county')}">2</span><span class="wiz-step-name">Choose County</span></legend>
+    <div data-mh-autocomplete="uiaCounties" selected-id="query.county.county"></div>
+  </fieldset>
+
+  <fieldset class="col-md-6 last" data-ng-if="query.reportType == 'topic'" data-ng-class="{'has-value': query.topic.topic}">
+    <legend><span class="wiz-step-num" data-ng-class="{active: isActiveStep('measure')}">3</span><span class="wiz-step-name">Choose a measure</span></legend>
+    <span class="wiz-step-fields" data-ng-if="query.topic.topic">
+      <select class="form-control" data-ng-class="{selectEmpty: !query.topic.measure}" id="search-measure" data-ng-model="query.topic.measure" data-ng-options="m.id as m.name for m in getMeasures(query.topic.topic)" title="Select a Measure">
+        <option value="" selected disabled style="display:none;">Select a Measure</option>
+      </select>
+    </span>
+  </fieldset>
+
+</div>
+
+<div data-ng-if="query.county.county" class="row ud-wizard-content last">
+  <fieldset class="col-md-12 first last" data-ng-class="{'has-value': query.county.county}">
+    <legend><span class="wiz-step-num" data-ng-class="{active: isActiveStep('topics')}">3</span><span class="wiz-step-name">Choose Condition(s)</span></legend>
+    <span id="wiz-condition-explainer" class="wiz-step-explainer" tabindex="-1">Choose the conditions you would like to compare from the table below. You may select one or many.  When you are finished click 'Search'.</span>
+
+    <div class="topicList">
+      <div data-ng-repeat="t in ahsTopics" class="topic">
+        <input data-ng-if="$first || $last" id="cb-condition-{{t.id}}" type="checkbox" data-ng-model="query.county.topics[t.id]" aria-describedby="wiz-condition-explainer"/>
+        <input data-ng-if="$middle" id="cb-condition-{{t.id}}" type="checkbox" data-ng-model="query.county.topics[t.id]" />
+        <label for="cb-condition-{{t.id}}">{{t.name}}</label>
+      </div>
+    </div>
+
+    <div class="ud-wizard-search">
+      <button data-ng-click="search()" type="button" data-ng-class="{disabled: !canSearchCounty()}" class="btn btn-success">Search</button>
+    </div>
+  </fieldset>
+</div>
+
+
+</div>

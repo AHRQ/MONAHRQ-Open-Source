@@ -1,0 +1,47 @@
+﻿
+
+
+BindToExtension
+	- This acts as a wrapper for the markup "Binding".
+	- Adds a new, (simpler) format for defining bindings.  Bindings are now entered by a single string.
+		Binding Type		Denote					Example Text						Comment
+		----------------------------------------------------------------------------------------
+		Property			<no change>				<BindTo "Document">					Binds to a property Document on current DataSource.
+													<BindTo "xxx.Document">				Binds to a property Document on 'xxx'.
+		Element				# at start				<BindTo "#MyControl">				Binds to a control with Name="MyControl"
+		Ancestor Control	ancestor(s) at start	<BindTo "ancestor.Type>				Binds to 1st ancestor control of type "Type".
+													<BindTo "ancestors.Type">
+		This Window			thiswindow at start		<BindTo "thiswindow">				Binds to the root Window.  Same as Ancestor.Window.
+		CodeBehind View		root at start			<BindTo "root">						Binds to the view class (codebehind) itself.
+		Self				this at start			<BindTo "this">						Does a RelativeSource=Self binding.
+		Template			template at start		<BindTo "template">					Does a RelativeSource=TemplateParent binding.
+													<BindTo "templateparent">
+													<BindTo "templatedParent">
+		C# Function			() at end				<BindTo	"OnSomeAction()">			Binds to a function on DataSource.  Behind the scenes, it creates a proxy ICommand, thus must be bound where ICommand can be used.  (Not where event/func is used)
+													<BindTo "root.OnSomeAction()>		Binds to a function on View (Code behind).
+		
+		*** Binding keyword matches are matched via .ToLower(), so casing doesn't matter for keywords. 
+
+	- Converter option to forward this to the underlying Binding.Converter.
+	- SoureceReference option
+		- Relative - (default value) - Mainly uses the VisualTree for searching for bind.
+		- Absolute - Does no use the VisualTree to find binding object.  Useful for binding where enclosing element not part of a VisualTree. (Only works with bindings that stem from Element and View[CodeBehind] (?and Template?) bindings)
+BooleanToVisibilityConverterExtension
+	- Markup for BooleanToVisibilityConverter.
+CaseConverterExtension
+	- Markup for CaseConverter.
+DateTimeConverterExtension
+	- Markup for DateTimeConverter.
+ExpressConverterExtension
+	- Markup for ExpressConverter.
+FormatConverterExtension
+	- Markup for FormatConverter.
+MultiSytleExtension
+	- This is a container for Styles.
+	- Each held style is Merged into a single style.
+	- Style properties are set for 1st to last.  Thus a property retains the last style that set it.
+SequenceExtension
+	- This is a shortcut for BindTo with a default Converter of ConverterSequence.
+	- Also, this acts as a proxy converter container and will forward the list to the converter, ConverterSequence.
+TypeConverterExtension
+	- Markup for TypeConverter.

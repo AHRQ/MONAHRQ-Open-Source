@@ -1,0 +1,48 @@
+<div class="bar-chart-wrapper">
+  <figure>
+    <!--[if gte IE 9]><!-->
+    <svg data-ng-if="showBar()" data-ng-attr-width="{{graph.width+2}}" data-ng-attr-height="{{graph.height+2}}" data-ng-attr-viewBox="0 0 {{graph.width}} {{graph.height}}" preserveAspectRatio="none meet" role="img" title="Bar with a value of {{label}} indicating {{wrapper.label}}">
+      <defs>
+        <pattern id="aboveAvgLine" width="20" height="20" patternUnits="userSpaceOnUse">
+          <line x1="0" y1="0" x2="20" y2="20" stroke="white" stroke-width="2"/>
+        </pattern>
+        <pattern id="belowAvgLine" width="20" height="20" patternUnits="userSpaceOnUse">
+          <line x1="20" y1="0" x2="0" y2="20" stroke="white" stroke-width="2"/>
+        </pattern>
+        <pattern id="averageLine" width="4" height="20" patternUnits="userSpaceOnUse">
+          <line x1="0" y1="0" x2="0" y2="20" stroke="black" stroke-width="4"/>
+        </pattern>
+      </defs>
+      <rect
+        data-ng-attr-width="{{wrapper.width}}"
+        data-ng-attr-height="{{wrapper.height}}"
+        data-ng-attr-x="{{wrapper.x}}"
+        data-ng-attr-y="{{wrapper.y}}"
+        data-ng-attr-fill="{{wrapper.fill}}"
+        data-ng-attr-stroke="{{wrapper.stroke}}"
+        data-ng-attr-stroke-width="{{wrapper.strokeWidth}}">
+      </rect>
+      <rect
+        data-ng-attr-width="{{bar.width}}"
+        data-ng-attr-height="{{bar.height}}"
+        data-ng-attr-x="{{bar.x}}"
+        data-ng-attr-y="{{bar.y}}"
+        data-ng-attr-fill="{{bar.fill}}"
+        data-ng-attr-stroke="{{bar.stroke}}"
+        data-ng-attr-stroke-width="{{bar.strokeWidth}}">
+      </rect>
+      <rect
+        data-ng-attr-width="{{bar.width}}"
+        data-ng-attr-height="{{bar.height}}"
+        data-ng-attr-x="{{bar.x}}"
+        data-ng-attr-y="{{bar.y}}"
+        data-ng-attr-fill="{{bar.pattern}}">
+      </rect>
+    </svg>
+    <!--<![endif]-->
+    <figcaption data-ng-if="showLabel()"><strong>{{label}}</strong></figcaption>
+  </figure>
+</div>
+<div data-ng-if="showNoData()" class="bar-chart-wrapper">
+  <span class="rating-symbol--text">Not enough data<br>to report</span>
+</div>

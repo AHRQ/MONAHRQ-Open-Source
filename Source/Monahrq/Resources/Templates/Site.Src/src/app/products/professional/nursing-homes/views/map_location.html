@@ -1,0 +1,46 @@
+<div id="map" role="tabpanel" aria-labeledby="map-tab" aria-hidden="false">
+<br/>
+
+<div class="filters row hidden-print">
+  <div class="col-md-4">
+    <label for="ddComparedTo" class="md-blockfix">Compared To:</label>
+    <select class="form-control" id="ddComparedTo" data-ng-model="query.comparedTo">
+      <option value="nat">National Average</option>
+      <option value="peer">{{config.website_GeographicDescription}} Average</option>
+      <option value="county">County Average</option>
+    </select>
+  </div>
+  <div class="col-md-4"></div>
+  <div class="col-md-4 text-right"><h6 data-mh-help-icon data-mh-on-click="modalLegend()"></h6></div>
+</div>
+
+
+<!-- this is the confusing part. we have to point the map marker directive
+  at an existing google.maps.Marker object, so it can hook up events -->
+<div ng-repeat="marker in myMarkers" ui-map-marker="myMarkers[$index]"
+  ui-event="{'map-mouseover': 'openMarkerInfo(marker)'}">
+</div>
+
+<div ui-map-info-window="myInfoWindow" class="clearfix">
+  <div class="info_window__wrapper compare_location">
+  	<h2>{{currentMarkerName}}</h2>
+  	<p class="info__window__adr">{{currentMarkerAdr}}</p>
+	<p ng-hide="missingRating" class="info__window__rating"><strong class="col-md-4">Overall Rating:</strong><span class="info__window__rating col-md-8" data-mh-rating-nursing="currentMarkerRating.overallRating"></span></p>
+	<p ng-show="currentMarkerRating.overallInspection" class="info__window__rating"><strong class="col-md-4">Overall Inspection:</strong><span class="info__window__rating col-md-8" data-mh-rating-nursing="currentMarkerRating.overallInspection"></span></p>
+	<p ng-show="currentMarkerRating.overallQuality" class="info__window__rating"><strong class="col-md-4">Overall Quality:</strong><span class="info__window__rating col-md-8" data-mh-rating-nursing="currentMarkerRating.overallQuality"></span></p>
+	<p ng-show="currentMarkerRating.overallStaffing" class="info__window__rating"><strong class="col-md-4">Overall Staffing:</strong><span class="info__window__rating col-md-8" data-mh-rating-nursing="currentMarkerRating.overallStaffing"></span></p>
+  <p ng-show="currentMarkerRating.overallFamily" class="info__window__rating"><strong class="col-md-4">Rating of Care by Resident's Family:</strong><span class="info__window__rating col-md-8" data-mh-rating-nursing="currentMarkerRating.overallFamily"></span></p>
+  <p class="info__window__link"><a href="#" data-ui-sref="^.profile({id: currentMarkerId})">View Profile</a></p>
+  </div><!-- /.inf__wrapper -->
+</div>
+
+<div class="map large">
+    <div data-ng-if="!config.DE_IDENTIFICATION" data-ui-map="mapModel.map" data-ui-options="mapOptions" class="map-canvas"></div>
+    <div data-ng-if="config.DE_IDENTIFICATION" class="map-canvas">
+      <img src="themes/professional/assets/demo-map.png">
+    </div>
+  </div>
+</div>
+<p data-ng-if="config.DE_IDENTIFICATION" style="text-align:center">* For demonstration purposes, this is a static map based on fabricated data. A non-demonstration website will use an interactive map.</p>
+
+</div>

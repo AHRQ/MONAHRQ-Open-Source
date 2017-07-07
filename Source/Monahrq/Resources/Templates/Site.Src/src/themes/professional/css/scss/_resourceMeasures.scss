@@ -1,0 +1,30 @@
+/* Resource Measures 
+---------------------------------------- */
+.about-quality-ratings .topic {
+  margin-left: 20px;
+}
+
+.about-quality-ratings .measures-wrapper {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.about-quality-ratings .measure {
+  margin-left: 20px;
+  margin-bottom: 40px;
+}
+
+.about-quality-ratings .measures-wrapper > p {
+  margin-bottom: 20px;
+}
+
+.about-quality-ratings .measure:last-child {
+  margin-bottom: 0px;
+}
+
+.infobar {
+  padding: 10px;
+}

@@ -1,0 +1,27 @@
+MDC,Description,FirstYear,LastYear
+99,Principal Dx Can Not Be Assigned To Mdc (Invalid Or Pre Mdc),0,9999
+1,Diseases & Disorders Of The Nervous System,0,9999
+2,Diseases & Disorders Of The Eye,0,9999
+3,"Diseases & Disorders Of The Ear, Nose, Mouth & Throat",0,9999
+4,Diseases & Disorders Of The Respiratory System,0,9999
+5,Diseases & Disorders Of The Circulatory System,0,9999
+6,Diseases & Disorders Of The Digestive System,0,9999
+7,Diseases & Disorders Of The Hepatobiliary System & Pancreas,0,9999
+8,Diseases & Disorders Of The Musculoskeletal System & Conn Tissue,0,9999
+9,"Diseases & Disorders Of The Skin, Subcutaneous Tissue & Breast",0,9999
+10,"Endocrine, Nutritional & Metabolic Diseases & Disorders",0,9999
+11,Diseases & Disorders Of The Kidney & Urinary Tract,0,9999
+12,Diseases & Disorders Of The Male Reproductive System,0,9999
+13,Diseases & Disorders Of The Female Reproductive System,0,9999
+14,"Pregnancy, Childbirth & The Puerperium",0,9999
+15,Newborns & Other Neonates With Condtn Orig In Perinatal Period,0,9999
+16,"Diseases & Disorders Of Blood, Blood Forming Organs, Immunolog Disord",0,9999
+17,"Myeloproliferative Diseases & Disorders, Poorly Differentiated Neoplasm",0,9999
+18,"Infectious & Parasitic Diseases, Systemic Or Unspecified Sites",0,9999
+19,Mental Diseases & Disorders,0,9999
+20,Alcohol/Drug Use & Alcohol/Drug Induced Organic Mental Disorders,0,9999
+21,"Injuries, Poisonings & Toxic Effects Of Drugs",0,9999
+22,Burns,0,9999
+23,Factors Influencing Hlth Stat & Othr Contacts With Hlth Servcs,0,9999
+24,Multiple Significant Trauma,0,9999
+25,Human Immunodeficiency Virus Infections,0,9999

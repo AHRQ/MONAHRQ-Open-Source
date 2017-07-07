@@ -1,0 +1,8 @@
+10.0
+5
+1  SQLCHAR  0  0  ","     2  DXCCSID              ""
+2  SQLCHAR  0  0  ","     3  CostToChargeRatio    ""
+3  SQLCHAR  0  0  ","     3  CostToChargeRatio    ""
+4  SQLCHAR  0  0  ","     3  CostToChargeRatio    ""
+5  SQLCHAR  0  0  "\r\n"  4  Year                 ""
+DRG,MDC,Description,FirstYear,LastYear

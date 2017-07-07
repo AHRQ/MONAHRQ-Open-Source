@@ -1,0 +1,68 @@
+MeasureCode,TopicCategory,TopicName
+AMI-2,Heart attack and chest pain,Recommended care - Inpatient
+AMI-7a,Heart attack and chest pain,Recommended care - Inpatient
+AMI-8a,Heart attack and chest pain,Recommended care - Inpatient
+AMI-10,Heart attack and chest pain,Recommended care - Inpatient
+ED-1b,Emergency department (ED),Waiting Times
+ED-2b,Emergency department (ED),Waiting Times
+H-CLEAN-HSP,Patient survey results,Environment
+H-COMP-1,Patient survey results,Communication
+H-COMP-2,Patient survey results,Communication
+H-COMP-3,Patient survey results,Environment
+H-COMP-4,Patient survey results,Environment
+H-COMP-5,Patient survey results,Communication
+H-COMP-6,Patient survey results,Communication
+H-HSP-RATING,Patient survey results,Satisfaction overall
+H-QUIET-HSP,Patient survey results,Environment
+H-RECMND,Patient survey results,Satisfaction overall
+HAI-1,Patient safety ,Results of care - Complications
+HAI-2,Infections acquired in the hospital,Results of care - Complications
+HAI-5,Infections acquired in the hospital,Results of care - Complications
+HAI-6,Infections acquired in the hospital,Results of care - Complications
+HF-1,Heart failure,Recommended care
+HF-2,Heart failure,Recommended care
+HF-3,Heart failure,Recommended care
+IMM-2,Infections acquired in the hospital,Results of care - Complications
+MORT-30-AMI,Heart attack and chest pain,Results of care
+MORT-30-HF,Heart failure,Results of care
+MORT-30-PN,Pneumonia,Results of care
+OP-2,Heart attack and chest pain,Recommended care - Outpatient
+OP-3b,Heart attack and chest pain,Recommended care - Outpatient
+OP-4,Heart attack and chest pain,Recommended care - Outpatient
+OP-5,Heart attack and chest pain,Recommended care - Outpatient
+OP-6,Surgical patient safety,Recommended care before surgery
+OP-7,Surgical patient safety,Recommended care before surgery
+OP-8,Imaging,Practice patterns
+OP-10,Imaging,Practice patterns
+OP-11,Imaging,Practice patterns
+OP-13,Imaging,Practice patterns
+OP-14,Imaging,Practice patterns
+OP-18b,Emergency department (ED),Waiting Times
+OP-20,Emergency department (ED),Waiting Times
+OP-21,Emergency department (ED),Waiting Times
+OP-22,Emergency department (ED),Waiting Times
+PC-01,Emergency department (ED),Waiting Times
+PN-3B,Pneumonia,Recommended care
+PN-6,Pneumonia,Recommended care
+READM-30-HA,Heart attack and chest pain,Results of care
+READM-30-HF,Heart failure,Results of care
+READM-30-PN,Pneumonia,Results of care
+SCIP-CARD-2,Surgical patient safety,Recommended care before surgery
+SCIP-INF-1,Surgical patient safety,Recommended care before surgery
+SCIP-INF-2,Surgical patient safety,Recommended care before surgery
+SCIP-INF-3,Surgical patient safety,Recommended care after surgery
+SCIP-INF-4,Heart surgeries and procedures,Recommended care
+SCIP-INF-4,Surgical patient safety,Recommended care after surgery
+SCIP-INF-9,Surgical patient safety,Recommended care after surgery
+SCIP-INF-10,Surgical patient safety,Recommended care after surgery
+SCIP-VTE-2,Surgical patient safety,Recommended care before surgery
+VTE-6,Patient Safety,Results of care - Complications
+MORT-30-COPD,,
+READM-30-COPD,,
+READM-30-HIP-KNEE,,
+HAI-3,,
+HAI-4,,
+H-COMP-7-SA,,
+OP-25,,
+COMP-HIP-KNEE,,
+PSI-12,,

@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ReportManifest RptId="2AAF7FBA-7102-4C66-8598-A70597E2F832" Name="Avoidable Stays Maps by County Report" ShowInterpretationText="true"
+                Category="Utilization"
+				IsTrending="false" ConsumerPreviewImage=""
+				PreviewImage="AvoidableStaysMaps-county.png" RequiresCmsProviderId="true" RequiresCostToChargeRatio="true">
+	<Audiences>
+		<Audience AudienceType="Professionals" />
+	</Audiences>
+	<Datasets>
+		<Dataset Name="AHRQ-QI Area Data"/>
+	</Datasets>
+	<ReportAttributes>
+		ReportColumns
+	</ReportAttributes>
+	<Columns>
+		<Column IsMeasure="false" Name="Numerator" />
+		<Column IsMeasure="false" Name="Denominator" />
+		<Column IsMeasure="false" Name="Observed Rate" />
+		<Column IsMeasure="false" Name="Risk-Adjusted Rate" />
+	</Columns>
+	<Header>
+		<![CDATA[<p> An avoidable hospital stay is one that might have been avoided with better medical care outside of the hospital. For example, a diabetes patient who receives good care from her primary care physician might not need a hospital stay for diabetes complications. Hospital stays like these are not always avoidable, but they are potentially avoidable with good quality health care.
+	</p>]]>
+	</Header>
+	<Footer>
+		<![CDATA[<p> *Cost savings are based on charges that have been adjusted to costs, using hospital-specific cost-to-charge ratios.<br/>Values based on 10(numerator suppression value) or fewer discharges are suppressed to protect confidentiality of patients and are designated with a "c".
+	</p>]]>
+	</Footer>
+	<InterpretationText>
+		<![CDATA[<p>How do I interpret this table?<P>
+	 <p>This table presents data on a selected quality indicator by county.<br/><br/><b>Numerator:</b> The number of hospital stays for county residents for whom the event or outcome of interest occurred (e.g., death caused by heart attack).<br/><br/><b>Denominator:</b> The number of county residents based on US Census Bureau data.  <br/><br/><b>Observed rate:</b> The numerator divided by the denominator. This rate is unadjusted.<br/><br/><b>Risk adjusted rate:</b> Risk-adjustment is a statistical process that adjusts a hospital\&#146;s estimated performance if the hospital had an &quot;average&quot; case mix.  Risk adjustment is performed as in AHRQ\&#146;s Quality Indicator software for Window.  For indicators that are not risk adjusted, a dash (&quot;-&quot;) appears.<br/><br/><b>10%, 20%, 30%, 40%, 50%:</b> The amount displayed reflects the cost savings result of the identified percentage reduction in the number of avoidable stays for all hospitals in a county for the conditions (multiple) selected.<br /><br /></p>]]>
+	</InterpretationText>
+	<WebsitePages>
+		<WebsitePage
+			Name="Avoidable Stays [Topic Table]"
+			Audience="Professionals"
+			Path="app/products/professional/usage-data/views/avoidable-stays.html"
+			Url="/utilization/avoidable-stays?reportType=topic"
+			UrlRaw="/usage-data/avoidable-stays?reportType&amp;county&amp;topics&amp;topic&amp;measure&amp;displayType"
+			IsEditable="true">
+			<WebsitePageZones>
+				<WebsitePageZone Name="Header" CodePath="" />
+				<WebsitePageZone Name="Footer" CodePath="" />
+			</WebsitePageZones>
+		</WebsitePage>
+	</WebsitePages>
+</ReportManifest>

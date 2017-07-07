@@ -1,0 +1,130 @@
+<?xml version="1.0"?>
+<SqlWorkbenchSqlProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="UtilizationED">
+  <Items>
+    <LogicalFolder Name="Connections" Type="2" Sorted="true">
+      <Items>
+        <ConnectionNode Name="(local):BLUELIGHTNING\BLNAdmin">
+          <Created>2014-09-23T15:25:18.085256-04:00</Created>
+          <Type>SQL</Type>
+          <Server>(local)</Server>
+          <UserName />
+          <Authentication>Windows Authentication</Authentication>
+          <InitialDB />
+          <LoginTimeout>15</LoginTimeout>
+          <ExecutionTimeout>0</ExecutionTimeout>
+          <ConnectionProtocol>NotSpecified</ConnectionProtocol>
+          <ApplicationName>Microsoft SQL Server Management Studio - Query</ApplicationName>
+        </ConnectionNode>
+        <ConnectionNode Name="JPVSURFACE\SQLEX2008R2:BLUELIGHTNING\BLNAdmin">
+          <Created>2014-10-16T11:36:23.6882255-04:00</Created>
+          <Type>SQL</Type>
+          <Server>JPVSURFACE\SQLEX2008R2</Server>
+          <UserName />
+          <Authentication>Windows Authentication</Authentication>
+          <InitialDB />
+          <LoginTimeout>15</LoginTimeout>
+          <ExecutionTimeout>0</ExecutionTimeout>
+          <ConnectionProtocol>NotSpecified</ConnectionProtocol>
+          <ApplicationName>Microsoft SQL Server Management Studio - Query</ApplicationName>
+        </ConnectionNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Queries" Type="0" Sorted="true">
+      <Items>
+        <FileNode Name="Sproc-spUtilEDGetDetailData.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Sproc-spUtilEDGetDetailData.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Sproc-spUtilEDGetRecordsInEDTarget.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:JPVSURFACE\SQLEX2008R2:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>JPVSURFACE\SQLEX2008R2</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Sproc-spUtilEDGetRecordsInEDTarget.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Sproc-spUtilEDGetRecordsInIPTarget.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:JPVSURFACE\SQLEX2008R2:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>JPVSURFACE\SQLEX2008R2</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Sproc-spUtilEDGetRecordsInIPTarget.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Sproc-spUtilEDGetSummaryDataByClinical.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Sproc-spUtilEDGetSummaryDataByClinical.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Sproc-spUtilEDGetSummaryDataByGeo.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Sproc-spUtilEDGetSummaryDataByGeo.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Sproc-spUtilEDInitializeEDVisits.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Sproc-spUtilEDInitializeEDVisits.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Sproc-spUtilEDInitializeIPVisits.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Sproc-spUtilEDInitializeIPVisits.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Sproc-spUtilEDUpdateHospitalType.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Sproc-spUtilEDUpdateHospitalType.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Sproc-spUtilEDUpdateZip.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Sproc-spUtilEDUpdateZip.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Table-TempUtilEDCounty.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Table-TempUtilEDCounty.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Table-TempUtilEDHospital.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Table-TempUtilEDHospital.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Table-TempUtilEDHospitalType.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Table-TempUtilEDHospitalType.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Table-TempUtilEDPrep.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Table-TempUtilEDPrep.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Table-TempUtilEDRegion.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Table-TempUtilEDRegion.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Test-UtilED.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Test-UtilED.sql</FullPath>
+        </FileNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Miscellaneous" Type="3" Sorted="true">
+      <Items />
+    </LogicalFolder>
+  </Items>
+</SqlWorkbenchSqlProject>

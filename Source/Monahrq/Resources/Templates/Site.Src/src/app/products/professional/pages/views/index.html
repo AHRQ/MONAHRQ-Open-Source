@@ -1,0 +1,103 @@
+<div class="wrap">
+  <div class="banner">
+    <div class="title-wrapper">
+      <h1 class="title">{{config.website_HeaderTitle}}</h1>
+    </div><!-- /.title-wrapper -->
+  </div><!-- /.banner -->
+
+  <div data-ng-if="showHomeSearch" class="page--home_page_feature clearfix">
+    <div class="search-form home col-xs-12">
+      <header class="col-xs-10">
+        <h2>Get Started</h2>
+        <p>This website provides information on the quality of all the hospitals and nursing homes in the state.  It also provides basic information on all the physicians. You can limit what you look at by narrowing your search to the things that mean the most to you:</p>
+      </header>
+      <div class="col-xs-12 find-hospitals-cta">
+        <div class="row">
+          <div class="col-xs-6 no-padding">
+            <span class="icon icon--hospital"></span>
+            <h3>Hospitals</h3>
+            <div class="row">
+              <div ng-if="ReportConfigSvc.webElementAvailable('Quality_HospitalExplore_Button') || ReportConfigSvc.webElementAvailable('Utilization_ServiceUseFind_Button')" class="col-xs-6 no-padding-top">
+                <p>Find hospitals by location</p>
+                <button ui-sref="top.professional.quality-ratings.location" class="btn btn-xlg btn-primary">Browse</button>
+              </div><!-- /.col-xs-6 -->
+              <div ng-if="ReportConfigSvc.webElementAvailable('Quality_ConditionTopicExplore_Button')" class="col-xs-6 no-padding-top">
+                <p>Compare hospital ratings by condition or topic</p>
+                <button ui-sref="top.professional.quality-ratings.condition" class="btn btn-xlg btn-primary">Compare</button>
+              </div><!-- /.col-xs-6 -->
+            </div><!-- /.row -->
+          </div><!-- /.col-xs-6 -->
+          <div ng-if="ReportConfigSvc.webElementAvailable('Nursing_Explore_Button')" class="col-xs-3">
+            <span class="icon icon--nursing_homes"></span>
+            <h3>Nursing Homes</h3>
+            <p class="narrow">Find and compare nursing homes</p>
+            <button ui-sref="top.professional.nursing-homes.location" class="btn btn-xlg btn-primary">Browse</button>
+           </div><!-- /.col-xs-3 -->
+        <!-- </div>/.row -->
+        <!-- <div class="row"> -->
+          <div ng-if="ReportConfigSvc.webElementAvailable('Physician_Explore_Button') || config.USED_REAL_TIME == true" class="col-xs-3">
+            <span class="icon icon--physician"></span>
+            <h3>Physicians</h3>
+            <p class="narrow">Get profiles of physicians by location</p>
+            <button ui-sref="top.professional.physicians.find-physician" class="btn btn-xlg btn-primary">Browse</button>
+          </div><!-- /.col-xs-3 -->
+        </div><!-- /.row -->
+      </div><!-- /.col-xs-9.find-hospitals-cta -->
+    </div><!-- /search-form.home col-xs-12 -->
+  </div><!-- /.row.page--home_page_feature -->
+</div><!-- /.wrap -->
+<div class="home main__content">
+  <div class="wrap">
+    <div class="row">
+      <div class="col-xs-6">
+        <h3>{{content.guided_1.left.title}}</h3>
+        <div data-ng-bind-html="content.guided_1.left.body"></div>
+      </div><!-- /.col-xs-6 -->
+      <div class="col-xs-6">
+        <h3>{{content.guided_1.right.title}}</h3>
+        <div data-ng-bind-html="content.guided_1.right.body"></div>
+      </div><!-- /.col-xs-6 -->
+    </div><!-- /.row -->
+  </div><!-- /.wrap -->
+  <div class="row wrap--video" data-ng-if="config.products.professional.HOMEPAGE_VIDEO == 1">
+    <div class="wrap">
+      <header class="col-xs-5">
+        <h2>Watch a short video on health care quality and how to use the quality ratings in this report.</h2>
+      </header>
+      <div class="col-xs-6 col-xs-offset-1">
+        <iframe width="510" height="383" data-ng-src="{{videoUrl}}" frameborder="0" allowfullscreen></iframe>
+      </div><!-- /.col-xs-5-->
+    </div><!-- /.wrap -->
+  </div><!-- /.col-xs-6.col-xs-offset-1 -->
+</div><!-- /.home col-xs-12 -->
+
+  <div class="row page-content" ng-if="ReportConfigSvc.webElementAvailable('Infographic_Surgical')">
+    <div class="col-xs-12 wrap__infographic_links">
+      <h3>NEED SURGERY? MAKE SURE YOUR SURGERY IS AS SAFE AS POSSIBLE</h3>
+      <div class="col-xs-6">
+        <p>Click here to look at an visual report that tells you, quickly and clearly, why you cannot assume your surgery will be error-free.  We also let you know how our community does overall when it comes to keeping patients safe before, during and after surgery. SHARE THE VISUAL REPORT WITH OTHERS!</p>
+        <button ui-sref="top.professional.infographic" class="btn btn-xlg btn-primary">View the visual report</button>
+      </div><!-- /.col-xs-6 -->
+      <div class="col-xs-6">
+        <p>Click here to read about surgical safety problems: how often they happen; how well local hospitals prevent them; and what to do to keep yourself safe.</p>
+        <button ui-sref="top.professional.resources({page: 'AvoidingSafetyProblems'})" class="btn btn-xlg btn-primary">Get informed on surgical safety</button>
+      </div><!-- /.col-xs-6 -->
+    </div><!-- /.col-xs-12 -->
+  </div><!-- /.row.page-content -->
+
+  <div class="row page-content">
+    <div class="col-xs-6">
+      <h3>{{content.guided_2.left.title}}</h3>
+      <div data-ng-bind-html="content.guided_2.left.body"></div>
+      <div data-ng-if="ReportConfigSvc.webElementAvailable('Nursing_Content')" data-ng-bind-html="content.guided_2.left.nursingHomeBody"></div>
+    </div><!-- /.col-xs-6 -->
+    <div class="col-xs-6">
+      <h3>{{content.guided_2.right.title}}</h3>
+      <div data-ng-bind-html="content.guided_2.right.body"></div>
+      <div data-ng-if="ReportConfigSvc.webElementAvailable('Nursing_Content')" data-ng-bind-html="content.guided_2.right.nursingHomeBody"></div>
+    </div><!-- /.col-xs-6 -->
+  </div><!-- /.row.page-content -->
+<div class="col-xs-12 section--footer" ng-if="ReportConfigSvc.webElementAvailable('Quality_Tab')">
+  <h3>Want to learn more about our how we rate quality: </h3>
+  <button ui-sref="top.professional.resources({page: 'AboutQualityRatings'})" class="btn btn-xlg btn-primary">Click here for details on our methods</button>
+</div><!-- /.col-xs-12.section--footer -->

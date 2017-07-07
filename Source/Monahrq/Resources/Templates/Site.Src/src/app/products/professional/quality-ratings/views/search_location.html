@@ -1,0 +1,65 @@
+<!--<ul data-ng-if="showWizardTabs()" class="ud-wizard-tabs">
+  <li data-ng-if="ReportConfigSvc.webElementAvailable('Quality_ConditionTopic_Tab')"><a href="#" data-ui-sref="top.professional.quality-ratings.condition">Condition or Topic</a></li>
+  <li class="active"><a href="#" data-ui-sref="top.professional.quality-ratings.location"><strong>Hospital</strong></a></li>
+</ul>-->
+
+<div data-ng-if="navActive('top.professional.quality-ratings.location') || navActive('top.professional.quality-ratings.profile')" class="row ud-wizard-content" data-ng-class="{'compressed': false}">
+  <div class="col-md-3 has-value">
+    <span class="wiz-step-num" data-ng-class="{active: isActiveStep('searchType')}">1</span> <span class="wiz-step-name">Find Hospitals</span>
+    <span class="wiz-step-fields">
+      <select class="form-control" data-ng-class="{selectEmpty: !query.searchType}" data-ng-model="query.searchType" data-ng-options="x.id as x.name for x in searchTypes" title="Search Type">
+        <option value="" selected disabled style="display:none;">Search Type</option>
+      </select>
+    </span>
+  </div>
+
+  <div class="col-md-3" data-ng-class="{'has-value': query.searchType}">
+    <span class="wiz-step-num" data-ng-class="{active: isActiveStep('geoType')}">2</span>
+    <span class="wiz-step-name" data-ng-if="query.searchType == 'hospitalName'">Hospital Name</span>
+    <span class="wiz-step-fields" data-ng-if="query.searchType == 'hospitalName'">
+      <div data-mh-autocomplete="uiaHospitals" selected-id="query.hospitalName"></div>
+    </span>
+
+    <span class="wiz-step-name" data-ng-if="query.searchType == 'hospitalType'">Hospital Type</span>
+    <span class="wiz-step-fields" data-ng-if="query.searchType == 'hospitalType'">
+      <select class="form-control" data-ng-class="{selectEmpty: !query.hospitalType}" id="search-hospitalType" data-ng-model="query.hospitalType" data-ng-options="h.HospitalTypeID as h.Name for h in hospitalTypes" title="Hospital Type">
+        <option value="" selected disabled style="display:none;">Hospital Type</option>
+      </select>
+    </span>
+
+    <span class="wiz-step-name" data-ng-if="query.searchType == 'geo'">Geographic Info</span>
+    <span class="wiz-step-fields" data-ng-if="query.searchType == 'geo'">
+      <select class="form-control" data-ng-class="{selectEmpty: !query.geoType}" data-ng-model="query.geoType" data-ng-options="x.id as x.name for x in geoTypes" title="Geographic Info">
+        <option value="" selected disabled style="display:none;">Geographic Info</option>
+      </select>
+    </span>
+  </div>
+
+  <div class="col-md-3" data-ng-class="{'has-value': query.geoType}" data-ng-if="query.searchType == 'geo'">
+    <span class="wiz-step-num" data-ng-class="{active: isActiveStep('geoValue')}">3</span>
+
+    <span class="wiz-step-name" data-ng-if="query.geoType == 'zip'">Zip Code</span>
+    <span class="wiz-step-fields" data-ng-if="query.geoType == 'zip'">
+      <select class="form-control" data-ng-class="{selectEmpty: !query.zipDistance}" id="search-zipDistance" data-ng-model="query.zipDistance" data-ng-options="x as (x + ' Mile(s)') for x in zipDistances track by x" title="Maximum Distance">
+        <option value="" selected disabled style="display:none;">Maximum Distance</option>
+      </select>
+      <input class="form-control" type="text" name="zip" data-ng-model="query.zip"/>
+    </span>
+
+    <span class="wiz-step-name" data-ng-if="query.geoType == 'region'">Region</span>
+    <span class="wiz-step-fields" data-ng-if="query.geoType == 'region'">
+      <select class="form-control" data-ng-class="{selectEmpty: query.region === null}" id="search-region" data-ng-model="query.region" data-ng-options="r.RegionID as r.Name for r in hospitalRegions" title="Select a Region">
+        <option value="" selected disabled style="display:none;">Select a Region</option>
+      </select>
+    </span>
+  </div>
+
+  <div class="col-md-3 last has-value" data-ng-if="canSearch()">
+    <span class="wiz-step-fields">
+      <span class="wiz-step-num">&nbsp;</span><br />
+      <button class="btn btn-success" data-ng-click="search()">Run Report</button>
+    </span>
+  </div>
+
+</div>
+

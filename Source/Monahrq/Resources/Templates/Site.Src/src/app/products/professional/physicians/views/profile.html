@@ -1,0 +1,29 @@
+<section class="page--physicians">
+  <div data-mh-cms-zone="'header'" data-mh-cms-zone-report-id="reportId" data-mh-cms-zone-product="'Professional'"></div>
+
+  <header class="page-header border">
+    <h1>{{physicianName}}</h1>
+  </header><!-- /.page-header.border -->
+  <div class="row">
+    <div class="col-md-10">
+    </div>
+    <div class="legend-icon-wrapper col-md-2">
+      <h6 data-mh-help-icon mh-on-click="modalLegend()"></h6>
+    </div>
+  </div>
+  <section class="row">
+    <aside class="col-xs-4">
+      <div data-ui-view="physician-profile-location"></div>
+    </aside><!-- /.col-xs-4 -->
+    <div class="col-xs-8">
+      <div class="row">
+        <div class="col-xs-12" data-ui-view="physician-profile-detail"></div><!-- /.col-xs-12 -->
+      </div><!-- /.row -->
+
+      <div class="report-footer" data-ng-bind-html="reportSettings.footer"></div>
+    </div><!-- /.col-xs-8 -->
+  </section><!-- /.row -->
+
+  <div data-mh-cms-zone="'footer'" data-mh-cms-zone-report-id="reportId" data-mh-cms-zone-product="'Professional'"></div>
+</section>
+

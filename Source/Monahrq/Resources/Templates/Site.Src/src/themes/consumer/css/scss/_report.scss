@@ -1,0 +1,1444 @@
+// -------------------------------------------------------------------- //
+//  Reports
+// -------------------------------------------------------------------- //
+
+.report-header,
+.report-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  padding: 25px;
+}
+
+.report-header {
+  align-items: flex-start;
+
+  // Topic Comparing
+  header {
+    @include clearfix;
+    position: relative;
+  }
+}
+
+
+.report__no-results {
+  display: block;
+  margin: 80px auto;
+  padding: 30px;
+  background-color: #eee;
+  text-align: center;
+
+  h2 {
+    margin-bottom: 15px;
+  }
+}
+
+
+.rating-symbol {
+  // white-space: nowrap;
+}
+
+.rating-symbol--text {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.rating-symbol--title,
+.rating-symbol--subtitle {
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.rating-symbol--title {
+  display: block;
+  padding-top: 0;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.rating-symbol--subtitle {
+  display: block;
+  font-size: 10px;
+}
+
+.rating-symbol--img {
+  float: left;
+  margin-right: 10px;
+}
+
+// Align Average title with image
+.rating-symbol--img[src*="symbol_at"] + .rating-symbol--title {
+  margin-bottom: 0;
+  padding-top: 0;
+  line-height: 30px;
+}
+
+
+// -------------------------------------------------------------------- //
+//  Report Header
+
+.report-header__compare-against {
+  fieldset {
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    border: 0;
+  }
+
+  legend {
+    float: left;
+    width: auto;
+    margin: 0 15px 0 0;
+    border-bottom: 0;
+    color: $base-font-color;
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  label {
+    float: left;
+    font-size: 15px;
+
+    &:not(:last-child) {
+      margin-right: 15px;
+      padding-right: 15px;
+      border-right: 1px solid #ddd;
+    }
+  }
+}
+
+// IE compare against
+&.lt-ieEdge .report-header__compare-against {
+  float: left;
+}
+
+
+.report-header__map {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: row-reverse;
+  width: 450px;
+  text-align: right;
+
+  p {
+    margin-bottom: 0;
+  }
+}
+
+// IE report header map
+&.lt-ieEdge .report-header__map {
+  float: right;
+  margin-bottom: 10px;
+}
+
+.report-header__map-icon {
+  float: right;
+  width: 90px;
+  height: 90px;
+  margin-left: 15px;
+}
+
+
+.view-multiple-helper-text {
+  margin-bottom: 0;
+  color: #666;
+  font-size: 18px;
+  line-height: 1.2;
+
+  strong {
+    font-size: 16px;
+  }
+}
+
+// IE view multiple text
+&.lt-ieEdge .view-multiple-helper-text {
+  float: left;
+}
+
+.report-header__compare-results-to {
+  flex: 0 1 75%;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+
+  legend {
+    float: left;
+    width: auto;
+    margin: 0 15px 0 0;
+    border: none;
+    font-size: $base-font-size;
+  }
+
+  label {
+    float: left;
+    margin-right: 25px;
+  }
+
+  .compare-to-help {
+    float: right;
+  }
+}
+
+.report-header__help {
+  flex: 0 1 25%;
+  text-align: right;
+
+  [data-mh-help-icon] {
+
+    .help-label {
+      float: right;
+      display: block;
+      margin-left: 5px;
+      font-size: 12px;
+      line-height: 2.2;
+      cursor: pointer;
+    }
+
+    .help-icon {
+      margin: 0;
+    }
+  }
+}
+
+
+// Secondary header above table data
+.report-header--map {
+  align-items: flex-end;
+}
+
+
+// View on Map (return to table)
+.report-header--map-view {
+  align-items: flex-end;
+  justify-content: flex-start;
+  flex-direction: row-reverse;
+}
+
+.report-header--table {
+  text-align: right;
+}
+
+.report-header__compared-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+
+// Report Searching
+.report-loading {
+  position: relative;
+  width: 100%;
+  height: 245px;
+  text-align: center;
+
+  .spinner {
+    top: 90px !important;
+  }
+
+  p {
+    margin-top: 125px;
+  }
+}
+
+
+
+// -------------------------------------------------------------------- //
+//  Report Table (Content)
+
+.report__sort-by {
+  padding: 15px 0;
+
+  label,
+  select {
+    display: inline-block;
+  }
+
+  select {
+    width: 200px;
+    margin-bottom: 0;
+  }
+}
+
+.report__compare-instructions {
+  @include clearfix;
+  width: 100%;
+  margin-top: 30px;
+
+  .view-multiple-helper-text {
+    float: left;
+    color: $brand-blue-dark;
+    font-weight: 900;
+    line-height: 44px;
+  }
+
+  .narrow__select-topic {
+    float: right;
+    display: block;
+    padding: 10px 15px;
+    background-color: #f6f6f6;
+    border-radius: 5px;
+
+    &:hover,
+    &:active {
+      background-color: #eee;
+    }
+
+    img {
+      margin-left: 10px;
+    }
+  }
+}
+
+.report-content {
+  padding: 0 25px;
+
+  // Override default
+  table {
+    clear: left;
+    margin: 0;
+    border: 1px solid $base-border-color;
+    // table-layout: auto;
+
+    // Allow buttons within tables to wrap
+    .btn--primary,
+    .btn--secondary {
+      white-space: pre-wrap;
+    }
+  }
+
+  thead {
+    background-color: #f5f6f6;
+
+    p {
+      line-height: 1;
+    }
+
+    small {
+      display: block;
+      color: #939598;
+      font-size: 12px;
+      font-weight: 400;
+    }
+
+    .btn--primary {
+      margin-top: 10px;
+      padding: 5px 10px;
+      font-size: 13px;
+
+      &.disabled {
+        background: #ddd;
+      }
+    }
+
+    // Reduce spacing on sort row in report headers
+    tr:nth-child(2) th,
+    tr:nth-child(2) td {
+      padding: 0 25px 15px;
+      border-right: none;
+
+      select {
+        height: 30px;
+      }
+    }
+  }
+
+  th,
+  thead td {
+    position: relative;
+    padding: 15px 10px;
+    color: #333;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.2;
+    vertical-align: top;
+
+    &.compare-check {
+      width: 110px;
+      padding: 15px 10px;
+    }
+
+    &:nth-child(2) {
+      width: 200px;
+    }
+
+    select {
+      margin-bottom: 0;
+      font-size: 14px;
+    }
+  }
+
+  .compare-hidden-header {
+    // background-color: #ddd;
+
+    td, th {
+      height: 1px;
+      padding: 0;
+      border-width: 0;
+    }
+  }
+
+  td,
+  tbody th {
+    position: relative;
+    padding: 15px 25px;
+    border-style: solid;
+    border-color: $base-border-color;
+    border-width: 1px 1px 0 0;
+    vertical-align: middle;
+
+    &:last-child {
+      border-right-width: 0px;
+    }
+
+    &.compare-check {
+      padding: 35px 15px;
+    }
+  }
+
+  tbody tr:nth-child(even) {
+    background-color: #f3f3f3;
+  }
+
+  // Gen. Info - Label
+  dt {
+    float: left;
+    margin: 0 5px 0 0;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+
+    &:empty {
+      display: none;
+    }
+  }
+
+  // Gen. Info - Data
+  dd {
+    display: block;
+    overflow: hidden;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+
+    &:empty {
+      display: none;
+    }
+  }
+
+  .compared-topic {
+    margin: 20px 0;
+  }
+
+  // Compare sticky row
+  .compare-sticky {
+    height: 0;
+    background-color: #f5f6f6;
+    overflow: hidden;
+
+    td {
+      padding: 0 !important;
+    }
+
+    .compare-sticky-arrow {
+      display: none;
+      float: left;
+      width: 48px;
+      height: 20px;
+      margin: 10px 10px -10px 28px;
+      background-image: url("../assets/images/monahrq-sprite.png");
+      background-position: -94px -39px;
+    }
+
+    button {
+      display: none;
+      margin: 0;
+    }
+
+    &.stuck {
+      display: block;
+      height: auto;
+
+      td {
+        width: 100%;
+        padding: 20px 25px !important;
+      }
+
+      button {
+        display: inline-block;
+      }
+
+      // Sticky row arrow
+      .compare-sticky-arrow {
+        display: inline-block;
+      }
+    }
+  }
+}
+
+tbody .compare-check {
+  width: 110px;
+  text-align: center;
+
+  input {
+    margin: 0 auto;
+  }
+}
+
+// Hospital Name Column
+.hospital-name {
+  width: 25%;
+}
+
+.hospital__name,
+.hospital__location,
+.hospital__distance {
+  margin-bottom: 5px;
+  line-height: 1;
+  text-transform: capitalize;
+}
+
+.hospital__name {
+  display: block;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.hospital__distance {
+  color: #939598;
+}
+
+// Patient Recommendation Label
+.patient-recommendation {
+  width: 25%;
+}
+
+
+// -------------------------------------------------------------------- //
+//  Search Results report
+
+.search-results {
+  margin-bottom: 60px;
+
+  td {
+    padding: 5px 25px;
+  }
+}
+
+
+
+// -------------------------------------------------------------------- //
+//  Compare Conditions Tabs
+
+.-tabs {
+  margin: 30px 0 -1px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+
+  legend {
+    float: left;
+    width: auto;
+    border: 0;
+  }
+
+  ul {
+    float: left;
+  }
+
+  li {
+    float: left;
+    display: block;
+    padding: 15px 25px;
+    background-color: $brand-grey;
+    border: 1px solid $base-border-color;
+    border-radius: 5px 5px 0 0;
+    font-weight: 800;
+    line-height: 1.1;
+    text-transform: uppercase;
+    text-decoration: none;
+
+    a {
+      text-decoration: none;
+    }
+
+    [data-mh-help-icon] {
+      display: inline-block;
+    }
+
+    &.active {
+      background-color: #f5f6f6;
+      border-bottom: 1px solid #f5f6f6;
+      text-decoration: underline;
+    }
+
+    &:first-child.active {
+      background-color: white;
+      border-bottom-color: white;
+    }
+  }
+}
+
+.compare-condition-overview {
+  margin-bottom: 60px;
+  padding: 30px;
+  border: 1px solid $base-border-color;
+
+  a [data-mh-help-icon] {
+    display: inline-block;
+  }
+
+  p {
+    max-width: 800px;
+  }
+}
+
+
+
+
+
+// -------------------------------------------------------------------- //
+//  Report Compared
+
+.report-header__comparing,
+.report-header__conditions-concerns {
+  width: 100%;
+  background-color: #ededed;
+
+  fieldset {
+    background-color: transparent;
+    border: 0;
+  }
+
+  .toggle-topics {
+    font-weight: normal;
+    // color: #1c3c54;
+    background-color: transparent;
+    right: -20px;
+  }
+}
+
+.report-header__comparing {
+  margin-top: 15px;
+
+  th {
+    padding: 15px 25px;
+  }
+
+  h2 {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  button {
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  a {
+    color: #333;
+    font-weight: 600;
+  }
+
+  // When fixed
+  &.stuck {
+    display: table;
+
+    .report-header__comparing-items {
+      border-left: 1px solid rgba(255, 255, 255, .75);
+    } // END fixed compare header
+  }
+}
+
+.report-header__comparing-label {
+  padding: 20px 25px;
+}
+
+.report-header__comparing-items {
+  padding: 20px 25px;
+  border-left: 1px solid $base-border-color;
+}
+
+.report-header__conditions-concerns {
+  position: relative;
+  padding: 25px;
+
+  h2 {
+    float: left;
+  }
+
+  legend {
+    border-bottom: 0;
+    font-size: 18px;
+    font-weight: 800;
+  }
+
+  li {
+    margin-bottom: 10px;
+  }
+
+  li.topic-item {
+    overflow: hidden;
+
+    label {
+        position: relative;
+    }
+
+    .input-chckbox {
+        width: 20px;
+        position: absolute;
+        left: 0;
+        display: block;
+    }
+
+    .label-right {
+        margin-left: 30px;
+        display: block;
+    }
+  }
+
+  label {
+    font-size: 18px;
+  }
+
+  .report-header__concerns {
+    padding: 0;
+  }
+
+  .report-header__concerns {
+    margin-top: 40px;
+
+    ul {
+      -webkit-columns: 3;
+      -moz-columns: 3;
+      columns: 3;
+    }
+  }
+} // END report-header__conditions-concerns
+
+
+.compare-topics__topic-label {
+  margin-bottom: 20px; // FOR IE
+  font-size: 32px;
+}
+
+.toggle-topics,
+.toggle-all-subtopics,
+.toggle-subtopic,
+.toggle-compared-data,
+.toggle-subtopic-measures {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  display: block;
+  background-color: transparent;
+  color: #333;
+  font-size: 14px;
+  line-height: 22px; // Match size of arrow
+  font-weight: normal;
+  text-decoration: none;
+  cursor: pointer;
+  transform: translateY(-50%);
+
+  &:after {
+    content: "";
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    margin-bottom: -5px;
+    margin-left: 5px;
+    background-image: url("../assets/images/monahrq-sprite.png");
+  }
+
+  &:hover,
+  &:focus {
+    color: #333;
+    background-color: transparent;
+  }
+}
+
+// Adjust Compared Data positioning
+.toggle-compared-data {
+  top: 15px;
+  transform: none;
+}
+
+// Blue expand buttons
+.toggle-topics,
+.toggle-subtopic,
+.toggle-subtopic-measures {
+  &:after {
+    background-position: -145px -66px;
+  }
+
+  &[aria-expanded="true"]:after {
+    background-position: -145px -22px;
+  }
+}
+
+// Change targetting for expanding sub-topic toggle
+.compared-subtopic__header[aria-expanded="true"] .toggle-subtopic::after {
+  background-position: -145px -22px;
+}
+
+// Orange expand buttons
+.toggle-all-subtopics,
+.toggle-compared-data {
+  &:after {
+    background-position: -145px -44px;
+  }
+
+  &[aria-expanded="true"]:after {
+    background-position: -145px 0;
+  }
+}
+
+.toggle-all-subtopics-container,
+.summary-measures__header {
+  position: relative;
+  height: 45px;
+}
+
+.report--content > .toggle-all-subtopics-container .toggle-all-subtopics {
+  right: 40px;
+}
+
+.compared-topic {
+  position: relative;
+  margin: 20px;
+  border: 1px solid $base-border-color;
+
+  &:last-child {
+    margin-bottom: 60px;
+  }
+
+  > header {
+    position: relative;
+    padding: 20px;
+    background-color: #f7f8f8;
+    // border-bottom: 2px solid $base-border-color;
+
+    > .toggle-section {
+      position: absolute;
+      top: 25px;
+      right: 25px;
+    }
+
+    // Compared topics with descriptions
+    h2 + div:not(:empty) {
+      max-width: 80%;
+      margin-top: 5px;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    // Add thicker border between header and table data
+    + div {
+      border-top: 5px solid rgb(246, 132, 56);
+      // border-top: 2px solid $base-border-color;
+    }
+
+    // Description text lists
+    ul {
+      margin-bottom: 15px;
+      margin-left: -.8em;
+    }
+
+    li {
+      padding-left: 1em;
+      text-indent: -.8em;
+
+      &::before {
+        content: ">";
+        margin-right: 5px;
+        font-size: 1.5em;
+        line-height: 1;
+        opacity: .5;
+      }
+    }
+  }
+
+  table {
+    margin: 0;
+    border: 0;
+  } // END table
+
+  thead {
+    background-color: #f7f8f8;
+  }
+
+  tr:nth-child(even) {
+    background-color: #dee8f1;
+  } // END tr
+
+  th,
+  td {
+    padding: 20px 25px;
+  }
+
+  th:first-child,
+  td:first-child {
+    // width: 30%;
+    // max-width: 350px;
+    font-size: 14px;
+  }
+} // END compared-topic
+
+.compared-subtopic {
+  position: relative;
+  border-top: 1px solid #ddd;
+
+  th {
+    padding: 20px 25px;
+  }
+
+  th:first-child,
+  td:first-child {
+    // width: 30%;
+    // max-width: 350px;
+    font-size: 14px;
+  }
+}
+
+.compared-subtopic__header {
+  @include clearfix;
+  position: relative;
+  padding: 15px 25px;
+  background-color: #efefef;
+  // border-top: 2px solid rgb(45, 172, 211);
+
+  .compared-title {
+    float: left;
+    font-size: 18px;
+    font-weight: 800;
+  }
+
+  .toggle-subtopic {
+    float: right;
+  }
+
+  // + table {
+  //   border-top: 3px solid rgb(45, 172, 211);
+  // }
+}
+
+.summary-measures__header h4 {
+  padding: 14px 25px;
+  color: #414042;
+  font-size: 16px;
+  font-weight: 600;
+  font-style: italic;
+}
+
+
+
+// -------------------------------------------------------------------- //
+//  Cost Quality
+
+.report-header__cost-quality-overview {
+  flex-basis: 100%;
+
+  h2 {
+    margin-bottom: 10px;
+  }
+
+  p,
+  li {
+    font-size: 14px;
+  }
+
+  ul {
+    margin-left: -.8em;
+  }
+
+  li {
+    padding-left: 1em;
+    text-indent: -.8em;
+
+    &::before {
+      content: ">";
+      margin-right: 5px;
+      font-size: 1.5em;
+      line-height: 1;
+      opacity: .5;
+    }
+  }
+}
+
+.cost-quality .compared-tr-label {
+  h3 {
+    margin-bottom: 5px;
+  }
+
+  p {
+    color: #666;
+    font-size: 11px;
+    font-weight: 400;
+  }
+}
+
+
+
+
+
+// -------------------------------------------------------------------- //
+//  Report Footer
+
+.report-footer {
+  background-color: #f6f7f7;
+
+  div[data-ng-if="hasResults"] {
+    padding-left: 15px;
+  }
+
+  .btn--primary {
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    font-size: 13px;
+
+    &.disabled {
+      background: #ddd;
+    }
+  }
+}
+
+.change-search-area {
+  width: 400px;
+
+  select {
+    float: left;
+    width: 220px;
+    margin-right: 15px;
+    margin-bottom: 0;
+  }
+
+  button {
+    padding: 13px 20px;
+  }
+
+  label,
+  p {
+    font-size: 14px;
+  }
+
+  label {
+    margin-bottom: 10px;
+  }
+
+  p {
+    margin-top: 10px;
+  }
+}
+
+.report-footer__about-ratings {
+  position: relative;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid $base-border-color;
+
+  .report-footer__quality-ratings,
+  .report-footer__achieve-results {
+    float: left;
+    width: 45%;
+  }
+
+  .report-footer__achieve-results {
+    margin-left: 10%;
+  }
+
+  h2 {
+    margin-bottom: 10px;
+    font-size: 24px;
+    font-weight: 600;
+  }
+
+  ul {
+    margin-bottom: 20px;
+    margin-left: -.8em;
+  }
+
+  li {
+    padding-left: 1em;
+    text-indent: -.8em;
+
+    &::before {
+      content: ">";
+      margin-right: 5px;
+      font-size: 1.5em;
+      line-height: 1;
+      opacity: .5;
+    }
+  }
+
+  .btn--primary {
+    position: absolute;
+    right: 0;
+    bottom: 10px;
+    height: 40px;
+    font-size: 14px;
+  }
+}
+
+.report-footnotes {
+  padding: 15px 15px 0;
+  font-size: 12px;
+}
+
+// Location footnotes
+.change-search-area + .report-footnotes {
+  clear: both;
+  flex-basis: 100%;
+  margin-top: 15px;
+  padding: 15px 0;
+  border-top: 1px solid $base-border-color;
+}
+
+// Topic footnotes
+.topic .report-footnotes {
+  clear: both;
+  flex-basis: 100%;
+  margin-top: 15px;
+  padding-left: 0;
+  padding-right: 0;
+  border-top: 1px solid $base-border-color;
+}
+
+// Hospital Compare footnotes
+.compared-topic + .report-footnotes {
+  padding: 0 20px 20px;
+}
+
+// Nursing Home Profile Helper footnotes
+.nursing-home-profile__helper .report-footnotes {
+  padding: 0;
+}
+
+
+
+// -------------------------------------------------------------------- //
+//  Nursing
+
+.rating-nursing--title,
+.rating-nursing--subtitle {
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.rating-nursing--title {
+  display: block;
+  margin: 10px 0 -5px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.rating-nursing--subtitle {
+  font-size: 10px;
+}
+
+
+
+// -------------------------------------------------------------------- //
+//  Report Banner
+// -------------------------------------------------------------------- //
+
+.compare-condition-banner {
+  position: relative;
+  padding: 120px 0 30px;
+  background-image: url("../assets/images/compare_banner.jpg");
+  background-size: cover;
+  background-position: center top;
+  color: #fff;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(#333, .75);
+  }
+
+  .contain {
+    position: relative;
+  }
+
+  button {
+    position: absolute;
+    right: 0;
+    bottom: 10px;
+  }
+}
+
+.compare-condition-banner__title {
+  position: relative;
+  max-width: 700px;
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.compare-condition-banner__subtitle {
+  position: relative;
+  max-width: 600px;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+
+
+// -------------------------------------------------------------------- //
+//  Conditions
+// -------------------------------------------------------------------- //
+
+// .consumer-report-banner + .contain {
+//   @include clearfix;
+//   max-width: 950px;
+// }
+
+// .compare-conditions-menu__conditions,
+// .compare-conditions-menu__concerns {
+//   float: left;
+//   margin: 60px 0;
+
+//   li {
+//     display: block;
+//     margin-bottom: 5px;
+//   }
+
+//   [data-mh-help-icon] {
+//     top: -3px;
+//   }
+// }
+
+// .compare-conditions-menu__conditions {
+//   width: 455px;
+// }
+
+// .compare-conditions-menu__concerns {
+//   width: 495px;
+//   padding-left: 110px;
+//   border-left: 1px solid $base-border-color;
+// }
+
+// .compare-conditions-menu__label {
+//   margin-bottom: 0;
+//   font-size: 18px;
+//   font-weight: 700;
+// }
+
+// .compare-conditions-menu__type {
+//   margin-bottom: 15px;
+//   color: #000;
+//   font-size: 30px;
+//   font-weight: 700;
+// }
+
+// .compare-condition-menu a {
+//   color: $base-font-color;
+//   font-size: 20px;
+//   line-height: 1;
+//   text-decoration: none;
+// }
+
+
+
+// -------------------------------------------------------------------- //
+//  Compare Data Values
+// -------------------------------------------------------------------- //
+
+.report-header__comparing[data-compare-size="2"] {
+  .report-header__comparing-label { width: 50%; }
+  .report-header__comparing-items { width: 16.667%; }
+}
+
+.report-header__comparing[data-compare-size="3"] {
+  .report-header__comparing-label { width: 40%; }
+  .report-header__comparing-items { width: 15%; }
+}
+
+.report-header__comparing[data-compare-size="4"] {
+  .report-header__comparing-label { width: 40%; }
+  .report-header__comparing-items { width: 12%; }
+}
+
+.report-header__comparing[data-compare-size="5"] {
+  .report-header__comparing-label { width: 25%; }
+  .report-header__comparing-items { width: 12.5%; }
+}
+
+.report-header__comparing[data-compare-size="6"] {
+  .report-header__comparing-label { width: 25%; }
+  .report-header__comparing-items { width: 12.5%; }
+}
+
+.report-content table[data-compare-size] {
+  table-layout: auto;
+}
+
+.report-content table[data-compare-size="2"] {
+  thead {
+    th, td { width: 16.667%; }
+    th:first-child, td:first-child { width: 50%; }
+  }
+
+  tbody {
+    th { width: 50%; }
+    td { width: 16.667%; }
+  }
+}
+
+.report-content table[data-compare-size="3"] {
+  thead {
+    th { width: 15%; }
+    th:first-child { width: 40%; }
+  }
+
+  tbody {
+    th { width: 40%; }
+    td { width: 15%; }
+  }
+}
+
+.report-content table[data-compare-size="4"] {
+  thead {
+    th { width: 12%; }
+    th:first-child { width: 40%; }
+  }
+
+  tbody {
+    th { width: 40%; }
+    td { width: 12%; }
+  }
+}
+
+.report-content table[data-compare-size="5"] {
+  thead {
+    th { width: 12.5%; }
+    th:first-child { width: 25%; }
+  }
+
+  tbody {
+    th { width: 25%; }
+    td { width: 12.5%; }
+  }
+}
+
+.report-content table[data-compare-size="6"] {
+  thead {
+    th { width: 12.5%; }
+    th:first-child { width: 25%; }
+  }
+
+  tbody {
+    th { width: 25%; }
+    td { width: 12.5%; }
+  }
+}
+
+
+
+// -------------------------------------------------------------------- //
+//  Topic Map Subtopic selectors
+
+.topic-map-subtopics {
+  margin: 0 0 30px;
+  padding: 0;
+  background-color: transparent;
+  border: 0;
+
+  legend {
+    float: left;
+    width: auto;
+    margin: 0 15px 0 0;
+    border-bottom: 0;
+    color: $base-font-color;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 26px;
+  }
+
+  ul {
+    @include clearfix;
+    display: block;
+    overflow: hidden;
+  }
+
+  li {
+    float: left;
+    margin-right: 5px;
+  }
+
+  button {
+    text-transform: none;
+  }
+}
+
+
+// -------------------------------------------------------------------- //
+// Bootstrap/Google Maps compatibilty fix for squashed controls
+
+.map-canvas img {
+  max-width: none;
+}
+
+
+
+.sticky-wrap {
+  overflow-x: auto;
+  overflow-y: hidden;
+  position: relative;
+  width: 100%;
+  margin: 0 !important;
+  border: 1px solid $base-border-color;
+
+  table {
+    border: 0;
+  }
+}
+
+.sticky-wrap .sticky-thead,
+.sticky-wrap .sticky-col,
+.sticky-wrap .sticky-intersect {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: all .125s ease-in-out;
+  z-index: 50;
+  width: auto; /* Prevent table from stretching to full size */
+}
+
+.sticky-wrap .sticky-thead {
+  box-shadow: 0 0.25em 0.1em -0.1em rgba(0,0,0,.125);
+  z-index: 100;
+  width: 100%; /* Force stretch */
+  left: auto !important;
+  right: auto !important;
+}
+
+.sticky-wrap .sticky-intersect {
+  opacity: 1;
+  z-index: 150;
+}
+
+.sticky-wrap .sticky-intersect th {
+  background-color: #666;
+  color: #eee;
+}
+
+.sticky-wrap.overflow-y {
+  overflow-y: auto;
+  max-height: 50vh;
+}

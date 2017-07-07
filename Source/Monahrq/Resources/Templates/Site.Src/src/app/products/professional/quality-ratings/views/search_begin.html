@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col-xs-3">
+    <h2>Find Hospitals</h2><p>that provide high quality care in areas that matter most to you:</p>
+  </div>
+
+  <div class="col-xs-9 find-hospitals-cta">
+    <div class="row">
+      <div ng-if="ReportConfigSvc.webElementAvailable('Quality_ConditionTopicExplore_Button')" ng-class="{'col-xs-6': !onlyOneSearch, 'col-xs-12': onlyOneSearch}">
+        <h3>Condition or Topic</h3>
+        <p class="narrow">Choose the health condition or topic that’s most important to you, and then compare hospital ratings for your particular needs.</p>
+        <button data-ui-sref="top.professional.quality-ratings.condition" class="btn btn-xlg btn-primary">View Ratings <span class="sr-hidden">Conditions or Topics</span></button>
+      </div>
+      <div ng-if="ReportConfigSvc.webElementAvailable('Quality_HospitalExplore_Button')" ng-class="{'col-xs-6': !onlyOneSearch, 'col-xs-12': onlyOneSearch}">
+        <h3>Hospital</h3>
+        <p class="narrow">Browse a list of hospitals by location or type and compare them, or find a specific hospital and see how it rates.</p>
+        <button data-ui-sref="top.professional.quality-ratings.location" class="btn btn-xlg btn-primary">View Ratings <span class="sr-hidden">Hospitals</span></button>
+       </div>
+    </div>
+  </div>
+</div>

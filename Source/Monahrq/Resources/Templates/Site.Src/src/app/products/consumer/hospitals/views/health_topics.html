@@ -1,0 +1,39 @@
+<main class="health-topics">
+  <div class="contain">
+    <div class="health-topics__intro">
+      <h1>Health Topics</h1>
+      <p>Use the information in the health topic to better understand the quality ratings used to compare hospitals and make an informed decision about your care. <strong>Click on a box below to learn more about a topic of interest</strong>, then see how hospitals compare in that area.</p>
+    </div>
+
+    <section class="health-topics__list">
+      <div class="health-topic" data-ng-repeat="item in model"
+           data-ng-if="item.type == 'summary' || visibleTopicDesc == item.topic.TopicCategoryID"
+           data-ng-class="{
+            'active': visibleTopicDesc == item.topic.TopicCategoryID,
+            'summary': item.type == 'summary',
+            'detail': item.type == 'detail'
+           }"
+           ng-click="$event.stopPropagation()" data-ui-sref="top.consumer.hospitals.infographic({id: item.topic.TopicCategoryID})">
+        <div data-ng-if="item.type == 'summary'" >
+          <p class="health-topic__name" >{{item.topic.Name}}</p>
+          <!--<a href data-ng-click="topicClick(item.topic)">What is it?</a>-->
+          <img class="health-topic__icon" data-ng-src="{{'themes/consumer/assets/infographic/' + item.topic.TopicIcon}}">
+        </div>
+        <!--<div data-ng-if="item.type == 'detail'">
+          <p data-ng-bind-html="item.topic.ConsumerDescription"></p>
+          <p><a href ng-click="$event.stopPropagation()" data-ui-sref="top.consumer.hospitals.topic({topicId: item.topic.TopicCategoryID, focus: 'infographic'})">View Report</a></p>
+        </div>-->
+      </div>
+    </section>
+  </div>
+
+  <footer class="health-topics__footer">
+    <div class="contain">
+      <img class="doctor--left" src="themes/consumer/assets/infographic/doctor-female-1.png" alt="" />
+      <img class="doctor--right" src="themes/consumer/assets/infographic/doctor-male-1.png" alt="" />
+      <p>Need Surgery?</p>
+      <p>Make Sure You are Safe as Possible</p>
+      <button data-ui-sref="top.consumer.infographic">View the visual report</button>
+    </div>
+  </footer>
+</main>

@@ -1,0 +1,173 @@
+<main class="topic">
+  <section class="topic__compare" data-ng-if="query.topicId">
+    <div class="contain">
+      <img src='themes/consumer/assets/infographic/doctor-female-1.png' alt='Doctor illustration' />
+      <img src='themes/consumer/assets/infographic/doctor-male-1.png' alt='Doctor illustration' />
+      <p>Compare hospitals for:</p>
+      <h2 class="compare-topics__topic-label">{{topicName}} <span data-mh-help-icon data-sr-label="'Help for ' + topicName" data-mh-on-click="modalTopic(query.topicId)"></span></h2>
+      <button class="btn--primary" id="learnMoreVisualReportBtn" data-ui-sref="top.consumer.hospitals.infographic({id: query.topicId})">Learn more about this topic with our visual report</button>
+      <p>Visual report contains tips, checklists, performance reports, and more.</p>
+    </div>
+  </section>
+
+  <div data-mh-cms-zone="'header'" data-mh-cms-zone-report-id="reportId" data-mh-cms-zone-product="'Consumer'"></div>
+
+  <section class="report" tabindex="-1">
+    <header class="report-header" data-ng-if="!query.topicId">
+      <p class="report__no-results">Please select a topic in the form below.</p>
+    </header>
+
+    <header class="report-header compare-topics" data-ng-if="query.topicId">
+      <div class='report-header__compare-against'>
+        <fieldset>
+        <legend>Compare Your Results To The:</legend>
+        <label for="compareTo-national"><input type="radio" name="compareTo" id="compareTo-national" value="national" data-ng-model="query.compareTo">National Average</label>
+        <label for="compareTo-state"><input type="radio" name="compareTo" id="compareTo-state" value="state" data-ng-model="query.compareTo">State Average</label>
+        </fieldset>
+      </div>
+
+      <div class="report-header__map">
+        <img class="report-header__map-icon" src="themes/consumer/assets/images/static-map.jpg" alt="">
+        <div class="report-header__content">
+          <a href="#" data-ng-click="gotoMap(); $event.preventDefault()">View these results on a map</a>
+        </div>
+      </div>
+
+      <div class="report-header__help">
+        <div data-mh-help-icon="'What are these rankings?'" data-mh-on-click="modalLegend()"></div>
+      </div>
+
+
+      <div class='report-header__narrow'>
+        <div class="narrow__form">
+          <legend>Refine facilities by location:</legend>
+
+          <div>
+            <div class="search-form__zip">
+              <label for="search-zip" class="sr-hidden">Enter Zip Code:</label>
+              <input type="text" id="search-zip" name="zip" placeholder="Enter zip code" data-ng-model="query.zip">
+            </div>
+
+            <div class="search-form__distance">
+              <label for="search-distance" class="sr-hidden">Select Distance Range:</label>
+              <select id="search-distance" data-ng-class="{selectEmpty: !query.distance}" name="distance" data-ng-model="query.distance" data-ng-options="x as (x + ' Mile(s)') for x in zipDistances track by x" title="Maximum Distance">
+                <option value="" selected disabled style="display:none;">Choose Maximum Distance</option>
+              </select>
+            </div>
+
+            <div class="search-form__action">
+              <button class="btn--primary" data-ng-click="updateSearch('distance')">Refine Results</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="report__compare-instructions">
+        <p class="view-multiple-helper-text">Select up to five hospitals using the checkboxes on the left and then "Compare" to view results.</p>
+        <a class='narrow__select-topic' href data-ng-click="openTopicPicker(); $event.preventDefault();" id="selectDifferentTopicLink">Select a different topic <img src="themes/consumer/assets/images/topic-grid-icon.png" alt="Topic grid"></a>
+      </div>
+    </header>
+
+    <div class="report-content" data-ng-if="query.topicId">
+      <div class="compare-condition-tabs-wrapper">
+        <fieldset class="compare-condition-tabs">
+          <ul class="active-tab-{{getActiveSubtopicIndex() + 1}}">
+            <li data-ng-repeat="subtopic in subtopics track by $index" data-ng-class="{active: isSubtopicActive(subtopic)}">
+              <a id="subtopicTab{{$index}}" href="#" data-ng-click="$event.preventDefault(); query.subtopicId = subtopic.id; updateSearch('subtopic')">Subtopic {{$index + 1}}: <strong>{{subtopic.name}}</strong> <div data-mh-help-icon data-sr-label="'Help for ' + subtopic.name" data-mh-on-click="modalSubtopic(subtopic.id)"></div></a>
+            </li>
+          </ul>
+        </fieldset>
+      </div>
+
+      <div class="report__sort-by">
+        <label for="sortBy">Sort By:</label>
+        <select id="sortBy" data-ng-model="query.sort" data-ng-options="o.value as o.label for o in sortOptions" onkeyup="this.blur();this.focus()">
+          <option value="" disabled>Select to Sort</option>
+        </select>
+      </div>
+
+      <div class="table-wrapper">
+        <table mh-sticky-table-header="measureKeys">
+          <thead>
+          <tr>
+            <th class="compare-check">
+              Select:
+              <small>(To Compare)</small>
+              <button id="compareButton" class="btn--primary" tabindex="{{getCompareTabIndex()}}" data-ng-class="{disabled: !canCompare()}" data-ng-click="gotoCompare()" data-ng-mouseover="showCompareHelpModal();">Compare</button>
+              <div data-ng-if="topicName != 'Heart surgeries and procedures' && topicName != 'Hip or knee replacement surgery' "> <!--[MONNGBD-16] hide this button for two topics-->
+                <div data-ng-if="showSupportsCost()"><button class="btn--primary" tabindex="{{getCompareTabIndex()}}" data-ng-class="{disabled: !canCompare()}" data-ng-click="$event.preventDefault(); gotoCostQuality()">View Cost for Care</button></div>
+              </div>
+            </th>
+            <th class="hospital-name">
+              Hospital Name:
+            </th>
+            <th data-ng-repeat="measureId in measureKeys track by $index" id="measureKey{{$index}}">
+              {{measureDefs[measureId].SelectedTitleConsumer}}
+              <span data-mh-help-icon data-sr-label="'Help for ' + measureDefs[measureId].SelectedTitleConsumer" data-mh-on-click="modalMeasure(measureId)"></span>
+            </th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td></td>
+            <td></td>
+            <td data-ng-repeat="measureId in measureKeys">
+              <span data-ng-if="query.compareTo == 'national'"><small>Nationwide Mean</small><br><strong>{{measureDefs[measureId].NatRateAndCI}}</strong></span>
+              <span data-ng-if="query.compareTo == 'state'"><small>State Mean</small><br><strong>{{measureDefs[measureId].PeerRateAndCI}}</strong></span>
+            </td>
+          </tr>
+          <tr data-ng-repeat="row in model">
+            <td class="compare-check"><input data-ng-click="toggleCompare(row.id)" title="Add to Compare" aria-label="Add {{row.name}} to the list of hospitals to compare" type="checkbox"></td>
+            <th class="hospital-name">
+              <a href="#" data-ui-sref="^.profile({id: row.id})">{{row.name}}</a><br/>
+              <span>{{row.city}}, {{row.state}}</span>
+              <div data-ng-show="row.distance != null">({{row.distance}} miles)</div>
+            </th>
+            <td data-ng-repeat="measureId in measureKeys">
+              <div data-ng-if="showSymbol(row[measureId]) && query.compareTo == 'national'" data-mh-rating-symbol="row[measureId].NatRating"></div>
+              <div data-ng-if="showSymbol(row[measureId]) && query.compareTo == 'state'" data-mh-rating-symbol="row[measureId].PeerRating"></div>
+              <div data-ng-if="!showSymbol(row[measureId])">{{row[measureId].RateAndCI}}</div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <footer class="report-footer">
+      <div>
+        <button class="btn--primary" tabindex="{{getCompareTabIndex()}}" data-ng-class="{disabled: !canCompare()}" data-ng-mouseover="$event.preventDefault(); showCompareHelpModal();" data-ng-click="gotoCompare()">Compare</button>
+        <p class="view-multiple-helper-text">To view results for multiple topics<br>select up to five hospitals above.</p>
+      </div>
+
+      <div data-ng-if="reportSettings.footer" class="report-footnotes" data-ng-bind-html="reportSettings.footer"></div>
+
+      <div class="report-footer__about-ratings">
+        <div class="report-footer__quality-ratings">
+          <h2>What are these quality ratings? Why are they important?</h2>
+          <ul>
+            <li>Not all facilities offer the same quality of care. Some are better than others.</li>
+            <li>Even good facilities may not be good at everything. For example, a hospital that is very good at heart care may not be as good at delivering babies.</li>
+            <li>Hospital and nursing home stays can be risky. Whenever you go to a hospital or nursing home, you risk getting a new health problem, such as an infection. Hospitals and nursing homes vary in how well they protect patients from risks.</li>
+            <li>Good quality health care means more than what your doctor does. Health care quality also depends on other staff, such as nurses and physical therapists, and how well the facility is managed.</li>
+            <li>You want the best quality care possible. This means making good decisions about your health care and where you can get it.</li>
+          </ul>
+        </div>
+
+        <div class="report-footer__achieve-results">
+          <h2>To achieve the best possible results, health care providers need to:</h2>
+          <ul>
+            <li>Do the right things for you (give you the right medicines, tests and treatments);</li>
+            <li>Do them at the right time (when you need); and</li>
+            <li>Do them the right way (using methods known to work).</li>
+          </ul>
+        </div>
+
+        <button href="" data-ui-sref="top.consumer.about-ratings" class="btn--primary">Learn more about quality ratings</button>
+      </div>
+    </footer>
+  </section>
+
+  <div data-mh-cms-zone="'footer'" data-mh-cms-zone-report-id="reportId" data-mh-cms-zone-product="'Consumer'"></div>
+</main>

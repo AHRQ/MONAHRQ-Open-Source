@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ReportManifest RptId="7D841284-5179-44E5-A00E-BDD042B0A7BD"
+                Name="Cost and Quality Report – Side By Side Display" ShowInterpretationText="true"
+                Category="Quality"
+				IsTrending="false" ConsumerPreviewImage="ConsumerCostAndQuality.png"
+				RequiresCmsProviderId="true" RequiresCostToChargeRatio="false"
+                PreviewImage="ConsumerCostAndQuality.png">
+	<Audiences>
+		<Audience AudienceType="Consumers" />
+	</Audiences>
+	<Datasets>
+		<!-- <Dataset Name="Hospital Compare Data"/> -->
+		<!--<Dataset Name="AHRQ-QI Area Data"/>-->
+		<!-- <Dataset Name="AHRQ-QI Composite Data"/> -->
+		<Dataset Name="Inpatient Discharge"/>
+		<Dataset Name="AHRQ-QI Provider Data"/>
+	</Datasets>
+	<Filters />
+	<ReportAttributes>
+		HospitalFilters
+	</ReportAttributes>
+	<Columns>
+		<Column IsMeasure="false" Name="Numerator" />
+		<Column IsMeasure="false" Name="Denominator" />
+		<Column IsMeasure="false" Name="Observed Rate" />
+		<Column IsMeasure="false" Name="Risk-Adjusted Rate" />
+	</Columns>
+	<InterpretationText>
+		<![CDATA[<p>For this topic, Hip Replacement Surgery, there is information you can use to compare hospitals on three related issues:  the quality of hip replacement surgery, the average cost of such a surgery, and how many patients get this surgery each year.  Ideally, look for a hospital with high quality ratings, a low average cost that performs hip replacement surgery on more patients each year.</p>]]>
+	</InterpretationText>
+	<WebsitePages>
+		<WebsitePage
+			Name="Cost and Quality Report – Side By Side Display"
+			Audience="Consumers"
+			Path="app/products/consumer/hospitals/views/cost_quality.html"
+			Url="/hospitals/cost-quality?subtopicId=1"
+			UrlRaw="/hospitals/cost-quality?subtopicId&amp;hospitalIds"
+			IsEditable="true">
+			<WebsitePageZones>
+				<WebsitePageZone Name="Header" CodePath=""/>
+				<WebsitePageZone Name="Footer" CodePath=""/>
+			</WebsitePageZones>
+		</WebsitePage>
+	</WebsitePages>
+</ReportManifest>

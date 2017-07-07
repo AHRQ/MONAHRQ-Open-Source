@@ -1,0 +1,236 @@
+<main class='infographic infographic--surgery'>
+  <header class='infographic__header'>
+    <div class='contain'>
+      <img class='infographic__header__doctor-1' src='themes/consumer/assets/infographic/doctor-female-1.png' alt='Doctor illustration' />
+      <img class='infographic__header__doctor-2' src='themes/consumer/assets/infographic/doctor-male-2.png' alt='Doctor illustration' />
+      <img class='infographic__header__icon-bar' src='themes/consumer/assets/infographic/header-icon-bar.png' alt='Row of various medical icons' />
+
+      <h1>Need Surgery?</h1>
+      <h2>Make Sure You are Safe as Possible</h2>
+
+      <p>American health care <strong>saves millions of lives through treatment and surgery</strong>.<br>However, when things go wrong the effect can be devastating and expensive.</p>
+    </div>
+  </header>
+
+  <section class='infographic__statistics'>
+    <div class='contain'>
+      <div class='infographic__statistic__x2'>
+        <p>Each year in the United States</p>
+        <div class='statistic__value'>
+	      <br/>
+       	  <div style='width: 110px; height: 100px; margin: auto; font-size: 20px'>about</div>
+          <p>{{getMeasureValue("INF-GRPH-NAT-01", 0)}}</p>
+        </div>
+        <p class='statistic__description'>patients develop an <strong>infection</strong> at their <strong>surgical site</strong><sup><a href="#" id="ref1" data-ng-click="gotoFootnote($event, '#foot1')" title="Click to read footnote #1">1</a></sup></p>
+      </div>
+      <div class='infographic__statistic__x2'>
+        <p>Each year in the United States</p>
+        <div class='statistic__value'>
+          <br/>
+       	  <div style='width: 110px; height: 100px; margin: auto; font-size: 20px'>about</div>
+          <p>{{getMeasureValue("INF-GRPH-NAT-02", 0)}}</p>
+        </div>
+        <p class='statistic__description'>patients <strong>accidentally get cut</strong> or have a <strong>hole poked</strong> in an organ that was not part of the surgery<sup><a href="#" id="ref2" data-ng-click="gotoFootnote($event, '#foot2')" title="Click to read footnote #2">2</a></sup></p>
+      </div>
+
+      <p class="infographic__statistic--text"><strong>Surgery patients are {{getMeasureValue("INF-GRPH-NAT-04", 0)}} times more likely to die</strong><br>when a surgical mistake happens.</p>
+    </div>
+  </section>
+
+  <section class='infographic__description'>
+    <div class='contain'>
+      <img src='themes/consumer/assets/infographic/hospital.png' alt='Hospital illustration' />
+      <p>The good news is that doctors, nurses, and hospitals are improving patient safety, especially for surgery.</p>
+      <p>Many hospitals have very good surgical safety ratings, but others don’t.</p>
+      <p><strong>Everyone can do better.</strong></p>
+      <img src='themes/consumer/assets/infographic/icon-ambulance.png' alt='Ambulance illustration' />
+    </div>
+  </section>
+
+  <section class='infographic__quality' data-ng-if="activeSection(1) === true">
+    <div class='contain'>
+      <p class='infographic__title'>Mistakes happen during surgery even in {{report.regionName}}!<br><strong>In one year<sup><a href="#" id="ref3" data-ng-click="gotoFootnote($event, '#foot3')" title="Click to read footnote #3">3</a></sup>, in our own backyard:</strong></p>
+
+      <div class='infographic__quality__stats'>
+        <div class='infographic__quality__stat'>
+          <small></small>
+          <p class='quality__value'>{{getMeasureValue("PSI 05", 0)}}</p>
+          <p class='quality__description'>patients had a <strong>surgical tool accidentally left</strong> in their body<sup><a href="#" id="ref4" data-ng-click="gotoFootnote($event, '#foot4')" title="Click to read footnote #4">4</a></sup></p>
+        </div>
+        <div class='infographic__quality__stat'>
+          <small>In</small>
+          <p class='quality__value'>{{getMeasureValue("PSI 06", 0)}}%</p>
+          <p class='quality__description'>of surgeries, the surgeon <strong>accidentally made a hole in the patient’s lung</strong><sup><a href="#" id="ref5" data-ng-click="gotoFootnote($event, '#foot5')" title="Click to read footnote #5">5</a></sup></p>
+        </div>
+        <div class='infographic__quality__stat'>
+          <small>In</small>
+          <p class='quality__value'>{{getMeasureValue("PSI 15", 0)}}%</p>
+          <p class='quality__description'>of surgeries, <strong>an organ</strong> that was not part of the surgery <strong>was cut or punctured accidentally</strong><sup><a href="#" id="ref6" data-ng-click="gotoFootnote($event, '#foot6')" title="Click to read footnote #6">6</a></sup></p>
+        </div>
+        <div class='infographic__quality__stat'>
+          <small>In</small>
+          <p class='quality__value'>{{getMeasureValue("PSI 14", 0)}}%</p>
+          <p class='quality__description'>of surgeries, <strong>the surgical wound</strong> on the patient’s stomach or pelvic area <strong>split open</strong><sup><a href="#" id="ref7" data-ng-click="gotoFootnote($event, '#foot7')" title="Click to read footnote #7">7</a></sup></p>
+        </div>
+        <div class='infographic__quality__stat'>
+          <small></small>
+          <p class='quality__value'>{{getMeasureValue("PSI 16", 0)}}</p>
+          <p class='quality__description'>patients had unexpected <strong>reactions to blood transfusions</strong><sup><a href="#" id="ref8" data-ng-click="gotoFootnote($event, '#foot8')" title="Click to read footnote #8">8</a></sup></p>
+        </div>
+        <div class='infographic__quality__callout'>
+          <p>All of us need to know how often surgical problems happen and if things are getting better.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class='infographic__checklist'>
+    <div class='contain'>
+      <p>Fortunately, <strong>doctors and nurses know what should be done before, during and after surgery to prevent problems</strong><sup><a href="#" id="ref9" data-ng-click="gotoFootnote($event, '#foot9')" title="Click to read footnote #9">9</a></sup>.</p>
+
+      <div class='infographic__clipboard'>
+        <p>For example:</p>
+        <ul>
+          <li>Certain types of antibiotics should be given to the patient an hour before surgery, then stopped within 24 hours after surgery.</li>
+          <li>The patient&rsquo;s temperature should be kept warm and stable.</li>
+          <li>To prevent blood clots, special &lsquo;pressure&rsquo; socks should be used to keep blood flowing in the patient&rsquo;s legs. And the foot of the patient&rsquo;s bed should be raised.</li>
+          <li>If a catheter was required to help empty a patient's bladder, it should be removed within two days after surgery.</li>
+        </ul>
+        <img class='clipboard__doctor' src='themes/consumer/assets/infographic/doctor-male-3.png' alt='Doctor illustration' />
+        <div class='clipboard__post-it'>
+          <p>Many hospitals take these steps with every surgery patient. But some don’t, and that puts patients at risk.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class='infographic__safety' data-ng-if="activeSection(2) === true">
+    <div class='contain'>
+      <p class='infographic__title'>How safe is the surgery for patients in {{report.regionName}}<sup><a href="#" id="ref10" data-ng-click="gotoFootnote($event, '#foot10')" title="Click to read footnote #10">10</a></sup></p>
+      <div class='safety__measures'>
+        <div class='safety__measure'>
+          <img src='themes/consumer/assets/infographic/icon-clock-circled.png' alt='Clock icon' />
+          <p class='measure__value'>{{getMeasureValue("SCIP-INF-1", 0)}}</p>
+          <p class='measure__description'>received an antibiotic at the right time before surgery<sup><a href="#" id="ref11" data-ng-click="gotoFootnote($event, '#foot11')" title="Click to read footnote #11">11</a></sup></p>
+        </div>
+        <div class='safety__measure'>
+          <img src='themes/consumer/assets/infographic/icon-pills-circled.png' alt='Pills icon' />
+          <p class='measure__value'>{{getMeasureValue("SCIP-INF-2", 0)}}</p>
+          <p class='measure__description'>were given the right kind of antibiotic before surgery<sup><a href="#" id="ref12" data-ng-click="gotoFootnote($event, '#foot12')" title="Click to read footnote #12">12</a></sup></p>
+        </div>
+        <div class='safety__measure'>
+          <img src='themes/consumer/assets/infographic/icon-thermometer-circled.png' alt='Thermometer illustration' />
+          <p class='measure__value'>{{getMeasureValue("SCIP-INF-10", 0)}}</p>
+          <p class='measure__description'>had body temperatures managed during and after surgery<sup><a href="#" id="ref13" data-ng-click="gotoFootnote($event, '#foot13')" title="Click to read footnote #13">13</a></sup></p>
+        </div>
+        <div class='safety__measure'>
+          <img src='themes/consumer/assets/infographic/icon-heart-circled.png' alt='Heart icon' />
+          <p class='measure__value'>{{getMeasureValue("SCIP-VTE-2", 0)}}</p>
+          <p class='measure__description'>received treatments to prevent blood clots after surgery<sup><a href="#" id="ref14" data-ng-click="gotoFootnote($event, '#foot14')" title="Click to read footnote #14">14</a></sup></p>
+        </div>
+        <div class='safety__measure'>
+          <img src='themes/consumer/assets/infographic/icon-calendar-circled.png' alt='Calendar icon' />
+          <p class='measure__value'>{{getMeasureValue("SCIP-INF-9", 0)}}</p>
+          <p class='measure__description'>who needed a catheter during their procedure had it removed within two days after surgery<sup><a href="#" id="ref15" data-ng-click="gotoFootnote($event, '#foot15')" title="Click to read footnote #15">15</a></sup></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class='infographic__tips'>
+    <div class='contain'>
+      <p class='infographic__title'>Tips to Be as Safe as Possible Before, During and After Surgery</p>
+      <div class='infographic__tip'>
+        <img src='themes/consumer/assets/infographic/icon-file.png' alt='File illustration' class='tip__icon' />
+        <p class='tip__title'>Do Your Homework</p>
+        <ul>
+          <li>Understand there are ways to keep patients safe during surgery, and these actions should be taken with every patient, for every surgery</li>
+          <li>Know the safe surgery ratings for your hospital – visit <a ui-sref="top.consumer.home">{{report.siteName}}</a></li>
+        </ul>
+      </div>
+      <div class='infographic__tip'>
+        <img src='themes/consumer/assets/infographic/icon-who.png' alt='World Health Organization icon' class='tip__icon' />
+        <p class='tip__title'>Talk About Your Safety</p>
+        <ul>
+          <li>Take a copy of this list (and your hospital’s ratings) to talk with your doctor about what to expect when you have surgery</li>
+          <li>Ask your doctor to use the <em>World Health Organization Safe Surgery Checklist<sup><a href="#" id="ref16" data-ng-click="gotoFootnote($event, '#foot16')" title="Click to read footnote #16">16</a></sup></em> which is proven to reduce the risk of death and complications from surgery<sup><a href="#" id="ref17" data-ng-click="gotoFootnote($event, '#foot17')" title="Click to read footnote #17">17</a></sup></li>
+        </ul>
+      </div>
+      <div class='infographic__tip'>
+        <img src='themes/consumer/assets/infographic/icon-family.png' alt='Family icon' class='tip__icon' />
+        <p class='tip__title'>Have a Team on Your Side</p>
+        <ul>
+          <li>Bring someone with you to ask questions and listen when you see your doctor or are in the hospital</li>
+          <li>If people are not paying attention to your concerns, talk to the hospital’s patient advocate service – their job is to help you.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="infographic__comparing-hospitals" data-ng-if="surgicalTopicId">
+    <div class="contain">
+      <img src="themes/consumer/assets/infographic/doctor-male-1.png" alt="Male doctor illustration">
+      <div class="comparing-hospitals__content">
+        <p class="infographic__title">All hospitals are not the same.</p>
+        <p>Some are better overall, some are not so good.</p>
+        <p>Some do well in some areas of care but not in others.</p>
+        <button class="btn--primary" data-ui-sref="top.consumer.hospitals.topic({topicId: surgicalTopicId})">Start comparing hospitals</button>
+        <p><small>Find hospitals that perform best in the areas you care about.</small></p>
+      </div>
+    </div>
+  </section>
+
+  <footer class='infographic__footer'>
+    <div class='contain'>
+      <div class='footer__closing-statement'>
+        <img src='themes/consumer/assets/infographic/icon-heart.png' alt='heart' width='111' />
+        <p>Talking with your doctor shows you want to be a <strong>partner in your care</strong>. It also helps remind your care team to take certain actions to keep you as safe as possible <em>before, during and after surgery</em>.</p>
+      </div>
+      <div class='footer__cta'>
+        <p>For more information, visit</p>
+        <a href="#" data-ng-click="gotoHome(); $event.preventDefault()" class="btn--infographic">{{report.siteName}}</a>
+      </div>
+    </div>
+  </footer>
+
+  <section class='infographic__footnotes'>
+    <div class='contain' data-mh-accordion data-mh-accordion-api="footnoteAccordionAPI">
+      <div data-mh-accordion-toggle="'footnotesPanel'" data-mh-accordion-label="'Click here to view citations and footnotes'" class="resource__toggle"></div>
+      <div data-mh-accordion-panel="'footnotesPanel'">
+        <div id="foot{{$index + 1}}" data-ng-repeat="cite in report.citationData">
+          <strong>{{$index + 1}}</strong>
+          <span data-ng-bind-html="cite.citationBody"></span>
+          <a href="#" data-ng-click="$event.preventDefault()" data-scroll-to="ref{{$index + 1}}" title="Click to return from footnote #{{$index + 1}}">^</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <p class="infographic__social" data-ng-if="!isPreview()">
+    <span>Share:</span>
+    <a class='infographic__social--facebook' href="https://www.facebook.com/sharer/sharer.php?u={{shareURL}}">
+      <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+        <title>
+          Facebook
+        </title>
+        <path d="M28.444 0H3.556C1.6 0 0 1.6 0 3.556v24.888C0 30.402 1.6 32 3.556 32H16V19.556h-3.556v-4.4H16V11.51c0-3.846 2.155-6.548 6.695-6.548l3.205.003v4.63h-2.128c-1.767 0-2.44 1.328-2.44 2.558v3.004H25.9l-1.01 4.4h-3.557V32h7.11C30.4 32 32 30.402 32 28.444V3.556C32 1.6 30.4 0 28.444 0z" />
+      </svg>
+    </a>
+    <a class='infographic__social--twitter' href="https://twitter.com/home?status={{shareURL}}">
+      <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+        <title>
+          Twitter
+        </title>
+        <path d="M27.706 9.794c.012.26.017.52.017.78 0 7.984-6.075 17.188-17.184 17.188-3.414 0-6.586-1-9.26-2.716.474.056.954.085 1.44.085 2.832 0 5.435-.965 7.5-2.583-2.64-.05-4.873-1.793-5.64-4.193.367.068.746.105 1.135.105.552 0 1.087-.073 1.592-.21-2.763-.557-4.845-2.997-4.845-5.925v-.075c.815.452 1.748.724 2.736.756-1.62-1.084-2.688-2.93-2.688-5.028 0-1.106.298-2.144.82-3.037 2.977 3.657 7.43 6.06 12.45 6.313-.103-.443-.156-.903-.156-1.378 0-3.334 2.702-6.037 6.038-6.037 1.738 0 3.308.732 4.41 1.906 1.374-.272 2.667-.774 3.835-1.466-.45 1.41-1.41 2.594-2.656 3.34 1.224-.146 2.385-.468 3.47-.95-.81 1.214-1.834 2.276-3.014 3.126z" />
+      </svg>
+    </a>
+    <a class='infographic__social--email' href="mailto:recipient@address?&body={{shareURL}}">
+      <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+        <title>
+          Email
+        </title>
+        <path d="M1.02 7.286l13.334 7.163c.448.24 1.027.353 1.61.353.584 0 1.163-.114 1.61-.354.45-.24 12.467-6.698 13.334-7.164.87-.467 1.69-2.286.096-2.286H.926c-1.594 0-.773 1.82.094 2.286zm30.292 3.917c-.987.513-13.132 6.842-13.737 7.16-.604.315-1.027.353-1.61.353-.584 0-1.007-.038-1.61-.354-.606-.317-12.682-6.647-13.67-7.16-.692-.364-.685.06-.685.388v12.966c0 .746 1.006 1.777 1.778 1.777h28.444c.772 0 1.778-1.03 1.778-1.777V11.592c0-.327.007-.752-.688-.39z" />
+      </svg>
+    </a>
+  </p>
+</main>

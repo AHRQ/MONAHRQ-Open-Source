@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ReportManifest Guid="2AAF7FBA-7102-4C66-8598-A70597E2F829"
+                Name="ED Utilization Report - Map View"
+                Category="Utilization" PreviewImage="EDUtilization-map.png" >
+   <Audiences>
+    <Audience AudienceType="Professionals" />
+  </Audiences>
+  <Datasets>
+    <Dataset Name="ED Treat And Release"/>
+  </Datasets>
+  <ReportAttributes>
+    HospitalFilters ConditionsAndDiagnosisFilters
+  </ReportAttributes>
+</ReportManifest>

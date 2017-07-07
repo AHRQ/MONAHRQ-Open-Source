@@ -1,0 +1,60 @@
+<header class="report-header consumer" data-ng-if="searchStatus === 'SEARCHING'">
+    <div class="report-loading">
+        <div data-us-spinner></div>
+        <p>Searching...</p>
+    </div>
+</header>
+<div data-ng-if="haveSearched" class="row page-header"></div>
+
+<div data-ng-if="!haveSearched" class="main-initial">
+  <h1>{{content.main.title}}</h1>
+  <div data-ng-bind-html="content.main.body"></div>
+</div>
+
+<div data-ng-if="haveSearched" class="main-table">
+  <div class="report-header" data-ng-bind-html="reportSettings.header"></div>
+
+  <h2 data-ng-if="tableModel.length == 0">
+    Report data is not available for this search.
+  </h2>
+
+  <div data-ng-if="tableModel.length > 0" class="filters row hidden-print">
+    <div class="col-md-4">
+      <label for="sortBy">Sort By:</label>
+      <select id="sortBy" class="form-control" data-ng-model="query.sortBy" data-ng-options="x.id as x.name for x in sortByOptions" title="Sort By"></select>
+    </div>
+    <div class="col-md-8 text-right"><h6 data-mh-help-icon data-mh-on-click="modalLegend()"></h6></div>
+  </div>
+
+
+  <div data-ng-if="tableModel.length > 0" class="table-wrapper">
+    <table id="physician-data-table" class="data" mh-sticky-table-header="tableModel">
+      <thead>
+      <tr>
+        <th>Physician Name</th>
+        <th>Medical Group Name</th>
+        <th data-ng-if="cahpsMeasureDef && hasCAHPS">Overall Medical Group Rating</th>
+        <th>City</th>
+        <th>ZIP Code</th>
+        <th>State</th>
+        <th>Primary Specialty</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr data-ng-repeat="row in tableModel">
+        <th scope="row" class="entity"><a data-ui-sref="top.professional.physicians.profile({id:row.npi})">{{row.frst_nm + ' ' + row.lst_nm}}</a></th>
+        <td>{{getPracticeName(row)}}</td>
+        <td data-ng-if="cahpsMeasureDef && hasCAHPS">
+          <span data-mh-rating-nursing="getPracticeRating(row)"></span>
+        </td>
+        <td>{{row.cty}}</td>
+        <td>{{row.zip | zip}}</td>
+        <td>{{row.st}}</td>
+        <td>{{row.pri_spec}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="report-footer" data-ng-bind-html="reportSettings.footer"></div>
+</div>

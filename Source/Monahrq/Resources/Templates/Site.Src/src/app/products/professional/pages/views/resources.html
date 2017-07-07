@@ -1,0 +1,80 @@
+<div class="row clearfix">
+
+  <div class="col-xs-3 page-content hidden-print">
+    <br />
+    <p class="sr-hidden"><a href="#" data-ng-click="skipSubnav($event)">Skip to resource content</a></p>
+    <h2 class="sr-hidden">Resource Section Menu</h2>
+    <ul class="list-group sidebar">
+      <li><a href="#" data-ng-click="setPage('AboutHealthCareQuality'); $event.preventDefault();" data-ng-class="{active: activePage() === 'AboutHealthCareQuality'}">About Health Care Quality</a></li>
+      <li>
+        <a href="#" data-ng-click="setPage('AboutHospitalQuality'); $event.preventDefault();" data-ng-class="{active: activePage() === 'AboutHospitalQuality'}"><h3>Hospital Quality</h3></a>
+        <ul>
+          <li><a href="#" data-ng-click="setPage('Methods'); $event.preventDefault();" data-ng-class="{active: activePage() === 'Methods'}">About the Methodology</a></li>
+          <li><a href="#" data-ng-click="setPage('AboutQualityRatings'); $event.preventDefault();" data-ng-class="{active: activePage() === 'AboutQualityRatings'}">About the Quality Ratings</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#" data-ng-click="setPage('AboutNursingHomeQuality'); $event.preventDefault();" data-ng-class="{active: activePage() === 'AboutNursingHomeQuality'}"><h3>Nursing Home Quality</h3></a>
+        <ul>
+          <li><a href="#" data-ng-click="setPage('NHMethods'); $event.preventDefault();" data-ng-class="{active: activePage() === 'NHMethods'}">About the Methodology</a></li>
+          <li><a href="#" data-ng-click="setPage('NHAboutQualityRatings'); $event.preventDefault();" data-ng-class="{active: activePage() === 'NHAboutQualityRatings'}">About the Quality Ratings</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#" data-ng-click="setPage('AboutPhysician'); $event.preventDefault();" data-ng-class="{active: activePage() === 'AboutPhysician'}"><h3>Find a Physician</h3></a>
+        <ul>
+          <li><a href="#" data-ng-click="setPage('AboutPhysician'); $event.preventDefault();" data-ng-class="{active: activePage() === 'AboutPhysician'}">About Physician Information</a></li>
+        </ul>
+      </li>
+      <li></li>
+      <li><a href="#" data-ng-click="setPage('AvoidingSafetyProblems'); $event.preventDefault();" data-ng-class="{active: activePage() === 'AvoidingSafetyProblems'}">Avoiding safety problems when you have surgery</a></li>
+      <li><a href="#" data-ng-click="setPage('Definitions'); $event.preventDefault();" data-ng-class="{active: activePage() === 'Definitions'}">Definitions</a></li>
+      <li><a href="http://www.qualityindicators.ahrq.gov/" target="_new">AHRQ Website for Quality Indicators</a></li>
+      <li><a href="http://www.nlm.nih.gov/medlineplus/mplusdictionary.html" target="_new">Medical Dictionary</a></li>
+      <li><a href="http://www.ahrq.gov/professionals/systems/monahrq/myqi/index.html" target="_new">Quality of Care Improvement</a></li>
+      <li><a href="#" data-ng-click="setPage('SiteMap'); $event.preventDefault();" data-ng-class="{active: activePage() === 'SiteMap'}">Site Map</a></li>
+    </ul>
+  </div>
+
+  <div id="resources-content" tabindex="-1" class="col-xs-9 page-content" data-ng-switch="activePage()" ng-cloak>
+      <div data-ng-switch-when="AboutHealthCareQuality">
+         
+          <div data-ng-include="'app/products/professional/pages/views/about-health-care-quality.html'"></div>
+      </div>
+
+    <div data-ng-switch-when="AboutHospitalQuality">
+      <div data-ng-include="'app/products/professional/pages/views/about-hospital-quality.html'"></div>
+    </div>
+    <div data-ng-switch-when="Methods">
+      <div data-ng-include="'app/products/professional/pages/views/about-methodology.html'"></div>
+    </div>
+      <div data-ng-switch-when="AboutQualityRatings">
+          <div class="about-quality-ratings" data-ng-include="'app/products/professional/pages/views/about-quality-ratings.html'"></div>
+      </div>
+
+    <div data-ng-switch-when="AboutNursingHomeQuality">
+      <div data-ng-include="'app/products/professional/pages/views/about-nursing-home-quality.html'"></div>
+    </div>
+    <div data-ng-switch-when="NHMethods">
+      <div data-ng-include="'app/products/professional/pages/views/nh-about-methodology.html'"></div>
+    </div>
+    <div data-ng-switch-when="NHAboutQualityRatings">
+      <div class="about-quality-ratings" data-ng-include="'app/products/professional/pages/views/nh-about-quality-ratings.html'"></div>
+    </div>
+
+    <div data-ng-switch-when="AboutPhysician">
+      <div data-ng-include="'app/products/professional/pages/views/about-physician.html'"></div>
+    </div>
+
+    <div data-ng-switch-when="AvoidingSafetyProblems">
+      <div data-ng-include="'app/products/professional/pages/views/avoiding-safety-problems.html'"></div>
+    </div>
+    <div data-ng-switch-when="Definitions">
+      <div data-ng-include="'app/products/professional/pages/views/definitions.html'"></div>
+    </div>
+    <div data-ng-switch-when="SiteMap">
+      <div data-ng-include="'app/products/professional/pages/views/sitemap.html'"></div>
+    </div>
+  </div>
+</div>	
+

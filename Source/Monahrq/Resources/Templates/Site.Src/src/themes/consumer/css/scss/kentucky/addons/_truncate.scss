@@ -1,0 +1,10 @@
+// Truncate single-lined elements
+
+@mixin truncate($truncate-width: 100%) {
+  display: inline-block;
+  max-width: $truncate-width;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
+}

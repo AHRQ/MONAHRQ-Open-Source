@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="Monahrq.Configuration.HostConnection.HostConnectionView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:utility="clr-namespace:Monahrq.Infrastructure.Utility;assembly=Monahrq.Infrastructure"
+             mc:Ignorable="d" 
+             d:DesignHeight="260" IsEnabled="{Binding NotBusy}" >
+    <StackPanel Orientation="Horizontal" IsEnabled="{Binding NotBusy}" Background="Transparent">
+        <StackPanel Margin="5,0,0,0" >
+            <StackPanel.Resources>
+                <Style x:Key="{x:Type TextBox}" TargetType="{x:Type TextBox}" />
+                <Style x:Key="{x:Type Button}" TargetType="{x:Type Button}" />
+            </StackPanel.Resources>
+
+            <StackPanel Orientation="Vertical" Width="Auto" Margin="0,0,0,0">
+                <Label Margin="-3,0,0,0" Foreground="#FF626262" Content="Server Name (example:  .\SQLEXPRESS)"/>
+                <TextBox Text="{Binding Host}" Height="25"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <Label Margin="-3,0,0,0" Foreground="#FF626262">Database Name</Label>
+                <TextBox Text="{Binding Database}" Height="25"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                <Label Margin="0,-2,0,0" Foreground="#FF626262">Use Integrated Security</Label>
+                <CheckBox VerticalAlignment="Center" IsChecked="{Binding UseIntegratedSecurity}" />
+            </StackPanel>
+            <Line Height=".75" Width="Auto" Margin="0,5">
+                <Line.Fill>
+                    <SolidColorBrush Color="Gray"/>
+                </Line.Fill>
+            </Line>
+            <StackPanel Orientation="Vertical">
+                <Label Margin="-3,0,0,0" Foreground="#FF626262">User Name</Label>
+                <TextBox Text="{Binding User}" Height="25"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <Label Margin="-3,0,0,0" Foreground="#FF626262">Password</Label>
+                <PasswordBox utility:PasswordHelper.Attach="True" x:Name="password"
+                                utility:PasswordHelper.Password="{Binding Text, ElementName=plain, Mode=TwoWay}" Height="25"/>
+                <TextBlock Padding="0,0" x:Name="plain" Height="0" Width="0" Text="{Binding Password}" />
+            </StackPanel>
+        </StackPanel>
+            
+        <StackPanel Orientation="Vertical" Margin="10,0,10,0" Width="80">
+            <StackPanel.Resources>
+                <Style x:Key="{x:Type Button}"  TargetType="{x:Type Button}" />
+            </StackPanel.Resources>
+            <Button Margin="5,25,5,0" Padding="5,3,5,3" Command="{Binding TestCommand}" Style="{DynamicResource PlainButton}">Test</Button>
+            <Button Margin="5,10,5,0" Padding="5,3,5,3" Command="{Binding CreateCommand}" Style="{DynamicResource PlainButton}">Create</Button>
+            <Button Margin="5,10,5,0" Padding="5,3,5,3" Command="{Binding DeleteCommand}" Style="{DynamicResource PlainButton}">Delete</Button>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

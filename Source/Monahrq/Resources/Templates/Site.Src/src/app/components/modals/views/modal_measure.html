@@ -1,0 +1,23 @@
+<div class="modal-header">
+  <button data-ng-click="$close()" type="button" class="close"><span aria-hidden="true" role="presentation">×</span><span class="sr-hidden">Close</span></button>
+  <h1 data-ng-if="isProfessional()" id="modal-header-title" class="modal-title">{{measure.SelectedTitle}}</h1>
+  <h1 data-ng-if="isConsumer()" id="modal-header-title" class="modal-title">{{measure.SelectedTitleConsumer}}</h1>
+</div>
+<div class="modal-body modal-measure">
+  <p data-ng-if="measure.MeasureDescription && isProfessional()" data-ng-bind-html="measure.MeasureDescription"></p>
+  <p data-ng-if="measure.MeasureDescriptionConsumer && isConsumer()" data-ng-bind-html="measure.MeasureDescriptionConsumer"></p>
+  <p data-ng-if="measure.Bullets && isProfessional()" data-ng-bind-html="measure.Bullets"></p>
+  <p data-ng-if="measure.ClinicalTitle && isProfessional()"><u>Clinical Title:</u> {{measure.ClinicalTitle}}</p>
+  <p data-ng-if="measure.MeasuresName && isProfessional()"><u>Measure Code:</u> {{measure.MeasuresName}}</p>
+  <p data-ng-if="measure.fStatisticsAvailable && isProfessional()"><u>Statistics Available:</u> {{measure.fStatisticsAvailable}}</p>
+  <p data-ng-if="measure.DataSourceURL"><u>Data Source:</u> <a href="{{measure.DataSourceURL}}" target="_blank">{{measure.DataSourceURLTitle}}</a></p>
+  <div data-ng-if="measure.MoreInformation" class="more-information row">
+    <p class="col-md-4">More Information:</p>
+    <p class="col-md-8">{{measure.MoreInformation}}</p>
+  </div>
+  <p data-ng-if="measure.URL"><a href="{{measure.URL}}" target="_blank">{{measure.URLTitle}}</a></p>
+  <p data-ng-if="source != 'physician'"><a href="#" data-ng-click="gotoAboutQR(); $event.preventDefault();">Go to the About Quality Ratings page</a></p>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" data-ng-click="$close()">Close</button>
+</div>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ReportManifest RptId="412A47D6-0859-47C7-A980-0A6C395C55F4"
+                Name="Utilization Rates by County, Detail Report (Population) – Trending Report"
+                Category="Utilization"
+				IsTrending="true"
+				ShowInterpretationText="true" ConsumerPreviewImage=""
+                PreviewImage="CountyRatesDetailTrending.png"
+                RequiresCostToChargeRatio="false">
+	<Audiences>
+		<Audience AudienceType="Professionals" />
+	</Audiences>
+	<Datasets>
+		<Dataset Name="Inpatient Discharge"/>
+	</Datasets>
+	<Filters>
+		<Filter Type="ConditionsAndDiagnosis">
+			<Values>
+				<FilterValue Name="Major Diagnosis Category" />
+				<FilterValue Name="Diagnosis Related Group" />
+				<FilterValue Name="Health Condition or Topic" />
+				<FilterValue Name="Procedure" />
+			</Values>
+		</Filter>
+		<Filter Type="County">
+			<Values>
+				<FilterValue Name="County" />
+			</Values>
+		</Filter>
+	</Filters>
+	<ReportAttributes>
+		CountyFilters DRGsDischargesFilters
+	</ReportAttributes>
+	<!--ReportColumns-->
+	<!--ReportColumns-->
+	<ReportAttributes />
+	<!--ReportColumns-->
+	<Columns>
+		<Column IsMeasure="true" MeasureCode="IP-08" Name="County Number of discharges" />
+		<Column IsMeasure="true" MeasureCode="IP-09" Name="County Mean costs in dollars" />
+		<Column IsMeasure="true" MeasureCode="IP-10" Name="County Median cost in dollars" />
+		<Column IsMeasure="true" MeasureCode="IP-11" Name="County Rate of Discharges (Per 1,000 Persons)" />
+	</Columns>
+	<Header>
+		<![CDATA[<p> County rates show use of hospital services by county, such as the number and length of hospital stays for different health conditions or procedures. These rates are based on where patients live, not where the hospitals they visit are located.
+	</p>]]>
+	</Header>
+	<InterpretationText />
+	<WebsitePages>
+		<WebsitePage
+			Name="Service Use [County Detail Trending]"
+			Audience="Professionals"
+			Path="app/products/professional/usage-data/views/service-use.html"
+			Url="/utilization/service-use?viewBy=population&amp;reportType=county"
+			UrlRaw="/usage-data/service-use?viewBy&amp;reportType&amp;displayType&amp;levelType&amp;levelValue&amp;levelViewBy&amp;groupBy&amp;dimension&amp;value&amp;value2"
+			IsEditable="true">
+			<WebsitePageZones>
+				<WebsitePageZone Name="Header" CodePath=""/>
+				<WebsitePageZone Name="Footer" CodePath=""/>
+			</WebsitePageZones>
+		</WebsitePage>
+	</WebsitePages>
+</ReportManifest>

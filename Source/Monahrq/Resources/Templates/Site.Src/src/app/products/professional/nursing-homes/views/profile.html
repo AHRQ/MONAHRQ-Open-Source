@@ -1,0 +1,48 @@
+<div data-mh-cms-zone="'header'" data-mh-cms-zone-report-id="reportId" data-mh-cms-zone-product="'Professional'"></div>
+<div class="nursing-home nursing-home-profile">
+<div class="page-header border">
+  <h1>Summary of {{profile.Name}}</h1>
+</div>
+
+<div class="report-header" data-ng-bind-html="reportSettings.header"></div>
+
+<div class="row">
+
+  <div class="col-xs-4">
+    <div data-ui-view="nh-profile-detail"></div>
+  </div>
+  <div class="col-xs-8">
+    <!-- <br/> -->
+    <div class="row">
+      <div class="col-md-10">
+      </div>
+      <div class="legend-icon-wrapper col-md-2">
+        <h6 data-mh-help-icon mh-on-click="modalLegend()"></h6>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6 panel row no--shadow">
+        <label for="ddComparedTo" class="md-blockfix">Compared To:</label>
+        <select class="form-control" id="ddComparedTo" data-ng-model="query.comparedTo">
+          <option value="nat">National Average</option>
+          <option value="peer">{{config.website_GeographicDescription}} Average</option>
+          <option value="county">County Average</option>
+        </select>
+      </div>
+      <div class="col-xs-4"></div>
+    </div>
+    <div class="row panel panel-default" data-ng-if="ReportConfigSvc.nhProfileHasOverallScore()">
+      <div class="col-xs-6"><a href="#" data-ng-click="modalMeasure(config.NURSING_OVERALL_ID); $event.preventDefault()">Overall Rating</a></div>
+      <div class="col-xs-6 text-right"><div data-mh-rating-nursing="getOverallRating()"></div></div>
+    </div>
+
+    <div class="row" data-ng-if="ReportConfigSvc.nhProfileHasMeasures()">
+      <div class="col-xs-12" data-ui-view="nh-profile-ratings"></div>
+    </div>
+  </div>
+
+</div>
+
+<div class="report-footer" data-ng-bind-html="reportSettings.footer"></div>
+</div>
+<div data-mh-cms-zone="'footer'" data-mh-cms-zone-report-id="reportId" data-mh-cms-zone-product="'Professional'"></div>

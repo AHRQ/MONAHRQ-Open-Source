@@ -1,0 +1,93 @@
+﻿
+
+BooleanToVisibilityConverter
+	- Converts bool values to a Visibility Enum
+	- True = Visibility
+	- False = Collapsed
+	- Has option (IsInverted) to reverse the above mapping.
+	- Has option (UseHidden) to replace Collapsed option with Hidden
+CaseConverter
+	- Accepts a string and changes its casing
+	- Has options:
+		- Lower - does String.ToLower
+		- Upper - does String.ToUpper
+		- Normal - no manipulation done.
+		- (Future) Add PascalCasing option.
+		- (Future) Add CamalCasing option.
+		- (Future) Add FistLetterCasing option.
+ConverterAccumulator
+	- Is a Converter/Value Container.
+	- (Currently) Designed to only function as a direct child of a ConverterSequence.
+	- ConverterSequence will process each of ConverterAccumulator's held converters/values individually and
+	  build a object[] of the resulting values.
+	- The resulting object[] from the processed ConverterAccumulator will then act as input to the next converter within the ConverterSequence.
+ConverterSequence
+	- Acts as both IValueConverter and IMultiValueConverter.
+	- Is a container for a sequence of Converters.
+	- Each held converter will be processed in sequence, with the result from one being fed as the input to the next.
+DateTimeConverter
+	- 
+ExpressionConverter
+	- Accepts string parameter Expression.
+	- Expression holds 'any/most' valid c# code.
+	- Expression is then compiled at runtime and executed to produce a result (of any type).
+	- This evaluated result is then returned as converted value.
+	- Expression uses the string formatting ({0}.... {1}) concept for variable replacement, thus the object/object[] fed into the converted
+	  can be replaced into the given Expression.
+	- Options:
+		- Flag UseDoubleSingleQuoteAsQuote -	Setting to true will allow the use of double single quotes ('') as a replacement for a double quote "
+
+	  Example:
+	/// <Label>
+	///     <Label.Visibility>
+	///			<Binding Path="GetStringData">
+	///				<Binding.Converter>
+	///					<ConverterSequence>
+	///						<ExpressionConverter>
+	///							<ExpressionConverter.Expression>
+	///								<![CDATA[	"{0}" != "Medicare Provider Charge Data" &&
+	///											"{0}" != "Nursing Home Compare Data"	]].............>  <NOTE: the dots should be removed.>
+	///							</ExpressionConverter.Expression>
+	///						</ExpressionConverter>
+	///						<BooleanToVisibilityConverter  UseHidden="False" />
+	///					</ConverterSequence>
+	///				</Binding.Converter> 
+	///			</Binding>
+	///     </Label.Visibility>
+	/// </Label>
+	///
+	///				......
+	///						<ExpressionConverter Expression="{} 
+	///												''{0}'' != ''Medicare Provider Charge Data'' &&
+	///												''{0}'' != ''Nursing Home Compare Data''"
+	///											 UseDoubleSingleQuoteAsQuote="True" />
+
+
+
+FormatConverter
+	- Does a String.Format conversion.
+	- Used IMultiBind to supply values.
+    /// <Label>
+    ///     <Label.Content>
+    ///         <MultiBinding Converter="{FormatConverter {}Your name is '{0}' and you were born on {1:dd/MM/yyyy}.}">
+    ///             <Binding Path="Name"/>
+    ///             <Binding Path="Dob"/>
+    ///         </MultiBinding>
+    ///     </Label.Content>
+    /// </Label>
+Indexer
+	- Excpects a object[] and returns an indexed value from it.
+MapConverter
+	- In essence, this is a switch statement.  It maps a value to a result.
+	///	<Binding Path="GetValueToMap">
+	///		<Binding.Converter>
+	///			<MapConverter>
+	///				<Mapping From="Choice A" To="Result A" />
+	///				<Mapping From="Choice B" To="Result B" />
+	///				<Mapping From="Choice C" To="Result C" />
+	///			</MapConverter>
+	///		...
+TypeConverter
+	- Does a System.Convert on the given value and result type.
+	- A TargetType field is needed to supply the desired target type
+	- A SourceType field can be used if convertBack functionality is desired.

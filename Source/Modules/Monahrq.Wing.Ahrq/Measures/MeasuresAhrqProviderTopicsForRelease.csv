@@ -1,0 +1,56 @@
+MeasureCode,TopicCategory,TopicName
+IQI 01,Surgeries for Specific Health Conditions,Practice Patterns
+IQI 02,Surgeries for Specific Health Conditions,Practice Patterns
+IQI 04,Surgeries for Specific Health Conditions,Practice Patterns
+IQI 05,Heart surgeries and procedures,Results of care
+IQI 06,Heart surgeries and procedures,Results of care
+IQI 07,Stroke,Results of care
+IQI 08,Surgeries for Specific Health Conditions,Results of care – Deaths
+IQI 09,Surgeries for Specific Health Conditions,Results of care – Deaths
+IQI 11,Surgeries for Specific Health Conditions,Results of care – Deaths
+IQI 12,Heart surgeries and procedures,Results of care
+IQI 13,Surgeries for Specific Health Conditions,Results of care – Deaths
+IQI 14,Hip or Knee Replacement Surgery,Results of care
+IQI 15,Heart attack and chest pain,Results of care
+IQI 16,Heart failure,Results of care
+IQI 17,Stroke,Results of care
+IQI 18,Patient safety ,Results of care - Deaths
+IQI 19,Patient safety ,Results of care - Deaths
+IQI 20,Pneumonia,Results of care
+IQI 21,Childbirth,Practice patterns
+IQI 22,Childbirth,Practice patterns
+IQI 23,Surgeries for Specific Health Conditions,Practice patterns
+IQI 24,Surgeries for Specific Health Conditions,Recommended care
+IQI 25,Heart surgeries and procedures,Recommended care
+IQI 30,Heart surgeries and procedures,Results of care
+IQI 31,Stroke,Results of care
+IQI 32,Heart attack and chest pain,Results of care
+IQI 33,Childbirth,Practice patterns
+IQI 34,Childbirth,Practice patterns
+PSI 02,Patient safety,Results of care - Deaths
+PSI 02,Nursing care,Results of care - Deaths
+PSI 03,Patient safety ,Results of care - Complications
+PSI 03,Nursing care,Results of care - Complications
+PSI 04,Surgical patient safety,Results of care
+PSI 04,Nursing care,Results of care - Deaths
+PSI 05,Surgical Patient safety,Results of care
+PSI 05,Patient safety,Results of care - Complications,True
+PSI 06,Patient safety ,Results of care - Complications
+PSI 07,Patient safety ,Results of care - Complications
+PSI 07,Nursing care,Results of care - Complications
+PSI 08,Surgical patient safety,Results of care
+PSI 08,Nursing care,Results of care - Complications
+PSI 09,Surgical patient safety,Results of care
+PSI 10,Surgical patient safety,Results of care
+PSI 10,Nursing care,Results of care - Complications
+PSI 11,Surgical patient safety,Results of care
+PSI 12,Surgical patient safety,Results of care
+PSI 12,Nursing care,Results of care - Complications
+PSI 13,Surgical patient safety,Results of care
+PSI 13,Nursing care,Results of care - Complications
+PSI 14,Surgical patient safety,Results of care
+PSI 15,Surgical patient safety,Results of care
+PSI 16,Patient safety ,Results of care - Complications
+PSI 17,Childbirth,Results of care
+PSI 18,Childbirth,Results of care
+PSI 19,Childbirth,Results of care

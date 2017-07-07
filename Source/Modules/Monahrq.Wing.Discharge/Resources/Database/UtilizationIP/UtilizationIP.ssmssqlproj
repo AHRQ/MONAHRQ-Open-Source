@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+<SqlWorkbenchSqlProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="UtilizationIP">
+  <Items>
+    <LogicalFolder Name="Connections" Type="2" Sorted="true">
+      <Items>
+        <ConnectionNode Name="(local):BLUELIGHTNING\BLNAdmin">
+          <Created>2014-09-05T17:21:22.4070671-04:00</Created>
+          <Type>SQL</Type>
+          <Server>(local)</Server>
+          <UserName />
+          <Authentication>Windows Authentication</Authentication>
+          <InitialDB />
+          <LoginTimeout>15</LoginTimeout>
+          <ExecutionTimeout>0</ExecutionTimeout>
+          <ConnectionProtocol>NotSpecified</ConnectionProtocol>
+          <ApplicationName>Microsoft SQL Server Management Studio - Query</ApplicationName>
+        </ConnectionNode>
+        <ConnectionNode Name="127.0.0.1:BLUELIGHTNING\BLNAdmin">
+          <Created>2014-09-06T14:41:58.6345184-04:00</Created>
+          <Type>SQL</Type>
+          <Server>127.0.0.1</Server>
+          <UserName />
+          <Authentication>Windows Authentication</Authentication>
+          <InitialDB />
+          <LoginTimeout>15</LoginTimeout>
+          <ExecutionTimeout>0</ExecutionTimeout>
+          <ConnectionProtocol>NotSpecified</ConnectionProtocol>
+          <ApplicationName>Microsoft SQL Server Management Studio - Query</ApplicationName>
+        </ConnectionNode>
+        <ConnectionNode Name="JPVSURFACE\SQLEX2008R2:BLUELIGHTNING\BLNAdmin">
+          <Created>2014-10-16T08:38:23.2835969-04:00</Created>
+          <Type>SQL</Type>
+          <Server>JPVSURFACE\SQLEX2008R2</Server>
+          <UserName />
+          <Authentication>Windows Authentication</Authentication>
+          <InitialDB />
+          <LoginTimeout>15</LoginTimeout>
+          <ExecutionTimeout>0</ExecutionTimeout>
+          <ConnectionProtocol>NotSpecified</ConnectionProtocol>
+          <ApplicationName>Microsoft SQL Server Management Studio - Query</ApplicationName>
+        </ConnectionNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Queries" Type="0" Sorted="true">
+      <Items>
+        <FileNode Name="Sproc-spUtilIPGetDetailData.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Sproc-spUtilIPGetDetailData.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Sproc-spUtilIPGetRecordsInIPTarget.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:JPVSURFACE\SQLEX2008R2:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>JPVSURFACE\SQLEX2008R2</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Sproc-spUtilIPGetRecordsInIPTarget.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Sproc-spUtilIPGetSummaryDataByClinical.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Sproc-spUtilIPGetSummaryDataByClinical.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Sproc-spUtilIPGetSummaryDataByGeo.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Sproc-spUtilIPGetSummaryDataByGeo.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Sproc-spUtilIPInitializeDRG.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Sproc-spUtilIPInitializeDRG.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Sproc-spUtilIPInitializeDXCCS.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Sproc-spUtilIPInitializeDXCCS.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Sproc-spUtilIPInitializeMDC.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Sproc-spUtilIPInitializeMDC.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Sproc-spUtilIPInitializePRCCS.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Sproc-spUtilIPInitializePRCCS.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Sproc-spUtilIPUpdateHospitalType.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Sproc-spUtilIPUpdateHospitalType.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Sproc-spUtilIPUpdateZip.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Sproc-spUtilIPUpdateZip.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Table-TempUtilIPCounty.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Table-TempUtilIPCounty.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Table-TempUtilIPHospital.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Table-TempUtilIPHospital.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Table-TempUtilIPHospitalType.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Table-TempUtilIPHospitalType.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Table-TempUtilIPNationalTotals.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Table-TempUtilIPNationalTotals.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Table-TempUtilIPPrep.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Table-TempUtilIPPrep.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Table-TempUtilIPRegion.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Table-TempUtilIPRegion.sql</FullPath>
+        </FileNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Miscellaneous" Type="3" Sorted="true">
+      <Items />
+    </LogicalFolder>
+  </Items>
+</SqlWorkbenchSqlProject>

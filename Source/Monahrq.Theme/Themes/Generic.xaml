@@ -1,0 +1,416 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Monahrq.Theme.Controls"
+    xmlns:converters="clr-namespace:Monahrq.Theme.Converters"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns:pagination="clr-namespace:Monahrq.Theme.Controls.Pagination">
+    <converters:MButtonLeftToVisibilityConverter x:Key="LeftToVisibilityConverter" />
+    <converters:MButtonRightToVisibilityConverter x:Key="RightToVisibilityConverter" />
+    <converters:MSymbolTypeConverter x:Key="SymbolTypeConverter" />
+    <converters:PagingPageSizeConverter x:Key="PagingPageSizeConverter" />
+    <converters:InvertedBooleanConverter x:Key="InvertedBooleanConverter" />
+
+    <SolidColorBrush x:Key="MBlue" Color="#FF41B0E0"/>
+    <SolidColorBrush x:Key="MDBlue" Color="#FF3886A8"/>
+    <SolidColorBrush x:Key="TabBlue" Color="#FFE5E5E5"/>
+    <SolidColorBrush x:Key="MGrey1" Color="#FFF7F7F7"/>
+    <SolidColorBrush x:Key="MGrey2" Color="#FFE0E0E0"/>
+    <SolidColorBrush x:Key="MGrey3" Color="#FFBEBEBE"/>
+    <SolidColorBrush x:Key="MGrey4" Color="Gray"/>
+    <SolidColorBrush x:Key="MGrey5" Color="#FF626262"/>
+    <SolidColorBrush x:Key="TabItemGap" Color="White"/>
+
+
+    <Style TargetType="{x:Type controls:MonahrqButton}">
+        <Setter Property="PressedForeground" Value="Black"></Setter>
+        <Setter Property="FocusedForeground" Value="Black"></Setter>
+        <Setter Property="DisabledForeground" Value="Black"></Setter>
+        <Setter Property="MouseoverForeground" Value="Black"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:MonahrqButton}">
+                    <Grid x:Name="root">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="{Binding ElementName=root, Path=ActualHeight}"/>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="{Binding ElementName=root, Path=ActualHeight}"/>
+                        </Grid.ColumnDefinitions>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal"/>
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="MouseOverBorder">
+                                            <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="contentPresenter">
+                                            <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="contentPresenterMouseOver">
+                                            <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="PressedBorder">
+                                            <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="contentPresenter">
+                                            <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="contentPresenterPressed">
+                                            <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="DisabledBorder">
+                                            <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="contentPresenter">
+                                            <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="contentPresenterDisabled">
+                                            <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="FocusStates">
+                                <VisualState x:Name="Focused">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="FocusedBorder">
+                                            <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="contentPresenter">
+                                            <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="contentPresenterFocused">
+                                            <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Unfocused"/>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border x:Name="Background" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" 
+                                Background="{TemplateBinding Background}" CornerRadius="0" Grid.ColumnSpan="3" Grid.Column="0" />
+                        <Border x:Name="FocusedBorder" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding FocusedBorder}" 
+                                Background="{TemplateBinding FocusedBackground}" CornerRadius="0" Opacity="0" Grid.ColumnSpan="3" Grid.Column="0" />
+                        <Border x:Name="MouseOverBorder" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding MouseoverBorder}"  
+                                Background="{TemplateBinding MouseoverBackground}" CornerRadius="0" Opacity="0" Grid.ColumnSpan="3" Grid.Column="0" />
+                        <Border x:Name="PressedBorder" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding PressedBorder}" 
+                                Background="{TemplateBinding PressedBackground}" CornerRadius="0" Opacity="0" Grid.ColumnSpan="3" Grid.Column="0" />
+                        <Border x:Name="DisabledBorder" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding DisabledBorder}" 
+                                Background="{TemplateBinding DisabledBackground}" CornerRadius="0" Opacity="0" Grid.ColumnSpan="3" Grid.Column="0" />
+
+                        <ContentControl x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Height="Auto" Width="Auto" Margin="{TemplateBinding Padding}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Foreground="{TemplateBinding Foreground}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Grid.Column="0" Grid.ColumnSpan="3"/>
+                        <ContentControl x:Name="contentPresenterFocused" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Height="Auto" Width="Auto" Margin="{TemplateBinding Padding}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Foreground="{TemplateBinding FocusedForeground}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Grid.Column="0" Grid.ColumnSpan="3" Opacity="0"/>
+                        <ContentControl x:Name="contentPresenterMouseOver" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Height="Auto" Width="Auto" Margin="{TemplateBinding Padding}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Foreground="{TemplateBinding MouseoverForeground}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Grid.Column="0" Grid.ColumnSpan="3" Opacity="0" />
+                        <ContentControl x:Name="contentPresenterPressed" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Height="Auto" Width="Auto" Margin="{TemplateBinding Padding}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Foreground="{TemplateBinding PressedForeground}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Grid.Column="0" Grid.ColumnSpan="3" Opacity="0" />
+                        <ContentControl x:Name="contentPresenterDisabled" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Height="Auto" Width="Auto" Margin="{TemplateBinding Padding}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Foreground="{TemplateBinding DisabledForeground}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Grid.Column="0" Grid.ColumnSpan="3" Opacity="0" />
+
+                        <Grid x:Name="LeftSymbolGrid" Grid.Column="0" Visibility="{TemplateBinding SymbolDirection, Converter={StaticResource LeftToVisibilityConverter}}">
+                            <Border BorderBrush="{x:Null}" BorderThickness="{TemplateBinding BorderThickness}" Grid.Column="0" Background="{TemplateBinding BorderBrush}"  Visibility="{TemplateBinding SymbolType, Converter={StaticResource SymbolTypeConverter}, ConverterParameter={x:Static controls:MButtonSymbol.Arrow}}">
+                                <Viewbox   Stretch="Uniform" >
+                                    <Canvas Width="28" Height="28" Clip="F1 M 0,0L 48,0L 48,48L 0,48L 0,0" UseLayoutRounding="False" >
+                                        <Path Width="17.25" Height="20" Canvas.Left="4" Canvas.Top="4" Stretch="Fill" Fill="#FFF" Data="F1 M 21.25,24L 31.25,34L 24.5,34L 14,24L 24.5,14L 31.25,14L 21.25,24 Z " />
+                                    </Canvas>
+                                </Viewbox>
+                            </Border>
+                            <Border BorderBrush="{x:Null}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding BorderBrush}"  Visibility="{TemplateBinding SymbolType, Converter={StaticResource SymbolTypeConverter}, ConverterParameter={x:Static controls:MButtonSymbol.Plus}}">
+                                <Grid Margin="-1">
+                                    <Rectangle Fill="White" Margin="0" RadiusY="0" RadiusX="0" Width="3" Height="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <Rectangle Fill="White" Height="3" Margin="0" RadiusY="0" RadiusX="0" VerticalAlignment="Center" Width="18" HorizontalAlignment="Center"/>
+                                </Grid>
+                            </Border>
+                            <Border BorderBrush="{x:Null}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding BorderBrush}"  Visibility="{TemplateBinding SymbolType, Converter={StaticResource SymbolTypeConverter}, ConverterParameter={x:Static controls:MButtonSymbol.Import}}">
+                                <Viewbox Stretch="Uniform" >
+                                    <Canvas  Width="76" Height="76" Clip="F1 M 0,0L 76,0L 76,76L 0,76L 0,0">
+                                        <Path Width="42" Height="44" Canvas.Left="17" Canvas.Top="13" Stretch="Fill" Fill="#FFF" Data="F1 M 35,13L 35,30.5L 27,21L 27,30.75L 38,43.25L 49,30.75L 49,21L 41,30.5L 41,13L 35,13 Z M 17,38L 30,38L 33.75,42L 21,42L 21,53L 55,53L 55,42L 42.25,42L 46,38L 59,38L 59,57L 17,57L 17,38 Z M 33,46L 43,46L 43,49L 33,49L 33,46 Z "/>
+                                    </Canvas>
+                                </Viewbox>
+                            </Border>
+                        </Grid>
+                        <Grid  x:Name="RightSymbolGrid" Margin="0" Grid.Column="2" Visibility="{TemplateBinding SymbolDirection, Converter={StaticResource RightToVisibilityConverter}}">
+                            <Border BorderBrush="{x:Null}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding BorderBrush}"  Visibility="{TemplateBinding SymbolType, Converter={StaticResource SymbolTypeConverter}, ConverterParameter={x:Static controls:MButtonSymbol.Arrow}}">
+                                <Viewbox Stretch="Uniform" >
+                                    <Canvas Width="28" Height="28" Clip="F1 M 0,0L 48,0L 48,48L 0,48L 0,0" UseLayoutRounding="False">
+                                        <Path Width="17.25" Height="20" Canvas.Left="4" Canvas.Top="4" Stretch="Fill" Fill="#FFF" Data="F1 M 26.75,24L 16.75,34L 23.5,34L 34,24L 23.5,14L 16.75,14L 26.75,24 Z " />
+                                    </Canvas>
+                                </Viewbox>
+                            </Border>
+                            <Border BorderBrush="{x:Null}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding BorderBrush}"  Visibility="{TemplateBinding SymbolType, Converter={StaticResource SymbolTypeConverter}, ConverterParameter={x:Static controls:MButtonSymbol.Plus}}">
+                                <Grid Margin="-1">
+                                    <Rectangle Fill="White" Margin="0" RadiusY="0" RadiusX="0" Width="3" Height="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <Rectangle Fill="White" Height="3" Margin="0" RadiusY="0" RadiusX="0" VerticalAlignment="Center" Width="18" HorizontalAlignment="Center"/>
+                                </Grid>
+                            </Border>
+                            <Border BorderBrush="{x:Null}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding BorderBrush}"  Visibility="{TemplateBinding SymbolType, Converter={StaticResource SymbolTypeConverter}, ConverterParameter={x:Static controls:MButtonSymbol.Import}}">
+                                <Viewbox Stretch="Uniform" >
+                                    <Canvas  Width="76" Height="76" Clip="F1 M 0,0L 76,0L 76,76L 0,76L 0,0">
+                                        <Path Width="42" Height="44" Canvas.Left="17" Canvas.Top="13" Stretch="Fill" Fill="#FFF" Data="F1 M 35,13L 35,30.5L 27,21L 27,30.75L 38,43.25L 49,30.75L 49,21L 41,30.5L 41,13L 35,13 Z M 17,38L 30,38L 33.75,42L 21,42L 21,53L 55,53L 55,42L 42.25,42L 46,38L 59,38L 59,57L 17,57L 17,38 Z M 33,46L 43,46L 43,49L 33,49L 33,46 Z "/>
+                                    </Canvas>
+                                </Viewbox>
+                            </Border>
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style TargetType="{x:Type controls:MonahrqTabControl}">
+        <Setter Property="Background" Value="{StaticResource TabBlue}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource MBlue}"/>
+        <Setter Property="BorderThickness" Value="0,1"  />
+        <Setter Property="IsSynchronizedWithCurrentItem" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:MonahrqTabControl}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition x:Name="ColumnDefinition0"/>
+                            <ColumnDefinition x:Name="ColumnDefinition1" Width="0"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition x:Name="RowDefinition0" Height="Auto"/>
+                            <RowDefinition x:Name="RowDefinition1" Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TabPanel x:Name="HeaderPanel" Grid.Column="0" IsItemsHost="True" Grid.Row="0" 
+                                  KeyboardNavigation.TabIndex="1" HorizontalAlignment="{TemplateBinding TabStripAlignment}" />
+                        <Grid Grid.Row="1" Grid.Column="0" Background="{TemplateBinding Background}" Margin="0,0,6,0">
+                            <Border x:Name="ContentPanel" BorderBrush="{TemplateBinding BorderBrush}"  
+                                    BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" 
+                                    KeyboardNavigation.DirectionalNavigation="Contained" KeyboardNavigation.TabIndex="2" KeyboardNavigation.TabNavigation="Local">
+                                <ContentPresenter x:Name="PART_SelectedContentHost" 
+                                                  ContentTemplate="{TemplateBinding SelectedContentTemplate}"
+                                                  Content="{TemplateBinding SelectedContent}" 
+                                                  ContentStringFormat="{TemplateBinding SelectedContentStringFormat}" 
+                                                  ContentSource="SelectedContent" Margin="{TemplateBinding Padding}" 
+                                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                            </Border>
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <!--<Style x:Key="MonahrqTabItem" TargetType="{x:Type controls:MonahrqTabItem}">-->
+    <Style x:Key="MonahrqTabItem" TargetType="{x:Type TabItem}">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="IsTabStop" Value="False"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Padding" Value="6,2"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+        <Setter Property="MinWidth" Value="5"/>
+        <Setter Property="MinHeight" Value="5"/>
+        <Setter Property="FontFamily" Value="Segoe UI Semibold" />
+        <Setter Property="Background" Value="{StaticResource TabBlue}" />
+        <Setter Property="TextBlock.FontSize" Value="16" />
+        <Setter Property="Padding" Value="6,7" />
+        <Setter Property="HeaderTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type TabItem}}, 
+                            Path=DataContext.DataContext.HeaderText, FallbackValue=VM.HeaderText,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <!--<TextBlock Text="Header T" />-->
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <!--Header Control Template-->
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TabItem}">
+                    <Border Background="{DynamicResource TabItemGap}">
+                        <Border x:Name="border" Background="{DynamicResource MGrey2}" Padding="{TemplateBinding Padding}" Margin="0,0,6,0">
+                            <Label x:Name="root" FontSize="{TemplateBinding FontSize}">
+                                <ContentPresenter ContentTemplate="{TemplateBinding HeaderTemplate}" 
+							        Content="{TemplateBinding Header}" ContentSource="Header" 
+							        ContentStringFormat="{TemplateBinding HeaderStringFormat}" 
+							        RecognizesAccessKey="True"/>
+                            </Label>
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Foreground" TargetName="root">
+                                <Setter.Value>
+                                    <SolidColorBrush Color="White"/>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Background" TargetName="border">
+                                <Setter.Value>
+                                    <SolidColorBrush Color="#FF41B0E0"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="False">
+                            <Setter Property="Foreground" TargetName="root">
+                                <Setter.Value>
+                                    <SolidColorBrush Color="#FF626262"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" SourceName="root" Value="True">
+                            <Setter Property="Foreground" TargetName="root">
+                                <Setter.Value>
+                                    <SolidColorBrush Color="White"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <!--<x:Array x:Key="PageSizeSelectionArray" Type="controls:PageSizeSelection" >
+        <controls:PageSizeSelection PageSizeDisplay="50" PageSizeValue="50" />
+        <controls:PageSizeSelection PageSizeDisplay="100" PageSizeValue="100" />
+        <controls:PageSizeSelection PageSizeDisplay="200" PageSizeValue="200" />
+    </x:Array>-->
+
+
+    <Style TargetType="{x:Type pagination:PagingControl}">
+        <!--<Setter Property="BorderBrush" Value="{DynamicResource MGrey4}" />-->
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="FontFamily" Value="{DynamicResource DefaultFont}"/>
+        <Setter Property="Background" Value="{DynamicResource GrayBrush7}"/>
+        <!--<Setter Property="BorderBrush" Value="{DynamicResource TextBoxBorderBrush}"/>-->
+        <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
+        <Setter Property="Height" Value="27"/>
+        <!--<Setter Property="Width" Value="300" />-->
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type pagination:PagingControl}">
+                    <Border Background="Transparent" Height="{TemplateBinding Height}"
+                            BorderBrush="{TemplateBinding BorderBrush}" Width="{TemplateBinding Width}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <StackPanel Orientation="Horizontal" >
+                          <Button Name="PART_FirstPageButton" Width="25" Background="{TemplateBinding Background}" Margin="5,0"
+                                  BorderThickness="0" BorderBrush="Transparent" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                  IsEnabled="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PagingArguments.IsFirstPage, 
+                                        Converter={StaticResource InvertedBooleanConverter}}">
+                            <!-- Content="|&lt;"  -->
+                            <Button.Content>
+                              <StackPanel Orientation="Horizontal">
+                                <Path Data="M422.42754,140.2 L422.42754,180.30136" Margin="2,0,0,0"
+                                      Height="16" Stretch="Fill" Stroke="White" StrokeThickness="3" VerticalAlignment="Top" Width="4.244"/>
+                                <Path Data="F1 M 328.101,80.0001L 80,328.101L 328.101,576.203" Margin="-3,0,0,0"
+                                      Width="15" Height="15" Stroke="White" StrokeThickness="3" Stretch="Uniform" UseLayoutRounding="False"/>
+                              </StackPanel>
+                            </Button.Content>
+                          </Button>
+                          <Button Name="PART_PreviousPageButton"  Width="25" Background="{TemplateBinding Background}"
+                                  BorderThickness="0" BorderBrush="Transparent" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                  IsEnabled="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PagingArguments.IsFirstPage, 
+                                        Converter={StaticResource InvertedBooleanConverter}}">
+                            <!-- Content="&lt;"-->
+                            <Button.Content>
+                                <Path
+       Data="F1 M 328.101,80.0001L 80,328.101L 328.101,576.203" Width="15" Height="15" Stroke="White" StrokeThickness="3" Stretch="Uniform" UseLayoutRounding="False"/>
+
+                            </Button.Content>
+                          </Button>
+
+                            <Grid Margin="10,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" MinWidth="60" />
+                                    <!--Page Index Label-->
+                                    <ColumnDefinition Width="3*" />
+                                    <ColumnDefinition Width="Auto" MinWidth="80" />
+                                    <!--Page Size Label-->
+                                    <ColumnDefinition Width="4*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Content="Page: " HorizontalAlignment="Center"
+                                       Background="Transparent" Foreground="{TemplateBinding Foreground}" BorderThickness="0" />
+                                <TextBox Grid.Column="1" HorizontalAlignment="Center"
+                                    Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PagingArguments.PageIndex}" 
+                                         VerticalContentAlignment="Center" Background="White" BorderThickness="0"/>
+
+                                <Label Grid.Column="2" Content="Page Size: " HorizontalAlignment="Center"
+                                       Background="Transparent" Foreground="{TemplateBinding Foreground}" BorderThickness="0" />
+                                <ComboBox Grid.Column="3"  Background="White" BorderThickness="0" 
+                                          SelectedItem="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PagingArguments.PageSize
+                                            , Converter={StaticResource PagingPageSizeConverter}}"
+                                          >
+                                    <ComboBox.Items>
+                                        <sys:Int32>50</sys:Int32>
+                                        <sys:Int32>100</sys:Int32>
+                                        <sys:Int32>150</sys:Int32>
+                                        <sys:Int32>200</sys:Int32>
+                                        <sys:String>All</sys:String>
+                                    </ComboBox.Items>
+                                </ComboBox>
+                            </Grid>
+
+                          <Button Name="PART_NextPageButton"  Width="25" Background="{TemplateBinding Background}"
+                                  BorderThickness="0" BorderBrush="Transparent" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                  IsEnabled="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PagingArguments.IsLastPage, 
+                                        Converter={StaticResource InvertedBooleanConverter}}">
+                            <!--Content="&gt;"-->
+                            <Button.Content>
+                              <Path Data="F1 M 328.101,80.0001L 80,328.101L 328.101,576.203" 
+                                    Width="15" Height="15" Stroke="White" StrokeThickness="3" Stretch="Uniform" UseLayoutRounding="False" RenderTransformOrigin="0.5,0.5">
+                                <Path.RenderTransform>
+                                  <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="180"/>
+                                    <TranslateTransform/>
+                                  </TransformGroup>
+                                </Path.RenderTransform>
+                              </Path>
+                            </Button.Content>
+                          </Button>
+                          <Button Name="PART_LastPageButton" Width="25" Background="{TemplateBinding Background}" Margin="5,0"
+                                  BorderThickness="0" BorderBrush="Transparent" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                  IsEnabled="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PagingArguments.IsLastPage, 
+                                        Converter={StaticResource InvertedBooleanConverter}}">
+                            <!-- Content="&gt;|"-->
+                            <Button.Content>
+                              <StackPanel Orientation="Horizontal">
+                                <Path Data="F1 M 328.101,80.0001L 80,328.101L 328.101,576.203" HorizontalAlignment="Left" VerticalAlignment="Center"
+                                      Width="15" Height="15" Stroke="White" StrokeThickness="3" Stretch="Uniform" Margin="10,0,5,-30">
+                                  <Path.RenderTransform>
+                                    <TransformGroup>
+                                      <ScaleTransform/>
+                                      <SkewTransform/>
+                                      <RotateTransform Angle="180"/>
+                                      <TranslateTransform/>
+                                    </TransformGroup>
+                                  </Path.RenderTransform>
+                                </Path>
+                                <Path Data="M422.42754,140.2 L422.42754,180.30136" HorizontalAlignment="Left" Margin="-20,0,0,0"
+                                      Height="16" Stretch="Fill" Stroke="White" StrokeThickness="3"  Width="4.244" />
+                              </StackPanel>
+                            </Button.Content>
+                              
+                          </Button>
+
+                        </StackPanel>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

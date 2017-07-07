@@ -1,0 +1,14 @@
+// ------------------------------------------------------------------- //
+//  Micro Clearfix
+//  
+//  Based on Thierry Koblentz's blog post on minimizing the already
+//  micro clearfix by Nicolas Gallagher.
+// ------------------------------------------------------------------- //
+
+@mixin clearfix {
+  &:after {
+    display: table;
+    clear: both;
+    content: "";
+  }
+}

@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ReportManifest RptId="12546E5A-CA82-4D7E-AAB5-C1DB88A4FD33"
+                Name="Hospitals Quality Ratings - Bar Chart" ShowInterpretationText="true"
+                Category="Quality"
+				IsTrending="false" ConsumerPreviewImage=""
+				RequiresCmsProviderId="true" RequiresCostToChargeRatio="false"
+                PreviewImage="HospitalsQualityRating-barchart.png">
+	<Audiences>
+		<Audience AudienceType="Professionals" />
+	</Audiences>
+	<Datasets>
+		<Dataset Name="Hospital Compare Data"/>
+		<!--<Dataset Name="AHRQ-QI Area Data"/>-->
+		<Dataset Name="AHRQ-QI Composite Data"/>
+		<Dataset Name="AHRQ-QI Provider Data"/>
+	</Datasets>
+	<Filters>
+		<Filter Type="Hospital">
+			<Values>
+				<FilterValue Name="Hospital Name" />
+				<FilterValue Name="Hospital Type" />
+				<FilterValue Name="Region" />
+				<FilterValue Name="County" />
+			</Values>
+		</Filter>
+	</Filters>
+	<ReportAttributes>
+		HospitalFilters
+	</ReportAttributes>
+	<Columns>
+		<Column IsMeasure="true" MeasureCode="IQI 90" Name="How often patients die in the hospital after one of eight major surgeries" />
+		<Column IsMeasure="true" MeasureCode="IQI 91" Name="Patients who died in the hospital after having one of six common conditions or procedures." />
+		<Column IsMeasure="true" MeasureCode="PSI 90" Name="How well this hospital keeps patients safe based on eleven patient safety problems" />
+		<Column IsMeasure="true" MeasureCode="AMI-10" Name="Heart attack patients given a prescription for a cholesterol lowering drugs when they leave the hospital" />
+		<Column IsMeasure="true" MeasureCode="AMI-2" Name="Heart attack patients prescribed aspirin before leaving the hospital" />
+		<Column IsMeasure="true" MeasureCode="AMI-7a" Name="Heart attack patients given medicine to reduce blood clots within 30 minutes of getting to the hospital" />
+		<Column IsMeasure="true" MeasureCode="AMI-8a" Name="Heart attack patients given procedure to open blood vessels within 90 minutes of getting to the hospital" />
+		<Column IsMeasure="true" MeasureCode="COMP-HIP-KNEE" Name="Complications after hip or knee replacement surgery" />
+		<Column IsMeasure="true" MeasureCode="ED-1b" Name="How long patients spent in the emergency department before leaving for their hospital room" />
+		<Column IsMeasure="true" MeasureCode="ED-2b" Name="How long patients spent in the emergency department after the doctor decided the patient would stay in the hospital before leaving for their hospital room" />
+		<Column IsMeasure="true" MeasureCode="HAI-1" Name="Central Line-associated Blood Stream Infections (CLABSI)" />
+		<Column IsMeasure="true" MeasureCode="HAI-2" Name="Catheter-associated urinary tract infections" />
+		<Column IsMeasure="true" MeasureCode="HAI-3" Name="Infections after colon surgery" />
+		<Column IsMeasure="true" MeasureCode="HAI-4" Name="Infections after hysterectomy" />
+		<Column IsMeasure="true" MeasureCode="HAI-5" Name="Methicillin-resistant Staphylococcus Aureus (MRSA) infections" />
+		<Column IsMeasure="true" MeasureCode="HAI-6" Name="Clostridium difficile (C.diff.) infections" />
+		<Column IsMeasure="true" MeasureCode="H-CLEAN-HSP" Name="How often were the patients' rooms and bathrooms always kept clean?" />
+		<Column IsMeasure="true" MeasureCode="H-COMP-1" Name="How often did nurses always communicate well with patients?" />
+		<Column IsMeasure="true" MeasureCode="H-COMP-2" Name="How often did doctors always communicate well with patients?" />
+		<Column IsMeasure="true" MeasureCode="H-COMP-3" Name="How often did patients always receive help quickly from hospital staff?" />
+		<Column IsMeasure="true" MeasureCode="H-COMP-4" Name="How often was patients' pain always well-controlled?" />
+		<Column IsMeasure="true" MeasureCode="H-COMP-5" Name="How often did staff always explain about medicines before giving them to patients?" />
+		<Column IsMeasure="true" MeasureCode="H-COMP-6" Name="Were patients always given information about what to do during their recovery at home?" />
+		<Column IsMeasure="true" MeasureCode="H-COMP-7-SA" Name="How well do patients understand their care when they leave the hospital?" />
+		<Column IsMeasure="true" MeasureCode="HF-1" Name="Heart failure patients given instructions for follow-up care before leaving the hospital" />
+		<Column IsMeasure="true" MeasureCode="HF-2" Name="Test of how well the heart is able to pump blood" />
+		<Column IsMeasure="true" MeasureCode="HF-3" Name="Heart failure patients given medicine to make the heart work better" />
+		<Column IsMeasure="true" MeasureCode="H-HSP-RATING" Name="How well did this hospital rate on whether patients would recommend it to family and friends" />
+		<Column IsMeasure="true" MeasureCode="H-QUIET-HSP" Name="How often was the area around patients' rooms always kept quiet at night?" />
+		<Column IsMeasure="true" MeasureCode="H-RECMND" Name="Would patients recommend the hospital to friends and family?" />
+		<Column IsMeasure="true" MeasureCode="IMM-2" Name="Patients in the hospital who got the flu vaccine if they were likely to get flu" />
+		<Column IsMeasure="true" MeasureCode="MORT-30-PN" Name="Dying within 30-days after getting care in the hospital for pneumonia" />
+		<Column IsMeasure="true" MeasureCode="MORT-30-AMI" Name="Dying within 30-days after getting care in the hospital for a heart attack" />
+		<Column IsMeasure="true" MeasureCode="MORT-30-COPD" Name="Dying within 30-days after getting care in the hospital for chronic obstructive pulmonary disease (COPD)" />
+		<Column IsMeasure="true" MeasureCode="MORT-30-HF" Name="Dying within 30-days after getting care in the hospital for heart failure" />
+		<Column IsMeasure="true" MeasureCode="OP-10" Name="Contrast material (dye) used during abdominal CT scan" />
+		<Column IsMeasure="true" MeasureCode="OP-11" Name="Contrast material (dye) used during thorax CT scan" />
+		<Column IsMeasure="true" MeasureCode="OP-13" Name="Patients who had a low-risk surgery and received a heart-related test, such as an MRI, at least 30 days prior to their surgery though they do not have a heart condition" />
+		<Column IsMeasure="true" MeasureCode="OP-14" Name="Patients who came to the hospital for a scan of their brain and also got a scan of their sinuses." />
+		<Column IsMeasure="true" MeasureCode="OP-18b" Name="How long patients spent in the emergency department before being sent home" />
+		<Column IsMeasure="true" MeasureCode="OP-2" Name="Patients who come to the hospital with chest pain or possible heart attack who got drugs to break up blood clots within 30 minutes of arrival" />
+		<Column IsMeasure="true" MeasureCode="OP-20" Name="How long patients spent in the emergency department before they were seen by a healthcare professional" />
+		<Column IsMeasure="true" MeasureCode="OP-21" Name="How long patients who came to the emergency department with broken bones had to wait before receiving pain medication" />
+		<Column IsMeasure="true" MeasureCode="OP-22" Name="Patients who left the emergency department without being seen" />
+		<Column IsMeasure="true" MeasureCode="OP-25" Name="Hospital uses a Safe Surgery Checklist" />
+		<Column IsMeasure="true" MeasureCode="OP-3b" Name="How long patients with chest pain or possible heart attack waited to be  transferred to another hospital for a procedure" />
+		<Column IsMeasure="true" MeasureCode="OP-4" Name="Patients with a heart attack who received aspirin on arrival to the hospital" />
+		<Column IsMeasure="true" MeasureCode="OP-5" Name="How long patients who come to the hospital with chest pain or possible heart attack waited to get a test that detects heart damage after a heart attack" />
+		<Column IsMeasure="true" MeasureCode="OP-6" Name="Patients having surgery who do not need to stay at the hospital overnight who got an antibiotic at the right time (within one hour before surgery)" />
+		<Column IsMeasure="true" MeasureCode="OP-7" Name="Patients having surgery who do not need to stay at the hospital overnight who got the right kind of antibiotic" />
+		<Column IsMeasure="true" MeasureCode="OP-8" Name="Patients who come to the hospital with low back pain who had an MRI without trying recommended treatments first, such as physical therapy (If a number is high, it may mean the facility is doing too many unnecessary MRIs for low back pain.)" />
+		<Column IsMeasure="true" MeasureCode="PC-01" Name="Newborn deliveries scheduled 1-3 weeks earlier than medically necessary" />
+		<Column IsMeasure="true" MeasureCode="PN-6" Name="Patients given the right antibiotics to treat  pneumonia" />
+		<Column IsMeasure="true" MeasureCode="READM-30-AMI" Name="Returning to the hospital after getting care for a heart attack" />
+		<Column IsMeasure="true" MeasureCode="READM-30-COPD" Name="Returning to the hospital after getting care for chronic obstructive pulmonary disease (COPD)" />
+		<Column IsMeasure="true" MeasureCode="READM-30-HF" Name="Returning to the hospital after getting care for heart failure" />
+		<Column IsMeasure="true" MeasureCode="READM-30-HIP-KNEE" Name="Returning to the hospital after getting hip or knee replacement surgery" />
+		<Column IsMeasure="true" MeasureCode="READM-30-HOSP-WIDE" Name="Returning to the hospital for any unplanned reason within 30 days after being discharged" />
+		<Column IsMeasure="true" MeasureCode="READM-30-PN" Name="Returning to the hospital after getting care for pneumonia" />
+		<Column IsMeasure="true" MeasureCode="SCIP-CARD-2" Name="Medicine to lower blood pressure given to surgery patients when needed" />
+		<Column IsMeasure="true" MeasureCode="SCIP-INF-10" Name="Preventing low body temperature during and after surgery" />
+		<Column IsMeasure="true" MeasureCode="SCIP-INF-1" Name="Antibiotics given one hour before surgery" />
+		<Column IsMeasure="true" MeasureCode="SCIP-INF-2" Name="Right antibiotics given to surgery patients" />
+		<Column IsMeasure="true" MeasureCode="SCIP-INF-3" Name="Antibiotics stopped within 24 hours after surgery" />
+		<Column IsMeasure="true" MeasureCode="SCIP-INF-4" Name="Blood sugar level controlled after heart surgery" />
+		<Column IsMeasure="true" MeasureCode="SCIP-INF-9" Name="Urinary catheters removed on the first or second day after surgery" />
+		<Column IsMeasure="true" MeasureCode="SCIP-VTE-2" Name="Surgery patients prescribed treatment to prevent blood clots at the right time" />
+		<Column IsMeasure="true" MeasureCode="VTE-6" Name="Patients who developed a blood clot while in the hospital and did not get treatment that could have prevented it" />
+		<Column IsMeasure="true" MeasureCode="IQI 01" Name="Number of surgeries to remove part of the esophagus" />
+		<Column IsMeasure="true" MeasureCode="IQI 02" Name="Number of surgeries to remove part of the pancreas" />
+		<Column IsMeasure="true" MeasureCode="IQI 04" Name="Number of surgeries to fix the artery that carries blood to the lower body when it gets too large" />
+		<Column IsMeasure="true" MeasureCode="IQI 05" Name="Number of surgeries to bypass blocked blood vessels in the heart" />
+		<Column IsMeasure="true" MeasureCode="IQI 06" Name="Number of procedures to open up blocked blood vessels in heart (angioplasty)" />
+		<Column IsMeasure="true" MeasureCode="IQI 07" Name="Number of operations to remove blockage in brain arteries" />
+		<Column IsMeasure="true" MeasureCode="IQI 08" Name="How often patients die in the hospital during or after surgery on the esophagus" />
+		<Column IsMeasure="true" MeasureCode="IQI 09" Name="How often patients die in the hospital during or after pancreas surgery" />
+		<Column IsMeasure="true" MeasureCode="IQI 11" Name="How often patients die in the hospital during or after a  surgery to fix the artery that carries blood to the lower body when it gets too large" />
+		<Column IsMeasure="true" MeasureCode="IQI 12" Name="How often patients die in the hospital during or after having a surgery to bypass a blocked blood vessel in the heart" />
+		<Column IsMeasure="true" MeasureCode="IQI 13" Name="How often patients die in the hospital during or after brain surgery" />
+		<Column IsMeasure="true" MeasureCode="IQI 14" Name="How often patients die in the hospital during or after hip replacement" />
+		<Column IsMeasure="true" MeasureCode="IQI 15" Name="How often patients die in the hospital after heart attack" />
+		<Column IsMeasure="true" MeasureCode="IQI 16" Name="How often patients die in the hospital after heart failure" />
+		<Column IsMeasure="true" MeasureCode="IQI 17" Name="How often patients who came in after having stroke subsequently died in the hospital." />
+		<Column IsMeasure="true" MeasureCode="IQI 18" Name="How often patients die in the hospital after bleeding from stomach or intestines" />
+		<Column IsMeasure="true" MeasureCode="IQI 19" Name="How often patients die in the hospital after fractured hip" />
+		<Column IsMeasure="true" MeasureCode="IQI 20" Name="How often patients die in the hospital while getting care for pneumonia" />
+		<Column IsMeasure="true" MeasureCode="IQI 21" Name="Percentage of births (deliveries) that are C-sections" />
+		<Column IsMeasure="true" MeasureCode="IQI 22" Name="How often babies in the hospital are delivered vaginally when the mother previously delivered by cesarean section (no complications)" />
+		<Column IsMeasure="true" MeasureCode="IQI 23" Name="How often the hospital removes gallbladders using a procedure that makes several small cuts  in the patient's body instead of one large cut" />
+		<Column IsMeasure="true" MeasureCode="IQI 24" Name="How often the hospital removes a healthy appendix in elderly patients" />
+		<Column IsMeasure="true" MeasureCode="IQI 25" Name="How often the hospital uses a procedure to find blocked blood vessels in the heart on both sides of the heart instead of on only one side. Doing this procedure on both sides of the heart often leads to more complications." />
+		<Column IsMeasure="true" MeasureCode="IQI 30" Name="How often patients die in the hospital during or after a procedure to open up blocked vessels in the heart (angioplasty)" />
+		<Column IsMeasure="true" MeasureCode="IQI 31" Name="How often patients die  in the hospital during or after a procedure to open up blocked blood vessels leading to the brain" />
+		<Column IsMeasure="true" MeasureCode="IQI 32" Name="How often patients die  in the hospital after heart attack (not including patients transferred to another hospital)" />
+		<Column IsMeasure="true" MeasureCode="IQI 33" Name="How often babies in the hospital are delivered using cesarean section when this is the mother's first birth." />
+		<Column IsMeasure="true" MeasureCode="IQI 34" Name="How often babies are born vaginally when the mother has had a C-section in the past (includes complications)" />
+		<Column IsMeasure="true" MeasureCode="IQI 91" Name="Patients who died in the hospital after having one of six common conditions or procedures." />
+		<Column IsMeasure="true" MeasureCode="IQI 90" Name="How often patients die in the hospital after one of eight major surgeries" />
+		<Column IsMeasure="true" MeasureCode="PSI 02" Name="How often patients die in the hospital while getting care for a condition that rarely results in death" />
+		<Column IsMeasure="true" MeasureCode="PSI 03" Name="How often patients develop a bed sore in the hospital" />
+		<Column IsMeasure="true" MeasureCode="PSI 04" Name="How often patients die in the hospital because a serious condition was not identified and treated" />
+		<Column IsMeasure="true" MeasureCode="PSI 05" Name="Number of times a surgical tool was accidentally left in a patient's body during surgery" />
+		<Column IsMeasure="true" MeasureCode="PSI 06" Name="How often the hospital accidentally makes a hole in a patient's lung" />
+		<Column IsMeasure="true" MeasureCode="PSI 07" Name="How often patients with catheters develop  infections as a result of care in the hospital" />
+		<Column IsMeasure="true" MeasureCode="PSI 08" Name="How often patients break a hip bone when in the hospital recovering from a surgery" />
+		<Column IsMeasure="true" MeasureCode="PSI 09" Name="How often patients have bleeding or bruising after surgery" />
+		<Column IsMeasure="true" MeasureCode="PSI 10" Name="How often hospital patients experienced abnormal changes in basic bodily functions after having an operation." />
+		<Column IsMeasure="true" MeasureCode="PSI 11" Name="How often patients in the hospital had to use a breathing machine after surgery because they could not breathe on their own" />
+		<Column IsMeasure="true" MeasureCode="PSI 12" Name="How often patients in the hospital get a blood clot in the lung or leg vein after surgery" />
+		<Column IsMeasure="true" MeasureCode="PSI 13" Name="How often patients get a serious bloodstream infection after surgery" />
+		<Column IsMeasure="true" MeasureCode="PSI 14" Name="How often a surgical wound in the stomach or pelvic area split open after surgery." />
+		<Column IsMeasure="true" MeasureCode="PSI 15" Name="How often patients accidentally get cut or have a hole poked in an organ that was not part of the surgery" />
+		<Column IsMeasure="true" MeasureCode="PSI 16" Name="Number of patients who get a blood transfusion and have a problem or reaction to the blood they get" />
+		<Column IsMeasure="true" MeasureCode="PSI 17" Name="How often newborns babies have an injury or get an infection during delivery" />
+		<Column IsMeasure="true" MeasureCode="PSI 18" Name="How often women who give birth vaginally with forceps or vacuum have a serious vaginal tear" />
+		<Column IsMeasure="true" MeasureCode="PSI 19" Name="How often women who give birth vaginally without forceps or vacuum have a serious vaginal tear" />
+		<Column IsMeasure="true" MeasureCode="PSI 90" Name="How well this hospital keeps patients safe based on eleven patient safety problems" />
+		<Column IsMeasure="true" MeasureCode="SM-SS-CHECK" Name="Hospital uses a Safe Surgery Checklist (Inpatient)" />
+	</Columns>
+	<Footer>
+		<![CDATA[<p> Figures presented are per 1000 cases
+	</p>]]>
+	</Footer>
+	<InterpretationText>
+		<![CDATA[<p>How do I interpret the bar charts?</p>
+	<p>The bar charts show the specific scores used to create the hospital ratings. There is one bar for each hospital representing a measure in the comparison group.<br/><br/>Depending on the type of rating, larger scores or smaller scores may be better.<br/><br/>Each bar is labeled with the score.  In the detailed statistics, confidence intervals appear in parentheses.<br/><br/>Each chart tells you how to interpret the length of the bars in that chart.<br/><br/><ul style="margin-left:20px"><b>Figures presented are counts:</b><br/>Here the length of each bar shows the total number of patient stays.  For example, a total of 25 heart bypass surgeries were performed.<br/><br/><b>Figures presented are per 100 cases.</b><br/>Here the length of each bar shows the number of times an event occurred for every 100 hospital stays.  For example, for every 100 hospital stays for pneumonia, 5 of the patients died within thirty days.<br/><br/><b>Figures presented are per 1,000 cases.</b><br/>Here, the length of each bar shows the number of times an event occurred for every 1,000 hospital stays.  These are usually rarer events.  For example, for every 1,000 hospital stays for surgeries, 2 of the patients suffered breathing failure afterwards.</ul></p>	
+]]>
+	</InterpretationText>
+	<WebsitePages>
+		<WebsitePage
+			Name="Condition or Topic - Quality Ratings [Bar Charts]"
+			Audience="Professionals"
+			Path="app/products/professional/quality-ratings/views/condition.html"
+			Url="/quality-ratings/condition?topic=6&amp;subtopic=17"
+			UrlRaw="/quality-ratings/condition?topic&amp;subtopic&amp;searchType&amp;hospitalName&amp;hospitalType&amp;geoType&amp;zipDistance&amp;zip&amp;region"
+			IsEditable="true">
+			<WebsitePageZones>
+				<WebsitePageZone Name="Header" CodePath=""/>
+				<WebsitePageZone Name="Footer" CodePath=""/>
+			</WebsitePageZones>
+		</WebsitePage>
+	</WebsitePages>
+</ReportManifest>

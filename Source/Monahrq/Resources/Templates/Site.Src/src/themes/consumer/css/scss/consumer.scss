@@ -1,0 +1,30 @@
+.consumer {
+  // Import Kentucky
+  @import "kentucky/kentucky";
+
+  // Consumer theme files
+  // Layout and global structure
+  @import "structure";
+  @import "modal";
+  @import "nav";
+
+  // Sections
+  @import "header";
+  @import "hero";
+  @import "home";
+  @import "cms";
+  @import "report";
+  @import "profile";
+  @import "topic";
+  @import "resource";
+  @import "search";
+  @import "footer";
+  @import "infographic";
+
+  // Compliance
+  @import "508";
+
+  // IE
+  @import "ie";
+}
+@import "tooltip";

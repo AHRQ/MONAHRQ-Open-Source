@@ -1,0 +1,801 @@
+﻿<UserControl x:Class="Monahrq.Measures.Views.ManageTopicsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:local="clr-namespace:Monahrq.Theme.Behaviors;assembly=Monahrq.Theme"
+             xmlns:Controlsw="clr-namespace:Monahrq.Theme.Converters;assembly=Monahrq.Theme"
+             xmlns:model="clr-namespace:Monahrq.Measures.ViewModels"
+             xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             xmlns:Converter="clr-namespace:Monahrq.Measures.Converters"
+             xmlns:monahrqControl="clr-namespace:Monahrq.Theme.Controls;assembly=Monahrq.Theme"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance model:ManageTopicsViewModel}"
+             d:DesignHeight="500"
+             d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.Buttons.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Converter:ZeroFilterVisibilityConverter x:Key="ZeroFilterVisibilityConverter" />
+            <Controlsw:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+            <Controlsw:BooleanToVisibilityConverter x:Key="InvertBooleanToVisibilityConverter"
+                                                    IsInverted="True" />
+            <Converter:FactsVisbility x:Key="FactsVisbility" />
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid Background="{StaticResource MGrey2}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0"
+                    VerticalAlignment="Top"
+                    Margin="10,10,0,0">
+            <TextBlock Text="Topics"
+                       Style="{StaticResource Header3}" />
+            <TextBlock Text="Create, edit and remove the topics and subtopics used to organize measures on your website"
+                       TextTrimming="CharacterEllipsis"
+                       Foreground="{StaticResource MGrey5}"
+                       FontSize="13.333" />
+        </StackPanel>
+
+        <Grid Grid.Row="1"
+              Margin="10,5,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Row="0"
+                       Text="FILTER BY"
+                       VerticalAlignment="Center"
+                       Margin="5"
+                       Foreground="{StaticResource MGrey5}"
+                       Visibility="Collapsed" />
+            <ComboBox Width="200"
+                      MinWidth="200"
+                      Grid.Column="1"
+                      Margin="5"
+                      ItemsSource="{Binding FilterByList}"
+                      SelectedItem="{Binding SelectedTopicTypeFilter}"
+                      Visibility="Collapsed" />
+            <TextBox Grid.Column="2"
+                     MinWidth="200"
+                     Controls:TextboxHelper.ClearTextButton="True"
+                     Controls:TextboxHelper.Watermark="Enter text to filter result"
+                     Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                     Margin="5" />
+
+            <Button Content="ADD NEW TOPIC"
+                    Width="120"
+                    Margin="5"
+                    Style="{StaticResource AddDataFileButton}"
+                    FontWeight="Normal"
+                    Background="{StaticResource MBlue}"
+                    Foreground="White"
+                    Grid.Column="3"
+                    Command="{Binding AddNewTopicCommand}" />
+        </Grid>
+
+        <!--<Label Grid.Row="2" FontSize="12" Visibility="{Binding ElementName=TxtNewTopicName, Converter={StaticResource ErrorMessageVivibilityConverter}, Path=DataContext}" Foreground="Red" Content="{Binding ElementName=ComboBoxCategory, Path=(Validation.Errors)[0].ErrorContent}" Margin="0,5,0,0" />-->
+
+        <!-- TOPICS -->
+
+        <Border  BorderThickness="1"
+                 BorderBrush="{StaticResource MGrey3}"
+                 Grid.Row="2"
+                 Padding="10,0">
+            <ScrollViewer Background="White"
+                          IsDeferredScrollingEnabled="True"
+                          SnapsToDevicePixels="True">
+                <StackPanel>
+                    <TextBlock Margin="25"
+                               Text="No Topics or Sub-Topics found"
+                               HorizontalAlignment="Center"
+                               FontSize="18"
+                               Foreground="{StaticResource MGrey4}"
+                               Visibility="{Binding CollectionItems.Count, Converter={StaticResource  ZeroFilterVisibilityConverter}}" />
+                    <ItemsControl x:Name="topicsControl"
+                                  IsTextSearchEnabled="True"
+                                  SnapsToDevicePixels="True"
+                                  ScrollViewer.IsDeferredScrollingEnabled="True"
+                                  ItemsSource="{Binding CollectionItems, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <!-- TOPIC -->
+                                    <Border x:Name="topicBorder"
+                                            SnapsToDevicePixels="True"
+                                            Padding="5,7,5,7"
+                                            BorderBrush="{StaticResource MGrey3}"
+                                            BorderThickness="0,0,1,1"
+                                            Background="{StaticResource MGrey1}">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                                <!--<ColumnDefinition Width="*" />-->
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBox Grid.Column="2"
+                                                     x:Name="txtTopicName"
+                                                     Text="{Binding TopicName, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
+                                                     IsEnabled="False"
+                                                     Margin="5,0,0,0"
+                                                     HorizontalAlignment="Stretch">
+                                                <TextBox.Style>
+                                                    <Style TargetType="TextBox">
+                                                        <Setter Property="Padding"
+                                                                Value="3" />
+                                                        <Setter Property="VerticalContentAlignment"
+                                                                Value="Center" />
+                                                    </Style>
+                                                </TextBox.Style>
+                                            </TextBox>
+
+                                            <Button Grid.Column="0"
+                                                    x:Name="btnSaveTopicName"
+                                                    Command="{Binding CommitCommand}"
+                                                    ToolTip="Save"
+                                                    Margin="5,0,5,0"
+                                                    Visibility="Collapsed"
+                                                    Style="{StaticResource SaveButton}" />
+
+                                            <Button Grid.Column="0"
+                                                    x:Name="btnEditTopicName"
+                                                    Command="{Binding DataContext.EditTopicCategoryCommand, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType=UserControl}}"
+                                                    CommandParameter="{Binding }"
+                                                    ToolTip="Edit topic name"
+                                                    Margin="5,0,5,0"
+                                                    Style="{StaticResource EditButton}" />
+
+                                            <StackPanel  Grid.Column="1"
+                                                         Orientation="Horizontal"
+                                                         HorizontalAlignment="Right">
+                                                <TextBox x:Name="txtnewsubtopicname"
+                                                         Text="{Binding NewSubtopicTitle, NotifyOnValidationError=True, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
+                                                         IsEnabled="False"
+                                                         Margin="5,0,0,0"
+                                                         MinWidth="150"
+                                                         Visibility="Collapsed" />
+                                                <Button x:Name="btnAddSubtopic"
+                                                        Command="{Binding EnableAddSubtopicCommand}"
+                                                        ToolTip="Add new subtopic"
+                                                        Margin="5,0,5,0"
+                                                        Style="{StaticResource AddButton}" />
+                                                <Button x:Name="btnSaveSubtopic"
+                                                        Command="{Binding AddSubtopicCommand}"
+                                                        ToolTip="Save"
+                                                        Margin="5,0,5,0"
+                                                        Visibility="Collapsed"
+                                                        Style="{StaticResource SaveButton}" />
+                                                <Button x:Name="btnCancel"
+                                                        ToolTip="Cancel"
+                                                        Margin="5,0,5,0"
+                                                        Visibility="Collapsed"
+                                                        Style="{StaticResource CancelButton}"
+                                                        Command="{Binding CancelCommand}" />
+                                                <Button x:Name="btnCancelSubtopic"
+                                                        Command="{Binding CancelSubtopicCommand}"
+                                                        ToolTip="Cancel"
+                                                        Margin="5,0,5,0"
+                                                        Visibility="Collapsed"
+                                                        Style="{StaticResource CancelButton}" />
+                                                <Button x:Name="btnDeleteTopic"
+                                                        ToolTip="Delete topic"
+                                                        Margin="5,0,5,0"
+                                                        Style="{StaticResource  DeleteButton}"
+                                                        Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.DeleteTopicCommand}"
+                                                        CommandParameter="{Binding }"
+                                                        IsEnabled="{Binding IsUserCreated }" />
+                                            </StackPanel>
+                                        </Grid>
+                                    </Border>
+
+                                    <!-- END TOPIC, BEGIN SUBTOPIC -->
+                                    <ItemsControl ItemsSource="{Binding ChildrenCollectionView}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Border Margin="0,0,0,0"
+                                                        Padding="5,7,5,7"
+                                                        BorderBrush="{StaticResource MGrey3}"
+                                                        BorderThickness="0,0,1,1"
+                                                        Background="{StaticResource White}">
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="Auto" />
+                                                            <ColumnDefinition  Width="*" />
+                                                        </Grid.ColumnDefinitions>
+                                                        <TextBox x:Name="txtSubtopicTitle"
+                                                                 Grid.Column="1"
+                                                                 Height="Auto"
+                                                                 Text="{Binding SubtopicName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"
+                                                                 IsEnabled="False"
+                                                                 Margin="30,0,0,0">
+                                                            <TextBox.Style>
+                                                                <Style TargetType="TextBox">
+                                                                    <Setter Property="Padding"
+                                                                            Value="3" />
+                                                                    <Setter Property="VerticalContentAlignment"
+                                                                            Value="Center" />
+                                                                </Style>
+                                                            </TextBox.Style>
+                                                        </TextBox>
+
+                                                        <StackPanel  Grid.Column="0"
+                                                                     Orientation="Horizontal">
+                                                            <Button x:Name="btnEditSubtopicTitle"
+                                                                    Command="{Binding EnableEditSubtopicCommand}"
+                                                                    ToolTip="Edit"
+                                                                    Margin="5,0,5,0"
+                                                                    HorizontalAlignment="Right"
+                                                                    Style="{StaticResource EditButton}" />
+                                                            <Button x:Name="btnSaveSubtopicTitle"
+                                                                    Command="{Binding CommitCommand}"
+                                                                    ToolTip="Save"
+                                                                    Margin="5,0,5,0"
+                                                                    Content="Save Changes"
+                                                                    Visibility="Collapsed"
+                                                                    Style="{StaticResource SaveButton}" />
+                                                            <Button x:Name="btnCancel"
+                                                                    ToolTip="Cancel"
+                                                                    Margin="5,0,5,0"
+                                                                    Visibility="Collapsed"
+                                                                    Style="{StaticResource CancelButton}"
+                                                                    Command="{Binding CancelCommand}" />
+                                                            <Button x:Name="btnDeleteSubtopic"
+                                                                    ToolTip="Delete subtopic"
+                                                                    Margin="5,0,5,0"
+                                                                    Style="{StaticResource  DeleteButton}"
+                                                                    Command="{Binding Parent.DeleteSubtopicCommand}"
+                                                                    CommandParameter="{Binding }"
+                                                                    IsEnabled="{Binding IsUserCreated }" />
+                                                        </StackPanel>
+                                                    </Grid>
+                                                </Border>
+                                                <DataTemplate.Triggers>
+                                                    <EventTrigger SourceName="btnEditSubtopicTitle"
+                                                                  RoutedEvent="Button.Click">
+                                                        <EventTrigger.Actions>
+                                                            <BeginStoryboard x:Name="enablesubTopicName">
+                                                                <Storyboard x:Name="EditSUbTopicNameStoryboard">
+                                                                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="txtSubtopicTitle"
+                                                                                                    Storyboard.TargetProperty="IsEnabled">
+                                                                        <DiscreteBooleanKeyFrame KeyTime="00:00:00"
+                                                                                                 Value="True" />
+                                                                    </BooleanAnimationUsingKeyFrames>
+                                                                </Storyboard>
+                                                            </BeginStoryboard>
+                                                        </EventTrigger.Actions>
+                                                    </EventTrigger>
+                                                    <EventTrigger SourceName="btnSaveSubtopicTitle"
+                                                                  RoutedEvent="Button.Click">
+                                                        <EventTrigger.Actions>
+                                                            <BeginStoryboard x:Name="disablesubTopicName">
+                                                                <Storyboard x:Name="endEditSUbTopicNameStoryboard">
+                                                                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="txtSubtopicTitle"
+                                                                                                    Storyboard.TargetProperty="IsEnabled">
+                                                                        <DiscreteBooleanKeyFrame KeyTime="00:00:00"
+                                                                                                 Value="False" />
+                                                                    </BooleanAnimationUsingKeyFrames>
+                                                                </Storyboard>
+                                                            </BeginStoryboard>
+                                                        </EventTrigger.Actions>
+                                                    </EventTrigger>
+
+                                                    <!-- Subtopic edit cancel trigger -->
+                                                    <EventTrigger SourceName="btnCancel"
+                                                                  RoutedEvent="Button.Click">
+                                                        <EventTrigger.Actions>
+                                                            <BeginStoryboard x:Name="cancelSubTopicName">
+                                                                <Storyboard x:Name="cancelEditSubTopicNameStoryboard">
+                                                                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="txtSubtopicTitle"
+                                                                                                    Storyboard.TargetProperty="IsEnabled">
+                                                                        <DiscreteBooleanKeyFrame KeyTime="00:00:00"
+                                                                                                 Value="False" />
+                                                                    </BooleanAnimationUsingKeyFrames>
+                                                                </Storyboard>
+                                                            </BeginStoryboard>
+                                                        </EventTrigger.Actions>
+                                                    </EventTrigger>
+
+                                                    <Trigger SourceName="txtSubtopicTitle"
+                                                             Property="IsEnabled"
+                                                             Value="True">
+                                                        <Setter TargetName="btnEditSubtopicTitle"
+                                                                Property="Visibility"
+                                                                Value="Collapsed" />
+                                                        <Setter TargetName="btnSaveSubtopicTitle"
+                                                                Property="Visibility"
+                                                                Value="Visible" />
+                                                        <Setter TargetName="btnDeleteSubtopic"
+                                                                Property="Visibility"
+                                                                Value="Collapsed" />
+                                                        <Setter TargetName="txtSubtopicTitle"
+                                                                Property="BorderBrush"
+                                                                Value="{StaticResource MGrey4}" />
+                                                        <Setter TargetName="txtSubtopicTitle"
+                                                                Property="Background"
+                                                                Value="{StaticResource White}" />
+                                                        <Setter TargetName="btnCancel"
+                                                                Property="Visibility"
+                                                                Value="Visible" />
+                                                    </Trigger>
+                                                    <Trigger SourceName="txtSubtopicTitle"
+                                                             Property="IsEnabled"
+                                                             Value="False">
+                                                        <Setter TargetName="btnEditSubtopicTitle"
+                                                                Property="Visibility"
+                                                                Value="Visible" />
+                                                        <Setter TargetName="btnSaveSubtopicTitle"
+                                                                Property="Visibility"
+                                                                Value="Collapsed" />
+                                                        <Setter TargetName="btnDeleteSubtopic"
+                                                                Property="Visibility"
+                                                                Value="Visible" />
+                                                        <Setter TargetName="btnCancel"
+                                                                Property="Visibility"
+                                                                Value="Collapsed" />
+                                                        <Setter TargetName="txtSubtopicTitle"
+                                                                Property="BorderBrush"
+                                                                Value="Transparent" />
+                                                        <Setter TargetName="txtSubtopicTitle"
+                                                                Property="Background"
+                                                                Value="Transparent" />
+                                                    </Trigger>
+                                                    <Trigger SourceName="btnDeleteSubtopic"
+                                                             Property="IsEnabled"
+                                                             Value="False">
+                                                        <Setter TargetName="btnDeleteSubtopic"
+                                                                Property="Visibility"
+                                                                Value="Collapsed" />
+                                                    </Trigger>
+                                                    <Trigger SourceName="btnDeleteSubtopic"
+                                                             Property="IsEnabled"
+                                                             Value="True">
+                                                        <Setter TargetName="btnDeleteSubtopic"
+                                                                Property="Visibility"
+                                                                Value="Visible" />
+                                                    </Trigger>
+                                                </DataTemplate.Triggers>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </StackPanel>
+
+                                <!-- TOPIC TRIGGERS -->
+                                <DataTemplate.Triggers>
+                                    <!--<EventTrigger SourceName="btnEditTopicName"
+                                                  RoutedEvent="Button.Click">
+                                        <EventTrigger.Actions>
+                                            <BeginStoryboard x:Name="enableTopicName">
+                                                <Storyboard x:Name="EditTopicNameStoryboard">
+                                                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="txtTopicName"
+                                                                                    Storyboard.TargetProperty="IsEnabled">
+                                                        <DiscreteBooleanKeyFrame KeyTime="00:00:00"
+                                                                                 Value="True" />
+                                                    </BooleanAnimationUsingKeyFrames>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger.Actions>
+                                    </EventTrigger>-->
+                                    <EventTrigger SourceName="btnSaveTopicName"
+                                                  RoutedEvent="Button.Click">
+                                        <EventTrigger.Actions>
+                                            <BeginStoryboard x:Name="disableTopicName">
+                                                <Storyboard x:Name="EndEditTopicNameStoryboard">
+                                                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="txtTopicName"
+                                                                                    Storyboard.TargetProperty="IsEnabled">
+                                                        <DiscreteBooleanKeyFrame KeyTime="00:00:00"
+                                                                                 Value="False" />
+                                                    </BooleanAnimationUsingKeyFrames>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger.Actions>
+                                    </EventTrigger>
+                                    <EventTrigger SourceName="btnAddSubtopic"
+                                                  RoutedEvent="Button.Click">
+                                        <EventTrigger.Actions>
+                                            <BeginStoryboard x:Name="enableAddSubTopicName">
+                                                <Storyboard x:Name="AddTopicNameStoryboard">
+                                                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="txtnewsubtopicname"
+                                                                                    Storyboard.TargetProperty="IsEnabled">
+                                                        <DiscreteBooleanKeyFrame KeyTime="00:00:00"
+                                                                                 Value="True" />
+                                                    </BooleanAnimationUsingKeyFrames>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger.Actions>
+                                    </EventTrigger>
+                                    <EventTrigger SourceName="btnSaveSubtopic"
+                                                  RoutedEvent="Button.Click">
+                                        <EventTrigger.Actions>
+                                            <BeginStoryboard x:Name="disableAddSubTopicName">
+                                                <Storyboard x:Name="disableAddTopicNameStoryboard">
+                                                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="txtnewsubtopicname"
+                                                                                    Storyboard.TargetProperty="IsEnabled">
+                                                        <DiscreteBooleanKeyFrame KeyTime="00:00:00"
+                                                                                 Value="False" />
+                                                    </BooleanAnimationUsingKeyFrames>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger.Actions>
+                                    </EventTrigger>
+                                    <!-- Cancel Edit Topic -->
+                                    <EventTrigger SourceName="btnCancel"
+                                                  RoutedEvent="Button.Click">
+                                        <EventTrigger.Actions>
+                                            <BeginStoryboard x:Name="disableCancelTopicName">
+                                                <Storyboard x:Name="disableCancelTopicNameStoryboard">
+                                                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="txtTopicName"
+                                                                                    Storyboard.TargetProperty="IsEnabled">
+                                                        <DiscreteBooleanKeyFrame KeyTime="00:00:00"
+                                                                                 Value="False" />
+                                                    </BooleanAnimationUsingKeyFrames>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger.Actions>
+                                    </EventTrigger>
+                                    <EventTrigger SourceName="btnCancelSubtopic"
+                                                  RoutedEvent="Button.Click">
+                                        <EventTrigger.Actions>
+                                            <BeginStoryboard x:Name="cancelSubTopicName">
+                                                <Storyboard x:Name="cancelEditSubTopicNameStoryboard">
+                                                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="txtnewsubtopicname"
+                                                                                    Storyboard.TargetProperty="IsEnabled">
+                                                        <DiscreteBooleanKeyFrame KeyTime="00:00:00"
+                                                                                 Value="False" />
+                                                    </BooleanAnimationUsingKeyFrames>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger.Actions>
+                                    </EventTrigger>
+
+                                    <Trigger SourceName="txtnewsubtopicname"
+                                             Property="IsEnabled"
+                                             Value="True">
+                                        <Setter TargetName="txtnewsubtopicname"
+                                                Property="Visibility"
+                                                Value="Visible" />
+                                        <Setter TargetName="btnSaveSubtopic"
+                                                Property="Visibility"
+                                                Value="Visible" />
+                                        <Setter TargetName="btnAddSubtopic"
+                                                Property="Visibility"
+                                                Value="Collapsed" />
+                                        <Setter TargetName="btnEditTopicName"
+                                                Property="Visibility"
+                                                Value="Collapsed" />
+                                        <Setter TargetName="btnDeleteTopic"
+                                                Property="Visibility"
+                                                Value="Collapsed" />
+                                        <Setter TargetName="btnCancelSubtopic"
+                                                Property="Visibility"
+                                                Value="Visible" />
+                                    </Trigger>
+                                    <Trigger SourceName="txtTopicName"
+                                             Property="IsEnabled"
+                                             Value="True">
+                                        <!--<Setter TargetName="ComboCategoryType"
+                                                Property="Visibility"
+                                                Value="Visible" />-->
+                                        <!--<Setter TargetName="CategoryType"
+                                                Property="Visibility"
+                                                Value="Collapsed" />-->
+                                        <Setter TargetName="btnSaveTopicName"
+                                                Property="Visibility"
+                                                Value="Visible" />
+                                        <Setter TargetName="btnEditTopicName"
+                                                Property="Visibility"
+                                                Value="Collapsed" />
+                                        <Setter TargetName="btnDeleteTopic"
+                                                Property="Visibility"
+                                                Value="Collapsed" />
+                                        <Setter TargetName="btnAddSubtopic"
+                                                Property="Visibility"
+                                                Value="Collapsed" />
+                                        <Setter TargetName="btnCancel"
+                                                Property="Visibility"
+                                                Value="Visible" />
+                                        <Setter TargetName="txtTopicName"
+                                                Property="BorderBrush"
+                                                Value="{StaticResource MGrey4}" />
+                                        <Setter TargetName="txtTopicName"
+                                                Property="Background"
+                                                Value="{StaticResource White}" />
+                                    </Trigger>
+                                    <Trigger SourceName="txtTopicName"
+                                             Property="IsEnabled"
+                                             Value="False">
+                                        <Setter TargetName="txtTopicName"
+                                                Property="BorderBrush"
+                                                Value="Transparent" />
+                                        <Setter TargetName="txtTopicName"
+                                                Property="Background"
+                                                Value="Transparent" />
+                                        <!--<Setter TargetName="ComboCategoryType"
+                                                Property="Visibility"
+                                                Value="Collapsed" />-->
+                                        <!--<Setter TargetName="CategoryType"
+                                                Property="Visibility"
+                                                Value="Visible" />-->
+                                    </Trigger>
+                                </DataTemplate.Triggers>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+
+        <monahrqControl:xPopup VerticalAlignment="Center"
+                               MinHeight="450"
+                               MinWidth="550"
+                               MaxHeight="500"
+                               MaxWidth="900"
+                               monahrqControl:xPopup.IsDraggable="True"
+                               Grid.Row="2"
+                               HorizontalAlignment="Center"
+                               Visibility="{Binding IsAddingNewTopic, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Border Grid.Row="2"
+                    BorderThickness="1"                
+                    MinHeight="450"
+                    MinWidth="550"
+                    MaxHeight="500"
+                    MaxWidth="900"
+                    Name="borderPopUp"
+                    DataContext="{Binding SelectedTopic, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    BorderBrush="{StaticResource MGrey4}"
+                    Background="{StaticResource MGrey2}"
+                    Padding="1">
+                <Grid HorizontalAlignment="Stretch"
+                      Background="{StaticResource MGrey2}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition MaxWidth="530"
+                                          MinWidth="400" />
+                        <ColumnDefinition Width="70" />
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0"
+                          Grid.ColumnSpan="2"
+                          Grid.Row="0"
+                          Background="{StaticResource MBlue}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="50" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="ADD TOPIC"
+                                   FontWeight="Bold"
+                                   FontSize="15"
+                                   Foreground="White"
+                                   Margin="10,5,0,5" />
+                        <Button Grid.Column="1"
+                                Command="{Binding DataContext.CloseNewTopicPopUpCommand, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType=UserControl}}"
+                                CommandParameter="false"
+                                Content="X"
+                                Style="{StaticResource CloseButton}"
+                                Height="15"
+                                Width="20"
+                                Margin="0,5,-15,5" />
+                    </Grid>
+
+                    <Grid Grid.Row="1"
+                          Grid.Column="0"
+                          Grid.ColumnSpan="2"
+                          Margin="0,10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width=".25*" />
+                            <ColumnDefinition Width=".75*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Margin="5"
+                                   Grid.Row="0"
+                                   Height="30"
+                                   Grid.Column="0"
+                                   Foreground="{DynamicResource MGrey5}"
+                                   Text="Topic Name" />
+
+                        <TextBox Name="TxtNewTopicName"
+                                 Text="{Binding DataContext.NewTopicName, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl, AncestorLevel=1}}"
+                                 Grid.Column="1"
+                                 Grid.Row="0"
+                                 Margin="5"
+                                 Height="30"
+                                 HorizontalAlignment="Stretch"
+                                 MaxLength="{Binding NewTopicNameMaxLength}"
+                                 Controls:TextboxHelper.ClearTextButton="True"
+                                 Controls:TextboxHelper.Watermark="New topic name">
+                            <TextBox.Style>
+                                <Style TargetType="{x:Type TextBox}">
+                                    <Style.Triggers>
+                                        <Trigger Property="Validation.HasError"
+                                                 Value="true">
+                                            <Setter Property="ToolTip"
+                                                    Value="{x:Null}" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBox.Style>
+                        </TextBox>
+
+                        <Label Grid.Row="1"
+                               Grid.ColumnSpan="2"
+                               FontSize="12"
+                               Foreground="Red"
+                               Content="{Binding ElementName=TxtNewTopicName, Path=(Validation.Errors)[0].ErrorContent}"
+                               Margin="0,5,0,0" />
+
+                        <ListView ItemsSource="{Binding TopicCategory.Facts, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                  Visibility="{Binding ElementName=borderPopUp, Path=DataContext}"
+                                  Background="#FFE5E5E5"
+                                  Grid.Row="2"
+                                  Grid.Column="0"
+                                  ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                  MaxHeight="275"
+                                  Grid.ColumnSpan="2"
+                                  Margin="5">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Expander Width="550"
+                                              Header="{Binding Name}"
+                                              Background="#FFE5E5E5">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="0.25*" />
+                                                <ColumnDefinition Width="0.75*" />
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Grid.Row="0"
+                                                       Grid.Column="0"
+                                                       Height="30"
+                                                       Margin="5"
+                                                       Foreground="{DynamicResource MGrey5}"
+                                                       Text="Text" />
+                                            <TextBlock Grid.Row="1"
+                                                       Grid.Column="0"
+                                                       Height="30"
+                                                       Margin="5"
+                                                       Foreground="{DynamicResource MGrey5}"
+                                                       Text="Image Source" />
+                                            <TextBlock Grid.Row="2"
+                                                       Grid.Column="0"
+                                                       Height="30"
+                                                       Foreground="{DynamicResource MGrey5}"
+                                                       Margin="5"
+                                                       Text="Citation" />
+
+                                            <TextBox Grid.Row="0"
+                                                     Grid.Column="1"
+                                                     Height="30"
+                                                     Text="{Binding Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                            <Grid Grid.Column="1"
+                                                  MaxHeight="80"
+                                                  HorizontalAlignment="Left"
+                                                  Grid.Row="1">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="Auto" />
+                                                </Grid.ColumnDefinitions>
+                                                <TextBox Grid.Column="0"
+                                                         MinHeight="30"
+                                                         MaxHeight="60"
+                                                         HorizontalAlignment="Left"
+                                                         Name="TxtImagePath"
+                                                         Controls:TextboxHelper.Watermark="Select an image"
+                                                         Margin="0,5"
+                                                         Width="310"
+                                                         TextWrapping="Wrap"
+                                                         Background="{DynamicResource MGrey1}"
+                                                         FontSize="14"
+                                                         Foreground="{DynamicResource MGrey5}"
+                                                         Text="{Binding ImagePath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                                    <TextBox.Triggers>
+                                                        <EventTrigger RoutedEvent="GotFocus">
+                                                            <EventTrigger.Actions>
+                                                                <BeginStoryboard>
+                                                                    <Storyboard>
+                                                                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="TxtImagePath"
+                                                                                                        Storyboard.TargetProperty="IsEnabled">
+                                                                            <DiscreteBooleanKeyFrame KeyTime="00:00:00"
+                                                                                                     Value="False" />
+                                                                        </BooleanAnimationUsingKeyFrames>
+                                                                    </Storyboard>
+                                                                </BeginStoryboard>
+                                                            </EventTrigger.Actions>
+                                                        </EventTrigger>
+                                                        <EventTrigger RoutedEvent="LostFocus">
+                                                            <BeginStoryboard>
+                                                                <Storyboard>
+                                                                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="TxtImagePath"
+                                                                                                    Storyboard.TargetProperty="IsEnabled">
+                                                                        <DiscreteBooleanKeyFrame KeyTime="00:00:00"
+                                                                                                 Value="True" />
+                                                                    </BooleanAnimationUsingKeyFrames>
+                                                                </Storyboard>
+                                                            </BeginStoryboard>
+                                                        </EventTrigger>
+                                                    </TextBox.Triggers>
+                                                    <i:Interaction.Triggers>
+                                                        <i:EventTrigger EventName="GotFocus">
+                                                            <i:InvokeCommandAction Command="{Binding DataContext.SelectDirectoryCommand, RelativeSource={RelativeSource AncestorType=UserControl, AncestorLevel=1}}"
+                                                                                   CommandParameter="{Binding }" />
+                                                        </i:EventTrigger>
+                                                    </i:Interaction.Triggers>
+                                                </TextBox>
+                                                <Button Grid.Column="2"
+                                                        Command="{Binding DataContext.SelectDirectoryCommand, RelativeSource={RelativeSource AncestorType=UserControl, AncestorLevel=1}}"
+                                                        CommandParameter="{Binding }"
+                                                        Foreground="White"
+                                                        Background="{DynamicResource MBlue}"
+                                                        BorderBrush="{x:Null}"
+                                                        Padding="5,0,5,0"
+                                                        Margin="7,5,13,5"
+                                                        Width="80"
+                                                        Content="BROWSE" />
+                                            </Grid>
+                                            <TextBox Grid.Row="2"
+                                                     Height="30"
+                                                     Grid.Column="1"
+                                                     Text="{Binding CitationText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                        </Grid>
+                                    </Expander>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+
+                        <StackPanel Grid.Row="3"
+                                    Grid.Column="1"
+                                    Orientation="Horizontal"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Bottom"
+                                    Margin="0,0,10,0">
+                            <Button Content="CANCEL"
+                                    HorizontalAlignment="Right"
+                                    Margin="2,0,5,0"
+                                    Width="150"
+                                    Height="36"
+                                    Style="{StaticResource PlainButton}"
+                                    Background="{StaticResource MPink}"
+                                    VerticalAlignment="Center"
+                                    Command="{Binding DataContext.CloseNewTopicPopUpCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}" />
+
+                            <Button Margin="5,0,0,0"
+                                    Content="SAVE"
+                                    HorizontalAlignment="Right"
+                                    Width="150"
+                                    Height="36"
+                                    Style="{StaticResource PlainButton}"
+                                    Background="{StaticResource MDBlue}"
+                                    VerticalAlignment="Center"
+                                    Foreground="White"
+                                    FontSize="16"
+                                    FontFamily="Segoe UI Semibold"
+                                    Command="{Binding DataContext.SaveNewTopicCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}" />
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </Border>
+        </monahrqControl:xPopup>
+
+    </Grid>
+</UserControl>

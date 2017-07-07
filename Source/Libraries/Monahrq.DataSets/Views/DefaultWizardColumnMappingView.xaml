@@ -1,0 +1,198 @@
+﻿<UserControl x:Class="Monahrq.DataSets.Views.DefaultWizardColumnMappingView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="clr-namespace:Monahrq.DataSets.Controls"
+             xmlns:mahControls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             xmlns:controls1="clr-namespace:Monahrq.Theme.Controls;assembly=Monahrq.Theme">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.Buttons.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+	
+	<Grid x:Name="LayoutRoot">
+
+		<ScrollViewer 
+			ScrollViewer.CanContentScroll="false" 
+			HorizontalScrollBarVisibility="Auto" 
+			VerticalScrollBarVisibility="Disabled" >
+			
+        <Grid x:Name="MapFieldsGrid" Panel.ZIndex="900"  Margin="0,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50.399"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid x:Name="HeaderGrid" Margin="10,0" Visibility="Visible">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.70*"/>
+                    <ColumnDefinition Width="0.30*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal" Margin="0" Grid.ColumnSpan="2"  HorizontalAlignment="Left">
+                    <TextBlock HorizontalAlignment="Left" Margin="0" 
+                           TextWrapping="Wrap" Text="{Binding DisplayName}" 
+                           VerticalAlignment="Top" FontSize="26" 
+                           Foreground="{DynamicResource MGrey5}" />
+                    <TextBlock Margin="4,0" Foreground="{DynamicResource MGrey5}" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Stretch" TextWrapping="Wrap">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat=" - {0}">
+                                <Binding Path="UserInstructions" FallbackValue=" " />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="right">
+                    <controls1:MonahrqButton Content="Preview Sample Values" Style="{StaticResource MonahrqGreyStyle}" FontSize="14"  FontWeight="SemiBold"  Height="30" Padding="6" Margin="10,0"
+                                    Command="{Binding ShowSampleValuesCommand}" CommandParameter="SHOW"/>
+                </StackPanel>
+            </Grid>
+            <Grid x:Name="ContentGrid" Margin="10,0,10,30" Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="94.489"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid x:Name="FilterGrid" MinWidth="950">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="274"/>
+                        <ColumnDefinition Width="290"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30*"/>
+                        <RowDefinition Height="26.101*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" Grid.ColumnSpan="5" Background="{DynamicResource MBlue}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="250"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                            <Image Source="/Monahrq.Theme;component/Images/mapping-down-arrow.png" HorizontalAlignment="Left" Height="15" Margin="10,10,0,0"/>
+                            <TextBlock TextWrapping="Wrap" Text="FILTER SOURCE FIELDS:" FontSize="15" VerticalAlignment="Center" Foreground="White" HorizontalAlignment="Left" Margin="5,0"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,14,0,13">
+                            <TextBlock TextWrapping="Wrap" Text="Filter By:" VerticalAlignment="Center" Foreground="White" HorizontalAlignment="Left" Margin="5,0"/>
+                            <TextBox TextWrapping="Wrap" TextChanged="TextBox_TextChanged" mahControls:TextboxHelper.ClearTextButton="True"
+                            Text="{Binding FilterText}" VerticalAlignment="Center" Width="190" HorizontalAlignment="Left" Height="24"/>
+                            <TextBlock TextWrapping="Wrap" Text="Show:" Width="34" Foreground="White" VerticalAlignment="Center" Margin="10,0,5,0"/>
+                            <ComboBox Width="150" Height="26" Margin="0,0,10,0"  ItemsSource="{Binding ShowEnumeration}" SelectedItem="{Binding SelectedShow, Mode=TwoWay}" IsEditable="False"/>
+                            <TextBlock TextWrapping="Wrap" Text="Sort by:" VerticalAlignment="Center" Foreground="White" Margin="5,0,10,0"/>
+                            <ComboBox ItemsSource="{Binding FieldSortOrder}" SelectedItem="{Binding SelectedSortOrder}"  Margin="0" IsEditable="False" VerticalAlignment="Center" Width="150" Height="26" />
+                        </StackPanel>
+                    </Grid>
+                    <TextBlock Margin="20,0,0,0" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="13.333" FontWeight="Bold" Foreground="{DynamicResource MGrey5}" Height="20" Grid.Row="2" Width="240">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="Source Fields ({0})">
+                                <Binding Path="TotalSourceFields" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                    <TextBlock Margin="-110,0,0,0" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center" 
+                               FontSize="13.333" 
+                               FontWeight="Bold" Foreground="{DynamicResource MGrey5}" Grid.Row="2" Grid.Column="1" Height="20">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="Mapped MONAHRQ Fields ({0} of {1})">
+                                <Binding Path="TotalMappedFieldsCount" />
+                                <Binding Path="TotalSourceFields" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                    <TextBlock Margin="-100,0,0,0" TextWrapping="Wrap" Text="Unmapped MONAHRQ Fields" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="13.333" FontWeight="Bold" Foreground="{DynamicResource MGrey5}" Grid.Row="2" Grid.Column="2" Height="20"/>
+                    <StackPanel Grid.Row="2" Grid.Column="3" Orientation="Vertical" 
+                                HorizontalAlignment="Right" VerticalAlignment="Stretch" Margin="0,7,10,0">
+                        <TextBlock Margin="0,0,0,0" Text="* = Required source field" VerticalAlignment="Top" HorizontalAlignment="Right" Width="Auto"
+                                   FontSize="11" FontWeight="Bold" Foreground="{DynamicResource MGrey5}"/>
+                        <TextBlock Margin="0,2,0,0" Text="(A) = Auto mapped field" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="Auto"
+                                   FontSize="11" FontWeight="Bold" Foreground="{DynamicResource MGrey5}"/>
+                    </StackPanel>
+
+                    <!--<Path Data="M59.341772,74.199101 L76.243461,90.755355 92.455502,74.198681 z" Fill="{DynamicResource MBlue}" HorizontalAlignment="Left" Margin="33.329,48.081,0,3.733" Grid.Row="1" Stretch="Fill" Width="33.114" Grid.RowSpan="2"/>
+                    <Path Data="M59.341772,74.199101 L76.243461,90.755355 92.455502,74.198681 z" Fill="{DynamicResource MBlue}" Margin="0,48.081,0,3.733" Grid.Row="1" Stretch="Fill" HorizontalAlignment="Left" Width="33.114" Grid.Column="1" Grid.RowSpan="2"/>
+                    <Path Data="M59.341772,74.199101 L76.243461,90.755355 92.455502,74.198681 z" Fill="{DynamicResource MBlue}" Margin="36.329,48.081,0,3.733" Grid.Row="1" Stretch="Fill" HorizontalAlignment="Left" Width="33.114" Grid.Column="2" Grid.RowSpan="2"/>-->
+                </Grid>
+                <Grid x:Name="ElementsGrid" Grid.Row="1" >
+                    <controls:DragDropMappingControl x:Name="MappingValueGrid" Margin="0,0,0,-20"  />
+                </Grid>
+                <Popup IsOpen="{Binding ShowMappedValuesPopup}" PlacementTarget="{Binding ElementName=ElementsGrid}"
+         Placement="Center"  Margin="284,150,284,150" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  MaxWidth="700">
+                    <Border Background="{DynamicResource MGrey1}"
+                        Padding="5"
+                        BorderThickness="1" BorderBrush="{DynamicResource MBlue}" >
+                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition  />
+                                    <ColumnDefinition Width="175"/>
+                                </Grid.ColumnDefinitions>
+                                <controls1:MonahrqButton Grid.Column="1" 
+                                    Command="{Binding ShowSampleValuesCommand}" CommandParameter="CLOSE"
+                                    Style="{DynamicResource MonahrqPinkStyle}"  HorizontalContentAlignment="Stretch"
+                                    Width="150" Height="32" VerticalAlignment="Center" Padding="5"
+                                    HorizontalAlignment="Right">
+                                    <controls1:MonahrqButton.ContentTemplate>
+                                        <DataTemplate>
+                                            <DockPanel HorizontalAlignment="Stretch" Width="Auto">
+                                                <TextBlock Text="CLOSE PREVIEW" FontWeight="Bold" DockPanel.Dock="Left" Margin="5,0,0,0" Foreground="Black" />
+                                                <TextBlock Text="X" Foreground="White" FontSize="14" FontWeight="Bold" DockPanel.Dock="Right" Width="10" Margin="18,0,5,0"  />
+                                            </DockPanel>
+                                        </DataTemplate>
+                                    </controls1:MonahrqButton.ContentTemplate>
+                                </controls1:MonahrqButton>
+                                <StackPanel VerticalAlignment="Center">
+                                    <TextBlock Text="PREVIEW SOURCE VALUES" FontSize="18" FontWeight="SemiBold"/>
+                                </StackPanel>
+                            </Grid>
+                            <Border Grid.Row="1" BorderThickness="1" BorderBrush="{StaticResource MGrey3}" Background="White" Margin="2" MinWidth="300" MinHeight="200" Padding="10"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                <ItemsControl ItemsSource="{Binding MappedFieldsForValues}" ItemsPanel="{StaticResource ItemsPanelHorizontal}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MaxWidth="680">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="30" />
+                                                    <RowDefinition Height="*"/>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="20*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <StackPanel Background="{StaticResource MBlue}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+                                                    <TextBlock Text="{Binding Name}" Foreground="{StaticResource MGrey1}" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                                </StackPanel>
+                                                <ItemsControl Grid.Row="1" Margin="-5,0" 
+									        ItemsSource="{Binding Values}" ItemsPanel="{StaticResource ItemsPanelVertical}">
+                                                    <ItemsControl.ItemTemplate>
+                                                        <DataTemplate>
+
+                                                            <Border Margin="0"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="#FF666666" BorderThickness="1" Background="Gainsboro" Padding="5">
+                                                                <TextBlock TextWrapping="Wrap" Height="15.96" Margin="5,0,7,0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF353535" Text="{Binding }" Width="70"/>
+                                                            </Border>
+
+                                                        </DataTemplate>
+                                                    </ItemsControl.ItemTemplate>
+                                                </ItemsControl>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                    <!-- Add this Template -->
+                                    <ItemsControl.Template>
+                                        <ControlTemplate TargetType="ItemsControl">
+                                            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                                                <ItemsPresenter/>
+                                            </ScrollViewer>
+                                        </ControlTemplate>
+                                    </ItemsControl.Template>
+                                </ItemsControl>
+                            </Border>
+                        </Grid>
+                    </Border>
+                </Popup>
+            </Grid>
+        </Grid>
+	 	</ScrollViewer>
+    </Grid>
+</UserControl>

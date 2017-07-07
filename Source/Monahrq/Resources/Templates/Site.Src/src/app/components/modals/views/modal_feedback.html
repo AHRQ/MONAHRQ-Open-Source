@@ -1,0 +1,17 @@
+<div class="modal-feedback">
+<div class="modal-header">
+  <button data-ng-click="$close()" type="button" class="close"><span aria-hidden="true" role="presentation">×</span><span class="sr-hidden">Close</span></button>
+  <h1 id="modal-header-title" class="modal-title">Send Your Feedback</h1>
+</div>
+<div class="modal-body">
+  <p>Please select a topic for your feedback</p>
+  <select class="form-control" data-ng-model="model.selectedTopic" data-ng-change="setURL(model.selectedTopic)" label="Feedback Topic">
+    <option data-ng-repeat="topic in feedbackTopics" value="{{topic}}">{{topic}}</option>
+  </select>
+
+</div>
+<div class="modal-footer">
+  <a data-ng-click="$close()" data-ng-if="feedbackUrl" class="pull-left" target="_blank" href="{{feedbackUrl}}">Access Feedback Form</a>
+  <a data-ng-click="$close()" type="button" class="btn btn-default" href="{{linkurl}}">Send Email</a>
+</div>
+</div>

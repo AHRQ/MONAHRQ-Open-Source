@@ -1,0 +1,15 @@
+10.0
+13
+1  SQLCHAR  0  0  ","     2  ID                ""
+2  SQLCHAR  0  0  ","     3  Region            ""
+3  SQLCHAR  0  0  ","     4  Discharges        ""
+4  SQLCHAR  0  0  ","     5  DischargesStdErr  ""
+5  SQLCHAR  0  0  ","     6  MeanCharges       ""
+6  SQLCHAR  0  0  ","     7  MeanChargesStdErr ""
+7  SQLCHAR  0  0  ","     8  MeanCost          ""
+8  SQLCHAR  0  0  ","     9  MeanCostStdErr    ""
+9  SQLCHAR  0  0  ","     10 MeanLOS           ""
+10 SQLCHAR  0  0  ","     11 MeanLOSStdErr     ""
+11 SQLCHAR  0  0  ","     12 MedianCharges     ""
+12 SQLCHAR  0  0  ","     13 MedianCost        ""
+13 SQLCHAR  0  0  "\r\n"  14 MedianLOS         ""

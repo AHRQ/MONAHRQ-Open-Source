@@ -1,0 +1,25 @@
+﻿This is a quick note on the priority and what needs to be loaded before others.
+Strategies are loaded based upon priority from 1 to 10 (the default).
+Priority can be overridden with this in the strategy.
+	public override int LoaderPriority { get { return 1; } }
+
+
+HSA requires HospitalRegistry and States to be loaded first
+HRR requires HospitalRegistry and States to be loaded first
+ZipCodeToHRRAndHSA requires States to be loaded first
+
+HospitalCategories requires HospitalRegistry to be loaded first
+
+Hospitals requires HospitalRegistry, States, Counties, HospitalCategories, HealthReferralRegions (HRRs), HospitalServiceAreas (HSAs) and ZipCodeToHRRAndHSAs to be loaded first
+
+States was set to priority 1
+HospitalRegistry was set to priority 1
+
+Counties was set to a priority 2
+HospitalCategories was set to priority 2
+HRR was set to priority 2
+HSA was set to priority 2
+ZipCodeToHRRAndHSA was set to priority 2
+
+
+Hospitals was set to priority 3

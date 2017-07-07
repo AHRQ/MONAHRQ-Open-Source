@@ -1,0 +1,31 @@
+<div class="panel panel-default" id="utilization-tabpanel" aria-labledby="" role="tabpanel" aria-hidden="false">
+  <div class="panel-heading">
+    <h3 class="panel-title"><span data-ng-if="isMedicare()">Medicare </span>Charge Data for the Top 25 Diagnosis Related Groups (DRGs)<span class="dark" data-mh-help-icon="'&nbsp;'" data-mh-on-click="openLegendModal()"></span></h3>
+  </div>
+  <div class="panel-body profile-panel-body">
+
+    <ul class="list-unstyled">
+      <li data-ng-repeat="drg in drgs track by $index" class="condition-row">
+      <a data-ng-click="toggleDRG(drg.Id)" data-ng-class="{active: showDRG(drg.Id)}" class="condition-row-link">{{drg.Description}}</a>
+
+      <div data-ng-if="showDRG(drg.Id)" class="profile-data-table">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Measure</th>
+              <th>Hospital Rates</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-ng-repeat="col in columns">
+              <td>{{col.label}}</td>
+              <td>{{getFilteredValue(col, drgData.hospital[drg.Id][col.field])}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      </li>
+    </ul>
+  </div>
+</div>
+

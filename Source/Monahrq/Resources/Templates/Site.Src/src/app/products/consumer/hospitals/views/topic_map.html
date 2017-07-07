@@ -1,0 +1,109 @@
+<main class="topic">
+
+  <section class="search--refine" role="search">
+    <div class="contain">
+      <div class="search--refine__title-group">
+        <h1 class="search--refine__title">Compare hospitals by a specific health topic or condition:</h1>
+      </div>
+
+      <form class="search-form condition-search">
+        <div class="search-form__contain">
+          <div class="search-form__topic">
+            <label for="search-topic">Select a health topic of interest to view results:</label>
+            <select id="search-topic" data-ng-class="{selectEmpty: !query.topicId}" name="topic" data-ng-model="query.topicId" data-ng-options="t.id as t.name for t in topics" data-ng-change="updateSearch('topic')" title="Select a topic">
+              <option value="" selected disabled style="display:none;">Select a topic</option>
+            </select>
+          </div>
+
+          <div class="search-form__narrow">
+            <legend>Not finding the hospitals you wanted? Try changing your search area:</legend>
+
+            <div>
+              <div class="search-form__zip">
+                <label for="search-zip">Enter Zip Code:</label>
+                <input type="text" id="search-zip" name="zip" placeholder="Enter zip code" data-ng-model="query.zip">
+              </div>
+
+              <span class="search-form__next"></span>
+
+              <div class="search-form__distance">
+                <label for="search-distance">Select Distance Range:</label>
+                <select id="search-distance" data-ng-class="{selectEmpty: !query.distance}" name="distance" data-ng-model="query.distance" data-ng-options="x as (x + ' Mile(s)') for x in zipDistances track by x" title="Maximum Distance">
+                  <option value="" selected disabled style="display:none;">Choose Maximum Distance</option>
+                </select>
+              </div>
+
+              <div class="search-form__action">
+                <button class="btn--primary" data-ng-click="updateSearch('distance')">Refine Results</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <div data-mh-cms-zone="'header'" data-mh-cms-zone-report-id="reportId" data-mh-cms-zone-product="'Consumer'"></div>
+
+  <section class="report" tabindex="-1">
+    <header class="report-header" data-ng-if="!hasSearch">
+      <p>Please enter a search in the form above.</p>
+    </header>
+
+    <header class="report-header" data-ng-if="hasSearch && !hasResults">
+      <p>Your search did not find any hospitals.</p>
+    </header>
+
+    <header class="report-header" data-ng-if="hasResults">
+      <a href="#" data-ng-click="gotoTable(); $event.preventDefault()">View these results in a table</a>
+      <p data-ng-if="query.zip">Hospitals within {{query.distance}} miles of {{query.zip}}</p>
+    </header>
+
+    <div class="report-content" data-ng-show="hasResults">
+      <fieldset class="topic-map-subtopics">
+        <legend class="">Select a subtopic:</legend>
+        <ul>
+          <li data-ng-repeat="subtopic in subtopics">
+            <button data-ng-click="query.subtopicId = subtopic.id; updateSearch('subtopic')" data-ng-class="{active: subtopic.id === query.subtopicId}" class="btn--tertiary">{{subtopic.name}}</button>
+          </li>
+        </ul>
+      </fieldset>
+
+      <div ng-repeat="marker in mapModel.markers" ui-map-marker="mapModel.markers[$index]" ui-event="{'map-mouseover': 'openMarkerInfo(marker)'}"></div>
+
+      <div ui-map-info-window="infoWindow" class="clearfix">
+        <div class="info_window__wrapper">
+          <h2>{{mapModel.currentMarkerData.name}}</h2>
+          <p class="info__window__adr">{{mapModel.currentMarkerData.address}}</p>
+          <p class="info__window__rating" data-ng-if="mapModel.currentMarkerData.rating"><strong class="col-md-6">How Do Patients Rate The Hospital Overall:</strong><span class="info__window__rating col-md-6" data-mh-rating-symbol="mapModel.currentMarkerData.rating"></span></p>
+          <p class="info__window__link"><a href="#" data-ui-sref="^.profile({id: mapModel.currentMarkerData.id})">View Profile</a></p>
+        </div><!-- /.inf__wrapper -->
+      </div>
+
+      <div class="map large">
+        <div data-ng-if="!config.DE_IDENTIFICATION" data-ui-map="mapModel.map" data-ui-options="mapOptions" class="map-canvas" title="Geographic map of search results"></div>
+        <div data-ng-if="config.DE_IDENTIFICATION" class="map-canvas">
+          <img src="themes/consumer/assets/images/demo-map.png" alt="Example Map">
+        </div></div>
+      <p data-ng-if="config.DE_IDENTIFICATION" style="text-align:center">* For demonstration purposes, this is a static map based on fabricated data. A non-demonstration website will use an interactive map.</p>
+    </div>
+
+    <footer class="report-footer" data-ng-if="hasSearch">
+      <div>
+        <label for="search-distance2">Try changing your search area for different results:</label>
+        <select id="search-distance2" data-ng-class="{selectEmpty: !query.distance}" name="distance" data-ng-model="query.distance" data-ng-options="x as (x + ' Mile(s)') for x in zipDistances track by x" title="Maximum Distance">
+          <option value="" selected disabled style="display:none;">Choose Maximum Distance</option>
+        </select>
+        <button class="btn--primary" data-ng-click="updateSearch()">Update Results</button>
+      </div>
+
+      <p>Need help with your search? <a href="#">Find help here</a>.</p>
+    </footer>
+
+  </section>
+
+  <div data-mh-cms-zone="'footer'" data-mh-cms-zone-report-id="reportId" data-mh-cms-zone-product="'Consumer'"></div>
+
+  <section id="condition-menu" tabindex="-1" data-mhc-hospital-topic-menu=""></section>
+
+</main>

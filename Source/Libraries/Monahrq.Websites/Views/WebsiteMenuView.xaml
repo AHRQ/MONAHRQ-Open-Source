@@ -1,0 +1,616 @@
+﻿<UserControl x:Class="Monahrq.Websites.Views.WebsiteMenuView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Monahrq.Websites.Views"
+             mc:Ignorable="d"
+             d:DesignHeight="300"
+             d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.Buttons.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Color x:Key="ControlLightColor">White</Color>
+            <Color x:Key="ControlMediumColor">#3F3F46</Color>
+            <Color x:Key="BorderMediumColor">#FF888888</Color>
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+            <local:BorderBacgroundConverter x:Key="BorderBacgroundConverter" />
+            <local:SubMenuVisibility x:Key="SubMenuVisibility" />
+            <Style  x:Key="websiteMenuListView"
+                    TargetType="ListView">
+                <Setter Property="SnapsToDevicePixels"
+                        Value="true" />
+                <Setter Property="OverridesDefaultStyle"
+                        Value="true" />
+                <Setter Property="ScrollViewer.HorizontalScrollBarVisibility"
+                        Value="Auto" />
+                <Setter Property="ScrollViewer.VerticalScrollBarVisibility"
+                        Value="Auto" />
+                <Setter Property="ScrollViewer.CanContentScroll"
+                        Value="true" />
+                <Setter Property="VerticalContentAlignment"
+                        Value="Center" />
+                <Setter Property="TextElement.Foreground"
+                        Value="Black" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ListView">
+                            <Border Name="Border"
+                                    BorderThickness="0">
+                                <Border.Background>
+                                    <SolidColorBrush Color="{StaticResource ControlLightColor}" />
+                                </Border.Background>
+                                <Border.BorderBrush>
+                                    <SolidColorBrush Color="{StaticResource BorderMediumColor}" />
+                                </Border.BorderBrush>
+                                <ScrollViewer Style="{DynamicResource {x:Static GridView.GridViewScrollViewerStyleKey}}">
+                                    <ItemsPresenter />
+                                </ScrollViewer>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsGrouping"
+                                         Value="true">
+                                    <Setter Property="ScrollViewer.CanContentScroll"
+                                            Value="false" />
+                                </Trigger>
+                                <Trigger Property="IsEnabled"
+                                         Value="false">
+                                    <Setter TargetName="Border"
+                                            Property="Background">
+                                        <Setter.Value>
+                                            <SolidColorBrush Color="{DynamicResource DisabledBorderLightColor}" />
+                                        </Setter.Value>
+                                    </Setter>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="websiteMenuListViewItem"
+                   TargetType="ListViewItem">
+                <Setter Property="SnapsToDevicePixels"
+                        Value="true" />
+                <Setter Property="OverridesDefaultStyle"
+                        Value="true" />
+                <Setter Property="Margin"
+                        Value="0,-1,0,-2" />
+                <Setter Property="Background"
+                        Value="{StaticResource MGrey1}" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ListViewItem">
+                            <Border x:Name="Border"
+                                    Padding="2"
+                                    Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType=UserControl}, Path=ParentContainerWidth}"
+                                    SnapsToDevicePixels="true"
+                                    Background="{TemplateBinding Background}">
+                                <ContentPresenter />
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style TargetType="Border"
+                   x:Key="rowContentStyle">
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver"
+                             Value="True">
+                        <Setter Property="Background"
+                                Value="{StaticResource MYellow}" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            <Style TargetType="GridViewColumnHeader"
+                   x:Key="ListViewColumhHeader">
+                <Setter Property="Foreground"
+                        Value="white" />
+                <Setter Property="Background"
+                        Value="{StaticResource MGrey5}" />
+                <Setter Property="FontWeight"
+                        Value="SemiBold" />
+                <Setter Property="Height"
+                        Value="40" />
+                <Setter Property="FontSize"
+                        Value="13" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="GridViewColumnHeader">
+                            <Border Name="HeaderBorder"
+                                    Background="{TemplateBinding Background}"
+                                    BorderThickness="0,1,0,1">
+                                <ContentPresenter VerticalAlignment="Center" />
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style TargetType="TextBox">
+                <Setter Property="Height"
+                        Value="20" />
+            </Style>
+            <HierarchicalDataTemplate x:Key="HierachicalDT">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Border Name="Border"
+                            BorderThickness="0"
+                            Style="{StaticResource rowContentStyle}"
+                            BorderBrush="{StaticResource MGrey5}"
+                            Visibility="{Binding IsVisible, Mode=TwoWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType=UserControl}, Path=ButtonsColumnWidth}" />
+                                <ColumnDefinition  Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType=UserControl}, Path=MenuColumnWidth}" />
+                                <ColumnDefinition Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType=UserControl}, Path=CheckBoxColumnWidth}" />
+                            </Grid.ColumnDefinitions>
+                            <TextBox  Margin="15, 0, 0, 0"
+                                      HorizontalAlignment="Left"
+                                      Grid.Column="1"
+                                      Grid.Row="0"
+                                      Name="txtEditSubWebsiteMenu"
+                                      Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType=UserControl}, Path=SubMenuColumnWidth}"
+                                      Text="{Binding NewLabel, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True}" />
+                            <TextBlock  Margin="20, 5, 5, 5"
+                                        HorizontalAlignment="Left"
+                                        Grid.Column="1"
+                                        Grid.Row="0"
+                                        Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType=UserControl}, Path=SubMenuColumnWidth}"
+                                        Name="txtSubWebsiteMenu"
+                                        Text="{Binding Label, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                        IsEnabled="false" />
+                            <StackPanel Orientation="Horizontal"
+                                        Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType=UserControl}, Path=ButtonsColumnWidth}"
+                                        Grid.Column="0"
+                                        Grid.Row="0">
+                                <Button Margin="5"
+                                        Name="btnSubMenuEdit"
+                                        Content="Edit"
+                                        Style="{StaticResource EditButton}" />
+                                <Button Margin="5"
+                                        Name="btnSubMenuSave"
+                                        Content="Save"
+                                        Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorLevel=2, AncestorType=UserControl}, Path=DataContext.SaveMenuItemCommand}"
+                                        CommandParameter="{Binding }"
+                                        Style="{StaticResource SaveButton}" />
+                                <Button Margin="5"
+                                        Name="btnSubMenuCancel"
+                                        Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorLevel=2, AncestorType=UserControl}, Path=DataContext.CancelMenuEditCommand}"
+                                        CommandParameter="{Binding }"
+                                        Content="Cancel"
+                                        Style="{StaticResource CancelButton}" />
+                            </StackPanel>
+                            <CheckBox Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType=UserControl}, Path=CheckBoxColumnWidth}"
+                                      Margin="40,5,10,0"
+                                      IsChecked="{Binding IsSelected}"
+                                      Grid.Column="2"
+                                      Grid.Row="0" />
+                        </Grid>
+                    </Border>
+                    <ItemsControl Grid.Row="1"
+                                  Grid.Column="0"
+                                  AlternationCount="2"
+                                  ItemsSource="{Binding SubMenus}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Name="Border"
+                                        BorderThickness="0"
+                                        Style="{StaticResource rowContentStyle}"
+                                        BorderBrush="{StaticResource MGrey5}"
+                                        Visibility="{Binding IsVisible, Mode=TwoWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType=UserControl}, Path=ButtonsColumnWidth}" />
+                                            <ColumnDefinition  Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType=UserControl}, Path=MenuColumnWidth}" />
+                                            <ColumnDefinition Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType=UserControl}, Path=CheckBoxColumnWidth}" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBox Margin="30, 0, 0, 0"
+                                                 HorizontalAlignment="Left"
+                                                 Grid.Column="1"
+                                                 Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType=UserControl}, Path=SubSubMenuColumnWidth}"
+                                                 Name="txtEditSubSubWebsiteMenu"
+                                                 Text="{Binding NewLabel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True}" />
+                                        <TextBlock Margin="35, 5, 5, 5"
+                                                   HorizontalAlignment="Left"
+                                                   Grid.Column="1"
+                                                   Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType=UserControl}, Path=SubSubMenuColumnWidth}"
+                                                   Name="txtSubSubWebsiteMenu"
+                                                   Text="{Binding Label, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                   IsEnabled="false" />
+                                        <StackPanel Grid.Column="0"
+                                                    Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType=UserControl}, Path=ButtonsColumnWidth}"
+                                                    Orientation="Horizontal">
+                                            <Button Margin="5"
+                                                    Name="btnSubSubMenuEdit"
+                                                    Content="Edit"
+                                                    Style="{StaticResource EditButton}" />
+                                            <Button Margin="5"
+                                                    Name="btnSubSubMenuSave"
+                                                    Content="Save"
+                                                    Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorLevel=2, AncestorType=UserControl}, Path=DataContext.SaveMenuItemCommand}"
+                                                    CommandParameter="{Binding }"
+                                                    Style="{StaticResource SaveButton}" />
+                                            <Button Margin="5"
+                                                    Name="btnSubSubMenuCancel"
+                                                    Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorLevel=2, AncestorType=UserControl}, Path=DataContext.CancelMenuEditCommand}"
+                                                    CommandParameter="{Binding }"
+                                                    Content="Cancel"
+                                                    Style="{StaticResource CancelButton}" />
+                                        </StackPanel>
+                                        <CheckBox  Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType=UserControl}, Path=CheckBoxColumnWidth}"
+                                                   Margin="40,5,10,0"
+                                                   IsChecked="{Binding IsSelected}"
+                                                   Grid.Column="2" />
+                                    </Grid>
+                                </Border>
+                                <DataTemplate.Triggers>
+                                    <!--<EventTrigger SourceName="btnSubSubMenuEdit"
+                                                  RoutedEvent="Button.Click">
+                                        <EventTrigger.Actions>
+                                            <BeginStoryboard x:Name="editSubSubMenuLabel">
+                                                <Storyboard x:Name="editSubSubMenuLabelStoryboard">
+                                                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="txtSubSubWebsiteMenu"
+                                                                                    Storyboard.TargetProperty="IsEnabled">
+                                                        <DiscreteBooleanKeyFrame KeyTime="00:00:00"
+                                                                                 Value="True" />
+                                                    </BooleanAnimationUsingKeyFrames>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger.Actions>
+                                    </EventTrigger>
+                                    <EventTrigger SourceName="btnSubSubMenuSave"
+                                                  RoutedEvent="Button.Click">
+                                        <EventTrigger.Actions>
+                                            <BeginStoryboard x:Name="disableTopicName">
+                                                <Storyboard x:Name="EndEditTopicNameStoryboard">
+                                                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="txtSubSubWebsiteMenu"
+                                                                                    Storyboard.TargetProperty="IsEnabled">
+                                                        <DiscreteBooleanKeyFrame KeyTime="00:00:00"
+                                                                                 Value="False" />
+                                                    </BooleanAnimationUsingKeyFrames>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger.Actions>
+                                    </EventTrigger>
+                                    <EventTrigger SourceName="btnSubSubMenuCancel"
+                                                  RoutedEvent="Button.Click">
+                                        <EventTrigger.Actions>
+                                            <BeginStoryboard x:Name="enableAddSubTopicName">
+                                                <Storyboard x:Name="AddTopicNameStoryboard">
+                                                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="txtSubSubWebsiteMenu"
+                                                                                    Storyboard.TargetProperty="IsEnabled">
+                                                        <DiscreteBooleanKeyFrame KeyTime="00:00:00"
+                                                                                 Value="False" />
+                                                    </BooleanAnimationUsingKeyFrames>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger.Actions>
+                                    </EventTrigger>-->
+                                    <Trigger SourceName="txtSubSubWebsiteMenu"
+                                             Property="IsEnabled"
+                                             Value="True">
+                                        <Setter TargetName="txtEditSubSubWebsiteMenu"
+                                                Property="Visibility"
+                                                Value="Visible" />
+                                        <Setter TargetName="txtSubSubWebsiteMenu"
+                                                Property="Visibility"
+                                                Value="Collapsed" />
+
+                                        <!--Buttons-->
+                                        <Setter TargetName="btnSubSubMenuEdit"
+                                                Property="Visibility"
+                                                Value="Collapsed" />
+                                        <Setter TargetName="btnSubSubMenuSave"
+                                                Property="Visibility"
+                                                Value="Visible" />
+                                        <Setter TargetName="btnSubSubMenuCancel"
+                                                Property="Visibility"
+                                                Value="Visible" />
+                                    </Trigger>
+                                    <Trigger SourceName="txtSubSubWebsiteMenu"
+                                             Property="IsEnabled"
+                                             Value="False">
+                                        <Setter TargetName="txtEditSubSubWebsiteMenu"
+                                                Property="Visibility"
+                                                Value="Collapsed" />
+                                        <Setter TargetName="txtSubSubWebsiteMenu"
+                                                Property="Visibility"
+                                                Value="Visible" />
+                                        <!--Buttons-->
+                                        <Setter TargetName="btnSubSubMenuEdit"
+                                                Property="Visibility"
+                                                Value="Visible" />
+                                        <Setter TargetName="btnSubSubMenuSave"
+                                                Property="Visibility"
+                                                Value="Collapsed" />
+                                        <Setter TargetName="btnSubSubMenuCancel"
+                                                Property="Visibility"
+                                                Value="Collapsed" />
+                                    </Trigger>
+                                </DataTemplate.Triggers>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Grid>
+                <HierarchicalDataTemplate.Triggers>
+                    <EventTrigger SourceName="btnSubMenuEdit"
+                                  RoutedEvent="Button.Click">
+                        <EventTrigger.Actions>
+                            <BeginStoryboard x:Name="editSubMenuLabel">
+                                <Storyboard x:Name="editSubMenuLabelStoryboard">
+                                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="txtSubWebsiteMenu"
+                                                                    Storyboard.TargetProperty="IsEnabled">
+                                        <DiscreteBooleanKeyFrame KeyTime="00:00:00"
+                                                                 Value="True" />
+                                    </BooleanAnimationUsingKeyFrames>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger.Actions>
+                    </EventTrigger>
+                    <EventTrigger SourceName="btnSubMenuSave"
+                                  RoutedEvent="Button.Click">
+                        <EventTrigger.Actions>
+                            <BeginStoryboard x:Name="saveSubMenuLabel">
+                                <Storyboard x:Name="saveSubMenuLabelStoryboard">
+                                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="txtSubWebsiteMenu"
+                                                                    Storyboard.TargetProperty="IsEnabled">
+                                        <DiscreteBooleanKeyFrame KeyTime="00:00:00"
+                                                                 Value="False" />
+                                    </BooleanAnimationUsingKeyFrames>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger.Actions>
+                    </EventTrigger>
+                    <EventTrigger SourceName="btnSubMenuCancel"
+                                  RoutedEvent="Button.Click">
+                        <EventTrigger.Actions>
+                            <BeginStoryboard x:Name="cancelSubMenuLabel">
+                                <Storyboard x:Name="cancelSubMenuLabelStoryboard">
+                                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="txtSubWebsiteMenu"
+                                                                    Storyboard.TargetProperty="IsEnabled">
+                                        <DiscreteBooleanKeyFrame KeyTime="00:00:00"
+                                                                 Value="False" />
+                                    </BooleanAnimationUsingKeyFrames>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger.Actions>
+                    </EventTrigger>
+                    <Trigger SourceName="txtSubWebsiteMenu"
+                             Property="IsEnabled"
+                             Value="True">
+                        <Setter TargetName="txtEditSubWebsiteMenu"
+                                Property="Visibility"
+                                Value="Visible" />
+                        <Setter TargetName="txtSubWebsiteMenu"
+                                Property="Visibility"
+                                Value="Collapsed" />
+
+                        <!--Buttons-->
+                        <Setter TargetName="btnSubMenuEdit"
+                                Property="Visibility"
+                                Value="Collapsed" />
+                        <Setter TargetName="btnSubMenuSave"
+                                Property="Visibility"
+                                Value="Visible" />
+                        <Setter TargetName="btnSubMenuCancel"
+                                Property="Visibility"
+                                Value="Visible" />
+                    </Trigger>
+                    <Trigger SourceName="txtSubWebsiteMenu"
+                             Property="IsEnabled"
+                             Value="False">
+                        <Setter TargetName="txtEditSubWebsiteMenu"
+                                Property="Visibility"
+                                Value="Collapsed" />
+                        <Setter TargetName="txtSubWebsiteMenu"
+                                Property="Visibility"
+                                Value="Visible" />
+                        <!--Buttons-->
+                        <Setter TargetName="btnSubMenuEdit"
+                                Property="Visibility"
+                                Value="Visible" />
+                        <Setter TargetName="btnSubMenuSave"
+                                Property="Visibility"
+                                Value="Collapsed" />
+                        <Setter TargetName="btnSubMenuCancel"
+                                Property="Visibility"
+                                Value="Collapsed" />
+                    </Trigger>
+                </HierarchicalDataTemplate.Triggers>
+            </HierarchicalDataTemplate>
+            <DataTemplate x:Key="ListViewDataTemplate">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Border BorderThickness="0,0.25,0,0.25"
+                            BorderBrush="{StaticResource MGrey2}"
+                            Style="{StaticResource rowContentStyle}"
+                            Grid.Row="0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType=UserControl}, Path=ButtonsColumnWidth}" />
+                                <ColumnDefinition  Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType=UserControl}, Path=MenuColumnWidth}" />
+                                <ColumnDefinition Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType=UserControl}, Path=CheckBoxColumnWidth}" />
+                            </Grid.ColumnDefinitions>
+                            <TextBox  Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType=UserControl}, Path=MenuColumnWidth}"
+                                      Grid.Column="1"
+                                      Tag="{Binding HasErrors}"
+                                      HorizontalAlignment="Left"
+                                      Text="{Binding NewLabel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True}"
+                                      Name="txtEditWebsiteMenuLabel" />
+                            <TextBlock Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType=UserControl}, Path=MenuColumnWidth}"
+                                       Grid.Column="1"
+                                       Margin="5"
+                                       HorizontalAlignment="Left"
+                                       Name="txtWebsiteMenuLabel"
+                                       IsEnabled="False">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0}">
+                                        <Binding Path="Label"
+                                                 Mode="TwoWay"
+                                                 UpdateSourceTrigger="PropertyChanged" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                            <StackPanel Orientation="Horizontal"
+                                        Grid.Column="0"
+                                        Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType=UserControl}, Path=ButtonsColumnWidth}"
+                                        Grid.Row="0">
+                                <Button Margin="5"
+                                        Name="btnMenuEdit"
+                                        Content="Edit"
+                                        Style="{StaticResource EditButton}" />
+                                <Button Margin="5"
+                                        Name="btnMenuSave"
+                                        Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorLevel=2, AncestorType=UserControl}, Path=DataContext.SaveMenuItemCommand}"
+                                        CommandParameter="{Binding }"
+                                        Content="Save"
+                                        Style="{StaticResource SaveButton}" />
+                                <Button Margin="5"
+                                        Name="btnMenuCancel"
+                                        Command="{Binding RelativeSource={RelativeSource FindAncestor,AncestorLevel=2, AncestorType=UserControl}, Path=DataContext.CancelMenuEditCommand}"
+                                        CommandParameter="{Binding }"
+                                        Content="Cancel"
+                                        Style="{StaticResource CancelButton}" />
+                            </StackPanel>
+                            <CheckBox Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType=UserControl}, Path=CheckBoxColumnWidth}"
+                                      Margin="40,5,10,0"
+                                      Grid.Column="2"
+                                      IsChecked="{Binding IsSelected}"
+                                      Grid.Row="0" />
+                        </Grid>
+                    </Border>
+
+                    <ItemsControl Background="White"
+                                  Visibility="{Binding SubMenus, Converter={StaticResource SubMenuVisibility}}"
+                                  Grid.Row="1"
+                                  Grid.Column="0"
+                                  AlternationCount="2"
+                                  ItemsSource="{Binding SubMenus}"
+                                  ItemTemplate="{StaticResource HierachicalDT}">
+                    </ItemsControl>
+                </Grid>
+                <DataTemplate.Triggers>
+                    <EventTrigger SourceName="btnMenuEdit"
+                                  RoutedEvent="Button.Click">
+                        <EventTrigger.Actions>
+                            <BeginStoryboard x:Name="enableMenuLabel">
+                                <Storyboard x:Name="EditMenuLabelStoryboard">
+                                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="txtWebsiteMenuLabel"
+                                                                    Storyboard.TargetProperty="IsEnabled">
+                                        <DiscreteBooleanKeyFrame KeyTime="00:00:00"
+                                                                 Value="True" />
+                                    </BooleanAnimationUsingKeyFrames>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger.Actions>
+                    </EventTrigger>
+                    <EventTrigger SourceName="btnMenuSave"
+                                  RoutedEvent="Button.Click">
+                        <EventTrigger.Actions>
+                            <BeginStoryboard x:Name="saveMenuLabel">
+                                <Storyboard x:Name="saveMenuLabelStoryboard">
+                                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="txtWebsiteMenuLabel"
+                                                                    Storyboard.TargetProperty="IsEnabled">
+                                        <DiscreteBooleanKeyFrame KeyTime="00:00:00"
+                                                                 Value="False" />
+                                    </BooleanAnimationUsingKeyFrames>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger.Actions>
+                    </EventTrigger>
+                    <EventTrigger SourceName="btnMenuCancel"
+                                  RoutedEvent="Button.Click">
+                        <EventTrigger.Actions>
+                            <BeginStoryboard x:Name="cancelEditMenuLabel">
+                                <Storyboard x:Name="cancelEditMenuLabelStoryboard">
+                                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="txtWebsiteMenuLabel"
+                                                                    Storyboard.TargetProperty="IsEnabled">
+                                        <DiscreteBooleanKeyFrame KeyTime="00:00:00"
+                                                                 Value="False" />
+                                    </BooleanAnimationUsingKeyFrames>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger.Actions>
+                    </EventTrigger>
+                    <Trigger SourceName="txtWebsiteMenuLabel"
+                             Property="IsEnabled"
+                             Value="True">
+                        <Setter TargetName="txtEditWebsiteMenuLabel"
+                                Property="Visibility"
+                                Value="Visible" />
+                        <Setter TargetName="txtWebsiteMenuLabel"
+                                Property="Visibility"
+                                Value="Collapsed" />
+
+                        <!--Buttons-->
+                        <Setter TargetName="btnMenuEdit"
+                                Property="Visibility"
+                                Value="Collapsed" />
+                        <Setter TargetName="btnMenuSave"
+                                Property="Visibility"
+                                Value="Visible" />
+                        <Setter TargetName="btnMenuCancel"
+                                Property="Visibility"
+                                Value="Visible" />
+                    </Trigger>
+                    <Trigger SourceName="txtWebsiteMenuLabel"
+                             Property="IsEnabled"
+                             Value="False">
+                        <Setter TargetName="txtEditWebsiteMenuLabel"
+                                Property="Visibility"
+                                Value="Collapsed" />
+                        <Setter TargetName="txtWebsiteMenuLabel"
+                                Property="Visibility"
+                                Value="Visible" />
+                        <!--Buttons-->
+                        <Setter TargetName="btnMenuEdit"
+                                Property="Visibility"
+                                Value="Visible" />
+                        <Setter TargetName="btnMenuSave"
+                                Property="Visibility"
+                                Value="Collapsed" />
+                        <Setter TargetName="btnMenuCancel"
+                                Property="Visibility"
+                                Value="Collapsed" />
+                    </Trigger>
+                </DataTemplate.Triggers>
+            </DataTemplate>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <ListView Name="listVwTest"
+                  Grid.Row="1"
+                  ItemContainerStyle="{StaticResource websiteMenuListViewItem}"
+                  Style="{StaticResource websiteMenuListView}"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                  HorizontalAlignment="Stretch"
+                  Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType=UserControl}, Path=ParentContainerWidth}"
+                  AlternationCount="2"
+                  ItemTemplate="{StaticResource ListViewDataTemplate}"
+                  ItemsSource="{Binding }">
+            <ListView.View>
+                <GridView ColumnHeaderContainerStyle="{StaticResource ListViewColumhHeader}">
+                    <GridViewColumn Header=""
+                                    Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType=UserControl}, Path=ButtonsColumnWidth}" />
+                    <GridViewColumn Header="Menu and Sub-Menu"
+                                    Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType=UserControl}, Path=MenuColumnWidth}" />
+                    <GridViewColumn Header="Show"
+                                    TextBlock.TextAlignment="Center"
+                                    Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType=UserControl}, Path=CheckBoxColumnWidth}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</UserControl>

@@ -1,0 +1,44 @@
+<script type="text/ng-template" id="flutters/demo-flutter/views/flutter.html">
+  <div class="demoFlutter">
+    <h1 class="page-title">{{page.title}}</h1>
+    <div data-ng-bind-html="page.header" class="page-header"></div>
+
+    <div class="row controls">
+      <div class="col-md-4">
+        <label for="controlHome">Select a Nursing Home</label>
+        <select id="controlHome" class="form-control" name="nhId" data-ng-model="query.nhId" data-ng-options="x.id as x.name for x in nursingHomeOptions">
+          <option value="" selected disabled style="display:none;">Select a Nursing Home</option>
+        </select>
+      </div>
+      <div class="col-md-4">
+        <label for="controlRating">Select a Rating</label>
+        <select id="controlRating" class="form-control" name="rating" data-ng-model="query.rating" data-ng-options="x.id as x.name for x in ratingOptions">
+          <option value="" selected disabled style="display:none;">Select a Rating</option>
+        </select>
+      </div>
+      <div class="col-md-4"></div>
+    </div>
+
+    <table class="data">
+      <thead>
+        <tr>
+          <th>Measure</th>
+          <th>National Rating</th>
+        </tr>
+      </thead>
+      <tbody data-ng-show="model.length == 0">
+        <tr>
+          <td colspan="2">No results</td>
+        </tr>
+      </tbody>
+      <tbody>
+        <tr data-ng-repeat="record in model">
+          <td>{{record.MeasureName}}</td>
+          <td>{{record.NatRating}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div data-ng-bind-html="page.footer" class="page-footer"></div>
+  </div>
+</script>

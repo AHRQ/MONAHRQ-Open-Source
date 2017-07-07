@@ -1,0 +1,84 @@
+<!--<ul data-ng-if="showWizardTabs()" class="ud-wizard-tabs">
+  <li class="active"><a href="#" data-ui-sref="top.professional.quality-ratings.condition"><strong>Condition or Topic</strong></a></li>
+  <li data-ng-if="ReportConfigSvc.webElementAvailable('Quality_Hospital_Tab')"><a href="#" data-ui-sref="top.professional.quality-ratings.location">Hospital</a></li>
+</ul>-->
+
+<div data-ng-if="navActive('top.professional.quality-ratings.condition')" class="row ud-wizard-content" data-ng-class="{'compressed': false}">
+
+  <div class="col-md-2 has-value">
+    <span class="wiz-step-num" data-ng-class="{active: isActiveStep('topic')}">1</span> <span class="wiz-step-name">Select Topic</span>
+    <span class="wiz-step-fields">
+      <select class="form-control" data-ng-class="{selectEmpty: !query.topic}" id="search-topics" data-ng-model="query.topic" data-ng-options="t.TopicCategoryID as t.Name for t in measureTopicCategories" title="Topic">
+        <option value="" selected disabled style="display:none;">Select Topic</option>
+      </select>
+    </span>
+  </div>
+
+  <div class="col-md-2" data-ng-class="{'has-value': query.topic}">
+    <span class="wiz-step-num"  data-ng-class="{active: isActiveStep('subtopic')}">2</span> <span class="wiz-step-name">Select Subtopic</span>
+    <span class="wiz-step-fields" data-ng-if="query.topic">
+      <select class="form-control" data-ng-class="{selectEmpty: !query.subtopic}" id="search-subtopics" data-ng-model="query.subtopic" data-ng-options="t.TopicID as t.Name for t in measureTopics" title="Sub Topic">
+        <option value="" selected disabled style="display:none;">Select Subtopic</option>
+      </select>
+    </span>
+  </div>
+
+  <div class="col-md-2 has-value" data-ng-if="query.subtopic">
+    <span class="wiz-step-num" data-ng-class="{active: isActiveStep('searchType')}">3</span> <span class="wiz-step-name">Refine Results</span>
+    <span class="wiz-step-fields">
+      <select class="form-control" data-ng-class="{selectEmpty: !query.searchType}" data-ng-model="query.searchType" data-ng-options="x.id as x.name for x in searchTypes" title="Search Type">
+        <option value="" selected disabled style="display:none;">Search Type</option>
+      </select>
+    </span>
+  </div>
+
+  <div class="col-md-2" data-ng-class="{'has-value': query.searchType}" data-ng-if="query.searchType">
+    <span class="wiz-step-num" data-ng-class="{active: isActiveStep('geoType')}">4</span>
+    <span class="wiz-step-name" data-ng-if="query.searchType == 'hospitalName'">Hospital Name</span>
+    <span class="wiz-step-fields" data-ng-if="query.searchType == 'hospitalName'">
+      <div data-mh-autocomplete="uiaHospitals" selected-id="query.hospitalName"></div>
+    </span>
+
+    <span class="wiz-step-name" data-ng-if="query.searchType == 'hospitalType'">Hospital Type</span>
+    <span class="wiz-step-fields" data-ng-if="query.searchType == 'hospitalType'">
+      <select class="form-control" data-ng-class="{selectEmpty: !query.hospitalType}" id="search-hospitalType" data-ng-model="query.hospitalType" data-ng-options="h.HospitalTypeID as h.Name for h in hospitalTypes" title="Hospital Type">
+        <option value="" selected disabled style="display:none;">Hospital Type</option>
+      </select>
+    </span>
+
+    <span class="wiz-step-name" data-ng-if="query.searchType == 'geo'">Geographic Info</span>
+    <span class="wiz-step-fields" data-ng-if="query.searchType == 'geo'">
+      <select class="form-control" data-ng-class="{selectEmpty: !query.geoType}" data-ng-model="query.geoType" data-ng-options="x.id as x.name for x in geoTypes" title="Geographic Info">
+        <option value="" selected disabled style="display:none;">Geographic Info</option>
+      </select>
+    </span>
+  </div>
+
+  <div class="col-md-2" data-ng-class="{'has-value': query.geoType}" data-ng-if="query.searchType == 'geo'">
+    <span class="wiz-step-num" data-ng-class="{active: isActiveStep('geoValue')}">5</span>
+
+    <span class="wiz-step-name" data-ng-if="query.geoType == 'zip'">Zip Code</span>
+    <span class="wiz-step-fields" data-ng-if="query.geoType == 'zip'">
+      <select class="form-control" data-ng-class="{selectEmpty: !query.zipDistance}" id="search-zipDistance" data-ng-model="query.zipDistance" data-ng-options="x as (x + ' Mile(s)') for x in zipDistances track by x" title="Maximum Distance">
+        <option value="" selected disabled style="display:none;">Maximum Distance</option>
+      </select>
+      <input class="form-control" type="text" name="zip" data-ng-model="query.zip"/>
+    </span>
+
+    <span class="wiz-step-name" data-ng-if="query.geoType == 'region'">Region</span>
+    <span class="wiz-step-fields" data-ng-if="query.geoType == 'region'">
+      <select class="form-control" data-ng-class="{selectEmpty: query.region === null}" id="search-region" data-ng-model="query.region" data-ng-options="r.RegionID as r.Name for r in hospitalRegions" title="Select a Region">
+        <option value="" selected disabled style="display:none;">Select a Region</option>
+      </select>
+   </span>
+  </div>
+
+  <div class="col-md-2 last has-value" data-ng-if="canNarrow()">
+    <span class="wiz-step-fields">
+      <span class="wiz-step-num">&nbsp;</span><br />
+      <button class="btn btn-success" data-ng-click="narrow()">Refine Report</button>
+    </span>
+  </div>
+
+
+</div>

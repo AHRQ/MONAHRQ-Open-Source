@@ -1,0 +1,1474 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{36F8DEDC-EECC-48D2-B900-7C02C671BA1B}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Monahrq.Infrastructure</RootNamespace>
+    <AssemblyName>Monahrq.Infrastructure</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <!--  <FodyPath>Fody.1.29.3</FodyPath>-->
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'CustomConfiguration|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\CustomConfiguration\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'CustomConfiguration|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\CustomConfiguration\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'CustomConfiguration|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\CustomConfiguration\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Castle.Core">
+      <HintPath>..\..\packages\Castle.Core.3.2.0\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Facilities.Logging">
+      <HintPath>..\..\packages\Castle.LoggingFacility.3.2.0\lib\net45\Castle.Facilities.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Windsor">
+      <HintPath>..\..\packages\Castle.Windsor.3.2.0\lib\net45\Castle.Windsor.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentNHibernate, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FluentNHibernate.2.0.3.0\lib\net40\FluentNHibernate.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\..\packages\Iesi.Collections.4.0.1.4000\lib\net40\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="LinqKit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=bc217f8844052a91, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\LinqKit.1.0\lib\35\LinqKit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MefContrib, Version=1.2.2.0, Culture=neutral, PublicKeyToken=61319b4ffd6fe6d3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\MefContrib.1.2.2.1\lib\net40-Client\MefContrib.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CommonServiceLocator.1.2\lib\portable-windows8+net40+sl5+windowsphone8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\..\packages\NHibernate.4.0.3.4000\lib\net40\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="PresentationFramework.Aero" />
+    <Reference Include="PropertyChanged, Version=1.50.3.0, Culture=neutral, PublicKeyToken=ee3ee20bcf148ddd, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\PropertyChanged.Fody.1.50.3\lib\dotnet\PropertyChanged.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\MonahrqAssemblyInfo.cs">
+      <Link>Properties\MonahrqAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Assert\ArgumentHelper.cs" />
+    <Compile Include="Assert\EventHelper.cs" />
+    <Compile Include="Assert\ExceptionHelper.cs" />
+    <Compile Include="Assert\Extensions\ArgumentHelperExtensions.cs" />
+    <Compile Include="Assert\Extensions\EventHelperExtensions.cs" />
+    <Compile Include="Attributes\ViewExportAttribute.cs" />
+    <Compile Include="Attributes\Wings\WingModuleAttribute.cs" />
+    <Compile Include="BaseDataLoader\BaseDataCustomImporter.cs" />
+    <Compile Include="BaseDataLoader\BaseDataDataReaderImporter.cs" />
+    <Compile Include="BaseDataLoader\BaseDataEnumImporter.cs" />
+    <Compile Include="BaseDataLoader\BaseDataImportAttirbute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseDataLoader\BaseDataImporter.cs" />
+    <Compile Include="BaseDataLoader\EntityImporterHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseDataLoader\BaseDataVersionStrategy.cs" />
+    <Compile Include="BaseDataLoader\BulkOperation.cs" />
+    <Compile Include="BaseDataLoader\EntityImporter.cs" />
+    <Compile Include="BaseDataLoader\IBaseDataImporter.cs" />
+    <Compile Include="BaseDataLoader\Loaders\AdmissionSourcesStrategy.cs" />
+    <Compile Include="BaseDataLoader\Loaders\AdmissionTypeStrategy.cs" />
+    <Compile Include="BaseDataLoader\Loaders\BaseWebsitePageStrategy.cs" />
+    <Compile Include="BaseDataLoader\Loaders\BaseWebsitePageZoneStrategy.cs" />
+    <Compile Include="BaseDataLoader\Loaders\NHCAHPSMeasureLookupStrategy.cs" />
+    <Compile Include="BaseDataLoader\Loaders\ConsumerPriceIndexStrategy.cs" />
+    <Compile Include="BaseDataLoader\Loaders\CostToChargeToDRGStrategy.cs" />
+    <Compile Include="BaseDataLoader\Loaders\CostToChargeToDXCCSStrategy.cs" />
+    <Compile Include="BaseDataLoader\Loaders\CountyStrategy.cs" />
+    <Compile Include="BaseDataLoader\Loaders\DefiniteStrategy.cs" />
+    <Compile Include="BaseDataLoader\Loaders\DischargeDispositionStrategy.cs" />
+    <Compile Include="BaseDataLoader\Loaders\GenderStrategy.cs" />
+    <Compile Include="BaseDataLoader\Loaders\HowOftenStrategy.cs" />
+    <Compile Include="BaseDataLoader\Loaders\ICD10toDXCCSCrosswalkStrategy.cs" />
+    <Compile Include="BaseDataLoader\Loaders\ICD10toPRCCSCrosswalkStrategy.cs" />
+    <Compile Include="BaseDataLoader\Loaders\MenuStrategy.cs" />
+    <Compile Include="BaseDataLoader\Loaders\NHProviderToLatLongStrategy.cs" />
+    <Compile Include="BaseDataLoader\Loaders\MSDRGStrategy.cs" />
+    <Compile Include="BaseDataLoader\Loaders\NumberOfTimesStrategy.cs" />
+    <Compile Include="BaseDataLoader\Loaders\PRCCSStrategy.cs" />
+    <Compile Include="BaseDataLoader\Loaders\DXCCSStrategy.cs" />
+    <Compile Include="BaseDataLoader\Loaders\MDCStrategy.cs" />
+    <Compile Include="BaseDataLoader\Loaders\DRGStrategy.cs" />
+    <Compile Include="BaseDataLoader\Loaders\HospitalStrategy.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseDataLoader\Loaders\HRRStrategy.cs" />
+    <Compile Include="BaseDataLoader\Loaders\HospitalCategoriesStrategy.cs" />
+    <Compile Include="BaseDataLoader\Loaders\DXCCSCategoriesStrategy.cs" />
+    <Compile Include="BaseDataLoader\Loaders\DXCCSLabelsStrategy.cs" />
+    <Compile Include="BaseDataLoader\Loaders\MeasureFiltersStrategy.cs" />
+    <Compile Include="BaseDataLoader\Loaders\PointOfOriginStrategy.cs" />
+    <Compile Include="BaseDataLoader\Loaders\PRCCSCategoriesStrategy.cs" />
+    <Compile Include="BaseDataLoader\Loaders\PRCCSLabelsStrategy.cs" />
+    <Compile Include="BaseDataLoader\Loaders\HospitalTraumaLevelStrategy.cs" />
+    <Compile Include="BaseDataLoader\Loaders\PrimaryPayerStrategy.cs" />
+    <Compile Include="BaseDataLoader\Loaders\ProviderSpecialityStrategy.cs" />
+    <Compile Include="BaseDataLoader\Loaders\RaceStrategy.cs" />
+    <Compile Include="BaseDataLoader\Loaders\RateProviderStrategy.cs" />
+    <Compile Include="BaseDataLoader\Loaders\RatingsStrategy.cs" />
+    <Compile Include="BaseDataLoader\Loaders\ReportingQuartersStrategy.cs" />
+    <Compile Include="BaseDataLoader\Loaders\CGCAHPSMeasureLookupStrategy.cs" />
+    <Compile Include="BaseDataLoader\Loaders\SexStrategy.cs" />
+    <Compile Include="BaseDataLoader\Loaders\HospitalRegistryStrategy.cs" />
+    <Compile Include="BaseDataLoader\Loaders\TopicsStrategy.cs" />
+    <Compile Include="BaseDataLoader\Loaders\HSAStrategy.cs" />
+    <Compile Include="BaseDataLoader\Loaders\ZipCodeToHRRAndHSAStrategy.cs" />
+    <Compile Include="BaseDataLoader\Loaders\ICD9toDXCCSCrosswalkStrategy.cs" />
+    <Compile Include="BaseDataLoader\Loaders\ICD9toPRCCSCrosswalkStrategy.cs" />
+    <Compile Include="BaseDataLoader\Loaders\EDNationalTotalsStrategy.cs" />
+    <Compile Include="BaseDataLoader\Loaders\IPNationalTotalsDXCCSStrategy.cs" />
+    <Compile Include="BaseDataLoader\Loaders\IPNationalTotalsMDCStrategy.cs" />
+    <Compile Include="BaseDataLoader\Loaders\IPNationalTotalsPRCCSStrategy.cs" />
+    <Compile Include="BaseDataLoader\Loaders\IPNationalTotalsDRGStrategy.cs" />
+    <Compile Include="BaseDataLoader\Loaders\CostToChargeStrategy.cs" />
+    <Compile Include="BaseDataLoader\Loaders\HSAToPopulationStratsStrategy.cs" />
+    <Compile Include="BaseDataLoader\Loaders\StateStrategy.cs" />
+    <Compile Include="BaseDataLoader\Loaders\ZipCodeToLatLongStrategy.cs" />
+    <Compile Include="BaseDataLoader\Loaders\HRRToPopulationStratsStrategy.cs" />
+    <Compile Include="BaseDataLoader\Loaders\AreaPopulationStratsStrategy.cs" />
+    <Compile Include="BaseDataLoader\Loaders\ZipCodeToPopulationStratsStrategy.cs" />
+    <Compile Include="BaseDataLoader\BaseDataSqlBulkImporter.cs" />
+    <Compile Include="BaseDataLoader\Loaders\YesNoStrategy.cs" />
+    <Compile Include="Configuration\ConfigurationService.cs" />
+    <Compile Include="Configuration\IConfigurationService.cs" />
+    <Compile Include="Configuration\IMonahrqConfigurationSection.cs" />
+    <Compile Include="Configuration\INamedConnectionElement.cs" />
+    <Compile Include="Configuration\MonahrqConfiguration.cs" />
+    <Compile Include="Configuration\MonahrqConfiguration.csd.cs">
+      <DependentUpon>MonahrqConfiguration.csd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Core\Attributes\AuditableAttribute.cs" />
+    <Compile Include="Core\Attributes\NamedDescriptionAttribute.cs" />
+    <Compile Include="Core\Attributes\WingAssemblyAttribute.cs" />
+    <Compile Include="Core\Attributes\WingScopeAttribute.cs" />
+    <Compile Include="Core\Attributes\WingScopeValueAttribute.cs" />
+    <Compile Include="Core\Attributes\WingTargetAttribute.cs" />
+    <Compile Include="Core\Attributes\WingTargetElementAttribute.cs" />
+    <Compile Include="Core\Import\CSVDataReaderDictionary.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Core\Import\CSVDataReaderDictionary.Designer.cs">
+      <DependentUpon>CSVDataReaderDictionary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Import\CSVDataReaderDictionary.partial.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Core\Import\DataImportContracts.cs" />
+    <Compile Include="Core\Import\EmptyReader.cs" />
+    <Compile Include="Core\Import\IDataLoader.cs" />
+    <Compile Include="Core\Import\IDataReaderDictionary.cs" />
+    <Compile Include="Core\Import\IImportAuditor.cs" />
+    <Compile Include="Core\Import\ImportAuditor.cs" />
+    <Compile Include="Core\IProgrammability.cs" />
+    <Compile Include="Core\ReaderDefinition.cs" />
+    <Compile Include="DataProvider\Builder\ConnectionStringBuilderView.xaml.cs">
+      <DependentUpon>ConnectionStringBuilderView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Conventions\StringLengthConvention.cs" />
+    <Compile Include="Data\CustomTypes\CustomType.cs" />
+    <Compile Include="Data\CustomTypes\EnumAsByte.cs" />
+    <Compile Include="Data\CustomTypes\AssemblyQualifiedTypeString.cs" />
+    <Compile Include="Data\CustomTypes\IntListToStringType.cs" />
+    <Compile Include="Data\CustomTypes\JsonToStringType.cs" />
+    <Compile Include="Data\CustomTypes\StringListToStringType.cs" />
+    <Compile Include="Data\CustomTypes\EnumListToStringType.cs" />
+    <Compile Include="Data\CustomTypes\NullableDateTimeType.cs" />
+    <Compile Include="Data\CustomTypes\ObservableListType.cs" />
+    <Compile Include="Data\CustomTypes\ObserverableList2.cs" />
+    <Compile Include="Data\CustomTypes\UniqueIdentifier.cs" />
+    <Compile Include="Data\CustomTypes\SqlVariant.cs" />
+    <Compile Include="Data\Extensibility\ContentManagement\Records\ICDCodedTarget.cs" />
+    <Compile Include="Data\Interceptors\SqlCaseSensitivityInterceptor.cs" />
+    <Compile Include="Data\XmlToObjectType.cs" />
+    <Compile Include="Diagnostics\MonahrqDiagnostic.cs" />
+    <Compile Include="Domain\BaseData\Maps\NHCAHPSMeasureLookupMap.cs" />
+    <Compile Include="Domain\BaseData\NHCAHPSMeasureLookup.cs" />
+    <Compile Include="Domain\BaseData\Definite.cs" />
+    <Compile Include="Domain\BaseData\Gender.cs" />
+    <Compile Include="Domain\BaseData\HowOften.cs" />
+    <Compile Include="Domain\BaseData\ICD10toDXCC10Crosswalk.cs" />
+    <Compile Include="Domain\BaseData\ICD10toPRCCSCrosswalk.cs" />
+    <Compile Include="Domain\BaseData\Maps\DefiniteMap.cs" />
+    <Compile Include="Domain\BaseData\Maps\GenderMap.cs" />
+    <Compile Include="Domain\BaseData\Maps\HowOftenMap.cs" />
+    <Compile Include="Domain\BaseData\Maps\ICD10toDXCCS10CrosswalkMap.cs" />
+    <Compile Include="Domain\BaseData\Maps\ICD10toPRCCSCrosswalkMap.cs" />
+    <Compile Include="Domain\BaseData\BaseWebsitePageZone.cs" />
+    <Compile Include="Domain\BaseData\BaseWebsitePage.cs" />
+    <Compile Include="Domain\BaseData\Maps\BaseWebsitePageMap.cs" />
+    <Compile Include="Domain\BaseData\Maps\BaseWebsitePageZoneMap.cs" />
+    <Compile Include="Domain\BaseData\Maps\NumberOfTimesMap.cs" />
+    <Compile Include="Domain\BaseData\Maps\RateProviderMap.cs" />
+    <Compile Include="Domain\BaseData\Maps\RatingsMap.cs" />
+    <Compile Include="Domain\BaseData\Maps\CGCAHPSMeasureLookupMap.cs" />
+    <Compile Include="Domain\BaseData\Maps\YesNoMap.cs" />
+    <Compile Include="Domain\BaseData\NumberOfTimes.cs" />
+    <Compile Include="Domain\BaseData\RateProvider.cs" />
+    <Compile Include="Domain\BaseData\Ratings.cs" />
+    <Compile Include="Domain\BaseData\CGCAHPSMeasureLookup.cs" />
+    <Compile Include="Domain\BaseData\YesNo.cs" />
+    <Compile Include="Domain\Flutters\Flutter.cs" />
+    <Compile Include="Domain\Flutters\FlutterConfig.cs" />
+    <Compile Include="Domain\Flutters\Maps\FlutterMap.cs" />
+    <Compile Include="Domain\Measures\Maps\MeasureTopicMap.cs" />
+    <Compile Include="Domain\Measures\MeasureTopic.cs" />
+    <Compile Include="Domain\Measures\TopicFacts.cs" />
+    <Compile Include="Domain\Physicians\Maps\PhysicianMeasureMap.cs" />
+    <Compile Include="Domain\Physicians\Maps\PhysicianMedicalPracticeMap.cs" />
+    <Compile Include="Domain\Physicians\PhysicianMeasure.cs" />
+    <Compile Include="Domain\Physicians\PhysicianMedicalPractice.cs" />
+    <Compile Include="Domain\Reports\Map\TempQualityMap.cs" />
+    <Compile Include="Domain\Reports\Report.cs" />
+    <Compile Include="Domain\Reports\TempQuality.cs" />
+    <Compile Include="Domain\Reports\Validators\NonEmptyListValidationAttribute.cs" />
+    <Compile Include="Domain\WebsiteContentManagment\Maps\WebsitePageZoneMap.cs" />
+    <Compile Include="Domain\WebsiteContentManagment\Maps\WebsitePageMap.cs" />
+    <Compile Include="Domain\WebsiteContentManagment\WebsitePageZone.cs" />
+    <Compile Include="Domain\WebsiteContentManagment\WebsitePage.cs" />
+    <Compile Include="Domain\Websites\Maps\MenuMap.cs" />
+    <Compile Include="Domain\Websites\Menu.cs" />
+    <Compile Include="Domain\Websites\WebsiteConfiguration.cs" />
+    <Compile Include="Domain\Websites\WebsiteExport.cs" />
+    <Compile Include="Domain\Wings\ITargetDeletionVisitor.cs" />
+    <Compile Include="Domain\Wings\ScopeValue.cs" />
+    <Compile Include="Domain\Wings\TargetDeletionVisitor.cs" />
+    <Compile Include="Events\ExtendedEventArgs.cs" />
+    <Compile Include="Extensibility\ContentManagement\Records\Migrations.cs" />
+    <Compile Include="Extensibility\Exports\BaseCsvTemplateStrategy.cs" />
+    <Compile Include="Extensions\DataRowExtensions.cs" />
+    <Compile Include="Extensions\IEnumerableExtensions.cs" />
+    <Compile Include="Extensions\MathExtensions.cs" />
+    <Compile Include="Extensions\ArrayExtensions.cs" />
+    <Compile Include="Extensions\TaskExtensions.cs" />
+    <Compile Include="Extensions\RegionManagerExtensions.cs" />
+    <Compile Include="Extensions\ReportExtensions.cs" />
+    <Compile Include="Extensions\SqlCommandExtensions.cs" />
+    <Compile Include="Extensions\VersionExtensions.cs" />
+    <Compile Include="FileSystem\IUserFolder.cs" />
+    <Compile Include="Generators\CSVGenerator\CSVGenerator.cs" />
+    <Compile Include="Generators\CSVGenerator\CSVMap.cs" />
+    <Compile Include="Generators\CSVGenerator\ICSVMap.cs" />
+    <Compile Include="Integration\ILifetimeController.cs" />
+    <Compile Include="ILogWriter.cs" />
+    <Compile Include="Logging\CallbackLogger.cs" />
+    <Compile Include="Logging\ColorPatternConverter.cs" />
+    <Compile Include="Logging\CustomRollingAppender.cs" />
+    <Compile Include="Logging\LoggerBase.cs" />
+    <Compile Include="Logging\LoggingExtensions.cs" />
+    <Compile Include="Logging\SessionLogger.cs" />
+    <Compile Include="Modules\IModuleRegionRegistrar.cs" />
+    <Compile Include="Modules\Wings\TargetedModuleBase.cs" />
+    <Compile Include="Modules\Wings\TargetedModuleWithMeasuresAndTopics.cs" />
+    <Compile Include="Services\Dynamic\DynamicCSVTemplateStrategy.cs" />
+    <Compile Include="Types\ApplicationCursor.cs" />
+    <Compile Include="Types\IDeepCloneable.cs" />
+    <Compile Include="Types\IMultiSelectCollectionView.cs" />
+    <Compile Include="Types\IDeepAssignable.cs" />
+    <Compile Include="Types\IPagingArguments.cs" />
+    <Compile Include="Types\MultiSelectCollectionView.cs" />
+    <Compile Include="Types\ObservableConcurrentDictionary.cs" />
+    <Compile Include="Types\PagingResults.cs" />
+    <Compile Include="Types\PagingSortingColumn.cs" />
+    <Compile Include="Types\PagingSortingColumns.cs" />
+    <Compile Include="Types\ProgressService.cs" />
+    <Compile Include="Types\OperationResult.cs" />
+    <Compile Include="Types\SelectListItem.cs" />
+    <Compile Include="Utility\ColorHelper.cs" />
+    <Compile Include="Utility\GenericComparer.cs" />
+    <Compile Include="Utility\JsonHelper.cs" />
+    <Compile Include="Utility\TypeReflectionHelper.cs" />
+    <Compile Include="Core\VersionedComponentExportAttribute.cs" />
+    <Compile Include="DataProvider\Builder\ConnectionStringViewExportAttribute.cs" />
+    <Compile Include="DataProvider\Builder\ConnectionStringViewModel.cs" />
+    <Compile Include="DataProvider\Builder\DialogRegionNames.cs" />
+    <Compile Include="DataProvider\Builder\IConnectionStringBuilderController.cs" />
+    <Compile Include="DataProvider\Builder\IConnectionStringBuilderView.cs" />
+    <Compile Include="DataProvider\Builder\IConnectionStringBuilderViewModel.cs" />
+    <Compile Include="DataProvider\Builder\IConnectionStringView.cs" />
+    <Compile Include="DataProvider\Builder\NamedConnectionElementExtension.cs" />
+    <Compile Include="DataProvider\DatabaseCreator.cs" />
+    <Compile Include="DataProvider\DataProviderController.cs" />
+    <Compile Include="DataProvider\DataProviderControllerExportAttribute.cs" />
+    <Compile Include="DataProvider\IDatabaseCreator.cs" />
+    <Compile Include="DataProvider\IDataProviderControllerExportAttribute.cs" />
+    <Compile Include="DataProvider\IDataProviderControllerExtensions.cs" />
+    <Compile Include="Data\AbstractDataServicesProvider.cs" />
+    <Compile Include="Data\Connections\IConnectionService.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\Conventions\AggregateAttribute.cs" />
+    <Compile Include="Data\Conventions\AttributeCollectionConvention.cs" />
+    <Compile Include="Data\Conventions\CascadeAllDeleteOrphanAttribute.cs" />
+    <Compile Include="Data\Conventions\EntityTableNameAttribute.cs" />
+    <Compile Include="Data\Conventions\RecordTableNameConvention.cs" />
+    <Compile Include="Data\Conventions\StringLengthMaxAttribute.cs" />
+    <Compile Include="Data\Extensibility\ContentManagement\FieldStorage\InfosetStorage.cs" />
+    <Compile Include="Data\Extensibility\ContentManagement\Records\DatasetRecordMap.cs" />
+    <Compile Include="Data\Extensibility\ContentManagement\Records\DatasetTransactionRecordMap.cs" />
+    <Compile Include="Data\Extensibility\ContentManagement\Records\DrgMdcMappingStatusEnum.cs" />
+    <Compile Include="Data\Extensibility\ContentManagement\Records\Dataset.cs" />
+    <Compile Include="Data\Extensibility\ContentManagement\Records\DatasetMap.cs" />
+    <Compile Include="Data\Extensibility\ContentManagement\Records\DatasetVersionRecordMap.cs" />
+    <Compile Include="Data\Extensibility\ContentManagement\Records\DatasetRecord.cs" />
+    <Compile Include="Data\Extensibility\ContentManagement\Records\DatasetRecordBulkInsertMapper.cs" />
+    <Compile Include="Data\Extensibility\ContentManagement\Records\DatasetTransactionRecord.cs" />
+    <Compile Include="Data\Extensibility\ContentManagement\Records\DatasetPartVersionRecord.cs" />
+    <Compile Include="Data\Extensibility\ContentManagement\Records\DatasetVersionRecord.cs" />
+    <Compile Include="Data\Extensibility\ITypeProvider.cs" />
+    <Compile Include="Data\Extensions\IDataReaderExtensions.cs" />
+    <Compile Include="Data\Interceptors\DataBindingInterceptor.cs" />
+    <Compile Include="Data\Listeners\AuditEventListener.cs" />
+    <Compile Include="Data\MonahrqNHibernateProvider.cs" />
+    <Compile Include="Data\SqlDataServicesProvider.cs" />
+    <Compile Include="Data\Extensibility\Configuration\IPersistenceManager.cs" />
+    <Compile Include="Data\Extensibility\Conventions\CacheConvention.cs" />
+    <Compile Include="Data\Extensibility\Conventions\TypeConvention.cs" />
+    <Compile Include="Data\Extensibility\ExtensionRegistry.cs" />
+    <Compile Include="Data\Extensibility\IExtensibilityAlteration.cs" />
+    <Compile Include="Data\Extensibility\IExtensibilityConvention.cs" />
+    <Compile Include="Data\Extensibility\IExtensiblePersistenceModelFactory.cs" />
+    <Compile Include="Data\SessionFactoryProvider.cs" />
+    <Compile Include="Data\SessionLocator.cs" />
+    <Compile Include="Data\Transformers\DataTableResultTransformer .cs" />
+    <Compile Include="Data\Transformers\TupleToPropertyResultTransformer.cs" />
+    <Compile Include="Domain\Audits\AuditChangeLog.cs" />
+    <Compile Include="Domain\Audits\AuditChangeLogMap.cs" />
+    <Compile Include="Domain\BaseData\AdmissionSource.cs" />
+    <Compile Include="Domain\BaseData\AreaPopulationStrats.cs" />
+    <Compile Include="Domain\BaseData\ConsumerPriceIndex.cs" />
+    <Compile Include="Domain\BaseData\CostToChargeToDXCCS.cs" />
+    <Compile Include="Domain\BaseData\CostToChargeToDRG.cs" />
+    <Compile Include="Domain\BaseData\Maps\AreaPopulationStratsMap.cs" />
+    <Compile Include="Domain\BaseData\Maps\ConsumerPriceIndexMap.cs" />
+    <Compile Include="Domain\BaseData\Maps\CostToChargeToDRGMap.cs" />
+    <Compile Include="Domain\BaseData\Maps\CostToChargeToDXCCSMap.cs" />
+    <Compile Include="Domain\BaseData\Maps\HospitalTraumaLevelMap.cs" />
+    <Compile Include="Domain\BaseData\Maps\ProviderSpecialityMap.cs" />
+    <Compile Include="Domain\BaseData\HospitalTraumaLevel.cs" />
+    <Compile Include="Domain\BaseData\Maps\NHProviderToLatLongMap.cs" />
+    <Compile Include="Domain\BaseData\ProviderSpeciality.cs" />
+    <Compile Include="Domain\BaseData\Maps\ZipCodeToLatLongMap.cs" />
+    <Compile Include="Domain\BaseData\Maps\ZipCodeToPopulationStratsMap.cs" />
+    <Compile Include="Domain\BaseData\ZipCodeToLatLong.cs" />
+    <Compile Include="Domain\BaseData\NHProviderToLatLong.cs" />
+    <Compile Include="Domain\BaseData\ZipCodeToPopulationStrats.cs" />
+    <Compile Include="Domain\BaseData\Audit.cs" />
+    <Compile Include="Domain\BaseData\IPNationalTotalsPRCCS.cs" />
+    <Compile Include="Domain\BaseData\IPNationalTotalsDXCCS.cs" />
+    <Compile Include="Domain\BaseData\IPNationalTotalsMDC.cs" />
+    <Compile Include="Domain\BaseData\IPNationalTotalsDRG.cs" />
+    <Compile Include="Domain\BaseData\Maps\IPNationalTotalsPRCCSMap.cs" />
+    <Compile Include="Domain\BaseData\Maps\IPNationalTotalsDXCCSMap.cs" />
+    <Compile Include="Domain\BaseData\Maps\IPNationalTotalsMDCMap.cs" />
+    <Compile Include="Domain\BaseData\Maps\IPNationalTotalsDRGMap.cs" />
+    <Compile Include="Domain\BaseData\Maps\PRCCSCategoriesMap.cs" />
+    <Compile Include="Domain\BaseData\Maps\PRCCSLabelsMap.cs" />
+    <Compile Include="Domain\BaseData\Maps\ICD9toPRCCSCrosswalkMap.cs" />
+    <Compile Include="Domain\BaseData\PRCCSCategories.cs" />
+    <Compile Include="Domain\BaseData\PRCCSLabels.cs" />
+    <Compile Include="Domain\BaseData\ICD9toPRCCSCrosswalk.cs" />
+    <Compile Include="Domain\BaseData\CostToCharge.cs" />
+    <Compile Include="Domain\BaseData\AdmissionType.cs" />
+    <Compile Include="Domain\BaseData\County.cs" />
+    <Compile Include="Domain\BaseData\DispositionCode.cs" />
+    <Compile Include="Domain\BaseData\DXCCSCategories.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Domain\BaseData\DXCCSLabels.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Domain\BaseData\EDNationalTotals.cs" />
+    <Compile Include="Domain\BaseData\ICD9toDXCCSCrosswalk.cs" />
+    <Compile Include="Domain\BaseData\Maps\EDNationalTotalsMap.cs" />
+    <Compile Include="Domain\BaseData\Maps\ICD9toDXCCSCrosswalkMap.cs" />
+    <Compile Include="Domain\BaseData\Maps\MeasureFilterMap.cs" />
+    <Compile Include="Domain\BaseData\Maps\ReportingQuarterMap.cs" />
+    <Compile Include="Domain\BaseData\Maps\DXCCSCategoriesMap.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Domain\BaseData\Maps\DXCCSLabelsMap.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Domain\BaseData\MeasureFilter.cs" />
+    <Compile Include="Domain\BaseData\ReportingQuarter.cs" />
+    <Compile Include="Domain\BaseData\ViewModel\NamedEntityViewModel.cs" />
+    <Compile Include="Domain\BaseData\ViewModel\DefaultTextPresentationStrategy.cs" />
+    <Compile Include="Domain\BulkMapper.cs" />
+    <Compile Include="Domain\ClinicalDimensions\ClinicalDimension.cs" />
+    <Compile Include="Domain\ClinicalDimensions\Maps\PRCCSMap.cs" />
+    <Compile Include="Domain\ClinicalDimensions\PRCCS.cs" />
+    <Compile Include="Domain\ClinicalDimensions\DRG.cs" />
+    <Compile Include="Domain\ClinicalDimensions\DXCCS.cs" />
+    <Compile Include="Domain\BaseData\Maps\AdmissionSourceMap.cs" />
+    <Compile Include="Domain\BaseData\Maps\AdmissionTypeMap.cs" />
+    <Compile Include="Domain\ClinicalDimensions\Maps\ClinicalDimensionMap.cs" />
+    <Compile Include="Domain\ClinicalDimensions\Maps\MSDRGMap.cs" />
+    <Compile Include="Domain\ClinicalDimensions\Maps\MDCMap.cs" />
+    <Compile Include="Domain\ClinicalDimensions\Maps\DXCCSMap.cs" />
+    <Compile Include="Domain\BaseData\Maps\CostToChargeMap.cs" />
+    <Compile Include="Domain\BaseData\Maps\CountyMap.cs" />
+    <Compile Include="Domain\BaseData\Maps\DispositionCodeMap.cs" />
+    <Compile Include="Domain\ClinicalDimensions\Maps\DRGMap.cs" />
+    <Compile Include="Domain\BaseData\Maps\LookupMap.cs" />
+    <Compile Include="Domain\BaseData\Maps\PayerMap.cs" />
+    <Compile Include="Domain\BaseData\Maps\PointOfOriginMap.cs" />
+    <Compile Include="Domain\BaseData\Maps\RaceMap.cs" />
+    <Compile Include="Domain\BaseData\Maps\SexMap.cs" />
+    <Compile Include="Domain\BaseData\Maps\ZipCodeToHRRandHSAMap.cs" />
+    <Compile Include="Domain\ClinicalDimensions\MDC.cs" />
+    <Compile Include="Domain\BaseData\Payer.cs" />
+    <Compile Include="Domain\BaseData\PointOfOrigin.cs" />
+    <Compile Include="Domain\BaseData\Race.cs" />
+    <Compile Include="Domain\BaseData\Sex.cs" />
+    <Compile Include="Domain\BaseData\Maps\StateClassMap.cs" />
+    <Compile Include="Domain\BaseData\State.cs" />
+    <Compile Include="Domain\BaseData\ZipCodeToHRRAndHSA.cs" />
+    <Compile Include="Data\IDataServicesProvider.cs" />
+    <Compile Include="Data\ISessionFactoryProvider.cs" />
+    <Compile Include="Data\ISessionLocator.cs" />
+    <Compile Include="Domain\ClinicalDimensions\MSDRG.cs" />
+    <Compile Include="Domain\Common\Address.cs" />
+    <Compile Include="Domain\Common\CommonEnums.cs" />
+    <Compile Include="Domain\Common\Maps\AddressMap.cs" />
+    <Compile Include="Domain\Counties\Maps\CountyMeasureMap.cs" />
+    <Compile Include="Domain\Datasets\DatasetImport.cs" />
+    <Compile Include="Domain\Datasets\Maps\DatasetImportMap.cs" />
+    <Compile Include="Domain\Data\MappingProviderExport.cs" />
+    <Compile Include="Domain\Data\Strategies\IKeyStrategy.cs" />
+    <Compile Include="Domain\Data\Strategies\KeyStrategy.cs" />
+    <Compile Include="Domain\DomainDataServicesProvider.cs" />
+    <Compile Include="Domain\Counties\CountyMeasure.cs" />
+    <Compile Include="Domain\Entity.cs" />
+    <Compile Include="Domain\Hospitals\Maps\HospitalMeasureMap.cs" />
+    <Compile Include="Domain\IEntity.cs" />
+    <Compile Include="Domain\INamedEntity.cs" />
+    <Compile Include="Domain\IOwnedEntity.cs" />
+    <Compile Include="Domain\NursingHomes\Maps\NursingHomeMeasureMaps.cs" />
+    <Compile Include="Domain\NursingHomes\NursingHomeMeasure.cs" />
+    <Compile Include="Domain\Regions\Maps\RegionMeasureMap.cs" />
+    <Compile Include="Domain\Websites\WebsiteNursingHome.cs" />
+    <Compile Include="Domain\Wings\DynamicMeasure.cs" />
+    <Compile Include="Domain\Hospitals\HospitalCategory.cs" />
+    <Compile Include="Domain\Hospitals\Maps\HospitalCategoryMap.cs" />
+    <Compile Include="Domain\Hospitals\HospitalMeasure.cs" />
+    <Compile Include="Domain\NursingHomes\Maps\NursingHomeCategoryMap.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Domain\NursingHomes\Maps\NursingHomeMap.cs" />
+    <Compile Include="Domain\NursingHomes\NursingHome.cs" />
+    <Compile Include="Domain\NursingHomes\NursingHomeCategory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Domain\NursingHomes\NursingHomeEnums.cs" />
+    <Compile Include="Domain\Physicians\Maps\MedicalPracticeMap.cs" />
+    <Compile Include="Domain\Physicians\MedicalPractice.cs" />
+    <Compile Include="Domain\Physicians\MedicalPracticeAddress.cs" />
+    <Compile Include="Domain\Physicians\Physician.cs" />
+    <Compile Include="Domain\Physicians\Maps\PhysicianMap.cs" />
+    <Compile Include="Domain\Physicians\PhysicianAddress.cs" />
+    <Compile Include="Domain\Regions\CustomRegion.cs" />
+    <Compile Include="Domain\Regions\HealthReferralRegion.cs" />
+    <Compile Include="Domain\Hospitals\Hospital.cs" />
+    <Compile Include="Domain\Categories\Category.cs" />
+    <Compile Include="Domain\Hospitals\HospitalControl.cs" />
+    <Compile Include="Domain\Regions\Maps\RegionPopulationStratsMap.cs" />
+    <Compile Include="Domain\Regions\RegionMeasure.cs" />
+    <Compile Include="Domain\Regions\RegionPopulationStrats.cs" />
+    <Compile Include="Domain\Hospitals\HospitalPropertyItem.cs" />
+    <Compile Include="Domain\Hospitals\HospitalRegistry.cs" />
+    <Compile Include="Domain\Hospitals\HospitalRegistryItem.cs" />
+    <Compile Include="Domain\Regions\HospitalServiceArea.cs" />
+    <Compile Include="Domain\Hospitals\IBaseDataProvider.cs" />
+    <Compile Include="Domain\Hospitals\IHospitalDataModule.cs" />
+    <Compile Include="Domain\Hospitals\Mapping\Extensions.cs" />
+    <Compile Include="Domain\Hospitals\Mapping\HospitalMappingReference.cs" />
+    <Compile Include="Domain\Hospitals\Mapping\RegionNames.cs" />
+    <Compile Include="Domain\IEntityDataReaderStrategy.cs" />
+    <Compile Include="Domain\Maps\MappingExtensions.cs" />
+    <Compile Include="Domain\Maps\SchemaVersionMap.cs" />
+    <Compile Include="Domain\SchemaVersion.cs" />
+    <Compile Include="Domain\Wings\DataTypeEnum.cs" />
+    <Compile Include="Domain\Wings\DynamicScopeEnum.cs" />
+    <Compile Include="Domain\Wings\DynamicTargetStep.cs" />
+    <Compile Include="Domain\Wings\Maps\DynamicMeasureMap.cs" />
+    <Compile Include="Domain\Wings\DynamicTargetExtensions.cs" />
+    <Compile Include="Domain\Wings\Maps\ElementMap.cs" />
+    <Compile Include="Domain\Wings\Maps\ScopeMap.cs" />
+    <Compile Include="Domain\Wings\Maps\TargetMap.cs" />
+    <Compile Include="Domain\Wings\Version.cs" />
+    <Compile Include="Domain\Websites\MeasureAssignment.cs" />
+    <Compile Include="Domain\Websites\WebsiteState.cs" />
+    <Compile Include="Domain\Wings\DynamicTarget.cs" />
+    <Compile Include="Domain\Wings\Feature.cs" />
+    <Compile Include="Domain\Wings\TargetScopes.cs" />
+    <Compile Include="Domain\Wings\WingPartials.cs" />
+    <Compile Include="Events\ConnectionFailedEvent.cs" />
+    <Compile Include="Events\InternetConnectionEvent.cs" />
+    <Compile Include="Exceptions\DataSetImportException.cs" />
+    <Compile Include="Extensibility\Builders\CompositionStrategy.cs" />
+    <Compile Include="Extensibility\Builders\IExtensionManager.cs" />
+    <Compile Include="Extensibility\Builders\Models\RecordBlueprint.cs" />
+    <Compile Include="Extensibility\Data\Conventions\CacheConvention.cs" />
+    <Compile Include="Extensibility\Data\Conventions\TypeUtility.cs" />
+    <Compile Include="Extensibility\Data\ExtensionRepository.cs" />
+    <Compile Include="Extensibility\Data\IExtensionRepository.cs" />
+    <Compile Include="Extensibility\Data\ISessionConfigurationCache.cs" />
+    <Compile Include="Extensibility\Data\ISessionLocator.cs" />
+    <Compile Include="Extensibility\Data\Migration\DataMigrationImpl.cs" />
+    <Compile Include="Extensibility\Data\Migration\Generators\ISchemaCommandGenerator.cs" />
+    <Compile Include="Extensibility\Data\Migration\Generators\SchemaCommandGenerator.cs" />
+    <Compile Include="Extensibility\Data\Migration\IDataMigration.cs" />
+    <Compile Include="Extensibility\Data\Migration\Interpreters\AbstractDataMigrationInterpreter.cs" />
+    <Compile Include="Extensibility\Data\Migration\Interpreters\DefaultDataMigrationInterpreter.cs" />
+    <Compile Include="Extensibility\Data\Migration\Interpreters\ICommandInterpreter.cs" />
+    <Compile Include="Extensibility\Data\Migration\Interpreters\IDataMigrationInterpreter.cs" />
+    <Compile Include="Extensibility\Data\Migration\Interpreters\MonahrqMigrationInterpreter.cs" />
+    <Compile Include="Extensibility\Data\Migration\Interpreters\SqlServerCommandInterpreter.cs" />
+    <Compile Include="Extensibility\Data\Migration\Schema\AddColumnCommand.cs" />
+    <Compile Include="Extensibility\Data\Migration\Schema\AddIndexCommand.cs" />
+    <Compile Include="Extensibility\Data\Migration\Schema\AlterColumnCommand.cs" />
+    <Compile Include="Extensibility\Data\Migration\Schema\AlterTableCommand.cs" />
+    <Compile Include="Extensibility\Data\Migration\Schema\ColumnCommand.cs" />
+    <Compile Include="Extensibility\Data\Migration\Schema\CreateColumnCommand.cs" />
+    <Compile Include="Extensibility\Data\Migration\Schema\CreateForeignKeyCommand.cs" />
+    <Compile Include="Extensibility\Data\Migration\Schema\CreateTableCommand.cs" />
+    <Compile Include="Extensibility\Data\Migration\Schema\DropColumnCommand.cs" />
+    <Compile Include="Extensibility\Data\Migration\Schema\DropForeignKeyCommand.cs" />
+    <Compile Include="Extensibility\Data\Migration\Schema\DropIndexCommand.cs" />
+    <Compile Include="Extensibility\Data\Migration\Schema\DropTableCommand.cs" />
+    <Compile Include="Extensibility\Data\Migration\Schema\ISchemaBuilderCommand.cs" />
+    <Compile Include="Extensibility\Data\Migration\Schema\SchemaBuilder.cs" />
+    <Compile Include="Extensibility\Data\Migration\Schema\SchemaCommand.cs" />
+    <Compile Include="Extensibility\Data\Migration\Schema\SchemaUtils.cs" />
+    <Compile Include="Extensibility\Data\Migration\Schema\SqlStatementCommand.cs" />
+    <Compile Include="Extensibility\Data\Migration\Schema\TableCommand.cs" />
+    <Compile Include="Extensibility\Data\Orderable.cs" />
+    <Compile Include="Extensibility\Data\Providers\AbstractDataServicesProvider.cs" />
+    <Compile Include="Extensibility\Data\Providers\DataServiceParameters.cs" />
+    <Compile Include="Extensibility\Data\Providers\DataServicesProviderFactory.cs" />
+    <Compile Include="Extensibility\Data\Providers\IDataServicesProvider.cs" />
+    <Compile Include="Extensibility\Data\Providers\IDataServicesProviderFactory.cs" />
+    <Compile Include="Extensibility\Data\Providers\SessionFactoryParameters.cs" />
+    <Compile Include="Extensibility\Data\Providers\SqlServerDataServicesProvider.cs" />
+    <Compile Include="Extensibility\Data\SessionConfigurationCache.cs" />
+    <Compile Include="Extensibility\Data\SessionFactoryHolder.cs" />
+    <Compile Include="Extensibility\Data\SessionLocator.cs" />
+    <Compile Include="Extensibility\Data\TransactionManager.cs" />
+    <Compile Include="Extensibility\Environment\Descriptor\Models\ShellDescriptor.cs" />
+    <Compile Include="Extensibility\IMonahrqShell.cs" />
+    <Compile Include="Extensibility\MigrationFactory.cs" />
+    <Compile Include="Extensibility\Models\ExtensionDescriptor.cs" />
+    <Compile Include="Extensibility\Models\Feature.cs" />
+    <Compile Include="Extensibility\Models\FeatureDescriptor.cs" />
+    <Compile Include="Extensibility\MonahrqExtensionManager.cs" />
+    <Compile Include="Extensibility\MonahrqShell.cs" />
+    <Compile Include="Extensibility\ShellExtender.cs" />
+    <Compile Include="Extensibility\Utility\Extensions\ReadOnlyCollectionExtensions.cs" />
+    <Compile Include="Extensibility\Utility\FeatureDescriptorUtility.cs" />
+    <Compile Include="Extensibility\Utility\Hash.cs" />
+    <Compile Include="Extensions\CollectionExtensions.cs" />
+    <Compile Include="Extensions\KeyValuePairsExtensions.cs" />
+    <Compile Include="Extensions\NHibernateExtensions.cs" />
+    <Compile Include="Data\Transformers\ExpandoObjectTransformer.cs" />
+    <Compile Include="Extensions\ObjectExtensions.cs" />
+    <Compile Include="Extensions\ReflectionExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Extensions\UiExtensions.cs" />
+    <Compile Include="Extensions\WingModuleExtensions.cs" />
+    <Compile Include="GeneralEvents.cs" />
+    <Compile Include="Modules\DiscoveryMethod.cs" />
+    <Compile Include="Modules\DownloadTiming.cs" />
+    <Compile Include="Modules\IClinicalDimensionNavigationAware.cs" />
+    <Compile Include="Modules\IDimensionPresentation.cs" />
+    <Compile Include="Modules\IModuleInstaller.cs" />
+    <Compile Include="Modules\IPluginModuleTracker.cs" />
+    <Compile Include="Modules\PluginModuleTracker.cs" />
+    <Compile Include="Modules\Settings\HospitalRegionSettingsSavedEvent.cs" />
+    <Compile Include="Modules\Wings\IWingModule.cs" />
+    <Compile Include="Modules\Wings\TargetMappingException.cs" />
+    <Compile Include="Modules\Wings\WingModule.cs" />
+    <Compile Include="Modules\Wings\WingModuleExtensions.cs" />
+    <Compile Include="MonahrqContext.cs" />
+    <Compile Include="Regions\Core\ExportAsViewAttribute.cs" />
+    <Compile Include="Regions\Core\FluentRegionManager.cs" />
+    <Compile Include="Regions\Core\IExportAsViewMetadata.cs" />
+    <Compile Include="Regions\Core\IExportViewToRegionMetadata.cs" />
+    <Compile Include="Regions\Core\IFluentRegionManager.cs" />
+    <Compile Include="Regions\IViewRegionRegistration.cs" />
+    <Compile Include="Regions\RegionNames.cs" />
+    <Compile Include="Regions\ViewNames.cs" />
+    <Compile Include="Services\Dynamic\DynamicTargetService.cs" />
+    <Compile Include="Services\Dynamic\IDynamicTargetService.cs" />
+    <Compile Include="Services\IDataProviderService.cs" />
+    <Compile Include="Services\SysTray\DatasetSysTrayProcessor.cs" />
+    <Compile Include="ThreadManager.cs" />
+    <Compile Include="Types\ObservableList.cs" />
+    <Compile Include="Types\PagedResult.cs" />
+    <Compile Include="Utility\CompressionHelper.cs" />
+    <Compile Include="Utility\EntityPoller.cs" />
+    <Compile Include="Services\BaseData\BaseDataService.cs" />
+    <Compile Include="Services\BaseData\IBaseDataService.cs" />
+    <Compile Include="Services\Hospitals\IHospitalRegistryService.cs" />
+    <Compile Include="Domain\Regions\Maps\CustomRegionMap.cs" />
+    <Compile Include="Domain\Regions\Maps\HealthReferralRegionMap.cs" />
+    <Compile Include="Domain\Hospitals\Maps\HospitalControlMap.cs" />
+    <Compile Include="Domain\Hospitals\Maps\HospitalServiceAreaMap.cs" />
+    <Compile Include="Domain\Regions\Maps\RegionMap.cs" />
+    <Compile Include="Domain\Hospitals\Maps\HospitalMap.cs" />
+    <Compile Include="Domain\Hospitals\Maps\HospitalRegistryMap.cs" />
+    <Compile Include="Domain\Categories\Maps\CategoryMap.cs" />
+    <Compile Include="Domain\Hospitals\Maps\HospitalRegistryItemMap.cs" />
+    <Compile Include="Domain\Regions\Maps\RegionSubclassMap.cs" />
+    <Compile Include="Domain\Regions\Maps\RegionWithCityMap.cs" />
+    <Compile Include="Domain\Regions\Region.cs" />
+    <Compile Include="Domain\Regions\RegionWithCity.cs" />
+    <Compile Include="Domain\Measures\EditRule.cs" />
+    <Compile Include="Domain\Measures\FieldRule.cs" />
+    <Compile Include="Domain\Measures\ValidationRule.cs" />
+    <Compile Include="Domain\Reports\Attributes\FilterHelper.cs" />
+    <Compile Include="Domain\Reports\Attributes\FilterSet.cs" />
+    <Compile Include="Domain\Reports\HospitalReportProfileItem.cs" />
+    <Compile Include="Domain\Reports\Map\ReportMap.cs" />
+    <Compile Include="Domain\Reports\Map\ReportTemplateAsString.cs" />
+    <Compile Include="Domain\Reports\ReportManifest.cs" />
+    <Compile Include="Domain\Reports\ReportManifestFactory.cs" />
+    <Compile Include="Domain\SearchResult.cs" />
+    <Compile Include="Domain\ServiceBase.cs" />
+    <Compile Include="Domain\Websites\ActivityLogEntry.cs" />
+    <Compile Include="Domain\Websites\Maps\ActivityLogEntryMap.cs" />
+    <Compile Include="Domain\Websites\Maps\WebsiteMap.cs" />
+    <Compile Include="Domain\Websites\Website.cs" />
+    <Compile Include="Domain\Wings\Generator.cs" />
+    <Compile Include="Exceptions\MonahrqCoreException.cs" />
+    <Compile Include="FileSystem\UserFolderRoot.cs" />
+    <Compile Include="FileSystem\UserFolder.cs" />
+    <Compile Include="Services\DataServiceBase.cs" />
+    <Compile Include="Services\DataServiceBase.partial.cs" />
+    <Compile Include="Services\EntityDescriptor.cs" />
+    <Compile Include="Services\EntityService.cs" />
+    <Compile Include="Services\ErrorNotificationEvent.cs" />
+    <Compile Include="Services\ExtensionMethod.cs" />
+    <Compile Include="Services\Hospitals\HospitalRegistryService.cs" />
+    <Compile Include="Services\IDataService.cs" />
+    <Compile Include="Services\IMeasureService.cs" />
+    <Compile Include="Domain\Measures\Maps\MeasureMap.cs" />
+    <Compile Include="Domain\Measures\Maps\TopicMap.cs" />
+    <Compile Include="Domain\Measures\Measure.cs" />
+    <Compile Include="Domain\Measures\MeasureRepository.cs" />
+    <Compile Include="Domain\Measures\Topic.cs" />
+    <Compile Include="Domain\DomainSessionFactory.cs" />
+    <Compile Include="Domain\IDomainSessionFactoryProvider.cs" />
+    <Compile Include="Domain\IRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Domain\IService.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Domain\Maps\EntityMap.cs" />
+    <Compile Include="Services\MonahrqDataservice.cs" />
+    <Compile Include="Services\Regions\RegionDataService.cs" />
+    <Compile Include="Services\Websites\IWebsiteService.cs" />
+    <Compile Include="Services\MeasureService.cs" />
+    <Compile Include="Domain\RepositoryBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Domain\UnitOfWork.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Domain\RepositoryException.cs" />
+    <Compile Include="Domain\Wings\Element.cs" />
+    <Compile Include="Domain\Wings\IWingsService.cs" />
+    <Compile Include="Domain\Wings\Maps\WingMap.cs" />
+    <Compile Include="Domain\Wings\Scope.cs" />
+    <Compile Include="Domain\Wings\Target.cs" />
+    <Compile Include="Domain\Wings\Wing.cs" />
+    <Compile Include="Domain\Wings\WingRepository.cs" />
+    <Compile Include="Domain\AsyncResult.cs" />
+    <Compile Include="Domain\OperationResult.cs" />
+    <Compile Include="Extensions\DictionaryExtensions.cs" />
+    <Compile Include="Properties\CommonResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CommonResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Exceptions\ApplicationExitException.cs" />
+    <Compile Include="Extensions\DateTimeExtensions.cs" />
+    <Compile Include="Extensions\DependencyObjectExtensions.cs" />
+    <Compile Include="Extensions\EnumExtensions.cs" />
+    <Compile Include="Extensions\FrameworkElementExtensions.cs" />
+    <Compile Include="Extensions\ListExtensions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Services\ServiceErrorEvent.cs" />
+    <Compile Include="Services\ServiceErrorEventArgs.cs" />
+    <Compile Include="Services\Websites\WebsiteService.cs" />
+    <Compile Include="Utility\CloneHelper.cs" />
+    <Compile Include="Extensions\EnumerationExtensions.cs" />
+    <Compile Include="Utility\DummyPropertyInfo.cs" />
+    <Compile Include="Utility\ReflectionHelper.cs" />
+    <Compile Include="Utility\Inflector.cs" />
+    <Compile Include="Utility\IOHelper.cs" />
+    <Compile Include="Utility\PasswordHelper.cs" />
+    <Compile Include="Utility\TypeUtility.cs" />
+    <Compile Include="Utility\XmlHelper.cs" />
+    <Compile Include="Validation\ICDValidationAttribute.cs" />
+    <Compile Include="Validation\InstanceValidator.cs" />
+    <Compile Include="Validation\SharedRegularExpressions.cs" />
+    <Compile Include="Validation\NumericAttribute.cs" />
+    <Compile Include="Validation\PathValidation.cs" />
+    <Compile Include="Validation\RegexWarningAttribute.cs" />
+    <Compile Include="Validation\RejectIfAnyPropertyHasValueAttribute.cs" />
+    <Compile Include="Validation\RequiredWarningAttribute.cs" />
+    <Compile Include="Validation\StrLengthValidationRule.cs" />
+    <Compile Include="Validation\UniqueConstraintCheckAttribute.cs" />
+    <Compile Include="Validation\ValidationError.cs" />
+    <Compile Include="Validation\ValidationRuleEx.cs" />
+    <Compile Include="Validation\WarningValidationAttribute.cs" />
+    <Compile Include="Validation\XmlValidator.cs" />
+    <Compile Include="WaitCursor.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Core\Import\CSVDataReaderDictionary.resx">
+      <DependentUpon>CSVDataReaderDictionary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\CommonResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CommonResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Services\Dynamic\Resources\Uninstall_DynamicTarget_Datasets.sql" />
+    <EmbeddedResource Include="Services\Dynamic\Resources\Uninstall_DynamicTarget_Measures.sql" />
+    <EmbeddedResource Include="Services\Dynamic\Resources\Uninstall_DynamicTarget_Reports.sql" />
+    <EmbeddedResource Include="Services\Dynamic\Resources\Uninstall_DynamicTarget_WingTargets.sql" />
+    <EmbeddedResource Include="Resources\SchemaVersion\SchemaVersion_Create_Update.sql" />
+    <Resource Include="Assert\LICENSE.txt" />
+    <Resource Include="Assert\ArgumentHelper.doc.xml" />
+    <Resource Include="Assert\EventHelper.doc.xml" />
+    <Content Include="Domain\Reports\Data\ConsumerCostAndQuality.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\ConsumerDoctorProfile_GeneralInformation.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\ConsumerDoctorSearchBySpeciality1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\ConsumerNursingHomeComparisonByOverallRatings.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\ConsumerNursingHomeProfile.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\CountyRatesDetailTrending.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\CountyRatesTrendingReport.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\ED_Util_DetailReport_TrendsReport.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\ED_Util_TreatRelease_TrendsReport.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\IP_Util_DetailedReport_StratReport.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\IP_Util_Trending_Report.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\NursingHomeOverallSummaryProfessional.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\ConsumerNursingHome_Compare_Report.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\NursingHome_Compare_Report.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\Physician_FindPhysicianReport.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\RegionRatesTrendingDetail.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\RegionRatesTrendingReport.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\Reg_Rates_Detail_PopTrendsReport.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Extensibility\Data\LICENSE.txt" />
+    <Content Include="Resources\BaseData\NHCAHPSMeasureLookup-1-0-0.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="README.md" />
+    <None Include="Resources\BaseData\CostToChargeRatio-2013.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\CostToChargeRatio-2014.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\HRR-2012.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\HSA-2012.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\HSA-2013.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\ICD10toDXCCSCrosswalk-2015.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\ICD10toPRCCSCrosswalk-2015.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\BaseWebsitePageZone-1-0-0.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\BaseWebsitePage-1-0-0.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\IPNationalTotalsDRG-2013.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\IPNationalTotalsDXCCS-2013.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\IPNationalTotalsMDC-2013.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\IPNationalTotalsPRCCS-2013.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Content Include="Domain\Reports\Data\GenericInfoGraphic-topics.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\BaseData\CGCAHPSMeasureLookup-1-0-0.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\BaseData\MeasureTopics-2-0-0.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\POSHospitals-2015-12.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\ZipCodeToHRRandHSA-2013.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\ZipCodeToPopulationStrats-2012.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\ZipCodeToPopulationStrats-2013.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\ZipCodeToPopulationStrats-2014.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Resource Include="BaseDataLoader\Loaders\_Strategy Load Notes.txt" />
+    <Content Include="Domain\Reports\Data\AvoidableStaysMaps-county-profile.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\AvoidableStaysMaps-county.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\AvoidableStaysMaps.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\AvoidableStaysMaps.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\AvoidableStaysMaps-county.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\AvoidableStaysMaps-county-profile.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Domain\Reports\Data\ComparisonKeyIcons\IconSet1\average.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\ComparisonKeyIcons\IconSet1\below.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\ComparisonKeyIcons\IconSet1\best.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\ComparisonKeyIcons\IconSet1\better.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\ComparisonKeyIcons\IconSet1\notenoughdata.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\ComparisonKeyIcons\IconSet2\average.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\ComparisonKeyIcons\IconSet2\below.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\ComparisonKeyIcons\IconSet2\best.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\ComparisonKeyIcons\IconSet2\better.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\ComparisonKeyIcons\IconSet2\notenoughdata.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\ConsumerHospitalComparisonByTopic.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\ConsumerHospitalComparisonIcons.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\ConsumerHospitalProfile.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\ConsumerHospitalSearchByCondition.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\ConsumerHospitalSearchByLocation.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\ConsumerNursingHomeSearchByLocation.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\CostAndQualityReport.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\CountyRatesTrending.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\CountyRates.PNG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\CountyRates.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Configuration\MonahrqConfiguration.csd">
+      <Generator>CsdFileGenerator</Generator>
+      <LastGenOutput>MonahrqConfiguration.csd.cs</LastGenOutput>
+    </None>
+    <None Include="Configuration\MonahrqConfiguration.csd.config">
+      <DependentUpon>MonahrqConfiguration.csd</DependentUpon>
+    </None>
+    <None Include="Configuration\MonahrqConfiguration.csd.diagram">
+      <DependentUpon>MonahrqConfiguration.csd</DependentUpon>
+    </None>
+    <None Include="Configuration\MonahrqConfiguration.csd.xsd">
+      <DependentUpon>MonahrqConfiguration.csd</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Domain\DatasetMapping.xsd">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Content Include="Domain\Reports\Data\CountyRatesDetail.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\CountyRatesDetail.PNG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\EDUtilizationTrending-StartDetail.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\EDUtilizationTrending.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\EDUtilization-detail.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\EDUtilization-detail.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\EDUtilization.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\EDUtilization.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\NursingHomeInfoGraphic-topics.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Domain\Reports\Data\HospitalComparison-barchart.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\HospitalComparison-icons-rates.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\HospitalComparison-icons.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\HospitalListings.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\HospitalProfile.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\HospitalsQualityRating-barchart.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\HospitalsQualityRating-detail-tabularview.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\HospitalsQualityRating-icons-rates.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\HospitalsQualityRating-icons.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Domain\Reports\Data\IPHospitalDischargeUtilization.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Content Include="Domain\Reports\Data\Infographics.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\IPHospitalDischargeUtilizationTrending.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\IPHospitalDischargeUtilization.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\IPUtilizationTrending-StratDetail.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\IPUtilizationDetail.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\IPUtilizationDetail.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\IPHospitalDischargeUtilization.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\HospitalProfile.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Domain\Reports\Data\HospitalComparison-barchart.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Domain\Reports\Data\HospitalComparison-icons-rates.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\HospitalComparison-icons.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\HospitalListings.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\missing_template.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\NursingHomeComparison.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Domain\Reports\Data\NursingHomeProfile.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\NursingHomeSummaryRating.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\NursingHome_ProfileReport_Summary - MQ60.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\PhysicianListing.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\PhysicianProfile - MQ60.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\PhysicianProfile.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Domain\Reports\Data\RegionRatesTrending.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\RegionRates.PNG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\RegionRates.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\RegionRatesDetail.PNG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\RegionRatesDetail.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Domain\Reports\Data\Reg_Rates_Detail_Report-Pop._Trends Report - MQ60.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Content Include="Domain\Reports\Data\GenericInfoGraphic-topics.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\SurgicalSafety.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\UtilizationCountyRatesTrending-Detail.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\UtilizationRegionRatesTrending-Detail.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Domain\Datasets\Dataset.tt" />
+    <None Include="Domain\Hospitals\Hospitals.cd" />
+    <None Include="Domain\Hospitals\Iter3_preliminary_database_tables.txt" />
+    <Content Include="Domain\Reports\Data\HospitalsQualityRating-icons-rates.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\HospitalsQualityRating-barchart.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Domain\Reports\Data\HospitalsQualityRating-detail-tabularview.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Reports\Data\HospitalsQualityRating-icons.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Domain\ReportManifest.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Domain\WingTemplateXml.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Resource Include="FodyWeavers.xml" />
+    <Content Include="Resources\BaseData\Menus-1-0-0.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\BaseData\ZipCodeToPopulationStrats.fmt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\BaseData\AreaPopulationStrats-2011.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\AreaPopulationStrats-2012.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\AreaPopulationStrats-2014.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\ConsumerPriceIndex-2014.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\ConsumerPriceIndex.fmt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\Counties-1-0-0.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\DRG-1-0-0.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\DXCCS-1-0-0.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\MDC-1-0-0.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\MeasureFilters-1-0-0.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\MSDRG-1-0-0.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\HospitalCategories-2013-12-03.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\NHProviderToLatLong-1-0-0.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\DXCCSCategories.fmt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\PRCCS-1-0-0.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\PRCCSLabels-2014-0-1.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\ProviderSpecialities-1-0-0.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\PRCCSLabels.fmt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\PRCCSCategories.fmt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\DXCCSLabels.fmt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\MeasureFilters.fmt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\CostToChargeToDXCCS.fmt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\CostToChargeToDRG-2011.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\CostToChargeToDXCCS-2011.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\CostToChargeToDRG.fmt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\DXCCSCategories-2014.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\DXCCSLabels-2014.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\EDNationalTotals-2010.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\EDNationalTotals.fmt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\ICD9toDXCCSCrosswalk-2014.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\ICD9toPRCCSCrosswalk-2014.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\IPNationalTotals.fmt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\AreaPopulationStrats.fmt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\AreaPopulationStrats-2013.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\CostToChargeRatio-2010.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\HospitalRegionToPopulationStrats.fmt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\HRRtoPopulationStrats-2012.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\HSAtoPopulationStrats-2012.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\PRCCSCategories-2014.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\ReportingQuarters-1-0-0.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\States-1-0-0.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\ZipCodeToLatLong-2010.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\ZipCodeToLatLong.fmt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DataProvider\Text\" />
+    <Folder Include="Data\BulkInsert\" />
+    <Folder Include="Domain\Hospitals\Mapping\Maps\" />
+    <Folder Include="Domain\Measures\Events\" />
+    <Folder Include="Extensibility\Validation\" />
+    <Folder Include="Extensions\FileSystem\" />
+    <Folder Include="Utility\Extensions\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\ThirdParty\Microsoft\Prism.MefExtensions\Prism.MefExtensions.csproj">
+      <Project>{6ED61550-8E7A-42C6-9B30-380C6F97ED55}</Project>
+      <Name>Prism.MefExtensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ThirdParty\Microsoft\Prism\Prism.csproj">
+      <Project>{77138947-1D13-4E22-AEE0-5D0DD046CA34}</Project>
+      <Name>Prism</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="DataProvider\Builder\ConnectionStringBuilderView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>@echo ======= Copying...  
+@echo "$(TargetPath)"  "$(SolutionDir)Monahrq\$(OutDir)Custom\Wings\ReportManifest.xsd" 
+@echo  =======
+</PostBuildEvent>
+  </PropertyGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\packages\PropertyChanged.Fody.1.50.3\build\dotnet\PropertyChanged.Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\PropertyChanged.Fody.1.50.3\build\dotnet\PropertyChanged.Fody.targets'))" />
+    <Error Condition="!Exists('..\..\packages\Fody.1.29.3\build\dotnet\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Fody.1.29.3\build\dotnet\Fody.targets'))" />
+    <!--<Error Condition="!Exists('..\..\packages\Fody.1.29.2\build\dotnet\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Fody.1.29.2\build\dotnet\Fody.targets'))" />-->
+  </Target>
+  <Import Project="..\..\packages\PropertyChanged.Fody.1.50.3\build\dotnet\PropertyChanged.Fody.targets" Condition="Exists('..\..\packages\PropertyChanged.Fody.1.50.3\build\dotnet\PropertyChanged.Fody.targets')" />
+  <Import Project="..\..\packages\Fody.1.29.3\build\dotnet\Fody.targets" Condition="Exists('..\..\packages\Fody.1.29.3\build\dotnet\Fody.targets')" />
+  <!--<Import Project="..\..\packages\Fody.1.29.2\build\dotnet\Fody.targets" Condition="Exists('..\..\packages\Fody.1.29.2\build\dotnet\Fody.targets')" />-->
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

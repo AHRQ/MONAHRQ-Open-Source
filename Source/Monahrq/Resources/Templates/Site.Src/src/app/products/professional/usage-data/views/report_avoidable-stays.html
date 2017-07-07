@@ -1,0 +1,22 @@
+<div data-ng-if="showReport()">
+
+<div class="row page-header" id="table-condition-header">
+  <div class="col-md-12">
+    <h1>{{content.header.title}}</h1>
+    <div data-ng-bind-html="content.header.body"></div>
+  </div>
+</div>
+
+<div class="page-content clearfix">
+  <div data-ng-if="showTabs()" class="utilization-tabs hidden-print">
+    <ul class="nav nav-tabs">
+      <li data-ng-if="ReportConfigSvc.webElementAvailable('AHS_ViewRates_Tab')" id="rates-tab" role="tab" aria-controls="rates" data-ng-class="{active: isActiveTab('table')}"><a href="#" data-ng-click="goToTable(); $event.preventDefault();">View Rates</a></li>
+      <li data-ng-if="ReportConfigSvc.webElementAvailable('AHS_MapView_Tab')" id="map-tab" role="tab" aria-controls="map" data-ng-class="{active: isActiveTab('map')}"><a href="#" data-ng-click="goToMap(); $event.preventDefault();">View Map</a></li>
+    </ul>
+  </div>
+  <div class="clearfix"></div>
+
+  <div data-ui-view="ud-report-content"></div>
+</div>
+
+</div>

@@ -1,0 +1,184 @@
+﻿<UserControl x:Class="Monahrq.Websites.Views.WebsiteBuildReportsHospitalsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:converters="clr-namespace:Monahrq.Theme.Converters;assembly=Monahrq.Theme"
+             xmlns:multiSelect="clr-namespace:Monahrq.Theme.Controls.MultiSelect;assembly=Monahrq.Theme"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="800">
+    <UserControl.Resources>
+        
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.Buttons.xaml"/>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.DataGrid.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <converters:EnumToDescriptionConverter x:Key="EnumToDescriptionConverter"/>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="0,5,10,5" Orientation="Vertical" VerticalAlignment="Top">
+            <TextBlock Text="Included Hospitals:" Style="{StaticResource SectionHeader}" FontSize="18.667" FontWeight="Bold" Foreground="{StaticResource MGrey5}" />
+            <TextBlock Text="Select Hospitals to include in each report." Foreground="{StaticResource MGrey5}" FontFamily="Segoe UI" FontSize="10.667" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="1"  Margin="0,5,0,10" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Stretch">
+            <TextBlock Style="{StaticResource Subtopic}" Foreground="{StaticResource MGrey5}" Text="FILTER BY:" Margin="0,0,10,0" VerticalAlignment="Center" />
+            <ComboBox MinWidth="150" ItemsSource="{Binding FilterBy}" DisplayMemberPath="Text" Width="250"
+                              SelectedValue="{Binding SelectedHospitalFilter}"/>
+            <TextBlock Style="{StaticResource Subtopic}" Foreground="{StaticResource MGrey5}" Margin="10,0,10,0" VerticalAlignment="Center"
+                           Text="{Binding HospitalsCollectionView.Count, StringFormat='# of Hospitals: {0}', FallbackValue='0'}" />
+        </StackPanel>
+   
+        <DataGrid Grid.Row="2" VerticalScrollBarVisibility="Auto"  VerticalAlignment="Top"
+                        ItemsSource="{Binding HospitalsCollectionView}"
+                  
+                        BorderBrush="{StaticResource MGrey3}" 
+                        HorizontalGridLinesBrush="{StaticResource MGrey2}" 
+                        VerticalGridLinesBrush="{StaticResource MGrey2}" 
+                        Foreground="{StaticResource MGrey5}"   
+                        Background="{StaticResource White}" 
+                        Margin="0,0,0,0"  
+                        AutoGenerateColumns="False" 
+					    CanUserAddRows="False" 
+                        CanUserDeleteRows="False" 
+                        ColumnHeaderHeight="40" 
+                        CanUserResizeRows="False" 
+                        HeadersVisibility="Column" 
+					    AlternationCount="2"
+                        SelectionMode="Extended"
+                        SelectionUnit="CellOrRowHeader"
+                        multiSelect:MultiSelect.IsEnabled="True">
+         
+            <DataGrid.RowStyle>
+                <Style TargetType="{x:Type DataGridRow}">
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected"
+                                     Value="True">
+                            <Setter Property="Background"
+                                        Value="Transparent" />
+                            <Setter Property="BorderBrush"
+                                        Value="Transparent" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
+
+            <DataGrid.Columns>
+                <DataGridTemplateColumn x:Name="columnCheckBox" HeaderStyle="{StaticResource CheckBoxHeaderStyle}">
+                    <DataGridTemplateColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <Border Width="30" BorderThickness="0">
+                                <CheckBox IsChecked="{Binding Path=DataContext.IsAllHospitalsSelected, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" 
+                                          Margin="8,0,0,0" IsThreeState="False" HorizontalAlignment="Left" Width="22" />
+                            </Border>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.HeaderTemplate>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="{x:Type DataGridCell}">
+                            <Border x:Name="brd" Background="Transparent">
+                                <CheckBox x:Name="SelectionHospitals" VerticalAlignment="Center" 
+                                          IsChecked="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" />
+                            </Border>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="HOSPITAL NAME" 
+                                        Width="0.30*" 
+                                        CanUserSort="True" 
+                                        SortMemberPath="Hospital.Name">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock x:Name="txtName"  
+                                       Margin="6" TextWrapping="Wrap"  
+                                       Text="{Binding Path=Hospital.Name}" 
+                                       TextTrimming="CharacterEllipsis" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="LOCAL ID" 
+                                        Width="0.30*"  
+                                        CanUserSort="True" 
+                                        SortMemberPath="Hospital.LocalHospitalID">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=Hospital.LocalHospitalId}"  
+                                       TextWrapping="Wrap"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="CMS ID" 
+                                        Width="0.30*" 
+                                        CanUserSort="True" 
+                                        SortMemberPath="Hospital.CmsProviderID">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=Hospital.CmsProviderID}"  
+                                       TextWrapping="Wrap"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="STATE"
+                                        Width="0.20*" 
+                                        CanUserSort="true"
+                                        SortMemberPath="Hospital.State">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=Hospital.State}"  
+                                       TextWrapping="Wrap"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="ZIP CODE" 
+                                        Width="0.25*" 
+                                        CanUserSort="true"
+                                        SortMemberPath="Hospital.Zip">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=Hospital.Zip}"  
+                                       TextWrapping="Wrap"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                
+                <DataGridTemplateColumn Header="CCR" 
+                                        Width="0.30*" 
+                                        CanUserSort="true"
+                                        SortMemberPath="CCR">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding CCR,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                
+            </DataGrid.Columns>
+        </DataGrid>
+        
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,0">
+            <Button Content="Cancel" 
+                        HorizontalAlignment="Left" Margin="2,0,10,0" Width="150" Height="36" Style="{StaticResource PlainButton}" 
+                        Background="{StaticResource MPink}" BorderBrush="{x:Null}" CommandParameter="HospitalSelection"
+                        VerticalAlignment="Center" Command="{Binding CloseHospitalSelectionCommand}" />
+
+            <Button Content="Done" 
+                        HorizontalAlignment="Right" Margin="10,0,0,0" Width="150" Height="36" Style="{StaticResource PlainButton}"
+                        Background="{StaticResource MDBlue}" VerticalAlignment="Center" Foreground="White" FontSize="16" FontFamily="Segoe UI Semibold"
+                        Command="{Binding HospitalSelectionCompleteCommand}" />
+        </StackPanel>
+   
+    </Grid>
+</UserControl>

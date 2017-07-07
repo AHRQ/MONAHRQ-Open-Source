@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="Monahrq.DataSets.Views.DatasetTitlePeriod"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="42" d:DesignWidth="400"
+             Background="Transparent">
+    <!-- Border BorderThickness="1"  BorderBrush="Black"   uncomment this for debug -->
+        <StackPanel Orientation="Vertical"
+                    VerticalAlignment="Top" 
+                    HorizontalAlignment="Right"
+                    Loaded="StackPanel_Loaded" 
+                    Name="MyPanel"
+                    ClipToBounds="True"
+                    >
+            <TextBlock Text="{Binding File}" Name="txtName" ClipToBounds="True" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="17" Foreground="#FF7CABDA"/>
+            <TextBlock Text="{Binding Description}" Name="txtDescription" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="14" Foreground="Gray"/>
+        </StackPanel>
+</UserControl>

@@ -1,0 +1,17 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# SQL Server Management Studio Solution File, Format Version 12.00
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "UtilizationRegion", "UtilizationRegion\UtilizationRegion.ssmssqlproj", "{DED2FFC9-F8F6-465F-92C9-03E88F87905D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Default|Default = Default|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DED2FFC9-F8F6-465F-92C9-03E88F87905D}.Default|Default.ActiveCfg = Default
+		{73B0D2CD-508B-4FD4-A77D-C3D3C4E5F239}.Default|Default.ActiveCfg = Default
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

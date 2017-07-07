@@ -1,0 +1,16 @@
+﻿<Window x:Class="Monahrq.Default.Views.SimpleImportResultsDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="OurFileDialog" Height="300" Width="300"
+        WindowStartupLocation="CenterOwner"
+        >
+    <DockPanel LastChildFill="True">
+        <Menu IsMainMenu="True" DockPanel.Dock="Top">
+            <MenuItem Header="_File">
+                <MenuItem Header="_Save" IsCheckable="true"/>
+                <MenuItem Header="_Close" IsCheckable="true"/>
+            </MenuItem>
+        </Menu>
+        <FlowDocumentReader Name="FlowDocReader" Background="LightBlue"                             />
+    </DockPanel>
+</Window>

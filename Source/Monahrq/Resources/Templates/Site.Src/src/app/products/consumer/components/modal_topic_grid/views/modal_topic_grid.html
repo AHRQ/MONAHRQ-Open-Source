@@ -1,0 +1,15 @@
+<div class="modal-header">
+  <button data-ng-click="$close()" type="button" class="close"><span aria-hidden="true" role="presentation">×</span><span class="sr-hidden">Close</span></button>
+  <h1 id="modal-header-title" class="modal-title">{{title}}</h1>
+</div>
+<div class="modal-body modal--health-topics">
+  <section class="health-topics__list">
+    <div class="health-topic" data-ng-repeat="topic in topics" data-ng-click="pickTopic(topic.TopicCategoryID)">
+      <p class="health-topic__name">{{topic.Name}}</p>
+      <img class="health-topic__icon" data-ng-src="{{'themes/consumer/assets/infographic/' + topic.TopicIcon}}">
+    </div>
+  </section>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" data-ng-click="$close()">Close</button>
+</div>

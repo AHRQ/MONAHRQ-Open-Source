@@ -1,0 +1,293 @@
+<UserControl x:Class="Monahrq.DataSets.HospitalRegionMapping.Regions.RegionsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mtx="http://schemas.monahrq.com/theme/xaml"
+             xmlns:model="clr-namespace:Monahrq.DataSets.HospitalRegionMapping.Regions"
+             xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             xmlns:monahrqControl="clr-namespace:Monahrq.Theme.Controls;assembly=Monahrq.Theme"
+             xmlns:converters="clr-namespace:Monahrq.Theme.Converters;assembly=Monahrq.Theme"
+             d:DesignHeight="700" d:DesignWidth="1200"
+             mc:Ignorable="d" >
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.Buttons.xaml"/>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.DataGrid.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+            <model:RegionTypeConverter x:Key="RegionTypeConverter" />
+            <model:DeleteRegionButtonVisibility x:Key="DeleteButtonVisibility" />
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid Background="{StaticResource MGrey2}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="90" />
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!--HEADER-->
+        <DockPanel Grid.Row="0" Grid.Column="0">
+            <TextBlock DockPanel.Dock="Top" Text="GEOGRAPHIC REGIONS" Style="{DynamicResource SectionHeader}"/>
+            <TextBlock DockPanel.Dock="Top" Text="Automatically map and create geographic regions to organize the hospitals on your website" 
+                                                           Foreground="{DynamicResource MGrey5}"  TextWrapping="Wrap"  />
+            <TextBlock  Foreground="{StaticResource MGrey5}" Text="FILTER BY:" DockPanel.Dock="Bottom" HorizontalAlignment="Left" Style="{DynamicResource Subtopic}" Margin="0,35,0,0"/>
+        </DockPanel>
+
+        <Grid Grid.Row="1" Margin="0,5" VerticalAlignment="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="0.2*"/>
+            </Grid.ColumnDefinitions>
+            <ComboBox MinWidth="150" HorizontalAlignment="Stretch" Margin="5,0,10,0"  Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Filters}" SelectedValue="{Binding SelectedFilter}"></ComboBox>
+            <TextBox MinWidth="200" HorizontalAlignment="Stretch" Margin="5,0,20,0" Controls:TextboxHelper.ClearTextButton="True"
+                     Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.Column="1" Controls:TextboxHelper.Watermark="Enter Search Text" />
+
+            <Button Width="200" Grid.Column="2" Command="{Binding AddCustomRegionCommand}" HorizontalAlignment="Stretch" Height="32" FontWeight="Normal"
+                                    Content="ADD NEW CUSTOM REGION" Style="{DynamicResource AddDataFileButton}" 
+                                    Foreground="White" Background="{StaticResource MBlue}" />
+            <StackPanel VerticalAlignment="Bottom" Grid.Column="3" Orientation="Horizontal" HorizontalAlignment="Stretch">
+                <TextBlock  Text="Total Regions: "  Style="{StaticResource Subtopic}" VerticalAlignment="Center" Width="Auto" Margin="5,0,0,0"/>
+                <TextBlock Text="{Binding CollectionItems.Count}" Style="{StaticResource Subtopic}" HorizontalAlignment="Stretch" Width="auto" VerticalAlignment="Center"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Column="1" Grid.RowSpan="2" Grid.Row="0" Margin="0"  HorizontalAlignment="Right" VerticalAlignment="Stretch" Visibility="Visible" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="34" />
+                <RowDefinition Height="34" />
+                <RowDefinition Height="34" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="68" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Button  HorizontalAlignment="Center"  Grid.Column="0" Content="View Sample" Style="{StaticResource ViewSampleLinkButton}" Command="{Binding ViewImportSampleCommand}" CommandParameter="{Binding RegionSampleFile}" />
+            <Button Grid.Row="0" Grid.Column="1" Command="{Binding ImportRegionCommand}"  HorizontalAlignment="Right" 
+                                    Width="160" Margin="3,0,3,3" Height="32" Padding="10" AutomationProperties.AutomationId="ImportRegionsButton"
+                                    Content="{Binding ImportButtonCaption}" Style="{DynamicResource PlainImportButton}"
+                                    Foreground="White" FontSize="11"  />
+            <Button Grid.Row="1" Grid.Column="0"  HorizontalAlignment="Center" Content="View Sample" 
+                    Style="{StaticResource ViewSampleLinkButton}" 
+                    Command="{Binding ViewImportSampleCommand}" CommandParameter="{Binding PopulationSampleFile}" />
+            <!--<Button Grid.Row="1" Grid.Column="1" Command="{Binding ImportPopulationCommand}" 
+                                    Width="190" Margin="10,5,0,10" Height="32" FontWeight="Normal" HorizontalAlignment="Right" 
+                                    Content="IMPORT POPULATION" Style="{DynamicResource MonahrqArrowButtonRight}"
+                                    Foreground="White" Background="{DynamicResource MBlue}" />-->
+
+            <Button Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" 
+                        Command="{Binding ImportPopulationCommand}" CommandParameter="none" Content="IMPORT POPULATION" AutomationProperties.AutomationId="ImportPopulationButton"
+                        Margin="3,0,3,3" Style="{StaticResource PlainImportButton}" Foreground="White" FontSize="11" Padding="10"
+                        Background="{StaticResource MBlue}" Width="160" Height="32"  />
+            <Button Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right" 
+                        Command="{Binding ExportPopulationCommand}" CommandParameter="none" Content="EXPORT POPULATION" AutomationProperties.AutomationId="ExportPopulationButton"
+                        Margin="3,0,3,3" Style="{StaticResource PlainExportButton}" Foreground="White" FontSize="11" Padding="10"
+                        Background="{StaticResource MBlue}" Width="160" Height="32" />
+
+            <StackPanel  Grid.Row="3" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5">
+                <TextBlock Text="Mapped Custom Regions: " Style="{DynamicResource Subtopic}"/>
+                <TextBlock Text="{Binding MappedCustomRegionToPopulationCount}" Style="{DynamicResource Subtopic}"/>
+            </StackPanel>
+        </Grid>
+
+        <Border Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0" Background="White" BorderThickness="1" BorderBrush="{StaticResource MGrey3}">
+            <Grid>
+                <DataGrid x:Name="regionsDataGrid" VerticalAlignment="Stretch" ItemsSource="{Binding  CollectionItems}" BorderBrush="{StaticResource MGrey2}" 
+                        HorizontalGridLinesBrush="{StaticResource MGrey2}" VerticalGridLinesBrush="{StaticResource MGrey2}" Foreground="{StaticResource MGrey5}"   
+                        Background="{StaticResource White}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" 
+                        ColumnHeaderHeight="40" CanUserResizeRows="False" HeadersVisibility="Column" AlternationCount="2" IsReadOnly="False" 
+                        IsSynchronizedWithCurrentItem="True" SelectedItem="{Binding CurrentSelectedItem, Mode=TwoWay}" SelectionMode="Single" Margin="0"
+                        VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Hidden">
+                    <DataGrid.Resources>
+                        <Style TargetType="{x:Type TextBox}">
+                            <Style.Triggers>
+                                <Trigger  Property="IsEnabled" Value="True">
+                                    <Setter Property="BorderBrush" Value="{DynamicResource MGrey4}" />
+                                    <Setter Property="Background" Value="{DynamicResource White}" />
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="BorderBrush" Value="Transparent" />
+                                    <Setter Property="Background" Value="Transparent" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.Resources>
+                    <DataGrid.RowStyle>
+                        <Style TargetType="{x:Type DataGridRow}">
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="Transparent" />
+                                    <Setter Property="BorderBrush" Value="Transparent" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.RowStyle>
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn Header="" CanUserSort="False">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Button x:Name="EditButton" VerticalAlignment="Top"  Margin="0,5,0,5" CommandParameter="{Binding }" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=DataContext.EditSelectedItemCommand}" 
+                                        Style="{DynamicResource EditButton}" >
+                                            <Button.Visibility>
+                                                <Binding Path="IsEditing" Converter="{mtx:BooleanToVisibilityConverter IsInverted=True}" />
+                                            </Button.Visibility>
+                                            <Button.ToolTip>
+                                                <TextBlock Text="Edit" />
+                                            </Button.ToolTip>
+                                        </Button>
+                                        <Button x:Name="SaveButton" VerticalAlignment="Top"  Margin="0,5,0,5" CommandParameter="{Binding }" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=DataContext.SaveSelectedItemCommand}" 
+                                        Style="{DynamicResource SaveButton}">
+                                            <Button.Visibility>
+                                                <Binding Path="IsEditing" Converter="{mtx:BooleanToVisibilityConverter}"  />
+                                            </Button.Visibility>
+                                            <Button.ToolTip>
+                                                <TextBlock Text="Save" />
+                                            </Button.ToolTip>
+                                        </Button>
+                                    </Grid>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="" CanUserSort="False">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Button x:Name="DeleteButton" VerticalAlignment="Top"  Margin="0,5,0,5" CommandParameter="{Binding }" 
+                                            Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=DataContext.DeleteSelectedItemCommand}" 
+                                            Style="{DynamicResource DeleteButton}">
+                                            <Button.Visibility>
+                                                <Binding Path="IsEditing" Converter="{mtx:BooleanToVisibilityConverter IsInverted=True}"  />
+                                            </Button.Visibility>
+                                            <Button.ToolTip>
+                                                <TextBlock Text="Delete" />
+                                            </Button.ToolTip>
+                                        </Button>
+
+                                        <Button x:Name="CancelButton" VerticalAlignment="Top"  Margin="0,5,0,5" CommandParameter="{Binding }" 
+                                            Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=DataContext.CancelSelectedItemCommand}" 
+                                        Style="{DynamicResource CancelButton}">
+                                            <Button.Visibility>
+                                                <Binding Path="IsEditing" Converter="{mtx:BooleanToVisibilityConverter}"  />
+                                            </Button.Visibility>
+                                            <Button.ToolTip>
+                                                <TextBlock Text="Cancel" />
+                                            </Button.ToolTip>
+                                        </Button>
+                                    </Grid>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="REGION ID"   CanUserSort="True" SortMemberPath="ImportRegionId">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock   Margin="6" TextWrapping="Wrap"  Text="{Binding ImportRegionId}" TextTrimming="CharacterEllipsis" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="REGION NAME" CanUserSort="True" SortMemberPath="Name">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox x:Name="txtTitle"  Margin="6" TextWrapping="Wrap"  Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding IsEditing}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="STATE"   CanUserSort="True" SortMemberPath="State">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock   Margin="6" TextWrapping="Wrap"  Text="{Binding State}" TextTrimming="CharacterEllipsis" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="REGION TYPE"  CanUserSort="True" SortMemberPath="RegionTypeForDisplay">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock   Margin="6" TextWrapping="Wrap"  Text="{Binding RegionTypeForDisplay}" TextTrimming="CharacterEllipsis" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="HOSPITAL COUNT" Width="0.30*" CanUserSort="True" SortMemberPath="HospitalCount">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <!--Region.Hospitals.Count-->
+                                    <TextBlock  Margin="6" TextWrapping="Wrap"  Text="{Binding HospitalCount, Mode=TwoWay}" TextTrimming="CharacterEllipsis" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <monahrqControl:xPopup IsDraggable="True" MinWidth="400" MaxWidth="600" MaxHeight="200" MinHeight="200"  
+                    Visibility="{Binding IsAddNewRegionPopupVisible, UpdateSourceTrigger=PropertyChanged
+                    , Converter={StaticResource BooleanToVisibilityConverter}, Mode=TwoWay}">
+                    <Border BorderThickness="1" BorderBrush="{StaticResource MGrey1}" Background="White" Padding="1">
+                        <Grid HorizontalAlignment="Stretch" Background="{StaticResource MGrey2}" MaxHeight="250">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition MaxWidth="530" MinWidth="400"/>
+                                <ColumnDefinition Width="70"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" 
+                                  Background="{StaticResource MBlue}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="50"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="ADD CUSTOM REGION" FontWeight="Bold" FontSize="15" Foreground="White" Margin="10,5,0,5" />
+                                <Button Grid.Column="1" Command="{Binding CloseNewCustomRegionPopUpCommand}" CommandParameter="false" Content="X" Style="{StaticResource CloseButton}" 
+                                        Height="15" Width="20" Margin="0,5,-15,5"/>
+                            </Grid>
+
+                            <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width=".25*" />
+                                    <ColumnDefinition Width=".75*" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Margin="5" Grid.Row="0" Grid.Column="0" Text="Region ID" />
+                                <TextBlock Margin="5" Grid.Row="1" Grid.Column="0" Text="Region Title" />
+                                <TextBlock Margin="5" Grid.Row="2" Grid.Column="0" Text="State" />
+
+                                <TextBox Margin="5" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" Name="txtRegionId"  Controls:TextboxHelper.ClearTextButton="True" Controls:TextboxHelper.Watermark="Enter new region ID" 
+                                         Text="{Binding RegionID, UpdateSourceTrigger=PropertyChanged, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay}" />
+                                <TextBox Margin="5" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" Controls:TextboxHelper.ClearTextButton="True"
+                                         Controls:TextboxHelper.Watermark="Enter new region title" 
+                                 Text="{Binding RegionTitle, NotifyOnValidationError=True, ValidatesOnDataErrors=True, Mode=TwoWay}" />
+                                <ComboBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" Margin="5" 
+                                          ItemsSource="{Binding StateABCollection}" SelectedItem="{Binding SelectedState}"/>
+
+                                <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                                            Margin="0,0,10,0">
+                                    <Button Content="CANCEL"  HorizontalAlignment="Right" Margin="2,0,5,0" Width="150" Height="36" Style="{StaticResource PlainButton}" 
+                                            Background="{StaticResource MPink}" 
+                                            VerticalAlignment="Center" Command="{Binding CloseNewCustomRegionPopUpCommand}" />
+
+                                    <Button Margin="5,0,0,0" Content="SAVE" HorizontalAlignment="Right" Width="150" Height="36" Style="{StaticResource PlainButton}"
+                                            Background="{StaticResource MDBlue}" VerticalAlignment="Center" Foreground="White" FontSize="16" 
+                                            FontFamily="Segoe UI Semibold" Command="{Binding SaveCustomRegion}"/>
+                                </StackPanel>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </monahrqControl:xPopup>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

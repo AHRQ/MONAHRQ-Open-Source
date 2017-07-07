@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="Monahrq.DataSets.HospitalRegionMapping.Mapping.MappingView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+              xmlns:prism="clr-namespace:Microsoft.Practices.Prism.Regions;assembly=Microsoft.Practices.Prism"
+             xmlns:converters="clr-namespace:Monahrq.Theme.Converters;assembly=Monahrq.Theme"
+             xmlns:mapping="clr-namespace:Monahrq.DataSets.HospitalRegionMapping.Mapping"
+             mc:Ignorable="d" d:DataContext="{d:DesignInstance mapping:MappingViewModel}"
+             d:DesignHeight="700" d:DesignWidth="900">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.Buttons.xaml"/>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.DataGrid.xaml"/>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/ModernTab.xaml"/>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/ModernFrame.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <!--<converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+            <converters:InvertedBooleanConverter x:Key="InvertedBooleanConverter"/>-->
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Border Margin="0,0,-1,0" Background="{StaticResource MGrey2}" Padding="20,10">
+            <TabControl Grid.Row="0"  SelectedIndex="{Binding ActiveTabItemIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{DynamicResource TabControlStyleLeft}" >
+                <TabItem Header="Hospitals" Style="{StaticResource TabItemStyleLeft}" DataContext="{Binding TabItems[0]}">
+                    <Border BorderBrush="{DynamicResource MBlue}" BorderThickness="0,1,0,0" Margin="-1,0,0,0" Padding="0,10">
+                        <ContentControl x:Name="HospitalsContainer" prism:RegionManager.RegionName="{x:Static mapping:RegionNames.Hospitals}" />
+                    </Border>
+                </TabItem>
+                <TabItem Header="Hospital Categories" Style="{StaticResource TabItemStyleLeft}" DataContext="{Binding TabItems[1]}">
+                    <Border BorderBrush="{StaticResource MBlue}" BorderThickness="0,1,0,0" Margin="-1,0,0,0" Padding="0,10">
+                        <ContentControl x:Name="CategoriesContainer" prism:RegionManager.RegionName="{x:Static mapping:RegionNames.Categories}" />
+                    </Border>
+                </TabItem>
+                <TabItem Header="Geographic Regions" Style="{StaticResource TabItemStyleLeft}" DataContext="{Binding TabItems[2]}">
+                    <Border BorderBrush="{DynamicResource MBlue}" BorderThickness="0,1,0,0" Margin="-1,0,0,0" Padding="0,10">
+                        <ContentControl x:Name="CustomRegionsContainer" prism:RegionManager.RegionName="{x:Static mapping:RegionNames.Regions}" />
+                    </Border>
+                </TabItem>
+            </TabControl>
+        </Border>
+    </Grid>
+</UserControl>
+

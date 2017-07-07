@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ReportManifest RptId="7AAC8244-0F39-424A-85BE-943B465ED61B"
+                Name="Hospitals Quality Ratings - Detail Tabular View" ShowInterpretationText="true"
+                Category="Quality"
+				IsTrending="false" ConsumerPreviewImage=""
+				RequiresCmsProviderId="true" RequiresCostToChargeRatio="false"
+                PreviewImage="HospitalsQualityRating-detail-tabularview.png" >
+	<Audiences>
+		<Audience AudienceType="Professionals" />
+	</Audiences>
+	<Datasets>
+		<Dataset Name="Hospital Compare Data"/>
+		<!--<Dataset Name="AHRQ-QI Area Data"/>-->
+		<Dataset Name="AHRQ-QI Composite Data"/>
+		<Dataset Name="AHRQ-QI Provider Data"/>
+	</Datasets>
+	<Filters>
+		<Filter Type="Hospital">
+			<Values>
+				<FilterValue Name="Hospital Name" />
+				<FilterValue Name="Hospital Type" />
+				<FilterValue Name="Region" />
+				<FilterValue Name="County" />
+			</Values>
+		</Filter>
+	</Filters>
+	<ReportAttributes>HospitalFilters</ReportAttributes>
+	<Columns >
+		<Column Name="Numerator" />
+		<Column Name="Denominator" />
+		<Column Name="Observed Rate" />
+		<Column Name="Observed Lower-bound Confidence Interval (CI)" />
+		<Column Name="Observed Upper-bound Confidence Interval (CI)" />
+		<Column Name="Expected Rate" />
+		<Column Name="Risk-Adjusted Rate" />
+		<Column Name="Risk-Adjusted Lower-bound Confidence Interval (CI)" />
+		<Column Name="Risk-Adjusted Upper-bound Confidence Interval (CI)" />
+	</Columns>
+	<Footer>
+		<![CDATA[<p> (-)Indicates there are not enough data for this hospital
+	</p>]]>
+	</Footer>
+	<InterpretationText>
+		<![CDATA[<p>How do I interpret the detailed table?</P>		
+	<p>Different statistics are available for different quality indicators.  For more information on which statistics are available for each indicator, visit the <a class="local-link" href="#/resources/AboutQualityRatings" >Measure Details</a> page. Numbers in the measure details table are not scaled.  These are raw statistics.<br/><br/><b>Numerator: </b>The number of hospital stays in which the event or outcome of interest occurs (e.g., death caused by heart attack).<br/><br/><b>Denominator: </b>The number of hospital stays in which the event or outcome of interest might potentially occur (e.g., admitted to the hospital for heart attack).<br/><br/><b>Observed rate: </b>The numerator divided by the denominator. This rate is unadjusted.<br/><br/><b>Expected rate: </b>The rate the hospital would have if it performed the same as the reference population given the hospital\&#146;s actual case mix. In other words, the expected rate adjusts for differences in baseline characteristics (e.g., age, gender, DRG, and comorbidity categories) among patients admitted to given hospitals.<br/><br/><b>Risk adjustment: </b>Risk adjustment is a statistical process that adjusts a hospital\&#146;s estimated performance if the hospital had an "average" case mix.<br/><br/><b>Confidence interval: </b>The confidence interval tells us we can be reasonably "confident" (in this case, 95% confident) that a hospital\&#146;s rate fell somewhere within this specified range. The lower and upper bounds represent the lower and upper limits, respectively, of the confidence interval.  The smaller the range, the more precise the estimate.<br/><br/>Information to help you interpret the statistics.<br/><br/><b>Ratio of observed/expected rate: </b>Observed rate divided by expected rate.<br/><br/>If the observed rate is greater than the expected rate (i.e., the ratio of observed/expected is greater than 1.0, or observed minus expected is positive), the hospital performed worse than the reference population for that particular indicator. Users may want to focus on these indicators for quality improvement.<br/><br/>If the observed rate is less than the expected rate (i.e., the ratio of observed/expected is less than 1.0, or observed minus expected is negative), then the implication is that the hospital performed better than the reference population. Users may want to focus on these indicators for identifying best practices.<br/><br/><b>Number of patients: </b>When hospitals treat a very large number of patients, chance differences will not have much effect on the overall rates. The range will be small and the estimated rates will be more precise. In hospitals that treat smaller numbers of patients, however, even small chance differences could have a big impact on rates. The 95% confidence interval will be large, and the estimated rates will be much less precise. Because the number of patients treated at U.S. hospitals varies widely, the precision of hospitals\&#146; estimated rates also varies.<br/><br/><b>Small number suppression: </b>Small raw numbers may be suppressed to protect patient confidentiality. In this case, a &quot;c&quot; appears.</p>	
+]]>
+	</InterpretationText>
+	<WebsitePages>
+		<WebsitePage
+			Name="Condition or Topic - Quality Ratings [Raw Data]"
+			Audience="Professionals"
+			Path="app/products/professional/quality-ratings/views/condition.html"
+			Url="/quality-ratings/condition?topic=6"
+			UrlRaw="/condition?topic&amp;subtopic&amp;searchType&amp;hospitalName&amp;hospitalType&amp;geoType&amp;zipDistance&amp;zip&amp;region"
+			IsEditable="true">
+			<WebsitePageZones>
+				<WebsitePageZone Name="Header" CodePath="" />
+				<WebsitePageZone Name="Footer" CodePath="" />
+			</WebsitePageZones>
+		</WebsitePage>
+	</WebsitePages>
+</ReportManifest>

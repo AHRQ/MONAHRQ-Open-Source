@@ -1,0 +1,76 @@
+// ------------------------------------------------------------------- //
+//  Typography Normalization
+// ------------------------------------------------------------------- //
+
+body {
+  -webkit-font-smoothing: antialiased;
+  background-color: $base-background-color;
+  color: $base-font-color;
+  font-family: $base-font-family;
+  font-size: $base-font-size;
+  line-height: $base-line-height;
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-family: $base-font-family;
+  line-height: $header-line-height;
+}
+
+h1 {
+  font-size: $h1-font-size;
+  font-weight: 700;
+}
+
+h2 { font-size: $h2-font-size; }
+
+h3 { font-size: $h3-font-size; }
+
+h4 { font-size: $h4-font-size; }
+
+h5 { font-size: $h5-font-size; }
+
+h6 { font-size: $h6-font-size; }
+
+p { margin: 0 0 ($base-spacing / 2); }
+
+a {
+  transition: color, .1s;
+}
+
+hr {
+  margin: $base-spacing 0;
+  border-bottom: $base-border;
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+}
+
+img,
+picture {
+  max-width: 100%;
+  height: auto;
+  margin: 0;
+}
+
+blockquote {
+  margin: $base-spacing 0;
+  padding-left: $base-spacing / 2;
+  border-left: 2px solid $base-border-color;
+  color: tint($base-font-color, 15%);
+}
+
+cite {
+  color: tint($base-font-color, 25%);
+  font-style: italic;
+
+  &:before {
+    content: "\2014 \00A0";
+  }
+}

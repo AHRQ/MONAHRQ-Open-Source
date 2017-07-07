@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ReportManifest RptId="2AAF7FBA-7102-4C66-8598-A70597E2F824"
+                Name="Inpatient Hospital Discharge Utilization Report" ShowInterpretationText="true"
+                Category="Utilization"
+				IsTrending="false" ConsumerPreviewImage=""
+                RequiresCostToChargeRatio="true"
+                PreviewImage="IPHospitalDischargeUtilization.png"
+              >
+	<Audiences>
+		<Audience AudienceType="Professionals" />
+	</Audiences>
+	<Datasets>
+		<Dataset Name="Inpatient Discharge"/>
+	</Datasets>
+	<Filters>
+		<Filter Type="Hospital">
+			<Values>
+				<FilterValue Name="Hospital Name" />
+				<FilterValue Name="Hospital Type" />
+				<FilterValue Name="Region" />
+				<FilterValue Name="County" />
+			</Values>
+		</Filter>
+		<Filter Type="DRGsDischarges">
+			<Values>
+				<FilterValue Name="Major Diagnosis Category" />
+				<FilterValue Name="Diagnosis Related Group" />
+				<FilterValue Name="Health Condition or Topic" />
+				<FilterValue Name="Procedure" />
+			</Values>
+		</Filter>
+	</Filters>
+	<ReportAttributes>
+		HospitalFilters DRGsDischargesFilters
+	</ReportAttributes>
+	<!-- ReportColumns-->
+	<Columns >
+		<Column IsMeasure="true" MeasureCode="IP-01" Name="Number of discharges" />
+		<Column IsMeasure="true" MeasureCode="IP-02" Name="Mean charges in dollars" />
+		<Column IsMeasure="true" MeasureCode="IP-03" Name="Mean costs in dollars" />
+		<Column IsMeasure="true" MeasureCode="IP-04" Name="Mean length of stay in days" />
+		<Column IsMeasure="true" MeasureCode="IP-05" Name="Median charges in dollars" />
+		<Column IsMeasure="true" MeasureCode="IP-14" Name="Median cost in dollars for Region" />
+		<Column IsMeasure="true" MeasureCode="IP-07" Name="Median length of stay" />
+	</Columns>
+	<Header>
+		<![CDATA[<p> Hospital utilization means use of hospital services, such as the number and length of hospital stays for different health conditions or procedures.
+Narrowing display results by one of the categories listed below will show fewer hospitals. For instance, narrowing by County will show use of hospital services by the county selected.
+Clicking ‘View Trends’ will display changes in data over time for the selected category, such as a utilization measure or hospital.
+	</p>]]>
+	</Header>
+	<Footer>
+		<![CDATA[<p> Weighted national estimates from HCUP Nationwide Inpatient Sample (NIS), 2009, Agency for Healthcare Research and Quality (AHRQ), based on data collected by individual States and provided to AHRQ by the States. Total number of weighted discharges in the U.S. based on HCUP NIS = 39,434,956. Statistics based on estimates with a relative standard error (standard error / weighted estimate) greater than 0.30 or with standard error = 0 are not reliable, and are designated with a †.<br/>All statistics are unadjusted.
+	</p>]]>
+	</Footer>
+	<InterpretationText>
+		<![CDATA[<p>How do I interpret the table?</p>
+<p>Medicare Provider Charge Data (Inpatient). These include hospital-specific charges for the more than 3,000 U.S. hospitals that receive Medicare Inpatient Prospective Payment System (IPPS) payments for the top 100 most frequently billed discharges.</p>
+<p>Hospitals determine what they will charge for items and services provided to patients and these charges are the amount the hospital bills for an item or service. The Total Payment amount includes the MS-DRG amount, bill total per diem, beneficiary primary payer claim payment amount, beneficiary Part A coinsurance amount, beneficiary deductible amount, beneficiary blood deducible amount and DRG outlier amount.</p>
+<p>For these DRGs, average charges, average total payments, and average Medicare payments are calculated at the individual hospital level. Users will be able to make comparisons between the amount charged by individual hospitals within local markets, and nationwide, for services that might be furnished in connection with a particular inpatient stay.</p>
+<p>The latest data file can be downloaded from the MONAHRQ website under the &ldquo;Resources&rdquo; section. It is available in CSV format at http://www.cms.gov/Research-Statistics-Data-and-Systems/Statistics-Trends-and-Reports/Medicare-Provider-Charge-Data/Inpatient.html</p>
+<p>The downloaded file can be uploaded directly into MONAHRQ without making any adjustments.</p>
+<p>Information is provided for each selected hospital by Top 25 Diagnosis Related Groups (DRGs). Table includes the following.</p>
+<p><strong>Number of discharges (principal):</strong> The number of hospital stays (or discharges) for the selected DRG is provided for a hospital.</p>
+<p><strong>Mean charges in dollars:</strong> Hospitals determine what they will charge for items and services provided to patients and these charges are the amount the hospital bills for an item or service. This does not include professional (MD) fees. Charges are not necessarily how much was paid.</p>
+<p><strong>Mean costs in dollars:</strong> The average cost is sometimes reported for each hospital. Costs are the actual value of services performed (while charges represent the amount the hospital asked to be paid for services). Total charges were converted to costs using cost-to-charge ratios based on hospital accounting reports from the Centers for Medicare and Medicaid Services (CMS). In general, costs are less than charges. AHRQ adjusts the cost-to-charge ratios to work with this type of hospital data.</p> 
+<p><strong>Mean Total Payments in dollars:</strong> The Total Payment amount includes the MS-DRG amount, bill total per diem, beneficiary primary payer claim payment amount, beneficiary Part A coinsurance amount, beneficiary deductible amount, beneficiary blood deducible amount and DRG outlier amount.</p>
+]]>
+	</InterpretationText>
+	<WebsitePages>
+		<WebsitePage
+			Name="Hospital Profile - Quality Ratings [IP Summary]"
+			Audience="Professionals"
+			Path="app/products/professional/quality-ratings/views/profile.html"
+			Url="/quality-ratings/location"
+			UrlRaw="/quality-ratings/profile/:id"
+			IsEditable="true">
+			<WebsitePageZones>
+				<WebsitePageZone Name="Header" CodePath=""/>
+				<WebsitePageZone Name="Footer" CodePath=""/>
+			</WebsitePageZones>
+		</WebsitePage>
+		<WebsitePage
+			Name="Service Use [IP Summary]"
+			Audience="Professionals"
+			Path="app/products/professional/usage-data/views/service-use.html"
+			Url="/utilization/service-use?viewBy=hospital&amp;reportType=id"
+			UrlRaw="/usage-data//service-use?viewBy&amp;reportType&amp;displayType&amp;levelType&amp;levelValue&amp;levelViewBy&amp;groupBy&amp;dimension&amp;value&amp;value2"
+			IsEditable="true">
+			<WebsitePageZones>
+				<WebsitePageZone Name="Header" CodePath=""/>
+				<WebsitePageZone Name="Footer" CodePath=""/>
+			</WebsitePageZones>
+		</WebsitePage>
+	</WebsitePages>
+</ReportManifest>

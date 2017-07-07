@@ -1,0 +1,67 @@
+<main class="profile">
+  <section class="search--refine profile-search" role="search">
+    <div class="contain">
+      <div class="search--refine__title-group">
+        <h1 class="search--refine__title">Find another doctor</h1>
+      </div>
+
+      <form class="search-form" name="searchForm" novalidate>
+        <div class="search-form__contain">
+          <div class="search-form__location">
+            <label for="search-query">Enter name:</label>
+            <input type="text" id="search-query" name="name" placeholder="Enter a doctor name" data-ng-model="query.name" required>
+            <span data-ng-if="searchForm.name.$error.required && showValidationErrors" class="form-error-message">Error: Please enter a name</span>
+          </div>
+
+          <div class="search-form__action">
+            <button class="btn--primary" data-ng-click="search()">Search</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <div data-mh-cms-zone="'header'" data-mh-cms-zone-report-id="reportId" data-mh-cms-zone-product="'Consumer'"></div>
+
+  <section class="report" tabindex="-1">
+    <header class="report-header profile-title" data-ng-if="searchStatus === 'NOT_STARTED'">
+      <h2 class="report__no-results">Enter your search above</h2>
+    </header>
+    <header class="report-header" data-ng-if="searchStatus === 'SEARCHING'">
+      <div class="report-loading">
+        <div data-us-spinner></div>
+        <p>Searching...</p>
+      </div>
+    </header>
+    <header class="report-header profile-title" data-ng-if="searchStatus === 'NO_RESULTS'">
+      <h2 class="report__no-results">Your search did not find anything</h2>
+    </header>
+    <header class="report-header profile-title" data-ng-if="searchStatus === 'COMPLETED'">
+      <h2>{{physicianName}}</h2>
+      <div class="report-header__help">
+        <div data-mh-help-icon="'Help me understand this report'" data-mh-on-click="modalLegend()"></div>
+      </div>
+    </header>
+
+    <div class="report-content profile" data-ng-if="searchStatus === 'COMPLETED'">
+      <aside class="profile-physician-details">
+        <div data-ui-view="physician-profile-location"></div>
+      </aside>
+      <div class="profile-physician-bio">
+        <div data-ui-view="physician-profile-detail"></div>
+        <div data-ng-if="reportSettings.footer" class="report-footnotes" data-ng-bind-html="reportSettings.footer"></div>
+      </div>
+    </div>
+
+     <footer class="report-footer profile-footer">
+      <h2>Did you know that you can compare different hospitals and nursing homes in your area to find the best healthcare for you or a loved one?</h2>
+      <ul>
+        <li><a href="#" data-ui-sref="top.consumer.home">Find hospitals or nursing homes near you</a> and start comparing.</li>
+        <li>Or you can compare how well hospitals in your area take care of patients with a certain <a href="#" data-ui-sref="top.consumer.hospitals.topic">health condition or by a health topic</a> you are interested in.</p></li>
+      </ul>
+      <button class="btn--primary" data-ui-sref="top.consumer.home">Start Comparing Facilities</button>
+    </footer>
+  </section>
+
+  <div data-mh-cms-zone="'footer'" data-mh-cms-zone-report-id="reportId" data-mh-cms-zone-product="'Consumer'"></div>
+</main>

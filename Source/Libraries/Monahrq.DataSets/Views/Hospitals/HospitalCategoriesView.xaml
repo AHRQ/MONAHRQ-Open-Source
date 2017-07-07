@@ -1,0 +1,176 @@
+<UserControl x:Class="Monahrq.DataSets.Views.Hospitals.HospitalCategoriesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:local="clr-namespace:Monahrq.Theme.Behaviors;assembly=Monahrq.Theme"
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="900">
+    <UserControl.Resources>       
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.Buttons.xaml"/>
+                <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.DataGrid.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="1" Margin="0,5">
+                <TextBlock Text="HOSPITAL CATEGORIES" Style="{DynamicResource SectionHeader}" />
+                <TextBlock Text="Create, edit and remove the categories used to define the types of hospitals on your website" 
+                                                           Foreground="{DynamicResource MGrey4}"  />
+            </StackPanel>
+            <StackPanel Grid.Row="2" Margin="0,10,0,5">
+                <TextBlock Style="{DynamicResource Subtopic}" Foreground="{DynamicResource MGrey5}" Text="ADD A NEW CATEGORY" />
+                <StackPanel Orientation="Horizontal" Margin="0,5">
+                    <TextBox Width="400" Margin="0,0,5,0" FontSize="12" Text="{Binding NewCategoryViewModel.Name}" 
+                                                                MaxLength="{Binding CategoryMaxLength}"
+                                                                Foreground="{DynamicResource MGrey5}"
+
+                                                                  Controls:TextboxHelper.ClearTextButton="True"
+                                 Controls:TextboxHelper.Watermark="Enter title">
+                        <i:Interaction.Behaviors>
+                            <local:TextBoxChangedBehavior/>
+                        </i:Interaction.Behaviors>
+                    </TextBox>
+                    <Button Content="ADD CATEGORY" Width="120" Command="{Binding CommitCommand}"
+                                                            Background="{DynamicResource MBlue}" 
+                                                            FontSize="11" Foreground="White" 
+                                                            Style="{DynamicResource PlainButton}" />
+                </StackPanel>
+            </StackPanel>
+
+            <!-- Data Grid-->
+            <Border Grid.Row="3" BorderThickness="1" BorderBrush="{DynamicResource MGrey3}">
+                <ScrollViewer>
+                    <ListView ItemsSource="{Binding HospitalCategoryViewModels}" SelectedValue="{Binding SelectedCategory}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+
+                                    <Border x:Name="topicBorder" SnapsToDevicePixels="True" Padding="5,7,5,7"  BorderBrush="{DynamicResource MGrey3}" 
+                                                BorderThickness="0,0,1,1" Background="{DynamicResource MGrey1}">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition />
+                                                <ColumnDefinition Width="Auto"  />
+                                                <ColumnDefinition Width="Auto"  />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <!-- Hospital Category Name -->
+                                            <TextBox x:Name="txtName" Grid.Column="0" 
+                                                     Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" 
+                                                     IsEnabled="False" Margin="5,0,0,0" HorizontalAlignment="Stretch">
+                                                <TextBox.Style>
+                                                    <Style TargetType="TextBox">
+                                                        <Setter Property="Padding" Value="3"/>
+                                                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                                    </Style>
+                                                </TextBox.Style>
+                                                <i:Interaction.Behaviors>
+                                                    <local:TextBoxChangedBehavior/>
+                                                </i:Interaction.Behaviors>
+                                            </TextBox>
+
+                                            <!-- Hospital Count (how many hospitals are in this category -->
+                                            <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="5,0,5,0">
+                                                <TextBlock Text="{Binding HospitalCategory.HospitalCount}" HorizontalAlignment="Right" Foreground="Black"/>
+                                                <TextBlock Text=" hospital(s)" Margin="3,0,0,0" HorizontalAlignment="Left" Foreground="Black"/>
+                                            </StackPanel>
+                                            
+                                            <!-- Command buttons -->
+                                            <Button x:Name="btnSave" Command="{Binding CommitCommand}" ToolTip="Save" Margin="5,0,5,0" Grid.Column="2" Visibility="Collapsed" Style="{DynamicResource SaveButton}"  />
+                                            <Button x:Name="btnEdit" Command="{Binding EditCommand}" ToolTip="Edit category title" Margin="5,0,5,0" Grid.Column="2" Style="{DynamicResource EditButton}" />
+                                            <StackPanel  Grid.Column="3" Orientation="Horizontal" HorizontalAlignment="Right" >
+                                                <TextBox x:Name="txtnewcategoryname" Text="{Binding NewCategoryTitle, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" 
+                                                             IsEnabled="False" Margin="5,0,0,0" MinWidth="150"  Visibility="Collapsed" >
+                                                    <i:Interaction.Behaviors>
+                                                        <local:TextBoxChangedBehavior/>
+                                                    </i:Interaction.Behaviors>
+                                                </TextBox>
+                                                <Button x:Name="btnCancel" ToolTip="Cancel" Margin="5,0,5,0" Visibility="Collapsed" Style="{DynamicResource CancelButton}" 
+                                                    Command="{Binding CancelCommand}"/>
+                                                <Button x:Name="btnDelete" ToolTip="Delete topic" Margin="5,0,5,0" Style="{DynamicResource  DeleteButton}" 
+                                                            Command="{Binding DeleteCommand}" 
+                                                    CommandParameter="{Binding }"/>
+                                            </StackPanel>
+
+                                        </Grid>
+                                    </Border>
+                                </StackPanel>
+
+                                <!-- TRIGGERS -->
+                                <DataTemplate.Triggers>
+                                    <!--EDIT-->
+                                    <EventTrigger SourceName="btnEdit" RoutedEvent="Button.Click">
+                                        <EventTrigger.Actions>
+                                            <BeginStoryboard x:Name="enableEdit">
+                                                <Storyboard x:Name="EditStoryboard">
+                                                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="txtName"
+															Storyboard.TargetProperty="IsEnabled">
+                                                        <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="True" />
+                                                    </BooleanAnimationUsingKeyFrames>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger.Actions>
+                                    </EventTrigger>
+                                    <!--SAVE-->
+                                    <EventTrigger SourceName="btnSave" RoutedEvent="Button.Click">
+                                        <EventTrigger.Actions>
+                                            <BeginStoryboard x:Name="disableName">
+                                                <Storyboard x:Name="EndEditStoryboard">
+                                                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="txtName"
+															Storyboard.TargetProperty="IsEnabled">
+                                                        <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="False" />
+                                                    </BooleanAnimationUsingKeyFrames>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger.Actions>
+                                    </EventTrigger>
+
+                                    <!-- Cancel Edit  -->
+                                    <EventTrigger SourceName="btnCancel" RoutedEvent="Button.Click">
+                                        <EventTrigger.Actions>
+                                            <BeginStoryboard x:Name="disableCancelEdit">
+                                                <Storyboard x:Name="disableCancelStoryboard">
+                                                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="txtName"
+															Storyboard.TargetProperty="IsEnabled">
+                                                        <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="False" />
+                                                    </BooleanAnimationUsingKeyFrames>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger.Actions>
+                                    </EventTrigger>
+
+                                    <Trigger SourceName="txtName" Property="IsEnabled" Value="True">
+                                        <Setter TargetName="btnSave" Property="Visibility" Value="Visible"/>
+                                        <Setter TargetName="btnEdit" Property="Visibility" Value="Collapsed"/>
+                                        <Setter TargetName="btnDelete" Property="Visibility" Value="Collapsed" />
+                                        <Setter TargetName="btnCancel" Property="Visibility" Value="Visible"/>
+                                        <Setter TargetName="txtName" Property="BorderBrush" Value="{DynamicResource MGrey4}" />
+                                        <Setter TargetName="txtName" Property="Background" Value="{DynamicResource White}" />
+                                    </Trigger>
+                                    <Trigger SourceName="txtName" Property="IsEnabled" Value="False">
+                                        <Setter TargetName="txtName" Property="BorderBrush" Value="Transparent" />
+                                        <Setter TargetName="txtName" Property="Background" Value="Transparent" />
+                                    </Trigger>
+                                </DataTemplate.Triggers>
+                            </DataTemplate>
+
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </ScrollViewer>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

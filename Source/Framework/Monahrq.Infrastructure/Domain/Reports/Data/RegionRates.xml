@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ReportManifest RptId="3a40cf6b-37ad-4861-b272-930ddf2b8802"
+                Name="Region Rates Report"
+                Category="Utilization"
+				IsTrending="false"
+				ShowInterpretationText="true" ConsumerPreviewImage=""
+                PreviewImage="RegionRates.PNG"
+                RequiresCostToChargeRatio="true">
+	<Audiences>
+		<Audience AudienceType="Professionals" />
+	</Audiences>
+	<Datasets>
+		<Dataset Name="Inpatient Discharge"/>
+	</Datasets>
+	<Filters>
+		<Filter Type="DRGsDischarges">
+			<Values>
+				<FilterValue Name="Major Diagnosis Category" />
+				<FilterValue Name="Diagnosis Related Group" />
+				<FilterValue Name="Health Condition or Topic" />
+				<FilterValue Name="Procedure" />
+			</Values>
+		</Filter>
+	</Filters>
+	<ReportAttributes>
+		DRGsDischargesFilters
+	</ReportAttributes>
+	<!--ReportColumns-->
+	<Columns>
+		<Column IsMeasure="true" MeasureCode="IP-12" Name="Number of Discharges for Region" />
+		<Column IsMeasure="true" MeasureCode="IP-13" Name="Mean costs in dollars for Region" />
+		<Column IsMeasure="true" MeasureCode="IP-14" Name="Median cost in dollars for Region" />
+		<Column IsMeasure="true" MeasureCode="IP-15" Name="Rate of Discharges for Region (Per 1,000 Persons)" />
+	</Columns>
+	<Header>
+		<![CDATA[<p> Region rates show use of hospital services by patients region , such as the number and length of hospital stays for different health conditions or procedures. These rates are based on region where patients live, not where the hospitals they visit are located.
+	</p>]]>
+	</Header>
+	<Footer>
+		<![CDATA[<p> * Weighted national estimates from HCUP Nationwide Inpatient Sample (NIS), 2009, Agency for Healthcare Research and Quality (AHRQ), based on data collected by individual States and provided to AHRQ by the States. Total number of weighted discharges in the U.S. based on HCUP NIS = 39,434,956. Statistics based on estimates with a relative standard error (standard error / weighted estimate) greater than 0.30 or with standard error = 0 are not reliable, and are designated with a †.<br/>** All statistics are unadjusted.
+	</p>]]>
+	</Footer>
+	<InterpretationText>
+		<![CDATA[<P>What are region rates of hospital use?</P>	
+	<p>Information is provided for each selected region by condition or procedure grouping. Select the titles in the top row to sort the results. Tables may include the following:<br/><br/><b>Total US</b>: National numbers are weighted estimates from the <a href="http://www.hcup-us.ahrq.gov/" target="_blank">HCUP Nationwide Inpatient Sample</a> (NIS), 2011, Agency for Healthcare Research and Quality (AHRQ).<br/><br/><b>Total US region</b>: Regional categories are defined by the Census Bureau: Midwest, Northeast, South, and West. Numbers for each region are weighted estimates from the <a href="http://www.hcup-us.ahrq.gov/" target="_blank">HCUP Nationwide Inpatient Sample</a> (NIS), 2011, Agency for Healthcare Research and Quality (AHRQ).<br/><br/><b>Total of all counties in this Website</b>: Numbers are presented for all counties included in this Website.<br/><br/><b>Counties</b>: Previously chosen counties are listed. You can select a specific region for more detailed results. Detailed results include characteristics for each region (age, gender, payer, and race).<br/><br/><b>Number of discharges</b>: The number of hospital stays (or discharges) for the selected condition or procedure is provided for each region.<br/><br/><b>Rate of discharges</b>: The number of hospital stays (or discharges) divided by the number of residents in the region. region resident or population numbers are obtained from the US Census Bureau.<br/><br/><b>Mean costs in dollars</b>: The mean or average cost is sometimes reported for each region. Costs are the actual value of these services (while charges are what a hospital asks to be paid for services). Total charges were converted to costs using <a href="http://www.hcup-us.ahrq.gov/db/state/costtocharge.jsp" target="_blank">cost-to-charge ratios</a> based on hospital accounting reports from the Centers for Medicare and Medicaid Services (CMS). In general, costs are less than charges.  AHRQ adjusts the <a href="http://www.hcup-us.ahrq.gov/db/state/costtocharge.jsp" target="_blank">cost-to-charge ratios</a> to work with this type of hospital data.</p>	<p>If you select a specific region you will get following:<br/><br/><b>Age group</b>: Patient age in years is based on the admission date to the hospital and date of birth. The number of stays in each age group is reported.<br/><br/><b>Gender</b>: The number of males and females is reported for the selected region and condition or procedure.<br/><br/><b>Race</b>: Race/ethnicity of the patient as listed in the medical record. Racial and ethnic categories are collapsed into larger groups based on US Census Bureau designations.<br/><br/>You may notice some special codes in the tables:<br/><br/><b>Not enough data</b>: When there are not enough data to report a value, a dash appears.<br/><br/><b>Small number suppression</b>: Small raw numbers may be suppressed to protect patient confidentiality. In this case, a &quot;c&quot; appears.</p>]]>
+	</InterpretationText>
+	<WebsitePages>
+		<WebsitePage
+			Name="Service Use [Region Summary]"
+			Audience="Professionals"
+			Path="app/products/professional/usage-data/views/service-use.html"
+			Url="/utilization/service-use?viewBy=population&amp;reportType=region"
+			UrlRaw="/usage-data/service-use?viewBy&amp;reportType&amp;displayType&amp;levelType&amp;levelValue&amp;levelViewBy&amp;groupBy&amp;dimension&amp;value&amp;value2"
+			IsEditable="true">
+			<WebsitePageZones>
+				<WebsitePageZone Name="Header" CodePath=""/>
+				<WebsitePageZone Name="Footer" CodePath=""/>
+			</WebsitePageZones>
+		</WebsitePage>
+	</WebsitePages>
+	<WebsitePages>
+		<WebsitePage
+			Name="Service Use [Region Map]"
+			Audience="Professionals"
+			Path="app/products/professional/usage-data/views/service-use.html"
+			Url="/utilization/service-use?viewBy=population&amp;reportType=region"
+			UrlRaw="/usage-data/service-use?viewBy&amp;reportType&amp;displayType&amp;levelType&amp;levelValue&amp;levelViewBy&amp;groupBy&amp;dimension&amp;value&amp;value2"
+			IsEditable="true">
+			<WebsitePageZones>
+				<WebsitePageZone Name="Header" CodePath="" />
+				<WebsitePageZone Name="Footer" CodePath="" />
+			</WebsitePageZones>
+		</WebsitePage>
+	</WebsitePages>
+</ReportManifest>

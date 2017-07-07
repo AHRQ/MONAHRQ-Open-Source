@@ -1,0 +1,255 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutUsContent" xml:space="preserve">
+    <value>No text for the About Us is provided. The generated website will show it as blank.</value>
+  </data>
+  <data name="CMSProviderIdUnmapped" xml:space="preserve">
+    <value>For your selected report, "{0}", it is recommended that you map all your local hospitals with a correct CMS provider IDs.</value>
+  </data>
+  <data name="CostToChargeUndefined" xml:space="preserve">
+    <value>To generate Utilization and cost savings reports, Cost-to-Charge-Ratios must be defined for all hospitals or else the cost data will not be included in "{0}".</value>
+  </data>
+  <data name="DatasetsMissing" xml:space="preserve">
+    <value>No data set was added. The website cannot be generated. Please add datasets under “Choose Data Sets” tab.</value>
+  </data>
+  <data name="HospitalsMissingRegions" xml:space="preserve">
+    <value>No regions are defined for your website. The region based grouping and filters will not be available to your website.</value>
+  </data>
+  <data name="MeasuresMissing" xml:space="preserve">
+    <value>No measures are selected and the website cannot be generated.</value>
+  </data>
+  <data name="NameMissing" xml:space="preserve">
+    <value>No Name was given for the website.</value>
+  </data>
+  <data name="OutputFolder" xml:space="preserve">
+    <value>The output folder you have selected doesn’t exist. The website cannot be generated.</value>
+  </data>
+  <data name="ReportsMissing" xml:space="preserve">
+    <value>No reports are selected and the website cannot be generated.</value>
+  </data>
+  <data name="StaleBaseData" xml:space="preserve">
+    <value>You are attempting to generate a website for the year {0}; however some of the latest base data such as census population is from the year {1}. This may have impact on the analytics for your report,"{2}".</value>
+  </data>
+  <data name="StateNotSelected" xml:space="preserve">
+    <value>No State for the website is selected. The website cannot be generated.</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>Success</value>
+  </data>
+  <data name="DataYearMismatchForDataSetFile" xml:space="preserve">
+    <value>The collection year for 1 or more of your {0} data file(s) does not match the website’s year. You may prefer to continue with publishing the website, but check your {1} utilization reports for accuracy.</value>
+  </data>
+  <data name="CheckDatasetMappingForCounty" xml:space="preserve">
+    <value>To generate Utilization County Rates report, Patient State/County Code must be mapped during Inpatient Discharge data import.</value>
+  </data>
+  <data name="EmergencyDepartmentTreatAndReleaseReportEDServices" xml:space="preserve">
+    <value>The data element “ED Services” flag in your Inpatient Hospital discharge data file is not found or set to null. Please add or populate ED Services data element. Emergency Department report will be generated with inaccurate or not enough data.</value>
+  </data>
+  <data name="EmergencyDepartmentTreatAndReleaseReportIPDataSet" xml:space="preserve">
+    <value>No Inpatient Hospital discharge data  file is selected, which is needed to generate Emergency Department treat-and-release Reports. This will not create the Emergency Department reports.</value>
+  </data>
+  <data name="NoMeasuresForTheDataset" xml:space="preserve">
+    <value>No measures for the Dataset,"{0}" is selected.The corresponding report(s), will not be generated.</value>
+  </data>
+  <data name="CustomRegionMissingPopulationCount" xml:space="preserve">
+    <value>No population data files have been imported.  The Rate of Discharge column will not be generated.</value>
+  </data>
+  <data name="MissingCustomRegionPopulationMapping" xml:space="preserve">
+    <value>No custom regions and population data files have been imported.  Population Region Rates report will not be generated. In the Build Reports tab, unselect the population region reports.</value>
+  </data>
+  <data name="MissingCustomRegion" xml:space="preserve">
+    <value>Population region file has been imported, but the custom region is missing.  All the reports aggregated by the custom regions will not be generated.</value>
+  </data>
+  <data name="PopulationMissingRegions" xml:space="preserve">
+    <value>You have selected Population Region Rates report that require you to define regions in your inpatient discharge file.  You will need to define your regions in the inpatient discharge data file and map these regions in the Hospital Data section. Population Region Rates report will not be generated.</value>
+  </data>
+  <data name="CustomRegionNotDefined" xml:space="preserve">
+    <value>No custom regions are defined for your website. The region based grouping and filters will not be available to your website.</value>
+  </data>
+  <data name="AhrqQiDbConnection" xml:space="preserve">
+    <value>To generate cost saving for Avoidable Stays report, verify you are connected to the AHRQ QI database in the Settings\Other Connection screen.</value>
+  </data>
+  <data name="MissingMedicareDataset" xml:space="preserve">
+    <value>You have selected Hospital Profile Report, which requires you to import Medicare Provider Utilization and Payment Data as an option. This is to include the Utilization tab. Please import Medicare Provider Utilization and Payment data or uncheck “Hospital Profile Report” from the Build Reports tab.</value>
+  </data>
+  <data name="QIUnMappedHospitalLocalId" xml:space="preserve">
+    <value>You have selected "{0}" report that requires you to map all hospitals in your QI files with the correct CMS provider ID. If you leave it unmapped, the QI measures will not appear in the generated reports.</value>
+  </data>
+  <data name="UnMappedHospitalLocalId" xml:space="preserve">
+    <value>You have selected "{0}" report that requires you to map all hospitals in your inpatient hospital discharge data file with correct CMS Provider IDs. If you leave it unmapped, these hospitals will not appear in the Utilization report.</value>
+  </data>
+  <data name="UnMappedHospitalProfileLocalId" xml:space="preserve">
+    <value>You have selected "{0}" report that requires you to map all local hospital IDs with the appropriate CMS Provider IDs. If you leave it unmapped, Medicare Provider Charge data will not appear in the Hospital Profile Report Utilization tab.</value>
+  </data>
+  <data name="DataYearMismatchForTrendingDataSetFile" xml:space="preserve">
+    <value>None of the collection years for your {0} data files match the website’s year. You may prefer to continue with publishing the website, but check your {1} utilization trending reports for accuracy.</value>
+  </data>
+  <data name="MissingHospitalProfileReportIPDataset" xml:space="preserve">
+    <value>You have selected Hospital Profile Report that require you to import Inpatient Data. Please import Inpatient Data or uncheck Hospital Profile Report from Build Reports Tab.</value>
+  </data>
+  <data name="CostQualityIPFileNotImported" xml:space="preserve">
+    <value>Inpatient Hospital Discharge (IP) file is not imported. The “Cost and Quality Report – Side By Side Comparison” report will not be generated.</value>
+  </data>
+  <data name="CostQualityQIProviderFileNotImported" xml:space="preserve">
+    <value>AHRQ QI Provider file is not imported. The “Cost and Quality Report – Side By Side Comparison” report will not be generated.</value>
+  </data>
+  <data name="NoMeasuresForCostAndQuality" xml:space="preserve">
+    <value>You have not selected measures that support cost. The "Cost and Quality Report - Side By Side Comparison" will not be generated. </value>
+  </data>
+  <data name="MissingLocalHospIdOrProviderId" xml:space="preserve">
+    <value>You have selected "{0}" report that requires you to ensure all mapped Hospitals have a valid Local Hospital ID and CMS provider ID.</value>
+  </data>
+  <data name="CustomHeatMap" xml:space="preserve">
+    <value>The heat map for Region Population Reports will not be generated in MONAHRQ as you have chosen the regional context as “Custom.”</value>
+  </data>
+  <data name="UnMappdedHospitals" xml:space="preserve">
+    <value>No regions are mapped to the hospitals. The hospital level utilization reports and its data related to the region-based grouping will not be generated for your website.</value>
+  </data>
+  <data name="CustomRegionAndIPCustomRegionNotMatched" xml:space="preserve">
+    <value>Monahrq has detected that there are Custom Region Ids in the Inpatient Discharge dataset(s) that has not been added to your custom regions data. If you want to continue, please be prepared for unexpected results as Monahrq will not be able to resolve the custom region names in your reports.</value>
+  </data>
+  <data name="InvalidCountyFips" xml:space="preserve">
+    <value>You have provided invalid County FIPS code in your Inpatient Hospital Discharge (IP) file. Invalid codes will be aggregated as “Unknown.”</value>
+  </data>
+  <data name="InvalidRegionId" xml:space="preserve">
+    <value>You have provided invalid HRR/HSA region ID in your Inpatient Hospital Discharge (IP) file. Invalid codes will be aggregated as “Unknown.”</value>
+  </data>
+  <data name="MissingDischargeQuarter" xml:space="preserve">
+    <value>The Discharge Quarter field for some or all records in the ED dataset is missing a value. These records will not be included in the quarterly trending report.</value>
+  </data>
+  <data name="TrendingQuarters" xml:space="preserve">
+    <value>Different quarter is selected for each year. All years must have the same quarters selected for trending.</value>
+  </data>
+  <data name="CostQualityAllFamilySelected" xml:space="preserve">
+    <value>All measures for each subtopic in the Cost and Quality Report must be selected to include the measures for reporting. "{0}" subtopic will not be included in the report.</value>
+  </data>
+  <data name="CostQualityQiDbConnection" xml:space="preserve">
+    <value>To generate the Cost and Quality Report, verify you are connected to the AHRQ QI database in the Settings &gt; Other Connections screen.</value>
+  </data>
+  <data name="InValidPhysicianHedisDataset" xml:space="preserve">
+    <value>You have selected the Physician HEDIS Measures data file which has multiple rows for a single physician. One row per physician is allowed for this dataset.</value>
+  </data>
+  <data name="MissingPhysicianReport" xml:space="preserve">
+    <value>No Physician data have been imported. Physician HEDIS Measures data  will not be generated.</value>
+  </data>
+  <data name="RealtimePhysicianDataCannotHaveSubReports" xml:space="preserve">
+    <value>In order to generate {0} report(s), choose "the descriptive data about physician in MONAHRQ" and not the "website get the most current version for physician data" option during the physician data import. These reports will not be generated.</value>
+  </data>
+</root>

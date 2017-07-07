@@ -1,0 +1,205 @@
+﻿<UserControl x:Class="Monahrq.DataSets.ViewModels.Crosswalk.FieldsView_unused"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"              
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:views="clr-namespace:Monahrq.DataSets.Views"
+             xmlns:local="clr-namespace:Monahrq.DataSets.ViewModels.Crosswalk"
+             xmlns:behaviors="clr-namespace:Monahrq.Theme.Behaviors;assembly=Monahrq.Theme"            
+             xmlns:controls="clr-namespace:Monahrq.Theme.Controls;assembly=Monahrq.Theme"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="800" Background="LightGray">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type ListBox}">
+            <Setter Property="Background" Value="LightGray" />
+        </Style>
+        <Style TargetType="{x:Type ListBoxItem}">
+            <Setter Property="Background" Value="LightGray" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="LightGray" />
+                </Trigger>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="Background" Value="LightGray" />
+                </Trigger>
+                <Trigger Property="IsMouseCaptured" Value="True">
+                    <Setter Property="Background" Value="LightGray" />
+                </Trigger>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="LightGray" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <local:SourceValueFormatter x:Key="SourceValueFormatter" />
+
+        <DataTemplate x:Key="MappedFieldEntryTemplate">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width=".33*" MaxWidth="300" />
+                    <ColumnDefinition Width="67*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <TextBlock  Grid.Column="0" Grid.Row="0" 
+                           Margin="2,2,2,0"
+                           Padding="10,0,10,3"
+                           HorizontalAlignment="Stretch" Background="White" Foreground="Black"
+                            Text="{Binding Path=Element.Description}" 
+                           FontSize="20" TextDecorations="Underline" FontWeight="Bold" />
+                <TextBlock  Grid.Column="0" Grid.Row="1" 
+                           Margin="0,2,25,0"
+                           Padding="10,0,10,3"
+                           MaxWidth="250"
+                           Text="{Binding Path=Element.LongDescription}"  
+                           TextWrapping="Wrap" FontSize="12" />
+
+                <TextBlock Grid.Column="1" Grid.Row="0" 
+                            Margin="2,2,2,0"
+                           Padding="10,0,10,3"
+                           Text="{Binding Path=FieldEntry.Column.ColumnName}" FontSize="20" FontWeight="Bold" />
+
+                <ListBox Padding="10,0,0,0" ItemsSource="{Binding Path=Crosswalks}"  Grid.Column="1" Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Auto" >
+                    <ListBox.ItemTemplate>
+                        <ItemContainerTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="{Binding Path=Crosswalk.SourceValue, Converter={StaticResource SourceValueFormatter}}" Margin="5,0,0,0"   />
+                                <TextBlock Grid.Column="1" Text="REPRESENTS" Margin="5,0,0,0" />
+                                <controls:ComboBoxEx Grid.Column="2" 
+                                           SelectedValue="{Binding Path=Crosswalk.ScopeValue}"
+                                           HorizontalAlignment="Stretch"
+                                          HorizontalContentAlignment="Stretch"
+                                          ItemsSource="{Binding CandidateScopes}"
+                                                             DisplayMemberPath="Value"
+                                                             SelectedValuePath="Key"
+                                                             Margin="5,0,0,0" />
+                            </Grid>
+                        </ItemContainerTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <!--<Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+-->
+    <StackPanel>
+        <Grid x:Name="HeaderGrid">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.70*"/>
+                <ColumnDefinition Width="0.30*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" MinHeight="300">
+                <TextBlock Margin="0" TextWrapping="Wrap" Text="{Binding Caption}" FontSize="26" Foreground="Gray" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                <TextBlock Margin="0" TextWrapping="Wrap" Text="{Binding Description}" FontSize="16" Foreground="#FF585858" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            </StackPanel>
+
+            <!-- Display dataset title and date in upper right corner -->
+            <StackPanel Grid.Column="1" d:LayoutOverrides="Height" VerticalAlignment="Top" Orientation="Horizontal" HorizontalAlignment="Right">
+                <views:DatasetTitlePeriod DataContext="{Binding DataContextObject.CurrentContentItem}" />
+            </StackPanel>
+        </Grid>
+
+        <Grid x:Name="contentGrid1" Grid.Row="1" Margin="25,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="94"/>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid x:Name="FilterGrid">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="274"/>
+                    <ColumnDefinition Width="290"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="26.101"/>
+                    <RowDefinition Height="0.746*"/>
+                    <RowDefinition Height="0.254*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Margin="8,0,0,0" TextWrapping="Wrap" Text="MONAHRQ Fields" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="13.333" FontWeight="Bold" Foreground="{DynamicResource MGrey5}" Height="18" Width="111"/>
+                <TextBlock Margin="30,0,0,0" Visibility="Hidden" TextWrapping="Wrap" Text="Your Fields" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="13.333" FontWeight="Bold" Foreground="{DynamicResource MGrey5}" Grid.Column="1" Height="18"/>
+
+                <Grid Grid.Row="1" Grid.ColumnSpan="5" Background="{DynamicResource MBlue}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="57.164"/>
+                        <ColumnDefinition Width="194.836"/>
+                        <ColumnDefinition Width="351.786"/>
+                        <ColumnDefinition Width="56.214"/>
+                        <ColumnDefinition Width="233*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBox 
+                            Margin="8,14,0,13" TextWrapping="Wrap" TextChanged="TextBox_TextChanged"
+                            VerticalAlignment="Center" Width="227" HorizontalAlignment="Left" Height="24" Grid.ColumnSpan="2">
+                        <!--i:Interaction.Behaviors>
+                                <behaviors:TextBoxChangedBehavior/>
+                            </i:Interaction.Behaviors-->
+                    </TextBox>
+
+                    <StackPanel Visibility="Hidden" Grid.Column="2" Margin="4,10,48,8" Orientation="Horizontal" Grid.ColumnSpan="2" >
+                        <TextBlock TextWrapping="Wrap" Text="Show: " Width="44" Foreground="White" VerticalAlignment="Center"/>
+                        <ComboBox Width="231" Height="26" SelectionChanged="Filter_SelectionChanged" SelectedValue="{Binding CurrentFieldEntryFilter}" ItemsSource="{Binding SourceFields}" IsEditable="False"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="5" Orientation="Horizontal" HorizontalAlignment="Right" Visibility="Hidden">
+                        <TextBlock TextWrapping="Wrap" Text="Sort by" VerticalAlignment="Center" Foreground="White" HorizontalAlignment="Left" Margin="5,0"/>
+                        <ComboBox Margin="0" VerticalAlignment="Center" Width="198" HorizontalAlignment="Right"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="5" Margin="0,18,0,17" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right" Width="183">
+                        <TextBlock TextWrapping="Wrap" Text="Progress: "  Foreground="White" HorizontalAlignment="Right" />
+                        <TextBlock x:Name="txtMappedFieldsCount" TextWrapping="Wrap" Text="{Binding MappedFieldsCount}" Foreground="White" HorizontalAlignment="Right" />
+                        <TextBlock  TextWrapping="Wrap" Text=" of " Foreground="White" HorizontalAlignment="Right" />
+                        <TextBlock TextWrapping="Wrap" Text="{Binding TargetFields.Count}" Foreground="White" HorizontalAlignment="Right" />
+                        <TextBlock  TextWrapping="Wrap" Text=" mapped " Foreground="White" HorizontalAlignment="Right" />
+                    </StackPanel>
+                </Grid>
+                <Path Data="M59.341772,74.199101 L76.243461,90.755355 92.455502,74.198681 z" Fill="{DynamicResource MBlue}" HorizontalAlignment="Left" Margin="33.329,48.081,0,3.733" Grid.Row="1" Stretch="Fill" Width="33.114" Grid.RowSpan="2"/>
+                <Path Data="M59.341772,74.199101 L76.243461,90.755355 92.455502,74.198681 z" Fill="{DynamicResource MBlue}" Margin="48.329,48.081,0,3.733" Grid.Row="1" Stretch="Fill" HorizontalAlignment="Left" Width="33.114" Grid.Column="1" Grid.RowSpan="2"/>
+            </Grid>
+
+            <ListBox x:Name="lstBox" Margin="8,8,12,12" Grid.Column="0" Grid.Row="1"
+                         IsSynchronizedWithCurrentItem="True"
+                         ItemTemplate="{StaticResource MappedFieldEntryTemplate}"
+                         ItemsSource="{Binding MappedFieldEntries}"
+                         ScrollViewer.VerticalScrollBarVisibility="Auto"
+                         >
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListBoxItem}">
+                        <Setter Property="HorizontalAlignment" Value="Stretch" />
+                        <Setter Property="HorizontalContentAlignment" Value="Left" />
+                        <Setter Property="Background" Value="LightGray" />
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" Value="LightGray" />
+                            </Trigger>
+
+                            <Trigger Property="IsSelected" Value="true">
+                                <Setter Property="Background" Value="LightGray" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+            </ListBox>
+        </Grid>
+    </StackPanel>
+</UserControl>

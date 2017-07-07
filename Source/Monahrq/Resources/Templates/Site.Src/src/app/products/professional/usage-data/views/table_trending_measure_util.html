@@ -1,0 +1,36 @@
+<div class="modal-body">
+  <h1>{{vm.report.title}}</h1>
+  <h2>{{vm.report.subtitle}}</h2>
+  <div class="report-header" data-ng-bind-html="vm.reportSettings.header"></div>
+
+  <a href="#" data-ng-click="vm.back(); $event.preventDefault();">Back</a>
+  <span class="trending-toggle" data-ng-if="vm.reportingQuarters.length > 0">
+    <input id="toggleQuarters" type="checkbox" data-ng-click="vm.showQuarters = !vm.showQuarters; vm.makeColumns()">
+    <label for="toggleQuarters" data-ng-if="!vm.showQuarters">View Quarters</label>
+    <label for="toggleQuarters" data-ng-if="vm.showQuarters">Hide Quarters</label>
+  </span>
+
+  <div class="table-wrapper">
+  <table class="data">
+    <thead>
+      <tr>
+        <th>{{vm.report.primaryColumnHeading}}</th>
+        <th colspan="{{vm.showQuarters ? vm.getQuartersForYear(year).length + 1 : 1}}" data-ng-repeat="year in vm.reportingYears">{{year}}</th>
+      </tr>
+      <tr data-ng-if="vm.showQuarters">
+        <th></th>
+        <th data-ng-repeat="c in vm.columns">{{c.label}} <span data-ng-if="vm.isICD10Quarter(c.year, c.quarter)" class="sr-hidden">(Post ICD 10)</span></th>
+      </tr>
+    </thead>
+    <tbody >
+      <tr data-ng-repeat="row in vm.report.tableData">
+        <td>{{row.name}}</td>
+        <td data-ng-repeat="c in vm.columns" data-ng-class="{isICD10: vm.isICD10Quarter(c.year, c.quarter)}">{{vm.getCell(c.name, row)}}</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="report-footer" data-ng-bind-html="vm.reportSettings.footer"></div>
+</div>
+

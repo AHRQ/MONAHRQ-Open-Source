@@ -1,0 +1,108 @@
+<div class="row page-header">
+  <div class="col-md-12">
+    <div class="header-content">
+      <h1>{{content.header.title}}</h1>
+
+      <div class="row">
+        <div class="col-md-10">
+          <div data-ng-bind-html="content.header.body"></div>
+        </div>
+        <div class="col-md-2" data-ng-if="content.header.body">
+          <button data-ng-hide="showHeaderMore" data-ng-click="toggleHeaderMore()" class="btn btn-default btn-xs">Read More <span aria-hidden="true">»</span></button>
+          <button data-ng-if="showHeaderMore" data-ng-click="toggleHeaderMore()" class="btn btn-default btn-xs"><span aria-hidden="true">«</span> Read Less</button>
+        </div>
+      </div>
+      <div data-ng-if="showHeaderMore" class="row">
+        <div class="col-md-10">
+          <div data-ng-bind-html="content.header.bodyMore"></div>
+        </div>
+      </div>
+    </div>
+    <div data-ng-if="canBackToReport()" class="row">
+      <div class="col-md-12">
+        <a href="#" data-ng-click="backToReport(); $event.preventDefault();">Back to previous report</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="filters hidden-print">
+  <div class="row qr-sort-by-filter">
+    <div class="col-md-5" data-ng-hide="showRawData()">
+      <label for="ddComparedTo" class="md-blockfix" data-mh-help-icon="'Compared To:'" data-mh-on-click="modalQR('UIHELP_COMPARE')"></label>
+      <select class="form-control" id="ddComparedTo" data-ng-model="query.comparedTo" data-ng-change="updateCompare()">
+        <option value="nat">National Average</option>
+        <option value="peer">{{config.website_GeographicDescription}} Average</option>
+      </select>
+    </div>
+    <div class="col-md-3">
+      <label for="ddDisplayType">Display Type:</label>
+      <select class="form-control" id="ddDisplayType" data-ng-model="query.displayType">
+        <option data-ng-if="ReportConfigSvc.webElementAvailable('Quality_Compare_Display_Symbols_Dropdown')" value="symbols">Symbols</option>
+        <option data-ng-if="ReportConfigSvc.webElementAvailable('Quality_Compare_Display_SymbolsAndRAR_Dropdown')" value="symbols_rar">Symbols & Details</option>
+        <option data-ng-if="ReportConfigSvc.webElementAvailable('Quality_Compare_Display_BarChart_Dropdown')" value="bar_charts">Bar Charts</option>
+      </select>
+    </div>
+    <div class="col-md-3">
+      <button data-copy-element=".page-header .col-md-12 .header-content&#table-wrapper" data-clipboard-target="#copy-text-container" class="btn select-to-copy-btn md-top">Select Report to Copy <span class="glyphicon glyphicon-cloud-download"></span></button>
+      <div id="copy-text-container"></div>
+    </div>
+    <div class="col-md-1 legend-icon-wrapper">
+      <h6 data-mh-help-icon mh-on-click="modalLegend(query.displayType)"></h6>
+    </div>
+  </div>
+</div>
+
+<div class="table-wrapper" id="table-wrapper" data-ng-repeat="topicCat in topicCats">
+  <table id="compare-{{topicCat.TopicCategoryID}}" class="data compare">
+    <caption class="compare-header" >
+        <h4>
+          <button class="btn-link btn-heading" data-ng-click="toggleTopic(topicCat.TopicCategoryID)" aria-expanded="{{showTopic(topicCat.TopicCategoryID)}}" aria-controls="compare-{{topicCat.TopicCategoryID}}">{{topicCat.Name}}</button>
+          <button data-ng-click="toggleTopic(topicCat.TopicCategoryID)" aria-expanded="{{showTopic(topicCat.TopicCategoryID)}}" aria-controls="compare-{{topicCat.TopicCategoryID}}" class="pull-right btn-link">
+            <small>
+            <span data-ng-show="!showTopic(topicCat.TopicCategoryID)">Show Data</span>
+            <span data-ng-show="showTopic(topicCat.TopicCategoryID)">Hide Data</span>
+            </small>
+          </button>
+        </h4>
+        <ul class="barchart-color-legend" data-ng-if="showTopic(topicCat.TopicCategoryID) && showChart()">
+          <li class="meets-avg"><span class="swatch"><img src="themes/base/assets/symbol_bar_at_sm.png" width="15" height="15" alt=""></span><span>Meets {{compareLabel}} average</span></li>
+          <li class="better-than-avg"><span class="swatch"><img src="themes/base/assets/symbol_bar_above_sm.png" width="15" height="15" alt=""></span><span>Better than average rating</span></li>
+          <li class="below-avg"><span class="swatch"><img src="themes/base/assets/symbol_bar_below_sm.png" width="15" height="15" alt=""></span><span>Below average rating</span></li>
+        </ul>
+    </caption>
+    <tbody data-ng-repeat="topic in topicCat.topics" data-ng-if="showTopic(topicCat.TopicCategoryID)">
+
+      <tr class="super-row">
+        <th scope="col" class="compare-col-title"><strong>{{topic.Name}}</strong><br />Measures</th>
+        <th scope="col" data-ng-if="showChart()">{{compareLabel}}<br/>Average</th>
+
+        <th scope="col" data-ng-repeat="col in columns" class="compare-col-entity"><a data-ui-sref="top.professional.quality-ratings.profile({id:col.id})">{{col.name}}</a></th>
+      </tr>
+
+      <tr data-ng-repeat="row in model[topic.TopicID]">
+        <th scope="row" class="compare-measure">
+          <div class="bar-chart-arrow-wrapper" data-ng-if="showAverage(row[columns[0].id][compareRatingField])" data-mh-compare-direction data-higher-scores-are-better="row.HigherScoresAreBetter" />
+          <div class="measure-title" data-ng-class="{'measure-title-chart': showChart()}"><a href="#" data-ng-click="modalMeasure(row.id); $event.preventDefault();">{{row.title}}</a></div>
+        </th>
+        <td data-ng-if="showChart()"><span>{{row[compareAvgField]}}</span></td>
+
+        <td data-ng-repeat="col in columns">
+          <div data-mh-rating-symbol="row[col.id].NatRating" data-ng-if="showSymbol(row[col.id]) && !showPeer()"></div>
+          <div data-mh-rating-symbol="row[col.id].PeerRating" data-ng-if="showSymbol(row[col.id]) && showPeer()"></div>
+          <div data-ng-if="showRAR(row[col.id])" class="rating-rar">
+            <span data-ng-if="row[col.id].RateAndCI != '-'">{{row[col.id].RateAndCI}}</span>
+            <span data-ng-if="row[col.id].RateAndCI == '-' && !showSymbol(row[col.id])">Not enough data<br>to report</span>
+          </div>
+          <div data-bar-chart="row[col.id][compareFilledField]" label="row[col.id].RateAndCI" data-average="row[col.id][compareRatingField]" data-ng-if="showChart()"></div>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+<div class="report-footer" data-ng-bind-html="reportSettings.footer"></div>
+<!--<div class="footnotes">
+  <p data-ng-if="query.displayType == 'bar_charts'"><span class="marker"></span><span class="note">(-)Indicates there are not enough data for this hospital</span></p>
+</div>
+-->

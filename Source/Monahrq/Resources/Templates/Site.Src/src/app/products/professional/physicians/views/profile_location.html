@@ -1,0 +1,41 @@
+<p>
+    <h3></h3>
+    <span>{{physicianData.adr_ln_1}}</span> <br />
+    {{physicianData.cty}}, {{physicianData.st}} {{physicianData.zip | zip}}
+</p>
+
+<div data-ng-if="ReportConfigSvc.qrProfileHasMap(reportId)" class="map">
+  <img data-ng-src="{{gMap}}" alt="" />
+</div><!-- /.map -->
+
+<div class="basic-data">
+  <h3 class="underlined">Medicare Assignment/Participation</h3><!-- /.underlined -->
+  <table class="info__table info__table--no_border">
+    <thead>
+      <tr>
+        <th colspan="2">General Information</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Accepts Medicare Assignmment</strong></td>
+        <td>
+          <span ng-show="genInfo.assgn == 'Y'">Professional accepts Medicare approved amount as payment in full.</span>
+          <span ng-show="genInfo.assgn == 'M'">Professional may accept Medicare Assignment.</span>
+        </td>
+      </tr>
+      <!--<tr>
+        <td><strong>Participation in eRx</strong></td>
+        <td>{{genInfo.erx}}</td>
+      </tr>-->
+      <tr>
+        <td><strong>Participation in PQRS</strong></td>
+        <td>{{genInfo.pqrs}}</td>
+      </tr>
+      <tr>
+        <td><strong>Participation in EHR</strong></td>
+        <td>{{genInfo.ehr}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div><!-- /.basic-data -->

@@ -1,0 +1,18 @@
+// -------------------------------------------------------------------- //
+//  Global Structure
+// -------------------------------------------------------------------- //
+
+// Override global default wrapper
+.wrapper {
+  width: 100%;
+  margin: 0;
+  background-color: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+// Override global default container
+.container {
+  width: auto;
+  padding: 0;
+}

@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="Monahrq.DataSets.Views.MappingReImportView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="553.386" d:DesignWidth="445.817">
+    <Grid>
+        <StackPanel Margin="23,56,326,84" Orientation="Vertical">
+            <Label Content="REIMPORT VIEW"/>
+            <Label Content="Data Type: "/>
+            <Label Content="Record ID"/>
+            <Label Content="File Name"/>
+            <Label Content="Period"/>
+
+        </StackPanel>
+        <StackPanel Margin="120,84,37,97" Orientation="Vertical">
+            <TextBlock TextWrapping="Wrap" Text="{Binding Record.DataType}" Height="26"/>
+            <TextBlock TextWrapping="Wrap" Text="{Binding Record.RecordID}" Height="26"/>
+            <TextBlock TextWrapping="Wrap" Text="{Binding Record.FileName}" Height="26"/>
+            <TextBlock TextWrapping="Wrap" Text="{Binding Record.TimePeriod}" Height="26"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

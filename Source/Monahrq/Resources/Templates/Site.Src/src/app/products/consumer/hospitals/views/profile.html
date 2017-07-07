@@ -1,0 +1,235 @@
+<main class="profile">
+
+  <section class="search--refine profile-search" role="search">
+    <div class="contain">
+      <div class="search--refine__title-group">
+        <h1 class="search--refine__title">Find another hospital</h1>
+      </div>
+
+      <form class="search-form" name="searchForm" novalidate>
+        <div class="search-form__contain">
+          <div class="search-form__location">
+            <label for="search-query">Enter name:</label>
+            <input type="text" id="search-query" name="name" placeholder="Enter a hospital name" data-ng-model="query.name" required>
+            <span data-ng-if="searchForm.name.$error.required && showValidationErrors" class="form-error-message">Error: Please enter a name</span>
+          </div>
+
+          <div class="search-form__action">
+            <button class="btn--primary" data-ng-click="search()">Search</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <div data-mh-cms-zone="'header'" data-mh-cms-zone-report-id="reportId" data-mh-cms-zone-product="'Consumer'"></div>
+
+  <section class="report" tabindex="-1">
+    <header class="report-header profile-title" data-ng-if="!hasSearch">
+      <h2>Enter your search above</h2>
+    </header>
+    <header class="report-header profile-title" data-ng-if="hasSearch && !hasResult">
+      <h2>Your search did not find anything</h2>
+    </header>
+    <header class="report-header profile-title" data-ng-if="hasResult">
+      <h2>{{profile.name}}</h2>
+      <div class="report-header__help">
+        <div data-mh-help-icon="'Help me understand this report'" data-mh-on-click="modalLegend()"></div>
+      </div>
+    </header>
+
+    <div class="report-content profile" data-ng-if="hasResult">
+
+      <div class="profile-facility-info">
+        <div class="profile-summary">
+          <div class="profile-summary__overall">
+            <p class="profile-summary__title">How patients recommend this facility overall<span data-mh-help-icon data-sr-label="'How patients recommend this facility overall'" data-mh-on-click="modalMeasure(config.HOSPITAL_OVERALL_ID)"></span></p>
+            <p class="profile-summary__data" data-mh-rating-symbol="overallRec"></p>
+            <!--<a href="#">How do we determine this?</a>-->
+          </div>
+        </div>
+
+        <div class="profile-facility-info__location">
+          <p class="facility-address-1">{{profile.address}}</p>
+          <p class="facility-address-2">{{profile.city}}, {{profile.state}} {{profile.zip | zip}}</p>
+          <p data-ng-if="zipDist" class="facility-address-distance">({{zipDist | number:0}} miles away from zip code {{profile.zip | zip}})</p>
+          <div data-ng-if="ConsumerReportConfigSvc.qrProfileHasMap(reportId)" class="map">
+            <img class="facility-map" data-ng-src="{{gmapUrl}}" alt="" />
+          </div>
+        </div>
+
+        <div data-ng-if="profile.description" class="profile-facility-info__description">
+          {{profile.description}}
+        </div>
+
+        <div class="profile-facility-info__services">
+            <h3 class="facility-info__title">General Information</h3>
+          <ul class="general-info__list">
+            <li data-ng-if="showOverallRating()">
+              <p class="general-info__label">CMS Hospital Compare Overall National Rating
+                <span data-mh-help-icon data-sr-label="'Help for CMS Hospital Compare Overall National Rating'" data-mh-on-click="modalMeasure(config.CMS_OVERALL_ID)"></span>
+              </p>
+              <p class="general-info__data">
+                <span data-mh-rating-star-hosp="profile.CMSOverallNationalRating"></span>
+              </p>
+            </li>
+            <li>
+              <p class="general-info__label">Phone Number:</p>
+              <p class="general-info__data">{{profile.phoneNumber | phone}}</p>
+            </li>
+            <li>
+              <p class="general-info__label">Total Beds:</p>
+              <p class="general-info__data">{{profile.totalBeds}}</p>
+            </li>
+            <li>
+              <p class="general-info__label">Hospital Type:</p>
+              <p class="general-info__data">{{getHospitalType()}}</p>
+            </li>
+          </ul>
+        </div>
+
+        <div class="profile-facility-info__general">
+          <h3 class="facility-info__title">Services</h3>
+          <ul class="general-info__list">
+            <li>
+              <p class="general-info__label">Cardiac catheterization lab service?</p>
+              <div class="general-info__data">
+                <span class="general-info__icon" ng-class="{'available': profile.cardiacCatherizationService}">
+                  <span class="sr-hidden" ng-if="profile.cardiacCatherizationService">Available</span>
+                  <span class="sr-hidden" ng-if="!profile.cardiacCatherizationService">Unavailable</span>
+                </span>
+              </div>
+            </li>
+            <li>
+              <p class="general-info__label">Diagnostic X-ray services available with appointment?</p>
+              <div class="general-info__data">
+                <span class="general-info__icon" ng-class="{'available': profile.diagnosticXRayService}">
+                  <span class="sr-hidden" ng-if="profile.diagnosticXRayService">Available</span>
+                  <span class="sr-hidden" ng-if="!profile.diagnosticXRayService">Unavailable</span>
+                </span>
+              </div>
+            </li>
+            <li>
+              <p class="general-info__label">Emergency Department services?</p>
+              <div class="general-info__data">
+                <span class="general-info__icon" ng-class="{'available': profile.emergencyService}">
+                  <span class="sr-hidden" ng-if="profile.emergencyService">Available</span>
+                  <span class="sr-hidden" ng-if="!profile.emergencyService">Unavailable</span>
+                </span>
+              </div>
+            </li>
+            <li>
+              <p class="general-info__label">Medicare or Medicaid?</p>
+              <div class="general-info__data">
+                <span class="general-info__icon" ng-class="{'available': profile.medicareMedicaidProvider}">
+                  <span class="sr-hidden" ng-if="profile.medicareMedicaidProvider">Available</span>
+                  <span class="sr-hidden" ng-if="!profile.medicareMedicaidProvider">Unavailable</span>
+                </span>
+              </div>
+            </li>
+            <li>
+              <p class="general-info__label">Pediatric ICU services?</p>
+              <div class="general-info__data">
+                <span class="general-info__icon" ng-class="{'available': profile.pediatricICUService}">
+                  <span class="sr-hidden" ng-if="profile.pediatricICUService">Available</span>
+                  <span class="sr-hidden" ng-if="!profile.pediatricICUService">Unavailable</span>
+                </span>
+              </div>
+            </li>
+            <li>
+              <p class="general-info__label">Pediatric services?</p>
+              <div class="general-info__data">
+                <span class="general-info__icon" ng-class="{'available': profile.pediatricService}">
+                  <span class="sr-hidden" ng-if="profile.pediatricService">Available</span>
+                  <span class="sr-hidden" ng-if="!profile.pediatricService">Unavailable</span>
+                </span>
+              </div>
+            </li>
+            <li>
+              <p class="general-info__label">Trauma Center services?</p>
+              <div class="general-info__data">
+                <span class="general-info__icon" ng-class="{'available': profile.traumaService}">
+                  <span class="sr-hidden" ng-if="profile.traumaService">Available</span>
+                  <span class="sr-hidden" ng-if="!profile.traumaService">Unavailable</span>
+                </span>
+              </div>
+            </li>
+            <li>
+              <p class="general-info__label">Urgent Care Center services?</p>
+              <div class="general-info__data">
+                <span class="general-info__icon" ng-class="{'available': profile.urgentCareService}">
+                  <span class="sr-hidden" ng-if="profile.urgentCareService">Available</span>
+                  <span class="sr-hidden" ng-if="!profile.urgentCareService">Unavailable</span>
+                </span>
+              </div>
+            </li>
+            <li>
+              <p class="general-info__label">Walk-in pharmacy services available?</p>
+              <div class="general-info__data">
+                <span class="general-info__icon" ng-class="{'available': profile.pharmacyService}">
+                  <span class="sr-hidden" ng-if="profile.pharmacyService">Available</span>
+                  <span class="sr-hidden" ng-if="!profile.pharmacyService">Unavailable</span>
+                </span>
+              </div>
+            </li>
+            <li>
+              <p class="general-info__label">Hospital uses a Safe Surgery Checklist (Outpatient)?</p>
+              <div class="general-info__data">
+                <span class="general-info__icon" ng-class="{'available': profile.HospitalUsesASafeSurgeryChecklist}">
+                  <span class="sr-hidden" ng-if="profile.HospitalUsesASafeSurgeryChecklist">Available</span>
+                  <span class="sr-hidden" ng-if="!profile.HospitalUsesASafeSurgeryChecklist">Unavailable</span>
+                </span>
+              </div>
+            </li>
+            <li>
+              <p class="general-info__label">Hospital uses a Safe Surgery Checklist (Inpatient)?</p>
+              <div class="general-info__data">
+                <span class="general-info__icon" ng-class="{'available': profile.HospitalUsesASafeSurgeryChecklistInpatient}">
+                  <span class="sr-hidden" ng-if="profile.HospitalUsesASafeSurgeryChecklistInpatient">Available</span>
+                  <span class="sr-hidden" ng-if="!profile.HospitalUsesASafeSurgeryChecklistInpatient">Unavailable</span>
+                </span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="profile-facility-reports" data-mh-tabs="'quality'" data-mh-tabs-api="reportSettings.tabAPI">
+        <div class="facility-report-compare">
+          <label for="search-distance">Compare to hospitals within:</label>
+          <select id="search-distance" data-ng-class="{selectEmpty: !query.distance}" name="distance" data-ng-model="query.distance" data-ng-options="x as (x + ' Mile(s)') for x in zipDistances track by x" title="Maximum Distance">
+            <option value="" selected disabled style="display:none;">Choose Maximum Distance</option>
+          </select>
+          <button data-ng-click="nearbyHospitals()">Go</button>
+        </div>
+
+        <div class="tabs" data-mh-tab-list>
+          <div data-mh-tab="'quality'" data-mh-tab-label="'Quality Ratings'"></div>
+          <div data-mh-tab="'physicians'" data-mh-tab-label="'Doctors that can admit you to this hospital'"></div>
+        </div>
+
+        <div data-mh-tab-panel="'quality'">
+          <div data-ui-view="profile-tab1"></div>
+        </div>
+
+        <div data-mh-tab-panel="'physicians'">
+          <div data-ui-view="profile-tab3"></div>
+        </div>
+
+        <div data-ng-if="reportSettings.footer" class="report-footnotes" data-ng-bind-html="reportSettings.footer"></div>
+      </div>
+
+    </div>
+
+    <footer class="report-footer profile-footer">
+      <h2>Did you know that you can compare different hospitals and nursing homes in your area to find the best healthcare for you or a loved one?</h2>
+      <ul>
+        <li><a href="#" data-ui-sref="top.consumer.home">Find hospitals or nursing homes near you</a> and start comparing.</li>
+        <li>Or you can compare how well hospitals in your area take care of patients with a certain <a href="#" data-ui-sref="top.consumer.hospitals.health-topics">health condition or by a health topic</a> you are interested in.</p></li>
+      </ul>
+      <button class="btn--primary" data-ui-sref="top.consumer.home">Start Comparing Facilities</button>
+    </footer>
+  </section>
+
+  <div data-mh-cms-zone="'footer'" data-mh-cms-zone-report-id="reportId" data-mh-cms-zone-product="'Consumer'"></div>
+</main>

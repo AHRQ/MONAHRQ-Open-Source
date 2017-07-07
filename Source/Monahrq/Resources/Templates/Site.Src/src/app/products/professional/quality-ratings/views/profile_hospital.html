@@ -1,0 +1,42 @@
+<br />
+<p><strong>{{hospitalProfile.name}}</strong><br/>{{hospitalProfile.address}}<br />{{hospitalProfile.city}}, {{hospitalProfile.state}} {{hospitalProfile.zip | zip}}</p>
+
+<div data-ng-if="ReportConfigSvc.qrProfileHasMap(reportId)" class="map">
+  <img data-ng-src="{{gmapUrl}}" alt="" />
+  <iframe data-ng-if="false" width="340" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" data-ng-src="{{trustedUrl(hospitalProfile.gmapEmbedUrl)}}" alt=""></iframe>
+</div>
+
+<a data-ng-if="false" class="btn btn-default hidden-print" href="{{hospitalProfile.gmapLinkUrl}}">View on Google Maps &raquo;</a>
+
+<div data-ng-if="ReportConfigSvc.qrProfileHasDescription()" class="basic-data">
+  <p>{{hospitalProfile.description}}</p>
+  <br />
+  <ul class="list-unstyled">
+    <li data-ng-if="showOverallRating()" class="hospital-overall-rating">
+      <div class="hospital-overall-rating__label">
+        <strong>CMS Hospital Compare Overall National Rating
+          <span data-mh-help-icon data-sr-label="'Help for CMS Hospital Compare Overall National Rating'" data-mh-on-click="modalMeasure(config.CMS_OVERALL_ID)"></span>
+        </strong>
+      </div>
+      <span class="hospital-overall-rating__data" data-mh-rating-star-hosp="hospitalProfile.CMSOverallNationalRating"></span>
+    </li>
+    <li data-ng-if="hospitalProfile.website"><strong>Website:</strong> <a href="{{hospitalProfile.website}}">{{hospitalProfile.website}}</a></li>
+    <li><strong>Total Beds:</strong> {{hospitalProfile.totalBeds}}</li>
+    <li><strong>Employees:</strong> {{hospitalProfile.totalEmployees}}</li>
+    <li><strong>Phone Number:</strong> {{hospitalProfile.phoneNumber | phone}}</li>
+    <li data-ng-if="hospitalProfile.faxNumber != null"><strong>Fax Number:</strong> {{hospitalProfile.faxNumber | phone}}</li>
+    <li><strong>Hospital Type:</strong> {{getFTypes()}}</li>
+    <!--<li><strong>Parent Organization Name:</strong> {{hospitalProfile.parentOrganizationName}}</li>-->
+    <li data-ng-if="hospitalProfile.emergencyService != null"><strong>Provides Emergency Department Services:</strong> {{getYN(hospitalProfile.emergencyService)}}</li>
+    <li data-ng-if="hospitalProfile.medicareMedicaidProvider != null"><strong>Participates in Medicare or Medicaid:</strong> {{getYN(hospitalProfile.medicareMedicaidProvider)}}</li>
+    <li data-ng-if="hospitalProfile.traumaService != null"><strong>Provides Trauma Center Services:</strong> {{getYN(hospitalProfile.traumaService)}}</li>
+    <li data-ng-if="hospitalProfile.urgentCareService != null"><strong>Provides Urgent Care Center Services:</strong> {{getYN(hospitalProfile.urgentCareService)}}</li>
+    <li data-ng-if="hospitalProfile.pediatricService != null"><strong>Are pediatric services provided?</strong> {{getYN(hospitalProfile.pediatricService)}}</li>
+    <li data-ng-if="hospitalProfile.pediatricICUService != null"><strong>Are pediatric ICU services provided?</strong> {{getYN(hospitalProfile.pediatricICUService)}}</li>
+    <li data-ng-if="hospitalProfile.cardiacCatherizationService != null"><strong>Is cardiac catheterization lab service provided?</strong> {{getYN(hospitalProfile.cardiacCatherizationService)}}</li>
+    <li data-ng-if="hospitalProfile.pharmacyService != null"><strong>Are pharmacy services available on a walk-in basis?</strong> {{getYN(hospitalProfile.pharmacyService)}}</li>
+    <li data-ng-if="hospitalProfile.diagnosticXRayService != null"><strong>Are diagnostic X-ray services available to anyone with an appointment?</strong> {{getYN(hospitalProfile.diagnosticXRayService)}}</li>
+    <li data-ng-if="hospitalProfile.HospitalUsesASafeSurgeryChecklist != null"><strong>Hospital uses a Safe Surgery Checklist (Outpatient)?</strong> {{getYN(hospitalProfile.HospitalUsesASafeSurgeryChecklist)}}</li>
+    <li data-ng-if="hospitalProfile.HospitalUsesASafeSurgeryChecklistInpatient != null"><strong>Hospital uses a Safe Surgery Checklist (Inpatient)?</strong> {{getYN(hospitalProfile.HospitalUsesASafeSurgeryChecklistInpatient)}}</li>
+  </ul>
+</div>

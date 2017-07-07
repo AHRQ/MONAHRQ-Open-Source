@@ -1,0 +1,62 @@
+<div data-ng-if="navActive('top.professional.nursing-homes.location') || navActive('top.professional.nursing-homes.profile')" data-mh-wizard class="row">
+  <div data-mh-wizard-step step-num="1" step-label="'1'" step-visible="true" class="col-md-3">
+    <div data-mh-wizard-step-option option-label="'Find Nursing Homes'">
+      <select class="form-control" data-ng-class="{selectEmpty: !query.searchType}" data-ng-model="query.searchType" data-ng-options="x.id as x.name for x in searchTypeOptions" title="Search Type">
+        <option value="" selected disabled style="display:none;">Search Type</option>
+      </select>
+    </div>
+  </div>
+
+  <div data-mh-wizard-step step-num="2" step-label="'2'" step-visible="query.searchType" step-option-switch="query.searchType" class="col-md-3">
+    <div data-mh-wizard-step-option option-switch-on="'name'" option-label="'Nursing Home Name'">
+      <div data-mh-autocomplete="uiaNursingHomes" selected-id="query.name"></div>
+    </div>
+
+    <div data-mh-wizard-step-option option-switch-on="'location'" option-label="'Location'">
+      <select class="form-control" data-ng-class="{selectEmpty: !query.location}"  data-ng-model="query.location" data-ng-options="x.id as x.name for x in locationOptions" title="Location">
+        <option value="" selected disabled style="display:none;">Nursing Home Location</option>
+      </select>
+    </div>
+
+    <div data-mh-wizard-step-option option-switch-on="'type'" option-label="'Nursing Home Type'">
+      <select class="form-control" data-ng-class="{selectEmpty: !query.type}"  data-ng-model="query.type" data-ng-options="x.id as x.name for x in typeOptions" title="Nursing Home Type">
+        <option value="" selected disabled style="display:none;">Nursing Home Type</option>
+      </select>
+    </div>
+
+    <div data-mh-wizard-step-option option-switch-on="'inHospital'" option-label="'In Hospital'">
+      <select class="form-control" data-ng-class="{selectEmpty: !query.inHospital}" data-ng-model="query.inHospital" data-ng-options="x.id as x.name for x in inHospitalOptions " title="In Hospital">
+        <option value="" selected disabled style="display:none;">In Hospital</option>
+      </select>
+    </div>
+
+    <div data-mh-wizard-step-option option-switch-on="'overallRating'" option-label="'Overall Rating'">
+      <select class="form-control" data-ng-class="{selectEmpty: !query.overallRating}" data-ng-model="query.overallRating" data-ng-options="x.id as x.name for x in overallRatingOptions" title="Overall Rating">
+        <option value="" selected disabled style="display:none;">Overall Rating</option>
+      </select>
+    </div>
+  </div>
+
+  <div data-mh-wizard-step step-num="3" step-label="'3'" step-visible="query.location" step-option-switch="query.location" class="col-md-3">
+    <div data-mh-wizard-step-option option-switch-on="'county'" option-label="'County'">
+      <select class="form-control" data-ng-class="{selectEmpty: !query.county}" data-ng-model="query.county" data-ng-options="x.id as x.name for x in countyOptions" title="County">
+        <option value="" selected disabled style="display:none;">County</option>
+      </select>
+    </div>
+
+    <div data-mh-wizard-step-option option-switch-on="'zip'" option-label="'Zip Code'">
+      <select class="form-control" data-ng-class="{selectEmpty: !query.zipDistance}" data-ng-model="query.zipDistance" data-ng-options="x.id as (x.name + ' Mile(s)') for x in zipDistances" title="Zip Distance">
+        <option value="" selected disabled style="display:none;">Maximum Distance</option>
+      </select>
+      <input class="form-control" type="text" data-ng-model="query.zip" />
+    </div>
+  </div>
+
+   <div data-mh-wizard-step step-num="4" step-visible="canSearch()" class="col-md-3 last has-value">
+     <div data-mh-wizard-step-option>
+       <button class="btn btn-success" data-ng-click="search()">Run Report</button>
+     </div>
+  </div>
+
+</div>
+
