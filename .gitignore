@@ -14,3 +14,5 @@ bower_components
 /Source/TestResults
 /Source/Monahrq/Resources/Templates/Site
 /Source/Monahrq/Resources/Templates/Site.Src/build
+/Source/Monahrq.SysTray/Grouper/msgmce
+!/Source/Monahrq.SysTray/Grouper/msgmce/README.md
