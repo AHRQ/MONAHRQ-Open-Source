@@ -198,7 +198,7 @@
   <PropertyGroup>
     <PostBuildEvent>xcopy "$(TargetPath)"  "$(SolutionDir)Monahrq\$(OutDir)"    /y
 xcopy "$(TargetPath).config"  "$(SolutionDir)Monahrq\$(OutDir)"    /y
-xcopy /s /e "$(TargetDir)\Grouper\*.*"  "$(SolutionDir)Monahrq\$(OutDir)Grouper\"    /y
+xcopy /s /e "$(ProjectDir)\Grouper\msgmce\*.*"  "$(SolutionDir)Monahrq\msgmce$(OutDir)Grouper\"    /y
 </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
