@@ -9,6 +9,12 @@ namespace Monahrq.Infrastructure.Test.Validation
     public class ICDValidationAttributeTests
     {
         [TestMethod]
+        public void ICD10_Misc_1()
+        {
+            TestDxPass("O3421", "O7582", "Z370", "Z3A39");
+        }
+
+        [TestMethod]
         public void ICD9_E_ICD9_V()
         {
             TestDxPass("E871", "V3000");

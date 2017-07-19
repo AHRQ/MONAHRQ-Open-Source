@@ -60,11 +60,14 @@ namespace Monahrq.Infrastructure.Validation
             foreach (var nameMatch in PropertyNameMatchs)
             {
                 properties.AddRange(ValidationHelper.InstanceType.GetProperties()
-                                                                  .Where(propertyInfo => (propertyInfo.Name.Equals("Principal" + nameMatch, StringComparison.InvariantCultureIgnoreCase) ||
-                                                                                          propertyInfo.Name.Equals("Primary" + nameMatch, StringComparison.InvariantCultureIgnoreCase) ||
-                                                                                          propertyInfo.Name.StartsWith(nameMatch, StringComparison.InvariantCultureIgnoreCase)))
-                                                                  .Distinct()
-                                                                  .ToList());
+                    .Where(
+                        propertyInfo =>
+                            (propertyInfo.Name.Equals("Principal" + nameMatch,
+                                 StringComparison.InvariantCultureIgnoreCase) ||
+                             propertyInfo.Name.Equals("Primary" + nameMatch, StringComparison.InvariantCultureIgnoreCase) ||
+                             propertyInfo.Name.StartsWith(nameMatch, StringComparison.InvariantCultureIgnoreCase)))
+                    .Distinct()
+                    .ToList());
             }
 
             return properties;
@@ -132,8 +135,10 @@ namespace Monahrq.Infrastructure.Validation
 #if DEBUG
                 timer.Start();
 #endif
-                var procedureValues = Properties.Where(propertyInfo => propertyInfo.Name.ContainsIgnoreCase("Procedure") && propertyInfo.GetValue(instance, null) != null)
-                                                                         .Select(propertyInfo => new KeyValuePair<string, object>(propertyInfo.Name, propertyInfo.GetValue(instance, null))).ToList();
+                var procedureValues = Properties
+                    .Where(propertyInfo => propertyInfo.Name.ContainsIgnoreCase("Procedure") && propertyInfo.GetValue(instance, null) != null)
+                    .Select(propertyInfo => new KeyValuePair<string, object>(propertyInfo.Name, propertyInfo.GetValue(instance, null)))
+                    .ToList();
 
                 isIcd9ProcedureCodeValid = !procedureValues.Any() || procedureValues.All(code =>
                 {
@@ -243,7 +248,7 @@ namespace Monahrq.Infrastructure.Validation
             var firstMember = stringToCheck.Substring(0, 1);
             if (firstMember.IsNumeric()) return false;
 
-            var secondMember = stringToCheck.Substring(1, 2);
+            var secondMember = stringToCheck.Substring(1, 1);
             if (!secondMember.IsNumeric()) return false;
 
             return true;
