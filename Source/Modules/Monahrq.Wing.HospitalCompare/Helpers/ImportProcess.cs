@@ -246,6 +246,17 @@ namespace Monahrq.Wing.HospitalCompare.Helpers
                                 .ToList();
                     }
                 }
+
+                // special handling for recent hospital compare schemas 
+                if (tableName == "hvbp_ami_11_14_2016")
+                {
+                    // 2016 and 2017v1 use the same schema. 2017v2 uses a newer schema.
+                    if (config.SourceTables
+                        .Any(t => t.StartsWith("MORT_READM_July2017", StringComparison.CurrentCultureIgnoreCase)))
+                    {
+                        config.SchemaVersion = "Schema.Version.5";
+                    }
+                }
             }
             catch (Exception e)
             {

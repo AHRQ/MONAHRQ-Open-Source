@@ -212,6 +212,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\HospitalCompare\Schema.Version.5.csv.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\HospitalCompare\Schema.Version.4.csv.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -285,5 +288,5 @@ xcopy "$(TargetDir)\Resources\HospitalCompare\*.*"  "$(SolutionDir)Monahrq\$(Out
   <Target Name="AfterBuild">
   </Target>
   -->
-  <Import Project="$(SolutionDir)\MonahrqExtensionCommon.targets"/>
+  <Import Project="$(SolutionDir)\MonahrqExtensionCommon.targets" />
 </Project>
