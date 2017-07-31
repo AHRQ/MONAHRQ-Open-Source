@@ -25,6 +25,32 @@ SELECT	RCD.[Provider ID] AS [CMSProviderID]
 FROM [Hospital Returns - Hospital.csv] RCD
 WHERE RCD.[Measure ID] IN (@@Measures_HospitalReadmission@@)
 
+--Importing Hospital Deaths--
+SELECT	RCD.[Provider ID] AS [CMSProviderID]
+	,	-1 AS ConditionCode
+	,	REPLACE ( RCD.[Measure ID],'_','-')  AS MeasureCode
+	,	0 AS [CategoryCode]
+	,	switch( 
+			trim(RCD.[Score]) = 'Not Available', -1,
+			true, [Score] 
+		) AS [Rate]
+	,	switch( 
+			trim(RCD.[Denominator]) = 'Not Available', -1,
+			true, [Denominator] 
+		) AS [Sample]
+	,	switch( 
+			trim(RCD.[Lower Estimate]) = 'Not Available', -1,
+			true, [Lower Estimate] 
+		) AS [Lower]
+	,	switch( 
+			trim(RCD.[Higher Estimate]) = 'Not Available', -1,
+			true,[Higher Estimate]
+		) AS [Upper]
+	,	null AS [Note]
+	,	null AS [BenchmarkID]
+	,	null AS [Footnote_Id]
+FROM [Complications and Deaths - Hospital.csv] RCD
+WHERE RCD.[Measure ID] IN (@@Measures_HospitalReadmission@@)
 
 --Importing State Readmissions-- 
 SELECT 
@@ -72,6 +98,19 @@ REPLACE([Measure ID], '_', '-') AS MeasureCode,
 -1 as [Upper],
 'US' AS BenchmarkID
                         FROM [Hospital Returns - National.csv]
+                        WHERE [Measure ID] IN (@@Measures_NationalReadmission@@)
+
+--Importing National Deaths--
+SELECT
+-1 AS ConditionCode,
+REPLACE([Measure ID], '_', '-') AS MeasureCode, 
+0 as [CategoryCode] ,
+ [National Rate] AS Rate ,
+-1 AS Sample,
+-1 as [Lower],
+-1 as [Upper],
+'US' AS BenchmarkID
+                        FROM [Complications and Deaths - National.csv]
                         WHERE [Measure ID] IN (@@Measures_NationalReadmission@@)
 
 --Importing Hospital COMP Measures --
