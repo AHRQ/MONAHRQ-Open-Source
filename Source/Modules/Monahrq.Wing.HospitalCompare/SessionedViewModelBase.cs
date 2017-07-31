@@ -63,6 +63,7 @@ namespace Monahrq.Wing.HospitalCompare
                 }
                 Session.Close();
             }
+            catch (SessionException) { } // we don't care
             finally
             {
                 Session.Dispose();
