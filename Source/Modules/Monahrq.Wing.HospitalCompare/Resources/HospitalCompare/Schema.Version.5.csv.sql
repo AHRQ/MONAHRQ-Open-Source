@@ -895,7 +895,7 @@ FROM			[Structural Measures - Hospital.csv]
 WHERE			[Measure ID] IN (@@Measures_HospitalStructural@@)
 
 
---Importing National Measures - Post Processs - [MONAHRQ-DB]--
+--Importing National Measures - Post Processs (1/2) - [MONAHRQ-DB]--
 
 	with
 		Tile1Data as
@@ -993,3 +993,15 @@ select			null as CMSProviderID
 			,	null as Footnote_Id
 from			SecondBest
 where			SecondBest.AddedRank = 1;
+
+--Importing National Measures - Post Processs (2/2) - [MONAHRQ-DB]--
+
+/* TODO: fix the problem that creates the duplicates in the first place */
+DELETE FROM Targets_HospitalCompareTargets 
+WHERE Id IN (
+	SELECT MAX(Id)
+	FROM Targets_HospitalCompareTargets
+	WHERE MeasureCode = 'COMP-HIP-KNEE'
+	GROUP BY Dataset_Id, CMSProviderId, ConditionCode, MeasureCode, CategoryCode, Rate, Sample, Lower, Upper
+	HAVING COUNT(Id) > 1
+)
