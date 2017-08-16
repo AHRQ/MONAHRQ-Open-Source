@@ -359,30 +359,13 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>@echo ======= Copying...  
-@echo "$(TargetPath)"  "$(SolutionDir)Monahrq\$(OutDir)Modules\" 
-@echo  =======
-xcopy "$(TargetPath)"  "$(SolutionDir)Monahrq\$(OutDir)Modules\"    /y
-xcopy "$(TargetDir)\Measures\*.csv"  "$(SolutionDir)Monahrq\$(OutDir)Measures\"    /y
-
-@echo ======= Copied...  
-@echo "$(TargetPath)"  "$(SolutionDir)Monahrq\bin\$(OutDir)Modules\" 
-@echo  =======
-
-@echo  =======
-
+    <PostBuildEvent>xcopy "$(TargetDir)\Measures\*.csv"  "$(SolutionDir)Monahrq\$(OutDir)Measures\"    /y
 if not exist "$(SolutionDir)Monahrq\$(OutDir)Resources\NursingHomeCompare" cmd /x /c mkdir "$(SolutionDir)Monahrq\$(OutDir)Resources\NursingHomeCompare" 
-
 if not exist "$(SolutionDir)Monahrq\$(OutDir)Resources\Database" cmd /x /c mkdir "$(SolutionDir)Monahrq\$(OutDir)Resources\Database" 
-
 if not exist "$(SolutionDir)Monahrq\$(OutDir)Resources\Database\NursingHome" cmd /x /c mkdir "$(SolutionDir)Monahrq\$(OutDir)Resources\Database\NursingHome"
-
 if not exist "$(SolutionDir)Monahrq\$(OutDir)Resources\Database\NHCAHPS" cmd /x /c mkdir "$(SolutionDir)Monahrq\$(OutDir)Resources\Database\NHCAHPS"
-
 xcopy "$(TargetDir)\Resources\NursingHomeCompare\*"  "$(SolutionDir)Monahrq\$(OutDir)Resources\NursingHomeCompare"    /y
-
 xcopy "$(TargetDir)\Resources\Database\NursingHome\*"  "$(SolutionDir)Monahrq\$(OutDir)Resources\Database\NursingHome" /y
-
 xcopy "$(TargetDir)\Resources\Database\NHCAHPS\*"  "$(SolutionDir)Monahrq\$(OutDir)Resources\Database\NHCAHPS" /y</PostBuildEvent>
   </PropertyGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
