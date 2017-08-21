@@ -106,14 +106,14 @@ namespace Monahrq.Infrastructure.BaseDataLoader
 
                                 var con = session.Connection;
                                 ProvideFeedback(string.Format("Importing file {0}", file));
-                                using (var cmd = con.CreateCommand())
+                                using (var cmd2 = con.CreateCommand())
                                 {
-                                    cmd.CommandText = "BULK INSERT " + tableName + " FROM '" +
+                                    cmd2.CommandText = "BULK INSERT " + tableName + " FROM '" +
                                                       Path.Combine(baseDataDir, file) +
                                                       "' WITH (FIRSTROW = 2, FORMATFILE = '" +
                                                       Path.Combine(baseDataDir, FormatFile) + "')";
-                                    cmd.CommandTimeout = 6000;
-                                    cmd.ExecuteNonQuery();
+                                    cmd2.CommandTimeout = 6000;
+                                    rows = cmd2.ExecuteNonQuery();
                                 }
                             }
 

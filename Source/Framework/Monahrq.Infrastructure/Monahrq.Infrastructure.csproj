@@ -995,6 +995,9 @@
     <None Include="Resources\BaseData\ZipCodeToHRRandHSA-2013.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Resources\BaseData\ZipCodeToLatLong-2016.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\BaseData\ZipCodeToPopulationStrats-2012.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -1409,9 +1412,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Resources\BaseData\States-1-0-0.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\BaseData\ZipCodeToLatLong-2010.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Resources\BaseData\ZipCodeToLatLong.fmt">
