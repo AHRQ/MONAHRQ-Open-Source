@@ -879,6 +879,9 @@
     <EmbeddedResource Include="Services\Dynamic\Resources\Uninstall_DynamicTarget_Reports.sql" />
     <EmbeddedResource Include="Services\Dynamic\Resources\Uninstall_DynamicTarget_WingTargets.sql" />
     <EmbeddedResource Include="Resources\SchemaVersion\SchemaVersion_Create_Update.sql" />
+    <None Include="Resources\BaseData\ZipCodeToPopulationStrats-2015.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Resource Include="Assert\LICENSE.txt" />
     <Resource Include="Assert\ArgumentHelper.doc.xml" />
     <Resource Include="Assert\EventHelper.doc.xml" />
