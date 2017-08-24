@@ -117,10 +117,8 @@ namespace Monahrq.Infrastructure.BaseDataLoader
                                                 {
                                                     var temp = LoadFromReader(reader);
                                                     if (temp != null)
-                                                    {
                                                         bulkImporter.Insert(temp);
-                                                        rows++;
-                                                    }
+                                                    rows++;
                                                 }
                                             }
                                         }

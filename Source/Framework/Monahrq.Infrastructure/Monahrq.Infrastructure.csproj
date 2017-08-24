@@ -882,6 +882,9 @@
     <None Include="Resources\BaseData\AreaPopulationStrats-2015.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Resources\BaseData\POSHospitals-2016-12.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\BaseData\ZipCodeToHRRandHSA-2015.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -996,9 +999,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\BaseData\MeasureTopics-2-0-0.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\BaseData\POSHospitals-2015-12.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Resources\BaseData\ZipCodeToLatLong-2016.csv">
