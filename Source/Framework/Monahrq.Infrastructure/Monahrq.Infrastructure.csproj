@@ -882,6 +882,21 @@
     <None Include="Resources\BaseData\AreaPopulationStrats-2015.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Resources\BaseData\EDNationalTotals-2014.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\IPNationalTotalsDRG-2014.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\IPNationalTotalsDXCCS-2014.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\IPNationalTotalsMDC-2014.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\IPNationalTotalsPRCCS-2014.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\BaseData\POSHospitals-2016-12.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -978,18 +993,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Resources\BaseData\BaseWebsitePage-1-0-0.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\BaseData\IPNationalTotalsDRG-2013.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\BaseData\IPNationalTotalsDXCCS-2013.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\BaseData\IPNationalTotalsMDC-2013.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\BaseData\IPNationalTotalsPRCCS-2013.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <Content Include="Domain\Reports\Data\GenericInfoGraphic-topics.png">
@@ -1376,9 +1379,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Resources\BaseData\DXCCSLabels-2014.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\BaseData\EDNationalTotals-2010.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Resources\BaseData\EDNationalTotals.fmt">
