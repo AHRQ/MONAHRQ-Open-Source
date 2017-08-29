@@ -101,8 +101,7 @@ namespace Monahrq.Websites.ViewModels
 			return
 				SelectedMeasure != null &&
 				!SelectedMeasure.ClinicalTitleOverride.IsNullOrEmpty() &&
-				!SelectedMeasure.PlainTitleOverride.IsNullOrEmpty() &&
-				!SelectedMeasure.ConsumerPlainTitleOverride.IsNullOrEmpty();
+				!SelectedMeasure.PlainTitleOverride.IsNullOrEmpty();
 		}
 
 		#endregion
