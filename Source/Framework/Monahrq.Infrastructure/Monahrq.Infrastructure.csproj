@@ -882,6 +882,9 @@
     <None Include="Resources\BaseData\AreaPopulationStrats-2015.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Resources\BaseData\CostToChargeRatio-2015.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\BaseData\EDNationalTotals-2014.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
