@@ -108,9 +108,11 @@ namespace Monahrq.Websites.ViewModels.Publish
         [Description("Warning 1047")]
 		MissingPhysicianReport,
 		[Description("Warning 1048")]
-		RealtimePhysicianDataCannotHaveSubReports
+		RealtimePhysicianDataCannotHaveSubReports,
+        [Description("Warning 1050")] //todo: add help topic
+        ObsoleteQualityIndicators
 
-	}
+    }
 
     [PropertyChanged.ImplementPropertyChanged]
     public class ValidationResultViewModel : IValidationResultViewModel
@@ -271,6 +273,8 @@ namespace Monahrq.Websites.ViewModels.Publish
                     return ValidationResults.MissingPhysicianReport;
                 case ValidationOutcome.RealtimePhysicianDataCannotHaveSubReports:
                     return ValidationResults.RealtimePhysicianDataCannotHaveSubReports;
+                case ValidationOutcome.ObsoleteQualityIndicators:
+                    return ValidationResults.ObsoleteQualityIndicators;
 
             }
             return ValidationResults.Success;
@@ -316,7 +320,8 @@ namespace Monahrq.Websites.ViewModels.Publish
                 case ValidationOutcome.InValidHedisDataset:
                 case ValidationOutcome.MissingPhysicianReport:
 				case ValidationOutcome.RealtimePhysicianDataCannotHaveSubReports:
-					return ValidationLevel.Warning;
+                case ValidationOutcome.ObsoleteQualityIndicators:
+                    return ValidationLevel.Warning;
                 case ValidationOutcome.DatasetsMissing:
                 case ValidationOutcome.MeasuresMissing:
                 case ValidationOutcome.OutputFolder:
@@ -362,6 +367,7 @@ namespace Monahrq.Websites.ViewModels.Publish
                 case ValidationOutcome.MeasuresMissing:
                 case ValidationOutcome.NoMeasuresForTheDataSet:
                 case ValidationOutcome.CostQualityAllFamilySelected:
+                case ValidationOutcome.ObsoleteQualityIndicators:
                     return WebsiteTabViewModels.Measures;
                 case ValidationOutcome.NameMissing:
                     return WebsiteTabViewModels.Details;

@@ -252,4 +252,7 @@
   <data name="RealtimePhysicianDataCannotHaveSubReports" xml:space="preserve">
     <value>In order to generate {0} report(s), choose "the descriptive data about physician in MONAHRQ" and not the "website get the most current version for physician data" option during the physician data import. These reports will not be generated.</value>
   </data>
+  <data name="ObsoleteQualityIndicators" xml:space="preserve">
+    <value>The following measures IQI 21, IQI 22, IQI 23, IQI 24, IQI 25, IQI 33, IQI 34, PSI 17, PSI 18, PSI 19 are no longer compared in MONAHRQ as there is no risk adjusted rates available for these measures and are not recommended for comparison. If you do not want to generate these measures, uncheck these measures from the Modify Measures tab.</value>
+  </data>
 </root>

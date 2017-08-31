@@ -851,6 +851,7 @@ namespace Monahrq.Websites.ViewModels
 
 				ValidateCostQualityAllFamilySelected().ForEach(results.Add);
                 ValidateCostQualityQiDbConnection().ForEach(results.Add);
+                ValidateObsoleteMeasures().ForEach(results.Add);
 
                 DependencyCheckResults = results.Where(r => r.Quality != ValidationLevel.Success);
                 ReviewWarning = string.Join(Environment.NewLine,
@@ -862,7 +863,7 @@ namespace Monahrq.Websites.ViewModels
                     PublishProgress = 50;
                 }
               
-                if (DependencyCheckResults.Count() == 0)
+                if (DependencyCheckResults.Any())
                 {
                     ResultsVisibility = Visibility.Hidden;
                     ShowRunCheckSuccessMessage = Visibility.Visible;
@@ -872,12 +873,8 @@ namespace Monahrq.Websites.ViewModels
             catch (Exception exception)
             {
                 if (!IsExiting)
-                {
-                    Logger.Write(exception.GetBaseException());
-                    EventAggregator.GetEvent<ErrorNotificationEvent>().Publish(exception.GetBaseException());
-                }
+                    Logger.Write(exception, "Error running website dependency checks for \"{0}\"", ManageViewModel.WebsiteViewModel.DisplayName);
             }
-
             finally
             {
                 SetToCompletedDependencyCheckMode();
@@ -897,6 +894,28 @@ namespace Monahrq.Websites.ViewModels
 
             Dispatcher.PushFrame(frame);
         }
+
+	    private static readonly string[] obsoleteMeasures = new[]
+	    {
+	        "IQI 21",
+	        "IQI 22",
+	        "IQI 23",
+	        "IQI 24",
+	        "IQI 25",
+	        "IQI 33",
+	        "IQI 34",
+	        "PSI 17",
+	        "PSI 18",
+	        "PSI 19"
+	    };
+
+	    private IEnumerable<IValidationResultViewModel> ValidateObsoleteMeasures()
+	    {
+	        if (!CurrentWebsite.Measures.Any(m => obsoleteMeasures.Contains(m.OriginalMeasure.MeasureCode)))
+	            yield break;
+
+	        yield return ValidationFactory.BuildResult(ValidationOutcome.ObsoleteQualityIndicators);
+	    }
 
         private List<IValidationResultViewModel> ValidatePhysicianHedisDataset()
         {

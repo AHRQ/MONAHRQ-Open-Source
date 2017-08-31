@@ -358,6 +358,15 @@ namespace Monahrq.Websites.ViewModels.Publish {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The following measures IQI 21, IQI 22, IQI 23, IQI 24, IQI 25, IQI 33, IQI 34, PSI 17, PSI 18, PSI 19 are no longer compared in MONAHRQ as there is no risk adjusted rates available for these measures and are not recommended for comparison. If you do not want to generate these measures, uncheck these measures from the Modify Measures tab..
+        /// </summary>
+        internal static string ObsoleteQualityIndicators {
+            get {
+                return ResourceManager.GetString("ObsoleteQualityIndicators", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The output folder you have selected doesn’t exist. The website cannot be generated..
         /// </summary>
         internal static string OutputFolder {
@@ -417,15 +426,6 @@ namespace Monahrq.Websites.ViewModels.Publish {
         internal static string StateNotSelected {
             get {
                 return ResourceManager.GetString("StateNotSelected", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to kdjfijeijf.
-        /// </summary>
-        internal static string String1sdfsdf {
-            get {
-                return ResourceManager.GetString("String1sdfsdf", resourceCulture);
             }
         }
         
