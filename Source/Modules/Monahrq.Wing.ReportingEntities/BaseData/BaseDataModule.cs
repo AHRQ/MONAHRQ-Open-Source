@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.Practices.Prism.Modularity;
 using Monahrq.Infrastructure;
 using Monahrq.Infrastructure.BaseDataLoader;
@@ -92,28 +91,18 @@ namespace Monahrq.Wing.ReportingEntities.BaseData
         /// <summary>
         /// Override the initialize method to  perfomr load data operation.
         /// </summary>
-        protected override async void OnInitialize()
+        protected override void OnInitialize()
         {
             base.OnInitialize();
 
-            ProvideFeedback("Verifying base data...");
-            Logger.Information("Base data loader: starting verification");
-            var tasks = new List<Task>(50);
             foreach (var loader in BaseDataLoaders)
             {
-                //ProvideFeedback(string.Format("Loading {0}", loader.LoaderDescription));
-                tasks.Add(Task.Factory.StartNew(() =>
-                {
-                    Logger.Debug("Base data loader: {0}: Starting preload", loader.DatabaseTableName);
-                    loader.PreLoadData();
-                    Logger.Debug("Base data loader: {0}: Verifying...", loader.DatabaseTableName);
-                    loader.LoadData();
-                    Logger.Debug("Base data loader: {0}: Starting post-load", loader.DatabaseTableName);
-                    loader.PostLoadData();
-                }));
+                ProvideFeedback(string.Format("Loading {0}", loader.LoaderDescription));
+                loader.PreLoadData();
+                loader.LoadData();
+                loader.PostLoadData();
             }
-            await Task.WhenAll(tasks);
-            Logger.Information("Base data loader: verification complete");
+            Logger.Information("Base data loaded");
         }
     }
 

@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Practices.Prism.Events;
 using Microsoft.Practices.Prism.Logging;
@@ -82,7 +81,7 @@ namespace Monahrq.Sdk.Modules.Wings
         /// <summary>
         /// Prepares this <see cref="WingModule"/> for use
         /// </summary>
-        public async void Initialize()
+        public void Initialize()
         {
             try
             {
@@ -92,20 +91,16 @@ namespace Monahrq.Sdk.Modules.Wings
                                      ? _wingAttribute.ModuleName
                                      : string.Format("{0} module", _wingAttribute.ModuleName.SubStrBeforeLast("Data").TrimEnd());
 
-                Logger.Debug($"Loading {moduleName}...");
+
                 Events.GetEvent<MessageUpdateEvent>().Publish(new MessageUpdateEvent { Message = "Loading " + moduleName });
 
                 if (MonahrqContext.ForceDbUpGrade || MonahrqContext.ForceDbRecreate) return;
 
-                var sw = new Stopwatch();
-                sw.Start();
-                await Task.Factory.StartNew(this.OnInitialize);
-                sw.Stop();
-                Logger.Information($"Load of module \"{moduleName}\" completed in {sw.Elapsed}");
+                OnInitialize();
             }
             finally
             {
-                //Events.GetEvent<MessageUpdateEvent>().Publish(new MessageUpdateEvent { Message = string.Empty });
+                Events.GetEvent<MessageUpdateEvent>().Publish(new MessageUpdateEvent { Message = string.Empty });
                 Application.Current.DoEvents();
             }
         }
