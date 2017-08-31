@@ -120,7 +120,12 @@ namespace Monahrq.Sdk.Logging
                     );
                 // construct message from arguments
                 if (message != null)
-                    sb.AppendFormat(message, args);
+                {
+                    if (args == null)
+                        sb.Append(message);
+                    else
+                        sb.AppendFormat(message, args);
+                }
 
                 // append any data items
                 if (items?.Count > 0)
@@ -148,7 +153,8 @@ namespace Monahrq.Sdk.Logging
                         ? Priority.Low
                         : Priority.None;
 
-            OnLog(message, category, priority);
+            if (!string.IsNullOrWhiteSpace(message))
+                OnLog(message, category, priority);
         }
 
         #region Exception Parsing
