@@ -112,6 +112,8 @@ namespace Monahrq.Infrastructure.BaseDataLoader.Loaders
         { }
 
         private ISession session;
+        private int updates;
+        private int additions;
 
         /// <summary>
         /// Pres the load data.
@@ -132,6 +134,8 @@ namespace Monahrq.Infrastructure.BaseDataLoader.Loaders
             {
                 Registry.HospitalCategories.Add(hospCat);
             }
+            this.updates = 0;
+            this.additions = 0;
         }
 
         /// <summary>
@@ -170,12 +174,16 @@ namespace Monahrq.Infrastructure.BaseDataLoader.Loaders
                 .FirstOrDefault();
             if (hosp == null)
             {
-                // insert new record using bulk insert logic
-                hosp = new Hospital(Registry);
+                // create new record for insert
+                hosp = new Hospital();
+                Registry.Hospitals.Add(hosp);
+                this.additions++;
             }
             else if (!hosp.IsSourcedFromBaseData)
                 // match was entered by hand; don't do anything
                 return null;
+            else
+                this.updates++;
             
             // overwrite everything with new data
             this.PopulateHospitalFromDataRow(hosp, dr);
@@ -188,19 +196,11 @@ namespace Monahrq.Infrastructure.BaseDataLoader.Loaders
             var hospCat = HospitalCategories.FirstOrDefault(x => x.CategoryID == hospCatId);
             if (hospCat != null && !hosp.Categories.Contains(hospCat))
                 hosp.Categories.Add(hospCat);
-            
-            // update if this is an existing hospital
-            if (hosp.Id > 0)
-            {
-                this.session.SaveOrUpdate(hosp);
-                return null;
-            }
-            else
-                // add new hospital to registry
-                Registry.Hospitals.Add(hosp);
 
-            // this is a new hospital
-            return hosp;
+            // update if this is an existing hospital
+            this.session.SaveOrUpdate(hosp);
+           
+            return null; 
         }
 
         private void MapHrrAndHsa(Hospital hosp)
