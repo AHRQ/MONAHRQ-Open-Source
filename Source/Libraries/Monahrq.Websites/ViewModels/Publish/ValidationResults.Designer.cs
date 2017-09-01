@@ -430,6 +430,15 @@ namespace Monahrq.Websites.ViewModels.Publish {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to kdjfijeijf.
+        /// </summary>
+        internal static string String1sdfsdf {
+            get {
+                return ResourceManager.GetString("String1sdfsdf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Success.
         /// </summary>
         internal static string Success {

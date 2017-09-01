@@ -863,7 +863,7 @@ namespace Monahrq.Websites.ViewModels
                     PublishProgress = 50;
                 }
               
-                if (DependencyCheckResults.Any())
+                if (DependencyCheckResults.Count() == 0)
                 {
                     ResultsVisibility = Visibility.Hidden;
                     ShowRunCheckSuccessMessage = Visibility.Visible;
@@ -873,8 +873,12 @@ namespace Monahrq.Websites.ViewModels
             catch (Exception exception)
             {
                 if (!IsExiting)
-                    Logger.Write(exception, "Error running website dependency checks for \"{0}\"", ManageViewModel.WebsiteViewModel.DisplayName);
+                {
+                    Logger.Write(exception.GetBaseException());
+                    EventAggregator.GetEvent<ErrorNotificationEvent>().Publish(exception.GetBaseException());
+                }
             }
+
             finally
             {
                 SetToCompletedDependencyCheckMode();
