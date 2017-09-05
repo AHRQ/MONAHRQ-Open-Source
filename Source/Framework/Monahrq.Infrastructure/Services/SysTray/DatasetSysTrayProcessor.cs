@@ -101,8 +101,7 @@ namespace Monahrq.Infrastructure.Services.SysTray
             {
                 var variableStrings = string.Format("{0}|{1}|{2}", objParams.Dataset.Id, connectionString, logFilePath);
 
-                logger.Write(null, TraceEventType.Error,
-                    "Grouper SysTray App Command Line Varables: {0}", variableStrings);
+                logger.Debug("Grouper SysTray App Command Line Varables: {0}", variableStrings);
 
                 //await Task.Run(() =>
                 //{
