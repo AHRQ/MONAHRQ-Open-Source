@@ -18,7 +18,6 @@
                 <ResourceDictionary Source="/Monahrq.Theme;component/Styles/Monahrq.Buttons.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <converters:ValidationLevelImageConverter x:Key="validationImageConverter" />
-            <converters:ValidationOutcomeMessageConverter x:Key="validationOutcomeMessageConverter" />
             <themeConverters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         </ResourceDictionary>
     </UserControl.Resources>
@@ -184,7 +183,7 @@
                                     <TextBlock>
                                         <Hyperlink Command="{Binding DataContext.NavigateToFixTab , RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type DataGrid}}}"
                                                    CommandParameter="{Binding}">
-                                             <TextBlock Text="{Binding Result, Converter={StaticResource validationOutcomeMessageConverter}}" />
+                                             <TextBlock Text="{Binding HelpText}" />
                                         </Hyperlink>
                                     </TextBlock>
                                 </DataTemplate>

@@ -162,6 +162,13 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="CostQualityReportGenerator.cs" />
+    <Compile Include="DependencyChecks\Messages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Messages.resx</DependentUpon>
+    </Compile>
+    <Compile Include="DependencyChecks\PQI13.cs" />
+    <Compile Include="DependencyChecks\RetiredIndicators.cs" />
     <Compile Include="GenericInfographicTopicsReportGenerator.cs" />
     <Compile Include="Model\FileProgress.cs" />
     <Compile Include="Provider\ImportProcessor.cs" />
@@ -279,6 +286,10 @@
     <Content Include="Resources\Database\HospitalCompare\UDF-fnQualitySelectedMeasureTitle.sql">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="DependencyChecks\Messages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

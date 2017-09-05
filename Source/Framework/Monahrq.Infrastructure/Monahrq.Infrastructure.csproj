@@ -357,10 +357,14 @@
     <Compile Include="Domain\WebsiteContentManagment\Maps\WebsitePageMap.cs" />
     <Compile Include="Domain\WebsiteContentManagment\WebsitePageZone.cs" />
     <Compile Include="Domain\WebsiteContentManagment\WebsitePage.cs" />
+    <Compile Include="Domain\Websites\IWebsiteDependencyCheck.cs" />
     <Compile Include="Domain\Websites\Maps\MenuMap.cs" />
     <Compile Include="Domain\Websites\Menu.cs" />
+    <Compile Include="Domain\Websites\ValidationLevel.cs" />
+    <Compile Include="Domain\Websites\ValidationResultViewModel.cs" />
     <Compile Include="Domain\Websites\WebsiteConfiguration.cs" />
     <Compile Include="Domain\Websites\WebsiteExport.cs" />
+    <Compile Include="Domain\Websites\WebsiteTabViewModels.cs" />
     <Compile Include="Domain\Wings\ITargetDeletionVisitor.cs" />
     <Compile Include="Domain\Wings\ScopeValue.cs" />
     <Compile Include="Domain\Wings\TargetDeletionVisitor.cs" />

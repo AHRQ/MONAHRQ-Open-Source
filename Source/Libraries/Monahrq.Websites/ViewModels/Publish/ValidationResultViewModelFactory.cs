@@ -1,133 +1,10 @@
-﻿using System;
-using System.ComponentModel;
-using System.Windows.Controls;
+using System;
+using Monahrq.Infrastructure.Domain.Websites;
+using Monahrq.Infrastructure.Extensions;
 using Monahrq.Websites.Events;
-using NHibernate.Cache.Entry;
 
 namespace Monahrq.Websites.ViewModels.Publish
 {
-    public enum ValidationLevel
-    {
-        Success,
-        Warning,
-        Error
-    }
-
-    public enum ValidationOutcome
-    {
-        [Description("Warning 1026")]
-        AboutUsContent,
-        [Description("Warning 1022")]
-        CmsProviderIdUnmapped,
-        [Description("Warning 1009")]
-        CostToChargeUndefined,
-        [Description("Error 1027")]
-        DatasetsMissing,
-        [Description("Warning 1000")]
-        HospitalsMissingRegions,
-        [Description("Error 1030")]
-        MeasuresMissing,
-        [Description("")]
-        NameMissing,
-        [Description("Error 1025")]
-        OutputFolder,
-        [Description("Error 1032")]
-        ReportsMissing,
-        [Description("")]
-        StaleBaseData,
-        [Description("Error 1024")]
-        StateNotSelected,
-        [Description("")]
-        Success,
-        [Description("Warning 1034")]
-        DataYearMismatchForDataSetFile,
-        [Description("Warning 1033")]
-        DataYearMismatchForTrendingDataSetFile,
-        [Description("Warning 1001")]
-        CheckDatasetMappingForCounty,
-        [Description("Error 1002")]
-        EmergencyDepartmentTreatAndReleaseReportEDServices,
-        [Description("Error 1028")]
-        EmergencyDepartmentTreatAndReleaseReportIPDataSet,
-        [Description("Warning 1029")]
-        NoMeasuresForTheDataSet,
-        [Description("Warning 1006")]
-        CustomRegionMissingPopulationCount,
-        [Description("Warning 1049")]
-        CustomRegionOrCustomPopulationNotDefined,
-        [Description("Warning 1042")]
-        CustomRegionAndIPCustomRegionNotMatched, // Need to add new Error for this.
-        [Description("Warning 1049")]
-        MissingCustomRegionAndPopulationMapping,
-        [Description("Warning 1007")]
-        MissgingCustomRegion,
-        [Description("Warning 1008")]
-        PopulationMissingRegions,
-        [Description("Warning 1043")]
-        CustomRegionNotDefined,
-        [Description("Warning 1023")]
-        AhrqQiDbConnection,
-        [Description("Warning 1035")]
-        MissingMedicareDataset,
-        [Description("Warning 1022")]
-        QIUnMappedHospitalLocalId,
-        [Description("Warning 1022")]
-        UnMappedHospitalLocalId,
-        [Description("Warning 1022")]
-        UnMappedHospitalProfileLocalId,
-        [Description("Warning 1035")]
-        HospitalProfileMissingMedicareDataset,
-        [Description("Warning 1035")]
-        HospitalProfileMissingIPDataset,
-        [Description("Warning 1003")]
-        CostQualityIpFileNotImported,
-        [Description("Warning 1004")]
-        CostQualityQiFileNotImported,
-        [Description("Warning 1031")]
-        MeasuresDoNotSupportCost,
-        [Description("Warning 1022")]
-        HospitalProfileMissingLocalHospIdOrProviderId,
-        [Description("Warning 1036")]
-        CustomHeatMap,
-        [Description("Warning 1024")]
-        UnMappdedHospitals,
-        [Description("Warning 1040")]
-        InvalidCountyFips,
-        [Description("Warning 1041")]
-        InvalidRegionId,
-        [Description("Warning 1042")]
-        MissingDischargeQuarter,
-        [Description("Error 1040")]
-        TrendingQuarters,
-        [Description("Warning 1045")]
-        CostQualityQiDbConnection,
-        [Description("Warning 1046")]
-        CostQualityAllFamilySelected,
-        [Description("Warning 1044")]
-        InValidHedisDataset,
-        [Description("Warning 1047")]
-		MissingPhysicianReport,
-		[Description("Warning 1048")]
-		RealtimePhysicianDataCannotHaveSubReports,
-        [Description("Warning 1050")] //todo: add help topic
-        ObsoleteQualityIndicators
-
-    }
-
-    [PropertyChanged.ImplementPropertyChanged]
-    public class ValidationResultViewModel : IValidationResultViewModel
-    {
-        public ValidationResultViewModel(ValidationOutcome outcome)
-        {
-            Result = outcome;
-        }
-
-        public ValidationLevel Quality { get; set; }
-        public ValidationOutcome Result { get; set; }
-        public string Message { get; set; }
-        public WebsiteTabViewModels CompositionArea { get; set; }
-    }
-
     public class ValidationResultViewModelFactory
     {
         WebsiteViewModel SourceViewModel { get; set; }
@@ -138,22 +15,35 @@ namespace Monahrq.Websites.ViewModels.Publish
 
         }
 
-        public IValidationResultViewModel BuildResult(ValidationOutcome outcome, string reportingYear = "", string reportName = "", string datasetName = "")
+        public ValidationResultViewModel BuildResult(ValidationOutcome outcome, string reportingYear = "", string reportName = "", string datasetName = "")
         {
-            var result = new ValidationResultViewModel(outcome)
-            {
-                Quality = OutcomeQuality(outcome)
-            };
-            if (result.Quality == ValidationLevel.Success) return result;
-            var temp = OutcomeMesssage(outcome);
+            var result = new ValidationResultViewModel();
 
+            result.Quality = OutcomeQuality(outcome);
+
+            result.HelpTopic = outcome.GetDescription();
+            if (string.IsNullOrEmpty(result.HelpTopic))
+            {
+                result.HelpTopic = "DEPENDENCY CHECK";
+                result.HelpText = "Click here for more information";
+            }
+            else if (result.HelpTopic.ContainsIgnoreCase("Warning") || result.HelpTopic.ContainsIgnoreCase("Error"))
+            {
+                result.HelpTopic = result.HelpTopic.Replace("Warning ", null).Replace("Error ", null);
+                result.HelpText = "Click here for more information";
+            }
+
+            if (result.Quality == ValidationLevel.Success)
+                return result;
+
+            var temp = OutcomeMesssage(outcome);
             switch (outcome)
             {
                 case ValidationOutcome.StaleBaseData:
                     temp = string.Format(temp, SourceViewModel.Website.ReportedYear, reportingYear, reportName);
                     break;
                 case ValidationOutcome.CostToChargeUndefined:
-				case ValidationOutcome.RealtimePhysicianDataCannotHaveSubReports:
+                case ValidationOutcome.RealtimePhysicianDataCannotHaveSubReports:
                     temp = string.Format(temp, reportName);
                     break;
                 case ValidationOutcome.CmsProviderIdUnmapped:
@@ -169,11 +59,9 @@ namespace Monahrq.Websites.ViewModels.Publish
                 case ValidationOutcome.UnMappedHospitalProfileLocalId:
                     temp = string.Format(temp, datasetName);
                     break;
-
-
             }
-
             result.Message = temp;
+
             result.CompositionArea = OutcomeArea(outcome);
             return result;
         }
@@ -273,9 +161,6 @@ namespace Monahrq.Websites.ViewModels.Publish
                     return ValidationResults.MissingPhysicianReport;
                 case ValidationOutcome.RealtimePhysicianDataCannotHaveSubReports:
                     return ValidationResults.RealtimePhysicianDataCannotHaveSubReports;
-                case ValidationOutcome.ObsoleteQualityIndicators:
-                    return ValidationResults.ObsoleteQualityIndicators;
-
             }
             return ValidationResults.Success;
         }
@@ -319,8 +204,9 @@ namespace Monahrq.Websites.ViewModels.Publish
                 case ValidationOutcome.CostQualityAllFamilySelected:
                 case ValidationOutcome.InValidHedisDataset:
                 case ValidationOutcome.MissingPhysicianReport:
-				case ValidationOutcome.RealtimePhysicianDataCannotHaveSubReports:
+                case ValidationOutcome.RealtimePhysicianDataCannotHaveSubReports:
                 case ValidationOutcome.ObsoleteQualityIndicators:
+                case ValidationOutcome.Pqi13HasNoData:
                     return ValidationLevel.Warning;
                 case ValidationOutcome.DatasetsMissing:
                 case ValidationOutcome.MeasuresMissing:
@@ -368,6 +254,7 @@ namespace Monahrq.Websites.ViewModels.Publish
                 case ValidationOutcome.NoMeasuresForTheDataSet:
                 case ValidationOutcome.CostQualityAllFamilySelected:
                 case ValidationOutcome.ObsoleteQualityIndicators:
+                case ValidationOutcome.Pqi13HasNoData:
                     return WebsiteTabViewModels.Measures;
                 case ValidationOutcome.NameMissing:
                     return WebsiteTabViewModels.Details;
@@ -394,8 +281,8 @@ namespace Monahrq.Websites.ViewModels.Publish
                 case ValidationOutcome.MissingDischargeQuarter:
                 case ValidationOutcome.InValidHedisDataset:
                 case ValidationOutcome.MissingPhysicianReport:
-				case ValidationOutcome.RealtimePhysicianDataCannotHaveSubReports:
-					return WebsiteTabViewModels.Datasets;
+                case ValidationOutcome.RealtimePhysicianDataCannotHaveSubReports:
+                    return WebsiteTabViewModels.Datasets;
                 default:
                     return WebsiteTabViewModels.Manage;
 
@@ -404,5 +291,4 @@ namespace Monahrq.Websites.ViewModels.Publish
         }
 
     }
-
 }
