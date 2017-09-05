@@ -2493,6 +2493,7 @@ End Sub
 		<row><td>hsageo_wy.js</td><td>RegionGeoBoundariesHSA</td><td>HSAGEO~1.JS|hsaGeo_wy.js</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESOURCES_FILES&gt;\Templates\Data\RegionGeoBoundaries\HSA\hsaGeo_wy.js</td><td>1</td><td/></row>
 		<row><td>iesi.collections.dll</td><td>Iesi.Collections.dll</td><td>IESICO~1.DLL|Iesi.Collections.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RELEASE_FILES&gt;\Iesi.Collections.dll</td><td>1</td><td/></row>
 		<row><td>infographics.png</td><td>ReportDefinitions</td><td>INFOGR~1.PNG|Infographics.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RELEASE_FILES&gt;\Domain\Reports\Data\Infographics.png</td><td>1</td><td/></row>
+		<row><td>interop.mshtml.dll</td><td>Smith.WPF.HtmlEditor.dll</td><td>INTERO~1.DLL|Interop.MSHTML.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RELEASE_FILES&gt;\Interop.MSHTML.dll</td><td>1</td><td/></row>
 		<row><td>ip_util_detailedreport_strat</td><td>ReportDefinitions2</td><td>IP_UTI~1.PNG|IP_Util_DetailedReport_StratReport.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RELEASE_FILES&gt;\Domain\Reports\Data\IP_Util_DetailedReport_StratReport.png</td><td>1</td><td/></row>
 		<row><td>ip_util_trending_report.png</td><td>ReportDefinitions2</td><td>IP_UTI~1.PNG|IP_Util_Trending_Report.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RELEASE_FILES&gt;\Domain\Reports\Data\IP_Util_Trending_Report.png</td><td>1</td><td/></row>
 		<row><td>ipgenerator.exe</td><td>IPGenerator.exe</td><td>IPGENE~1.EXE|IPGenerator.exe</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_GENERATOR_FILES&gt;\IPGenerator\IPGenerator.exe</td><td>1</td><td/></row>
@@ -3283,7 +3284,7 @@ End Sub
 		<col def="S255">DotNetBuildConfiguration</col>
 		<col def="S255">MsiCommandLine</col>
 		<col def="I4">ISSetupPrerequisiteLocation</col>
-		<row><td>SINGLE_EXE_IMAGE</td><td>PROJECT_ASSISTANT</td><td>D:\TeamCity\work\f1f96022382cbc1b\Installer</td><td>PackageName</td><td>1</td><td>1033</td><td>2</td><td>1</td><td>Intel</td><td/><td>1033</td><td>0</td><td>0</td><td>0</td><td>0</td><td/><td>0</td><td/><td>MediaLocation</td><td/><td>http://</td><td/><td/><td/><td/><td>8497165</td><td/><td/><td/><td>1</td></row>
+		<row><td>SINGLE_EXE_IMAGE</td><td>PROJECT_ASSISTANT</td><td>D:\TeamCity\work2\b96ea540764ef116\Installer</td><td>PackageName</td><td>1</td><td>1033</td><td>2</td><td>1</td><td>Intel</td><td/><td>1033</td><td>0</td><td>0</td><td>0</td><td>0</td><td/><td>0</td><td/><td>MediaLocation</td><td/><td>http://</td><td/><td/><td/><td/><td>8497165</td><td/><td/><td/><td>1</td></row>
 	</table>
 
 	<table name="ISReleaseASPublishInfo">
