@@ -20,7 +20,6 @@
     "jquery-ui": "1.11.4",
     "ui-autocomplete": "0.6.1",
     "oclazyload": "1.0.9",
-    "angular-sticky": "*",
     "xhr-xdr-adapter": "*",
     "angular-spinner": "0.8.0",
     "angular-placeholder-shim": "0.3.1",
