@@ -1,4 +1,4 @@
-<div data-ng-if="showTable()" data-ng-switch="getReportType()" class="utilization-table col-xs-9">
+﻿<div data-ng-if="showTable()" data-ng-switch="getReportType()" class="utilization-table col-xs-9">
 
   <div data-ng-switch-when="default">
     <div class="report-header" data-ng-bind-html="reportSettings.header"></div>
@@ -52,7 +52,7 @@
             <td data-ng-repeat="c in columns" data-ng-switch on="c.name">
           <span data-ng-switch-when="ViewBy">
             <strong data-ng-if="query.groupBy.reportType == 'ed'">TOTAL U.S. in 2011</strong>
-            <strong data-ng-if="query.groupBy.reportType != 'ed'">TOTAL U.S. in {{reportingYear}}</strong>
+            <strong data-ng-if="query.groupBy.reportType != 'ed'">TOTAL U.S. in 2014</strong>
             <br />
           </span>
               <span data-ng-switch-default>{{getCell(c.name, nationalData)}}</span>
