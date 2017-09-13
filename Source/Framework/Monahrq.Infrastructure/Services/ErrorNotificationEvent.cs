@@ -6,6 +6,7 @@ namespace Monahrq.Infrastructure.Services
     /// <summary>
     /// The custom error notification event.
     /// </summary>
-    /// <seealso cref="Microsoft.Practices.Prism.Events.CompositePresentationEvent{System.Exception}" />
+    /// <seealso cref="CompositePresentationEvent{Exception}" />
+    [Obsolete("Use better exception handling or modify this event to contain some useful contextual information")]
     public class ErrorNotificationEvent : CompositePresentationEvent<Exception> { }
 }

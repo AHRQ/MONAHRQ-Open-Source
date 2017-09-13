@@ -154,7 +154,7 @@ namespace Monahrq.Infrastructure.Validation
            // Trace.WriteLine(message3);
 
             //if(logger != null)
-            //    logger.Log(message, Category.Debug, Priority.High);
+            //    logger.Write(message, Category.Debug, Priority.High);
         }
 
         private void BuildPropertyResults(object entity, IList<ValidationError> list, Dictionary<PropertyDescriptor, List<ValidationAttribute>> validationSet)

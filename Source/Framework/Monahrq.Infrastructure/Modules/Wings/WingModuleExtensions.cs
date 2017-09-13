@@ -103,22 +103,8 @@ namespace Monahrq.Sdk.Modules.Wings
             {
                 using (var trans = sess.BeginTransaction())
                 {
-                    try
-                    {
-                         sess.Update(element);
-
-                         trans.Commit();
-                    }
-                    catch (Exception ex)
-                    {
-                        var excToUse = ex.InnerException ?? ex;
-                        var logger = ServiceLocator.Current.GetInstance<ILoggerFacade>(LogNames.Session);
-                        if (logger != null)
-                        {
-                            logger.Log(excToUse.Message, Category.Exception, Priority.High);
-                        }
-                        throw;
-                    }
+                    sess.Update(element);
+                    trans.Commit();
                 }
             }
         }

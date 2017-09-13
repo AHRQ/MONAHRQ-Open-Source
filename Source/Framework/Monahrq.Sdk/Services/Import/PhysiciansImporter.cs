@@ -577,7 +577,7 @@ namespace Monahrq.Sdk.Services.Import
                 }
                 catch (WebException exc)
                 {
-                    throw new DataSetImportException("Internet connection lost or not able to connect. " + exc.GetBaseException().Message);
+                    throw new DataSetImportException("Internet connection lost or not able to connect. " + exc.GetBaseException().Message, exc);
                 }
                 
 
@@ -1511,7 +1511,7 @@ namespace Monahrq.Sdk.Services.Import
                     catch (WebException exc)
                     {
                         throw new DataSetImportException("Internet connection lost or not able to connect. " +
-                                                         exc.GetBaseException().Message);
+                                                         exc.GetBaseException().Message, exc);
                     }
 
                     if (TotalPhysicians <= 0)

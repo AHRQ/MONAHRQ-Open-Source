@@ -708,7 +708,7 @@ namespace Monahrq.Wing.Dynamic.ViewModels
 
                     GuardError(member, msg, current, RecordState.ExcludedByCrosswalk, session);
                     //TODO: Output messages to screen, other log file per import, someplace besited the main session.log
-                    //this.DataContextObject.Logger.Log(string.Format(VALIDATION_LOG_MESSAGE, DataContextObject.SelectedDataType.DataTypeName, DataContextObject.Title, "Class Error", msg), Category.Info, Priority.High);
+                    //this.DataContextObject.Logger.Write(string.Format(VALIDATION_LOG_MESSAGE, DataContextObject.SelectedDataType.DataTypeName, DataContextObject.Title, "Class Error", msg), Category.Info, Priority.High);
                 }
             }
 
@@ -727,7 +727,7 @@ namespace Monahrq.Wing.Dynamic.ViewModels
                         current, RecordState.ValidationError, session);
                     }
                     //TODO: Output messages to screen, other log file per import, someplace besited the main session.log
-                    //this.DataContextObject.Logger.Log(string.Format(VALIDATION_LOG_MESSAGE, DataContextObject.SelectedDataType.DataTypeName, DataContextObject.Title, "Error", err.Message), Category.Info, Priority.High);
+                    //this.DataContextObject.Logger.Write(string.Format(VALIDATION_LOG_MESSAGE, DataContextObject.SelectedDataType.DataTypeName, DataContextObject.Title, "Error", err.Message), Category.Info, Priority.High);
                 }
             }
 
@@ -744,7 +744,7 @@ namespace Monahrq.Wing.Dynamic.ViewModels
                             current, RecordState.Warning, session);
                     }
                     //TODO: Output messages to screen, other log file per import, someplace besited the main session.log
-                    //this.DataContextObject.Logger.Log(string.Format(VALIDATION_LOG_MESSAGE, DataContextObject.SelectedDataType.DataTypeName, DataContextObject.Title, "Warning", err.Message), Category.Info, Priority.High);
+                    //this.DataContextObject.Logger.Write(string.Format(VALIDATION_LOG_MESSAGE, DataContextObject.SelectedDataType.DataTypeName, DataContextObject.Title, "Warning", err.Message), Category.Info, Priority.High);
                 }
             }
 

@@ -53,92 +53,107 @@ namespace Monahrq.Infrastructure.BaseDataLoader.Loaders
                     var files = Directory.GetFiles(baseDataDir, "MeasureTopics*.csv");
                     foreach (var file in files)
                     {
-                        VersionStrategy.Filename = file;
-                        // Appending measures to the topics tables, not replacing with the newest file.
-                        if (!VersionStrategy.IsLoaded())
+                        try
                         {
-                            // Verify data file exists.
-                            if (!File.Exists(Path.Combine(baseDataDir, file)))
+                            VersionStrategy.Filename = file;
+                            // Appending measures to the topics tables, not replacing with the newest file.
+                            if (!VersionStrategy.IsLoaded())
                             {
-                                Logger.Log(string.Format("Import file \"{0}\" missing from the base data resources directory.", file), Category.Warn, Priority.Medium);
-                                return;
-                            }
-
-                            using (var session = DataProvider.SessionFactory.OpenSession())
-                            {
-                                using (var trans = session.BeginTransaction())
+                                // Verify data file exists.
+                                if (!File.Exists(Path.Combine(baseDataDir, file)))
                                 {
-                                    var builder = new OleDbConnectionStringBuilder()
+                                    Logger.Warning(
+                                        "Import file \"{0}\" missing from the base data resources directory.",
+                                        file);
+                                    return;
+                                }
+
+                                using (var session = DataProvider.SessionFactory.OpenSession())
+                                {
+                                    using (var trans = session.BeginTransaction())
                                     {
-                                        Provider = "Microsoft.ACE.OLEDB.12.0",
-                                        DataSource = baseDataDir,
-                                    };
-
-                                    builder["Extended Properties"] = "text;HDR=YES;FMT=Delimited";
-
-                                    using (var conn = new OleDbConnection(builder.ConnectionString))
-                                    {
-                                        conn.Open();
-                                        var sql = string.Format("SELECT * FROM [{0}]", Path.GetFileName(file));
-
-                                        using (var cmd = new OleDbCommand(sql, conn))
+                                        var builder = new OleDbConnectionStringBuilder()
                                         {
-                                            // NOTE: Not using the bulk importer here because we have two types of data being imported at the same time.
-                                            var reader = cmd.ExecuteReader();
-                                            while (reader != null && reader.Read())
+                                            Provider = "Microsoft.ACE.OLEDB.12.0",
+                                            DataSource = baseDataDir,
+                                        };
+
+                                        builder["Extended Properties"] = "text;HDR=YES;FMT=Delimited";
+
+                                        using (var conn = new OleDbConnection(builder.ConnectionString))
+                                        {
+                                            conn.Open();
+                                            var sql = string.Format("SELECT * FROM [{0}]", Path.GetFileName(file));
+
+                                            using (var cmd = new OleDbCommand(sql, conn))
                                             {
-                                                var parentName = reader.Guard<string>("ParentName") ?? "";
-                                                var name = reader.Guard<string>("Name") ?? "";
-                                                var longTitle = reader.Guard<string>("Longtitle") ?? "";
-                                                var description = reader.Guard<string>("description") ?? "";
-                                                var consumerLongTitle = reader.Guard<string>("ConsumerLongTitle") ?? "";
-                                                var consumerDescription = reader.Guard<string>("ConsumerDescription") ?? "";
-                                                var categoryType = reader.Guard<string>("CategoryType");
-
-												var topicFacts1Text = reader.Guard<string>("TopicFact1Text") ?? "";
-												var topicFacts1Citation = reader.Guard<string>("TopicFact1Citation") ?? "";
-												var topicFacts1Image = reader.Guard<string>("TopicFact1Image") ?? "";
-												var topicFacts2Text = reader.Guard<string>("TopicFact2Text") ?? "";
-												var topicFacts2Citation = reader.Guard<string>("TopicFact2Citation") ?? "";
-												var topicFacts2Image = reader.Guard<string>("TopicFact2Image") ?? "";
-												var topicFacts3Text = reader.Guard<string>("TopicFact3Text") ?? "";
-												var topicFacts3Citation = reader.Guard<string>("TopicFact3Citation") ?? "";
-												var topicFacts3Image = reader.Guard<string>("TopicFact3Image") ?? "";
-
-												var tipsChecklist = reader.Guard<string>("TipsChecklist") ?? "";
-												var topicIcon = reader.Guard<string>("TopicIcon") ?? "";
-
-
-                                                if (!parentName.Equals("SKIP_ROW"))
+                                                // NOTE: Not using the bulk importer here because we have two types of data being imported at the same time.
+                                                var reader = cmd.ExecuteReader();
+                                                while (reader != null && reader.Read())
                                                 {
-                                                    AddOrUpdateToDB(
-														session, parentName, name, longTitle, description, consumerLongTitle, consumerDescription, categoryType,
-														topicFacts1Text,	topicFacts1Citation,	topicFacts1Image,
-														topicFacts2Text,	topicFacts2Citation,	topicFacts2Image,
-														topicFacts3Text,	topicFacts3Citation,	topicFacts3Image,
-														tipsChecklist,topicIcon);
+                                                    var parentName = reader.Guard<string>("ParentName") ?? "";
+                                                    var name = reader.Guard<string>("Name") ?? "";
+                                                    var longTitle = reader.Guard<string>("Longtitle") ?? "";
+                                                    var description = reader.Guard<string>("description") ?? "";
+                                                    var consumerLongTitle = reader.Guard<string>("ConsumerLongTitle") ??
+                                                                            "";
+                                                    var consumerDescription =
+                                                        reader.Guard<string>("ConsumerDescription") ?? "";
+                                                    var categoryType = reader.Guard<string>("CategoryType");
+
+                                                    var topicFacts1Text = reader.Guard<string>("TopicFact1Text") ?? "";
+                                                    var topicFacts1Citation =
+                                                        reader.Guard<string>("TopicFact1Citation") ?? "";
+                                                    var topicFacts1Image = reader.Guard<string>("TopicFact1Image") ?? "";
+                                                    var topicFacts2Text = reader.Guard<string>("TopicFact2Text") ?? "";
+                                                    var topicFacts2Citation =
+                                                        reader.Guard<string>("TopicFact2Citation") ?? "";
+                                                    var topicFacts2Image = reader.Guard<string>("TopicFact2Image") ?? "";
+                                                    var topicFacts3Text = reader.Guard<string>("TopicFact3Text") ?? "";
+                                                    var topicFacts3Citation =
+                                                        reader.Guard<string>("TopicFact3Citation") ?? "";
+                                                    var topicFacts3Image = reader.Guard<string>("TopicFact3Image") ?? "";
+
+                                                    var tipsChecklist = reader.Guard<string>("TipsChecklist") ?? "";
+                                                    var topicIcon = reader.Guard<string>("TopicIcon") ?? "";
+
+
+                                                    if (!parentName.Equals("SKIP_ROW"))
+                                                    {
+                                                        AddOrUpdateToDB(
+                                                            session, parentName, name, longTitle, description,
+                                                            consumerLongTitle, consumerDescription, categoryType,
+                                                            topicFacts1Text, topicFacts1Citation, topicFacts1Image,
+                                                            topicFacts2Text, topicFacts2Citation, topicFacts2Image,
+                                                            topicFacts3Text, topicFacts3Citation, topicFacts3Image,
+                                                            tipsChecklist, topicIcon);
+                                                    }
                                                 }
                                             }
                                         }
+                                        trans.Commit();
                                     }
-                                    trans.Commit();
+                                }
+
+                                using (var session = DataProvider.SessionFactory.OpenSession())
+                                {
+                                    var version = VersionStrategy.GetVersion(session);
+
+                                    session.SaveOrUpdate(version);
+                                    session.Flush();
                                 }
                             }
-
-                            using (var session = DataProvider.SessionFactory.OpenSession())
-                            {
-                                var version = VersionStrategy.GetVersion(session);
-
-                                session.SaveOrUpdate(version);
-                                session.Flush();
-                            }
+                        }
+                        catch (Exception e)
+                        {
+                            Logger.Write(e, "Error loading measure topic data from file {0}", file);
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                Logger.Log(ex.ToString(), Category.Warn, Priority.Medium);
+                Logger.Write(ex, "Error loading measure topics data");
             }
         }
 
@@ -213,7 +228,7 @@ namespace Monahrq.Infrastructure.BaseDataLoader.Loaders
             }
             catch (Exception ex)
             {
-                Logger.Log(ex.ToString(), Category.Warn, Priority.Medium);
+                Logger.Write(ex, "Error inserting or updating database record for measure topic");
             }
         }
     }

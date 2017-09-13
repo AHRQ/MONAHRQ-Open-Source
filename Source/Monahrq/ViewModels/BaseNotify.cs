@@ -9,6 +9,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using Microsoft.Practices.Prism.Logging;
 using Microsoft.Practices.ServiceLocation;
+using Monahrq.Infrastructure;
 
 namespace Monahrq.ViewModels
 {
@@ -165,7 +166,7 @@ namespace Monahrq.ViewModels
         /// <returns></returns>
         public virtual string GetViewModelHashCode<T>(T model, Type modelType)
         {
-            var logger = ServiceLocator.Current.GetInstance<ILoggerFacade>();
+            var logger = ServiceLocator.Current.GetInstance<ILogWriter>();
 
             if (model == null) return null;
             try
@@ -182,8 +183,7 @@ namespace Monahrq.ViewModels
             }
             catch (Exception exc)
             {
-                if (logger != null)
-                    logger.Log(exc.GetBaseException().Message, Category.Exception, Priority.High);
+                logger?.Write(exc);
                 return null;
             }
         }

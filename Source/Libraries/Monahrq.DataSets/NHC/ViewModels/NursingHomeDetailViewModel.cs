@@ -355,7 +355,7 @@ namespace Monahrq.DataSets.NHC.ViewModels
                     else if (!opResult.Status && opResult.Exception != null)
                     {
                         errorOccurred = true;
-                        operationException = opResult.Exception.GetBaseException();
+                        operationException = opResult.Exception;
                     }
                     
                 }, new CancellationToken());
@@ -371,15 +371,15 @@ namespace Monahrq.DataSets.NHC.ViewModels
                     }
                     else
                     {
-                        Logger.Log(operationException.Message, Category.Exception, Priority.High);
+                        Logger.Write(operationException, "Error saving Nursing Home \"{0}\"", Model.Name);
                         NotifyError(operationException, typeof(NursingHome), Model.Name);
                     }
                 }
             }
             catch (Exception exc)
             {
-                Logger.Log((exc.GetBaseException()).Message, Category.Exception, Priority.High);
-                NotifyError(exc.GetBaseException(), typeof(NursingHome), Model.Name);
+                Logger.Write(exc, "Error saving Nursing Home \"{0}\"", Model.Name);
+                NotifyError(exc, typeof(NursingHome), Model.Name);
             }
         }
 

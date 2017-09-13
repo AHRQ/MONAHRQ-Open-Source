@@ -558,29 +558,29 @@ namespace Monahrq.Websites.ViewModels
             {
                 case WebsiteGenerationStatus.Error:
 					AddPublishEventToLogs(wpArg.Data);
-					Logger.Log(wpArg.Data.Message, Category.Exception, Priority.High);
+					Logger.Warning(wpArg.Data.Message);
                     break;
                 case WebsiteGenerationStatus.Complete:
 					AddPublishEventToLogs(wpArg.Data);
-					Logger.Log(wpArg.Data.Message, Category.Info, Priority.Low);
-
+                    Logger.Information(wpArg.Data.Message);
                     break;
                 default:
                     Application.Current.Dispatcher.Invoke(DispatcherPriority.Render,
-                                                                         new DispatcherOperationCallback(delegate
-                    {
+                        new DispatcherOperationCallback(delegate
+                        {
+                            AddPublishEventToLogs(wpArg.Data);
 
-                        AddPublishEventToLogs(wpArg.Data);
-                        
-                        // Application.Current.DoEventsUI();
-                        //	var itemToAdd = new Tuple<string, DateTime>(wpArg.Data.Message, wpArg.Data.EventTime);
-                        //	PublishLogs.Add(itemToAdd);
-                        //	LogDataGrid.ScrollIntoView(itemToAdd);
+                            // Application.Current.DoEventsUI();
+                            //	var itemToAdd = new Tuple<string, DateTime>(wpArg.Data.Message, wpArg.Data.EventTime);
+                            //	PublishLogs.Add(itemToAdd);
+                            //	LogDataGrid.ScrollIntoView(itemToAdd);
 
-                        Logger.Log(wpArg.Data.Message,
-                                    wpArg.Data.MessageType == PubishMessageTypeEnum.Warning ? Category.Warn : Category.Info, Priority.Low);
-                        return null;
-                    }), null);
+                            if (wpArg.Data.MessageType == PubishMessageTypeEnum.Warning)
+                                Logger.Warning(wpArg.Data.Message);
+                            else
+                                Logger.Information(wpArg.Data.Message);
+                            return null;
+                        }), null);
 
                     break;
             }
@@ -694,7 +694,7 @@ namespace Monahrq.Websites.ViewModels
 			//	var orderedLogs = PublishLogs.OrderBy(log => log.RegionSortText);
 			//	orderedLogs.ForEach(log =>
 			//	{
-			//		base.Logger.Log(
+			//		base.Logger.Write(
 			//			log.Message, 
 			//			log.MessageType == PubishMessageTypeEnum.Warning ? Category.Warn :
 			//			log.MessageType == PubishMessageTypeEnum.Error ? Category.Exception :
@@ -873,7 +873,7 @@ namespace Monahrq.Websites.ViewModels
             {
                 if (!IsExiting)
                 {
-                    Logger.Log(exception.GetBaseException().Message, Category.Exception, Priority.High);
+                    Logger.Write(exception.GetBaseException());
                     EventAggregator.GetEvent<ErrorNotificationEvent>().Publish(exception.GetBaseException());
                 }
             }
@@ -1732,9 +1732,8 @@ namespace Monahrq.Websites.ViewModels
 
         private void LogDependencyChecks(IEnumerable<IValidationResultViewModel> results)
         {
-            Logger.Log(string.Format("{0}{1} ------- {2} website Dependency Checks -------", Environment.NewLine, Environment.NewLine, CurrentWebsite.Name), Category.Info, Priority.None);
-
-            Task.Run(() => results.ToList().ForEach(x => Logger.Log(x.Message, Category.Info, Priority.None)));
+            Logger.Information("{0}{1} ------- {2} website Dependency Checks -------", Environment.NewLine, Environment.NewLine, CurrentWebsite.Name);
+            Task.Run(() => results.ToList().ForEach(x => Logger.Write(x.Message)));
         }
 
         #endregion

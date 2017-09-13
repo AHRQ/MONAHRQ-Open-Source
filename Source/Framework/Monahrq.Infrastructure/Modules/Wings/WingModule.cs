@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.Composition;
+using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -30,8 +31,8 @@ namespace Monahrq.Sdk.Modules.Wings
         /// <summary>
         /// Gets the session logger.
         /// </summary>
-        [Import(LogNames.Session, typeof(ILoggerFacade))]
-        protected ILoggerFacade SessionLogger
+        [Import(LogNames.Session, typeof(ILogWriter))]
+        protected ILogWriter Logger
         {
             get;
             private set;
@@ -56,17 +57,7 @@ namespace Monahrq.Sdk.Modules.Wings
             get;
             private set;
         }
-
-        /// <summary>
-        /// Gets the operations logger.
-        /// </summary>
-        [Import(LogNames.Operations, typeof(ILoggerFacade))]
-        protected ILoggerFacade OperationsLogger
-        {
-            get;
-            private set;
-        }
-
+        
         /// <summary>
         /// Gets or sets the ORM provider factory
         /// </summary>
@@ -124,7 +115,7 @@ namespace Monahrq.Sdk.Modules.Wings
             //Application.Current.DoEvents();
             if (_wingAttribute == null)
             {
-                OperationsLogger.Log(string.Format("{0} is not attributed as a wing module", this.GetType().Name), Category.Warn, Priority.High);
+                Logger.Warning("{0} is not attributed as a wing module", this.GetType().Name);
                 return;
             }
             try
@@ -133,8 +124,7 @@ namespace Monahrq.Sdk.Modules.Wings
             }
             catch (Exception ex)
             {
-                OperationsLogger.Log(string.Format("Reconciling Wing Module {0} failed. See next session log", _wingAttribute.ContractName), Category.Exception, Priority.High);
-                SessionLogger.Log(string.Format("An error occurred in {0} Module while reconciling. Error: {1}", _wingAttribute.ContractName, ex.Message), Category.Exception, Priority.High);
+                Logger.Write(ex, "An error occurred in {0} Module while reconciling. Error: {1}", _wingAttribute.ContractName, ex.Message);
             }
         }
 
@@ -221,26 +211,10 @@ namespace Monahrq.Sdk.Modules.Wings
             }
             catch (Exception exc)
             {
-                SessionLogger.Log(exc.Message, Category.Exception, Priority.High);
-                OperationsLogger.Log(exc.Message, Category.Exception, Priority.High);
+                Logger.Write(exc, "Error reconciling WingModule \"{0}\"", this.Description);
                 instalResult = false;
             }
-            finally
-            {
-                //todo: remove this mess
-                try
-                {
-                    instalResult = true;
-                }
-                catch (Exception exc)
-                {
-                    SessionLogger.Log(exc.Message, Category.Exception, Priority.High);
-                    OperationsLogger.Log(exc.Message, Category.Exception, Priority.High);
-                    instalResult = false;
-                }
-
-            }
-            return instalResult;
+            return true;
         }
 
         /// <summary>

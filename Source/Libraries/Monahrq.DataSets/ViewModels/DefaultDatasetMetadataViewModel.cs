@@ -193,7 +193,7 @@ namespace Monahrq.DataSets.ViewModels
                 }
                 else
                 {
-                    Logger.Write(exception, TraceEventType.Error);
+                    Logger.Write(exception);
                     Events.GetEvent<ErrorNotificationEvent>().Publish(exception);
                 }
             });

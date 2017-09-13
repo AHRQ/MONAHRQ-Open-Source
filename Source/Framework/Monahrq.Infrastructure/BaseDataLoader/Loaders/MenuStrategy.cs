@@ -35,30 +35,39 @@ namespace Monahrq.Infrastructure.BaseDataLoader.Loaders
                     var files = Directory.GetFiles(baseDataDir, "Menu*.sql");
                     foreach (var file in files)
                     {
-                        VersionStrategy.Filename = file;
-                        // Appending Menus
-                        if (!VersionStrategy.IsLoaded())
+                        try
                         {
-                            // Verify data file exists.
-                            if (!File.Exists(Path.Combine(baseDataDir, file)))
+                            VersionStrategy.Filename = file;
+                            // Appending Menus
+                            if (!VersionStrategy.IsLoaded())
                             {
-                                Logger.Log(string.Format("Import file \"{0}\" missing from the base data resources directory.", file), Category.Warn, Priority.Medium);
-                                return;
-                            }
+                                // Verify data file exists.
+                                if (!File.Exists(Path.Combine(baseDataDir, file)))
+                                {
+                                    Logger.Warning(
+                                        "Import file \"{0}\" missing from the base data resources directory.",
+                                        file);
+                                    return;
+                                }
 
-                            using (var session = DataProvider.SessionFactory.OpenSession())
-                            {
-                                session.CreateSQLQuery(ReadFileContent(Path.Combine(baseDataDir, file)))
-                                    .ExecuteUpdate();
-                                session.SaveOrUpdate(VersionStrategy.Version);
+                                using (var session = DataProvider.SessionFactory.OpenSession())
+                                {
+                                    session.CreateSQLQuery(ReadFileContent(Path.Combine(baseDataDir, file)))
+                                        .ExecuteUpdate();
+                                    session.SaveOrUpdate(VersionStrategy.Version);
+                                }
                             }
+                        }
+                        catch (Exception e)
+                        {
+                            Logger.Write(e, "Error loading menu data from file {0}", file);
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                Logger.Log(ex.ToString(), Category.Warn, Priority.Medium);
+                Logger.Write(ex, "Error loading menu data");
             }
         }
 

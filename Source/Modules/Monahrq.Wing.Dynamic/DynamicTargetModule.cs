@@ -178,8 +178,7 @@ namespace Monahrq.Wing.Dynamic
             }
             catch (Exception exc)
             {
-                SessionLogger.Log(exc.Message, Category.Exception, Priority.High);
-                OperationsLogger.Log(exc.Message, Category.Exception, Priority.High);
+                base.Logger.Write(exc, "Error reconciling dynamic module {0}", this.Description);
                 instalResult = false;
             }
 
@@ -346,10 +345,10 @@ namespace Monahrq.Wing.Dynamic
         //    var migrationImple = typeof(DataMigrationImpl);
         //    if (TestForContentType(target.DbSchemaName))
         //    {
-        //        OperationsLogger.Log(string.Format("Updating module data objects: {0}", target.Name), Category.Info, Priority.Medium);
+        //        OperationsLogger.Write(string.Format("Updating module data objects: {0}", target.Name), Category.Info, Priority.Medium);
         //        ExecuteContentExtensionMigrations(context);
         //    }
-        //    OperationsLogger.Log(string.Format("Create module data objects: {0}", target.Name), Category.Info, Priority.Medium);
+        //    OperationsLogger.Write(string.Format("Create module data objects: {0}", target.Name), Category.Info, Priority.Medium);
         //    var migrations = GetType().Assembly.ExportedTypes.Where(t => !t.IsAbstract && migrationImple.IsAssignableFrom(t)).ToList();
 
         //    foreach (var migration in migrations)

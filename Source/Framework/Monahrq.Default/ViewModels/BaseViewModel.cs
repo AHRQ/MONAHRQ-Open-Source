@@ -15,6 +15,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Monahrq.Infrastructure;
 using Monahrq.Infrastructure.Extensions;
+using Monahrq.Sdk.Logging;
 
 namespace Monahrq.Default.ViewModels
 {
@@ -76,6 +77,8 @@ namespace Monahrq.Default.ViewModels
             ViewImportSampleCommand = new DelegateCommand<string>(OnViewSample);
         }
 
+        private readonly Lazy<ILogWriter> logger = new Lazy<ILogWriter>(() => new SessionLogger(new CallbackLogger()));
+
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseViewModel"/> class.
         /// </summary>
@@ -129,6 +132,8 @@ namespace Monahrq.Default.ViewModels
         public DelegateCommand<object> CommitCommand { get; private set; }
 
         public DelegateCommand<string> ViewImportSampleCommand { get; set; }
+
+        protected ILogWriter Logger => this.logger.Value;
 
         /// <summary>
         ///     Internal list of errors

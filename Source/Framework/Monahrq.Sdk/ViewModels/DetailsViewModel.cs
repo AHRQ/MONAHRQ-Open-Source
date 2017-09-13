@@ -118,7 +118,7 @@ namespace Monahrq.Sdk.ViewModels
         /// The logger.
         /// </value>
         [Import(LogNames.Session)]
-        protected ILoggerFacade Logger { get; set; }
+        protected ILogWriter Logger { get; set; }
 
         /// <summary>
         /// Gets or sets the logger.
@@ -251,13 +251,9 @@ namespace Monahrq.Sdk.ViewModels
                     }
                     catch (Exception exc)
                     {
-                        var excToUse = exc.GetBaseException();
-                        Logger.Log(excToUse.Message, Category.Exception, Priority.High);
                         trans.Rollback();
-
-                        completeCallback(new OperationResult<TEntity> { Exception = excToUse, Status = false });
-
-                        NotifyError(excToUse, typeof(TEntity), model.Name);
+                        completeCallback(new OperationResult<TEntity> { Exception = exc.GetBaseException(), Status = false });
+                        NotifyError(exc, typeof(TEntity), model.Name, "Error saving data for entity of type {0}", typeof(TEntity).Name);
                         //throw;
                     }
                 }
@@ -293,15 +289,7 @@ namespace Monahrq.Sdk.ViewModels
                 }
             }
         }
-
-        /// <summary>
-        /// Called when [save].
-        /// </summary>
-        public virtual void OnSave()
-        {
-            this.OnSave(true);
-        }
-
+        
         /// <summary>
         /// Called when [save].
         /// </summary>
@@ -328,11 +316,8 @@ namespace Monahrq.Sdk.ViewModels
                     }
                     catch (Exception exc)
                     {
-                        Logger.Log((exc.InnerException ?? exc).Message, Category.Exception, Priority.High);
                         trans.Rollback();
-
-                        if (enableNotificantions)
-                            NotifyError(exc, typeof(TEntity), Model.Name);
+                        NotifyError(exc, typeof(TEntity), Model.Name);
 
                         //throw;
                     }
@@ -411,7 +396,7 @@ namespace Monahrq.Sdk.ViewModels
         /// </summary>
         protected virtual void InitCommands()
         {
-            SaveCommand = new DelegateCommand(OnSave, () => !_saveInitiated);
+            SaveCommand = new DelegateCommand(() => this.OnSave(), () => !_saveInitiated);
             CancelCommand = new DelegateCommand(OnCancel);
             DeleteCommand = new DelegateCommand(OnDelete);
             CreateNewCommand = new DelegateCommand(OnCreateNew);
@@ -484,7 +469,7 @@ namespace Monahrq.Sdk.ViewModels
             }
             catch (Exception exc)
             {
-                Logger.Log(exc.GetBaseException().Message, Category.Exception, Priority.High);
+                Logger.Write(exc, "Error computing hash code for model");
                 return null;
             }
             finally
@@ -587,7 +572,7 @@ namespace Monahrq.Sdk.ViewModels
         /// <param name="exc">The exc.</param>
         /// <param name="entityType">Type of the entity.</param>
         /// <param name="entityName">Name of the entity.</param>
-        protected void NotifyError(Exception exc, Type entityType, string entityName)
+        protected void NotifyError(Exception exc, Type entityType, string entityName, string message = null, params object[] args)
         {
             EventAggregator.GetEvent<ServiceErrorEvent>()
                            .Publish(new ServiceErrorEventArgs((exc.InnerException ?? exc), typeof(TEntity).Name, entityName));

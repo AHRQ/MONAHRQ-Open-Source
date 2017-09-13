@@ -26,6 +26,7 @@ using NHibernate;
 using NHibernate.Criterion;
 using NHibernate.Linq;
 using Microsoft.Practices.ServiceLocation;
+using Monahrq.Infrastructure;
 using Monahrq.Infrastructure.Configuration;
 
 namespace Monahrq.Sdk.Services.Import
@@ -62,7 +63,7 @@ namespace Monahrq.Sdk.Services.Import
                                 , IDomainSessionFactoryProvider provider
                                 , IHospitalRegistryService hospitalRegistryService
                                 , IEventAggregator events
-                                , ILoggerFacade logger)
+                                , [Import(LogNames.Session)] ILogWriter logger)
             : base(folder, provider, hospitalRegistryService, events, logger)
         {
 
@@ -718,7 +719,7 @@ namespace Monahrq.Sdk.Services.Import
             var message = string.Format("{2}Hospital \"{0}\" imported in {3} ms ({1} s).{2}", hospital.Name,
                                         TimeSpan.FromMilliseconds(stopWatch.ElapsedMilliseconds).Seconds,
                                         System.Environment.NewLine, stopWatch.ElapsedMilliseconds);
-            //Logger.Log(message, Category.Info, Priority.Medium);
+            //Logger.Write(message, Category.Info, Priority.Medium);
             Debugger.Log(5, "Hospital Import", message);
         }
 

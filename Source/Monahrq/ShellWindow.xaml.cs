@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel.Composition;
+using System.Diagnostics;
+using System.Linq;
 using System.Windows;
 using Microsoft.Practices.Prism.Logging;
 using Microsoft.Practices.Prism.Modularity;
@@ -10,6 +14,8 @@ using Monahrq.ViewModels;
 using Monahrq.Views;
 using Monahrq.Infrastructure;
 using System.Windows.Media;
+using Microsoft.Practices.Prism.Events;
+using Monahrq.Sdk.Events;
 
 
 namespace Monahrq
@@ -36,11 +42,14 @@ namespace Monahrq
         public IRegionManager RegionManager { get; set; }
 
         [Import(LogNames.Session)]
-        public ILoggerFacade SessionLogger
+        public ILogWriter SessionLogger
         {
             get;
             set;
         }
+
+        [Import]
+        public IEventAggregator EventManager { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ShellWindow"/> class.
@@ -56,8 +65,45 @@ namespace Monahrq
 
                 if (MonahrqContext.ForceDbUpGrade || MonahrqContext.ForceDbRecreate)
                     RegionManager.RequestNavigate(RegionNames.MainContent,
-                                                  new Uri("ManageSettingsView", UriKind.Relative));
+                        new Uri("ManageSettingsView", UriKind.Relative));
+
+                this.MonitorRegions(RegionManager.Regions);
+                RegionManager.Regions.CollectionChanged += PrismRegionsChanged;
             };
+        }
+
+        /// <summary>
+        /// Attach a navigation failed event handler to every region
+        /// </summary>
+        /// <param name="regions"></param>
+        private void MonitorRegions(IEnumerable<IRegion> regions)
+        {
+            foreach (var region in regions)
+            {
+                Debug.WriteLine("RegionNavigationService: {0:X}", region.NavigationService.GetHashCode()); // prove that they're all unique
+                var r = region;
+                region.NavigationService.NavigationFailed += (s, e) =>
+                {
+                    var msg = $"Error navigating to view {e.NavigationContext.Uri} for region {r.Name}";
+                    SessionLogger.Write(e.Error, msg);
+                    EventManager.GetEvent<GenericNotificationEvent>().Publish(msg);
+                };
+                region.NavigationService.Navigating += (s, e) =>
+                {
+                    SessionLogger.Debug("Loading view: '{1}' for region '{0}'", r.Name,
+                        e.NavigationContext.Uri);
+                };
+                region.NavigationService.Navigated += (s, e) =>
+                {
+                    SessionLogger.Debug("Loading complete: view '{1}' for region '{0}'", r.Name,
+                        e.NavigationContext.Uri);
+                };
+            }
+        }
+        
+        private void PrismRegionsChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            this.MonitorRegions(e.NewItems.OfType<IRegion>());
         }
 
         [Import]
@@ -86,19 +132,6 @@ namespace Monahrq
             _moduleManager.ModuleDownloadProgressChanged += ModuleManager_ModuleDownloadProgressChanged;
 
          
-        }
-
-      
-
-        /// <summary>
-        /// Logs the specified message.  Called by the CallbackLogger.
-        /// </summary>
-        /// <param name="message">The message.</param>
-        /// <param name="category">The category.</param>
-        /// <param name="priority">The priority.</param>
-        public void Log(string message, Category category, Priority priority)
-        {
-            SessionLogger.Log(message, category, priority);
         }
 
         /// <summary>

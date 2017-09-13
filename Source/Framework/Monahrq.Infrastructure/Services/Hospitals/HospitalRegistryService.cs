@@ -625,9 +625,10 @@ namespace Monahrq.Infrastructure.Services.Hospitals
                         {
                             tx.Rollback();
 
+                            this.Logger.Write(exc, $"Error saving hospital record for hospital {hospital.Id}: {hospital.Name}");
                             completeCallback(new OperationResult<Hospital>
                             {
-                                Exception = exc.GetBaseException(),
+                                Exception = exc,
                                 Status = false
                             });
 
@@ -858,7 +859,7 @@ namespace Monahrq.Infrastructure.Services.Hospitals
                 {"Enitity Type", entityType},
                 {"Name", entityName}
                 //, {"ID", entityDescriptor.Id}
-            });
+            }, "Exception in Hospital data access layer");
 
             /*Publish Error*/
             ServiceLocator.Current.GetInstance<IEventAggregator>()

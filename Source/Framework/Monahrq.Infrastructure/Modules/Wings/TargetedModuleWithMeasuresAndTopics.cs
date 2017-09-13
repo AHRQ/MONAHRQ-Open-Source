@@ -5,7 +5,6 @@ using Monahrq.Infrastructure.Data.Extensibility.ContentManagement.Records;
 using Monahrq.Infrastructure.Entities.Domain.Measures;
 using Monahrq.Infrastructure.Entities.Domain.Wings;
 using Monahrq.Infrastructure.Extensions;
-using Monahrq.Infrastructure.Logging;
 using NHibernate.Linq;
 
 namespace Monahrq.Sdk.Modules.Wings
@@ -56,7 +55,7 @@ namespace Monahrq.Sdk.Modules.Wings
             }
             catch (Exception e)
             {
-                this.SessionLogger.LogException(e, "Error importing measures for module '{0}'", this.Description);
+                this.Logger.Write(e, "Error importing measures for module '{0}'", this.Description);
                 return false;
             }
         }

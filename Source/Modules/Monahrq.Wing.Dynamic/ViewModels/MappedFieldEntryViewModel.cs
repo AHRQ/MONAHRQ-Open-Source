@@ -39,21 +39,7 @@ namespace Monahrq.Wing.Dynamic.ViewModels
                 return ServiceLocator.Current.GetInstance<IDomainSessionFactoryProvider>().SessionFactory;
             }
         }
-
-        /// <summary>
-        /// Gets the logger.
-        /// </summary>
-        /// <value>
-        /// The logger.
-        /// </value>
-        ILoggerFacade Logger
-        {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<ILoggerFacade>();
-            }
-        }
-
+        
         /// <summary>
         /// Gets the field entry.
         /// </summary>
@@ -170,7 +156,7 @@ namespace Monahrq.Wing.Dynamic.ViewModels
             {
                 targetPropertyType = targetPropertyType.GetGenericArguments()[0];
             }
-            //PropertyChanged += (o, e) => Logger.Log(string.Format("Property changed:  {0}", e.PropertyName), Category.Info, Priority.Low);
+            //PropertyChanged += (o, e) => Logger.Write(string.Format("Property changed:  {0}", e.PropertyName), Category.Info, Priority.Low);
             FieldEntry = entry;
             Element = element;
             var xwalk = FieldEntry.Bin

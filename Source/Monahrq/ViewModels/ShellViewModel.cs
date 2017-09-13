@@ -331,7 +331,7 @@ namespace Monahrq.ViewModels
                 
                 ErrorMessage = errorToUse.GetBaseException().Message;
 
-                this.Logger.Write(err);
+                this.Logger.Write(err, "Unhandled error");
 
 #if DEBUG
                 ErrorMessage = ErrorMessage + " source: " + errorToUse.Source;

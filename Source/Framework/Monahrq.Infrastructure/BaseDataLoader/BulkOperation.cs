@@ -23,13 +23,6 @@ namespace Monahrq.Infrastructure.BaseDataLoader
         where T : Entity<TKey>
     {
         /// <summary>
-        /// Gets or sets the items.
-        /// </summary>
-        /// <value>
-        /// The items.
-        /// </value>
-        List<T> Items { get; set; }
-        /// <summary>
         /// Gets or sets the ops logger.
         /// </summary>
         /// <value>
@@ -151,11 +144,6 @@ namespace Monahrq.Infrastructure.BaseDataLoader
                     connection.Close();
                 }
             }
-            catch (Exception exc)
-            {
-                OpsLogger.Write(exc);
-                throw exc;
-            }
             finally
             {
                 CurrentTargetTable = TargetTableSource.Clone();
@@ -185,16 +173,6 @@ namespace Monahrq.Infrastructure.BaseDataLoader
         {
             InitSourceTable();
             InitBulkCopy();
-        }
-        /// <summary>
-        /// Requests the connection.
-        /// </summary>
-        /// <returns></returns>
-        private SqlConnection RequestConnection()
-        {
-            var args = new ExtendedEventArgs<SqlConnection>();
-            ConnectionRequested(this, args);
-            return args.Data;
         }
 
         /// <summary>

@@ -276,7 +276,7 @@ namespace Monahrq.Infrastructure.BaseDataLoader.Loaders
                 }
                 catch(Exception exc)
                 {
-                    base.Logger.Log(exc.GetBaseException().Message, Microsoft.Practices.Prism.Logging.Category.Exception, Microsoft.Practices.Prism.Logging.Priority.High);
+                    base.Logger.Write(exc, "Error loading data from data reader");
                 }
             }
             

@@ -36,7 +36,7 @@ namespace Monahrq.Infrastructure.BaseDataLoader
         /// The logger.
         /// </value>
         [Import(LogNames.Session)]
-        public ILoggerFacade Logger { get; set; }
+        public ILogWriter Logger { get; set; }
 
         /// <summary>
         /// Gets the loader priority.

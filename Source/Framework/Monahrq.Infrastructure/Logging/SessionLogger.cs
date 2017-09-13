@@ -15,6 +15,7 @@ namespace Monahrq.Sdk.Logging
     /// Implementation of <see cref="ILogWriter" /> that logs into a <see cref="TextWriter" />.
     /// </summary>
     /// <seealso cref="Monahrq.Sdk.Logging.LoggerBase" />
+    [Export(typeof(ILogWriter))]
     [Export(LogNames.Session, typeof(ILogWriter))]
     [Export(LogNames.Session, typeof(ILoggerFacade))]
     [Export(LogNames.Operations, typeof(ILogWriter))] // operations logging was previously handled by CallbackLogger

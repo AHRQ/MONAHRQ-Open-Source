@@ -696,7 +696,7 @@ namespace Monahrq.DataSets.Physician.ViewModels
                             }
                             catch (Exception exc)
                             {
-                                Logger.Log((exc.InnerException ?? exc).Message, Category.Exception, Priority.High);
+                                Logger.Write(exc, "Error saving details for physician \"{0}\"", Model.Name);
                                 throw;
                             }
                         }
@@ -709,7 +709,7 @@ namespace Monahrq.DataSets.Physician.ViewModels
                         if (!opResult.Status && opResult.Exception != null)
                         {
                             errorOccurred = true;
-                            errorException = opResult.Exception.GetBaseException();
+                            errorException = opResult.Exception;
                         }
                         else
                         {
@@ -730,18 +730,15 @@ namespace Monahrq.DataSets.Physician.ViewModels
                     }
                     else
                     {
-                        var exc = errorException.GetBaseException();
-                        Logger.Log(exc.Message, Category.Exception, Priority.High);
-                        NotifyError(exc, Model.GetType(), Model.Name);
+                        Logger.Write(errorException, "Error saving details for physician \"{0}\"", Model.Name);
                     }
                 }
 
             }
             catch (Exception exc)
             {
-                Logger.Log(exc.GetBaseException().Message, Category.Exception, Priority.High);
-                NotifyError(exc.GetBaseException(), Model.GetType(), Model.Name);
-                //Notify(String.Format("{0} has not been saved", Model.Name));
+                // the error handling in this application is a mess and I don't have enough time to fix it the right way... #sorry
+                Logger.Write(exc, "Error saving details for physician \"{0}\"", Model.Name);
             }
         }
 
@@ -882,7 +879,7 @@ namespace Monahrq.DataSets.Physician.ViewModels
             }
             catch (Exception exec)
             {
-                Logger.Log((exec.InnerException ?? exec).Message, Category.Exception, Priority.High);
+                Logger.Write(exec, "Error loading data for physician with ID {0}", physicianId == null ? "unknown" : physicianId.ToString());
                 Notify("An error occurred while loading the physician, please restart the app.");
             }
         }

@@ -56,6 +56,17 @@ namespace Monahrq.Infrastructure.Domain
         public DateTime ActiveDate { get; set; }
         public VersionType VersionType { get; set; }
         public string FileName { get; set; }
+
+        public override string ToString()
+        {
+            switch (this.VersionType)
+            {
+                case VersionType.Default: return this.Version;
+                case VersionType.MonthAndYear: return $"{this.Year}-{this.Month}";
+                case VersionType.YearOnly: return this.Year.ToString();
+                default: return "Unknown";
+            }
+        }
     }
 
     public enum VersionType

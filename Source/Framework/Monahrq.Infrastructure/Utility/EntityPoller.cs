@@ -48,7 +48,7 @@ namespace Monahrq.Infrastructure.Utility
             RetryInitialInterval = 10000;
 
             DataProvider = ServiceLocator.Current.GetInstance<IDomainSessionFactoryProvider>();
-            Logger = ServiceLocator.Current.GetInstance<ILoggerFacade>();
+            Logger = ServiceLocator.Current.GetInstance<ILogWriter>();
         }
 
         #region Injected Services
@@ -62,7 +62,7 @@ namespace Monahrq.Infrastructure.Utility
         protected IDomainSessionFactoryProvider DataProvider { get; set; }
 
         //[Import(LogNames.Session)]
-        protected ILoggerFacade Logger { get; set; }
+        protected ILogWriter Logger { get; set; }
         #endregion
 
         #region Properties

@@ -32,16 +32,13 @@ namespace Monahrq.Wing.ReportingEntities
         /// <param name="factoryProvider">The factory provider.</param>
         /// <param name="dataLoaders">The data loaders.</param>
         protected ReportingEntityModule(
-                ILogWriter logger,
                 IDomainSessionFactoryProvider factoryProvider,
                 IEnumerable<IDataLoader> dataLoaders)
         {
             FactoryProvider = factoryProvider;
             DataLoaders = dataLoaders;
-            Logger = logger;
         }
-
-        ILogWriter Logger { get; set; }
+        
     
         IEnumerable<IDataLoader> DataLoaders { get; set; }
 
@@ -132,8 +129,7 @@ namespace Monahrq.Wing.ReportingEntities
             }
             catch (Exception ex)
             {
-                SessionLogger.Log(ex.Message, Category.Exception, Priority.High);
-                OperationsLogger.Log(ex.Message, Category.Exception, Priority.High);
+                base.Logger.Write(ex);
                 return false;
             }
         }

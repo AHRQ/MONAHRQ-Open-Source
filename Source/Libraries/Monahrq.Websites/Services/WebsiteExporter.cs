@@ -222,7 +222,7 @@ namespace Monahrq.Websites.Services
             }
             catch (Exception exc)
             {
-                logger.Write(exc.GetBaseException(), TraceEventType.Error);
+                logger.Write(exc);
                 return false;
             }
         }
@@ -447,7 +447,7 @@ namespace Monahrq.Websites.Services
             }
             catch (Exception exc)
             {
-                logger.Write(exc.GetBaseException(), TraceEventType.Error);
+                logger.Write(exc);
                 return false;
             }
         }
@@ -497,7 +497,7 @@ namespace Monahrq.Websites.Services
             }
             catch (Exception exc)
             {
-                logger.Write(exc.GetBaseException(), TraceEventType.Error);
+                logger.Write(exc);
                 return false;
             }
         }
@@ -554,7 +554,7 @@ namespace Monahrq.Websites.Services
             }
             catch (Exception exc)
             {
-                logger.Write(exc.GetBaseException(), TraceEventType.Error);
+                logger.Write(exc);
                 return false;
             }
         }
@@ -626,7 +626,7 @@ namespace Monahrq.Websites.Services
             }
             catch (Exception exc)
             {
-                logger.Write(exc.GetBaseException(), TraceEventType.Error);
+                logger.Write(exc);
                 return false;
             }
         }

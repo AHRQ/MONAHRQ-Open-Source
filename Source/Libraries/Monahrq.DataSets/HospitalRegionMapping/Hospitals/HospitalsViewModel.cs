@@ -525,12 +525,7 @@ namespace Monahrq.DataSets.HospitalRegionMapping.Hospitals
                             savedhospitalCount));
                     }
                     else
-                    {
-                        var ex = saveException.GetBaseException();
-                        Logger.Log(ex.Message, Category.Exception, Priority.High);
-                        EventAggregator.GetEvent<ErrorNotificationEvent>().Publish(ex);
-                    }
-
+                        EventAggregator.GetEvent<ErrorNotificationEvent>().Publish(saveException);
                 }
 
                 FlushCache();
@@ -541,8 +536,7 @@ namespace Monahrq.DataSets.HospitalRegionMapping.Hospitals
             }
             catch (Exception ex)
             {
-                Logger.Log(ex.GetBaseException().Message, Category.Exception, Priority.High);
-                EventAggregator.GetEvent<ErrorNotificationEvent>().Publish(ex.GetBaseException());
+                EventAggregator.GetEvent<ErrorNotificationEvent>().Publish(ex);
             }
             finally
             {
@@ -922,12 +916,8 @@ namespace Monahrq.DataSets.HospitalRegionMapping.Hospitals
                     if (!opResult.Status)
                     {
                         errorsExist = true;
-                        var ex = opResult.Exception.GetBaseException();
-                        SynchronizationContext.Current.Post(x =>
-                        {
-                            EventAggregator.GetEvent<ErrorNotificationEvent>().Publish(ex);
-                            Logger.Log(ex.ToString(), Category.Exception, Priority.High);
-                        }, null);
+                        var ex = opResult.Exception;
+                        Logger.Write(ex, "Error changing hospital region");
                         progressService.SetProgress("Error", 100, true, false);
                         return;
                     }
@@ -950,9 +940,9 @@ namespace Monahrq.DataSets.HospitalRegionMapping.Hospitals
             }
             catch (Exception exc)
             {
-                var ex = exc.GetBaseException();
+                var ex = exc;
                 EventAggregator.GetEvent<ErrorNotificationEvent>().Publish(ex);
-                Logger.Log(ex.ToString(), Category.Exception, Priority.High);
+                Logger.Write(ex, "Error changing hospital region");
             }
         }
 
@@ -1025,12 +1015,10 @@ namespace Monahrq.DataSets.HospitalRegionMapping.Hospitals
                         errorsExist = true;
 
                         progressService.SetProgress("Error", 100, true, false);
-                        var ex = operationResult.Exception.GetBaseException();
 
                         System.Windows.Application.Current.Dispatcher.Invoke(() =>
                         {
-                            Logger.Log(ex.Message, Category.Exception, Priority.High);
-                            EventAggregator.GetEvent<ErrorNotificationEvent>().Publish(ex);
+                            EventAggregator.GetEvent<ErrorNotificationEvent>().Publish(operationResult.Exception);
                         });
 
                         return;
@@ -1052,7 +1040,6 @@ namespace Monahrq.DataSets.HospitalRegionMapping.Hospitals
             }
             catch (Exception ex)
             {
-                Logger.Log(ex.Message, Category.Exception, Priority.High);
                 EventAggregator.GetEvent<ErrorNotificationEvent>().Publish(ex);
             }
         }
@@ -1162,9 +1149,7 @@ namespace Monahrq.DataSets.HospitalRegionMapping.Hospitals
                 if (!opResult.Status || opResult.Exception != null)
                 {
                     errorOccurred = true;
-                    var ex = opResult.Exception.GetBaseException();
-                    EventAggregator.GetEvent<ErrorNotificationEvent>().Publish(ex);
-                    Logger.Log(ex.ToString(), Category.Exception, Priority.High);
+                    EventAggregator.GetEvent<ErrorNotificationEvent>().Publish(opResult.Exception);
                 }
 
                 progressService.SetProgress("Completed", 100, true, false);
@@ -1208,12 +1193,9 @@ namespace Monahrq.DataSets.HospitalRegionMapping.Hospitals
                         {
 
                             errorOccurred = true;
-                            var ex = opResult.Exception.GetBaseException();
-                            SynchronizationContext.Current.Post(x =>
-                            {
-                                EventAggregator.GetEvent<ErrorNotificationEvent>().Publish(ex);
-                                Logger.Log(ex.ToString(), Category.Exception, Priority.High);
-                            }, null);
+                            var ex = opResult.Exception;
+                            Logger.Write(ex, "Error reverting hospital");
+                            
                         }
                         else
                         {
@@ -1229,9 +1211,8 @@ namespace Monahrq.DataSets.HospitalRegionMapping.Hospitals
             }
             catch (Exception exc)
             {
-                var ex = exc.GetBaseException();
-                EventAggregator.GetEvent<ErrorNotificationEvent>().Publish(ex);
-                Logger.Log(ex.ToString(), Category.Exception, Priority.High);
+                var ex = exc;
+                Logger.Write(ex, "Error reverting hospital");
             }
         }
 

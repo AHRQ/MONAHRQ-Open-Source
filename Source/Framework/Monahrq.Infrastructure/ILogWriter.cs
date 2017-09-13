@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
 
 namespace Monahrq.Infrastructure
 {
@@ -27,24 +28,29 @@ namespace Monahrq.Infrastructure
     /// </summary>
     public interface ILogWriter 
     {
+        void Write(Exception exception);
+
         /// <summary>
         /// Writes the specified exception.
         /// </summary>
         /// <param name="exception">The exception.</param>
-        void Write(Exception exception);
+        [StringFormatMethod("message")]
+        void Write(Exception exception, string message, params object[] args);
         /// <summary>
         /// Writes the specified exception.
         /// </summary>
         /// <param name="exception">The exception.</param>
         /// <param name="severity">The severity.</param>
-        void Write(Exception exception, System.Diagnostics.TraceEventType severity);
+        [StringFormatMethod("message")]
+        void Write(Exception exception, System.Diagnostics.TraceEventType severity, string message, params object[] args);
         /// <summary>
         /// Writes the specified exception.
         /// </summary>
         /// <param name="exception">The exception.</param>
         /// <param name="severity">The severity.</param>
         /// <param name="items">The items.</param>
-        void Write(Exception exception, System.Diagnostics.TraceEventType severity, IDictionary items);
+        [StringFormatMethod("message")]
+        void Write(Exception exception, System.Diagnostics.TraceEventType severity, IDictionary items, string message, params object[] args);
         /// <summary>
         /// Writes the specified message.
         /// </summary>
@@ -68,18 +74,21 @@ namespace Monahrq.Infrastructure
         /// </summary>
         /// <param name="message">The message.</param>
         /// <param name="args">The arguments.</param>
+        [StringFormatMethod("message")]
         void Debug(string message, params object[] args);
         /// <summary>
         /// Warnings the specified message.
         /// </summary>
         /// <param name="message">The message.</param>
         /// <param name="args">The arguments.</param>
+        [StringFormatMethod("message")]
         void Warning(string message, params object[] args);
         /// <summary>
         /// Informations the specified message.
         /// </summary>
         /// <param name="message">The message.</param>
         /// <param name="args">The arguments.</param>
+        [StringFormatMethod("message")]
         void Information(string message, params object[] args);
     }
 
@@ -108,11 +117,13 @@ namespace Monahrq.Infrastructure
             get { return _instance; }
         }
 
+        public void Write(Exception exception) { }
+
         /// <summary>
         /// Writes the specified exception.
         /// </summary>
         /// <param name="exception">The exception.</param>
-        public void Write(Exception exception)
+        public void Write(Exception exception, string message, params object[] args)
         { }
 
         /// <summary>
@@ -120,7 +131,7 @@ namespace Monahrq.Infrastructure
         /// </summary>
         /// <param name="exception">The exception.</param>
         /// <param name="severity">The severity.</param>
-        public void Write(Exception exception, System.Diagnostics.TraceEventType severity)
+        public void Write(Exception exception, System.Diagnostics.TraceEventType severity, string message, params object[] args)
         { }
 
         /// <summary>
@@ -129,7 +140,7 @@ namespace Monahrq.Infrastructure
         /// <param name="exception">The exception.</param>
         /// <param name="severity">The severity.</param>
         /// <param name="items">The items.</param>
-        public void Write(Exception exception, System.Diagnostics.TraceEventType severity, IDictionary items)
+        public void Write(Exception exception, System.Diagnostics.TraceEventType severity, IDictionary items, string message, params object[] args)
         { }
 
         /// <summary>

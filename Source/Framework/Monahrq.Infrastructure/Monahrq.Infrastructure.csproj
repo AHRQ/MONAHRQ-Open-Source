@@ -386,11 +386,11 @@
     <Compile Include="Logging\ColorPatternConverter.cs" />
     <Compile Include="Logging\CustomRollingAppender.cs" />
     <Compile Include="Logging\LoggerBase.cs" />
-    <Compile Include="Logging\LoggingExtensions.cs" />
     <Compile Include="Logging\SessionLogger.cs" />
     <Compile Include="Modules\IModuleRegionRegistrar.cs" />
     <Compile Include="Modules\Wings\TargetedModuleBase.cs" />
     <Compile Include="Modules\Wings\TargetedModuleWithMeasuresAndTopics.cs" />
+    <Compile Include="Properties\ReSharperAnnotations.cs" />
     <Compile Include="Services\Dynamic\DynamicCSVTemplateStrategy.cs" />
     <Compile Include="Types\ApplicationCursor.cs" />
     <Compile Include="Types\IDeepCloneable.cs" />

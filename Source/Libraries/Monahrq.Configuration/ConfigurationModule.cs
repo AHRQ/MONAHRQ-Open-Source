@@ -14,6 +14,7 @@ using Monahrq.Sdk.Regions;
 using System;
 using System.ComponentModel.Composition;
 using System.Windows;
+using Monahrq.Infrastructure;
 using Monahrq.Sdk.Attributes.Wings;
 
 namespace Monahrq.Configuration
@@ -26,7 +27,7 @@ namespace Monahrq.Configuration
     [WingModuleAttribute(typeof(ConfigurationModule), Constants.WingGuid, "Configuration Management", "provides Configuration Management Functionality", InitializationMode = InitializationMode.WhenAvailable)]
     public class ConfigurationModule : IModule
     {
-        private readonly ILoggerFacade _logger;
+        private readonly ILogWriter _logger;
         private readonly IPluginModuleTracker _pluginTracker;
         private readonly IRegionManager _regionManager;
         private readonly IConfigurationService _configurationService;
@@ -34,7 +35,7 @@ namespace Monahrq.Configuration
         [ImportingConstructor]
         public ConfigurationModule(IServiceLocator locator)
         {
-            var logger = locator.GetInstance<ILoggerFacade>();
+            var logger = locator.GetInstance<ILogWriter>();
             var regionManager = locator.GetInstance<IRegionManager>();
             var pluginTracker = locator.GetInstance<IPluginModuleTracker>();
             var configurationService = locator.GetInstance<IConfigurationService>();

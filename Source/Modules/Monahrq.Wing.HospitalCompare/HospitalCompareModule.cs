@@ -85,7 +85,7 @@ namespace Monahrq.Wing.HospitalCompare
             }
             catch (Exception ex)
             {
-                Logger.Write(ex);
+                Logger.Write(ex, "Error importing measures from file {0}", MeasureFilePath);
             }
         }
 
@@ -100,7 +100,7 @@ namespace Monahrq.Wing.HospitalCompare
             }
             catch (Exception ex)
             {
-                Logger.Write(ex);
+                Logger.Write(ex, "Error importing measure topics from file {0}", MeasureTopicFilePath);
             }
         }
 		#endregion

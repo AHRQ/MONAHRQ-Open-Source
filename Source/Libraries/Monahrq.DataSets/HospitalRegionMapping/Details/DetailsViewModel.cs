@@ -921,7 +921,7 @@ namespace Monahrq.DataSets.HospitalRegionMapping.Hospitals.Details
                         if (result.Exception != null)
                         {
                             errorOccurred = true;
-                            saveException = result.Exception.GetBaseException();
+                            saveException = result.Exception;
                         }
                     }
                 }, new CancellationToken());
@@ -932,7 +932,7 @@ namespace Monahrq.DataSets.HospitalRegionMapping.Hospitals.Details
 
                     if (errorOccurred && saveException != null)
                     {
-                        Logger.Log(saveException.Message, Microsoft.Practices.Prism.Logging.Category.Exception, Priority.High);
+                        Logger.Write(saveException, "Error saving details for hospital");
                         EventAggregator.GetEvent<ErrorNotificationEvent>().Publish(saveException);
                     }
                     else
@@ -954,7 +954,7 @@ namespace Monahrq.DataSets.HospitalRegionMapping.Hospitals.Details
             }
             catch (Exception ex)
             {
-                EventAggregator.GetEvent<ErrorNotificationEvent>().Publish(ex.GetBaseException());
+                EventAggregator.GetEvent<ErrorNotificationEvent>().Publish(ex);
                 return false;
             }
 

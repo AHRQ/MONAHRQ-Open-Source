@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Threading.Tasks;
 using Microsoft.Practices.Prism.Logging;
+using Monahrq.Infrastructure.Domain;
 using Monahrq.Infrastructure.Entities.Domain;
 
 
@@ -52,11 +53,13 @@ namespace Monahrq.Infrastructure.BaseDataLoader
                             (ImportType == BaseDataImportStrategyType.Append || VersionStrategy.IsNewest()))
                         {
                             // start transaction
+                            Logger.Write($"Processing base data update for type {typeof(TEntity).Name} from file {file}");
+                            var rows = 0;
 
                             // Verify data file exists.
                             if (!File.Exists(Path.Combine(baseDataDir, file)))
                             {
-                                Logger.Log(string.Format("Import file \"{0}\" missing from the base data resources directory.", file), Category.Warn, Priority.Medium);
+                                Logger.Warning("Import file \"{0}\" missing from the base data resources directory.", file);
                                 return;
                             }
 
@@ -102,9 +105,9 @@ namespace Monahrq.Infrastructure.BaseDataLoader
 
                                             if (reader == null)
                                             {
-                                                Logger.Log(string.Format(
-                                                        "A problem occurred while trying to read CSV file \"{0}\". Please make sure that the file is properly formated and has data.",
-                                                        file), Category.Exception, Priority.High);
+                                                Logger.Warning(
+                                                    "A problem occurred while trying to read CSV file \"{0}\". Please make sure that the file is properly formated and has data.",
+                                                    file);
                                                 return;
                                             }
 
@@ -114,22 +117,28 @@ namespace Monahrq.Infrastructure.BaseDataLoader
                                                 {
                                                     var temp = LoadFromReader(reader);
                                                     if (temp != null)
+                                                    {
                                                         bulkImporter.Insert(temp);
+                                                        rows++;
+                                                    }
                                                 }
                                             }
                                         }
                                     }
                                 }
                             }
+
+                            SchemaVersion version;
                             using (var session = DataProvider.SessionFactory.OpenSession())
                             {
-                                var version = VersionStrategy.GetVersion(session);
-
+                                version = VersionStrategy.GetVersion(session);
                                 session.SaveOrUpdate(version);
                                 session.Flush();
                             }
 
                             // commit transaction
+                            Logger.Information(
+                                $"Base data update completed for type {typeof(TEntity).Name}: {rows} rows inserted or updated; now at schema version {version}");
                         }
                     }
 
@@ -139,7 +148,7 @@ namespace Monahrq.Infrastructure.BaseDataLoader
             }
             catch (Exception ex)
             {
-                Logger.Log(ex.ToString(), Category.Warn, Priority.Medium);
+                Logger.Write(ex, "Error loading base data for entity {0}", typeof(TEntity).Name);
             }
         }
     }

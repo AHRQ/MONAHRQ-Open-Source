@@ -37,7 +37,7 @@ namespace Monahrq.Reports
        DependsOnModuleNames = new string[] { "Base Data" }, InitializationMode = InitializationMode.WhenAvailable)]
     public class ReportsModule : IModule, IModuleRegionRegistrar
     {
-        private readonly ILoggerFacade _logger;
+        private readonly ILogWriter _logger;
         private readonly IPluginModuleTracker _pluginTracker;
         private IRegionManager _regionManager;
         private readonly IServiceLocator _locator;
@@ -60,7 +60,7 @@ namespace Monahrq.Reports
         public ReportsModule(IServiceLocator locator)
         {
             _locator = locator;
-            var logger = locator.GetInstance<ILoggerFacade>();
+            var logger = locator.GetInstance<ILogWriter>();
             var regionManager = locator.GetInstance<IRegionManager>();
             var pluginTracker = locator.GetInstance<IPluginModuleTracker>();
             var eventAggregator = locator.GetInstance<IEventAggregator>();
@@ -154,10 +154,7 @@ namespace Monahrq.Reports
                         catch (Exception exc)
                         {
                             trans.Rollback();
-
-                            var message = string.Format("An error occurred when trying to save report \"{1}\":{0}Error Message: {2}",
-                                                        Environment.NewLine, manifest.Name, exc.GetBaseException().Message);
-                            _logger.Log(message, Category.Exception, Priority.High);
+                            _logger.Write(exc, "An error occurred when trying to save report \"{1}\"", manifest.Name);
                         }
                     }
                 }
@@ -186,17 +183,9 @@ namespace Monahrq.Reports
         /// <param name="regionManager">The region manager.</param>
         public void RegisterRegions(IRegionManager regionManager)
         {
-            try
-            {
-                _regionManager = regionManager;
-                _regionManager.RegisterViewWithRegion(RegionNames.MainContent, typeof (MainReportView));
-                _regionManager.RegisterViewWithRegion(RegionNames.MainContent, typeof (ReportDetailsView));
-            }
-            catch (Exception exc)
-            {
-                _logger.Log(exc.GetBaseException().Message, Category.Exception, Priority.High);
-                throw;
-            }
+            _regionManager = regionManager;
+            _regionManager.RegisterViewWithRegion(RegionNames.MainContent, typeof (MainReportView));
+            _regionManager.RegisterViewWithRegion(RegionNames.MainContent, typeof (ReportDetailsView));
         }
     }
 }

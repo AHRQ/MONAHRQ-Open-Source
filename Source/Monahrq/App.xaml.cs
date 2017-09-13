@@ -42,6 +42,7 @@ namespace Monahrq
                 try
                 {
                     TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
+                    AppDomain.CurrentDomain.UnhandledException += OnAppDomainUnhandledException;
 
                     MonahrqContext.IsInializing = true;
             
@@ -108,6 +109,11 @@ namespace Monahrq
             }
         }
 
+        private void OnAppDomainUnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            Logger?.Write(e.ExceptionObject as Exception, "Unhandled exception in AppDomain. IsTerminating={0}", e.IsTerminating);
+        }
+
         #region Helper Methods
 
         /// <summary>
@@ -158,12 +164,12 @@ namespace Monahrq
             }
             catch (RuntimeWrappedException runtimeExp)
             {
-                Logger.Write(runtimeExp.GetBaseException(), TraceEventType.Error /*"An unhandled runtime exception occurred while starting Monahrq"*/);
+                Logger.Write(runtimeExp, "An unhandled runtime exception occurred while starting Monahrq");
                 return true;
             }
             catch (Exception exp)
             {
-                Logger.Write(exp.GetBaseException(), TraceEventType.Error /*"An unhandled exception occurred while starting Monahrq"*/);
+                Logger.Write(exp, "An unhandled exception occurred while starting Monahrq");
                 return true;
             }
         }
@@ -199,17 +205,15 @@ namespace Monahrq
         /// <param name="exp">The exp.</param>
         private static void HandleError(Exception exp)
         {
-            if (Logger != null)
-            {
-                Logger.Log(exp.GetBaseException().Message, Category.Exception, Priority.High);
-                Logger.Log(exp.GetBaseException().StackTrace, Category.Exception, Priority.High);
-            }
             // DO NOT USE current.MainWindow here as either part could be null
 
             if (exp is ApplicationExitException)
             {
                 // DO nothing,,, just exit
             }
+
+            Logger?.Write(exp, "Unhandled exception");
+
             if (exp is ApplicationException)
             {
                 // If an application exception is encountered then it must have been published
@@ -238,20 +242,12 @@ namespace Monahrq
                     MessageBox.Show(newExp.GetBaseException().Message, MonahrqContext.ApplicationName, MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
-            if (Current != null)
-            {
-                Current.Shutdown();
-            }
+            Current?.Shutdown();
         }
 
         void TaskScheduler_UnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)
         {
-            if (Logger != null)
-            {
-                var exception = e.Exception.Flatten().GetBaseException();
-                Logger.Log(exception.Message, Category.Exception, Priority.High);
-                Logger.Log(exception.StackTrace, Category.Exception, Priority.High);
-            }
+            Logger?.Write(e.Exception, "Unhandled exception in Task Scheduler");
         }
         #endregion // Helper Methods
 

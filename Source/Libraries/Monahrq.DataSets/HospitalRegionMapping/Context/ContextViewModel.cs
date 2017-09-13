@@ -389,7 +389,7 @@ namespace Monahrq.DataSets.HospitalRegionMapping.Context
                 }
                 catch (Exception exc)
                 {
-                    Logger.Write(exc.InnerException ?? exc, TraceEventType.Error);
+                    Logger.Write(exc);
                 }
                 //});
             }

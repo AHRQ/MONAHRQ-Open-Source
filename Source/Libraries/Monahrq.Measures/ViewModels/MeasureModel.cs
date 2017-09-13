@@ -251,7 +251,7 @@ namespace Monahrq.Measures.ViewModels
                 {
                         SynchronizationContext.Current.Post(x => {
                         errorOccurred = true;
-                        var ex = opResult.Exception.GetBaseException();
+                        var ex = opResult.Exception;
                         Events.GetEvent<ErrorNotificationEvent>().Publish(ex);
                     }, null);
                 }

@@ -136,7 +136,7 @@ namespace Monahrq.Wing.NursingHomeCompare.Deficiency
             }
             catch (Exception ex)
             {
-                Logger.Write(ex);
+                Logger.Write(ex, "Error importing measure topics");
             }
         }
 		#endregion

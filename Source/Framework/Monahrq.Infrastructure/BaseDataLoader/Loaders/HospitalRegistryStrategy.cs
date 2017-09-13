@@ -62,7 +62,7 @@ namespace Monahrq.Infrastructure.BaseDataLoader.Loaders
             }
             catch (Exception ex)
             {
-                Logger.Log(ex.ToString(), Category.Warn, Priority.Medium);
+                Logger.Write(ex, "Error loading Hospital Registry data");
             }
         }
     }

@@ -17,25 +17,9 @@ namespace Monahrq.Infrastructure.Services
         {
             EnitytType = type;
             EntityName = name;
-            ErrorMesssage = e.Message;
+            Exception = e;
         }
 
-        /// <summary>
-        /// The error messsage
-        /// </summary>
-        public string ErrorMesssage;
-        /// <summary>
-        /// The enityt type
-        /// </summary>
-        public string EnitytType;
-        /// <summary>
-        /// The entity name
-        /// </summary>
-        public string EntityName;
-        /// <summary>
-        /// The entity identifier
-        /// </summary>
-        public string EntityId;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ServiceErrorEventArgs"/> class.
@@ -47,7 +31,24 @@ namespace Monahrq.Infrastructure.Services
             EnitytType = entity.Type;
             EntityName = entity.Name;
             EntityId = entity.Id;
-            ErrorMesssage = e.Message;
+            Exception = e;
         }
+
+        /// <summary>
+        /// The error messsage
+        /// </summary>
+        public Exception Exception { get; set; }
+        /// <summary>
+        /// The enityt type
+        /// </summary>
+        public string EnitytType { get; set; }
+        /// <summary>
+        /// The entity name
+        /// </summary>
+        public string EntityName { get; set; }
+        /// <summary>
+        /// The entity identifier
+        /// </summary>
+        public string EntityId { get; set; }
     }
 }

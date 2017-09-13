@@ -28,7 +28,7 @@ namespace Monahrq.Infrastructure.Entities.Domain.Reports
             var reportXmls = Directory.GetFiles(ReportFolder, "*.xml");
             var temp = new List<ReportManifest>();
 
-            var logger = ServiceLocator.Current.GetInstance<ILoggerFacade>();
+            var logger = ServiceLocator.Current.GetInstance<ILogWriter>();
             reportXmls.ToList().ForEach(reportXml =>
                 {
                     try
@@ -49,7 +49,7 @@ namespace Monahrq.Infrastructure.Entities.Domain.Reports
                                 "An exception occurred when loading report manifests. Please see below for error.{0}Message: {1}{0}Stack Trace: {2}",
                                 Environment.NewLine, excToUse.Message, excToUse.StackTrace);
 
-                        logger.Log(errMessage, Category.Exception, Priority.High);
+                        logger.Write(exc, "Error loading report manifest from file {0}", reportXml);
 
                     }
                 });

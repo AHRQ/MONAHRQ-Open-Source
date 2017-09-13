@@ -303,7 +303,7 @@ namespace Monahrq.Wing.Physician.Reports
 				{
 					//var excToUse = ex.GetBaseException();
 					var eecMessage = string.Format("{0} : {1}", "CGCAHPSReportGenerator", ex.Message);
-					//Logger.Log(eecMessage, Category.Exception, Priority.High);
+					//Logger.Write(eecMessage, Category.Exception, Priority.High);
 
 					//PublishEvent(eecMessage, PubishMessageTypeEnum.Error, WebsiteGenerationStatus.Error, DateTime.Now);
 					throw;

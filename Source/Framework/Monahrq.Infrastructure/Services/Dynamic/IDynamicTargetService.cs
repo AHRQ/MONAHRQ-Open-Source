@@ -119,10 +119,9 @@ namespace Monahrq.Infrastructure.Services.Dynamic
         /// <param name="session">The session.</param>
         /// <param name="monahrqShell">The monahrq shell.</param>
         /// <param name="progressCallback">The progress callback.</param>
-        /// <param name="exceptionCallBack">The exception call back.</param>
         /// <returns></returns>
         Task<bool> InstallDynamicTargetAsync(DynamicTarget dynamicTarget, Wing wing, ISession session, IMonahrqShell monahrqShell,
-            Action<OpenSourceInstallResult> progressCallback, Action<OpenSourceInstallResult> exceptionCallBack);
+            Action<OpenSourceInstallResult> progressCallback);
 
         /// <summary>
         /// Uploads the and extract flutter files.
@@ -133,7 +132,8 @@ namespace Monahrq.Infrastructure.Services.Dynamic
         /// <param name="exceptionCallback">The exception callback.</param>
         /// <returns></returns>
         Task<bool> InstallFlutterFiles(string uploadFilePath, CancellationToken ctx,
-            Action<OSFlutterInstallResult> statusCallback, Action<OSFlutterInstallResult> exceptionCallback);
+            Action<OSFlutterInstallResult> statusCallback,
+            Action<OSFlutterInstallResult> exceptionCallback);
 
         /// <summary>
         /// Gets the reports for flutter.

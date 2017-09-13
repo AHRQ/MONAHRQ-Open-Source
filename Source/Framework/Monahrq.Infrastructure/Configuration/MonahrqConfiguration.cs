@@ -27,7 +27,7 @@ namespace Monahrq.Infrastructure.Configuration
         /// <summary>
         /// The logger
         /// </summary>
-        static internal ILoggerFacade Logger = new SessionLogger(new CallbackLogger());
+        static internal ILogWriter Logger = new SessionLogger(new CallbackLogger());
 
 
         /// <summary>
@@ -39,10 +39,7 @@ namespace Monahrq.Infrastructure.Configuration
         {
             if (Logger == null)
                 return;
-            Logger.Log(
-                String.Format("MonahrqConfig::{0}(): {1}", method, message),
-                Category.Info,
-                Priority.High);
+            Logger.Information("MonahrqConfig::{0}(): {1}", method, message);
         }
 
         /// <summary>

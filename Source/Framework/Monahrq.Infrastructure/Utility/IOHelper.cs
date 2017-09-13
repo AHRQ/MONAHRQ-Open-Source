@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -36,7 +37,7 @@ namespace Monahrq.Infrastructure.Utility
         /// <param name="logger">The logger.</param>
         /// <exception cref="System.IO.DirectoryNotFoundException">Source directory does not exist or could not be found:
         /// + sourceDirPath</exception>
-        public static void DirectoryCopy(string sourceDirPath, string destDirPath, bool copySubDirs, ILoggerFacade logger = null)
+        public static void DirectoryCopy(string sourceDirPath, string destDirPath, bool copySubDirs, ILogWriter logger = null)
         {
             // Get the subdirectories for the specified directory.
             try
@@ -72,8 +73,7 @@ namespace Monahrq.Infrastructure.Utility
                         }
                         catch (Exception exc)
                         {
-                            if (logger != null) /*Don't care if it fails*/
-                                logger.Log($"Error copying file {file.FullName}: {(exc.InnerException ?? exc).Message}", Category.Exception, Priority.High);
+                            logger?.Write($"Error copying file {file.FullName}: {(exc.InnerException ?? exc).Message}", TraceEventType.Error);
                         }
                     });
 
@@ -89,8 +89,7 @@ namespace Monahrq.Infrastructure.Utility
                             }
                             catch (Exception exc)
                             {
-                                if (logger != null) /*Don't care if it fails*/
-                                    logger.Log((exc.InnerException ?? exc).Message, Category.Exception, Priority.High);
+                                logger?.Write(exc, "Error copying subdirectory {0}", subdir);
                             }
                         });
                 }
@@ -98,9 +97,8 @@ namespace Monahrq.Infrastructure.Utility
             }
             catch (Exception exc)
             {
-                if (logger != null) /*Don't care if it fails*/
-                    logger.Log((exc.InnerException ?? exc).Message, Category.Exception, Priority.High);
-                
+                logger?.Write(exc, "Error copying directory \"{0}\" to \"{1}\"", sourceDirPath, destDirPath);
+
                 throw exc;
             }
         }
@@ -112,9 +110,9 @@ namespace Monahrq.Infrastructure.Utility
         /// <param name="overwrite">if set to <c>true</c> [overwrite].</param>
         /// <param name="logger">The logger.</param>
         /// <exception cref="System.ArgumentNullException">sourceDirPath;@Please provide a valid source directory path.</exception>
-        public static void CreateDirectory(string sourceDirPath, bool overwrite = false, ILoggerFacade logger = null)
+        public static void CreateDirectory(string sourceDirPath, bool overwrite = false, ILogWriter logger = null)
         {
-            if(string.IsNullOrEmpty(sourceDirPath))
+            if (string.IsNullOrEmpty(sourceDirPath))
                 throw new ArgumentNullException("sourceDirPath", @"Please provide a valid source directory path.");
 
             var directory = new DirectoryInfo(sourceDirPath);
@@ -129,8 +127,8 @@ namespace Monahrq.Infrastructure.Utility
                     {
                         if (!dir.Attributes.HasFlag(FileAttributes.ReadOnly))
                         {
-                                dir.Delete(true);
-   
+                            dir.Delete(true);
+
                         }
                         else
                         {
@@ -140,8 +138,7 @@ namespace Monahrq.Infrastructure.Utility
                     }
                     catch (Exception exc)
                     {
-                        if (logger != null) /*Don't care if it fails*/
-                            logger.Log((exc.InnerException ?? exc).Message, Category.Exception, Priority.High);
+                        logger?.Write(exc);
                     }
                 });
 
@@ -156,31 +153,19 @@ namespace Monahrq.Infrastructure.Utility
                             file.IsReadOnly = false;
                             file.Delete();
                         }
-                        catch(Exception exc) /*Don't care if it fails*/
+                        catch (Exception exc) /*Don't care if it fails*/
                         {
-                            if (logger != null)
-                            {
-
-                                logger.Log((exc.InnerException ?? exc).Message, Category.Exception, Priority.High);
-                            }
+                            logger?.Write(exc);
                         }
                     }));
                 directory.Create();
-                if (logger != null)
-                {
-
-                    logger.Log("Creating output directory: \"" + directory.Name + "\"", Category.Exception, Priority.High);
-                }
+                logger?.Information("Creating output directory: \"" + directory.Name + "\"", Category.Exception, Priority.High);
             }
 
             if (!directory.Exists)
             {
                 directory.Create();
-                if (logger != null)
-                {
-
-                    logger.Log("Creating output directory: \"" + directory.Name + "\"", Category.Exception, Priority.High);
-                }
+                logger?.Information("Creating output directory: \"" + directory.Name + "\"", Category.Exception, Priority.High);
             }
         }
 

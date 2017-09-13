@@ -103,8 +103,8 @@ namespace Monahrq.Infrastructure.Domain.Wings
                             if (trx.IsActive)
                                 trx.Rollback();
 
-                            var excToUse = exc.GetBaseException();
-                            options.Logger.Write(excToUse, System.Diagnostics.TraceEventType.Critical);
+                            var excToUse = exc;
+                            options.Logger.Write(excToUse, "Unknown error in TargetDeletionVisitor for entity {0}", entity); //todo: fix message once we know what this type does
 
                             return Task.FromResult<bool>(false);
                         }

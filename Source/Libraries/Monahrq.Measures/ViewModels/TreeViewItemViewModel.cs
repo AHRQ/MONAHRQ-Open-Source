@@ -16,6 +16,7 @@ using Monahrq.Infrastructure.Entities.Domain.Measures;
 using Monahrq.Infrastructure.Services;
 using Monahrq.Measures.Events;
 using System.Windows.Data;
+using Monahrq.Infrastructure;
 using Monahrq.Measures.Service;
 using Monahrq.Sdk.Utilities;
 using NHibernate.Linq;
@@ -89,10 +90,7 @@ namespace Monahrq.Measures.ViewModels
         /// <value>
         /// The measure service.
         /// </value>
-        protected IMeasureServiceSync MeasureService
-        {
-            get { return ServiceLocator.Current.GetInstance<IMeasureServiceSync>(); }
-        }
+        protected IMeasureServiceSync MeasureService { get; } = ServiceLocator.Current.GetInstance<IMeasureServiceSync>();
 
         /// <summary>
         /// Gets the event aggregator.
@@ -100,10 +98,7 @@ namespace Monahrq.Measures.ViewModels
         /// <value>
         /// The event aggregator.
         /// </value>
-        protected IEventAggregator EventAggregator
-        {
-            get { return ServiceLocator.Current.GetInstance<IEventAggregator>(); }
-        }
+        protected IEventAggregator EventAggregator { get; } = ServiceLocator.Current.GetInstance<IEventAggregator>();
 
         /// <summary>
         /// Gets the logger.
@@ -111,10 +106,7 @@ namespace Monahrq.Measures.ViewModels
         /// <value>
         /// The logger.
         /// </value>
-        protected ILoggerFacade Logger
-        {
-            get { return ServiceLocator.Current.GetInstance<ILoggerFacade>(); }
-        }
+        protected ILogWriter Logger { get; } = ServiceLocator.Current.GetInstance<ILogWriter>();
 
         /// <summary>
         /// Gets or sets the entity.
@@ -542,8 +534,7 @@ namespace Monahrq.Measures.ViewModels
             }
             catch (Exception exec)
             {
-                Logger.Log((exec.InnerException ?? exec).Message, Category.Exception, Priority.High);
-                EventAggregator.GetEvent<ErrorNotificationEvent>().Publish(exec);
+                Logger.Write(exec);
             }
 
             RaiseErrorsChanged(() => SubtopicName);

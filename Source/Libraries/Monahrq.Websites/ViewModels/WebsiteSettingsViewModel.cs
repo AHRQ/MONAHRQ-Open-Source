@@ -1330,8 +1330,8 @@ namespace Monahrq.Websites.ViewModels
             catch (ThreadAbortException exc)
             {
                 //Thread.ResetAbort();
-                Logger.Log(exc.Message, Category.Exception, Priority.High);
-                Logger.Log(exc.Message, Category.Exception, Priority.High);
+                Logger.Write(exc);
+                Logger.Write(exc);
             }
             catch (Exception exc)
             {

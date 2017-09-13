@@ -57,7 +57,7 @@ namespace Monahrq.Infrastructure.Utility
             catch (Exception exc)
             {
                 ILogWriter logger = ServiceLocator.Current.GetInstance<ILogWriter>(LogNames.Session);
-                logger.Write(exc.GetBaseException(), TraceEventType.Error);
+                logger.Write(exc, TraceEventType.Error, "Error validating XML in file {0} against schema {1}", xmlFilePath, xsdFileRelFilePath);
                 return false;
             }
         }

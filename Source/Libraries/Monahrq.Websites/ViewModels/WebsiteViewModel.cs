@@ -43,6 +43,7 @@ namespace Monahrq.Websites.ViewModels
             ManageCommand = new DelegateCommand<WebsiteViewModel>(ExecuteManageCommand, CanExecute);
             DeleteCommand = new DelegateCommand<WebsiteViewModel>(ExecuteDeleteCommand, CanExecute);
             ExportCommand = new DelegateCommand<WebsiteViewModel>(ExecuteExportCommand, CanExecute);
+            
         }
         #endregion
 
@@ -137,9 +138,6 @@ namespace Monahrq.Websites.ViewModels
                 return (Website.CurrentStatus.GetValueOrDefault() <= WebsiteState.CompletedDependencyCheck) ? CurrentStatusLabelInProgress : CurrentStatusLabelComplete;
             }
         }
-
-        [Import]
-        public ILogWriter Logger { get; set; }
         #endregion
 
         #region Commands
@@ -198,8 +196,10 @@ namespace Monahrq.Websites.ViewModels
             try
             {
                 if (vm == null) return;
+                //if (WebsiteDataService == null)
+                    //Events.GetEvent<ErrorNotificationEvent>().Publish();
 
-                this.Logger.Information($"Exporting configuration for website \"{vm.DisplayName}\"");
+                base.Logger.Information($"Exporting configuration for website \"{vm.DisplayName}\"");
                 Website websiteToExport = null;
                 using (ApplicationCursor.SetCursor(Cursors.Wait))
                 {
@@ -233,7 +233,7 @@ namespace Monahrq.Websites.ViewModels
                 string.Format("Are you sure you want to delete this website: {0}", vm.Website.Name),
                 "Delete Website?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
                 return;
-
+            
             if (!WebsiteDataService.DeleteWebsite(vm.Website))
             {
                 // publish so the WebsiteCollectionView will refresh without this web

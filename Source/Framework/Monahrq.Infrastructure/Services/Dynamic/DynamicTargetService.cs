@@ -134,8 +134,8 @@ namespace Monahrq.Infrastructure.Services.Dynamic
         /// <value>
         /// The operations logger.
         /// </value>
-        [Import(LogNames.Operations, typeof(ILoggerFacade))]
-        ILoggerFacade OperationsLogger
+        [Import(LogNames.Session, typeof(ILogWriter))]
+        ILogWriter Logger
         {
             get;
             set;
@@ -249,7 +249,7 @@ namespace Monahrq.Infrastructure.Services.Dynamic
             }
             catch (Exception ex)
             {
-                OperationsLogger.Log(ex.GetBaseException().Message, Category.Exception, Priority.High);
+                Logger.Write(ex, "Error deserializing dynamic target from XML file {0}", xmlPath);
                 throw;
             }
         }
@@ -395,16 +395,16 @@ namespace Monahrq.Infrastructure.Services.Dynamic
             }
             catch (Exception exc)
             {
-                OperationsLogger.Log(exc.GetBaseException().Message, Category.Exception, Priority.High);
+                Logger.Write(exc, "Error installing dynamic target definition {0}", dynamicTarget.Name);
 
                 var message = new StringBuilder();
-                message.AppendLine(string.Format("An error occurred while trying to install {0} open source wing.", dynamicTarget.Name));
-                message.AppendLine(string.Format("Error Message: {0}", exc.GetBaseException().Message));
-                message.AppendLine("If the error continues, please contact the wing developer for technical support:");
-                message.AppendLine(string.Format("Publisher: {0}", dynamicTarget.Publisher));
-                message.AppendLine(string.Format("Publisher Email: {0}", dynamicTarget.PublisherEmail));
+                message.AppendFormat($@"An error occurred while trying to install {dynamicTarget.Name} open source wing.
+Error Message: {exc.GetBaseException().Message}
+If the error continues, please contact the wing developer for technical support:
+    Publisher: {dynamicTarget.Publisher}
+    Publisher Email: {dynamicTarget.PublisherEmail}");
                 if (!string.IsNullOrEmpty(dynamicTarget.PublisherWebsite))
-                    message.AppendLine(string.Format("Publisher Website: {0}", dynamicTarget.PublisherWebsite));
+                    message.AppendLine($"\tPublisher Website: {dynamicTarget.PublisherWebsite}");
 
                 return new OpenSourceInstallResult { Status = OpenSourceInstallFlags.Error, Message = message.ToString() };
             }
@@ -420,7 +420,7 @@ namespace Monahrq.Infrastructure.Services.Dynamic
         /// <param name="progressCallback">The progress callback.</param>
         /// <param name="exceptionCallBack">The exception call back.</param>
         /// <returns></returns>
-        public async Task<bool> InstallDynamicTargetAsync(DynamicTarget dynamicTarget, Wing wing, ISession session, IMonahrqShell monahrqShell, Action<OpenSourceInstallResult> progressCallback, Action<OpenSourceInstallResult> exceptionCallBack)
+        public async Task<bool> InstallDynamicTargetAsync(DynamicTarget dynamicTarget, Wing wing, ISession session, IMonahrqShell monahrqShell, Action<OpenSourceInstallResult> progressCallback)
         {
             try
             {
@@ -435,24 +435,28 @@ namespace Monahrq.Infrastructure.Services.Dynamic
                             Message = string.Format("Wing \"{0}\" has already been installed.", dynamicTarget.Name),
                             Target = result.Target
                         });
+                        return true;
 
-                        break;
                     case OpenSourceInstallFlags.Error:
                         progressCallback(new OpenSourceInstallResult
                         {
                             Status = OpenSourceInstallFlags.Error,
-                            Message = string.Format("An error occurred while trying to install wing \"{0}\". Please try again and if the error persists, please contact technical assistance for help.",
-                                      dynamicTarget.Name),
+                            Message =
+                                string.Format(
+                                    "An error occurred while trying to install wing \"{0}\". Please try again and if the error persists, please contact technical assistance for help.",
+                                    dynamicTarget.Name),
                             Target = null
                         });
+                        return false;
                         
-                        break;
                     case OpenSourceInstallFlags.Success:
                         progressCallback(new OpenSourceInstallResult
                         {
                             Status = OpenSourceInstallFlags.StatusUpdate,
-                            Message = string.Format("Start installation of associated measures, reports, wing dataset target tables for wing \"{0}\".",
-                                                    dynamicTarget.Name),
+                            Message =
+                                string.Format(
+                                    "Start installation of associated measures, reports, wing dataset target tables for wing \"{0}\".",
+                                    dynamicTarget.Name),
                             Target = null
                         });
 
@@ -461,7 +465,9 @@ namespace Monahrq.Infrastructure.Services.Dynamic
                             progressCallback(new OpenSourceInstallResult
                             {
                                 Status = OpenSourceInstallFlags.StatusUpdate,
-                                Message = string.Format("Creating dataset target table \"[dbo].[{0}]\" for wing \"{1}\".", dynamicTarget.DbSchemaName, dynamicTarget.Name),
+                                Message =
+                                    string.Format("Creating dataset target table \"[dbo].[{0}]\" for wing \"{1}\".",
+                                        dynamicTarget.DbSchemaName, dynamicTarget.Name),
                                 Target = null
                             });
 
@@ -504,24 +510,21 @@ namespace Monahrq.Infrastructure.Services.Dynamic
                             {
                                 Status = OpenSourceInstallFlags.Success,
                                 Message = string.Format("Installation for wing \"{0}\" successfully completed.",
-                                                        dynamicTarget.Name),
+                                    dynamicTarget.Name),
                                 Target = result.Target
                             });
                         }
+                        return true;
 
-                        break;
+                    default:
+                        return false; // this should never happen
                 }
             }
             catch (Exception exc)
             {
-                exceptionCallBack(new OpenSourceInstallResult
-                                                            {
-                                                                Message = exc.GetBaseException().Message,
-                                                                Status = OpenSourceInstallFlags.Error
-                                                            });
+                this.Logger.Write(exc, $"Error installing dynamic target {dynamicTarget.Name} from wing {wing.Name}");
+                return false;
             }
-
-            return await Task.FromResult(true);
         }
 
 
@@ -539,10 +542,10 @@ namespace Monahrq.Infrastructure.Services.Dynamic
             {
                 if (TestForContentType(target.DbSchemaName))
                 {
-                    OperationsLogger.Log(string.Format("Updating module data objects: {0}", target.Name), Category.Info, Priority.Medium);
+                    Logger.Information("Updating module data objects: {0}", target.Name);
                     ExecuteContentExtensionMigrations(context);
                 }
-                OperationsLogger.Log(string.Format("Create module data objects: {0}", target.Name), Category.Info, Priority.Medium);
+                Logger.Information("Create module data objects: {0}", target.Name);
                 
                 var migration = ServiceLocator.Current.GetInstance<ITargetMigration>();
                 if(migration != null)
@@ -634,7 +637,7 @@ namespace Monahrq.Infrastructure.Services.Dynamic
                 {
                     foreach (var measure in measures)
                     {
-                        if (session.Query<Measure>().Any(m => m.Name.ToLower() == measure.Name.ToLower()))
+                        if (session.Query<Measure>().Any(m => string.Equals(m.Name, measure.Name, StringComparison.CurrentCultureIgnoreCase)))
                             continue;
 
                         session.SaveOrUpdate(measure);
@@ -644,7 +647,7 @@ namespace Monahrq.Infrastructure.Services.Dynamic
             }
             catch (Exception ex)
             {
-                OperationsLogger.Log(ex.GetBaseException().Message, Category.Exception, Priority.High);
+                Logger.Write(ex, $"Error importing measures from dynamnic target {dynamicTarget.Name}");
             }
         }
         /// <summary>
@@ -722,7 +725,7 @@ namespace Monahrq.Infrastructure.Services.Dynamic
             }
             catch (Exception ex)
             {
-                OperationsLogger.Log(ex.GetBaseException().Message, Category.Exception, Priority.High);
+                Logger.Write(ex, $"Error importing reports from dynamic target {dynamicTarget.Name}");
             }
         }
         #endregion
@@ -776,9 +779,7 @@ namespace Monahrq.Infrastructure.Services.Dynamic
                 }
                 catch (Exception ex)
                 {
-                    if (OperationsLogger != null)
-                        OperationsLogger.Log(ex.GetBaseException().Message, Category.Exception, Priority.High);
-
+                    Logger?.Write(ex, "Error applying dynamic target dataset hints");
                     throw;
                 }
             }
@@ -870,7 +871,7 @@ namespace Monahrq.Infrastructure.Services.Dynamic
                             exceptionCallback(new OpenSourceUnInstallResult
                             {
                                 Status = OpenSourceUnInstallFlags.Error,
-                                Exception = exc.GetBaseException(),
+                                Exception = exc,
                                 Message = exc.GetBaseException().Message
                             });
                             return Task.FromResult(false);
@@ -1266,7 +1267,7 @@ namespace Monahrq.Infrastructure.Services.Dynamic
                     }
                     catch (Exception exc)
                     {
-                        OperationsLogger.Log(exc.GetBaseException().Message, Category.Exception, Priority.High);
+                        Logger.Write(exc, $"Error saving flutter {flutter.Name}");
                         return false;
                     }
                 }
@@ -1340,14 +1341,13 @@ namespace Monahrq.Infrastructure.Services.Dynamic
                         catch (Exception exc)
                         {
                             trans.Rollback();
-                            var exception = exc.GetBaseException();
-                            OperationsLogger.Log
-                                (exception.Message, Category.Exception, Priority.High);
+
+                            Logger.Write(exc, $"Error uninstalling flutter {flutter.Name}");
 
                             exceptionCallback(new OpenSourceUnInstallResult
                             {
                                 Status = OpenSourceUnInstallFlags.Error,
-                                Message = exception.Message
+                                Message = exc.GetBaseException().Message
                             });
 
                             return Task.FromResult(false);
