@@ -109,7 +109,9 @@ namespace Monahrq.Infrastructure.BaseDataLoader.Loaders
         /// </summary>
         /// <param name="files">The files.</param>
         protected override void PreProcessFile(ref string[] files)
-        { }
+        {
+            files = new[] {files.OrderByDescending(f => f).First()};
+        }
 
         private ISession session;
         private int updates;
