@@ -10,6 +10,7 @@ using Monahrq.Default.ViewModels;
 using Monahrq.Default.Views;
 using Monahrq.Sdk.Events;
 using System.Diagnostics;
+using Monahrq.Infrastructure;
 
 
 namespace Monahrq.Default.Controllers
@@ -37,6 +38,9 @@ namespace Monahrq.Default.Controllers
     public class SimpleImportCompleteHandler : DefaultCompositeUIEventHandler<ISimpleImportCompletedPayload>, 
         ISimpleImportCompleteHandler
     {
+        [Import(LogNames.Session)]
+        public ILogWriter Logger { get; set; }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="SimpleImportCompleteHandler"/> class.
         /// </summary>
@@ -44,7 +48,7 @@ namespace Monahrq.Default.Controllers
         [ImportingConstructor]
         public SimpleImportCompleteHandler(IEventAggregator events)
         {
-            events.GetEvent<SimpleImportCompletedEvent>().Subscribe(payload => Handle(payload));
+            events.GetEvent<SimpleImportCompletedEvent>().Subscribe(Handle);
         }
 
         /// <summary>
@@ -53,6 +57,8 @@ namespace Monahrq.Default.Controllers
         /// <param name="result">The result.</param>
         public override void Handle(ISimpleImportCompletedPayload result)
         {
+            this.Logger.Information($@"Simple import completed for {result.Description}; {result.CountInserted} rows inserted, {result.NumberOfErrors} errors encountered");
+
             if (result.NumberOfErrors == 0 && result.CountInserted > 0)
             {
                 MessageBox.Show(Application.Current.MainWindow,

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.Practices.Prism.Events;
 using Microsoft.Practices.Prism.Regions;
 using Monahrq.Default.Views;
+using Monahrq.Infrastructure;
 using Monahrq.Sdk.Events;
 using Monahrq.Sdk.Regions;
 
@@ -39,6 +40,9 @@ namespace Monahrq.Default.Controllers
         [Import]
         IEventAggregator Events { get; set; }
 
+        [Import(LogNames.Session)]
+        public ILogWriter Logger { get; set; }
+
         /// <summary>
         /// Handles the specified result.
         /// </summary>
@@ -49,10 +53,13 @@ namespace Monahrq.Default.Controllers
             ctrl.Model = result;
             Events.GetEvent<PleaseStandByMessageUpdateEvent>().Subscribe(msg =>
                 {
+                    this.Logger.Debug($"Processing update: {msg}");
                     ctrl.Model.Message = msg;
                     ctrl.Refresh();
                 });
- 
+
+            this.Logger.Debug("Pausing normal processing");
+
             IRegion region = RegionManager.Regions[RegionNames.Modal];
             if (!region.Views.Contains(ctrl))
             {

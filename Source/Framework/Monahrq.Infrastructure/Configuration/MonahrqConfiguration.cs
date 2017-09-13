@@ -158,8 +158,7 @@ namespace Monahrq.Infrastructure.Configuration
                 config.Save(ConfigurationSaveMode.Minimal);
             }
 
-            ConfigDebugLog("MonahrqConfiguration.Ctor", String.Format(""));//States: {0}", DefaultStateCount));
-
+            
         }
 
         /// <summary>

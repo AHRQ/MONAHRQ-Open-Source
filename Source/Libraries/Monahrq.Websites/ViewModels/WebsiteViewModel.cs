@@ -8,6 +8,7 @@ using Microsoft.Practices.Prism;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Regions;
 using Monahrq.Default.ViewModels;
+using Monahrq.Infrastructure;
 using Monahrq.Infrastructure.Domain.BaseData.ViewModel;
 using Monahrq.Infrastructure.Domain.Websites;
 using Monahrq.Infrastructure.Entities.Domain.BaseData;
@@ -136,7 +137,9 @@ namespace Monahrq.Websites.ViewModels
                 return (Website.CurrentStatus.GetValueOrDefault() <= WebsiteState.CompletedDependencyCheck) ? CurrentStatusLabelInProgress : CurrentStatusLabelComplete;
             }
         }
-        
+
+        [Import]
+        public ILogWriter Logger { get; set; }
         #endregion
 
         #region Commands
@@ -196,6 +199,7 @@ namespace Monahrq.Websites.ViewModels
             {
                 if (vm == null) return;
 
+                this.Logger.Information($"Exporting configuration for website \"{vm.DisplayName}\"");
                 Website websiteToExport = null;
                 using (ApplicationCursor.SetCursor(Cursors.Wait))
                 {

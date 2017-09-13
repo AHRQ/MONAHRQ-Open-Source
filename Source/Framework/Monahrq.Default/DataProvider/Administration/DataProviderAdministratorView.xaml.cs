@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using Microsoft.Practices.Prism.Events;
 using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.ServiceLocation;
+using Monahrq.Infrastructure;
 using Monahrq.Sdk.DataProvider.Builder;
 using Monahrq.Sdk.Regions;
 
@@ -45,21 +46,11 @@ namespace Monahrq.Default.DataProvider.Administration
         }
       
 
-        IEventAggregator Events
-        {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<IEventAggregator>();
-            }
-        }
+        private IEventAggregator Events => ServiceLocator.Current.GetInstance<IEventAggregator>();
+        private IRegion DialogRegion => ServiceLocator.Current.GetInstance<IRegionManager>().Regions[RegionNames.Modal];
 
-        IRegion DialogRegion
-        {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<IRegionManager>().Regions[RegionNames.Modal];
-            }
-        }
+        [Import]
+        public ILogWriter Logger { get; set; }
 
         [ImportingConstructor]
         public DataProviderAdministratorView(IServiceLocator serviceLocator,
@@ -71,17 +62,21 @@ namespace Monahrq.Default.DataProvider.Administration
                 .Subscribe(evnt => LoadBuilderDialog(evnt.Configuration));
 
             Events.GetEvent<DataProviderAdministratorController.DeletingEvent>()
-               .Subscribe(evnt => PromptForDelete(evnt));
+               .Subscribe(PromptForDelete);
         }
 
         private void PromptForDelete(DeletingConnectionEventArgs evnt)
         {
-            evnt.Cancel =
-                MessageBox.Show(Application.Current.MainWindow,
+            var result = MessageBox.Show(
+                Application.Current.MainWindow,
                     string.Format(@"Delete ""{0}"" ?", evnt.Connection.Name),
                     "Delete Connection?",
                     MessageBoxButton.YesNo,
-                    MessageBoxImage.Question, MessageBoxResult.No) == MessageBoxResult.No;
+                    MessageBoxImage.Question, MessageBoxResult.No);
+
+            this.Logger.Debug($"User responded '{result}' to prompt \"Delete {evnt.Connection.Name}\"");
+
+            evnt.Cancel = result == MessageBoxResult.No;
         }
 
         private void LoadBuilderDialog(Infrastructure.Configuration.NamedConnectionElement connection)

@@ -151,7 +151,7 @@ namespace Monahrq.DataSets.ViewModels.Crosswalk
             {
                 targetPropertyType = targetPropertyType.GetGenericArguments()[0];
             }
-            PropertyChanged += (o, e) => Logger.Log(string.Format("Property changed:  {0}", e.PropertyName), Category.Info, Priority.Low);
+            //PropertyChanged += (o, e) => Logger.Log(string.Format("Property changed:  {0}", e.PropertyName), Category.Info, Priority.Low);
             FieldEntry = entry;
             Element = element;
             var xwalk = FieldEntry.Bin

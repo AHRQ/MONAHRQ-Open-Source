@@ -10,8 +10,8 @@ namespace Monahrq.Sdk.Logging
     /// <summary>
     /// A logger that holds on to log entries until a callback delegate is set, then plays back log entries and sends new log entries.
     /// </summary>
-    [Export(LogNames.Operations, typeof(ILogWriter))]
-    [Export(LogNames.Operations, typeof(ILoggerFacade))]
+    //[Export(LogNames.Operations, typeof(ILogWriter))]
+    //[Export(LogNames.Operations, typeof(ILoggerFacade))]
     [PartCreationPolicy(CreationPolicy.NonShared)]
     public class CallbackLogger : LoggerBase
     {

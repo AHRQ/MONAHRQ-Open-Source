@@ -23,6 +23,7 @@ using NHibernate.Criterion;
 using NHibernate.Linq;
 using System.ComponentModel.Composition;
 using Microsoft.Practices.ServiceLocation;
+using Monahrq.Infrastructure.Exceptions;
 
 namespace Monahrq.Websites.Services
 {
@@ -39,7 +40,15 @@ namespace Monahrq.Websites.Services
 
             var websitDto = new WebsiteExport(website);
 
-            var websiteXml = XmlHelper.Serialize(websitDto, true);
+            XmlDocument websiteXml;
+            try
+            {
+                websiteXml = XmlHelper.Serialize(websitDto, true);
+            }
+            catch (Exception e)
+            {
+                throw new MonahrqCoreException($"Failed to serialize configuration for website {website.Name}", e);
+            }
 
             var saveFileDialog = new SaveFileDialog
             {
@@ -54,8 +63,7 @@ namespace Monahrq.Websites.Services
 
             if (saveFileDialog.ShowDialog() == true)
             {
-                Stream xmlStream;
-                using (xmlStream = saveFileDialog.OpenFile())
+                using (var xmlStream = saveFileDialog.OpenFile())
                 {
                     // Code to write the stream goes here.
                     var xr = XmlWriter.Create(xmlStream);
@@ -66,7 +74,6 @@ namespace Monahrq.Websites.Services
                     xmlStream.Close();
                 }
             }
-            saveFileDialog = null;
         }
 
         public static void Import(ImportRequest request, CancellationToken ctx, Action<ImportResponse> responseCallback, Action<ImportResponse> errorCallback)

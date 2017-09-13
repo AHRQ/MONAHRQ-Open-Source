@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Text;
 using Microsoft.Practices.Prism.Logging;
 using Monahrq.Infrastructure;
 
@@ -59,8 +60,18 @@ namespace Monahrq.Sdk.Logging
         /// <param name="items">The items.</param>
         public void Write(Exception exception, TraceEventType severity, System.Collections.IDictionary items)
         {
-            string message = string.Format("{0}{1}{2}{1}", exception.Message, System.Environment.NewLine, exception.StackTrace);
-            Write(message, severity, items);
+            var sb = new StringBuilder(4096);
+            try
+            {
+                for (var ex = exception; ex != null; ex = ex.InnerException)
+                {
+                    sb.AppendLine($@"{ex.GetType().Name}: {ex.Message}
+{ex.StackTrace}
+");
+                }
+            }
+            catch { } //disregard errors since there's nothing we can safely do about them
+            Write(sb.ToString(), severity, items);
         }
 
         /// <summary>
