@@ -7,7 +7,7 @@ namespace Monahrq.Infrastructure.Entities.Domain.BaseData
     {
         public virtual int DXCCSID { get; set; }
         public virtual int Region { get; set; }
-        public virtual double Discharges { get; set; }
+        public virtual int Discharges { get; set; }
         public virtual double DischargesStdErr { get; set; }
         public virtual double MeanCharges { get; set; }
         public virtual double MeanChargesStdErr { get; set; }

@@ -34,7 +34,7 @@ namespace Monahrq.Infrastructure.Configuration
         {
             get
             {
-                return "7.4.0.6";
+                return "7.4.0.7";
             }
         }
 
