@@ -405,6 +405,9 @@
     <Content Include="Resources\Database\Version\70\Minor\2017050301_ProviderStates.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Database\Version\70\Minor\2017091301_IPNationalTotalsPrecision.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Samples\Physician Import Sample.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -473,7 +476,7 @@
     <Content Include="Resources\Database\Version\70\2017051101_ProviderChargeDataVersion.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Database\Version\70\Minor\2017091301_IPNationalTotalsPrecision.sql">
+    <Content Include="Resources\Database\Version\70\Minor\2017091302_MeasureFooters.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Database\Version\70\Minor\2017051101_ProviderChargeDataVersion.sql">

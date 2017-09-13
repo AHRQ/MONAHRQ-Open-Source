@@ -1,6 +1,6 @@
 ﻿BEGIN TRY 
 
-	UPDATE SchemaVersions SET Version = '7.4.0.5' where [Name] = 'Database Schema'
+	UPDATE SchemaVersions SET Version = '7.4.0.6' where [Name] = 'Database Schema'
 
 END TRY 
 BEGIN CATCH
