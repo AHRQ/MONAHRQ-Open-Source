@@ -815,10 +815,21 @@ namespace Monahrq.Websites.ViewModels
         private void ValidateNumeric(string p, string value)
         {
             ClearErrors(p);
-            if (!IsNumeric(value))
+            if (p == "NumeratorOverride" || p == "DenominatorOverride")
             {
-                SetError(p, "Please provide a valid numeric value.");
+                if (!String.IsNullOrEmpty(value) && !IsNumeric(value))
+                {
+                    SetError(p, "Please provide a valid numeric value.");
+                }
             }
+            else
+            {
+                if (!IsNumeric(value))
+                {
+                    SetError(p, "Please provide a valid numeric value.");
+                }
+            }
+            
         }
 
         private bool IsNumeric(string value)
@@ -1268,7 +1279,7 @@ namespace Monahrq.Websites.ViewModels
 
                 const string propertyName = "NumeratorOverride"; // ExtractPropertyName(() => NumeratorOverride);
                 ValidateNumeric(propertyName, value);
-                if (GetErrors(propertyName) == null)
+                if (GetErrors(propertyName) == null && !String.IsNullOrEmpty(value))
                     MeasureOverwrite.SuppressionNumerator = decimal.Parse(value);
             }
         }
@@ -1284,7 +1295,7 @@ namespace Monahrq.Websites.ViewModels
 
                 var propertyName = "DenominatorOverride"; // ExtractPropertyName(() => DenominatorOverride);
                 ValidateNumeric(propertyName, value);
-                if (GetErrors(propertyName) == null)
+                if (GetErrors(propertyName) == null && !String.IsNullOrEmpty(value))
                     MeasureOverwrite.SuppressionDenominator = decimal.Parse(value);
             }
         }
