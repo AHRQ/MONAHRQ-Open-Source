@@ -506,9 +506,9 @@ namespace IPGenerator
                 {
                     int id = dataRead.GetInt32(0);
                     string value = string.Format("\"Discharges\":{0},\"MeanCharges\":{1},\"MeanCost\":{2},\"MeanLOS\":{3},\"MedianCharges\":{4},\"MedianCost\":{5},\"MedianLOS\":{6},",
-                        !dataRead.IsDBNull(1) ? dataRead.GetFloat(1).ToString() : "null",
-                        !dataRead.IsDBNull(2) ? dataRead.GetFloat(2) : -1,
-                        !dataRead.IsDBNull(3) ? dataRead.GetFloat(3) : -1,
+                        !dataRead.IsDBNull(1) ? dataRead.GetInt32(1).ToString() : "null",
+                        !dataRead.IsDBNull(2) ? dataRead.GetDouble(2) : -1,
+                        !dataRead.IsDBNull(3) ? dataRead.GetDouble(3) : -1,
                         !dataRead.IsDBNull(4) ? dataRead.GetFloat(4).ToString() : "null",
                         !dataRead.IsDBNull(5) ? dataRead.GetFloat(5) : -1,
                         !dataRead.IsDBNull(6) ? dataRead.GetFloat(6) : -1,

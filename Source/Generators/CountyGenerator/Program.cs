@@ -691,9 +691,9 @@ namespace CountyGenerator
                 {
                     var id = dataRead.GetInt32(0);
 
-                    var discharges = !dataRead.IsDBNull(1) ? dataRead.GetFloat(1).ToString() : "null";
-                    var meanCharges = !dataRead.IsDBNull(2) ? dataRead.GetFloat(2) : -1;
-                    var meanCost = !dataRead.IsDBNull(3) ? dataRead.GetFloat(3) : -1;
+                    var discharges = !dataRead.IsDBNull(1) ? dataRead.GetInt32(1).ToString() : "null";
+                    var meanCharges = !dataRead.IsDBNull(2) ? dataRead.GetDouble(2) : -1;
+                    var meanCost = !dataRead.IsDBNull(3) ? dataRead.GetDouble(3) : -1;
 
                     var meanLOS = !dataRead.IsDBNull(4) ? dataRead.GetFloat(4) : 0;
 

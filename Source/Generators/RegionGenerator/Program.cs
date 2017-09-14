@@ -643,9 +643,9 @@ namespace RegionGenerator
                 {
                     int id = dataRead.GetInt32(0);
                     string value = string.Format("\"Discharges\":{0},\"MeanCharges\":{1},\"MeanCost\":{2},\"MeanLOS\":{3},\"MedianCharges\":{4},\"MedianCost\":{5},\"MedianLOS\":{6}",
-                        dataRead.GetFloat(1),
-                        dataRead.GetFloat(2),
-                        dataRead.GetFloat(3),
+                        dataRead.GetInt32(1),
+                        dataRead.GetDouble(2),
+                        dataRead.GetDouble(3),
                         dataRead.GetFloat(4),
                         dataRead.GetFloat(5),
                         dataRead.GetFloat(6),
