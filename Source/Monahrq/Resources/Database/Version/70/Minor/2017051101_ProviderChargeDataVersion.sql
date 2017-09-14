@@ -7,7 +7,3 @@ UPDATE Wings_Elements
 SET Hints = Name
 WHERE Target_Id = 8
 AND LEN(Hints) = 0 
-
-UPDATE TopicCategories 
-SET TopicType = 'Hospital' 
-WHERE Name = 'Utilization'
