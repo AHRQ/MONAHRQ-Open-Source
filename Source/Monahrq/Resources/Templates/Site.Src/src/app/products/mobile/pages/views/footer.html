@@ -1,0 +1,58 @@
+<footer>
+    <!--<div class="bg-color-naviblue">
+        <nav role="navigation" aria-label="Site Navigation" class="nav--footer ng-scope nav-depth-1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="index.html">Home <span class="sr-only">(current)</span></a></li>
+                <li><a href="index.html">Compare Hospitals</a></li>
+                <li><a href="index.html">Compare Nursing Homes</a></li>
+                <li><a href="index.html">Find Doctors</a></li>
+                <li><a href="index.html">Browse Health Topics</a></li>
+                <li><a href="index.html">About This Site</a></li>
+
+            </ul>
+        </nav>
+    </div>-->
+    <div data-mh-menu="consumerMenu" data-nav-class="'nav--footer'" class="bg-color-naviblue"></div>
+    <section class="site-footer-about bg-color-darkblue">
+        <h3 class="about-us-title">About Us</h3>
+        <p class="about-us-content" data-ng-bind-html="pgAboutUs.footerContent"></p>
+
+        <div class="about-companies">
+            <div class="footer-site-logo">
+                <img src="" alt="Provider Logo"
+                     data-ng-src="{{config.products.consumer.website_LogoImagePath}}">
+            </div>
+            <div class="footer-monahrq-logo">
+                <img src="themes/consumer/assets/images/monahrq-logo--footer.png" alt="MONAHRQ Input Your Data. Output your website." class="monahrq-footer-logo">
+            </div>
+            <div class="site-version-info">
+                <p>Version: {{VERSION}}</p>
+                <p><span>A Project of the U.S. Department of Health and Human Services</span></p>
+            </div>
+        </div>
+    </section>
+    <!--alert-->
+    <div class="alert alert-info alert-dismissible text-center" role="alert">
+        <div class="container">
+            <!-- <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                     aria-hidden="true">&times;</span></button>-->
+            <div class="hidden-xs">
+                Are you a health care professional looking for <strong>
+                                                                   <a href="#" data-ui-sref="top.professional.home">
+                                                                       Quality
+                                                                       and
+                                                                       Service Use Rates?
+                                                                   </a>
+                </strong>
+            </div>
+            <div class="visible-xs"><strong><a href="javascript:;" onclick="transferToDesktopView()">Transfer to Full Site Desktop View</a></strong></div>
+        </div>
+    </div>
+    <!--.alert-->
+</footer>
+<div class="helpTrigger" data-ng-show="showFooterBar && showGuideTool" data-ng-intro-options="IntroOptions" data-ng-intro-method="walkthroughStart" data-ng-intro-onbeforechange="beforeChangeEvent" data-ng-intro-onexit="exitEvent" data-ng-intro-oncomplete="searchComplete">
+    <div class="helpTrigger__tab" data-ng-click="toggleHelpLinks();">{{showHelpLinks == true ? 'Close' : 'Open' }} Help<span class="glyphicon glyphicon-question-sign"></span></div>
+    <div class="helpTrigger__text" data-ng-show="showHelpLinks">
+        <p><span class="helpTrigger__text-ratingsLink">Looking for <a href="index.html#/consumer/about-site/resourceHospitalQuality">information about the ratings on this site</a></span><span class="helpTrigger__helpLink">Need some help finding what you're looking for? <a ng-click="walkthroughStart();">Run a quick informative tutorial to get started</a>!</span></p>
+    </div>
+</div>

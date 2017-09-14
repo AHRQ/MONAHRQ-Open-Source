@@ -23,6 +23,9 @@ angular.module('monahrq.products.consumer.nursing-homes', [
  */
 config.$inject = ['$stateProvider'];
 function config($stateProvider) {
+
+    
+
   $stateProvider.state('top.consumer.nursing-homes', {
     abstract: true,
     url: '/nursing-homes'
@@ -36,7 +39,7 @@ function config($stateProvider) {
     },
     views: {
       'content@': {
-        templateUrl: 'app/products/consumer/nursing-homes/views/location.html',
+          templateUrl: 'app/products/consumer/nursing-homes/views/location.html',
         controller: 'CNHLocationCtrl',
         resolve: {
           zipDistances: function(ResourceSvc) {

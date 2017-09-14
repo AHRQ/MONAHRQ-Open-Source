@@ -32,6 +32,9 @@
     $scope.measureTopicCategories = measureTopicCategories;
     $scope.measureDefs = measureDefs;
     $scope.ahsTopics = ahsTopics;
+    $scope.getEntityGroupTitleMobile = getEntityGroupTitleMobile;
+    $scope.share = share;
+    $scope.feedbackModal = feedbackModal;
     jQuery('.resource__content-panel').focus();
 
     $scope.skipSubnav = function($event) {
@@ -60,6 +63,41 @@
       return [];
 
     };
+
+    function share() {
+        window.location = buildShareUrl();
+    }
+
+    function feedbackModal() {
+        ModalFeedbackSvc.open($scope.config);
+    }
+
+    function buildShareUrl() {
+        var url = escape(window.location);
+        return "mailto:?to=&subject=Shared%20MONAHRQ%20Page&body=" + url;
+    }
+
+    function getEntityGroupTitleMobile() {
+        var rcs = $scope.ConsumerReportConfigSvc;
+        var entityNames = {};
+        if (rcs.hasEntity(rcs.entities.HOSPITAL)) {
+            entityNames[rcs.entities.HOSPITAL] = 'hospital';
+        }
+        if (rcs.hasEntity(rcs.entities.NURSINGHOME)) {
+            entityNames[rcs.entities.NURSINGHOME] = 'nursing home';
+        }
+        var entities = _.without(rcs.getEntities(), 'PHYSICIAN');
+        var title;
+
+        if (entities.length === 1) {
+            title = entityNames[entities[0]];
+        }
+        else if (entities.length === 2) {
+            title = entityNames[entities[0]] + ' or ' + entityNames[entities[1]];
+        }
+
+        return title;
+    }
 
     function loadData() {
       ResourceSvc.getMeasureDefs(getAllMeasureIds())

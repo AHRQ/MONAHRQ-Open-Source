@@ -1,0 +1,378 @@
+<main class="location"
+      data-ng-intro-options="IntroOptions"
+      data-ng-intro-onbeforechange="beforeChangeEvent"
+      data-ng-intro-method="walkthroughStart"
+      data-ng-intro-onexit="onExit"
+      data-ng-intro-oncomplete="onExit">
+
+    <section class="sharethis-section clearfix">
+        <nav class="sharethis-nav">
+            <ul class="clearfix">
+                <li>
+                    <button data-ng-click="share()" class="btn-m-secondary">Share This Page</button>
+                </li>
+                <li>
+                    <button class="btn-m-secondary" data-ng-click="feedbackModal()" data-ng-if="config.products.consumer.website_FeedBackEmail">Feedback</button>
+                </li>
+            </ul>
+        </nav>
+    </section>
+
+    <section class="search-browse section-blue" role="search">
+
+        <article>
+            <header>
+                <h2>Compare nursing homes by location:</h2>
+            </header>
+        </article>
+
+        <form class="search-form text-left" name="searchForm" novalidate>
+            <div class="search-form-container" id="serch-form__contain">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="form-group search-form-location">
+                                <label for="search-location">Enter Location:</label>
+                                <input type="text" id="search-location" name="location" placeholder="Enter address, city or zip code" data-ng-model="query.location" required>
+                                <span data-ng-if="searchForm.location.$error.required && showValidationErrors" class="form-error-message" role="alert">Error: Please enter a location</span>
+                            </div>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="form-group search-form-distance">
+                                <label for="search-distance">Select Distance Range:</label>
+                                <select class="form-control select-style" id="search-distance" data-ng-class="{selectEmpty: !query.distance}" name="distance" data-ng-model="query.distance" data-ng-options="x as (x + ' Mile(s)') for x in zipDistances track by x" title="Maximum Distance">
+                                    <option value="" selected disabled style="display: none;">Choose Maximum Distance</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="search-form-action">
+                                <p data-ng-if="searchStatus === 'COMPLETED'" class="results-updated" role="alert">Results Updated</p>
+                                <button id="updateSearch" class="btn-m-primary" data-ng-click="updateSearch()">Show Results Below</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </section>
+    <div data-mh-cms-zone="'header'" data-mh-cms-zone-report-id="reportId" data-mh-cms-zone-product="'Consumer'"></div>
+
+    <section class="search-reasult-holder" data-ng-if="searchStatus === 'COMPLETED'">
+        <article class="compare-result-help-link">
+            <div class="help-block text-right">
+                <div data-mh-help-icon="'Help me understand this report'" data-mh-on-click="modalLegend()"></div>
+            </div>
+        </article>
+
+
+        <article class="compare-result-option">
+            <form>
+                <div class="form-group">
+                    <label>Compare Your Results To The:</label>
+                    <div class="radio">
+                        <label for="compareTo-national"><input type="radio" name="compareTo" id="compareTo-national" value="national" data-ng-model="query.compareTo">National Average</label>
+                    </div>
+                    <div class="radio">
+                        <label for="compareTo-state"><input type="radio" name="compareTo" id="compareTo-state" value="state" data-ng-model="query.compareTo">State Average</label>
+                    </div>
+                    <div class="radio">
+                        <label for="compareTo-county"><input type="radio" name="compareTo" id="compareTo-county" value="county" data-ng-model="query.compareTo">County Average</label>
+                    </div>
+                </div>
+            </form>
+        </article>
+    </section>
+
+
+
+    <section class="consumer-info-provider text-center" data-ng-if="searchStatus === 'NOT_STARTED'">
+        <article>
+            <div class="report-no-result">
+                Please enter a search in the form above.
+                <p class="sub-info">
+                    For more helpful information about nursing homes, <a data-ui-sref="top.consumer.nursing-homes.infographic">view the visual report</a>
+                </p>
+            </div>
+        </article>
+    </section>
+
+
+    <section class="report-header" data-ng-if="searchStatus === 'SEARCHING'">
+        <div class="report-loading">
+            <div data-us-spinner></div>
+            <p>Searching...</p>
+        </div>
+    </section>
+
+    <section class="consumer-info-provider text-center" data-ng-if="searchStatus === 'NO_RESULTS'" role="alert">
+        <article>
+            <div class="report-no-result">Your search did not find any nursing homes.</div>
+        </article>
+    </section>
+
+
+
+
+
+    <section class="result-table-holder" data-ng-if="searchStatus === 'COMPLETED'">
+        <div class="result-table-wrapper no-bdr">
+            <article class="tab-holder tab-map-view">
+                <tabset>
+                    <!-- Nav tabs -->
+                    <!--<ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active">
+                            <a href="#home" aria-controls="home" role="tab"
+                               data-toggle="tab">Table</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#profile" aria-controls="profile" role="tab"
+                               data-toggle="tab">Map</a>
+                        </li>
+                    </ul>-->
+                    <!-- Tab panes -->
+                    <!--<div class="tab-content result-table-wrapper-bdr">
+                    <div role="tabpanel" class="tab-pane active" id="home">-->
+                    <tab heading="Table" ng-click="onTabSelect('TableTab')" active="isTableActive">
+                        <table class="table table-striped compare-hospital-search-result-table nursing-homes-table">
+                            <caption class="sr-only">Compare Nursing home Search Result</caption>
+                            <thead>
+                                <tr>
+                                    <th class="blue-bg">
+                                        <label for="sortBy">Sort By:</label>
+                                        <select class="form-control select-style short" id="sortBy" data-ng-model="query.sort" data-ng-options="o.value as o.label for o in sortOptions" onkeyup="this.blur();this.focus()">
+                                            <option value="" disabled>Select to Sort</option>
+                                        </select>
+                                    </th>
+                                    <th class="blue-bg">
+                                        <!--<div data-mh-help-icon="'LEGEND'" data-mh-on-click="modalLegend()"></div>-->
+                                    </th>
+                                </tr>
+                                <!---data-ng-if="$index=0" ->-->
+                                <tr class="gray-header">
+                                    <th>Nursing Home Name</th>
+                                    <th data-ng-repeat="col in columnModel track by $index" data-ng-if="col.name == 'Overall Quality'" id="rating{{$index}}"><span ng-bind="col.name"></span>&nbsp;<span data-mh-help-icon data-sr-label="'Help for ' + col.name" data-mh-on-click="modalMeasure(col.id)"></span></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr data-ng-repeat="row in model track by $index" data-ng-init="$last && startWalkthrough();">
+
+
+                                    <td>
+
+                                        <div class="list-group">
+                                            <div class="list-group-item">
+                                                <h4 class="list-group-item-heading hospital-name">
+                                                    <a href="#" id="nhName{{$index}}" data-ui-sref="^.profile({id: row.id})">{{row.name}}</a>
+                                                </h4>
+                                                <p class="list-group-item-text hospital-location">{{row.city}}, {{row.state}}</p>
+                                                <p class="list-group-item-text hospital-distance">({{distances[row.id]}} miles)</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td data-ng-repeat="col in columnModel track by $index" data-ng-if="col.name == 'Overall Quality'">
+                                        <div class="rating-box">
+                                            <p class="star-group">
+                                                <span data-ng-if="query.compareTo == 'national'" data-mh-rating-nursing="row[col.id].NatRating"></span>
+                                                <span data-ng-if="query.compareTo == 'state'" data-mh-rating-nursing="row[col.id].PeerRating"></span>
+                                                <span data-ng-if="query.compareTo == 'county'" data-mh-rating-nursing="row[col.id].CountyRating"></span>
+                                            </p>
+
+                                        </div>
+
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+
+
+                    </tab>
+                    <tab heading="Map" select="showMap()" ng-click="onTabSelect('MapTab')" active="isMapActive">
+
+                        <div class="report--content" data-ng-show="searchStatus === 'COMPLETED'">
+                            <div ng-repeat="marker in mapModel.markers" ui-map-marker="mapModel.markers[$index]" ui-event="{'map-mouseover': 'openMarkerInfo(marker)'}"></div>
+
+                            <div ui-map-info-window="mapModel.infoWindow" class="clearfix">
+                                <div class="info_window__wrapper compare_nursing_homes">
+                                    <h2>{{mapModel.currentMarkerData.name}}</h2>
+                                    <p class="info__window__adr">{{mapModel.currentMarkerData.address}}</p>
+                                    <p ng-hide="missingRating" class="info__window__rating"><strong class="col-md-4">Overall Rating:</strong><span class="info__window__rating col-md-8" data-mh-rating-nursing="mapModel.currentMarkerData.overallRating"></span></p>
+                                    <p ng-show="mapModel.currentMarkerData.overallInspection" class="info__window__rating"><strong class="col-md-4">Overall Inspection:</strong><span class="info__window__rating col-md-8" data-mh-rating-nursing="mapModel.currentMarkerData.overallInspection"></span></p>
+                                    <p ng-show="mapModel.currentMarkerData.overallQuality" class="info__window__rating"><strong class="col-md-4">Overall Quality:</strong><span class="info__window__rating col-md-8" data-mh-rating-nursing="mapModel.currentMarkerData.overallQuality"></span></p>
+                                    <p ng-show="mapModel.currentMarkerData.overallStaffing" class="info__window__rating"><strong class="col-md-4">Overall Staffing:</strong><span class="info__window__rating col-md-8" data-mh-rating-nursing="mapModel.currentMarkerData.overallStaffing"></span></p>
+                                    <p ng-show="mapModel.currentMarkerData.overallFamily" class="info__window__rating"><strong class="col-md-4">Rating of Care by Resident's Family:</strong><span class="info__window__rating col-md-8" data-mh-rating-nursing="mapModel.currentMarkerData.overallFamily"></span></p>
+                                    <p><a href="#" data-ui-sref="^.profile({id: mapModel.currentMarkerData.id})">View Profile</a></p>
+                                </div><!-- /.inf__wrapper -->
+                            </div>
+
+                            <div class="map large">
+                                <div data-ng-if="!config.DE_IDENTIFICATION" data-ui-map="mapModel.map" data-ui-options="mapOptions" class="map-canvas" title="Geographic map of search results"></div>
+                                <div data-ng-if="config.DE_IDENTIFICATION" class="map-canvas">
+                                    <img src="themes/consumer/assets/images/demo-map.png" alt="Example Map">
+                                </div>
+                            </div>
+                            <!--<p data-ng-if="config.DE_IDENTIFICATION" style="text-align:center">* For demonstration purposes, this is a static map based on fabricated data. A non-demonstration website will use an interactive map.</p>-->
+                        </div>
+
+                    </tab>
+
+                </tabset>
+
+            </article>
+
+        </div>
+    </section>
+
+
+
+    <section class="update-search-result-section gray-blocks left" data-ng-if="searchStatus === 'NO_RESULTS' || searchStatus === 'COMPLETED'">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="form-group search-form-distance">
+                    <label for="search-distance2">
+                        Try changing your search area for different results:
+                    </label>
+                    <select class="form-control select-style" id="search-distance2" data-ng-class="{selectEmpty: !query.distance}" name="distance" data-ng-model="query.distance" data-ng-options="x as (x + ' Mile(s)') for x in zipDistances track by x" title="Maximum Distance">
+                        <option value="" selected disabled style="display: none;">Choose Maximum Distance</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="search-form-action">
+                    <button class="btn-m-blue" data-ng-click="updateSearch()">Update Results</button>
+                </div>
+                <p class="help-block">
+                    Need help with your search? <a href="#" data-ui-sref="top.consumer.about-ratings({page: 'resourceNursingHomeQuality'})">Find help here</a>.
+                </p>
+            </div>
+            <div class="col-xs-12">
+                <div data-ng-if="reportSettings.footer" class="report-footnotes" data-ng-bind-html="reportSettings.footer"></div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="visual-report-section" data-ng-if="searchStatus === 'COMPLETED'">
+        <div class="text-center" data-ng-if="showInfographic">
+            <h2>
+                LOOKING FOR A GOOD QUALITY
+                NURSING HOME?
+            </h2>
+            <p class="sub-header">Make sure you get the best care possible</p>
+            <button class="btn-m-blue" data-ui-sref="top.consumer.nursing-homes.infographic">View the visual report</button>
+        </div>
+    </section>
+
+    <div data-mh-cms-zone="'footer'" data-mh-cms-zone-report-id="reportId" data-mh-cms-zone-product="'Consumer'"></div>
+
+
+
+    <!--<section class="report" tabindex="-1">
+                <header class="report-header" data-ng-if="searchStatus === 'NOT_STARTED'">
+                    <p class="report__no-results">
+                        <strong>Please enter a search in the form above.</strong>
+                        <br><br>
+                        For more helpful information about nursing homes,<br><a data-ui-sref="top.consumer.nursing-homes.infographic">view the visual report</a>.
+                    </p>
+                </header>
+                <header class="report-header" data-ng-if="searchStatus === 'SEARCHING'">
+                    <div class="report-loading">
+                        <div data-us-spinner></div>
+                        <p>Searching...</p>
+                    </div>
+                </header>
+                <header class="report-header" data-ng-if="searchStatus === 'NO_RESULTS'" role="alert">
+                    <p class="report__no-results">Your search did not find any nursing homes.</p>
+                </header>
+                <<header class="report-header" data-ng-if="searchStatus === 'COMPLETED'">
+                    <div class="report-header__compare-against">
+                        <fieldset id="compareResultsWrapper">
+                            <legend>Compare Results To:</legend>
+                            <label for="compareTo-national"><input type="radio" name="compareTo" id="compareTo-national" value="national" data-ng-model="query.compareTo">National Average</label>
+                            <label for="compareTo-state"><input type="radio" name="compareTo" id="compareTo-state" value="state" data-ng-model="query.compareTo">State Average</label>
+                            <label for="compareTo-county"><input type="radio" name="compareTo" id="compareTo-county" value="county" data-ng-model="query.compareTo">County Average</label>
+                        </fieldset>
+                    </div>
+                    <div class="report-header__help">
+                        <div data-mh-help-icon="'Help me understand this report'" data-mh-on-click="modalLegend()"></div>
+                    </div>
+                </header>
+                <header class="report-header report-header--map" data-ng-if="searchStatus === 'COMPLETED'">
+                    <p class="view-multiple-helper-text">To compare detailed ratings,<br>select up to five nursing homes below.</p>
+                    <div class="report-header__map">
+                        <img class="report-header__map-icon" src="themes/consumer/assets/images/static-map.jpg" alt="">
+                        <div class="report-header__content">
+                            <a href="#" id="mapResultsLink" data-ng-click="gotoMap(); $event.preventDefault()">View these results on a map</a>
+                            <p><strong>Nursing homes within {{query.distance}} miles of {{query.location}}</strong></p>
+                        </div>
+                    </div>
+                </header>
+                <div class="report-content" data-ng-if="searchStatus === 'COMPLETED'">
+                    <div class="report__sort-by">
+                        <label for="sortBy">Sort By:</label>
+                        <select id="sortBy" data-ng-model="query.sort" data-ng-options="o.value as o.label for o in sortOptions" onkeyup="this.blur();this.focus()">
+                            <option value="" disabled>Select to Sort</option>
+                        </select>
+                    </div>
+                    <div class="table-wrapper">
+                        <table mh-sticky-table-header="columnModel">
+                            <thead>
+                                <tr>
+                                    <th class="compare-check">
+                                        Select:
+                                        <small>(To Compare)</small>
+                                        <button class="btn--primary" id="compareBtn" tabindex="{{getCompareTabIndex()}}" data-ng-class="{disabled: !canCompare()}" data-ng-mouseover="$event.preventDefault(); showCompareHelpModal();" data-ng-click="gotoCompare()">Compare</button>
+                                    </th>
+                                    <th class="nursing-home-name">Nursing Home Name:</th>
+                                    <th data-ng-repeat="col in columnModel track by $index" id="rating{{$index}}"><span ng-bind="col.name"></span><span data-mh-help-icon data-sr-label="'Help for ' + col.name" data-mh-on-click="modalMeasure(col.id)"></span></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr data-ng-repeat="row in model track by $index" data-ng-init="$last && startWalkthrough();">
+                                    <td class="compare-check" id="check{{$index}}"><input data-ng-click="toggleCompare(row.id)" title="Add to Compare" aria-label="Add {{row.name}} to the list of nursing homes to compare" type="checkbox"></td>
+                                    <td class="hospital">
+                                        <a class="hospital__name" href="#" id="nhName{{$index}}" data-ui-sref="^.profile({id: row.id})">{{row.name}}</a>
+                                        <p class="hospital__location">{{row.city}}, {{row.state}}</p>
+                                        <p class="hospital__distance">({{distances[row.id]}} miles)</p>
+                                    </td>
+                                    <td data-ng-repeat="col in columnModel" data-ng-if="col.show(col)">
+                                        <span data-ng-if="query.compareTo == 'national'" data-mh-rating-nursing="row[col.id].NatRating"></span>
+                                        <span data-ng-if="query.compareTo == 'state'" data-mh-rating-nursing="row[col.id].PeerRating"></span>
+                                        <span data-ng-if="query.compareTo == 'county'" data-mh-rating-nursing="row[col.id].CountyRating"></span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>-
+                <footer class="report-footer" data-ng-if="searchStatus === 'NO_RESULTS' || searchStatus === 'COMPLETED'">
+                    <div data-ng-if="searchStatus === 'COMPLETED'">
+                        <button class="btn--primary" tabindex="{{getCompareTabIndex()}}" data-ng-class="{disabled: !canCompare()}" data-ng-mouseover="$event.preventDefault(); showCompareHelpModal();" data-ng-click="gotoCompare()">Compare</button>
+                        <p class="view-multiple-helper-text">To compare detailed ratings,<br>select up to five nursing homes above.</p>
+                    </div>
+                    <div class="change-search-area">
+                        <label for="search-distance2">Try changing your search area for different results:</label>
+                        <select id="search-distance2" data-ng-class="{selectEmpty: !query.distance}" name="distance" data-ng-model="query.distance" data-ng-options="x as (x + ' Mile(s)') for x in zipDistances track by x" title="Maximum Distance">
+                            <option value="" selected disabled style="display:none;">Choose Maximum Distance</option>
+                        </select>
+                        <button data-ng-click="updateSearch()">Update Results</button>
+                        <p>Need help with your search? <a href="#" data-ui-sref="top.consumer.about-ratings({page: 'resourceNursingHomeQuality'})">Find help here</a>.</p>
+                    </div>
+                    <div data-ng-if="reportSettings.footer" class="report-footnotes" data-ng-bind-html="reportSettings.footer"></div>
+                </footer>
+            </section>
+            <div data-mh-cms-zone="'footer'" data-mh-cms-zone-report-id="reportId" data-mh-cms-zone-product="'Consumer'"></div>
+            <footer class="health-topics__footer nursing-home-footer" data-ng-if="showInfographic">
+                <div class="contain">
+                    <img class="doctor--left" src="themes/consumer/assets/infographic/doctor-female-1.png" alt="" />
+                    <img class="doctor--right" src="themes/consumer/assets/infographic/doctor-male-1.png" alt="" />
+                    <p>Looking for a good quality<br>nursing home?</p>
+                    <p>Make sure you get the best care possible</p>
+                    <button data-ui-sref="top.consumer.nursing-homes.infographic">View the visual report</button>
+                </div>
+            </footer>-->
+</main>

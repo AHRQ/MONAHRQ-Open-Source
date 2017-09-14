@@ -20,22 +20,11 @@
   function FluttersCtrl($scope, $state, FlutterConfigSvc) {
     $scope.menuClick = menuClick;
     $scope.getPrimaryMenu = getPrimaryMenu;
-    $scope.flutters = _.filter(FlutterConfigSvc.getAll(), function (flutter) {
-        var professional_menu = _.filter(flutter.menuItems, function (item) {
-            if (item.product === "professional") {
-                return true;
-            }
-        });
-
-        if (professional_menu.length > 0) {
-            return true;
-        }
-
-    });
+    $scope.flutters = FlutterConfigSvc.getAll();
 
     function getPrimaryMenu(flutterId) {
       var flutter = _.findWhere($scope.flutters, {id: flutterId});
-      var menu = _.findWhere(flutter.menuItems, { primary: true, product: "professional" });
+      var menu = _.findWhere(flutter.menuItems, {primary: true});
       return menu;
     }
 

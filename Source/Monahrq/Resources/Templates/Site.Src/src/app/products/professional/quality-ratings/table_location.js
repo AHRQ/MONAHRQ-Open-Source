@@ -17,7 +17,7 @@
     .controller('QRTableLocationCtrl', QRTableLocationCtrl);
  function QRTableLocationCtrl($scope, $state, _, QRQuerySvc, SortSvc,
     QRReportSvc, ZipDistanceSvc, ModalMeasureSvc, ModalLegendSvc,
-    ReportConfigSvc, ResourceSvc, hospitals, hospitalTypes, hospitalZips){
+    ReportConfigSvc, ResourceSvc, hospitals, hospitalTypes, hospitalZips, ModalGenericSvc) {
 
     var hospitalsToCompare = {};
 
@@ -28,6 +28,8 @@
 
     $scope.query = QRQuerySvc.query;
     $scope.query.sortBy = 'name.asc';
+
+    $scope.showCompareHelpModal = showCompareHelpModal;
 
     $scope.measureIdOverallRating = $scope.config.HOSPITAL_OVERALL_ID;
     $scope.model = [];
@@ -243,6 +245,12 @@
 
     $scope.showCompare = function() {
       return $scope.ReportConfigSvc.webElementAvailable('Quality_Compare_Column');
+    }
+
+
+    function showCompareHelpModal() {
+        if (!$scope.canCompare())
+            ModalGenericSvc.open('Help', 'Please select at least two hospitals to view this report.  No more than five hospitals may be selected at a time.');
     }
 
   }

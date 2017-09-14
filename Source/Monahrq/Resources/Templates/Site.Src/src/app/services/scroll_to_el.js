@@ -29,11 +29,13 @@
      * Service Implementation
      */
     function scrollToEl(sel) {
-      var $el = $(sel);
-      jQuery('html, body').animate({
-        scrollTop: $el.offset().top
-      }, 300);
-      $el.focus();
+        var $el = $(sel);
+        if ($el.offset.top) {
+            jQuery('html, body').animate({
+                scrollTop: $el.offset().top
+            }, 300);
+            $el.focus();
+        }
     }
 
   }

@@ -86,7 +86,7 @@
     <div data-ng-if="hedisReport.isLoaded">
         <h4>Medical Group Ratings of Medical Care for Diabetes, Asthma, High Blood Pressure, and COPD
             <span data-mh-help-icon="'&nbsp;'" data-sr-label="'Help for Medical Group Ratings of Medical Care for Diabetes, Asthma, High Blood Pressure, and COPD'" data-mh-on-click="modalReport('HEDIS')"></span></h4>
-    <button aria-expanded="{{reportSettings.showHedis}}" aria-controls="hedis-table" data-ng-click="reportSettings.showHedis = !reportSettings.showHedis" class="mh-primary-button" data-ng-class="{'active': reportSettings.showHedis}"></button>
+    <button aria-expanded="{{reportSettings.showHedis}}" aria-controls="hedis-table" data-ng-click="toggleTopic(reportSettings.showHedis = !reportSettings.showHedis)" class="mh-primary-button" data-ng-class="{'active': reportSettings.showHedis}"></button>
 
     <table id="hedis-table" data-ng-if="reportSettings.showHedis">
       <thead>

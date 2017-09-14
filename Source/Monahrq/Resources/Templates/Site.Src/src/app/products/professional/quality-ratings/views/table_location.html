@@ -27,7 +27,7 @@
     <table id="location-data-table" class="data" mh-sticky-table-header="model">
       <thead>
         <tr>
-          <th data-ng-if="showCompare()" class="compare">Select hospitals to compare<span class="compare-action" aria-hidden="true"><button data-ng-click="compareHospitals()" data-ng-class="{disabled: !canCompare()}" class="compare-btn btn btn-default btn-xs">Compare</button></span></th>
+           <th data-ng-if="showCompare()" class="compare">Select hospitals to compare<span style="display: inline-block;" class="compare-action" aria-hidden="true" data-ng-mouseover="$event.preventDefault(); showCompareHelpModal();"><button title="Maximum five hospitals" data-ng-click="compareHospitals()" data-ng-class="{disabled: !canCompare()}" class="compare-btn btn btn-default btn-xs">Compare</button></span></th>            
           <th class="entity">Hospital Name</th>
           <th>Type of Hospital</th>
           <th data-ng-if="showMeasure"><button class="btn btn-link btn-column" data-ng-click="modalMeasure(measureIdOverallRating)">{{overallMeasureTitle}}</button></th>

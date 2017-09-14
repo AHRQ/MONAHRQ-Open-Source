@@ -1,0 +1,157 @@
+<main class="physician-search"
+      data-ng-intro-options="IntroOptions"
+      data-ng-intro-onexit="onExit"
+      data-ng-intro-oncomplete="onExit"
+      data-ng-intro-onbeforechange="beforeChangeEvent"
+      data-ng-intro-method="walkthroughStart">
+
+    <section class="sharethis-section clearfix">
+        <nav class="sharethis-nav">
+            <ul class="clearfix">
+                <li>
+                    <button data-ng-click="share()" class="btn-m-secondary">Share This Page</button>
+                </li>
+                <li>
+                    <button class="btn-m-secondary" data-ng-click="feedbackModal()" data-ng-if="config.products.consumer.website_FeedBackEmail">Feedback</button>
+                </li>
+            </ul>
+        </nav>
+    </section>
+
+    <!--section-->
+    <section class="search-browse section-blue" data-mh-wizard>
+        <article>
+            <header>
+                <h2>Find a Doctor:</h2>
+            </header>
+        </article>
+        <form class="search-form text-left" name="searchForm">
+            <div class="search-form-container">
+                <div class="container" id="searchContainer">
+                    <div class="row">
+                        <div class="col-xs-12" id="searchStepOne" data-mh-wizard-step step-num="1" step-visible="true">
+                            <div class="form-group search-form-distance">
+                                <label for="search-type">SELECT A SEARCH TYPE</label>
+                                <select class="form-control" data-ng-class="{selectEmpty: !query.searchType}" data-ng-model="query.searchType" data-ng-options="x.id as x.name for x in searchTypeOptions" title="Search Type" onkeyup="this.blur();this.focus()">
+                                    <option value="" selected disabled style="display:none;">Select an Option</option>
+                                </select>
+                            </div>
+                        </div>
+                        <span data-mh-wizard-step step-num="2" step-visible="query.searchType" step-option-switch="query.searchType" class="search-form__next"></span>
+                        <div class="col-xs-12" id="searchStepTwo" data-mh-wizard-step step-num="2" step-visible="query.searchType" step-option-switch="query.searchType">
+                            <div class="form-group" data-mh-wizard-step-option option-switch-on="'name'" option-label="'DOCTOR NAME'">
+                                <input type="text" data-ng-model="query.firstName" placeholder="First Name {{matchTypeName}}" />
+                                <input type="text" data-ng-model="query.lastName" placeholder="Last Name {{matchTypeName}}" />
+                            </div>
+                            <div data-mh-wizard-step-option option-switch-on="'location'" option-label="'LOCATION'">
+                                <input type="text" data-ng-model="query.location" placeholder="{{matchTypeLocation}}" />
+                            </div>
+                            <div style="margin-bottom:8px;" data-mh-wizard-step-option option-switch-on="'specialty'" option-label="'SPECIALTY'">
+                                <select class="form-control" data-ng-class="{selectEmpty: !query.specialty}" data-ng-model="query.specialty" data-ng-options="x.id as x.name for x in specialtyOptions" title="Specialty">
+                                    <option value="" selected disabled style="display:none;">Specialty</option>
+                                </select>
+                            </div>
+
+                            <div data-mh-wizard-step-option option-switch-on="'condition'" option-label="'CONDITION'">
+                                <div data-mh-autocomplete="uiaConditions" selected-id="query.condition"></div>
+                            </div>
+                        </div>
+                        <span data-mh-wizard-step step-num="3" step-visible="true" class="search-form__next"></span>
+                        <div id="searchStepThree" data-mh-wizard-step step-num="3" step-visible="true" class="col-xs-12">
+                            <div data-mh-wizard-step-option>
+                                <p data-ng-if="searchStatus === 'COMPLETED'" class="results-updated" role="alert">Results Updated <i class="fa fa-check" aria-hidden="true"></i></p>
+                                <button class="btn-m-primary" data-ng-click="search()">Show Results Below</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+    <div data-mh-cms-zone="'header'" data-mh-cms-zone-report-id="reportId" data-mh-cms-zone-product="'Consumer'"></div>
+
+    <section class="report" tabindex="-1">
+        <!--<header class="report-header" >
+            <p class="report__no-results">Please enter a search in the form above.</p>
+        </header>-->
+        <article data-ng-if="searchStatus === 'NOT_STARTED'">
+            <div class="report-no-result">Please enter a search in the form above.</div>
+        </article>
+
+        <header class="report-header" data-ng-if="searchStatus === 'SEARCHING'">
+            <div class="report-loading">
+                <div data-us-spinner></div>
+                <p>Searching...</p>
+            </div>
+        </header>
+
+        <article data-ng-if="searchStatus === 'NO_RESULTS'" role="alert">
+            <p class="report-no-result">Your search did not find any doctors.</p>
+        </article>
+
+        <header class="report-header" data-ng-if="searchStatus === 'COMPLETED'">
+            <!--<div class="physician-help" data-mh-help-icon="'Help'"></div>-->
+            <p><strong>The star ratings below are for the Medical Group.</strong> Medical groups can range from small groups with several doctors to very large organizations with hundreds of doctors. Some medical groups offer their patients a better experience than others. A medical group with more stars is providing better care to their patients.</p>
+            <p>Note: <em>Physician Compare includes only doctors and other healthcare professionals who are currently accepting Medicare.</em></p>
+            <div class="report-header__help">
+                <div data-mh-help-icon="'Help me understand this report'" data-mh-on-click="modalLegend()"></div>
+            </div>
+        </header>
+
+        <div class="report-content physician-report result-table-wrapper" data-ng-if="searchStatus === 'COMPLETED'">
+            <!--<div class="report__sort-by">
+                <label for="sortBy">Sort By:</label>
+                <select id="sortBy" data-ng-model="query.sort" data-ng-options="o.value as o.label for o in sortOptions" onkeyup="this.blur();this.focus()">
+                    <option value="" disabled>Select to Sort</option>
+                </select>
+            </div>-->
+
+            <div class="table table-striped compare-hospital-search-result-table">
+                <table class="table table-striped compare-hospital-search-result-table">
+                    <caption class="sr-only">Compare Hospital Search Result</caption>
+                    <thead>
+                        <tr>
+                            <th class="blue-bg">
+                                <label for="sortBy">Sort By:</label>
+                                <select class="form-control select-style short physician-sort" id="sortBy" data-ng-model="query.sort" data-ng-options="o.value as o.label for o in sortOptions" onkeyup="this.blur();this.focus()">
+                                    <option value="" disabled>Select to Sort</option>
+                                </select>
+                            </th>
+                            <th class="blue-bg">
+                              
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-ng-repeat="row in tableModel track by $index" data-ng-init="$last && startWalkthrough();">
+                            <td colspan="2">
+                                <div class="list-group">
+                                    <div class="list-group-item">
+                                        <h4 class="list-group-item-heading hospital-name" scope="row" id="doc{{$index}}">
+                                            <a data-ui-sref="top.consumer.physicians.profile({id:row.npi})">{{row.frst_nm + ' ' + row.lst_nm}}</a>
+                                        </h4>
+                                        <dl>
+                                            <dt>Medical Group Name:</dt>
+                                            <dd>{{row.primaryPracticeName}}</dd>
+                                            <dt>City:</dt>
+                                            <dd>{{row.cty}}</dd>
+                                            <dt>ZIP Code:</dt>
+                                            <dd>{{row.zip | zip}}</dd>
+                                            <dt>State:</dt>
+                                            <dd>{{row.st}}</dd>
+                                            <dt>Primary Specialty:</dt>
+                                            <dd>{{row.pri_spec}}</dd>
+                                        </dl>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div data-ng-if="reportSettings.footer" class="report-footnotes" data-ng-bind-html="reportSettings.footer"></div>
+        </div>
+    </section>
+
+    <div data-mh-cms-zone="'footer'" data-mh-cms-zone-report-id="reportId" data-mh-cms-zone-product="'Consumer'"></div>
+</main>

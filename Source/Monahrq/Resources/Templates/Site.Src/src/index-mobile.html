@@ -1,0 +1,236 @@
+﻿<!doctype html>
+<!--[if lt IE 7]>      <html lang="en-US" class="no-js lt-ie9 lt-ie8 lt-ie7" data-ng-controller="MainCtrl" data-ng-class="wrapperClass()"> <![endif]-->
+<!--[if IE 7]>         <html lang="en-US" class="no-js lt-ie9 lt-ie8" data-ng-controller="MainCtrl" data-ng-class="wrapperClass()"> <![endif]-->
+<!--[if IE 8]>         <html lang="en-US" class="no-js lt-ie9" data-ng-controller="MainCtrl" data-ng-class="wrapperClass()"> <![endif]-->
+<!--[if IE 9]>         <html lang="en-US" class="no-js lt-ieEdge" data-ng-controller="MainCtrl" data-ng-class="wrapperClass()"> <![endif]-->
+<!--[if gt IE 9]><!-->
+<html lang="en-US" class="no-js" data-ng-controller="MainCtrl" data-ng-class="wrapperClass()">
+ <!--<![endif]-->
+<head data-ng-controller="HeadCtrl">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title data-ng-bind="title">MONAHRQ</title>
+    <meta name="description" content="[[META_DESCRIPTION]]">
+    <meta name="keywords" content="[[META_KEYWORDS]]">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css({.tmp,app}) styles/main.css -->
+    <link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700,400italic" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,900,400italic,600italic" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:600italic,700italic,700,600,400" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="app/vendor/bower_components/jquery-ui/themes/ui-lightness/jquery-ui.css">
+    <link rel="stylesheet" href="app/vendor/bower_components/intro.js/introjs.css">
+
+    <link rel="stylesheet" href="themes/consumer/css/bootstrap.min.css">
+    <link rel="stylesheet" href="themes/consumer/css/bootstrap-theme.min.css">
+    <!--<link rel="stylesheet" href="themes/professional/css/professional.css">-->
+    <!--<link rel="stylesheet" href="themes/professional/css/user-settings.css">-->
+    <!--<link rel="stylesheet" href="themes/consumer/css/consumer.css">-->
+    <!--<link rel="stylesheet" href="themes/consumer/css/user-settings.css">-->
+    <link href="themes/consumer/css/font-awesome.min.css" rel="stylesheet">
+    <link href="themes/consumer/css/common-style.css" rel="stylesheet">
+    <!-- endbuild -->
+</head>
+<body>
+    <div data-ui-view="loader"></div>
+    <div data-ui-view="flutter"></div>
+    <div class="wrapper" aria-hidden="{{modalOpen||false}}">
+        <div class="header hidden-print" data-ng-if="!config.iFrameVersion" data-ui-view="header"></div>
+
+        <div class="navigation hidden-print" data-ui-view="navigation"></div>
+
+        <div id="content" class="page" data-ui-view="content" tabindex="-1" role="main" data-ng-class="contentClass()"></div>
+
+        <div class="footer hidden-print" data-ng-if="!config.iFrameVersion" data-ui-view="footer" role="contentinfo"></div>
+    </div>
+
+
+    <script src="app/vendor/bower_components/jsnlog/jsnlog.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="app/vendor/bower_components/jquery-ui/jquery-ui.min.js"></script>
+    <script src="app/vendor/bower_components/underscore/underscore-min.js"></script>
+    <script src="app/vendor/bower_components/angular/angular.min.js"></script>
+    <script src="app/vendor/bower_components/clipboard/dist/clipboard.min.js"></script>
+    <script src="app/lib/infobox.js"></script>
+
+    <script src="js/ng-device-detector.js"></script>
+    <script src="js/re-tree.js"></script>
+
+    <!-- build:js app/plugins.js -->
+    <!--
+    <script src="bower_components/sass-bootstrap/js/affix.js"></script>
+    <script src="bower_components/sass-bootstrap/js/alert.js"></script>
+    <script src="bower_components/sass-bootstrap/js/button.js"></script>
+    <script src="bower_components/sass-bootstrap/js/carousel.js"></script>
+    <script src="bower_components/sass-bootstrap/js/transition.js"></script>
+    <script src="bower_components/sass-bootstrap/js/collapse.js"></script>
+    <script src="bower_components/sass-bootstrap/js/dropdown.js"></script>
+    <script src="bower_components/sass-bootstrap/js/modal.js"></script>
+    <script src="bower_components/sass-bootstrap/js/scrollspy.js"></script>
+    <script src="bower_components/sass-bootstrap/js/tab.js"></script>
+    <script src="bower_components/sass-bootstrap/js/tooltip.js"></script>
+    <script src="bower_components/sass-bootstrap/js/popover.js"></script>
+    -->
+    <!-- endbuild -->
+    <!-- build:js app/modules.js -->
+    <script src="app/vendor/bower_components/angular-resource/angular-resource.js"></script>
+    <script src="app/vendor/bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="app/vendor/bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="app/vendor/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="app/vendor/bower_components/ui-autocomplete/autocomplete.js"></script>
+    <script src="app/vendor/bower_components/angular-ui-bootstrap/ui-bootstrap-tpls-0.12.0.min.js"></script>
+    <script src="app/vendor/bower_components/bootstrap/js/tooltip.js"></script>
+    <script src="app/vendor/bower_components/angular-ui-utils/ui-utils.js"></script>
+    <script src="app/vendor/bower_components/angular-ui-map/ui-map.js"></script>
+    <script src="app/vendor/bower_components/d3/d3.js"></script>
+    <script src="app/vendor/bower_components/oclazyload/dist/ocLazyLoad.js"></script>
+    <script src="app/vendor/bower_components/ngSticky/dist/sticky.min.js"></script>
+    <script src="app/vendor/bower_components/spin.js/spin.js"></script>
+    <script src="app/vendor/bower_components/angular-spinner/angular-spinner.js"></script>
+    <script src="app/vendor/bower_components/jquery-html5-placeholder-shim/jquery.html5-placeholder-shim.js"></script>
+    <script src="app/vendor/bower_components/angular-placeholder-shim/angular-placeholder-shim.js"></script>
+    <script src="app/vendor/bower_components/intro.js/intro.js"></script>
+    <script src="app/vendor/bower_components/angular-intro.js/build/angular-intro.min.js"></script>
+    <script src="app/lib/angular-charts/dist/angular-charts.js"></script>
+    <!-- endbuild -->
+    <!-- build:js({.tmp,app}) app/scripts.js -->
+    <script src="app/components/index.js"></script>
+    <script src="app/components/scrollto/ng-scrollto.js"></script>
+    <script src="app/services/index.js"></script>
+    <script src="app/services/underscore.js"></script>
+    <script src="app/core/appmobile.js"></script>
+    <script src="app/app.templates.js"></script>
+
+    <script src="app/components/help_icon/help_icon_mobile.js"></script>
+    <script src="app/components/internal_link/internal_link.js"></script>
+    <script src="app/components/rating_nursing/rating_nursing.js"></script>
+    <script src="app/components/rating_symbol/rating_symbol.js"></script>
+    <script src="app/components/rating_rar/rating_rar.js"></script>
+    <script src="app/components/rating_star_hosp/rating_star_hosp.js"></script>
+    <script src="app/components/bar_chart/bar_chart.js"></script>
+    <script src="app/components/qr_jump-bar/qr_jump-bar.js"></script>
+    <script src="app/components/compare_direction/compare_direction.js"></script>
+    <script src="app/components/accordion/accordion.js"></script>
+    <script src="app/components/autocomplete/autocomplete.js"></script>
+
+    <script src="app/components/top_scroll/top_scroll.js"></script>
+    <script src="app/components/tabs/tabs-mobile.js"></script>
+    <script src="app/components/menu/index.js"></script>
+    <script src="app/components/menu/menu-mobile.js"></script>
+    <script src="app/components/menu/menu_item.js"></script>
+    <script src="app/components/menu/flutter_menu.js"></script>
+    <script src="app/components/menu/flutter_menu_item.js"></script>
+    <script src="app/components/sticky_table_header/sticky_table_header.js"></script>
+    <script src="app/components/cms/cms_zone.js"></script>
+
+    <script src="app/components/wizard/wizard.js"></script>
+    <script src="app/components/wizard/wizard-step.js"></script>
+    <script src="app/components/wizard/wizard-step-option.js"></script>
+
+    <script src="app/services/ngally.announce.js"></script>
+    <script src="app/services/nfcurrency.js"></script>
+    <script src="app/services/zip_filter.js"></script>
+    <script src="app/services/phone_filter.js"></script>
+    <script src="app/services/data_loader.js"></script>
+    <script src="app/services/simple_report_loader.js"></script>
+    <script src="app/services/flutter_loader.js"></script>
+    <script src="app/services/sort.js"></script>
+    <script src="app/services/zip_distance.js"></script>
+    <script src="app/services/mapquest.js"></script>
+    <script src="app/services/scroll_to_el.js"></script>
+    <script src="app/services/walkthrough.js"></script>
+    <script src="app/services/userstate.js"></script>
+    <script src="app/services/map_util.js"></script>
+
+    <script src="app/domain/index.js"></script>
+    <script src="app/domain/resource.js"></script>
+    <script src="app/domain/report_config.js"></script>
+    <script src="app/domain/flutter_config.js"></script>
+    <script src="app/domain/menu.js"></script>
+    <script src="app/domain/cms_entity.js"></script>
+    <script src="app/domain/map_marker.js"></script>
+    <script src="app/domain/hospital/hospital_report_loader.js"></script>
+    <script src="app/domain/hospital/hospital_repository.js"></script>
+    <script src="app/domain/nursing-home/nh_report_loader.js"></script>
+    <script src="app/domain/nursing-home/nh_repository.js"></script>
+    <script src="app/domain/nursing-home/nh_cahps.js"></script>
+    <script src="app/domain/physician/physician_api.js"></script>
+    <script src="app/domain/physician/physician_report_loader.js"></script>
+    <script src="app/domain/physician/physician_dedupe.js"></script>
+    <script src="app/domain/physician/physician_repository.js"></script>
+    <script src="app/domain/physician/physician_cahps.js"></script>
+
+    <script src="app/components/modals/index.js"></script>
+    <script src="app/components/modals/modal_generic.js"></script>
+    <script src="app/components/modals/modal_qr.js"></script>
+    <script src="app/components/modals/modal_measure_mobile.js"></script>
+    <script src="app/components/modals/modal_topic-mobile.js"></script>
+    <script src="app/components/modals/modal_topic-category-mobile.js"></script>
+    <script src="app/components/modals/modal_feedback.js"></script>
+    <script src="app/components/modals/modal_legend_mobile.js"></script>
+
+    <script src="app/core/head.js"></script>
+    <script src="app/core/main.js"></script>
+    <script src="app/core/loader.js"></script>
+
+
+    <script src="app/products/professional/pages/domain/index.js"></script>
+    <script src="app/products/professional/pages/domain/infographic_report.js"></script>
+
+
+    <script src="app/products/consumer/index-mobile.js"></script>
+
+    <script src="app/products/consumer/components/index.js"></script>
+    <script src="app/products/consumer/components/hospital_topic_menu/hospital_topic_menu.js"></script>
+    <script src="app/products/consumer/components/generic_infographic/generic_infographic_mobile.js"></script>
+    <script src="app/products/consumer/components/modal_topic_grid/modal_topic_grid.js"></script>
+
+    <script src="app/products/consumer/pages/index-mobile.js"></script>
+    <script src="app/products/consumer/pages/home.js"></script>
+    <script src="app/products/consumer/pages/header.js"></script>
+    <script src="app/products/consumer/pages/navigation.js"></script>
+    <script src="app/products/consumer/pages/profile_search.js"></script>
+    <script src="app/products/consumer/pages/about-ratings.js"></script>
+    <script src="app/products/consumer/pages/how-to-use.js"></script>
+    <script src="app/products/consumer/pages/infographic.js"></script>
+
+    <script src="app/products/consumer/hospitals/index-mobile.js"></script>
+    <script src="app/products/consumer/hospitals/domain/hospital_report.js"></script>
+    <script src="app/products/consumer/hospitals/profile-mobile.js"></script>
+    <script src="app/products/consumer/hospitals/profile_quality.js"></script>
+    <script src="app/products/consumer/hospitals/profile_costs.js"></script>
+    <script src="app/products/consumer/hospitals/profile_physicians.js"></script>
+    <script src="app/products/consumer/hospitals/location-mobile.js"></script>
+    <script src="app/products/consumer/hospitals/location_map.js"></script>
+    <script src="app/products/consumer/hospitals/topic.js"></script>
+    <script src="app/products/consumer/hospitals/topic_map.js"></script>
+    <script src="app/products/consumer/hospitals/compare.js"></script>
+    <script src="app/products/consumer/hospitals/cost_quality.js"></script>
+    <script src="app/products/consumer/hospitals/infographic.js"></script>
+    <script src="app/products/consumer/hospitals/health_topics.js"></script>
+
+    <script src="app/products/consumer/nursing-homes/index-mobile.js"></script>
+    <script src="app/products/consumer/nursing-homes/domain/nursing-home_report.js"></script>
+    <script src="app/products/consumer/nursing-homes/location-mobile.js"></script>
+    <script src="app/products/consumer/nursing-homes/location_map.js"></script>
+    <script src="app/products/consumer/nursing-homes/compare.js"></script>
+    <script src="app/products/consumer/nursing-homes/profile-mobile.js"></script>
+    <script src="app/products/consumer/nursing-homes/profile_measures-mobile.js"></script>
+    <script src="app/products/consumer/nursing-homes/infographic.js"></script>
+
+    <script src="app/products/consumer/physicians/index-mobile.js"></script>
+    <script src="app/products/consumer/physicians/profile-mobile.js"></script>
+    <script src="app/products/consumer/physicians/search.js"></script>
+
+    <script src="app/common/youtubeembed.js"></script>
+
+
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7MpFMzbWbq1hd0U2Kb9-zWcKLp7TKDMc&callback=onGoogleReady"></script>
+
+<script src="js/bootstrap.min.js"></script>
+    <script src="js/script.js"></script>
+    <!-- endbuild -->
+</body>
+</html>

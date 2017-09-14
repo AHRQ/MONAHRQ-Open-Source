@@ -33,7 +33,7 @@
     <table id="location-data-table" class="data" mh-sticky-table-header="columnModel">
       <thead>
       <tr>
-        <th data-ng-if="showCompare()" class="compare">Select nursing homes to compare<span style="display: inline-block;" class="compare-action" aria-hidden="true" data-ng-mouseover="$event.preventDefault(); showCompareHelpModal();"><button data-ng-click="compareHomes()" data-ng-mouseover="$event.preventDefault(); showCompareHelpModal();" data-ng-class="{disabled: !canCompare()}" class="compare-btn btn btn-default btn-xs">Compare</button></span></th>
+        <th data-ng-if="showCompare()" class="compare">Select nursing homes to compare<span style="display: inline-block;" class="compare-action" aria-hidden="true" data-ng-mouseover="$event.preventDefault(); showCompareHelpModal();"><button title="Maximum five nursing homes" data-ng-click="compareHomes()" data-ng-mouseover="$event.preventDefault(); showCompareHelpModal();" data-ng-class="{disabled: !canCompare()}" class="compare-btn btn btn-default btn-xs">Compare</button></span></th>
         <th class="entity">Nursing Home Name</th>
         <th data-ng-repeat="col in columnModel"><button class="btn btn-link btn-column" data-ng-click="modalMeasure(col.id)"><span ng-bind="col.name"></span></button></th>
       </tr>

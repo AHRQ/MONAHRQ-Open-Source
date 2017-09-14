@@ -20,11 +20,25 @@
     $scope.getMeasure = getMeasure;
     $scope.gotoFootnote = gotoFootnote;
     $scope.footnoteAccordionAPI = {};
-
+    $scope.share = share;
+    $scope.feedbackModal = feedbackModal;
     init();
 
     function init() {
       $scope.report = report;
+    }
+
+    function share() {
+        window.location = buildShareUrl();
+    }
+
+    function buildShareUrl() {
+        var url = escape(window.location);
+        return "mailto:?to=&subject=Shared%20MONAHRQ%20Page&body=" + url;
+    }
+
+    function feedbackModal() {
+        ModalFeedbackSvc.open($scope.config);
     }
 
     function getMeasure(name) {

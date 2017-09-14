@@ -200,7 +200,8 @@ module.exports = function (grunt) {
               'themes/professional/css/*',
               'themes/professional/assets/**',
               'themes/consumer/css/*',
-              'themes/consumer/assets/**'
+              'themes/consumer/assets/**',
+			  'js/*'
             ]
           },
           {

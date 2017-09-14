@@ -1,0 +1,108 @@
+<main class="profile">
+    <section class="sharethis-section">
+        <nav class="sharethis-nav">
+            <ul class="clearfix">
+                <li>
+                    <button data-ng-click="share()" class="btn-m-secondary">Share This Page</button>
+                </li>
+                <li>
+                    <button class="btn-m-secondary" data-ng-click="feedbackModal()" data-ng-if="config.products.consumer.website_FeedBackEmail">Feedback</button>
+                </li>
+            </ul>
+        </nav>
+    </section>
+    <section class="search-browse section-blue" role="search">
+        <article>
+            <header>
+                <h2>Find another {{entityName}}</h2>
+            </header>
+        </article>
+        <form class="search-form text-left" name="searchForm" novalidate>
+            <div class="search-form-container">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="form-group search-form-location">
+                                <label for="search-hospital">Enter Name:</label>
+                                <input type="text" id="search-query" name="name"
+                                       placeholder="Enter a {{entityName}} name"
+                                       data-ng-model="query.name" required>
+                                <span data-ng-if="searchForm.name.$error.required && showValidationErrors" class="form-error-message">Error: Please enter a name</span>
+                            </div>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="search-form-action">
+                                <button class="btn-m-primary" data-ng-click="search()">Search</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+
+    <section class="report" tabindex="-1">
+        <header class="report-header" data-ng-if="!hasSearch">
+            <div class="report-no-result">Enter your search above</div>
+        </header>
+        <header class="report-header" data-ng-if="hasSearch && !hasResult">
+            <div class="report-no-result">Your search did not find anything</div>
+        </header>
+        <header class="report-header" data-ng-if="hasResult">
+            <h2>Search Results</h2>
+        </header>
+
+        <div class="report-content search-results" data-ng-if="hasResult">
+
+            <table class="table table-striped table-bordered accordion-table" data-ng-if="query.type === 'hospital'">
+                <thead>
+                <th><h3 class="profile-search-heading">Hospitals</h3></th>
+                <th>Location</th>
+                </thead>
+                <tbody>
+                    <tr data-ng-if="hospitalResults.length == 0">
+                        <td><p>No hospitals found</p></td>
+                    </tr>
+                    <tr data-ng-repeat="h in hospitalResults">
+                        <td><a href="#" data-ui-sref="top.consumer.hospitals.profile({id: h.id})">{{h.name}}</a></td>
+                        <td>{{h.city}}, {{h.state}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <table class="table table-striped table-bordered accordion-table" data-ng-if="query.type === 'nursing'">
+                <thead>
+                <th><h3 class="profile-search-heading">Nursing Homes</h3></th>
+                <th>Location</th>
+                </thead>
+                <tbody>
+                    <tr data-ng-if="nursingHomeResults.length == 0">
+                        <td><p>No nursing homes found</p></td>
+                    </tr>
+                    <tr data-ng-repeat="n in nursingHomeResults">
+                        <td><a href="#" data-ui-sref="top.consumer.nursing-homes.profile({id: n.id})">{{n.name}}</a></td>
+                        <td>{{n.city}}, {{n.state}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <table class="table table-striped table-bordered accordion-table" data-ng-if="query.type === 'physician'">
+                <thead>
+                <th><h3 class="profile-search-heading">Physicians</h3></th>
+                <th>Location</th>
+                </thead>
+                <tbody>
+                    <tr data-ng-if="physicianResults.length == 0">
+                        <td><p>No physicians found</p></td>
+                    </tr>
+                    <tr data-ng-repeat="p in physicianResults">
+                        <td><a href="#" data-ui-sref="top.consumer.physicians.profile({id: p.id})">{{p.name}}</a></td>
+                        <td>{{p.city}}, {{p.state}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+    </section>
+
+</main>
