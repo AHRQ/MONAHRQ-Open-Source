@@ -49,6 +49,7 @@ namespace Monahrq.Wing.Discharge
 
                 // var icd10RegEx = new Regex(DatasetRecord.ICD10__DIAGNOSTICCODE_REGEX);
                 // var icd9RegEx = new Regex(DatasetRecord.ICD9_CODE_REGEX);
+                string primaryDiagnosticCode = "";
                 var diagnosticCodesToMatch = diagnosticQuery.SelectMany(key =>
                 {
                     var returnObjs = new List<string>(); 
@@ -59,16 +60,24 @@ namespace Monahrq.Wing.Discharge
                         var value = propertyFunc(Instance);
 
                         if(value != null)
+                        {
                             returnObjs.Add(value.ToString());
+
+                            if (key.EqualsIgnoreCase("PrincipalDiagnosis") || key.EqualsIgnoreCase("PrimaryDiagnosis"))
+                                primaryDiagnosticCode = value.ToString();
+                        }
                     }
 
                     return returnObjs;
 
                 }).ToList();
 
-
+                var specialDX1CodeMatch = SharedRegularExpressions.EVSpecialCodeRegex.IsMatch(primaryDiagnosticCode);
                 var doAllICD9DiagnosticMatch = diagnosticCodesToMatch.All(d => SharedRegularExpressions.ICD9Regex.IsMatch(d));
                 var doAllICD10DiagnosticMatch = diagnosticCodesToMatch.All(d => SharedRegularExpressions.ICD10Regex.IsMatch(d));
+
+                doAllICD9DiagnosticMatch = specialDX1CodeMatch && doAllICD9DiagnosticMatch ? false : true;
+
 
                 bool doAllICD10ProcedureMatch = false;
                 bool doAllICD9ProcedureMatch = false;
@@ -98,7 +107,7 @@ namespace Monahrq.Wing.Discharge
                         return returnObjs;
 
                     }).ToList();
-                    doAllICD9ProcedureMatch = procedureCodesToMatch.All(d => SharedRegularExpressions.ICD9Regex.IsMatch(d));
+                    doAllICD9ProcedureMatch = procedureCodesToMatch.All(d => SharedRegularExpressions.ICD9ProcedureRegex.IsMatch(d));
                     doAllICD10ProcedureMatch = procedureCodesToMatch.All(d => SharedRegularExpressions.ICD10ProcedureRegex.IsMatch(d));
                 }
 
