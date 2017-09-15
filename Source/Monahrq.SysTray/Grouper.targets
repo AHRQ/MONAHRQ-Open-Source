@@ -69,7 +69,12 @@
       <Using Namespace="System.IO.Compression"/>
       <Code Type="Fragment" Language="cs">
         <![CDATA[
-  ZipFile.ExtractToDirectory(ZipFileName, TargetDirectory);
+  //ZipFile.ExtractToDirectory(ZipFileName, TargetDirectory);
+  using (var archive = ZipFile.OpenRead(ZipFileName)) {
+    foreach (var entry in archive.Entries) {
+      entry.ExtractToFile(Path.Combine(TargetDirectory, entry.FullName), true);
+    }
+  }
 ]]>
       </Code>
     </Task>
