@@ -74,6 +74,8 @@ namespace Monahrq.Wing.Discharge
                             category.LongTitle = temp.LongTitle;
                         }
 
+                        category.TopicType = Infrastructure.Domain.Common.TopicTypeEnum.Hospital;
+
                         foreach (var topicXml in categoryXml.Elements("topic"))
                         {
                             var tempTopic = topicXml.ToTopic(category);

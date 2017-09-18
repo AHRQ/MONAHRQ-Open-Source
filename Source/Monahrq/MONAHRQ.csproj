@@ -408,6 +408,9 @@
     <Content Include="Resources\Database\Version\70\Minor\2017091301_IPNationalTotalsPrecision.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Database\Version\70\Minor\2017091801_UpdateTopicCategories.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Samples\Physician Import Sample.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
