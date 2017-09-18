@@ -49,7 +49,7 @@ namespace Monahrq.Wing.Ahrq.DependencyChecks
             yield return new ValidationResultViewModel
             {
                 CompositionArea = WebsiteTabViewModels.Measures,
-                HelpTopic = "1051",
+                HelpTopic = "1050",
                 HelpText = "Click here for more information",
                 Message = Messages.PQI13,
                 Quality = ValidationLevel.Warning
