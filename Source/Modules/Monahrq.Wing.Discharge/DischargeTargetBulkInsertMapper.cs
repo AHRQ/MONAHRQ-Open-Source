@@ -61,10 +61,10 @@ namespace Monahrq.Wing.Discharge
 
                         if(value != null)
                         {
-                            returnObjs.Add(value.ToString());
+                            returnObjs.Add(value.ToString().Trim());
 
                             if (key.EqualsIgnoreCase("PrincipalDiagnosis") || key.EqualsIgnoreCase("PrimaryDiagnosis"))
-                                primaryDiagnosticCode = value.ToString();
+                                primaryDiagnosticCode = value.ToString().Trim();
                         }
                     }
 
@@ -72,11 +72,10 @@ namespace Monahrq.Wing.Discharge
 
                 }).ToList();
 
-                var specialDX1CodeMatch = SharedRegularExpressions.EVSpecialCodeRegex.IsMatch(primaryDiagnosticCode);
-                var doAllICD9DiagnosticMatch = diagnosticCodesToMatch.All(d => SharedRegularExpressions.ICD9Regex.IsMatch(d));
+                
+                var doAllICD9DiagnosticMatch = !SharedRegularExpressions.EVSpecialCodeRegex.IsMatch(primaryDiagnosticCode) && diagnosticCodesToMatch.All(d => SharedRegularExpressions.ICD9Regex.IsMatch(d));
                 var doAllICD10DiagnosticMatch = diagnosticCodesToMatch.All(d => SharedRegularExpressions.ICD10Regex.IsMatch(d));
 
-                doAllICD9DiagnosticMatch = specialDX1CodeMatch && doAllICD9DiagnosticMatch ? false : true;
 
 
                 bool doAllICD10ProcedureMatch = false;
@@ -102,7 +101,7 @@ namespace Monahrq.Wing.Discharge
                         var value = propertyFunc(Instance);
 
                         if (value != null)
-                            returnObjs.Add(value.ToString());
+                            returnObjs.Add(value.ToString().Trim());
 
                         return returnObjs;
 

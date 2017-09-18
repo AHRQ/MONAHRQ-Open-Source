@@ -108,11 +108,21 @@ namespace Monahrq.Infrastructure.Validation
 
             var isIcd9DiagnosisCodesValid = diagnosisValues.All(code =>
             {
-                if (ICD9DiagnosticCheck(code.Value.ToString())) return true;
-                // if (SharedRegularExpressions.ICD9Regex.IsMatch(code.Value.ToString())) return true;
+                if (code.Key.ToString().Equals("PrincipalDiagnosis", StringComparison.InvariantCultureIgnoreCase) || code.Key.ToString().Equals("PrimaryDiagnosis", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    if (!SharedRegularExpressions.EVSpecialCodeRegex.IsMatch(code.Value.ToString()) && ICD9DiagnosticCheck(code.Value.ToString())) return true;
 
-                invalidProperties.Add(code.Key);
-                return false;
+                    invalidProperties.Add(code.Key);
+                    return false;
+                }
+                else
+                {
+                    if (ICD9DiagnosticCheck(code.Value.ToString())) return true;
+
+                    invalidProperties.Add(code.Key);
+                    return false;
+                }
+
             });
             var isIcd10DiagnosisCodesValid = !isIcd9DiagnosisCodesValid && diagnosisValues.All(code =>
             {

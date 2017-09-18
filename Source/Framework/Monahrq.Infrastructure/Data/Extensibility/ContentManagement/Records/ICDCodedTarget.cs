@@ -81,8 +81,22 @@ namespace Monahrq.Infrastructure.Data.Extensibility.ContentManagement.Records
             var diagnosisValues = _properties.Where(propertyInfo => propertyInfo.Name.ContainsIgnoreCase("Diagnosis") && propertyInfo.GetValue(this, null) != null)
                                              .Select(propertyInfo => new KeyValuePair<string, object>(propertyInfo.Name, propertyInfo.GetValue(this, null))).ToList();
 
-            var isIcd9DiagnosisCodesValid = diagnosisValues.All(code => SharedRegularExpressions.ICD9Regex.IsMatch(code.ToString()));
+
+            var isIcd9DiagnosisCodesValid = diagnosisValues.All(code =>
+            {
+                if (code.Key.ToString().Equals("PrincipalDiagnosis", StringComparison.InvariantCultureIgnoreCase) || code.Key.ToString().Equals("PrimaryDiagnosis", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    if (!SharedRegularExpressions.EVSpecialCodeRegex.IsMatch(code.Value.ToString()) && SharedRegularExpressions.ICD9Regex.IsMatch(code.Value.ToString())) return true;
+                    return false;
+                }
+                else
+                {
+                    if (SharedRegularExpressions.ICD9Regex.IsMatch(code.Value.ToString())) return true;
+                    return false;
+                }
+            });
             var isIcd10DiagnosisCodesValid = !isIcd9DiagnosisCodesValid && diagnosisValues.All(code => SharedRegularExpressions.ICD10Regex.IsMatch(code.Value.ToString()));
+
 
             bool isIcd10ProcedureCodeValid = false, isIcd9ProcedureCodeValid = false;
             if (PerformProcedureCheck)
@@ -90,7 +104,7 @@ namespace Monahrq.Infrastructure.Data.Extensibility.ContentManagement.Records
                 var procedureValues = _properties.Where(propertyInfo => propertyInfo.Name.ContainsIgnoreCase("Procedure") && propertyInfo.GetValue(this, null) != null)
                                                  .Select(propertyInfo => new KeyValuePair<string, object>(propertyInfo.Name, propertyInfo.GetValue(this, null))).ToList();
 
-                isIcd9ProcedureCodeValid = !procedureValues.Any() || procedureValues.All(code => SharedRegularExpressions.ICD9Regex.IsMatch(code.Value.ToString()));
+                isIcd9ProcedureCodeValid = !procedureValues.Any() || procedureValues.All(code => SharedRegularExpressions.ICD9ProcedureRegex.IsMatch(code.Value.ToString()));
                 isIcd10ProcedureCodeValid = !procedureValues.Any() || (!isIcd9ProcedureCodeValid && procedureValues.All(code => SharedRegularExpressions.ICD10ProcedureRegex.IsMatch(code.Value.ToString())));
             }
 
