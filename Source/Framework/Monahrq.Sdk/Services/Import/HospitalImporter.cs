@@ -654,11 +654,19 @@ namespace Monahrq.Sdk.Services.Import
                 }
             }
 
+            if (_finalHospitals.Any(h => h.Item1.LocalHospitalId == dynHospital.Dshospid))
+            {
+                errors.Add(ImportError.Create("Hospital", "Duplicate Hospital", string.Format("There are duplicate local hospital IDs found for {0} hospital", dynHospital.HospitalName)));
+                return;
+            }
+
             if (_finalHospitals.Any(h => h.Item1.CmsProviderID == dynHospital.CmsProvdrNum && h.Item1.LocalHospitalId == dynHospital.Dshospid))
             {
                 errors.Add(ImportError.Create("Hospital", "Duplicate Hospital", string.Format("{0} hospital you are attempting to import has already been imported", dynHospital.HospitalName)));
                 return;
             }
+
+
 
             Hospital hospital = FactoryHospital(_session, hosp, dynHospital, errors);
 
