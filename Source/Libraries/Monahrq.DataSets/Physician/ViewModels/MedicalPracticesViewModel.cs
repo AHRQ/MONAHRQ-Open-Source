@@ -148,8 +148,8 @@ namespace Monahrq.DataSets.Physician.ViewModels
                     {
                         trans.Rollback();
 
-                        var excToUse = exc.GetBaseException();
-                        NotifyError(excToUse, entity.GetType(), entity.Name);
+                        var excToUse = exc;
+                        LogEntityError(excToUse, entity.GetType(), entity.Name);
                     }
                 }
             }

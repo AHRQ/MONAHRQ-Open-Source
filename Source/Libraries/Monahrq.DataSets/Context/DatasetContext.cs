@@ -16,6 +16,7 @@ using Monahrq.DataSets.Services;
 using Monahrq.DataSets.ViewModels.Crosswalk;
 using Monahrq.DataSets.ViewModels.Validation;
 using Monahrq.Default.DataProvider.Administration.File;
+using Monahrq.Infrastructure;
 using Monahrq.Infrastructure.Configuration;
 using Monahrq.Infrastructure.Data.Extensibility.ContentManagement.Records;
 using Monahrq.Infrastructure.Entities.Domain;
@@ -50,7 +51,7 @@ namespace Monahrq.DataSets.Model
         /// <value>
         /// The logger.
         /// </value>
-        public ILoggerFacade Logger { get; private set; }
+        public ILogWriter Logger { get; private set; }
         /// <summary>
         /// Gets or sets the provider.
         /// </summary>
@@ -80,7 +81,7 @@ namespace Monahrq.DataSets.Model
         /// </summary>
         public DatasetContextBase()
         {
-            Logger = ServiceLocator.Current.GetInstance<ILoggerFacade>();
+            Logger = ServiceLocator.Current.GetInstance<ILogWriter>();
             Provider = ServiceLocator.Current.GetInstance<IDomainSessionFactoryProvider>();
             ConfigurationService = ServiceLocator.Current.GetInstance<IConfigurationService>();
         }
@@ -440,9 +441,9 @@ namespace Monahrq.DataSets.Model
                               .GetEvent<UpdateDrgMdsStatusEvent>()
                               .Publish(DatasetItem.Id.ToString());
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                Logger.Log("Failed launching system try application.", Category.Exception, Priority.High);
+                Logger.Write(e, "Failed to launch grouper application.");
                 throw;
             }
         }
@@ -824,7 +825,7 @@ namespace Monahrq.DataSets.Model
     /// <summary>
     /// The monahrq custom dataset field mapping dictionary.
     /// </summary>
-    /// <seealso cref="System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String, System.String}}" />
+    /// <seealso cref="string" />
     public class MappingDictionary : IEnumerable<KeyValuePair<string, string>>
     {
         /// <summary>

@@ -52,8 +52,8 @@ namespace Monahrq.Websites.Test
             builder.IntegratedSecurity = true;
             settings.ConnectionString = builder.ConnectionString;
             config.ConnectionSettings = settings;
-            var logger = Container.GetExportedValue<ILoggerFacade>(LogNames.Session);
-            Container.ComposeExportedValue<ILoggerFacade>(logger);
+            var logger = Container.GetExportedValue<ILogWriter>(LogNames.Session);
+            Container.ComposeExportedValue<ILogWriter>(logger);
         }
 
         //[TestMethod]

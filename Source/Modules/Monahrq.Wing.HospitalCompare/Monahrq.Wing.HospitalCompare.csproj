@@ -212,6 +212,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\HospitalCompare\Schema.Version.5.csv.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\HospitalCompare\Schema.Version.4.csv.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -252,19 +255,8 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>@echo ======= Copying...  
-@echo "$(TargetPath)"  "$(SolutionDir)Monahrq\$(OutDir)Modules\" 
-@echo  =======
-xcopy "$(TargetPath)"  "$(SolutionDir)Monahrq\$(OutDir)Modules\"    /y
-xcopy "$(TargetDir)\Measures\*.csv"  "$(SolutionDir)Monahrq\$(OutDir)Measures\"    /y
-@echo ======= Copied...  
-@echo "$(TargetPath)"  "$(SolutionDir)Monahrq\$(OutDir)Modules\" 
-@echo  =======
-
-@echo  =======
-
+    <PostBuildEvent>xcopy "$(TargetDir)\Measures\*.csv"  "$(SolutionDir)Monahrq\$(OutDir)Measures\"    /y
 if not exist "$(SolutionDir)Monahrq\$(OutDir)Resources\HospitalCompare" cmd /x /c mkdir "$(SolutionDir)Monahrq\$(OutDir)Resources\HospitalCompare" 
-
 xcopy "$(TargetDir)\Resources\HospitalCompare\*.*"  "$(SolutionDir)Monahrq\$(OutDir)Resources\HospitalCompare\"    /y</PostBuildEvent>
   </PropertyGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
@@ -285,5 +277,5 @@ xcopy "$(TargetDir)\Resources\HospitalCompare\*.*"  "$(SolutionDir)Monahrq\$(Out
   <Target Name="AfterBuild">
   </Target>
   -->
-  <Import Project="$(SolutionDir)\MonahrqExtensionCommon.targets"/>
+  <Import Project="$(SolutionDir)\MonahrqExtensionCommon.targets" />
 </Project>

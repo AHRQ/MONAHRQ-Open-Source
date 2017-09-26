@@ -1,0 +1,569 @@
+<section class="sharethis-section">
+    <nav class="sharethis-nav">
+        <ul class="clearfix">
+            <li>
+                <button data-ng-click="share()" class="btn-m-secondary">Share This Page</button>
+            </li>
+            <li>
+                <button class="btn-m-secondary" data-ng-click="feedbackModal()" data-ng-if="config.products.consumer.website_FeedBackEmail">Feedback</button>
+            </li>
+        </ul>
+    </nav>
+</section>
+<section class="search-browse section-blue">
+    <article>
+        <header>
+            <h2>About This Site</h2>
+            <p class="sub-header">Information about the ratings and how to use this site.</p>
+        </header>
+    </article>
+</section>
+<section class="about-site-wrapper">
+    <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
+        <ul class="nav nav-tabs" id="myTabs" role="tablist">
+            <li role="presentation" class="dropdown" data-ng-class="{active: activePage() === 'resourceWhatIsHealthCareQuality' || activePage() === 'resourceWhyLookHealthCareQuality' || activePage() === 'resourceLearnMoreAboutQuality' || activePage() === 'resourceAvoidingSafetyProblems'}">
+                <a href="#" class="dropdown-toggle" id="myTabDrop1"
+                   data-toggle="dropdown"
+                   aria-controls="myTabDrop1-contents"
+                   aria-expanded="false">
+                    Overview <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="myTabDrop1" id="myTabDrop1-contents">
+                    <li data-ng-class="{active: activePage() === 'resourceWhatIsHealthCareQuality'}">
+                        <a data-ng-click="setPage('resourceWhatIsHealthCareQuality'); $event.preventDefault();">
+                            What is health care quality?
+                            <span class="sr-hidden" data-ng-if="activePage() === 'resourceWhatIsHealthCareQuality'"> is active</span>
+                        </a>
+                    </li>
+                    <li data-ng-class="{active: activePage() === 'resourceWhyLookHealthCareQuality'}">
+                        <a data-ng-click="setPage('resourceWhyLookHealthCareQuality'); $event.preventDefault();">
+                            Why should I look at health care quality information?
+                            <span class="sr-hidden" data-ng-if="activePage() === 'resourceWhyLookHealthCareQuality'"> is active</span>
+                        </a>
+                    </li>
+                    <!-- <a class="resource__nav-link" data-ng-click="setPage('resourceHealthCareQualityHelpMe'); $event.preventDefault();" data-ng-class="{active: activePage() === 'resourceHealthCareQualityHelpMe'}">What can I do with information about health care quality? How can it help me?</a> -->
+                    <li data-ng-class="{active: activePage() === 'resourceLearnMoreAboutQuality'}">
+                        <a data-ng-click="setPage('resourceLearnMoreAboutQuality'); $event.preventDefault();">
+                            Where can I learn more about health care quality?
+                            <span class="sr-hidden" data-ng-if="activePage() === 'resourceLearnMoreAboutQuality'"> is active</span>
+                        </a>
+                    </li>
+                    <li data-ng-class="{active: activePage() === 'resourceAvoidingSafetyProblems'}">
+                        <a data-ng-click="setPage('resourceAvoidingSafetyProblems'); $event.preventDefault();">
+                            Avoiding safety problems when you have surgery
+                            <span class="sr-hidden" data-ng-if="activePage() === 'resourceAvoidingSafetyProblems'"> is active</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <!--about the ratings-->
+            <li role="presentation" class="dropdown" data-ng-class="{active: activePage() === 'resourceHospitalQuality' || activePage() === 'resourceNursingHomeQuality' || activePage() === 'resourceFindAPhysician'}">
+                <a href="#" class="dropdown-toggle" id="myTabDrop2"
+                   data-toggle="dropdown"
+                   aria-controls="myTabDrop2-contents"
+                   aria-expanded="false">
+                    About the Ratings<span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="myTabDrop2" id="myTabDrop2-contents">
+                    <li data-ng-class="{active: activePage() === 'resourceHospitalQuality'}">
+                        <a data-ng-if="ConsumerReportConfigSvc.hasEntity('HOSPITAL')" data-ng-click="setPage('resourceHospitalQuality'); $event.preventDefault();">
+                            Hospital Quality
+                            <span class="sr-hidden" data-ng-if="activePage() === 'resourceHospitalQuality'"> is active</span>
+                        </a>
+                    </li>
+                    <li data-ng-class="{active: activePage() === 'resourceNursingHomeQuality'}">
+                        <a data-ng-if="ConsumerReportConfigSvc.hasEntity('NURSINGHOME')" data-ng-click="setPage('resourceNursingHomeQuality'); $event.preventDefault();">
+                            Nursing Home Quality
+                            <span class="sr-hidden" data-ng-if="activePage() === 'resourceNursingHomeQuality'"> is active</span>
+                        </a>
+                    </li>
+                    <li data-ng-class="{active: activePage() === 'resourceFindAPhysician'}">
+                        <a data-ng-if="ConsumerReportConfigSvc.hasEntity('PHYSICIAN')" data-ng-click="setPage('resourceFindAPhysician'); $event.preventDefault();">
+                            Find a Doctor
+                            <span class="sr-hidden" data-ng-if="activePage() === 'resourceFindAPhysician'"> is active</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <!--.about the ratings-->
+        </ul>
+        <div class="tab-content about-site" id="myTabContent" data-ng-switch="activePage()">
+
+            <div data-ng-switch-when="resourceWhatIsHealthCareQuality" class="tab-pane fade active in" role="tabpanel" id="dropdown1" aria-labelledby="dropdown1-tab">
+                <h2>What is health care quality?</h2>
+                <div class="consumer-benefits-use-site no-bg">
+                    <p>To achieve the best possible results, health care quality is:</p>
+                    <ul>
+                        <li>Doing the right thing (getting the medicines, tests, and help you need),</li>
+                        <li>Doing it at the right time (when you need them), and</li>
+                        <li>
+                            Doing it in the right way (with your health care providers using the methods known to work
+                            best).
+                        </li>
+                    </ul>
+                </div>
+                <p>
+                    Researchers measure health care quality in many ways, from how often people having
+                    surgery get an infection to how patients rate their experience. You can find scores based on these
+                    kinds of measures on this website. Depending on your needs, you may want to look at some or all of
+                    these scores when looking for a hospital, a doctor, or nursing home.
+                </p>
+            </div>
+            <div data-ng-switch-when="resourceWhyLookHealthCareQuality" class="tab-pane fade active in" role="tabpanel" id="dropdown2" aria-labelledby="dropdown2-tab">
+                <h2>Why should I look at health care quality information?</h2>
+                <div class="consumer-benefits-use-site no-bg">
+                    <p>Don't people get good care from every medical facility? Here are the facts:</p>
+                    <ul>
+                        <li>
+                            <strong>Not all facilities offer the same quality of care.</strong> Some are better than
+                            others.
+                        </li>
+                        <li>
+                            <strong>Even good facilities may not be good at everything.</strong> A hospital or nursing
+                            home might do a good job caring for people with some health problems but a poorer job caring
+                            for people with other health problems. <strong>
+                                Hospital and nursing home stays can be
+                                risky.
+                            </strong> Whenever you go to the hospital for an existing health problem, or spend
+                            time in a nursing home, you risk getting a new health problem. Hospitals and nursing homes
+                            vary in how well they protect patients from this risk.
+
+                            <ul>
+                                <li>
+                                    To learn more, visit <a href="http://www.ahrq.gov/patients-consumers/care-planning/errors/5steps/index.html"
+                                                            target="_blank">Five Steps to Safer Health Care</a>
+                                </li>
+                                <li>
+                                    Learn tips for staying safe in the hospital: <a href="http://healthcare411.ahrq.gov/radiocastseg.aspx?id=859&amp;type=seg"
+                                                                                    target="_blank">Listen to the Hospital Stays: Reducing Your Risks podcast</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Good quality health care means more than what your physician does.</strong> Your own
+                            doctor may be highly skilled. But health care quality in hospitals and nursing homes also
+                            depends on many other staff, such as nurses and physical therapists, and also on how well
+                            the facility is managed.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div data-ng-switch-when="resourceLearnMoreAboutQuality" class="tab-pane fade active in" role="tabpanel" id="dropdown3" aria-labelledby="dropdown3-tab">
+                <h2 class="resource__content-title ng-scope">Where can I learn more about health care quality?</h2>
+                <p class="ng-scope">
+                    If you are interested in learning more about quality care or how to choose a
+                    hospital, nursing home or doctor, here are some resources that can help.
+                </p>
+
+                <h4 class="ng-scope">Agency for Healthcare Research &amp; Quality (AHRQ)</h4>
+                <p class="ng-scope">
+                </p>
+                <div class="consumer-benefits-use-site no-bg">
+                    <ul class="ng-scope">
+                        <li>
+                            <a href="http://www.ahrq.gov/consumer" target="_blank">Consumers &amp; Patients</a> provides
+                            more links to tools and information for people who want to take an active role in their
+                            health
+                            care.
+                        </li>
+                    </ul>
+                </div>
+
+                <p class="ng-scope">To contact AHRQ by mail write to:</p>
+                <p class="ng-scope">
+                </p>
+                <address class="ng-scope">
+                    Agency for Healthcare Research and Quality<br>
+                    OC &ndash; Office of Communications<br>
+                    5600 Fishers Lane, 6th Floor<br>
+                    Rockville, MD 20857<br>
+                </address>
+                <p class="ng-scope"></p>
+                <p class="ng-scope">To reach AHRQ by phone, call (301) 427-1364</p>
+
+                <h4 class="ng-scope">Hospital Compare - Centers for Medicare &amp; Medicaid Services</h4>
+                <p class="ng-scope">
+                </p>
+                <div class="consumer-benefits-use-site no-bg">
+                    <ul class="ng-scope">
+                        <li>
+                            <a href="http://www.hospitalcompare.hhs.gov/" target="_blank">Hospital Compare website</a>
+                            is a
+                            website with quality information on almost all hospitals in the US.
+                        </li>
+                        <li>
+                            The Hospital Compare website’s <a href="http://www.medicare.gov/Publications/Pubs/pdf/10181.pdf"
+                                                              target="_blank">Hospital Checklist</a> helps you think through
+                            a range of issues to consider when choosing a hospital.
+                        </li>
+                    </ul>
+                </div>
+
+                <p class="ng-scope"></p>
+
+                <h4 class="ng-scope">Physician Compare</h4>
+                <p class="ng-scope">
+                    <a href="http://www.medicare.gov/physiciancompare/search.html" target="_blank">
+                        Physician
+                        Compare
+                    </a> can help you find a physician nearby. You can search by specialty, board certification,
+                    group practice, and which hospitals the physician works with, among other topics.
+                </p>
+                <h4 class="ng-scope">Nursing Home Compare</h4>
+                <p class="ng-scope">
+                    <a href="https://www.medicare.gov/nursinghomecompare/search.html" target="_blank">
+                        Nursing Home
+                        Compare
+                    </a> collects information about every nursing home in the country that provides care to
+                    people who receive Medicare or Medicaid benefits. The website also offers a detailed guide to
+                    choosing a nursing home<a href="https://www.medicare.gov/Pubs/pdf/02174.pdf" target="_blank"></a>.
+                </p>
+                <div class="adobe-reader ng-scope" style="margin-top:40px;">
+                    <a href="http://www.adobe.com/go/getreader" target="_blank">
+                        <img src="themes/base/assets/Get_Adobe_Acrobat_Reader_DC_web_button_158x39.fw.png">
+                    </a>
+                </div>
+            </div>
+            <div data-ng-switch-when="resourceAvoidingSafetyProblems" class="tab-pane fade active in" role="tabpanel" id="dropdown4" aria-labelledby="dropdown4-tab">
+                <h2>Avoiding safety problems when you have surgery</h2>
+                <div class="about-methodology ng-scope">
+                    <p>
+                        Many health conditions are treated using surgery. About 3 out of 10 hospital stays involve a
+                        surgery.<sup><a href="#" data-ng-click="$event.preventDefault()" data-scroll-to="cite001">1</a></sup>
+                        Patients undergoing surgery face the risk that something may go wrong, and that they will be
+                        harmed. This Guide describes surgical safety problems in hospitals, what they are, and how often
+                        they happen. Most importantly, it tells you what you can do to avoid safety problems for you or
+                        a loved one.
+                    </p>
+                    <aside>
+                        <h4>Surgical Wounds Splitting Open</h4>
+                        <p>
+                            Between 2010 and 2012, in the best performing hospital in the US, this serious problem
+                            happened to fewer than 1 patient in a 1,000. In the worst performing hospital nearly 3
+                            patients in a 1,000 had a surgical wound split open.<sup>
+                                <a href="#"
+                                   data-ng-click="$event.preventDefault()"
+                                   data-scroll-to="cite002">5</a>
+                            </sup>
+                        </p>
+                        <h4>Deaths from Treatable Complications</h4>
+                        <p>
+                            Between 2010 and 2012, at the best US hospital, about 5 patients out of 100 who had a serious
+                            but treatable complication after surgery died, while in the worst hospital, more than 15
+                            patients out of 100 died when they had treatable complications. So the best hospital does
+                            about three times better than the worst hospital at preventing deaths from treatable
+                            complications.<sup>
+                                <a href="#" data-ng-click="$event.preventDefault()"
+                                   data-scroll-to="cite003">5</a>
+                            </sup>
+                        </p>
+                    </aside>
+
+                    <h2>What is surgical safety? How common are surgical safety problems?</h2>
+                    <p>
+                        <strong>
+                            Surgical safety problems are mistakes or complications that happen as a result of what
+                            hospital staff (e.g., doctors, nurses, technicians) do and do not do before, during and after
+                            surgery.
+                        </strong>
+                    </p>
+                    <p>
+                        About 83 out of 1,000 surgeries (or more than 8% of surgeries) result in a medical problem or
+                        complication.<sup>
+                            <a href="#" data-ng-click="$event.preventDefault()"
+                               data-scroll-to="cite004">2</a>
+                        </sup> Most people survive these problems,
+                        but they still happen. For instance:
+                    </p>
+                    <div class="consumer-benefits-use-site no-bg">
+                        <ul>
+                            <li>
+                                In 2011, 157,500 people got an infection at the surgical site (incision) where they had
+                                surgery.<sup>
+                                    <a href="#" data-ng-click="$event.preventDefault()"
+                                       data-scroll-to="cite005">3</a>
+                                </sup>
+                            </li>
+                            <li>
+                                Each year, more than 4,000 people have a surgery on the wrong part of their body, for
+                                example, on the left knee rather than the right knee.<sup>
+                                    <a href="#"
+                                       data-ng-click="$event.preventDefault()"
+                                       data-scroll-to="cite004">4</a>
+                                </sup>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                    <p class="ng-binding">
+                        Many safety problems don’t have to happen. Hospitals work hard to reduce
+                        safety problems as part of their work to improve quality and the health of their patients. Many
+                        have made progress, but others have not done as well. You can use MONAHRQ Demo Site to learn how
+                        well local hospitals prevent patient safety problems. These quality reports will show you that
+                        some hospitals have very low rates of patient safety problems, while others have higher
+                        rates.
+                    </p>
+
+                    <h2>What is the impact of surgical safety problems?</h2>
+                    <div class="consumer-benefits-use-site no-bg">
+                        <p>
+                            A lot of problems can occur when surgeries go wrong.
+                            Surgical safety problems can harm the
+                            patient’s quality of life and drive up health care costs. For example:
+                        </p>
+                        <ul>
+                            <li>Patients have to stay in the hospital longer and their recovery takes more time.</li>
+                            <li>
+                                Patients cannot get back to work, school or taking care of home and family as quickly.
+                            </li>
+                            <li>
+                                Surgical errors cost money. Studies estimate that in 2008 the US spent $1.5 billion on
+                                extra
+                                health care services that were needed because of surgical mistakes.<sup>
+                                    <a href="#"
+                                       data-ng-click="$event.preventDefault()"
+                                       data-scroll-to="cite006">6</a>
+                                </sup>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                    <h2 class="ng-binding">How can I get information on surgical safety in {{config.website_GeographicDescription}} hospitals?</h2>
+                    <p class="ng-binding">
+                        The {{config.website_BrowserTitle}} website has information about the quality of care in
+                        local hospitals. This website includes information on patient safety, including how often
+                        surgical safety problems occur. Nearly all of these problems are avoidable if the hospital takes
+                        the safest approach. For example, this website will show how often patients who have had
+                        surgery:
+                    </p>
+                    <div class="consumer-benefits-use-site no-bg">
+                        <ul>
+                            <!-- ngIf: hasMeasure('PSI 12') -->
+                            <li data-ng-if="hasMeasure('PSI 12')" class="ng-scope">
+                                Get blood clots that can travel
+                                through
+                                the body and lead to death
+                            </li><!-- end ngIf: hasMeasure('PSI 12') -->
+                            <!-- ngIf: hasMeasure('PSI 13') -->
+                            <li data-ng-if="hasMeasure('PSI 13')" class="ng-scope">
+                                Get a dangerous infection in their
+                                blood
+                            </li><!-- end ngIf: hasMeasure('PSI 13') -->
+                            <!-- ngIf: hasMeasure('PSI 11') -->
+                            <li data-ng-if="hasMeasure('PSI 11')" class="ng-scope">
+                                Need to be put on a ventilator to
+                                keep
+                                them breathing
+                            </li><!-- end ngIf: hasMeasure('PSI 11') -->
+                        </ul>
+                    </div>
+
+
+                    <p>
+                        This website may also provide information on how often hospitals use approaches known to prevent
+                        surgical safety problems, including how often hospital staff:
+                    </p>
+                    <div class="consumer-benefits-use-site no-bg">
+                        <ul>
+                            <!-- ngIf: hasMeasure('SCIP-Inf-1a') -->
+                            <!-- ngIf: hasMeasure('SCIP-Inf-3a') -->
+                            <!-- ngIf: hasMeasure('SCIP-VTE-2') -->
+                            <li data-ng-if="hasMeasure('SCIP-VTE-2')" class="ng-scope">
+                                Gave patients treatments to
+                                prevent
+                                blood clots after surgery
+                            </li><!-- end ngIf: hasMeasure('SCIP-VTE-2') -->
+                        </ul>
+                    </div>
+
+
+                    <h2>What can I do to stay safe in the hospital when I have surgery?</h2>
+                    <p>
+                        Patients and family members can take steps to avoid surgical safety problems. <strong>
+                            The first
+                            step is to use the information on local hospitals to find the hospitals that have the lowest
+                            rates of surgical safety problems.
+                        </strong> If possible, choose to have your surgery at one of
+                        those better rated hospitals. Even if you don’t have a choice of hospital, <strong>
+                            talk with
+                            your doctor about surgical safety and ask your doctor to work with the hospital staff to
+                            prevent safety problems
+                        </strong>. Here are some steps you can take whenever you, or a loved
+                        one, has surgery.
+                    </p>
+                    <div class="consumer-benefits-use-site no-bg">
+                        <ul>
+                            <li>
+                                If the surgery is on a particular body part, like your right knee, make sure that body
+                                part
+                                is clearly marked.
+                            </li>
+                            <li>Make sure you get antibiotics shortly before surgery.</li>
+                            <li>
+                                Unless you have an ongoing infection, make sure you stop getting antibiotics a few hours
+                                after surgery.
+                                Make sure that after surgery, nurses take steps to prevent blood clots, such as giving
+                                you
+                                “compression socks” and getting you out of bed and moving as soon as possible.
+                            </li>
+                            <li>
+                                Especially for a serious surgery, have close family or friends visit every day to see
+                                how
+                                you are doing, ask the hospital staff questions, and give you comfort and support. They
+                                can
+                                help make sure the right things are being done for you, when you may not be feeling too
+                                well.
+                            </li>
+                            <li>
+                                If you think something is going wrong, and the hospital staff is not responding, ask for
+                                help from a “patient advocate.” Every hospital is required to have them.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <h2>What can hospitals do to reduce surgical safety problems?</h2>
+                    <p>
+                        Almost all surgical safety problems can be prevented if hospitals take actions that are proven to
+                        work. A hospital that is committed to providing high-quality care and keeping patients safe
+                        will:
+                    </p>
+                    <div class="consumer-benefits-use-site no-bg">
+                        <ul>
+                            <li>
+                                Ensure that every surgeon uses the World Health Organization’s (WHO) Surgical Safety
+                                Checklist<sup>
+                                    <a href="#" data-ng-click="$event.preventDefault()"
+                                       data-scroll-to="cite006">7</a>
+                                </sup> or another validated surgical
+                                checklist in the operating room to make sure all the right equipment is there and all
+                                staff
+                                understand what they must do.
+                            </li>
+                            <li>
+                                Train all hospital staff to make sure they understand and monitor their use safe
+                                practices
+                                all the time.
+                            </li>
+                            <li>Recognize and reward staff and hospital units that improve the safety of patients.</li>
+
+                        </ul>
+                    </div>
+
+                    <p>
+                        Surgical safety is a serious issue, but problems can be avoided if hospital leaders, doctors,
+                        hospital staff and patients like you each do their part.
+                    </p>
+                    <div class="footer--references">
+                        <h2>References</h2>
+                        <ol>
+                            <li id="cite001">
+                                Avalere Health analysis of American Hospital Association Annual Survey data, 2012, for
+                                community hospitals. US Census Bureau: National and State Population Estimates, July 1,
+                                2012. Accessed January 20, 2014 by <a href="http://www.census.gov/popest/data/state/totals/2012/index.html">http://www.census.gov/popest/data/state/totals/2012/index.html</a>
+                            </li>
+                            <li id="cite002">
+                                Zeeshan, MF, Dembe, AE, Seiber, EE, et al. Incidence of adverse events in an integrated
+                                US healthcare system: a retrospective observational study of 82,784 surgical
+                                hospitalizations. Patient Safety in Surgery 2014, 8(23).
+                            </li>
+                            <li id="cite003">
+                                Centers for Disease Control and Prevention. Healthcare-associated Infections (HAIs).
+                                Accessed on January 20, 2015 by <a href="http://www.cdc.gov/HAI/surveillance/index.html">http://www.cdc.gov/HAI/surveillance/index.html</a>
+                            </li>
+                            <li id="cite004">
+                                Mehtsun, WT, Ibrahim, AM, Diener-West, M, et al. Surgical never events in
+                                the United States. Surgery 2013, 153(4), 465-472.
+                            </li>
+                            <li id="cite005">
+                                The LeapFrog Group. Hospital Safety Score. Accessed on January 20, 2015 by <a href="http://www.hospitalsafetyscore.org/">http://www.hospitalsafetyscore.org/</a>
+                            </li>
+                            <li id="cite006">
+                                Encinosa, WE &amp; Hellinger, FJ. The impact of medical errors on
+                                ninety-day costs and outcomes: an examination of surgical patients. Health Serv Res.
+                                2008; 43(6): 2067&ndash;2085.
+                            </li>
+                            <li id="cite007">
+                                World Health Organization. WHO surgical safety checklist and implementation manual.
+                                Access on January 20, 2015 by <a href="http://www.who.int/patientsafety/safesurgery/ss_checklist/en/">http://www.who.int/patientsafety/safesurgery/ss_checklist/en/</a>
+                            </li>
+                        </ol>
+                    </div><!-- /.footer -->
+                </div>
+
+            </div>
+            <!--about the ratings-->
+            <div class="tab-pane fade active in" role="tabpanel" id="dropdown1b" aria-labelledby="dropdown1b-tab" data-ng-switch-when="resourceHospitalQuality">
+                <div data-ng-include="'app/products/mobile/pages/views/resource-hospital-quality.html'"></div>
+            </div>
+            <div class="tab-pane fade active in" role="tabpanel" id="dropdown2b" aria-labelledby="dropdown2b-tab" data-ng-switch-when="resourceNursingHomeQuality">
+                <div data-ng-include="'app/products/consumer/pages/views/resource-nursing-home-quality.html'"></div>
+
+            </div>
+            <div class="tab-pane fade active in" role="tabpanel" id="dropdown3b" aria-labelledby="dropdown3b-tab" data-ng-switch-when="resourceFindAPhysician">
+                <div data-ng-include="'app/products/consumer/pages/views/resource-find-a-physician.html'"></div>
+            </div>
+            <!--.about the ratings-->
+        </div>
+    </div>
+
+</section>
+<section class="section-blue">
+    <h2 class="consumer-benefits-title section-blue">How to use our quality ratings</h2>
+</section>
+<section class="consumer-benefits">
+    <article class="consumer-benefits-use-cases">
+        <p class="use-case">
+            Use our quality ratings to learn about a health care facility that you or someone you care
+            about will go to for treatment.
+        </p>
+        <p>
+            <a data-ng-if="ConsumerReportConfigSvc.hasEntity('HOSPITAL')" href="#" data-ui-sref="top.consumer.hospitals.profile">Find a hospital</a>
+            <span data-ng-if="ConsumerReportConfigSvc.hasEntities(['HOSPITAL', 'NURSINGHOME'])">or</span>
+            <a data-ng-if="ConsumerReportConfigSvc.hasEntity('NURSINGHOME')" href="#" data-ui-sref="top.consumer.nursing-homes.profile">find a nursing home</a>
+            by name.
+        </p>
+
+        <p class="use-case">
+            Choose from a list of health care facilities in your area to see how they do and compare
+            them. What does each one do well? What could each one do better?
+        </p>
+        <p>
+            <a data-ng-if="ConsumerReportConfigSvc.hasEntity('HOSPITAL')" href="#" data-ui-sref="top.consumer.hospitals.location">Find a hospital by location</a>
+            <span data-ng-if="ConsumerReportConfigSvc.hasEntities(['HOSPITAL', 'NURSINGHOME'])">or</span>
+            <a data-ng-if="ConsumerReportConfigSvc.hasEntity('NURSINGHOME')" href="#" data-ui-sref="top.consumer.nursing-homes.location">Find a nursing home by location</a>.
+        </p>
+        <p class="use-case" data-ng-if="ConsumerReportConfigSvc.hasEntity('HOSPITAL')">
+            Concerned about how well hospitals perform for different conditions, or on different topics?
+            We have ratings on many different illnesses, procedures and other topics.
+        </p>
+        <p data-ng-if="ConsumerReportConfigSvc.hasEntity('HOSPITAL')">
+            <a href="#" data-ui-sref="top.consumer.hospitals.health-topics">Compare hospitals by a health topic </a> that you care about.
+        </p>
+    </article>
+    <article class="consumer-benefits-use-site">
+        <p class="use-site-title">Use the ratings on this site to:</p>
+        <ul>
+            <li>Choose a {{getEntityGroupTitleMobile()}} where you want to get your care</li>
+            <li>Advise a family member or friend about what the ratings say</li>
+            <li>
+                If you don’t have a choice of health care facility:
+                <ul>
+                    <li>Identify problems at the {{getEntityGroupTitleMobile()}} you have to use</li>
+                    <li>Talk about these problems with your doctor to get their help</li>
+                    <li>
+                        Make sure a loved one visits you regularly; ask them to watch out for the problems that worry
+                        you
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </article>
+</section>
+<section class="search-health-topics">
+    <h2>Compare hospitals by health topics</h2>
+    <div class="text-center">
+        <button data-ui-sref="top.consumer.hospitals.health-topics">Browse Health Topics</button>
+    </div>
+</section>

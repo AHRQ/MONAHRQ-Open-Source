@@ -45,7 +45,7 @@ namespace Monahrq.Sdk.ViewModels
         /// The logger.
         /// </value>
         [Import(LogNames.Session)]
-        protected ILoggerFacade Logger { get; set; }
+        protected ILogWriter Logger { get; set; }
 
         /// <summary>
         /// Gets or sets the logger.

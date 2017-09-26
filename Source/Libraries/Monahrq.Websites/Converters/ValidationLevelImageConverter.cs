@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Media.Imaging;
+using Monahrq.Infrastructure.Domain.Websites;
 using Monahrq.Websites.ViewModels.Publish;
 
 namespace Monahrq.Websites.Converters

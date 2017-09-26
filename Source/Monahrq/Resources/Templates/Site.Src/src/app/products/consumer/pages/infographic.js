@@ -110,6 +110,8 @@
         }
     ];
     $scope.gotoFootnote = gotoFootnote;
+    $scope.share = share;
+    $scope.feedbackModal = feedbackModal;
     $scope.footnoteAccordionAPI = {};
     var surg = _.findWhere(topics, {Name: 'Surgical patient safety'});
     $scope.surgicalTopicId = surg ? surg.TopicCategoryID : null;
@@ -126,6 +128,19 @@
       $rootScope.$on('$locationChangeSuccess', function(event, url) {
         $scope.shareURL = encodeURIComponent(url);
       });
+    }
+
+    function share() {
+        window.location = buildShareUrl();
+    }
+
+    function feedbackModal() {
+        ModalFeedbackSvc.open($scope.config);
+    }
+
+    function buildShareUrl() {
+        var url = escape(window.location);
+        return "mailto:?to=&subject=Shared%20MONAHRQ%20Page&body=" + url;
     }
 
     $scope.wrapperClass = function() {

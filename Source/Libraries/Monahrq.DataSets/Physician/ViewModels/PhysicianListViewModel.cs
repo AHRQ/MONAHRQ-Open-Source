@@ -382,7 +382,7 @@ ORDER BY StateForDisplay, CityForDisplay, Npi, LastName", statePredicates, physi
                 if (!opResult.Status && opResult.Exception != null)
                 {
                     errorOccurred = true;
-                    errorException = opResult.Exception.GetBaseException();
+                    errorException = opResult.Exception;
                 }
                 else
                 {
@@ -394,9 +394,8 @@ ORDER BY StateForDisplay, CityForDisplay, Npi, LastName", statePredicates, physi
 
             if (errorOccurred && errorException != null)
             {
-                var fullMessage = errorException.GetBaseException().Message + Environment.NewLine + errorException.GetBaseException().StackTrace;
-                Logger.Log(fullMessage, Category.Exception, Priority.High);
-                NotifyError(errorException, typeof(db.Physician), entityName);
+                Logger.Write(errorException, "Error deleting physician \"{0}\"", entity.Name);
+                LogEntityError(errorException, typeof(db.Physician), entityName);
                 return;
             }
 
@@ -502,7 +501,7 @@ delete from [dbo].[Physicians];");
                         {
                             trans.Rollback();
 
-                            return new DeleteAllPhysiciansResult { Status = false, Exception = exc.GetBaseException()};
+                            return new DeleteAllPhysiciansResult { Status = false, Exception = exc };
                         }
                     }
                 }
@@ -521,9 +520,9 @@ delete from [dbo].[Physicians];");
                 fullMessage.AppendLine("An error occurred while deleting all physicans. Error Message: " + deleteResult.Exception.Message);
                 fullMessage.AppendLine();
                 fullMessage.AppendLine("Stack Trace: " + deleteResult.Exception.StackTrace);
-                Logger.Log(fullMessage.ToString(), Category.Exception, Priority.High);
+                Logger.Write(deleteResult.Exception, "Error deleting all physicians");
 
-                NotifyError(deleteResult.Exception, typeof (db.Physician), "");
+                LogEntityError(deleteResult.Exception, typeof (db.Physician), "*");
             }
 
             //CollectionItems.Refresh();

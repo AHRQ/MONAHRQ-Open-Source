@@ -795,11 +795,7 @@ namespace Monahrq.Websites.ViewModels
             this.WebsiteDataService.DeleteMeasureOverride(ref wm, (wmx, exception) =>
             {
                 if (exception != null)
-                {
-                    Logger.Log(exception.GetBaseException().Message,
-                               Category.Exception,
-                               Priority.High);
-                }
+                    Logger.Write(exception);
             });
 
         }
@@ -970,9 +966,7 @@ namespace Monahrq.Websites.ViewModels
                         }
                         else
                         {
-                            Logger.Log(exception.GetBaseException().Message,
-                                       Category.Exception,
-                                       Priority.High);
+                            Logger.Write(exception);
                         }
                     });
                     // websiteMeasure.OverrideMeasure = currentBatchMeasure.MeasureOverwrite;

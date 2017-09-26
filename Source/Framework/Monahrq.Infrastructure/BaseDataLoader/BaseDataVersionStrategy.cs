@@ -33,7 +33,7 @@ namespace Monahrq.Infrastructure.BaseDataLoader
         /// <param name="entityType">Type of the entity.</param>
         [ImportingConstructor]
         protected BaseDataVersionStrategy(
-            [Import(LogNames.Session)] ILoggerFacade logger,
+            [Import(LogNames.Session)] ILogWriter logger,
             IDomainSessionFactoryProvider sessionFactoryProvider,
             Type entityType)
         {
@@ -77,7 +77,7 @@ namespace Monahrq.Infrastructure.BaseDataLoader
         /// <value>
         /// The logger.
         /// </value>
-        protected ILoggerFacade Logger { get; set; }
+        protected ILogWriter Logger { get; set; }
         /// <summary>
         /// Gets or sets the filename.
         /// </summary>
@@ -131,7 +131,7 @@ namespace Monahrq.Infrastructure.BaseDataLoader
         /// <param name="entityType">Type of the entity.</param>
         [ImportingConstructor]
         public DefaultBaseDataVersionStrategy(
-            [Import(LogNames.Session)] ILoggerFacade logger,
+            [Import(LogNames.Session)] ILogWriter logger,
             IDomainSessionFactoryProvider sessionFactoryProvider,
             Type entityType)
             : base(logger, sessionFactoryProvider, entityType)
@@ -350,7 +350,7 @@ namespace Monahrq.Infrastructure.BaseDataLoader
         /// <param name="entityType">Type of the entity.</param>
         [ImportingConstructor]
         public MonthAndYearBaseDataVersionStrategy(
-            [Import(LogNames.Session)] ILoggerFacade logger,
+            [Import(LogNames.Session)] ILogWriter logger,
             IDomainSessionFactoryProvider sessionFactoryProvider,
             Type entityType)
             : base(logger, sessionFactoryProvider, entityType)
@@ -506,7 +506,7 @@ namespace Monahrq.Infrastructure.BaseDataLoader
         /// <param name="isReplaced">if set to <c>true</c> [is replaced].</param>
         [ImportingConstructor]
         public YearOnlyBaseDataVersionStrategy(
-            [Import(LogNames.Session)] ILoggerFacade logger,
+            [Import(LogNames.Session)] ILogWriter logger,
             IDomainSessionFactoryProvider sessionFactoryProvider,
             Type entityType, bool isReplaced = false)
             : base(logger, sessionFactoryProvider, entityType)

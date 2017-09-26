@@ -310,15 +310,9 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>@echo ======= Copying...  
-@echo "$(TargetPath)"  "$(SolutionDir)Monahrq\$(OutDir)Modules\" 
-@echo  =======
-xcopy /s /e "$(TargetDir)\Resources\*.sql"  "$(SolutionDir)Monahrq\$(OutDir)Resources\Database\Physician\"    /y
-xcopy "$(TargetPath)"  "$(SolutionDir)Monahrq\$(OutDir)Modules\"    /y
+    <PostBuildEvent>xcopy /s /e "$(TargetDir)\Resources\*.sql"  "$(SolutionDir)Monahrq\$(OutDir)Resources\Database\Physician\"    /y
 xcopy "$(TargetDir)\Measures\*.csv"  "$(SolutionDir)Monahrq\$(OutDir)Measures\"    /y
-@echo ======= Copied...  
-@echo "$(TargetPath)"  "$(SolutionDir)Monahrq\bin\$(ConfigurationName)\Modules\" 
-@echo  =======</PostBuildEvent>
+</PostBuildEvent>
   </PropertyGroup>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Import Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.Sql.UnitTesting.targets" Condition="'$(SQLDBExtensionsRefPath)' != ''" />
@@ -344,5 +338,5 @@ xcopy "$(TargetDir)\Measures\*.csv"  "$(SolutionDir)Monahrq\$(OutDir)Measures\" 
   <Target Name="AfterBuild">
   </Target>
   -->
-  <Import Project="$(SolutionDir)\MonahrqExtensionCommon.targets"/>
+  <Import Project="$(SolutionDir)\MonahrqExtensionCommon.targets" />
 </Project>

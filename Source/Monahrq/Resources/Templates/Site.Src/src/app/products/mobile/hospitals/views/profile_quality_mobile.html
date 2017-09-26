@@ -1,0 +1,74 @@
+<section aria-labeledby="quality-ratings-tab" role="tabpanel" aria-hidden="false">
+  <header>
+    <h4>Select a topic from the list below to see how well this hospital takes care of their patients</h4>
+    <button data-ng-click="showAll()" aria-expanded="{{isShowAll}}" aria-controls="quality-container">
+      <span data-ng-if="!isShowAll">Show Ratings</span>
+      <span data-ng-if="isShowAll">Hide Ratings</span>
+    </button>
+    <div class="report-header__compare-against">
+      <fieldset>
+        <legend>Compare Results To:</legend>
+        <label for="compareTo-national"><input type="radio" name="compareTo" id="compareTo-national" value="national" data-ng-model="query.compareTo">National Average</label>
+        <label for="compareTo-state"><input type="radio" name="compareTo" id="compareTo-state" value="state" data-ng-model="query.compareTo">State Average</label>
+      </fieldset>
+    </div>
+  </header>
+  <div id="quality-container">
+    <!--<h5 class="panel-quality__subtitle">Conditions</h5>
+    <ul>
+      <li data-ng-repeat="topic in topics | filter:{Type: 'Condition'}">
+        <button aria-expanded="{{showTopic(topic.TopicCategoryID)}}" aria-controls="ratings-{{topic.TopicCategoryID}}" data-ng-click="toggleTopic(topic.TopicCategoryID)" data-ng-class="{'active': showTopic(topic.TopicCategoryID)}">
+          {{getTopicCategoryName(topic.TopicCategoryID)}}<span data-mh-help-icon data-sr-label="'Help for ' + getTopicCategoryName(topic.TopicCategoryID)" data-mh-on-click="modalTopicCategory(topic.TopicCategoryID)"></span>
+        </button>
+        <div id="ratings-{{topic.TopicCategoryID}}" data-ng-if="showTopic(topic.TopicCategoryID)" data-ng-repeat="subtopic in topic.topics">
+          <table>
+            <thead>
+              <tr>
+                <th>{{subtopic.Name}} <span data-mh-help-icon data-sr-label="'Help for ' + subtopic.Name" data-mh-on-click="modalTopic(subtopic.TopicID)"></span></th>
+                <th>Rating</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-ng-repeat="m in model[subtopic.TopicID]">
+                <th>{{m.title}} <span data-mh-help-icon data-sr-label="'Help for ' + m.title" data-mh-on-click="modalMeasure(m.id)"></span></th>
+                <td>
+                  <div data-ng-if="query.compareTo === 'national'" data-mh-rating-symbol="m.data.NatRating"></div>
+                  <div data-ng-if="query.compareTo === 'state'" data-mh-rating-symbol="m.data.PeerRating"></div>
+                </td>
+              </tr>
+           </tbody>
+          </table>
+        </div>
+      </li>
+    </ul>-->
+
+    <h5 class="panel-quality__subtitle">Health Topics</h5>
+    <ul>
+      <li data-ng-repeat="topic in topics">
+        <button aria-expanded="{{showTopic(topic.TopicCategoryID)}}" aria-controls="ratings-{{topic.TopicCategoryID}}" data-ng-click="toggleTopic(topic.TopicCategoryID)" data-ng-class="{'active': showTopic(topic.TopicCategoryID)}">
+          {{getTopicCategoryName(topic.TopicCategoryID)}}<span data-mh-help-icon data-sr-label="'Help for ' + getTopicCategoryName(topic.TopicCategoryID)" data-mh-on-click="modalTopicCategory(topic.TopicCategoryID)"></span>
+        </button>
+        <div id="ratings-{{topic.TopicCategoryID}}" data-ng-if="showTopic(topic.TopicCategoryID)" data-ng-repeat="subtopic in topic.topics">
+          <table>
+            <thead>
+              <tr>
+                <th>{{subtopic.Name}} <span data-mh-help-icon data-sr-label="'Help for ' + subtopic.Name" data-mh-on-click="modalTopic(subtopic.TopicID)"></span></th>
+                <th>Rating</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-ng-repeat="m in model[subtopic.TopicID]">
+                <th>{{m.title}} <span data-mh-help-icon data-sr-label="'Help for ' + m.title" data-mh-on-click="modalMeasure(m.id)"></span></th>
+                <td>
+                  <div data-ng-if="showSymbol(m) && query.compareTo === 'national'" data-mh-rating-symbol="m.data.NatRating"></div>
+                  <div data-ng-if="showSymbol(m) && query.compareTo === 'state'" data-mh-rating-symbol="m.data.PeerRating"></div>
+                  <div data-ng-if="!showSymbol(m)">{{m.data.RateAndCI}}</div>
+                </td>
+              </tr>
+           </tbody>
+          </table>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>

@@ -79,7 +79,7 @@ namespace Monahrq.Infrastructure.Entities.Domain.Measures
 			}
 			catch (Exception ex)
 			{
-				Logger.Write(ex);
+				Logger.Write(ex, "Error adding topic {0} to category {1}", name, category);
 				return null;
 			}
 		}
@@ -102,7 +102,7 @@ namespace Monahrq.Infrastructure.Entities.Domain.Measures
 				}
 				catch (Exception ex)
 				{
-					Logger.Write(ex);
+				    Logger.Write(ex, "Error getting topic {0} from category {1}", name, category);
 					return null;
 				}
 			}
@@ -142,7 +142,7 @@ namespace Monahrq.Infrastructure.Entities.Domain.Measures
 			}
 			catch (Exception ex)
 			{
-				Logger.Write(ex);
+				Logger.Write(ex, "Error adding topic category {0}", category);
 				return null;
 			}
 		}
@@ -165,7 +165,7 @@ namespace Monahrq.Infrastructure.Entities.Domain.Measures
 				}
 				catch (Exception ex)
 				{
-					Logger.Write(ex);
+					Logger.Write(ex, "Error getting topic category with name {0}", category);
 					return null;
 				}
 			}
@@ -186,7 +186,7 @@ namespace Monahrq.Infrastructure.Entities.Domain.Measures
 				}
 				catch (Exception ex)
 				{
-					Logger.Write(ex);
+					Logger.Write(ex, "Error getting measure with code {0}", measureCode);
 					return null;
 				}
 			}
@@ -244,7 +244,7 @@ namespace Monahrq.Infrastructure.Entities.Domain.Measures
 						catch (Exception ex)
 						{
 							tx.Rollback();
-							Logger.Write(ex);
+						    Logger.Write(ex, "Error importing measures for wing \"{0}\" from file {1}", wingName, fileName);
 							return false;
 						}
 					}
@@ -462,7 +462,7 @@ namespace Monahrq.Infrastructure.Entities.Domain.Measures
 						catch (Exception ex)
 						{
 							//tx.Rollback();
-							Logger.Write(ex);
+							Logger.Write(ex, "Error importing measure topics for Wing \"{0}\" from file {1}", wingName, fileName);
 						}
 					}
 				}

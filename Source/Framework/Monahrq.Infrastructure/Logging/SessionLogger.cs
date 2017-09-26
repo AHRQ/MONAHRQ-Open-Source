@@ -15,8 +15,11 @@ namespace Monahrq.Sdk.Logging
     /// Implementation of <see cref="ILogWriter" /> that logs into a <see cref="TextWriter" />.
     /// </summary>
     /// <seealso cref="Monahrq.Sdk.Logging.LoggerBase" />
+    [Export(typeof(ILogWriter))]
     [Export(LogNames.Session, typeof(ILogWriter))]
     [Export(LogNames.Session, typeof(ILoggerFacade))]
+    [Export(LogNames.Operations, typeof(ILogWriter))] // operations logging was previously handled by CallbackLogger
+    [Export(LogNames.Operations, typeof(ILoggerFacade))]
     [PartCreationPolicy(CreationPolicy.NonShared)]
     public class SessionLogger : LoggerBase
     {
@@ -42,19 +45,6 @@ namespace Monahrq.Sdk.Logging
         public const int DEAFAULT_MAXIMUM_FILE_SIZE = 10 * 1024 * 1024;
 
         /// <summary>
-        /// Gets or sets the operation log.
-        /// </summary>
-        /// <value>
-        /// The operation log.
-        /// </value>
-        [Import(LogNames.Operations)]
-        ILoggerFacade OperationLog
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
         /// Gets or sets the data provider.
         /// </summary>
         /// <value>
@@ -64,20 +54,16 @@ namespace Monahrq.Sdk.Logging
         IDomainSessionFactoryProvider DataProvider { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SessionLogger" /> class.
-        /// </summary>
-        public SessionLogger()
-        { }
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="SessionLogger"/> class.
         /// </summary>
         /// <param name="opsLogger">The ops logger.</param>
-        [ImportingConstructor]
-        public SessionLogger([Import(LogNames.Operations)]ILoggerFacade opsLogger)
-        {
-            OperationLog = opsLogger;
+        public SessionLogger(ILoggerFacade opsLogger)
+            : this()
+        { }
 
+        [ImportingConstructor]
+        public SessionLogger()
+        {
             var logsDirectoryPath = Path.Combine(MonahrqContext.MyDocumentsApplicationDirPath, "Logs");
             if (!Directory.Exists(logsDirectoryPath))
                 Directory.CreateDirectory(logsDirectoryPath);
@@ -94,13 +80,11 @@ namespace Monahrq.Sdk.Logging
             if (IsOldFile(LogFileName))
             {
                 File.Delete(LogFileName);
-                LogSystemInforamtion(LogFileName);
+                IsConfigured = false;
             }
 
             if (!IsConfigured)
             {
-                LogSystemInforamtion(LogFileName);
-
                 var appender = new CustomRollingAppender()
                 {
                     File = LogFileName,
@@ -118,7 +102,7 @@ namespace Monahrq.Sdk.Logging
                 };
 
                 BasicConfigurator.Configure(appender);
-
+                LogSystemInforamtion();
             }
             IsConfigured = true;
 
@@ -145,21 +129,18 @@ namespace Monahrq.Sdk.Logging
         /// Logs the system inforamtion.
         /// </summary>
         /// <param name="filepath">The filepath.</param>
-        private static void LogSystemInforamtion(string filepath)
+        private void LogSystemInforamtion()
         {
             var driveInfo = new DriveInfo(AppDomain.CurrentDomain.BaseDirectory);
             var div = 1024 * 1024 * 1000;
             var info = new StringBuilder();
-            info.Append(string.Format("<p>Operating System: {0}</p>", System.Environment.OSVersion));
-            info.Append(string.Format("<p>Available Hard Disk Space/Total Hard Disk: {0} GB/{1} GB</p>", (int)(driveInfo.AvailableFreeSpace / div), (int)(driveInfo.TotalSize / div)));
-            using (var fileStream = new FileStream(filepath, FileMode.OpenOrCreate))
-            {
-                using (var writer = new StreamWriter(fileStream))
-                {
-                    writer.Write(info);
-                }
-                fileStream.Close();
-            }
+            info.Append($@"<hr/><pre>
+<h1>MONAHRQ Session: {DateTime.Now.ToLongDateString()}, {DateTime.Now.ToShortTimeString()}</h1>
+ &mdash; Operating System: {Environment.OSVersion}
+ &mdash; Available Hard Disk Space/Total Hard Disk: {(int)(driveInfo.AvailableFreeSpace / div)} GB/{(int)
+                (driveInfo.TotalSize / div)} GB</p>"
+            );
+            this.OnLog(info.ToString(), Category.Info, Priority.High);
         }
 
         // Create a log4net instance for this class.
@@ -178,32 +159,32 @@ namespace Monahrq.Sdk.Logging
         /// <param name="priority">The priority of the entry.</param>
         protected override void OnLog(string message, Category category, Priority priority)
         {
-            try
+            /*try
             {
                 OperationLog.Log(message, category, priority);
             }
             finally
+            {*/
+            // log it to the log4net level depending on the Category
+            switch (category)
             {
-                // log it to the log4net level depending on the Category
-                switch (category)
-                {
-                    case Category.Exception:
-                        log.Error(message);
-                        break;
+                case Category.Exception:
+                    log.Error(message);
+                    break;
 
-                    case Category.Warn:
-                        log.Warn(message);
-                        break;
+                case Category.Warn:
+                    log.Warn(message);
+                    break;
 
-                    case Category.Debug:
-                        if (log.IsDebugEnabled) log.Debug(message);
-                        break;
+                case Category.Debug:
+                    if (log.IsDebugEnabled) log.Debug(message);
+                    break;
 
-                    case Category.Info:
-                        if (log.IsInfoEnabled) log.Info(message);
-                        break;
-                }
+                case Category.Info:
+                    if (log.IsInfoEnabled) log.Info(message);
+                    break;
             }
+            //}
         }
 
     }

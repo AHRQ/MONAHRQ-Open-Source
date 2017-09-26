@@ -357,10 +357,14 @@
     <Compile Include="Domain\WebsiteContentManagment\Maps\WebsitePageMap.cs" />
     <Compile Include="Domain\WebsiteContentManagment\WebsitePageZone.cs" />
     <Compile Include="Domain\WebsiteContentManagment\WebsitePage.cs" />
+    <Compile Include="Domain\Websites\IWebsiteDependencyCheck.cs" />
     <Compile Include="Domain\Websites\Maps\MenuMap.cs" />
     <Compile Include="Domain\Websites\Menu.cs" />
+    <Compile Include="Domain\Websites\ValidationLevel.cs" />
+    <Compile Include="Domain\Websites\ValidationResultViewModel.cs" />
     <Compile Include="Domain\Websites\WebsiteConfiguration.cs" />
     <Compile Include="Domain\Websites\WebsiteExport.cs" />
+    <Compile Include="Domain\Websites\WebsiteTabViewModels.cs" />
     <Compile Include="Domain\Wings\ITargetDeletionVisitor.cs" />
     <Compile Include="Domain\Wings\ScopeValue.cs" />
     <Compile Include="Domain\Wings\TargetDeletionVisitor.cs" />
@@ -386,11 +390,11 @@
     <Compile Include="Logging\ColorPatternConverter.cs" />
     <Compile Include="Logging\CustomRollingAppender.cs" />
     <Compile Include="Logging\LoggerBase.cs" />
-    <Compile Include="Logging\LoggingExtensions.cs" />
     <Compile Include="Logging\SessionLogger.cs" />
     <Compile Include="Modules\IModuleRegionRegistrar.cs" />
     <Compile Include="Modules\Wings\TargetedModuleBase.cs" />
     <Compile Include="Modules\Wings\TargetedModuleWithMeasuresAndTopics.cs" />
+    <Compile Include="Properties\ReSharperAnnotations.cs" />
     <Compile Include="Services\Dynamic\DynamicCSVTemplateStrategy.cs" />
     <Compile Include="Types\ApplicationCursor.cs" />
     <Compile Include="Types\IDeepCloneable.cs" />
@@ -879,6 +883,36 @@
     <EmbeddedResource Include="Services\Dynamic\Resources\Uninstall_DynamicTarget_Reports.sql" />
     <EmbeddedResource Include="Services\Dynamic\Resources\Uninstall_DynamicTarget_WingTargets.sql" />
     <EmbeddedResource Include="Resources\SchemaVersion\SchemaVersion_Create_Update.sql" />
+    <None Include="Resources\BaseData\AreaPopulationStrats-2015.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\CostToChargeRatio-2015.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\EDNationalTotals-2014.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\IPNationalTotalsDRG-2014.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\IPNationalTotalsDXCCS-2014.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\IPNationalTotalsMDC-2014.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\IPNationalTotalsPRCCS-2014.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\POSHospitals-2016-12.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\ZipCodeToHRRandHSA-2015.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\BaseData\ZipCodeToPopulationStrats-2015.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Resource Include="Assert\LICENSE.txt" />
     <Resource Include="Assert\ArgumentHelper.doc.xml" />
     <Resource Include="Assert\EventHelper.doc.xml" />
@@ -968,18 +1002,6 @@
     <None Include="Resources\BaseData\BaseWebsitePage-1-0-0.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\BaseData\IPNationalTotalsDRG-2013.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\BaseData\IPNationalTotalsDXCCS-2013.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\BaseData\IPNationalTotalsMDC-2013.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\BaseData\IPNationalTotalsPRCCS-2013.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <Content Include="Domain\Reports\Data\GenericInfoGraphic-topics.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -989,11 +1011,8 @@
     <None Include="Resources\BaseData\MeasureTopics-2-0-0.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\BaseData\POSHospitals-2015-12.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\BaseData\ZipCodeToHRRandHSA-2013.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <None Include="Resources\BaseData\ZipCodeToLatLong-2016.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Resources\BaseData\ZipCodeToPopulationStrats-2012.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -1369,9 +1388,6 @@
     <None Include="Resources\BaseData\DXCCSLabels-2014.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\BaseData\EDNationalTotals-2010.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Resources\BaseData\EDNationalTotals.fmt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -1409,9 +1425,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Resources\BaseData\States-1-0-0.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\BaseData\ZipCodeToLatLong-2010.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Resources\BaseData\ZipCodeToLatLong.fmt">

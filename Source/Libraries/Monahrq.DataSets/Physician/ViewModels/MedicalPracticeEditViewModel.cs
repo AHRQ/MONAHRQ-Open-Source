@@ -204,7 +204,7 @@ namespace Monahrq.DataSets.Physician.ViewModels
                                                     if (!result.Status && result.Exception != null)
                                                     {
                                                         errorOccurred = true;
-                                                        errorException = result.Exception.GetBaseException();
+                                                        errorException = result.Exception;
                                                     }
                                                     else
                                                     {
@@ -227,17 +227,14 @@ namespace Monahrq.DataSets.Physician.ViewModels
                     }
                     else
                     {
-                        Logger.Log(errorException.Message, Category.Exception, Priority.High);
-                        EventAggregator.GetEvent<ErrorNotificationEvent>().Publish(errorException);
+                        Logger.Write(errorException, "Error saving Medical Practice \"{0}\"", Model.Name);
                     }
                 }
 
             }
             catch (Exception exc)
             {
-                Logger.Log(exc.GetBaseException().Message, Category.Exception, Priority.High);
-                NotifyError(exc.GetBaseException(), typeof(MedicalPractice), Model.Name);
-                //EventAggregator.GetEvent<ErrorNotificationEvent>().Publish(exc);
+                Logger.Write(exc, "Error saving Medical Practice \"{0}\"", Model.Name);
             }
         }
 

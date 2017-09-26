@@ -83,7 +83,7 @@ namespace Monahrq.Sdk.Services.Generators
         /// The logger.
         /// </value>
         [Import(LogNames.Session)]
-        ILoggerFacade Logger { get; set; }
+        ILogWriter Logger { get; set; }
 
         #endregion
 
@@ -125,15 +125,8 @@ namespace Monahrq.Sdk.Services.Generators
                     PubishMessageTypeEnum.Information,
                     WebsiteGenerationStatus.InProgress, DateTime.Now);
 
-                Logger.Log(
-                    String.Format("Website Reported Year: {0}", website.ReportedYear),
-                    Category.Info,
-                    Priority.Medium);
-
-                Logger.Log(
-                    String.Format("Website Dataset Count: {0}", website.Datasets.Count),
-                    Category.Info,
-                    Priority.Medium);
+                Logger.Information("Website Reported Year: {0}", website.ReportedYear);
+                Logger.Information("Website Dataset Count: {0}", website.Datasets.Count);
 
                 GenerationStatus = WebsiteGenerationStatus.InProgress;
 
@@ -687,7 +680,7 @@ namespace Monahrq.Sdk.Services.Generators
 
                             try
                             {
-                                // Logger.Log(reportGenerationMessage, Category.Info, Priority.Medium);
+                                // Logger.Write(reportGenerationMessage, Category.Info, Priority.Medium);
                                 item.Generator.ActiveReport = item.WebsiteReport.Report;
                                 item.Generator.GenerateReport(website, publishTask);
                             }
@@ -695,7 +688,7 @@ namespace Monahrq.Sdk.Services.Generators
                             {
                                 var excToUse = exc.GetBaseException();
                                 var eecMessage = string.Format("{0} : {1}", item.Name, excToUse.Message);
-                                //Logger.Log(eecMessage, Category.Exception, Priority.High);
+                                //Logger.Write(eecMessage, Category.Exception, Priority.High);
 
                                 PublishEvent(
 									new WebsitePublishEventRegion(item.Generator),
@@ -783,7 +776,7 @@ namespace Monahrq.Sdk.Services.Generators
                                 {
                                     var excToUse = exc.GetBaseException();
                                     var eecMessage = string.Format("{0} : {1}", item.Name, excToUse.Message);
-                                    //Logger.Log(eecMessage, Category.Exception, Priority.High);
+                                    //Logger.Write(eecMessage, Category.Exception, Priority.High);
                                     PublishEvent(
 										new WebsitePublishEventRegion(item.Name),
 										eecMessage,
@@ -920,7 +913,7 @@ namespace Monahrq.Sdk.Services.Generators
             }
             catch (Exception exc)
             {
-                Logger.Log(exc.GetBaseException().Message, Category.Exception, Priority.Medium);
+                Logger.Write(exc, "Error generating report data file");
             }
         }
 

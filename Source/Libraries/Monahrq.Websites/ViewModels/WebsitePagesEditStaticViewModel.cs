@@ -286,7 +286,7 @@ namespace Monahrq.Websites.ViewModels
 			}
 			catch (Exception exc)
 			{
-				Logger.Log(exc.Message, Category.Exception, Priority.High);
+				Logger.Write(exc);
 			}
 		}
 		public void OnClosePreviewSettings()

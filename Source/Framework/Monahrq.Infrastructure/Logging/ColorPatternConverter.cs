@@ -47,7 +47,11 @@ namespace Monahrq.Sdk.Logging
         /// <param name="loggingEvent">The <see cref="T:log4net.Core.LoggingEvent" /> on which the pattern converter should be executed.</param>
         protected override void Convert(System.IO.TextWriter writer, log4net.Core.LoggingEvent loggingEvent)
         {
-            var msg = string.Format("{0} [{1}] {2} {3} - {4}", loggingEvent.TimeStamp.ToString("yyyy-MM-dd hh:mm:ss tt"), loggingEvent.ThreadName, loggingEvent.Level, loggingEvent.LoggerName, loggingEvent.RenderedMessage);
+            var msg = string.Format("{0:yyyy-MM-dd hh:mm:ss tt} [{1,00}] {2} - {3}", 
+                loggingEvent.TimeStamp,
+                loggingEvent.ThreadName, 
+                loggingEvent.Level, 
+                loggingEvent.RenderedMessage);
             var color = "";
             switch (loggingEvent.Level.Name)
             {
@@ -67,7 +71,7 @@ namespace Monahrq.Sdk.Logging
                     break;
             }
 
-            writer.Write("<p style='color:{0};'>{1}</p>{2}", color, msg, Environment.NewLine);
+            writer.Write("<span style='color:{0};'>{1}</span>{2}", color, msg, Environment.NewLine);
         }
     }
 

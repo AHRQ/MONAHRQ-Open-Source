@@ -60,7 +60,7 @@ namespace Monahrq.Wing.Dynamic
             }
             catch(Exception exc)
             {
-                SessionLogger.Log(exc.GetBaseException().Message, Microsoft.Practices.Prism.Logging.Category.Exception, Microsoft.Practices.Prism.Logging.Priority.High);
+                SessionLogger.Write(exc);
                 return 0;
             }
 

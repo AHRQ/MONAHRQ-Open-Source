@@ -1,8 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Target Name="BeforeBuild">
+    <MakeDir Directories="$(SolutionDir)Monahrq\bin\$(ConfigurationName)\Custom\Wings"/>
+    <MakeDir Directories="$(SolutionDir)Monahrq\bin\$(ConfigurationName)\Custom\Flutters"/>
+  </Target>
   <Target Name="AfterBuild">
+    
+    <!-- copy dependencies to monahrq program directory -->
     <Copy SourceFiles="%(Reference.HintPath)" DestinationFolder="$(SolutionDir)Monahrq\$(OutDir)" 
           SkipUnchangedFiles="True"
           ContinueOnError="True"/>
+    
+    <!-- copy dll and pdb to modules directory -->
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(SolutionDir)Monahrq\$(OutDir)Modules"
+          SkipUnchangedFiles="True"
+          ContinueOnError="False"/>
+    <Copy SourceFiles="$(TargetDir)$(TargetName).pdb" DestinationFolder="$(SolutionDir)Monahrq\$(OutDir)Modules"
+          SkipUnchangedFiles="True"
+          ContinueOnError="False"/>
+  
   </Target>
 </Project>

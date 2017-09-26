@@ -23,13 +23,13 @@ namespace Monahrq.Sdk.Generators
     /// </summary>
     /// <seealso cref="Monahrq.Sdk.Generators.BaseReportGenerator" />
     [Export(typeof(IReportGenerator)), PartCreationPolicy(CreationPolicy.NonShared)]
-	[ReportGenerator(
-		null,
-		new[] { "Base Report", "Base Data" },
-		null,
-		0)]
-	public class BaseDataReportGenerator : BaseReportGenerator
-	{
+    [ReportGenerator(
+        null,
+        new[] { "Base Report", "Base Data" },
+        null,
+        0)]
+    public class BaseDataReportGenerator : BaseReportGenerator
+    {
         //private ConnectionStringSettings ConnectionSettings { get { return ConfigurationService.ConnectionSettings; }}
 
 
@@ -62,16 +62,16 @@ namespace Monahrq.Sdk.Generators
         /// <param name="sessionFactoryProvider">The session factory provider.</param>
         /// <param name="configurationService">The configuration service.</param>
         [ImportingConstructor]
-		public BaseDataReportGenerator(IDomainSessionFactoryProvider sessionFactoryProvider,
-									   IConfigurationService configurationService)
-		{ }
+        public BaseDataReportGenerator(IDomainSessionFactoryProvider sessionFactoryProvider,
+                                       IConfigurationService configurationService)
+        { }
 
-		// TODO: Move these into BaseData class?
-		#region UserDefinedTypes
+        // TODO: Move these into BaseData class?
+        #region UserDefinedTypes
 
-		#region idsTableType
+        #region idsTableType
 
-		private const string idsTableType = @"
+        private const string idsTableType = @"
             /*
              *      Name:           IDsTableType
              *      Version:        1.0
@@ -83,11 +83,11 @@ namespace Monahrq.Sdk.Generators
             CREATE TYPE IDsTableType AS TABLE (ID int)
             ";
 
-		#endregion idsTableType
+        #endregion idsTableType
 
-		#region uniqueIDsTableType
+        #region uniqueIDsTableType
 
-		private const string uniqueIDsTableType = @"
+        private const string uniqueIDsTableType = @"
             /*
              *      Name:           UniqueIDsTableType
              *      Version:        1.0
@@ -99,11 +99,11 @@ namespace Monahrq.Sdk.Generators
             CREATE TYPE UniqueIDsTableType AS TABLE (ID uniqueidentifier)
             ";
 
-		#endregion uniqueIDsTableType
+        #endregion uniqueIDsTableType
 
-		#region stringsTableType
+        #region stringsTableType
 
-		private const string stringsTableType = @"
+        private const string stringsTableType = @"
             /*
              *      Name:           StringsTableType
              *      Version:        1.0
@@ -115,15 +115,15 @@ namespace Monahrq.Sdk.Generators
             CREATE TYPE StringsTableType AS TABLE (ID nvarchar(MAX))
             ";
 
-		#endregion stringsTableType
+        #endregion stringsTableType
 
-		#endregion UserDefinedTypes
+        #endregion UserDefinedTypes
 
-		#region Tables
+        #region Tables
 
-		#region tableStratificationVals
+        #region tableStratificationVals
 
-		private const string tableBaseStratificationVals = @"
+        private const string tableBaseStratificationVals = @"
             /*
              *      Name:           Base_StratificationVals
              *      Version:        1.0
@@ -138,11 +138,11 @@ namespace Monahrq.Sdk.Generators
                                 Name varchar(max) NULL
                             ) ON [PRIMARY]
             ";
-		#endregion tableStratificationVals
+        #endregion tableStratificationVals
 
-		#region tableAges
+        #region tableAges
 
-		private const string tableBaseAges = @"
+        private const string tableBaseAges = @"
             /*
              *      Name:           Base_Ages
              *      Version:        1.0
@@ -156,13 +156,13 @@ namespace Monahrq.Sdk.Generators
                                 Name nvarchar(50) NOT NULL
                             ) ON [PRIMARY]
             ";
-		#endregion tableAges
+        #endregion tableAges
 
-		#endregion Tables
+        #endregion Tables
 
-		#region Functions
+        #region Functions
 
-		private const string GET_COST_TO_CHARGE_RATIO_UDF = @"create function [dbo].[fnGetCostToChargeRatio]
+        private const string GET_COST_TO_CHARGE_RATIO_UDF = @"create function [dbo].[fnGetCostToChargeRatio]
                                                     (
 	                                                    @ReportingYear nvarchar(4),
 	                                                    @CMSProvider nvarchar(50)
@@ -184,7 +184,7 @@ namespace Monahrq.Sdk.Generators
 	                                                    return @returnValue
                                                     end";
 
-		private const string _fnFormatString = @"
+        private const string _fnFormatString = @"
 				create function [dbo].[fnFormatString]
 				(
 					@Format NVARCHAR(4000) ,
@@ -213,7 +213,7 @@ namespace Monahrq.Sdk.Generators
 					UPDATE @ParamTable SET @Message = REPLACE ( @Message, '{'+CONVERT(VARCHAR,ID) + '}', Paramter )
 					RETURN @Message
 				END";
-		private const string _fnToProperCase = @"
+        private const string _fnToProperCase = @"
 				create function [dbo].[fnToProperCase]
 				(
 					@string NVARCHAR(4000),
@@ -255,33 +255,33 @@ namespace Monahrq.Sdk.Generators
 
 				  RETURN @o;
 				END";
-		#endregion
+        #endregion
 
-		#region SProcs
+        #region SProcs
 
-		#region spGetAdmissionSources
+        #region spGetAdmissionSources
 
-		private readonly string[] _spGetAdmissionSources = new[]
+        private readonly string[] _spGetAdmissionSources = new[]
         {
              "    SELECT Id, Name"
             ,"    FROM Base_AdmissionSources"
         };
 
-		#endregion spGetAdmissionSources
+        #endregion spGetAdmissionSources
 
-		#region spGetAdmissionTypes
+        #region spGetAdmissionTypes
 
-		private readonly string[] _spGetAdmissionTypes = new[]
+        private readonly string[] _spGetAdmissionTypes = new[]
         {
              "    SELECT Id, Name"
             ,"    FROM Base_AdmissionTypes"
         };
 
-		#endregion spGetAdmissionTypes
+        #endregion spGetAdmissionTypes
 
-		#region spInsertAgeVals
+        #region spInsertAgeVals
 
-		private string[] spInitializeAgeVals = new string[]
+        private string[] spInitializeAgeVals = new string[]
         {
             "INSERT INTO Base_Ages (Id, Name)"
             ,"SELECT 1, '<18'"
@@ -293,71 +293,71 @@ namespace Monahrq.Sdk.Generators
             ,"SELECT 4, '65+'"
         };
 
-		#endregion spInsertAgeVals
+        #endregion spInsertAgeVals
 
-		#region spGetAges
+        #region spGetAges
 
-		private string[] spGetAges = new string[]
+        private string[] spGetAges = new string[]
         {
             "SELECT Id, Name"
             ,"FROM Base_Ages"
         };
 
-		#endregion spGetAges
+        #endregion spGetAges
 
-		#region spGetDispositionCodes
+        #region spGetDispositionCodes
 
-		private string[] spGetDispositionCodes = new string[]
+        private string[] spGetDispositionCodes = new string[]
         {
              "    SELECT Id, Name"
             ,"    FROM Base_DispositionCodes"
         };
 
-		#endregion spGetDispositionCodes
+        #endregion spGetDispositionCodes
 
-		#region spGetPayers
+        #region spGetPayers
 
-		private string[] spGetPayers = new string[]
+        private string[] spGetPayers = new string[]
         {
              "    SELECT Id, Name"
             ,"    FROM Base_Payers"
         };
 
-		#endregion spGetPayers
+        #endregion spGetPayers
 
-		#region spGetPointOfOrigins
+        #region spGetPointOfOrigins
 
-		private string[] spGetPointOfOrigins = new string[]
+        private string[] spGetPointOfOrigins = new string[]
         {
              "    SELECT Id, Name"
             ,"    FROM Base_PointOfOrigins"
         };
 
-		#endregion spGetPointOfOrigins
+        #endregion spGetPointOfOrigins
 
-		#region spGetRaces
+        #region spGetRaces
 
-		private string[] spGetRaces = new string[]
+        private string[] spGetRaces = new string[]
         {
              "    SELECT Id, Name"
             ,"    FROM Base_Races"
         };
 
-		#endregion spGetRaces
+        #endregion spGetRaces
 
-		#region spGetSexes
+        #region spGetSexes
 
-		private string[] spGetSexes = new string[]
+        private string[] spGetSexes = new string[]
         {
              "    SELECT Id, Name"
             ,"    FROM Base_Sexes"
         };
 
-		#endregion spGetSexes
+        #endregion spGetSexes
 
-		#region spGetStratifications
+        #region spGetStratifications
 
-		private string[] spGetStratifications = new string[]
+        private string[] spGetStratifications = new string[]
         {
              "    SELECT 0 AS Id, 'Total' AS Name, 'Total' AS Caption"
             ,"    UNION"
@@ -370,13 +370,13 @@ namespace Monahrq.Sdk.Generators
             ,"    SELECT 4, 'Race', 'Race/Ethnicity'"
         };
 
-		#endregion spGetStratifications
+        #endregion spGetStratifications
 
-		#region spInitializeStratificationVals
+        #region spInitializeStratificationVals
 
-		private string[] spInitializeStratificationVals = new string[]
+        private string[] spInitializeStratificationVals = new string[]
         {
-            "DELETE FROM Base_StratificationVals"   
+            "DELETE FROM Base_StratificationVals"
             ,"INSERT INTO Base_StratificationVals (CatID, CatVal, Name)"
             ,"SELECT 0, 0, 'Total'"
             ,"UNION"
@@ -393,21 +393,21 @@ namespace Monahrq.Sdk.Generators
             ,"FROM Base_Races"
         };
 
-		#endregion spInitializeStratificationVals
+        #endregion spInitializeStratificationVals
 
-		#region spGetStratificationVals
+        #region spGetStratificationVals
 
-		private string[] spGetStratificationVals = new string[]
+        private string[] spGetStratificationVals = new string[]
         {
              "SELECT *"
             ,"FROM Base_StratificationVals"
         };
 
-		#endregion spGetStratificationVals
+        #endregion spGetStratificationVals
 
-		#region fnGetHospitalRegion
+        #region fnGetHospitalRegion
 
-		private readonly string _fnGetHospitalRegion = @"	    
+        private readonly string _fnGetHospitalRegion = @"	    
                                                             CREATE FUNCTION [dbo].[fnGetHospitalRegion]
                                                             (
 	                                                            @Hospital_Id int,
@@ -437,11 +437,11 @@ namespace Monahrq.Sdk.Generators
 
 	                                                            RETURN @SelectedRegion_Id;
                                                             END";
-		#endregion //fnGetHospitalRegion
+        #endregion //fnGetHospitalRegion
 
-		#region spGetHospitals
+        #region spGetHospitals
 
-		private readonly string[] _spGetHospitals = new[]
+        private readonly string[] _spGetHospitals = new[]
         {
              "	WITH HospitalTypes AS"
             ,"	("
@@ -455,36 +455,36 @@ namespace Monahrq.Sdk.Generators
             ,"						    ), 1, 1,'')"
             ,"	    FROM		Hospitals_HospitalCategories ParentTable"
             ,"	)"
-            ,""	
+            ,""
             ,"	SELECT DISTINCT	h.Id"
-			,"		 		,	h.CmsProviderId AS HospitalProviderId"
-			,"		 		,	h.Name"
-			,"		 		,	h.City"
-			,"		 		,	h.State"
-			,"		 		,	h.Zip"
-			,"		 		,	ISNULL([dbo].[fnGetHospitalRegion](h.Id, @RegionType), 0) AS RegionID"
-			,"		 		,	ISNULL(HospitalTypes.HospitalCategoryID, '') AS HospitalTypes"
-			,"		 		,	h.Latitude"
-			,"		 		,	h.Longitude"
+            ,"		 		,	h.CmsProviderId AS HospitalProviderId"
+            ,"		 		,	h.Name"
+            ,"		 		,	h.City"
+            ,"		 		,	h.State"
+            ,"		 		,	h.Zip"
+            ,"		 		,	ISNULL([dbo].[fnGetHospitalRegion](h.Id, @RegionType), 0) AS RegionID"
+            ,"		 		,	ISNULL(HospitalTypes.HospitalCategoryID, '') AS HospitalTypes"
+            ,"		 		,	h.Latitude"
+            ,"		 		,	h.Longitude"
 		//	,"		 		,	dbo.fnFormatString("
 		//	,"						'[{0},{1}]',"
 		//	,"						cast(h.Latitude as varchar) + ',' + cast(h.Longitude as varchar)) as LatLng"
             ,"	FROM		 	Hospitals h"
-            ,"	    LEFT JOIN	HospitalTypes ON h.Id = HospitalTypes.HospitalID " 
+            ,"	    LEFT JOIN	HospitalTypes ON h.Id = HospitalTypes.HospitalID "
             ,"	WHERE		 	h.Id IN ("
             ,"		 					SELECT	ID"
             ,"		 					FROM	@Hospitals)"
-			,"		 AND		h.IsArchived=0"
-			,"		 AND		h.IsDeleted=0;"
+            ,"		 AND		h.IsArchived=0"
+            ,"		 AND		h.IsDeleted=0;"
         };
 
-		private const string SP_GET_HOSPITALS_PARAMS = "@Hospitals IDsTableType READONLY, @RegionType NVARCHAR(50)";
+        private const string SP_GET_HOSPITALS_PARAMS = "@Hospitals IDsTableType READONLY, @RegionType NVARCHAR(50)";
 
-		#endregion spGetHospitals
+        #endregion spGetHospitals
 
-		#region spGetHospitalsByState
+        #region spGetHospitalsByState
 
-		private string[] spGetHospitalsByState = new string[]
+        private string[] spGetHospitalsByState = new string[]
         {
              "    SELECT DISTINCT Hospitals.Id, Hospitals.Name, Zip, [dbo].[fnGetHospitalRegion](Hospitals.Id, @RegionType) AS RegionID"
             ,"    FROM [dbo].[Hospitals] AS Hospitals"
@@ -496,13 +496,13 @@ namespace Monahrq.Sdk.Generators
             ,"    )"
         };
 
-		private string spGetHospitalsByStateParams = "@States StringsTableType READONLY, @RegionType NVARCHAR(50)";
+        private string spGetHospitalsByStateParams = "@States StringsTableType READONLY, @RegionType NVARCHAR(50)";
 
-		#endregion spGetHospitalsByState
+        #endregion spGetHospitalsByState
 
-		#region spGetHospitalsByStateAbbreviation
+        #region spGetHospitalsByStateAbbreviation
 
-		private string[] spGetHospitalsByStateAbbreviation = new string[]
+        private string[] spGetHospitalsByStateAbbreviation = new string[]
         {
              "    SELECT DISTINCT Hospitals.Id, Hospitals.Name, Zip, [dbo].[fnGetHospitalRegion](Hospitals.Id, @RegionType) AS RegionID"
             ,"    FROM [dbo].[Hospitals] AS Hospitals"
@@ -514,13 +514,13 @@ namespace Monahrq.Sdk.Generators
             ,"    )"
         };
 
-		private string spGetHospitalsByStateAbbreviationParams = "@States StringsTableType READONLY, @RegionType NVARCHAR(50)";
+        private string spGetHospitalsByStateAbbreviationParams = "@States StringsTableType READONLY, @RegionType NVARCHAR(50)";
 
-		#endregion spGetHospitalsByStateAbbreviation
+        #endregion spGetHospitalsByStateAbbreviation
 
-		#region spGetHospitalTypes
+        #region spGetHospitalTypes
 
-		private string[] spGetHospitalTypes = new[]
+        private string[] spGetHospitalTypes = new[]
         {
             @"select
   DISTINCT c.[Id] 'HospitalTypeID', c.Name
@@ -532,14 +532,14 @@ namespace Monahrq.Sdk.Generators
         )"
         };
 
-		private string spGetHospitalTypesParams = "@Hospitals IDsTableType READONLY";
+        private string spGetHospitalTypesParams = "@Hospitals IDsTableType READONLY";
 
-		#endregion spGetHospitalTypes
+        #endregion spGetHospitalTypes
 
-		#region spGetCounties
+        #region spGetCounties
 
-		// Get the active Counties only for the hospitals being included in the website.
-		private string[] spGetHospitalCounties = new string[]
+        // Get the active Counties only for the hospitals being included in the website.
+        private string[] spGetHospitalCounties = new string[]
         {
             "    SELECT -1 AS CountyID, 'Unknown' AS CountyName, '0' AS FIPS"
             , "    UNION"
@@ -556,9 +556,9 @@ namespace Monahrq.Sdk.Generators
             , "    )"
         };
 
-		private string spGetHospitalCountiesParams = "@Hospitals IDsTableType READONLY";
+        private string spGetHospitalCountiesParams = "@Hospitals IDsTableType READONLY";
 
-		private string[] spGetStateCounties = new string[]
+        private string[] spGetStateCounties = new string[]
         {
             "    SELECT -1 AS CountyID, 'Unknown' AS CountyName, '0' AS FIPS"
             , "    UNION"
@@ -572,16 +572,16 @@ namespace Monahrq.Sdk.Generators
             , "    )"
         };
 
-		private string spGetStateCountiesParams = "@States IDsTableType READONLY";
+        private string spGetStateCountiesParams = "@States IDsTableType READONLY";
 
 
 
-		#endregion spGetCounties
+        #endregion spGetCounties
 
-		#region spGetRegions
+        #region spGetRegions
 
-		// Get the active regions only for the hospitals being included in the website.
-		private string[] spGetHospitalRegions = new string[]
+        // Get the active regions only for the hospitals being included in the website.
+        private string[] spGetHospitalRegions = new string[]
         {
            @"     SELECT -1 AS RegionID, 'Unknown' AS Name
     UNION
@@ -603,13 +603,13 @@ namespace Monahrq.Sdk.Generators
     )"
         };
 
-		private string spGetHospitalRegionsParams = "@Hospitals IDsTableType READONLY, @RegionType NVARCHAR(50)";
+        private string spGetHospitalRegionsParams = "@Hospitals IDsTableType READONLY, @RegionType NVARCHAR(50)";
 
-		#endregion spGetRegions
+        #endregion spGetRegions
 
-		#region spGetHospitalZips
+        #region spGetHospitalZips
 
-		private const string spGetHospitalZips = @"
+        private const string spGetHospitalZips = @"
            SELECT DISTINCT z.zip AS Zip, ISNULL(zll.Latitude, 0) AS Latitude,ISNULL(zll.Longitude, 0) AS Longitude
   FROM [dbo].[Base_ZipCodeToHRRAndHSAs] z 
        LEFT JOIN [dbo].[Base_ZipCodeToLatLongs] zll on z.Zip=zll.Zip 
@@ -620,26 +620,26 @@ namespace Monahrq.Sdk.Generators
             FROM @States
             )";
 
-		private const string spGetHospitalZipsParams = "@States IDsTableType READONLY";
+        private const string spGetHospitalZipsParams = "@States IDsTableType READONLY";
 
-		#endregion spGetHospitalZips
+        #endregion spGetHospitalZips
 
-		// TODO: Need to add categories
-		#region spGetDRG
+        // TODO: Need to add categories
+        #region spGetDRG
 
-		private string[] spGetDRG = new[]
+        private string[] spGetDRG = new[]
         {
             "SELECT MSDRGID AS Id, MDCID AS CategoryID, Description"
             ,"FROM Base_MSDRGs"
             ,"WHERE LastYear = 9999"
         };
 
-		#endregion spGetDRG
+        #endregion spGetDRG
 
-		#region spGetDRGCategories
+        #region spGetDRGCategories
 
-		// NOTE: MDC is the "category" for the DRGs
-		private const string spGetDRGCategories = @"
+        // NOTE: MDC is the "category" for the DRGs
+        private const string spGetDRGCategories = @"
             SELECT MDCID AS Id, Description AS Name
             FROM Base_MDCs
             WHERE LastYear = 9999 AND
@@ -648,331 +648,316 @@ namespace Monahrq.Sdk.Generators
                     FROM Base_MSDRGs
                 )";
 
-		#endregion spGetDRGCategories
+        #endregion spGetDRGCategories
 
 
-		// TODO: Need to add categories
-		#region spGetMDC
+        // TODO: Need to add categories
+        #region spGetMDC
 
-		private string[] spGetMDC = new[]
+        private string[] spGetMDC = new[]
         {
             "SELECT MDCID as Id, Description"
             ,"FROM Base_MDCs"
             ,"WHERE LastYear = 9999"
         };
 
-		#endregion spGetMDC
+        #endregion spGetMDC
 
-		#region spGetDXCCS
+        #region spGetDXCCS
 
-		private string[] spGetDXCCS = new[]
+        private string[] spGetDXCCS = new[]
         {
             "SELECT DXCCSID AS Id, CategoryID, Description"
             ,"FROM Base_DXCCSLabels"
         };
 
-		#endregion spGetDXCCS
+        #endregion spGetDXCCS
 
-		#region spGetDXCCSCategories
+        #region spGetDXCCSCategories
 
-		private string[] spGetDXCCSCategories = new[]
+        private string[] spGetDXCCSCategories = new[]
         {
             "SELECT Id, Name"
             ,"FROM Base_DXCCSCategories"
         };
 
-		#endregion spGetDXCCSCategories
+        #endregion spGetDXCCSCategories
 
-		#region spGetPRCCS
+        #region spGetPRCCS
 
-		private string[] spGetPRCCS = new[]
+        private string[] spGetPRCCS = new[]
         {
             "SELECT PRCCSID AS Id, CategoryID, Description"
             ,"FROM Base_PRCCSLabels"
         };
 
-		#endregion spGetPRCCS
+        #endregion spGetPRCCS
 
-		#region spGetPRCCSCategories
+        #region spGetPRCCSCategories
 
-		private string[] spGetPRCCSCategories = new[]
+        private string[] spGetPRCCSCategories = new[]
         {
             "SELECT Id, Name"
             ,"FROM Base_PRCCSCategories"
         };
 
-		#endregion spGetPRCCSCategories
+        #endregion spGetPRCCSCategories
 
 
 
-		#endregion SProcs
+        #endregion SProcs
 
-		private void OnInstalled()
-		{
-			// The wing was just added to Monahrq, so start importing the needed base data.
+        private void OnInstalled()
+        {
+            // The wing was just added to Monahrq, so start importing the needed base data.
 
-			// Add user defined types
-			CreateOrUpdateDbObject("IDsTableType", string.Join(System.Environment.NewLine, idsTableType), "", DataObjectTypeEnum.Type);
-			CreateOrUpdateDbObject("UniqueIDsTableType", string.Join(System.Environment.NewLine, uniqueIDsTableType), "", DataObjectTypeEnum.Type);
-			CreateOrUpdateDbObject("StringsTableType", string.Join(System.Environment.NewLine, stringsTableType), "", DataObjectTypeEnum.Type);
+            // Add user defined types
+            CreateOrUpdateDbObject("IDsTableType", string.Join(System.Environment.NewLine, idsTableType), "", DataObjectTypeEnum.Type);
+            CreateOrUpdateDbObject("UniqueIDsTableType", string.Join(System.Environment.NewLine, uniqueIDsTableType), "", DataObjectTypeEnum.Type);
+            CreateOrUpdateDbObject("StringsTableType", string.Join(System.Environment.NewLine, stringsTableType), "", DataObjectTypeEnum.Type);
 
-			// Add tables
-			CreateOrUpdateDbObject("Base_StratificationVals", string.Join(System.Environment.NewLine, tableBaseStratificationVals), "", DataObjectTypeEnum.Table);
-			CreateOrUpdateDbObject("Base_Ages", string.Join(System.Environment.NewLine, tableBaseAges), "", DataObjectTypeEnum.Table);
+            // Add tables
+            CreateOrUpdateDbObject("Base_StratificationVals", string.Join(System.Environment.NewLine, tableBaseStratificationVals), "", DataObjectTypeEnum.Table);
+            CreateOrUpdateDbObject("Base_Ages", string.Join(System.Environment.NewLine, tableBaseAges), "", DataObjectTypeEnum.Table);
 
-			// Add the sprocs
-			CreateOrUpdateDbObject("spGetAdmissionSources", string.Join(System.Environment.NewLine, _spGetAdmissionSources), "", DataObjectTypeEnum.StoredProcedure);
-			CreateOrUpdateDbObject("spGetAdmissionTypes", string.Join(System.Environment.NewLine, _spGetAdmissionTypes), "", DataObjectTypeEnum.StoredProcedure);
-			CreateOrUpdateDbObject("spInitializeAgeVals", string.Join(System.Environment.NewLine, spInitializeAgeVals), "", DataObjectTypeEnum.StoredProcedure);
-			CreateOrUpdateDbObject("spGetAges", string.Join(System.Environment.NewLine, spGetAges), "", DataObjectTypeEnum.StoredProcedure);
-			CreateOrUpdateDbObject("spGetDispositionCodes", string.Join(System.Environment.NewLine, spGetDispositionCodes), "", DataObjectTypeEnum.StoredProcedure);
-			CreateOrUpdateDbObject("spGetPayers", string.Join(System.Environment.NewLine, spGetPayers), "", DataObjectTypeEnum.StoredProcedure);
-			CreateOrUpdateDbObject("spGetPointOfOrigins", string.Join(System.Environment.NewLine, spGetPointOfOrigins), "", DataObjectTypeEnum.StoredProcedure);
-			CreateOrUpdateDbObject("spGetRaces", string.Join(System.Environment.NewLine, spGetRaces), "", DataObjectTypeEnum.StoredProcedure);
-			CreateOrUpdateDbObject("spGetSexes", string.Join(System.Environment.NewLine, spGetSexes), "", DataObjectTypeEnum.StoredProcedure);
-			CreateOrUpdateDbObject("spGetStratifications", string.Join(System.Environment.NewLine, spGetStratifications), "", DataObjectTypeEnum.StoredProcedure);
-			CreateOrUpdateDbObject("spInitializeStratificationVals", string.Join(System.Environment.NewLine, spInitializeStratificationVals), "", DataObjectTypeEnum.StoredProcedure);
-			CreateOrUpdateDbObject("spGetStratificationVals", string.Join(System.Environment.NewLine, spGetStratificationVals), "", DataObjectTypeEnum.StoredProcedure);
+            // Add the sprocs
+            CreateOrUpdateDbObject("spGetAdmissionSources", string.Join(System.Environment.NewLine, _spGetAdmissionSources), "", DataObjectTypeEnum.StoredProcedure);
+            CreateOrUpdateDbObject("spGetAdmissionTypes", string.Join(System.Environment.NewLine, _spGetAdmissionTypes), "", DataObjectTypeEnum.StoredProcedure);
+            CreateOrUpdateDbObject("spInitializeAgeVals", string.Join(System.Environment.NewLine, spInitializeAgeVals), "", DataObjectTypeEnum.StoredProcedure);
+            CreateOrUpdateDbObject("spGetAges", string.Join(System.Environment.NewLine, spGetAges), "", DataObjectTypeEnum.StoredProcedure);
+            CreateOrUpdateDbObject("spGetDispositionCodes", string.Join(System.Environment.NewLine, spGetDispositionCodes), "", DataObjectTypeEnum.StoredProcedure);
+            CreateOrUpdateDbObject("spGetPayers", string.Join(System.Environment.NewLine, spGetPayers), "", DataObjectTypeEnum.StoredProcedure);
+            CreateOrUpdateDbObject("spGetPointOfOrigins", string.Join(System.Environment.NewLine, spGetPointOfOrigins), "", DataObjectTypeEnum.StoredProcedure);
+            CreateOrUpdateDbObject("spGetRaces", string.Join(System.Environment.NewLine, spGetRaces), "", DataObjectTypeEnum.StoredProcedure);
+            CreateOrUpdateDbObject("spGetSexes", string.Join(System.Environment.NewLine, spGetSexes), "", DataObjectTypeEnum.StoredProcedure);
+            CreateOrUpdateDbObject("spGetStratifications", string.Join(System.Environment.NewLine, spGetStratifications), "", DataObjectTypeEnum.StoredProcedure);
+            CreateOrUpdateDbObject("spInitializeStratificationVals", string.Join(System.Environment.NewLine, spInitializeStratificationVals), "", DataObjectTypeEnum.StoredProcedure);
+            CreateOrUpdateDbObject("spGetStratificationVals", string.Join(System.Environment.NewLine, spGetStratificationVals), "", DataObjectTypeEnum.StoredProcedure);
 
-			CreateOrUpdateDbObject("spGetHospitals", string.Join(System.Environment.NewLine, _spGetHospitals), SP_GET_HOSPITALS_PARAMS, DataObjectTypeEnum.StoredProcedure);
-			CreateOrUpdateDbObject("spGetHospitalsByState", string.Join(System.Environment.NewLine, spGetHospitalsByState), spGetHospitalsByStateParams, DataObjectTypeEnum.StoredProcedure);
-			CreateOrUpdateDbObject("spGetHospitalsByStateAbbreviation", string.Join(System.Environment.NewLine, spGetHospitalsByStateAbbreviation), spGetHospitalsByStateAbbreviationParams, DataObjectTypeEnum.StoredProcedure);
-			CreateOrUpdateDbObject("spGetHospitalCounties", string.Join(System.Environment.NewLine, spGetHospitalCounties), spGetHospitalCountiesParams, DataObjectTypeEnum.StoredProcedure);
-			CreateOrUpdateDbObject("spGetStateCounties", string.Join(System.Environment.NewLine, spGetStateCounties), spGetStateCountiesParams, DataObjectTypeEnum.StoredProcedure);
-			CreateOrUpdateDbObject("spGetHospitalRegions", string.Join(System.Environment.NewLine, spGetHospitalRegions), spGetHospitalRegionsParams, DataObjectTypeEnum.StoredProcedure);
-			CreateOrUpdateDbObject("spGetHospitalZips", string.Join(System.Environment.NewLine, spGetHospitalZips), spGetHospitalZipsParams, DataObjectTypeEnum.StoredProcedure);
-			CreateOrUpdateDbObject("spGetHospitalTypes", string.Join(System.Environment.NewLine, spGetHospitalTypes), spGetHospitalTypesParams, DataObjectTypeEnum.StoredProcedure);
+            CreateOrUpdateDbObject("spGetHospitals", string.Join(System.Environment.NewLine, _spGetHospitals), SP_GET_HOSPITALS_PARAMS, DataObjectTypeEnum.StoredProcedure);
+            CreateOrUpdateDbObject("spGetHospitalsByState", string.Join(System.Environment.NewLine, spGetHospitalsByState), spGetHospitalsByStateParams, DataObjectTypeEnum.StoredProcedure);
+            CreateOrUpdateDbObject("spGetHospitalsByStateAbbreviation", string.Join(System.Environment.NewLine, spGetHospitalsByStateAbbreviation), spGetHospitalsByStateAbbreviationParams, DataObjectTypeEnum.StoredProcedure);
+            CreateOrUpdateDbObject("spGetHospitalCounties", string.Join(System.Environment.NewLine, spGetHospitalCounties), spGetHospitalCountiesParams, DataObjectTypeEnum.StoredProcedure);
+            CreateOrUpdateDbObject("spGetStateCounties", string.Join(System.Environment.NewLine, spGetStateCounties), spGetStateCountiesParams, DataObjectTypeEnum.StoredProcedure);
+            CreateOrUpdateDbObject("spGetHospitalRegions", string.Join(System.Environment.NewLine, spGetHospitalRegions), spGetHospitalRegionsParams, DataObjectTypeEnum.StoredProcedure);
+            CreateOrUpdateDbObject("spGetHospitalZips", string.Join(System.Environment.NewLine, spGetHospitalZips), spGetHospitalZipsParams, DataObjectTypeEnum.StoredProcedure);
+            CreateOrUpdateDbObject("spGetHospitalTypes", string.Join(System.Environment.NewLine, spGetHospitalTypes), spGetHospitalTypesParams, DataObjectTypeEnum.StoredProcedure);
 
-			// TODO: Need to double check DRG, MDC, PRCCS and add Categories for each of them.
-			// TODO: Currently importing current year data only. Need to work on multi-year reporting / DRG labeling.
-			CreateOrUpdateDbObject("spGetDRG", string.Join(System.Environment.NewLine, spGetDRG), "", DataObjectTypeEnum.StoredProcedure);
-			CreateOrUpdateDbObject("spGetDRGCategories", string.Join(System.Environment.NewLine, spGetDRGCategories), "", DataObjectTypeEnum.StoredProcedure);
-			CreateOrUpdateDbObject("spGetMDC", string.Join(System.Environment.NewLine, spGetMDC), "", DataObjectTypeEnum.StoredProcedure);
-			CreateOrUpdateDbObject("spGetDXCCS", string.Join(System.Environment.NewLine, spGetDXCCS), "", DataObjectTypeEnum.StoredProcedure);
-			CreateOrUpdateDbObject("spGetDXCCSCategories", string.Join(System.Environment.NewLine, spGetDXCCSCategories), "", DataObjectTypeEnum.StoredProcedure);
-			CreateOrUpdateDbObject("spGetPRCCS", string.Join(System.Environment.NewLine, spGetPRCCS), "", DataObjectTypeEnum.StoredProcedure);
-			CreateOrUpdateDbObject("spGetPRCCSCategories", string.Join(System.Environment.NewLine, spGetPRCCSCategories), "", DataObjectTypeEnum.StoredProcedure);
+            // TODO: Need to double check DRG, MDC, PRCCS and add Categories for each of them.
+            // TODO: Currently importing current year data only. Need to work on multi-year reporting / DRG labeling.
+            CreateOrUpdateDbObject("spGetDRG", string.Join(System.Environment.NewLine, spGetDRG), "", DataObjectTypeEnum.StoredProcedure);
+            CreateOrUpdateDbObject("spGetDRGCategories", string.Join(System.Environment.NewLine, spGetDRGCategories), "", DataObjectTypeEnum.StoredProcedure);
+            CreateOrUpdateDbObject("spGetMDC", string.Join(System.Environment.NewLine, spGetMDC), "", DataObjectTypeEnum.StoredProcedure);
+            CreateOrUpdateDbObject("spGetDXCCS", string.Join(System.Environment.NewLine, spGetDXCCS), "", DataObjectTypeEnum.StoredProcedure);
+            CreateOrUpdateDbObject("spGetDXCCSCategories", string.Join(System.Environment.NewLine, spGetDXCCSCategories), "", DataObjectTypeEnum.StoredProcedure);
+            CreateOrUpdateDbObject("spGetPRCCS", string.Join(System.Environment.NewLine, spGetPRCCS), "", DataObjectTypeEnum.StoredProcedure);
+            CreateOrUpdateDbObject("spGetPRCCSCategories", string.Join(System.Environment.NewLine, spGetPRCCSCategories), "", DataObjectTypeEnum.StoredProcedure);
 
-			CreateOrUpdateDbObject("fnGetCostToChargeRatio", string.Join(System.Environment.NewLine, GET_COST_TO_CHARGE_RATIO_UDF), "", DataObjectTypeEnum.UserDefinedFunction);
-			CreateOrUpdateDbObject("fnFormatString", string.Join(System.Environment.NewLine, _fnFormatString), "", DataObjectTypeEnum.UserDefinedFunction);
-			CreateOrUpdateDbObject("fnToProperCase", string.Join(System.Environment.NewLine, _fnToProperCase), "", DataObjectTypeEnum.UserDefinedFunction);
-			CreateOrUpdateDbObject("fnGetHospitalRegion", string.Join(System.Environment.NewLine, _fnGetHospitalRegion), "", DataObjectTypeEnum.UserDefinedFunction);
+            CreateOrUpdateDbObject("fnGetCostToChargeRatio", string.Join(System.Environment.NewLine, GET_COST_TO_CHARGE_RATIO_UDF), "", DataObjectTypeEnum.UserDefinedFunction);
+            CreateOrUpdateDbObject("fnFormatString", string.Join(System.Environment.NewLine, _fnFormatString), "", DataObjectTypeEnum.UserDefinedFunction);
+            CreateOrUpdateDbObject("fnToProperCase", string.Join(System.Environment.NewLine, _fnToProperCase), "", DataObjectTypeEnum.UserDefinedFunction);
+            CreateOrUpdateDbObject("fnGetHospitalRegion", string.Join(System.Environment.NewLine, _fnGetHospitalRegion), "", DataObjectTypeEnum.UserDefinedFunction);
 
-			// Initialize data
-			RunSproc("spInitializeAgeVals");  // Note: Must be run before initializing stratification values.
-			RunSproc("spInitializeStratificationVals");
-		}
+            // Initialize data
+            RunSproc("spInitializeAgeVals");  // Note: Must be run before initializing stratification values.
+            RunSproc("spInitializeStratificationVals");
+        }
 
-		public override void InitGenerator()
-		{
-			// This runs every time the application starts up.
-			// TODO: The following should only be run once, but we don't have the infrastructure setup like we do in wings yet.
-			OnInstalled();
+        public override void InitGenerator()
+        {
+            // This runs every time the application starts up.
+            // TODO: The following should only be run once, but we don't have the infrastructure setup like we do in wings yet.
+            OnInstalled();
 
-			EventAggregator.GetEvent<MessageUpdateEvent>().Publish(new MessageUpdateEvent { Message = "Loading supporting database objects for Reports" });
-			Application.Current.DoEvents();
-		}
+            EventAggregator.GetEvent<MessageUpdateEvent>().Publish(new MessageUpdateEvent { Message = "Loading supporting database objects for Reports" });
+            Application.Current.DoEvents();
+        }
 
-		public override bool ValidateDependencies(Website website, IList<ValidationResult> validationResults)
-		{
-			return true;
-		}
+        public override bool ValidateDependencies(Website website, IList<ValidationResult> validationResults)
+        {
+            return true;
+        }
 
-		public override void GenerateReport(Website website, PublishTask publishTask)
-		{
-			// This is the one that should be called first.
-			try
-			{
-				base.GenerateReport(website);
+        public override void GenerateReport(Website website, PublishTask publishTask)
+        {
+            // This is the one that should be called first.
+            try
+            {
+                base.GenerateReport(website);
 
-				// Initialize the data for this report.
-				InitializeReportData();
+                // Initialize the data for this report.
+                InitializeReportData();
 
-				// Make sure the base directories are created.
-				CreateBaseDirectories();
+                // Make sure the base directories are created.
+                CreateBaseDirectories();
 
-				// Generate the json files for the report.
-				GenerateJsonFiles(publishTask);
+                // Generate the json files for the report.
+                GenerateJsonFiles(publishTask);
 
-				// Generate any HTML files for the report.
-				GenerateHtml();
-			}
-			catch (Exception ex)
-			{
-				Logger.Write(ex);
-			}
-		}
+                // Generate any HTML files for the report.
+                GenerateHtml();
+            }
+            catch (Exception ex)
+            {
+                Logger.Write(ex, "Error generating base data report");
+            }
+        }
 
-		private void InitializeReportData()
-		{
-			try
-			{
-				#region Get base information about the website - hospitals, measures, datasets, etc.
+        private void InitializeReportData()
+        {
+            try
+            {
+                #region Get base information about the website - hospitals, measures, datasets, etc.
 
-				ZipDistances = new DataTable();
-				ZipDistances.Columns.Add("Distance", typeof(string));
-				foreach (int distance in CurrentWebsite.SelectedZipCodeRadii)
-				{
-					ZipDistances.Rows.Add(distance.ToString());
-				}
+                ZipDistances = new DataTable();
+                ZipDistances.Columns.Add("Distance", typeof(string));
+                foreach (int distance in CurrentWebsite.SelectedZipCodeRadii)
+                {
+                    ZipDistances.Rows.Add(distance.ToString());
+                }
 
-				#endregion Get base information about the website - hospitals, measures, datasets, etc.
+                #endregion Get base information about the website - hospitals, measures, datasets, etc.
 
-				#region Generate the specific data for this report.
+                #region Generate the specific data for this report.
 
-				// Save a report ID for this particular report run.
-				ReportID = Guid.NewGuid().ToString();
+                // Save a report ID for this particular report run.
+                ReportID = Guid.NewGuid().ToString();
 
-				#endregion Generate the specific data for this report.
+                #endregion Generate the specific data for this report.
 
-			}
-			catch (Exception ex)
-			{
-				Logger.Write(ex);
-			}
-		}
+            }
+            catch (Exception ex)
+            {
+                Logger.Write(ex, "Error initializing base data for report generation");
+            }
+        }
 
-		private void CreateBaseDirectories()
-		{
-			try
-			{
-				// Make sure the base directories are created.
-				BaseDataDir = Path.Combine(CurrentWebsite.OutPutDirectory, "Data", "Base");
-				if (!Directory.Exists(BaseDataDir)) Directory.CreateDirectory(BaseDataDir);
-			}
-			catch (Exception ex)
-			{
-				Logger.Write(ex);
-			}
-		}
+        private void CreateBaseDirectories()
+        {
+            // Make sure the base directories are created.
+            BaseDataDir = Path.Combine(CurrentWebsite.OutPutDirectory, "Data", "Base");
+            if (!Directory.Exists(BaseDataDir)) Directory.CreateDirectory(BaseDataDir);
+        }
 
-		private void GenerateJsonFiles(PublishTask publishTask = PublishTask.Full)
-		{
-			try
-			{
-				IConfigurationService configService = ServiceLocator.Current.GetInstance<IConfigurationService>();
-				//GenerateReportsTemplatesJsonFiles();
+        private void GenerateJsonFiles(PublishTask publishTask = PublishTask.Full)
+        {
+            IConfigurationService configService = ServiceLocator.Current.GetInstance<IConfigurationService>();
+            //GenerateReportsTemplatesJsonFiles();
 
-				//if (publishTask == PublishTask.PreviewOnly)
-				//{
-				//    return;
-				//}
-				// Generate the json data files for the labels and other base data.
-				// NOTE: This is assuming that the directories are deleted before website generation like 4.1.
-				//       We are checking if it exists because it could be created in another report.
-				if (!File.Exists(Path.Combine(BaseDataDir, "AdmissionSource.js")))
-					GenerateJsonFile(RunSprocReturnDataTable("spGetAdmissionSources", null), Path.Combine(BaseDataDir, "AdmissionSource.js"), "$.monahrq.AdmissionSource=");
+            //if (publishTask == PublishTask.PreviewOnly)
+            //{
+            //    return;
+            //}
+            // Generate the json data files for the labels and other base data.
+            // NOTE: This is assuming that the directories are deleted before website generation like 4.1.
+            //       We are checking if it exists because it could be created in another report.
+            if (!File.Exists(Path.Combine(BaseDataDir, "AdmissionSource.js")))
+                GenerateJsonFile(RunSprocReturnDataTable("spGetAdmissionSources", null), Path.Combine(BaseDataDir, "AdmissionSource.js"), "$.monahrq.AdmissionSource=");
 
-				if (!File.Exists(Path.Combine(BaseDataDir, "AdmissionType.js")))
-					GenerateJsonFile(RunSprocReturnDataTable("spGetAdmissionTypes", null), Path.Combine(BaseDataDir, "AdmissionType.js"), "$.monahrq.AdmissionType=");
+            if (!File.Exists(Path.Combine(BaseDataDir, "AdmissionType.js")))
+                GenerateJsonFile(RunSprocReturnDataTable("spGetAdmissionTypes", null), Path.Combine(BaseDataDir, "AdmissionType.js"), "$.monahrq.AdmissionType=");
 
-				if (!File.Exists(Path.Combine(BaseDataDir, "Age.js")))
-					GenerateJsonFile(RunSprocReturnDataTable("spGetAges", null), Path.Combine(BaseDataDir, "Age.js"), "$.monahrq.Age=");
+            if (!File.Exists(Path.Combine(BaseDataDir, "Age.js")))
+                GenerateJsonFile(RunSprocReturnDataTable("spGetAges", null), Path.Combine(BaseDataDir, "Age.js"), "$.monahrq.Age=");
 
-				if (!File.Exists(Path.Combine(BaseDataDir, "DispositionCode.js")))
-					GenerateJsonFile(RunSprocReturnDataTable("spGetDispositionCodes", null), Path.Combine(BaseDataDir, "DispositionCode.js"), "$.monahrq.DispositionCode=");
+            if (!File.Exists(Path.Combine(BaseDataDir, "DispositionCode.js")))
+                GenerateJsonFile(RunSprocReturnDataTable("spGetDispositionCodes", null), Path.Combine(BaseDataDir, "DispositionCode.js"), "$.monahrq.DispositionCode=");
 
-				if (!File.Exists(Path.Combine(BaseDataDir, "Payer.js")))
-					GenerateJsonFile(RunSprocReturnDataTable("spGetPayers", null), Path.Combine(BaseDataDir, "Payer.js"), "$.monahrq.Payer=");
+            if (!File.Exists(Path.Combine(BaseDataDir, "Payer.js")))
+                GenerateJsonFile(RunSprocReturnDataTable("spGetPayers", null), Path.Combine(BaseDataDir, "Payer.js"), "$.monahrq.Payer=");
 
-				if (!File.Exists(Path.Combine(BaseDataDir, "PointOfOrigin.js")))
-					GenerateJsonFile(RunSprocReturnDataTable("spGetPointOfOrigins", null), Path.Combine(BaseDataDir, "PointOfOrigin.js"), "$.monahrq.PointOfOrigin=");
+            if (!File.Exists(Path.Combine(BaseDataDir, "PointOfOrigin.js")))
+                GenerateJsonFile(RunSprocReturnDataTable("spGetPointOfOrigins", null), Path.Combine(BaseDataDir, "PointOfOrigin.js"), "$.monahrq.PointOfOrigin=");
 
-				if (!File.Exists(Path.Combine(BaseDataDir, "Race.js")))
-					GenerateJsonFile(RunSprocReturnDataTable("spGetRaces", null), Path.Combine(BaseDataDir, "Race.js"), "$.monahrq.Race=");
+            if (!File.Exists(Path.Combine(BaseDataDir, "Race.js")))
+                GenerateJsonFile(RunSprocReturnDataTable("spGetRaces", null), Path.Combine(BaseDataDir, "Race.js"), "$.monahrq.Race=");
 
-				if (!File.Exists(Path.Combine(BaseDataDir, "Sex.js")))
-					GenerateJsonFile(RunSprocReturnDataTable("spGetSexes", null), Path.Combine(BaseDataDir, "Sex.js"), "$.monahrq.Sex=");
+            if (!File.Exists(Path.Combine(BaseDataDir, "Sex.js")))
+                GenerateJsonFile(RunSprocReturnDataTable("spGetSexes", null), Path.Combine(BaseDataDir, "Sex.js"), "$.monahrq.Sex=");
 
-				if (!File.Exists(Path.Combine(BaseDataDir, "Stratification.js")))
-					GenerateJsonFile(RunSprocReturnDataTable("spGetStratifications", null), Path.Combine(BaseDataDir, "Stratification.js"), "$.monahrq.Stratification=");
+            if (!File.Exists(Path.Combine(BaseDataDir, "Stratification.js")))
+                GenerateJsonFile(RunSprocReturnDataTable("spGetStratifications", null), Path.Combine(BaseDataDir, "Stratification.js"), "$.monahrq.Stratification=");
 
-				if (!File.Exists(Path.Combine(BaseDataDir, "StratificationVals.js")))
-					GenerateJsonFile(RunSprocReturnDataTable("spGetStratificationVals", null), Path.Combine(BaseDataDir, "StratificationVals.js"), "$.monahrq.StratificationVals=");
+            if (!File.Exists(Path.Combine(BaseDataDir, "StratificationVals.js")))
+                GenerateJsonFile(RunSprocReturnDataTable("spGetStratificationVals", null), Path.Combine(BaseDataDir, "StratificationVals.js"), "$.monahrq.StratificationVals=");
 
-				if (!File.Exists(Path.Combine(BaseDataDir, "ZipDistances.js")))
-					GenerateJsonFile(ZipDistances, Path.Combine(BaseDataDir, "ZipDistances.js"), "$.monahrq.ZipDistances=");
+            if (!File.Exists(Path.Combine(BaseDataDir, "ZipDistances.js")))
+                GenerateJsonFile(ZipDistances, Path.Combine(BaseDataDir, "ZipDistances.js"), "$.monahrq.ZipDistances=");
 
-				var selectedRegionContextType = new KeyValuePair<string, object>("@RegionType", CurrentWebsite.RegionTypeContext);
+            var selectedRegionContextType = new KeyValuePair<string, object>("@RegionType", CurrentWebsite.RegionTypeContext);
 
-				// Export the hospital information.
-				Action<DataTable> dtAction = (DataTable dt) =>
-					{
-						dt.Columns.Add("LatLng", typeof(Double[]));
-						foreach (DataRow row in dt.Rows)
-						{
-							row["LatLng"] = new Double[] { row["Latitude"].AsDouble(0), row["Longitude"].AsDouble(0) };
-						}
-						dt.Columns.Remove("Latitude");
-						dt.Columns.Remove("Longitude");
-					};
-				if (!File.Exists(Path.Combine(BaseDataDir, "Hospitals.js")))
-					GenerateJsonFile(RunSprocReturnDataTableWithAction("spGetHospitals", dtAction, new KeyValuePair<string, object>("@Hospitals", HospitalIds), selectedRegionContextType), Path.Combine(BaseDataDir, "Hospitals.js"), "$.monahrq.Hospitals=");
+            // Export the hospital information.
+            Action<DataTable> dtAction = (DataTable dt) =>
+                {
+                    dt.Columns.Add("LatLng", typeof(Double[]));
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        row["LatLng"] = new Double[] { row["Latitude"].AsDouble(0), row["Longitude"].AsDouble(0) };
+                    }
+                    dt.Columns.Remove("Latitude");
+                    dt.Columns.Remove("Longitude");
+                };
+            if (!File.Exists(Path.Combine(BaseDataDir, "Hospitals.js")))
+                GenerateJsonFile(RunSprocReturnDataTableWithAction("spGetHospitals", dtAction, new KeyValuePair<string, object>("@Hospitals", HospitalIds), selectedRegionContextType), Path.Combine(BaseDataDir, "Hospitals.js"), "$.monahrq.Hospitals=");
 
-				if (!File.Exists(Path.Combine(BaseDataDir, "HospitalCounties.js")))
-					GenerateJsonFile(RunSprocReturnDataTable("spGetStateCounties", new KeyValuePair<string, object>("@States", StateIds)), Path.Combine(BaseDataDir, "HospitalCounties.js"), "$.monahrq.HospitalCounties=");
-				//GenerateJsonFile(RunSprocReturnDataTable("spGetHospitalCounties", new KeyValuePair<string, object>("@Hospitals", HospitalIds)), Path.Combine(BaseDataDir, "HospitalCounties.js"), "$.monahrq.HospitalCounties=");
+            if (!File.Exists(Path.Combine(BaseDataDir, "HospitalCounties.js")))
+                GenerateJsonFile(RunSprocReturnDataTable("spGetStateCounties", new KeyValuePair<string, object>("@States", StateIds)), Path.Combine(BaseDataDir, "HospitalCounties.js"), "$.monahrq.HospitalCounties=");
+            //GenerateJsonFile(RunSprocReturnDataTable("spGetHospitalCounties", new KeyValuePair<string, object>("@Hospitals", HospitalIds)), Path.Combine(BaseDataDir, "HospitalCounties.js"), "$.monahrq.HospitalCounties=");
 
-				if (!File.Exists(Path.Combine(BaseDataDir, "HospitalRegions.js")))
-					GenerateJsonFile(RunSprocReturnDataTable("spGetHospitalRegions", new KeyValuePair<string, object>("@Hospitals", HospitalIds), selectedRegionContextType), Path.Combine(BaseDataDir, "HospitalRegions.js"), "$.monahrq.HospitalRegions=");
+            if (!File.Exists(Path.Combine(BaseDataDir, "HospitalRegions.js")))
+                GenerateJsonFile(RunSprocReturnDataTable("spGetHospitalRegions", new KeyValuePair<string, object>("@Hospitals", HospitalIds), selectedRegionContextType), Path.Combine(BaseDataDir, "HospitalRegions.js"), "$.monahrq.HospitalRegions=");
 
-				if (!File.Exists(Path.Combine(BaseDataDir, "HospitalZips.js")))
-					GenerateJsonFile(RunSprocReturnDataTable("spGetHospitalZips", new KeyValuePair<string, object>("@States", StateIds)), Path.Combine(BaseDataDir, "HospitalZips.js"), "$.monahrq.HospitalZips=");
+            if (!File.Exists(Path.Combine(BaseDataDir, "HospitalZips.js")))
+                GenerateJsonFile(RunSprocReturnDataTable("spGetHospitalZips", new KeyValuePair<string, object>("@States", StateIds)), Path.Combine(BaseDataDir, "HospitalZips.js"), "$.monahrq.HospitalZips=");
 
-				if (!File.Exists(Path.Combine(BaseDataDir, "HospitalTypes.js")))
-					GenerateJsonFile(RunSprocReturnDataTable("spGetHospitalTypes", new KeyValuePair<string, object>("@Hospitals", HospitalIds)), Path.Combine(BaseDataDir, "HospitalTypes.js"), "$.monahrq.HospitalTypes=");
+            if (!File.Exists(Path.Combine(BaseDataDir, "HospitalTypes.js")))
+                GenerateJsonFile(RunSprocReturnDataTable("spGetHospitalTypes", new KeyValuePair<string, object>("@Hospitals", HospitalIds)), Path.Combine(BaseDataDir, "HospitalTypes.js"), "$.monahrq.HospitalTypes=");
 
-				// Export the clinical dimensions.
-				if (!File.Exists(Path.Combine(BaseDataDir, "DRG.js")))
-					GenerateJsonFile(RunSprocReturnDataTable("spGetDRG", null), Path.Combine(BaseDataDir, "DRG.js"), "$.monahrq.drg=");
+            // Export the clinical dimensions.
+            if (!File.Exists(Path.Combine(BaseDataDir, "DRG.js")))
+                GenerateJsonFile(RunSprocReturnDataTable("spGetDRG", null), Path.Combine(BaseDataDir, "DRG.js"), "$.monahrq.drg=");
 
-				if (!File.Exists(Path.Combine(BaseDataDir, "DRGCategories.js")))
-					GenerateJsonFile(RunSprocReturnDataTable("spGetDRGCategories", null), Path.Combine(BaseDataDir, "DRGCategories.js"), "$.monahrq.drgcategories=");
+            if (!File.Exists(Path.Combine(BaseDataDir, "DRGCategories.js")))
+                GenerateJsonFile(RunSprocReturnDataTable("spGetDRGCategories", null), Path.Combine(BaseDataDir, "DRGCategories.js"), "$.monahrq.drgcategories=");
 
-				if (!File.Exists(Path.Combine(BaseDataDir, "MDC.js")))
-					GenerateJsonFile(RunSprocReturnDataTable("spGetMDC", null), Path.Combine(BaseDataDir, "MDC.js"), "$.monahrq.mdc=");
+            if (!File.Exists(Path.Combine(BaseDataDir, "MDC.js")))
+                GenerateJsonFile(RunSprocReturnDataTable("spGetMDC", null), Path.Combine(BaseDataDir, "MDC.js"), "$.monahrq.mdc=");
 
-				if (!File.Exists(Path.Combine(BaseDataDir, "DXCCS.js")))
-					GenerateJsonFile(RunSprocReturnDataTable("spGetDXCCS", null), Path.Combine(BaseDataDir, "DXCCS.js"), "$.monahrq.dxccs=");
+            if (!File.Exists(Path.Combine(BaseDataDir, "DXCCS.js")))
+                GenerateJsonFile(RunSprocReturnDataTable("spGetDXCCS", null), Path.Combine(BaseDataDir, "DXCCS.js"), "$.monahrq.dxccs=");
 
-				if (!File.Exists(Path.Combine(BaseDataDir, "DXCCSCategories.js")))
-					GenerateJsonFile(RunSprocReturnDataTable("spGetDXCCSCategories", null), Path.Combine(BaseDataDir, "DXCCSCategories.js"), "$.monahrq.dxccscategories=");
+            if (!File.Exists(Path.Combine(BaseDataDir, "DXCCSCategories.js")))
+                GenerateJsonFile(RunSprocReturnDataTable("spGetDXCCSCategories", null), Path.Combine(BaseDataDir, "DXCCSCategories.js"), "$.monahrq.dxccscategories=");
 
-				if (!File.Exists(Path.Combine(BaseDataDir, "PRCCS.js")))
-					GenerateJsonFile(RunSprocReturnDataTable("spGetPRCCS", null), Path.Combine(BaseDataDir, "PRCCS.js"), "$.monahrq.prccs=");
+            if (!File.Exists(Path.Combine(BaseDataDir, "PRCCS.js")))
+                GenerateJsonFile(RunSprocReturnDataTable("spGetPRCCS", null), Path.Combine(BaseDataDir, "PRCCS.js"), "$.monahrq.prccs=");
 
-				if (!File.Exists(Path.Combine(BaseDataDir, "PRCCSCategories.js")))
-					GenerateJsonFile(RunSprocReturnDataTable("spGetPRCCSCategories", null), Path.Combine(BaseDataDir, "PRCCSCategories.js"), "$.monahrq.prccscategories=");
+            if (!File.Exists(Path.Combine(BaseDataDir, "PRCCSCategories.js")))
+                GenerateJsonFile(RunSprocReturnDataTable("spGetPRCCSCategories", null), Path.Combine(BaseDataDir, "PRCCSCategories.js"), "$.monahrq.prccscategories=");
 
-				//GenerateHospitalProfileJsonFiles();
+            //GenerateHospitalProfileJsonFiles();
 
-				GeneratePatientRegionAndCountyJsonFiles();
+            GeneratePatientRegionAndCountyJsonFiles();
+        }
 
-			}
-			catch (Exception ex)
-			{
-				Logger.Write(ex);
-			}
-		}
+        #region Generate Patient Methods.
+        private void GeneratePatientRegionAndCountyJsonFiles()
+        {
+            DataTable ipDatasetIDs = new DataTable();
+            ipDatasetIDs.Columns.Add("ID", typeof(int));
+            var ipDatasetId = new List<int>();
+            foreach (WebsiteDataset dataSet in CurrentWebsite.Datasets)
+            {
+                if (!dataSet.Dataset.ContentType.Name.EqualsIgnoreCase("Inpatient Discharge"))
+                    continue;
 
-		#region Generate Patient Methods.
-		private void GeneratePatientRegionAndCountyJsonFiles()
-		{
-			DataTable ipDatasetIDs = new DataTable();
-			ipDatasetIDs.Columns.Add("ID", typeof(int));
-			var ipDatasetId = new List<int>();
-			foreach (WebsiteDataset dataSet in CurrentWebsite.Datasets)
-			{
-				if (!dataSet.Dataset.ContentType.Name.EqualsIgnoreCase("Inpatient Discharge"))
-					continue;
+                // Add a new IP dataset
+                ipDatasetId.Add(dataSet.Dataset.Id);
+                ipDatasetIDs.Rows.Add(dataSet.Dataset.Id);
+            }
 
-				// Add a new IP dataset
-				ipDatasetId.Add(dataSet.Dataset.Id);
-				ipDatasetIDs.Rows.Add(dataSet.Dataset.Id);
-			}
-
-			if (ipDatasetIDs.Rows.Count > 0)
-			{
+            if (ipDatasetIDs.Rows.Count > 0)
+            {
                 // Logger.Write("Report DataSet is missing.");
                 if (!File.Exists(Path.Combine(BaseDataDir, "PatientRegions.js")))
                     GenerateJsonFile(RunSprocReturnDataTable("spUtilRegionGetTargetRegions",
@@ -982,223 +967,223 @@ namespace Monahrq.Sdk.Generators
                                      Path.Combine(BaseDataDir, "PatientRegions.js"), "$.monahrq.PatientRegions=");
             }
 
-			if (ipDatasetId.Any())
-			{
-				GeneratePatientCountiesJson(ipDatasetId.ToArray());
-			}
-		}
+            if (ipDatasetId.Any())
+            {
+                GeneratePatientCountiesJson(ipDatasetId.ToArray());
+            }
+        }
 
-		private void GeneratePatientCountiesJson(int[] ipDatasetId)
-		{
-			if (File.Exists(Path.Combine(BaseDataDir, "PatientCounties.js"))) return;
+        private void GeneratePatientCountiesJson(int[] ipDatasetId)
+        {
+            if (File.Exists(Path.Combine(BaseDataDir, "PatientCounties.js"))) return;
 
-			IList<PatientCounty> patientCounties = new List<PatientCounty>();
+            IList<PatientCounty> patientCounties = new List<PatientCounty>();
 
-			using (var session = DataProvider.SessionFactory.OpenSession())
-			{
+            using (var session = DataProvider.SessionFactory.OpenSession())
+            {
 
-				var query = session.CreateQuery("select distinct cast(c.Id as int) as Id, concat(c.Name, ', ', c.State) as Name, cast(c.CountyFIPS as string) as CountyFIPS from County c, InpatientTarget ip where ip.PatientStateCountyCode = c.CountyFIPS and ip.Dataset.Id in (:Dataset_Ids)");
-				patientCounties = query.SetParameterList("Dataset_Ids", ipDatasetId)
-									   .SetTimeout(5000)
-									   .SetResultTransformer(Transformers.AliasToBean<PatientCounty>())
-									   .List<PatientCounty>();
+                var query = session.CreateQuery("select distinct cast(c.Id as int) as Id, concat(c.Name, ', ', c.State) as Name, cast(c.CountyFIPS as string) as CountyFIPS from County c, InpatientTarget ip where ip.PatientStateCountyCode = c.CountyFIPS and ip.Dataset.Id in (:Dataset_Ids)");
+                patientCounties = query.SetParameterList("Dataset_Ids", ipDatasetId)
+                                       .SetTimeout(5000)
+                                       .SetResultTransformer(Transformers.AliasToBean<PatientCounty>())
+                                       .List<PatientCounty>();
 
-			}
+            }
 
-			if (patientCounties != null)
-			{
-				patientCounties.Insert(0, new PatientCounty { Id = -1, Name = "Unknown", CountyFIPS = "0" });
-			}
+            if (patientCounties != null)
+            {
+                patientCounties.Insert(0, new PatientCounty { Id = -1, Name = "Unknown", CountyFIPS = "0" });
+            }
 
-			GenerateJsonFile(patientCounties ?? new List<PatientCounty>(), Path.Combine(BaseDataDir, "PatientCounties.js"),
-							 "$.monahrq.PatientCounties=");
-		}
-		#endregion
+            GenerateJsonFile(patientCounties ?? new List<PatientCounty>(), Path.Combine(BaseDataDir, "PatientCounties.js"),
+                             "$.monahrq.PatientCounties=");
+        }
+        #endregion
 
-		//public void GenerateReportsTemplatesJsonFiles()
-		//{
+        //public void GenerateReportsTemplatesJsonFiles()
+        //{
 
-		//    var fileName = Path.Combine(base.BaseDataDirectoryPath, string.Format("ReportConfig.js"));
-		//    var result = new List<Object>();
-		//    foreach (var report in CurrentWebsite.Reports)
-		//    {
-		//        //todo : refactor to mapping table
-		//        List<string> Display =new List<string>();
-		//        string measuresList="";
-		//        switch (report.Report.SourceTemplate.Id.ToString())
-		//        {
-		//            case "5aaf7fba-7102-4c66-8598-a70597e2f826":                      // TODO: Need to change measure names to IP-## if uncomment this section and use again.
-		//                measuresList = "IP-8, IP-9, IP-10, IP-11,";
-		//                break;
-		//            case "2aaf7fba-7102-4c66-8598-a70597e2f827":
-		//                measuresList = "ED-1, ED-2, ED-3, ED-4,";
-		//                break;
-		//            case "2aaf7fba-7102-4c66-8598-a70597e2f824":
-		//                measuresList = "IP-1, IP-2, IP-3, IP-4, IP-5, IP-6, IP-7,";
-		//                break;
-		//            case "2aaf7fba-7102-4c66-8598-a70597e2f825":
-		//                measuresList = "IP-1, IP-2, IP-3, IP-4, IP-5, IP-6, IP-7,";
-		//                break;
-		//            case "5aaf7fba-7102-4c66-8598-a70597e2f825":
-		//                measuresList = "IP-8, IP-9, IP-10, IP-11,";
-		//                break;
-		//            case "2aaf7fba-7102-4c66-8598-a70597e2f828":
-		//                measuresList = "ED-1, ED-2, ED-3, ED-4,";
-		//                break;
-		//            case "7af51434-5745-4538-b972-193f58e737d7":
-		//                Display.Add("Basic Descriptive Data");
-		//                Display.Add("Cost and Charge Data (All Patients)");
-		//                Display.Add("Cost and Charge Data (Medicare)");
-		//                Display.Add("Map");
-		//                Display.Add("Overall Patient Experience Rating");
-		//                break;
-		//        }
+        //    var fileName = Path.Combine(base.BaseDataDirectoryPath, string.Format("ReportConfig.js"));
+        //    var result = new List<Object>();
+        //    foreach (var report in CurrentWebsite.Reports)
+        //    {
+        //        //todo : refactor to mapping table
+        //        List<string> Display =new List<string>();
+        //        string measuresList="";
+        //        switch (report.Report.SourceTemplate.Id.ToString())
+        //        {
+        //            case "5aaf7fba-7102-4c66-8598-a70597e2f826":                      // TODO: Need to change measure names to IP-## if uncomment this section and use again.
+        //                measuresList = "IP-8, IP-9, IP-10, IP-11,";
+        //                break;
+        //            case "2aaf7fba-7102-4c66-8598-a70597e2f827":
+        //                measuresList = "ED-1, ED-2, ED-3, ED-4,";
+        //                break;
+        //            case "2aaf7fba-7102-4c66-8598-a70597e2f824":
+        //                measuresList = "IP-1, IP-2, IP-3, IP-4, IP-5, IP-6, IP-7,";
+        //                break;
+        //            case "2aaf7fba-7102-4c66-8598-a70597e2f825":
+        //                measuresList = "IP-1, IP-2, IP-3, IP-4, IP-5, IP-6, IP-7,";
+        //                break;
+        //            case "5aaf7fba-7102-4c66-8598-a70597e2f825":
+        //                measuresList = "IP-8, IP-9, IP-10, IP-11,";
+        //                break;
+        //            case "2aaf7fba-7102-4c66-8598-a70597e2f828":
+        //                measuresList = "ED-1, ED-2, ED-3, ED-4,";
+        //                break;
+        //            case "7af51434-5745-4538-b972-193f58e737d7":
+        //                Display.Add("Basic Descriptive Data");
+        //                Display.Add("Cost and Charge Data (All Patients)");
+        //                Display.Add("Cost and Charge Data (Medicare)");
+        //                Display.Add("Map");
+        //                Display.Add("Overall Patient Experience Rating");
+        //                break;
+        //        }
 
-		//        var reportMeasures = CurrentWebsite.Measures.Where(m => measuresList.Contains(m.OriginalMeasure.MeasureCode+","));
-		//        List<object> columnList=new List<object>();
-		//        foreach (var rv in reportMeasures)
-		//        {
-		//            string DataElementLink = "";
-		//            string DataFormat = "";
-		//            switch (rv.OriginalMeasure.MeasureCode)
-		//            {
-		//                case "ED-1":
-		//                    DataElementLink = "NumEdVisits";
-		//                    DataFormat = "number";
-		//                    break;
-		//                case "ED-2":
-		//                    DataElementLink = "NumAdmitHosp";
-		//                    DataFormat = "number";
-		//                    break;
-		//                case "ED-3":
-		//                    DataElementLink = "DiedEd";
-		//                    DataFormat = "number";
-		//                    break;
-		//                case "ED-4":
-		//                    DataElementLink = "DiedHosp";
-		//                    DataFormat = "number";
-		//                    break;
-		//                case "IP-1":
-		//                    DataElementLink = "Discharges";
-		//                    DataFormat = "number";
-		//                    break;
-		//                case "IP-2":
-		//                    DataElementLink = "MeanCharges";
-		//                    DataFormat = "nfcurrency";
-		//                    break;
-		//                case "IP-3":
-		//                    DataElementLink = "MeanCosts";
-		//                    DataFormat = "nfcurrency";
-		//                    break;
-		//                case "IP-4":
-		//                    DataElementLink = "MeanLOS";
-		//                    DataFormat = "number";
-		//                    break;
-		//                case "IP-5":
-		//                    DataElementLink = "MedianCharges";
-		//                    DataFormat = "nfcurrency";
-		//                    break;
-		//                case "IP-6":
-		//                    DataElementLink = "MedianCosts";
-		//                    DataFormat = "nfcurrency";
-		//                    break;
-		//                case "IP-7":
-		//                    DataElementLink = "MedianLOS";
-		//                    DataFormat = "number";
-		//                    break;
-		//                case "IP-8":
-		//                    DataElementLink = "Discharges";
-		//                    DataFormat = "number";
-		//                    break;
-		//                case "IP-9":
-		//                    DataElementLink = "MeanCosts";
-		//                    DataFormat = "nfcurrency";
-		//                    break;
-		//                case "IP-10":
-		//                    DataElementLink = "MedianCosts";
-		//                    DataFormat = "nfcurrency";
-		//                    break;
-		//                case "IP-11":
-		//                    DataElementLink = "RateDischarges";
-		//                    DataFormat = "number";
-		//                    break;
-
-
-		//            }
-		//            columnList.Add(new { Name = rv.OriginalMeasure.Description, DataElementLink = DataElementLink, DataFormat = DataFormat });
-
-		//        }
+        //        var reportMeasures = CurrentWebsite.Measures.Where(m => measuresList.Contains(m.OriginalMeasure.MeasureCode+","));
+        //        List<object> columnList=new List<object>();
+        //        foreach (var rv in reportMeasures)
+        //        {
+        //            string DataElementLink = "";
+        //            string DataFormat = "";
+        //            switch (rv.OriginalMeasure.MeasureCode)
+        //            {
+        //                case "ED-1":
+        //                    DataElementLink = "NumEdVisits";
+        //                    DataFormat = "number";
+        //                    break;
+        //                case "ED-2":
+        //                    DataElementLink = "NumAdmitHosp";
+        //                    DataFormat = "number";
+        //                    break;
+        //                case "ED-3":
+        //                    DataElementLink = "DiedEd";
+        //                    DataFormat = "number";
+        //                    break;
+        //                case "ED-4":
+        //                    DataElementLink = "DiedHosp";
+        //                    DataFormat = "number";
+        //                    break;
+        //                case "IP-1":
+        //                    DataElementLink = "Discharges";
+        //                    DataFormat = "number";
+        //                    break;
+        //                case "IP-2":
+        //                    DataElementLink = "MeanCharges";
+        //                    DataFormat = "nfcurrency";
+        //                    break;
+        //                case "IP-3":
+        //                    DataElementLink = "MeanCosts";
+        //                    DataFormat = "nfcurrency";
+        //                    break;
+        //                case "IP-4":
+        //                    DataElementLink = "MeanLOS";
+        //                    DataFormat = "number";
+        //                    break;
+        //                case "IP-5":
+        //                    DataElementLink = "MedianCharges";
+        //                    DataFormat = "nfcurrency";
+        //                    break;
+        //                case "IP-6":
+        //                    DataElementLink = "MedianCosts";
+        //                    DataFormat = "nfcurrency";
+        //                    break;
+        //                case "IP-7":
+        //                    DataElementLink = "MedianLOS";
+        //                    DataFormat = "number";
+        //                    break;
+        //                case "IP-8":
+        //                    DataElementLink = "Discharges";
+        //                    DataFormat = "number";
+        //                    break;
+        //                case "IP-9":
+        //                    DataElementLink = "MeanCosts";
+        //                    DataFormat = "nfcurrency";
+        //                    break;
+        //                case "IP-10":
+        //                    DataElementLink = "MedianCosts";
+        //                    DataFormat = "nfcurrency";
+        //                    break;
+        //                case "IP-11":
+        //                    DataElementLink = "RateDischarges";
+        //                    DataFormat = "number";
+        //                    break;
 
 
+        //            }
+        //            columnList.Add(new { Name = rv.OriginalMeasure.Description, DataElementLink = DataElementLink, DataFormat = DataFormat });
+
+        //        }
 
 
-		//        result.Add(new {
-		//            ID = report.Report.SourceTemplate.Id,
-		//            //ID = report.Report.Id,
-		//            TYPE=report.Report.Name,
-		//          //  IsActive=true,
-		//            ReportHeader = "",
-		//            ReportFooter= "",
-
-		//            GeoInfo= report.Report.FilterItems
-		//                                                    .Where(c => c.Value == ReportFilter.HospitalFilters || c.Value == ReportFilter.CountyFilters)
-		//                                                    .Select(c => c.Caption).ToArray(),
 
 
-		//            ClinicalDRGAndDiagnosis =  report.Report.FilterItems
-		//                                                    .Where(c => c.Value == ReportFilter.DRGsDischargesFilters || c.Value ==ReportFilter.ConditionsAndDiagnosisFilters)
-		//                                                    .Select(c => c.Caption).ToArray(),
-		//            Display=Display.ToArray(),
+        //        result.Add(new {
+        //            ID = report.Report.SourceTemplate.Id,
+        //            //ID = report.Report.Id,
+        //            TYPE=report.Report.Name,
+        //          //  IsActive=true,
+        //            ReportHeader = "",
+        //            ReportFooter= "",
 
-		//            IncludedColumns = columnList,
-		//            ShowInterpretationFlag = report.Report.ShowInterpretationText,
-		//            InterpretationHTMLDescription =report.Report.InterpretationText,
+        //            GeoInfo= report.Report.FilterItems
+        //                                                    .Where(c => c.Value == ReportFilter.HospitalFilters || c.Value == ReportFilter.CountyFilters)
+        //                                                    .Select(c => c.Caption).ToArray(),
 
 
-		//        });
-		//    }
+        //            ClinicalDRGAndDiagnosis =  report.Report.FilterItems
+        //                                                    .Where(c => c.Value == ReportFilter.DRGsDischargesFilters || c.Value ==ReportFilter.ConditionsAndDiagnosisFilters)
+        //                                                    .Select(c => c.Caption).ToArray(),
+        //            Display=Display.ToArray(),
 
-		//    GenerateJsonFile(result, fileName, "$.monahrq.ReportConfig=");
-		//}
+        //            IncludedColumns = columnList,
+        //            ShowInterpretationFlag = report.Report.ShowInterpretationText,
+        //            InterpretationHTMLDescription =report.Report.InterpretationText,
 
-		//private void GenerateHospitalProfileJsonFiles()
-		//{
 
-		//}
+        //        });
+        //    }
 
-		private void GenerateHtml()
-		{
+        //    GenerateJsonFile(result, fileName, "$.monahrq.ReportConfig=");
+        //}
 
-		}
+        //private void GenerateHospitalProfileJsonFiles()
+        //{
 
-		protected override bool LoadReportData()
-		{
-			return true;
-		}
+        //}
 
-		protected override bool OutputDataFiles()
-		{
-			return true;
-		}
-	}
+        private void GenerateHtml()
+        {
 
-	[DataContract(Name = "")]
-	internal class HospitalCategoryType
-	{
-		[DataMember(Name = "type_Id")]
-		public int Id { get; set; }
-		[DataMember(Name = "type_Name")]
-		public string Name { get; set; }
-	}
+        }
 
-	[DataContract(Name = "")]
-	internal class PatientCounty
-	{
-		[DataMember(Name = "CountyID")]
-		public int Id { get; set; }
-		[DataMember(Name = "CountyName")]
-		public string Name { get; set; }
-		[DataMember(Name = "FIPS")]
-		public string CountyFIPS { get; set; }
-	}
+        protected override bool LoadReportData()
+        {
+            return true;
+        }
+
+        protected override bool OutputDataFiles()
+        {
+            return true;
+        }
+    }
+
+    [DataContract(Name = "")]
+    internal class HospitalCategoryType
+    {
+        [DataMember(Name = "type_Id")]
+        public int Id { get; set; }
+        [DataMember(Name = "type_Name")]
+        public string Name { get; set; }
+    }
+
+    [DataContract(Name = "")]
+    internal class PatientCounty
+    {
+        [DataMember(Name = "CountyID")]
+        public int Id { get; set; }
+        [DataMember(Name = "CountyName")]
+        public string Name { get; set; }
+        [DataMember(Name = "FIPS")]
+        public string CountyFIPS { get; set; }
+    }
 }

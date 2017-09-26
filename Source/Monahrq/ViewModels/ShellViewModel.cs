@@ -14,6 +14,7 @@ using Monahrq.Infrastructure;
 using Monahrq.Infrastructure.Services;
 using Monahrq.Sdk.Events;
 using Monahrq.Sdk.Regions;
+using NHibernate.Util;
 using PropertyChanged;
 
 namespace Monahrq.ViewModels
@@ -37,6 +38,9 @@ namespace Monahrq.ViewModels
         #endregion
 
         #region Imports
+
+        [Import(LogNames.Session)]
+        public ILogWriter Logger { get; set; }
 
         /// <summary>
         /// Gets or sets the event aggregator.
@@ -324,21 +328,10 @@ namespace Monahrq.ViewModels
 
                     errorToUse = aggEx.Flatten();
                 }
-
+                
                 ErrorMessage = errorToUse.GetBaseException().Message;
 
-                //Task.Run(() =>
-                //{
-                //    try
-                //    {
-                //        var player = new MediaPlayer();
-                //        player.Open(new Uri(Path.Combine(MonahrqContext.BinFolderPath, "doh.mp3"), UriKind.Absolute));
-                //        player.Volume = 0.075; // player.Volume / 3;
-                //        player.Play();
-                //        // player.Volume = 0.025;
-                //    }
-                //    catch {}
-                //});
+                this.Logger.Write(err, "Unhandled error");
 
 #if DEBUG
                 ErrorMessage = ErrorMessage + " source: " + errorToUse.Source;
@@ -352,14 +345,13 @@ namespace Monahrq.ViewModels
             //});
 
 
-            EventAggregator.GetEvent<GenericNotificationEvent>().Subscribe(msg =>
-                                                                {
-                                                                    _outputNotificationMessage(msg, ENotificationType.Info);
-                                                                });
-            EventAggregator.GetEvent<GenericNotificationExEvent>().Subscribe(msg =>
-                                                                {
-                                                                    _outputNotificationMessage(msg.Message, msg.NotificationType);
-                                                                });
+            EventAggregator
+                .GetEvent<GenericNotificationEvent>()
+                .Subscribe(msg => _outputNotificationMessage(msg, ENotificationType.Info));
+
+            EventAggregator
+                .GetEvent<GenericNotificationExEvent>()
+                .Subscribe(msg => _outputNotificationMessage(msg.Message, msg.NotificationType));
 
             //EventAggregator.GetEvent<ResumeNormalProcessingEvent>().Subscribe(payload => ResumeNormalProcessingHandler.Handle(payload));
         }
@@ -370,6 +362,21 @@ namespace Monahrq.ViewModels
         /// <param name="notificationType">Type of the notification.</param>
         private void _outputNotificationMessage(String message, ENotificationType notificationType = ENotificationType.Info)
         {
+            if (!string.IsNullOrWhiteSpace(message))
+            {
+                switch (notificationType)
+                {
+                    case ENotificationType.Warning:
+                    case ENotificationType.Error:
+                        this.Logger.Warning($"General notification: {message}");
+                        break;
+
+                    default:
+                        this.Logger.Information($"General notification: {message}");
+                        break;
+                }
+            }
+
             lock (_genericNotificationPanelLockObject)
             {
                 GenericNotificationPanel = GENERIC_OPEN_PANEL_HEIGHT;

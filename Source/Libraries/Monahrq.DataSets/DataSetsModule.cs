@@ -42,7 +42,6 @@ namespace Monahrq.DataSets
      DependsOnModuleNames = new string[] { "Base Data" }, InitializationMode = InitializationMode.WhenAvailable)]
     public class DataSetsModule : IModule
     {
-        private readonly ILoggerFacade _logger;
         private readonly IPluginModuleTracker _pluginTracker;
         private IRegionManager RegionManager { get; set; }
         private readonly IEventAggregator _events;
@@ -70,13 +69,8 @@ namespace Monahrq.DataSets
                         Message = this.GetType().GetCustomAttribute<WingModuleAttribute>().Description
                     });
             Application.Current.DoEvents();
-            var logger = locator.GetInstance<ILoggerFacade>();
             var regionManager = locator.GetInstance<IRegionManager>();
             var pluginTracker = locator.GetInstance<IPluginModuleTracker>();
-            if (logger == null)
-            {
-                throw new NullReferenceException("logger of type \"ILoggerFacade\" is required and should not be null.");
-            }
 
             if (regionManager == null)
             {
@@ -88,7 +82,6 @@ namespace Monahrq.DataSets
                 throw new NullReferenceException("pluginTracker should not be null.");
             }
 
-            _logger = logger;
             RegionManager = regionManager;
             _pluginTracker = pluginTracker;
             _pluginTracker.RecordModuleConstructed(this.GetType().Assembly.GetName().Name);

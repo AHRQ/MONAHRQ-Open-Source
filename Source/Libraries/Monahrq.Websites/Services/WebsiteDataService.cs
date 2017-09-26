@@ -47,24 +47,19 @@ namespace Monahrq.Websites.Services
     public class WebsiteDataService : DataServiceBase, IWebsiteDataService
     {
         [Import(RequiredCreationPolicy = CreationPolicy.Shared)]
-        public IDomainSessionFactoryProvider Provider
-        {
-            get;
-            set;
-        }
+        public IDomainSessionFactoryProvider Provider { get; set; }
 
         [Import]
-        public IConfigurationService ConfigService
-        {
-            get;
-            set;
-        }
+        public IConfigurationService ConfigService  { get; set; } 
 
         [Import(RequiredCreationPolicy = CreationPolicy.Shared)]
         public IBaseDataService BaseDataService { get; set; }
 
         [Import(RequiredCreationPolicy = CreationPolicy.Shared)]
         public IRegionManager RegionManager { get; set; }
+
+        [Import(LogNames.Session)]
+        public ILogWriter SessionLog { get; set; }
 
         public ObservableCollection<WebsiteViewModel> GetAllWebsites()
         {
@@ -155,7 +150,7 @@ namespace Monahrq.Websites.Services
                 catch (Exception exc)
                 {
                     callback(websiteMeasure, exc.GetBaseException());
-                    Log(exc.GetBaseException(), "Removing Website Measure Override from DB", new EntityDescriptor(websiteMeasure));
+                    Log(exc, "Removing Website Measure Override from DB", new EntityDescriptor(websiteMeasure));
                 }
             }
         }

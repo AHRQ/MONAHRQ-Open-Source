@@ -47,7 +47,7 @@ namespace Monahrq.Websites.ViewModels
 	{
 		#region Fields and Constants
 
-		private IEnumerable<IValidationResultViewModel> _dependencyCheckResults;
+		private IEnumerable<ValidationResultViewModel> _dependencyCheckResults;
 		private int _publishProgress;
 		private Visibility _resultsVisibility;
 		private Visibility _publishLogVisibility;
@@ -84,7 +84,7 @@ namespace Monahrq.Websites.ViewModels
 
 		public bool IsPublishOptionsExpanded { get; set; }
 
-		public IEnumerable<IValidationResultViewModel> DependencyCheckResults
+		public IEnumerable<ValidationResultViewModel> DependencyCheckResults
 		{
 			get { return _dependencyCheckResults; }
 			set
@@ -307,14 +307,10 @@ namespace Monahrq.Websites.ViewModels
 
         private void OpenHowToFixFile(ValidationResultViewModel result)
         {
-            var help = result.Result.GetDescription() ?? "";
-            if (string.IsNullOrEmpty(help)) help = "DEPENDENCY CHECK";
-
-            if (help.ContainsIgnoreCase("Warning") || help.ContainsIgnoreCase("Error"))
-                help = help.Replace("Warning ", null).Replace("Error ", null);
             //help = string.Format("{0}.html", help);
 
-            EventAggregator.GetEvent<OpenContextualHelpContextEvent>().Publish(help);
+            if (!string.IsNullOrWhiteSpace(result.HelpTopic))
+            EventAggregator.GetEvent<OpenContextualHelpContextEvent>().Publish(result.HelpTopic);
             //switch (result.Result)
             //{
             //    case ValidationOutcome.StaleBaseData:
@@ -355,7 +351,7 @@ namespace Monahrq.Websites.ViewModels
         {
             IsDependencyCheckRunning = false;
             RunDependencyCheckButtonCaption = " RUN CHECK  ";
-            DependencyCheckResults = Enumerable.Empty<IValidationResultViewModel>();
+            DependencyCheckResults = Enumerable.Empty<ValidationResultViewModel>();
             RunDependencyCheckCommand.RaiseCanExecuteChanged();
 			PublishLogs = new ObservableCollection<WebsitePublishEventLog>();
 			UIPublishLogsView = CollectionViewSource.GetDefaultView(PublishLogs);
@@ -558,29 +554,29 @@ namespace Monahrq.Websites.ViewModels
             {
                 case WebsiteGenerationStatus.Error:
 					AddPublishEventToLogs(wpArg.Data);
-					Logger.Log(wpArg.Data.Message, Category.Exception, Priority.High);
+					Logger.Warning(wpArg.Data.Message);
                     break;
                 case WebsiteGenerationStatus.Complete:
 					AddPublishEventToLogs(wpArg.Data);
-					Logger.Log(wpArg.Data.Message, Category.Info, Priority.Low);
-
+                    Logger.Information(wpArg.Data.Message);
                     break;
                 default:
                     Application.Current.Dispatcher.Invoke(DispatcherPriority.Render,
-                                                                         new DispatcherOperationCallback(delegate
-                    {
+                        new DispatcherOperationCallback(delegate
+                        {
+                            AddPublishEventToLogs(wpArg.Data);
 
-                        AddPublishEventToLogs(wpArg.Data);
-                        
-                        // Application.Current.DoEventsUI();
-                        //	var itemToAdd = new Tuple<string, DateTime>(wpArg.Data.Message, wpArg.Data.EventTime);
-                        //	PublishLogs.Add(itemToAdd);
-                        //	LogDataGrid.ScrollIntoView(itemToAdd);
+                            // Application.Current.DoEventsUI();
+                            //	var itemToAdd = new Tuple<string, DateTime>(wpArg.Data.Message, wpArg.Data.EventTime);
+                            //	PublishLogs.Add(itemToAdd);
+                            //	LogDataGrid.ScrollIntoView(itemToAdd);
 
-                        Logger.Log(wpArg.Data.Message,
-                                    wpArg.Data.MessageType == PubishMessageTypeEnum.Warning ? Category.Warn : Category.Info, Priority.Low);
-                        return null;
-                    }), null);
+                            if (wpArg.Data.MessageType == PubishMessageTypeEnum.Warning)
+                                Logger.Warning(wpArg.Data.Message);
+                            else
+                                Logger.Information(wpArg.Data.Message);
+                            return null;
+                        }), null);
 
                     break;
             }
@@ -694,7 +690,7 @@ namespace Monahrq.Websites.ViewModels
 			//	var orderedLogs = PublishLogs.OrderBy(log => log.RegionSortText);
 			//	orderedLogs.ForEach(log =>
 			//	{
-			//		base.Logger.Log(
+			//		base.Logger.Write(
 			//			log.Message, 
 			//			log.MessageType == PubishMessageTypeEnum.Warning ? Category.Warn :
 			//			log.MessageType == PubishMessageTypeEnum.Error ? Category.Exception :
@@ -797,11 +793,13 @@ namespace Monahrq.Websites.ViewModels
 
         #region Website Publish Validation
 
+	    [ImportMany(typeof(IWebsiteDependencyCheck))] private IWebsiteDependencyCheck[] dependencyChecks;
+
         public void RunDependencyCheck()
         {
             SetToRunDependencyCheckMode();
             AutoSave();
-            DependencyCheckResults = Enumerable.Empty<IValidationResultViewModel>(); // start fresh 
+            DependencyCheckResults = Enumerable.Empty<ValidationResultViewModel>(); // start fresh 
             ValidationFactory = new ValidationResultViewModelFactory(ManageViewModel.WebsiteViewModel);
             IsDependencyCheckRunning = true;
             ResultsVisibility = Visibility.Visible;
@@ -812,7 +810,7 @@ namespace Monahrq.Websites.ViewModels
             try
             {
 
-                var results = new List<IValidationResultViewModel>();
+                var results = new List<ValidationResultViewModel>();
                 ValidateStateNotSelected().ForEach(results.Add); // TODO add comment
                 ValidateDatasetsMissing().ForEach(results.Add); // TODO add comment
                 ValidateMeasuresMissing().ForEach(results.Add); // TODO add comment
@@ -851,6 +849,8 @@ namespace Monahrq.Websites.ViewModels
 
 				ValidateCostQualityAllFamilySelected().ForEach(results.Add);
                 ValidateCostQualityQiDbConnection().ForEach(results.Add);
+                
+                dependencyChecks?.SelectMany(c => c.Check(this.CurrentWebsite)).ForEach(results.Add);
 
                 DependencyCheckResults = results.Where(r => r.Quality != ValidationLevel.Success);
                 ReviewWarning = string.Join(Environment.NewLine,
@@ -873,7 +873,7 @@ namespace Monahrq.Websites.ViewModels
             {
                 if (!IsExiting)
                 {
-                    Logger.Log(exception.GetBaseException().Message, Category.Exception, Priority.High);
+                    Logger.Write(exception.GetBaseException());
                     EventAggregator.GetEvent<ErrorNotificationEvent>().Publish(exception.GetBaseException());
                 }
             }
@@ -897,10 +897,10 @@ namespace Monahrq.Websites.ViewModels
 
             Dispatcher.PushFrame(frame);
         }
-
-        private List<IValidationResultViewModel> ValidatePhysicianHedisDataset()
+        
+        private List<ValidationResultViewModel> ValidatePhysicianHedisDataset()
         {
-            var result = new List<IValidationResultViewModel>();
+            var result = new List<ValidationResultViewModel>();
             var hedisDataSet = CurrentWebsite.Datasets.FirstOrDefault(x => x.Dataset.ContentType.Name.ContainsIgnoreCase("Medical Practice HEDIS Measures Data"));
             var isDatasetIncluded = hedisDataSet != null;
             if (isDatasetIncluded && CurrentWebsite.Measures.Any(x => x.ReportMeasure.Source != null && x.ReportMeasure.Source.Contains("Medical Practice HEDIS")))
@@ -928,9 +928,9 @@ namespace Monahrq.Websites.ViewModels
 
             return result;
         }
-		private List<IValidationResultViewModel> ValidateRealtimePhysicianSubReports()
+		private List<ValidationResultViewModel> ValidateRealtimePhysicianSubReports()
 		{
-            var result = new List<IValidationResultViewModel>();
+            var result = new List<ValidationResultViewModel>();
 			var physDatasets = CurrentWebsite.Datasets.Where(x => x.Dataset.ContentType.Name.EqualsIgnoreCase("Physician Data")).ToList();
 			var subPhysDatasets = CurrentWebsite.Datasets.Where(x => x.Dataset.ContentType.Name.EqualsAnyIgnoreCase("Medical Practice HEDIS Measures Data", "CG-CAHPS Survey Results Data")).ToList();
 			var isPhysDatasetsIncluded = physDatasets != null && physDatasets.Count > 0;
@@ -958,9 +958,9 @@ namespace Monahrq.Websites.ViewModels
 			return result;
 		}
 
-		private List<IValidationResultViewModel> ValidateDatasetMappingForCounty()
+		private List<ValidationResultViewModel> ValidateDatasetMappingForCounty()
         {
-            var result = new List<IValidationResultViewModel>();
+            var result = new List<ValidationResultViewModel>();
             var ipDatasetIds = CurrentWebsite.Datasets.Where(d => d.Dataset.ContentType.Name.EqualsIgnoreCase("Inpatient Discharge")).Select(wd => wd.Dataset.Id).ToList();
 
             if (!ipDatasetIds.Any()) return result;
@@ -973,9 +973,9 @@ namespace Monahrq.Websites.ViewModels
             return result;
         }
 
-        private List<IValidationResultViewModel> ValidateEmergencyDepartmentTreatAndReleaseReportEdServices()
+        private List<ValidationResultViewModel> ValidateEmergencyDepartmentTreatAndReleaseReportEdServices()
         {
-            var result = new List<IValidationResultViewModel>();
+            var result = new List<ValidationResultViewModel>();
             var edDataset = CurrentWebsite.Datasets.FirstOrDefault(d => d.Dataset.ContentType.Name.EqualsIgnoreCase("ED Treat And Release"));
 
             if (edDataset == null || !CurrentWebsite.Datasets.Any(d => d.Dataset.ContentType.Name.EqualsIgnoreCase("Inpatient Discharge")))
@@ -989,9 +989,9 @@ namespace Monahrq.Websites.ViewModels
             return result;
         }
 
-        private List<IValidationResultViewModel> ValidateEmergencyDepartmentTreatAndReleaseReportIpDataSet()
+        private List<ValidationResultViewModel> ValidateEmergencyDepartmentTreatAndReleaseReportIpDataSet()
         {
-            var result = new List<IValidationResultViewModel>();
+            var result = new List<ValidationResultViewModel>();
             // var idDataset = CurrentWebsite.Datasets.FirstOrDefault(d => d.Dataset.ContentType.Name.Equals("ED Treat And Release"));
 
             if (CurrentWebsite.Reports.Any(r => r.Report.Datasets.Any(d => d.Equals("ED Treat And Release"))) &&
@@ -1002,9 +1002,9 @@ namespace Monahrq.Websites.ViewModels
             return result;
         }
 
-        private List<IValidationResultViewModel> ValidateForHospitalProfileReport()
+        private List<ValidationResultViewModel> ValidateForHospitalProfileReport()
         {
-            var result = new List<IValidationResultViewModel>();
+            var result = new List<ValidationResultViewModel>();
             var websiteReport = CurrentWebsite.Reports.FirstOrDefault(d => d.Report.ReportType.EqualsIgnoreCase("Hospital Profile Report"));
 
             if (websiteReport != null)
@@ -1064,9 +1064,9 @@ namespace Monahrq.Websites.ViewModels
         //    return result;
         //}
 
-        private List<IValidationResultViewModel> ValidateStateNotSelected()
+        private List<ValidationResultViewModel> ValidateStateNotSelected()
         {
-            var result = new List<IValidationResultViewModel>();
+            var result = new List<ValidationResultViewModel>();
             if (!ManageViewModel.WebsiteViewModel.HasState())
             {
                 result.Add(ValidationFactory.BuildResult(ValidationOutcome.StateNotSelected));
@@ -1074,21 +1074,21 @@ namespace Monahrq.Websites.ViewModels
             return result;
         }
 
-        private List<IValidationResultViewModel> ValidateDataYearMismatchForInpatientDischargeFile()
+        private List<ValidationResultViewModel> ValidateDataYearMismatchForInpatientDischargeFile()
         {
             const String datasetName = "Inpatient Discharge";       // (IPDis)
             return ValidateDataYearMismatchForXFile(datasetName, datasetName, datasetName);
         }
 
-        private List<IValidationResultViewModel> ValidateDataYearMismatchForEmergencyDepartmentFile()
+        private List<ValidationResultViewModel> ValidateDataYearMismatchForEmergencyDepartmentFile()
         {
             const String datasetName = "ED Treat And Release";      // (EDTaR)
             return ValidateDataYearMismatchForXFile(datasetName, "Emergency Department treat-and-release", "Emergency Department");
         }
 
-        private List<IValidationResultViewModel> ValidateDataYearMismatchForXFile(String datasetName, String datasetAlias1, String datasetAlias2)
+        private List<ValidationResultViewModel> ValidateDataYearMismatchForXFile(String datasetName, String datasetAlias1, String datasetAlias2)
         {
-            var results = new List<IValidationResultViewModel>();
+            var results = new List<ValidationResultViewModel>();
 
             // Obtain all EDTaR datasets.
             // Obtain any reports associated with a EDTaR dataset.
@@ -1137,9 +1137,9 @@ namespace Monahrq.Websites.ViewModels
         //    return result;
         //}
 
-        private List<IValidationResultViewModel> ValidateReportsMissing()
+        private List<ValidationResultViewModel> ValidateReportsMissing()
         {
-            var result = new List<IValidationResultViewModel>();
+            var result = new List<ValidationResultViewModel>();
             if (!CurrentWebsite.Reports.Any())
             {
                 result.Add(ValidationFactory.BuildResult(ValidationOutcome.ReportsMissing));
@@ -1147,9 +1147,9 @@ namespace Monahrq.Websites.ViewModels
             return result;
         }
 
-        private List<IValidationResultViewModel> ValidateOutputFolder()
+        private List<ValidationResultViewModel> ValidateOutputFolder()
         {
-            var result = new List<IValidationResultViewModel>();
+            var result = new List<ValidationResultViewModel>();
             var outputDIr = CurrentWebsite.OutPutDirectory;
             if (Directory.Exists(outputDIr)) return result;
 
@@ -1179,9 +1179,9 @@ namespace Monahrq.Websites.ViewModels
         //    return result;
         //}
 
-        private List<IValidationResultViewModel> ValidateMeasuresMissing()
+        private List<ValidationResultViewModel> ValidateMeasuresMissing()
         {
-            var result = new List<IValidationResultViewModel>();
+            var result = new List<ValidationResultViewModel>();
 
             // *******************************************************************
             // Temporary check to allow us to bypass this dependency check if only. Jason
@@ -1208,9 +1208,9 @@ namespace Monahrq.Websites.ViewModels
             return result;
         }
 
-        private List<IValidationResultViewModel> ValidateNoMeasuresForTheDataSet()
+        private List<ValidationResultViewModel> ValidateNoMeasuresForTheDataSet()
         {
-            var result = new List<IValidationResultViewModel>();
+            var result = new List<ValidationResultViewModel>();
 
             foreach (var wd in CurrentWebsite.Datasets)
             {
@@ -1223,9 +1223,9 @@ namespace Monahrq.Websites.ViewModels
             return result;
         }
 
-        private List<IValidationResultViewModel> ValidateHospitalsMissingRegions()
+        private List<ValidationResultViewModel> ValidateHospitalsMissingRegions()
         {
-            var result = new List<IValidationResultViewModel>();
+            var result = new List<ValidationResultViewModel>();
             if (!ManageViewModel.WebsiteViewModel.HasRegions())
             {
                 result.Add(ValidationFactory.BuildResult(ValidationOutcome.HospitalsMissingRegions));
@@ -1233,9 +1233,9 @@ namespace Monahrq.Websites.ViewModels
             return result;
         }
 
-        private List<IValidationResultViewModel> ValidateDatasetsMissing()
+        private List<ValidationResultViewModel> ValidateDatasetsMissing()
         {
-            var result = new List<IValidationResultViewModel>();
+            var result = new List<ValidationResultViewModel>();
             if (!CurrentWebsite.Datasets.Any())
             {
                 result.Add(ValidationFactory.BuildResult(ValidationOutcome.DatasetsMissing));
@@ -1243,9 +1243,9 @@ namespace Monahrq.Websites.ViewModels
             return result;
         }
 
-        private List<IValidationResultViewModel> ValidateCostToChargeUndefined()
+        private List<ValidationResultViewModel> ValidateCostToChargeUndefined()
         {
-            var result = new List<IValidationResultViewModel>();
+            var result = new List<ValidationResultViewModel>();
             if (!CurrentWebsite.Reports.Any()) return result;
             bool costToChargeMissing = ManageViewModel.WebsiteViewModel.HospitalMissingCostToCharge();
 
@@ -1280,9 +1280,9 @@ namespace Monahrq.Websites.ViewModels
         //    return result;
         //}
 
-        private List<IValidationResultViewModel> ValidateAboutUsContent()
+        private List<ValidationResultViewModel> ValidateAboutUsContent()
         {
-            var result = new List<IValidationResultViewModel>();
+            var result = new List<ValidationResultViewModel>();
             if (string.IsNullOrWhiteSpace(CurrentWebsite.AboutUsSectionText))
             {
                 result.Add(ValidationFactory.BuildResult(ValidationOutcome.AboutUsContent));
@@ -1290,9 +1290,9 @@ namespace Monahrq.Websites.ViewModels
             return result;
         }
 
-        private List<IValidationResultViewModel> ValidateCustomRegionToPopulationMapping()
+        private List<ValidationResultViewModel> ValidateCustomRegionToPopulationMapping()
         {
-            var result = new List<IValidationResultViewModel>();
+            var result = new List<ValidationResultViewModel>();
             if (!ManageViewModel.WebsiteViewModel.HasCustomRegionSelected()) return result;
 
             if (!CurrentWebsite.Datasets.Any(x => x.Dataset.ContentType.Name.EqualsIgnoreCase("Inpatient Discharge"))) return result;
@@ -1313,9 +1313,9 @@ namespace Monahrq.Websites.ViewModels
             return result;
         }
 
-        private List<IValidationResultViewModel> ValidatePopualtionRegions()
+        private List<ValidationResultViewModel> ValidatePopualtionRegions()
         {
-            var result = new List<IValidationResultViewModel>();
+            var result = new List<ValidationResultViewModel>();
             var regionType = string.Empty;
 
             if (MonahrqContext.SelectedRegionType == typeof(HealthReferralRegion))
@@ -1334,9 +1334,9 @@ namespace Monahrq.Websites.ViewModels
             return result;
         }
 
-        private List<IValidationResultViewModel> ValidateCustomRegionDefinition()
+        private List<ValidationResultViewModel> ValidateCustomRegionDefinition()
         {
-            var results = new List<IValidationResultViewModel>();
+            var results = new List<ValidationResultViewModel>();
 
             if (CurrentWebsite.Datasets.All(x => x.Dataset.ContentType.Name.Contains("Nursing Home Compare Data") || x.Dataset.ContentType.Name.Contains("Physician Data"))) return results;
 
@@ -1346,9 +1346,9 @@ namespace Monahrq.Websites.ViewModels
             return results;
         }
 
-        private List<IValidationResultViewModel> ValidateBothCustomRegionsAndPopulationStatsDefinition()
+        private List<ValidationResultViewModel> ValidateBothCustomRegionsAndPopulationStatsDefinition()
         {
-            var results = new List<IValidationResultViewModel>();
+            var results = new List<ValidationResultViewModel>();
 
             bool isIPDatasetIncluded = CurrentWebsite.Reports.Any(x => x.Report.Datasets.Any(d => d.Contains("Inpatient Discharge")) && (x.Report.Name.Contains("Region Rates")));
 
@@ -1367,9 +1367,9 @@ namespace Monahrq.Websites.ViewModels
             return results;
         }
 
-        private List<IValidationResultViewModel> ValidateAhrqQiDbConnection()
+        private List<ValidationResultViewModel> ValidateAhrqQiDbConnection()
         {
-            var result = new List<IValidationResultViewModel>();
+            var result = new List<ValidationResultViewModel>();
             var connectionString = ConfigurationService.WinQiConnectionSettings;
             if (!CurrentWebsite.Reports.Any(x => x.Report.Name.Contains("Avoidable"))) return result;
 
@@ -1404,9 +1404,9 @@ namespace Monahrq.Websites.ViewModels
         //    return results;
         //}
 
-        private List<IValidationResultViewModel> ValidateUnMappedHopitalLocalId()
+        private List<ValidationResultViewModel> ValidateUnMappedHopitalLocalId()
         {
-            var result = new List<IValidationResultViewModel>();
+            var result = new List<ValidationResultViewModel>();
 
             var datasets = _qiMeasuresDatasetsRequiringLocalHospitalId.Union(_datasetsRequiringLocalHospitalId);
             if (!CurrentWebsite.Datasets.Any(x => datasets.Contains(x.Dataset.ContentType.Name))) return result;
@@ -1435,9 +1435,9 @@ namespace Monahrq.Websites.ViewModels
             return result;
         }
 
-        private List<IValidationResultViewModel> ValidateCostQualityReport()
+        private List<ValidationResultViewModel> ValidateCostQualityReport()
         {
-            var result = new List<IValidationResultViewModel>();
+            var result = new List<ValidationResultViewModel>();
 
             if (CurrentWebsite.Reports.All(x => !x.Report.ReportType.EqualsIgnoreCase("Cost and Quality Report – Side By Side Display"))) return result;
 
@@ -1461,9 +1461,9 @@ namespace Monahrq.Websites.ViewModels
             return result;
         }
 
-        private List<IValidationResultViewModel> ValidateCustomHeatMap()
+        private List<ValidationResultViewModel> ValidateCustomHeatMap()
         {
-            var result = new List<IValidationResultViewModel>();
+            var result = new List<ValidationResultViewModel>();
 
             if (CurrentWebsite.RegionTypeContext != typeof(CustomRegion).Name || CurrentWebsite.Datasets.All(x => !x.Dataset.ContentType.Name.Contains("Inpatient Discharge"))) return result;
 
@@ -1495,9 +1495,9 @@ namespace Monahrq.Websites.ViewModels
             return result;
         }
 
-        private List<IValidationResultViewModel> ValidateHospitalMapping()
+        private List<ValidationResultViewModel> ValidateHospitalMapping()
         {
-            var result = new List<IValidationResultViewModel>();
+            var result = new List<ValidationResultViewModel>();
             var regionType = string.IsNullOrEmpty(CurrentWebsite.RegionTypeContext)
                     ? "CustomRegion"
                     : CurrentWebsite.RegionTypeContext;
@@ -1525,9 +1525,9 @@ namespace Monahrq.Websites.ViewModels
             return result;
         }
 
-        private IList<IValidationResultViewModel> ValidateRegionIds()
+        private IList<ValidationResultViewModel> ValidateRegionIds()
         {
-            var result = new List<IValidationResultViewModel>();
+            var result = new List<ValidationResultViewModel>();
             if (!CurrentWebsite.Datasets.Any(
                x => x.Dataset.ContentType.Name.EqualsIgnoreCase("Inpatient Discharge"))) return result;
 
@@ -1560,9 +1560,9 @@ namespace Monahrq.Websites.ViewModels
             return result;
         }
 
-        private IList<IValidationResultViewModel> ValidateCountyFips()
+        private IList<ValidationResultViewModel> ValidateCountyFips()
         {
-            var result = new List<IValidationResultViewModel>();
+            var result = new List<ValidationResultViewModel>();
             if (!CurrentWebsite.Datasets.Any(x => x.Dataset.ContentType.Name.EqualsIgnoreCase("Inpatient Discharge"))) return result;
             var query = string.Format(@"select COUNT(PatientStateCountyCode) AS InvalidCountyFipsCount
                                         from Targets_InpatientTargets ip 
@@ -1583,9 +1583,9 @@ namespace Monahrq.Websites.ViewModels
             return result;
         }
 
-        private IList<IValidationResultViewModel> ValidateEDDischargeQuarter()
+        private IList<ValidationResultViewModel> ValidateEDDischargeQuarter()
         {
-            var result = new List<IValidationResultViewModel>();
+            var result = new List<ValidationResultViewModel>();
             //checkif included ED dataset has more than one quarter
             if (!CurrentWebsite.Datasets.Any(x => x.Dataset.ContentType.Name.EqualsIgnoreCase("ED Treat And Release"))) return result;
 
@@ -1628,9 +1628,9 @@ namespace Monahrq.Websites.ViewModels
             return result;
         }
 
-        private IList<IValidationResultViewModel> ValidateTrendingQuarters()
+        private IList<ValidationResultViewModel> ValidateTrendingQuarters()
         {
-            var result = new List<IValidationResultViewModel>();
+            var result = new List<ValidationResultViewModel>();
 
             var reportSelectedYears = CurrentWebsite.Reports.Where(x => x.Report.IsTrending && x.SelectedYears != null).Select(x => x.SelectedYears);
             var invalidQuarter = false;
@@ -1661,9 +1661,9 @@ namespace Monahrq.Websites.ViewModels
             return result;
         }
 
-        private List<IValidationResultViewModel> ValidateCostQualityAllFamilySelected()
+        private List<ValidationResultViewModel> ValidateCostQualityAllFamilySelected()
         {
-            var result = new List<IValidationResultViewModel>();
+            var result = new List<ValidationResultViewModel>();
             if (!CurrentWebsite.Reports.Any(x => x.Report.ReportType.Contains("Cost and Quality"))) return result;
             if (!CurrentWebsite.Datasets.Any(x => x.Dataset.ContentType.Name.Contains("Inpatient Discharge"))) return result;
             if (!CurrentWebsite.Datasets.Any(x => x.Dataset.ContentType.Name.Contains("AHRQ-QI Provider Data"))) return result;
@@ -1707,9 +1707,9 @@ namespace Monahrq.Websites.ViewModels
             return result;
         }
 
-        private List<IValidationResultViewModel> ValidateCostQualityQiDbConnection()
+        private List<ValidationResultViewModel> ValidateCostQualityQiDbConnection()
         {
-            var result = new List<IValidationResultViewModel>();
+            var result = new List<ValidationResultViewModel>();
             var connectionString = ConfigurationService.WinQiConnectionSettings;
             if (!CurrentWebsite.Reports.Any(x => x.Report.Name.Contains("Cost and Quality"))) return result;
 
@@ -1730,11 +1730,10 @@ namespace Monahrq.Websites.ViewModels
             return result;
         }
 
-        private void LogDependencyChecks(IEnumerable<IValidationResultViewModel> results)
+        private void LogDependencyChecks(IEnumerable<ValidationResultViewModel> results)
         {
-            Logger.Log(string.Format("{0}{1} ------- {2} website Dependency Checks -------", Environment.NewLine, Environment.NewLine, CurrentWebsite.Name), Category.Info, Priority.None);
-
-            Task.Run(() => results.ToList().ForEach(x => Logger.Log(x.Message, Category.Info, Priority.None)));
+            Logger.Information("{0}{1} ------- {2} website Dependency Checks -------", Environment.NewLine, Environment.NewLine, CurrentWebsite.Name);
+            Task.Run(() => results.ToList().ForEach(x => Logger.Write(x.Message)));
         }
 
         #endregion

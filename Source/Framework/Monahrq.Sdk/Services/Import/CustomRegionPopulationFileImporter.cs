@@ -4,6 +4,7 @@ using System.ComponentModel.Composition;
 using System.Linq;
 using Microsoft.Practices.Prism.Events;
 using Microsoft.Practices.Prism.Logging;
+using Monahrq.Infrastructure;
 using Monahrq.Infrastructure.Domain.Regions;
 using Monahrq.Infrastructure.Entities.Domain;
 using Monahrq.Infrastructure.FileSystem;
@@ -37,7 +38,7 @@ namespace Monahrq.Sdk.Services.Import
             , IDomainSessionFactoryProvider provider
             , IHospitalRegistryService hospitalRegistryService
             , IEventAggregator events
-            , ILoggerFacade logger)
+            , [Import(LogNames.Session)] ILogWriter logger)
             : base(folder, provider, hospitalRegistryService, events, logger) { }
 
         /// <summary>

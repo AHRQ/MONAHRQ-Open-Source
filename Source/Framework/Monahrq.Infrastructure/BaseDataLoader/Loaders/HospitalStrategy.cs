@@ -8,7 +8,10 @@ using Monahrq.Infrastructure.Extensions;
 using NHibernate.Linq;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using System.Data;
 using System.Linq;
+using System.Windows;
+using NHibernate;
 
 
 namespace Monahrq.Infrastructure.BaseDataLoader.Loaders
@@ -17,7 +20,7 @@ namespace Monahrq.Infrastructure.BaseDataLoader.Loaders
     /// The <see cref="Hospital"/> base data import strategy.
     /// </summary>
     /// <seealso cref="Monahrq.Infrastructure.BaseDataLoader.BaseDataDataReaderImporter{Monahrq.Infrastructure.Entities.Domain.Hospitals.Hospital, System.Int32}" />
-    [Export(DataImportContracts.BaseDataLoader, typeof (IBasedataImporter))]
+    [Export(DataImportContracts.BaseDataLoader, typeof(IBasedataImporter))]
     public class HospitalStrategy : BaseDataDataReaderImporter<Hospital, int>
     {
         /// <summary>
@@ -106,7 +109,13 @@ namespace Monahrq.Infrastructure.BaseDataLoader.Loaders
         /// </summary>
         /// <param name="files">The files.</param>
         protected override void PreProcessFile(ref string[] files)
-        {}
+        {
+            files = new[] {files.OrderByDescending(f => f).First()};
+        }
+
+        private ISession session;
+        private int updates;
+        private int additions;
 
         /// <summary>
         /// Pres the load data.
@@ -114,22 +123,21 @@ namespace Monahrq.Infrastructure.BaseDataLoader.Loaders
         public override void PreLoadData()
         {
             base.PreLoadData();
-            using (var session = DataProvider.SessionFactory.OpenStatelessSession())
+            this.session = DataProvider.SessionFactory.OpenSession();
+
+            Registry = session.Query<HospitalRegistry>().SingleOrDefault();
+            States = session.Query<State>().ToList();
+            Counties = session.Query<County>().ToList();
+            HospitalCategories = session.Query<HospitalCategory>().ToList();
+            HealthReferralRegions = session.Query<HealthReferralRegion>().ToList();
+            HospitalServiceAreas = session.Query<HospitalServiceArea>().ToList();
+            ZipCodeToHRRAndHSAs = session.Query<ZipCodeToHRRAndHSA>().ToList();
+            foreach (var hospCat in HospitalCategories)
             {
-                Registry = session.Query<HospitalRegistry>().SingleOrDefault();
-                States = session.Query<State>().ToList();
-                Counties = session.Query<County>().ToList();
-                HospitalCategories = session.Query<HospitalCategory>().ToList();
-                HealthReferralRegions = session.Query<HealthReferralRegion>().ToList();
-                HospitalServiceAreas = session.Query<HospitalServiceArea>().ToList();
-                ZipCodeToHRRAndHSAs = session.Query<ZipCodeToHRRAndHSA>().ToList();
-                foreach (var hospCat in HospitalCategories)
-                {
-                    Registry.HospitalCategories.Add(hospCat);
-                }
+                Registry.HospitalCategories.Add(hospCat);
             }
-
-
+            this.updates = 0;
+            this.additions = 0;
         }
 
         /// <summary>
@@ -139,10 +147,9 @@ namespace Monahrq.Infrastructure.BaseDataLoader.Loaders
         {
             base.PostLoadData();
 
-            using (var session = DataProvider.SessionFactory.OpenSession())
-            {
-                session.SaveOrUpdate(Registry);
-            }
+            this.session.SaveOrUpdate(Registry);
+            this.session.Flush();
+            this.session.Dispose();
 
             Registry = null;
             States = null;
@@ -159,6 +166,68 @@ namespace Monahrq.Infrastructure.BaseDataLoader.Loaders
         /// <param name="dr">The dr.</param>
         /// <returns></returns>
         public override Hospital LoadFromReader(System.Data.IDataReader dr)
+        {
+            var cmsProviderId = dr.Guard<string>("PRVDR_NUM_MOD").Replace("'", string.Empty);
+            
+            // look for match in db
+            var hosp = this.session.Query<Hospital>()
+                .Where(h => h.CmsProviderID == cmsProviderId)
+                .OrderByDescending(h => h.Id)
+                .FirstOrDefault();
+            if (hosp == null)
+            {
+                // create new record for insert
+                hosp = new Hospital();
+                Registry.Hospitals.Add(hosp);
+                this.additions++;
+            }
+            else if (!hosp.IsSourcedFromBaseData)
+                // match was entered by hand; don't do anything
+                return null;
+            else
+                this.updates++;
+            
+            // overwrite everything with new data
+            this.PopulateHospitalFromDataRow(hosp, dr);
+
+            // load relationships
+            this.MapHrrAndHsa(hosp);
+
+            // Get the hospital category ID from the file.
+            var hospCatId = dr.Guard<int>("PRVDR_CTGRY_SBTYP_CD");
+            var hospCat = HospitalCategories.FirstOrDefault(x => x.CategoryID == hospCatId);
+            if (hospCat != null && !hosp.Categories.Contains(hospCat))
+                hosp.Categories.Add(hospCat);
+
+            // update if this is an existing hospital
+            this.session.SaveOrUpdate(hosp);
+           
+            return null; 
+        }
+
+        private void MapHrrAndHsa(Hospital hosp)
+        {
+            if (hosp.HealthReferralRegion != null && hosp.HospitalServiceArea != null)
+                return;
+
+            var zipCodeToHrrAndHsa = ZipCodeToHRRAndHSAs.FirstOrDefault(x => x.Zip == hosp.Zip);
+
+            if (zipCodeToHrrAndHsa != null && hosp.HealthReferralRegion == null)
+            {
+                var hrr = HealthReferralRegions.FirstOrDefault(x => x.ImportRegionId == zipCodeToHrrAndHsa.HRRNumber);
+                if (hrr != null)
+                    hosp.HealthReferralRegion = hrr;
+            }
+
+            if (zipCodeToHrrAndHsa != null && hosp.HospitalServiceArea == null)
+            {
+                var hsa = HospitalServiceAreas.FirstOrDefault(x => x.ImportRegionId == zipCodeToHrrAndHsa.HSANumber);
+                if (hsa != null)
+                    hosp.HospitalServiceArea = hsa;
+            }
+        }
+
+        private void PopulateHospitalFromDataRow(Hospital hosp, IDataReader dr)
         {
             // Get the hospital from the file.
             var state = States.FirstOrDefault(x => x.Abbreviation == dr.Guard<string>("STATE_CD").Trim());
@@ -200,88 +269,30 @@ namespace Monahrq.Infrastructure.BaseDataLoader.Loaders
             var urgentCareServiceStr = dr.Guard<string>("URGNT_CARE_SRVC_CD");
             var urgentCareService = !string.IsNullOrEmpty(urgentCareServiceStr) && (int.Parse(urgentCareServiceStr) >= 1);
 
-            var hosp = new Hospital(Registry)
-            {
-                IsSourcedFromBaseData = true,
-                CmsProviderID = dr.Guard<string>("PRVDR_NUM_MOD").Replace("'", string.Empty),
-                Name = dr.Guard<string>("FAC_NAME").ToProper(),
-                Address = dr.Guard<string>("ST_ADR").ToProper(),
-                City = dr.Guard<string>("CITY_NAME").ToProper(),
-                State = state != null ? state.Abbreviation : null,
-                Zip = zip,
-                County = county != null ? county.CountyFIPS : null,
-				Latitude = dr.Guard<double>("LATITUDE"),
-				Longitude = dr.Guard<double>("LONGITUDE"),
-
-
-                PhoneNumber = dr.Guard<string>("PHNE_NUM"),
-                FaxNumber = dr.Guard<string>("FAX_PHNE_NUM"),
-
-                Employees = dr.Guard<int>("EMPLEE_CNT"),
-                TotalBeds = dr.Guard<int>("BED_CNT"),
-                MedicareMedicaidProvider = medicareMedicaidProvider,
-                HospitalOwnership = dr.Guard<string>("MLT_OWND_FAC_ORG_SW").ToProper(),
-
-                CardiacCatherizationService = cardiacCatherizationService,
-                DiagnosticXRayService = diagnosticXRayService,
-                EmergencyService = emergencyService,
-                PediatricService = pediatricService,
-                PediatricICUService = pediatricIcuService,
-                PharmacyService = pharmacyService,
-                TraumaService = traumaService,
-                UrgentCareService = urgentCareService
-            };
-
-            if (hosp.HealthReferralRegion == null || hosp.HospitalServiceArea == null)
-            {
-                var zipCodeToHrrAndHsa = ZipCodeToHRRAndHSAs.FirstOrDefault(x => x.Zip == hosp.Zip);
-
-                if (zipCodeToHrrAndHsa != null && hosp.HealthReferralRegion == null)
-                {
-                    HealthReferralRegion hrr = HealthReferralRegions.FirstOrDefault(x => x.ImportRegionId == zipCodeToHrrAndHsa.HRRNumber);
-                    if (hrr != null)
-                    {
-                        hosp.HealthReferralRegion = hrr;
-                    }
-                }
-
-                if (zipCodeToHrrAndHsa != null && hosp.HospitalServiceArea == null)
-                {
-                    HospitalServiceArea hsa = HospitalServiceAreas.FirstOrDefault(x => x.ImportRegionId == zipCodeToHrrAndHsa.HSANumber);
-                    if (hsa != null)
-                    {
-                        hosp.HospitalServiceArea = hsa;
-                    }
-                }
-            }
-
-            // Get the hospital category ID from the file.
-            // int hospCatID = dr.Guard<int>("PRVDR_CTGRY_CD");
-            var hospCatID = dr.Guard<int>("PRVDR_CTGRY_SBTYP_CD");
-
-            //// Try to find the hospital category and add it to the hospital.
-            HospitalCategory hospCat = HospitalCategories.FirstOrDefault(x => x.CategoryID == hospCatID);
-            if (hospCat != null)
-            {
-                hosp.Categories.Add(hospCat);
-            }
-
-            // NOTE: Must save and flush data here or categories are not being saved!
-            using (var session = DataProvider.SessionFactory.OpenSession())
-            {
-                try
-                {
-                    session.SaveOrUpdate(hosp);
-                    session.Flush();
-                }
-                catch(Exception exc)
-                {
-                    base.Logger.Log(exc.GetBaseException().Message, Microsoft.Practices.Prism.Logging.Category.Exception, Microsoft.Practices.Prism.Logging.Priority.High);
-                }
-            }
-            
-            // NOTE: Returning null here so that it's not added to the bulk insert at the end. We've already saved the hospital above.
-            return null;
+            hosp.IsSourcedFromBaseData = true;
+            hosp.CmsProviderID = dr.Guard<string>("PRVDR_NUM_MOD").Replace("'", string.Empty);
+            hosp.Name = dr.Guard<string>("FAC_NAME").ToProper();
+            hosp.Address = dr.Guard<string>("ST_ADR").ToProper();
+            hosp.City = dr.Guard<string>("CITY_NAME").ToProper();
+            hosp.State = state != null ? state.Abbreviation : null;
+            hosp.Zip = zip;
+            hosp.County = county != null ? county.CountyFIPS : null;
+            hosp.Latitude = dr.Guard<double>("LATITUDE");
+            hosp.Longitude = dr.Guard<double>("LONGITUDE");
+            hosp.PhoneNumber = dr.Guard<string>("PHNE_NUM");
+            hosp.FaxNumber = dr.Guard<string>("FAX_PHNE_NUM");
+            hosp.Employees = dr.Guard<int>("EMPLEE_CNT");
+            hosp.TotalBeds = dr.Guard<int>("BED_CNT");
+            hosp.MedicareMedicaidProvider = medicareMedicaidProvider;
+            hosp.HospitalOwnership = dr.Guard<string>("MLT_OWND_FAC_ORG_SW").ToProper();
+            hosp.CardiacCatherizationService = cardiacCatherizationService;
+            hosp.DiagnosticXRayService = diagnosticXRayService;
+            hosp.EmergencyService = emergencyService;
+            hosp.PediatricService = pediatricService;
+            hosp.PediatricICUService = pediatricIcuService;
+            hosp.PharmacyService = pharmacyService;
+            hosp.TraumaService = traumaService;
+            hosp.UrgentCareService = urgentCareService;
         }
 
         /// <summary>

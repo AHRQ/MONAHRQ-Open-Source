@@ -22,7 +22,8 @@
   CHHealthTopicsCtrl.$inject = ['$scope', 'topics'];
   function CHHealthTopicsCtrl($scope, topics) {
     $scope.topicClick = topicClick;
-
+    $scope.share = share;
+    $scope.feedbackModal = feedbackModal;
     init();
 
     function init() {
@@ -64,6 +65,19 @@
       }
 
       $scope.model = model;
+    }
+
+    function share() {
+        window.location = buildShareUrl();
+    }
+
+    function feedbackModal() {
+        ModalFeedbackSvc.open($scope.config);
+    }
+
+    function buildShareUrl() {
+        var url = escape(window.location);
+        return "mailto:?to=&subject=Shared%20MONAHRQ%20Page&body=" + url;
     }
 
     function topicClick(topic) {

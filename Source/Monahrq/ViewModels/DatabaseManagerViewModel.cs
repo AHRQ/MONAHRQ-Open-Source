@@ -209,7 +209,7 @@ namespace Monahrq.ViewModels
         /// </value>
         [Import(LogNames.Session)]
         [IgnoreDataMember]
-        ILoggerFacade Logger { get; set; }
+        ILogWriter Logger { get; set; }
 
         #endregion
 
@@ -588,7 +588,9 @@ namespace Monahrq.ViewModels
             IsUpdating = DisableUIElements = true;
             SetBusyState(true);
 
-            Notify(string.Format("Starting upgrade of database '{0}'", AsBuilder.InitialCatalog), Category.Info, Priority.High);
+            var msg = string.Format("Starting upgrade of database '{0}'", AsBuilder.InitialCatalog);
+            Logger.Information(msg);
+            Notify(msg);
 
             //Commented below four lines till DatabaseCreator.DeleteAndCreate
 
@@ -1098,7 +1100,7 @@ namespace Monahrq.ViewModels
             }
             catch (Exception ex)
             {
-                Logger.Log(ex.GetBaseException().Message, Category.Exception, Priority.High);
+                Logger.Write(ex.GetBaseException());
                 return false;
             }
         }
@@ -1129,7 +1131,7 @@ namespace Monahrq.ViewModels
                 }
                 catch (Exception exc)
                 {
-                    Logger.Log(exc.GetBaseException().Message, Category.Exception, Priority.High);
+                    Logger.Write(exc);
 
                     EventAggregator.GetEvent<MessageUpdateEvent>()
                                    .Publish(new MessageUpdateEvent
@@ -1186,7 +1188,8 @@ namespace Monahrq.ViewModels
         /// </summary>
         private void PerformDatabaseUpgrade()
         {
-            Notify(string.Format("Begin Upgrade database \"{0}\".", OldConnectionStringbuilder.InitialCatalog), Category.Info, Priority.High);
+            Logger.Information("Starting upgrade of database {0}", OldConnectionStringbuilder.InitialCatalog);
+            Notify(string.Format("Begin Upgrade database \"{0}\".", OldConnectionStringbuilder.InitialCatalog));
 
             using (var dbUpgradeCon = new SqlConnection(OldConnectionStringbuilder.ConnectionString))
             {
@@ -1233,7 +1236,8 @@ namespace Monahrq.ViewModels
                 CanEditDatabaseName = true;
             }
 
-            Notify(string.Format("Database \"{0}\" successfully upgraded", AsBuilder.InitialCatalog), Category.Info, Priority.None);
+            Logger.Information($"Completed upgrade of database {AsBuilder.InitialCatalog}");
+            Notify(string.Format("Database \"{0}\" successfully upgraded", AsBuilder.InitialCatalog));
 
             EventAggregator.GetEvent<DisableNavigationEvent>().Publish(new DisableNavigationEvent { DisableUIElements = false });
 
@@ -1278,7 +1282,7 @@ namespace Monahrq.ViewModels
                     isProcessed = ProcessUpgradeScripts(commonUpdateScriptsPath, commonUpgradeScripts);
                     if (!isProcessed)
                     {
-                        Notify("There was an error running common upgrade scripts.", Category.Warn, Priority.High);
+                        Notify("There was an error running common upgrade scripts.");
                         return false;
                     }
                 }
@@ -1311,7 +1315,7 @@ namespace Monahrq.ViewModels
                                 }
                                 else
                                 {
-                                    Notify("There was an error running the post upgrade script", Category.Warn, Priority.High);
+                                    Notify("There was an error running the post upgrade script");
                                 }
                                 _isMajorUpgrade = true;
                                 break;
@@ -1331,9 +1335,10 @@ namespace Monahrq.ViewModels
                         actualVersion = GetSchemaVersion();
                         upgradeType = upgradeToVersion.CheckForUpdate(actualVersion);
                     }
-                    catch (Exception)
+                    catch (Exception e)
                     {
-                        Notify("Error occured while upgrading database.", Category.Warn, Priority.High);
+                        Notify("Error occured while upgrading database.");
+                        Logger.Write(e);
                         upgradeType = UpgradeTypeEnum.None;
                     }
                 }
@@ -1342,8 +1347,7 @@ namespace Monahrq.ViewModels
             }
             catch (Exception ex)
             {
-                var exe = ex.GetBaseException();
-                Logger.Log(string.Format("There was a error running upgrade scripts {0}{1}", Environment.NewLine, exe), Category.Warn, Priority.High);
+                Logger.Write(ex, "There was a error running upgrade scripts");
                 return false;
             }
             return true;
@@ -1483,13 +1487,7 @@ namespace Monahrq.ViewModels
 
                 string fileToExecuteWithFullPath = string.Concat(updateScriptsPath, "\\");
                 fileToExecuteWithFullPath = string.Concat(fileToExecuteWithFullPath, fileToExecute);
-                Logger.Log(string.Format("running {0}", fileToExecute), Category.Info, Priority.Low);
-
-                var query = File.ReadAllText(fileToExecuteWithFullPath);
-
-                // Below line is required to replace database name used in "Backup Database" script
-                query = query.Replace("@@DESTINATION@@", AsBuilder.InitialCatalog)
-                             .Replace("@@SOURCE@@", OldConnectionStringbuilder.InitialCatalog);
+                Logger.Information("Running update script {0}", fileToExecute);
 
                 var fileNames = fileToExecute.Split('_');
                 var userfriendlyFileName = string.Empty;
@@ -1497,8 +1495,14 @@ namespace Monahrq.ViewModels
                     userfriendlyFileName = Regex.Replace(fileNames[1], @"(([A-Z][a-z])+\s+)", " $1", RegexOptions.Compiled);
                 else
                     userfriendlyFileName = fileNames[0];
+                Notify(string.Format("Start upgrade over data for {0}", userfriendlyFileName));
 
-                Notify(string.Format("Start upgrade over data for {0}", userfriendlyFileName), Category.Info, Priority.High);
+                // Below line is required to replace database name used in "Backup Database" script
+                var query = File.ReadAllText(fileToExecuteWithFullPath)
+                    .Replace("@@DESTINATION@@", AsBuilder.InitialCatalog)
+                    .Replace("@@SOURCE@@", OldConnectionStringbuilder.InitialCatalog);
+
+                
 
                 if (!string.IsNullOrEmpty(query))
                 {
@@ -1529,9 +1533,8 @@ namespace Monahrq.ViewModels
                         catch (Exception ex)
                         {
                             var errorToUse = ex.GetBaseException();
-                            var message = string.Format("Error during upgrade. ({0}){1}{2}", errorToUse.Message,
-                                                        Environment.NewLine, errorToUse.StackTrace);
-                            Logger.Log(message, Category.Exception, Priority.High);
+                            Notify(string.Format("Error during upgrade: {0}", errorToUse.Message));
+                            Logger.Write(ex, "Error executing database upgrade script {0}", fileToExecute);
 
                             // In Case of exception, set result value to False
                             isUpgradeSucceeded = 0;
@@ -1540,7 +1543,7 @@ namespace Monahrq.ViewModels
                     }
                 }
 
-                Notify(string.Format("Finished upgrade data for {0}", userfriendlyFileName), Category.Info, Priority.High);
+                Notify(string.Format("Finished upgrade data for {0}", userfriendlyFileName));
 
             }
 
@@ -1553,10 +1556,9 @@ namespace Monahrq.ViewModels
         /// <param name="message">The message.</param>
         /// <param name="category">The category.</param>
         /// <param name="priority">The priority.</param>
-        private void Notify(string message, Category category, Priority priority)
+        private void Notify(string message)
         {
             EventAggregator.GetEvent<MessageUpdateEvent>().Publish(new MessageUpdateEvent { Message = message });
-            Logger.Log(message, category, priority);
         }
 
         /// <summary>
@@ -1833,7 +1835,7 @@ namespace Monahrq.ViewModels
                       .SetResultTransformer(new AliasToBeanResultTransformer(typeof(DatabaseInfo)))
                       .List<DatabaseInfo>();
 
-                Logger.Log(string.Format(result[0].ToString() + "Database Name: {0}", AsBuilder.InitialCatalog), Category.Info, Priority.High);
+                Logger.Write(string.Format(result[0].ToString() + "Database Name: {0}", AsBuilder.InitialCatalog));
             }
         }
 

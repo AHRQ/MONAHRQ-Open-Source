@@ -105,6 +105,8 @@
     $scope.startWalkthrough = startWalkthrough;
     $scope.beforeChangeEvent = beforeChangeEvent;
     $scope.onExit = onExit;
+    $scope.share = share;
+    $scope.feedbackModal = feedbackModal;
 
     init();
 
@@ -138,6 +140,19 @@
 
       findPhysicians();
       setupReportHeaderFooter();
+    }
+
+    function share() {
+        window.location = buildShareUrl();
+    }
+
+    function feedbackModal() {
+        ModalFeedbackSvc.open($scope.config);
+    }
+
+    function buildShareUrl() {
+        var url = escape(window.location);
+        return "mailto:?to=&subject=Shared%20MONAHRQ%20Page&body=" + url;
     }
 
     function setupReportHeaderFooter() {

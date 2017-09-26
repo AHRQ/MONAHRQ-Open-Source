@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Practices.Prism.Logging;
+using Monahrq.Infrastructure.Domain;
 using Monahrq.Infrastructure.Entities.Domain;
 
 namespace Monahrq.Infrastructure.BaseDataLoader
@@ -61,18 +62,23 @@ namespace Monahrq.Infrastructure.BaseDataLoader
                         if (!VersionStrategy.IsLoaded() &&
                             (ImportType == BaseDataImportStrategyType.Append || VersionStrategy.IsNewest()))
                         {
+                            Logger.Write($"Processing base data update for type {typeof(TEntity).Name} from file {file}");
+
+                            var rows = 0;
                             // start transaction
                             // Verify format file exists.
                             if (!File.Exists(Path.Combine(baseDataDir, FormatFile)))
                             {
-                                Logger.Log(string.Format("Format file \"{0}\" missing from the base data resources directory.", FormatFile), Category.Exception, Priority.Medium);
+                                Logger.Warning("Format file \"{0}\" missing from the base data resources directory.",
+                                    FormatFile);
                                 return;
                             }
 
                             // Verify data file exists.
                             if (!File.Exists(Path.Combine(baseDataDir, file)))
                             {
-                                Logger.Log(string.Format("Import file \"{0}\" missing from the base data resources directory.", file), Category.Exception, Priority.Medium);
+                                Logger.Warning("Import file \"{0}\" missing from the base data resources directory.",
+                                    file);
                                 return;
                             }
 
@@ -100,33 +106,35 @@ namespace Monahrq.Infrastructure.BaseDataLoader
 
                                 var con = session.Connection;
                                 ProvideFeedback(string.Format("Importing file {0}", file));
-                                using (var cmd = con.CreateCommand())
+                                using (var cmd2 = con.CreateCommand())
                                 {
-                                    cmd.CommandText = "BULK INSERT " + tableName + " FROM '" +
+                                    cmd2.CommandText = "BULK INSERT " + tableName + " FROM '" +
                                                       Path.Combine(baseDataDir, file) +
                                                       "' WITH (FIRSTROW = 2, FORMATFILE = '" +
                                                       Path.Combine(baseDataDir, FormatFile) + "')";
-                                    cmd.CommandTimeout = 6000;
-                                    cmd.ExecuteNonQuery();
+                                    cmd2.CommandTimeout = 6000;
+                                    rows = cmd2.ExecuteNonQuery();
                                 }
                             }
 
+                            SchemaVersion version;
                             using (var session = DataProvider.SessionFactory.OpenSession())
                             {
                                 // TODO: Add functionality to update existing version row in all scenarios to avoid multiple entries.- Jason
-                                var version = VersionStrategy.GetVersion(session);
-
+                                version = VersionStrategy.GetVersion(session);
                                 session.SaveOrUpdate(version);
                                 session.Flush();
                             }
-                            
+
+                            Logger.Information(
+                                $"Base data update completed for type {typeof(TEntity).Name}: {rows} rows inserted or updated; now at schema version {version}");
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                Logger.Log(ex.ToString(), Category.Exception, Priority.High);
+                Logger.Write(ex, "Error loading base data for type {0}", typeof(TEntity).Name);
             }
             finally
             {

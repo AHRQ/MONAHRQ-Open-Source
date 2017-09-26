@@ -199,14 +199,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>@echo ======= Copying...  
-@echo "$(TargetPath)"  "$(SolutionDir)Monahrq\$(OutDir)Modules\" 
-@echo  =======
-xcopy "$(TargetPath)"  "$(SolutionDir)Monahrq\$(OutDir)Modules\"    /y
-
-@echo ======= Copied...  
-@echo "$(TargetPath)"  "$(SolutionDir)Monahrq\$(OutDir)Modules\" 
-@echo  =======</PostBuildEvent>
+    <PostBuildEvent>xcopy "$(TargetPath)"  "$(SolutionDir)Monahrq\$(OutDir)Modules\"    /y</PostBuildEvent>
   </PropertyGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -226,5 +219,5 @@ xcopy "$(TargetPath)"  "$(SolutionDir)Monahrq\$(OutDir)Modules\"    /y
   <Target Name="AfterBuild">
   </Target>
   -->
-  <Import Project="$(SolutionDir)\MonahrqExtensionCommon.targets"/>
+  <Import Project="$(SolutionDir)\MonahrqExtensionCommon.targets" />
 </Project>

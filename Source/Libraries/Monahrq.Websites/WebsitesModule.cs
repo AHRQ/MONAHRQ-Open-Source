@@ -9,6 +9,7 @@ using Monahrq.Sdk.Regions;
 using System;
 using System.ComponentModel.Composition;
 using System.Linq;
+using Monahrq.Infrastructure;
 using Monahrq.Infrastructure.Extensions;
 using Monahrq.Infrastructure.Modules;
 using Monahrq.Sdk.Attributes.Wings;
@@ -27,14 +28,14 @@ namespace Monahrq.Websites
        DependsOnModuleNames = new [] { "Base Data" }, InitializationMode = InitializationMode.WhenAvailable)]
     public class WebsitesModule : IModule, IModuleRegionRegistrar
     {
-        private readonly ILoggerFacade _logger;
+        private readonly ILogWriter _logger;
         private readonly IPluginModuleTracker _pluginTracker;
         private IRegionManager _regionManager;
 
         [ImportingConstructor]
         public WebsitesModule(IServiceLocator locator)
         {
-            var logger = locator.GetInstance<ILoggerFacade>();
+            var logger = locator.GetInstance<ILogWriter>();
             var regionManager = locator.GetInstance<IRegionManager>();
             var pluginTracker = locator.GetInstance<IPluginModuleTracker>();
             if (logger == null)
@@ -98,7 +99,7 @@ namespace Monahrq.Websites
 			}
             catch (Exception exc)
             {
-                _logger.Log(exc.GetBaseException().Message, Category.Exception, Priority.High);
+                _logger.Write(exc);
                 throw;
             }
         }

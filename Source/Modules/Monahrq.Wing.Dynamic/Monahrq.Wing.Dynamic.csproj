@@ -275,15 +275,13 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>@echo ======= Copying...  
-@echo "$(TargetPath)"  "$(SolutionDir)Monahrq\$(OutDir)Modules\" 
-@echo  =======
-xcopy "$(TargetPath)"  "$(SolutionDir)Monahrq\$(OutDir)Modules\"    /y</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <PropertyGroup>
-    <PreBuildEvent>if not exist "$(SolutionDir)Monahrq\bin\$(ConfigurationName)\Custom\Wings" cmd /x /c mkdir "$(SolutionDir)Monahrq\bin\$(ConfigurationName)\Custom\Wings"
-if not exist "$(SolutionDir)Monahrq\bin\$(ConfigurationName)\Custom\Flutters" cmd /x /c mkdir "$(SolutionDir)Monahrq\bin\$(ConfigurationName)\Custom\Flutters"</PreBuildEvent>
+    <PreBuildEvent>
+    </PreBuildEvent>
   </PropertyGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -303,5 +301,5 @@ if not exist "$(SolutionDir)Monahrq\bin\$(ConfigurationName)\Custom\Flutters" cm
   <Target Name="AfterBuild">
   </Target>
   -->
-  <Import Project="$(SolutionDir)\MonahrqExtensionCommon.targets"/>
+  <Import Project="$(SolutionDir)\MonahrqExtensionCommon.targets" />
 </Project>

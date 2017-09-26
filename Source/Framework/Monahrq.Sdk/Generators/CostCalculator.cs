@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Practices.Prism.Logging;
 using Microsoft.Practices.ServiceLocation;
+using Monahrq.Infrastructure;
 using Monahrq.Infrastructure.Extensions;
 
 namespace Monahrq.Sdk.Generators
@@ -24,7 +25,7 @@ namespace Monahrq.Sdk.Generators
         readonly List<string> _measures = new List<string>();
         readonly List<string> _counties = new List<string>();
 
-        private readonly ILoggerFacade _logger;
+        private readonly ILogWriter _logger;
 
         //TODO: Dictionary key should be string for local hospital ID
         readonly Dictionary<string, decimal> _costToChargeRatio = new Dictionary<string, decimal>();
@@ -52,7 +53,7 @@ namespace Monahrq.Sdk.Generators
             _costToChargeRatio = costToChargeRatios;
             _datasetRecord = datasetRecord;
 
-            _logger = ServiceLocator.Current.GetInstance<ILoggerFacade>();
+            _logger = ServiceLocator.Current.GetInstance<ILogWriter>();
         }
 
         /// <summary>
@@ -282,12 +283,7 @@ EXEC (@Statement)";
                         }
                         catch (Exception exception)
                         {
-                            var exc = exception.InnerException ?? exception;
-                            var message =
-                                string.Format(
-                                    "Error occurred while calculating cost for Measure Code \"{1}\".{0}Error Message: {2}{0}Stack Trace: {3}",
-                                    System.Environment.NewLine, m, exc.Message, exc.StackTrace);
-                            _logger.Log(message, Category.Exception, Priority.High);
+                            _logger.Write(exception, "Error calculating cost for Measure Code \"{0}\"", m);
                         }
                     }
                 }

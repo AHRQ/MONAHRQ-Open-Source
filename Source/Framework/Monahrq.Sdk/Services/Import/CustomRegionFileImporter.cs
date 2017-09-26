@@ -10,6 +10,7 @@ using Monahrq.Infrastructure.FileSystem;
 using Monahrq.Infrastructure.Services.Hospitals;
 using Monahrq.Sdk.Events;
 using LinqKit;
+using Monahrq.Infrastructure;
 
 namespace Monahrq.Sdk.Services.Import
 {
@@ -33,7 +34,7 @@ namespace Monahrq.Sdk.Services.Import
             , IDomainSessionFactoryProvider provider
             , IHospitalRegistryService hospitalRegistryService
             , IEventAggregator events
-            , ILoggerFacade logger)
+            , [Import(LogNames.Session)] ILogWriter logger)
             : base(folder, provider, hospitalRegistryService, events, logger) { }
 
         /// <summary>

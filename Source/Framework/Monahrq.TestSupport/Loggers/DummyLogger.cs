@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -50,6 +52,21 @@ namespace Monahrq.TestSupport.Loggers
 
         public void Information(string message, params object[] args)
         {
+        }
+
+        public void Write(Exception exception, string message, params object[] args)
+        {
+            
+        }
+
+        public void Write(Exception exception, TraceEventType severity, string message, params object[] args)
+        {
+            
+        }
+
+        public void Write(Exception exception, TraceEventType severity, IDictionary items, string message, params object[] args)
+        {
+            
         }
     }
 }

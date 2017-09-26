@@ -143,7 +143,7 @@ end";
                     catch(Exception exc)
                     {
                         trans.Rollback();
-                        options.Logger.Write(exc.GetBaseException(), System.Diagnostics.TraceEventType.Error);
+                        options.Logger.Write(exc);
                     }
                 }
             }

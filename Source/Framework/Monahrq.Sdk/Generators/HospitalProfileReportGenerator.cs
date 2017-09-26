@@ -46,7 +46,7 @@ namespace Monahrq.Sdk.Generators
             }
             catch (Exception ex)
             {
-                Logger.Write(ex.GetBaseException());
+                Logger.Write(ex, "Error loading data for report {0}", this.ActiveReport.Name);
                 return false;
             }
         }
@@ -162,7 +162,7 @@ namespace Monahrq.Sdk.Generators
             }
             catch (Exception ex)
             {
-                Logger.Write(ex.GetBaseException());
+                Logger.Write(ex, "Error generating data file for report {0}", this.ActiveReport.Name);
                 return false;
             }
             return true;

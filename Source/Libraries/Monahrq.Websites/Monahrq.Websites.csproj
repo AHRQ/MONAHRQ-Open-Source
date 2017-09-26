@@ -198,12 +198,22 @@
     <Compile Include="Converters\TextToFontFamilyConverter.cs" />
     <Compile Include="Converters\TopicsMeasuresDisplayConverter.cs" />
     <Compile Include="Converters\TrendingYearConverter.cs" />
-    <Compile Include="Converters\ValidationOutcomeMessageConverter.cs" />
     <Compile Include="Converters\WebsiteMeasuresDisplayConverter.cs" />
     <Compile Include="Converters\ZeroFilterVisibilityConverter.cs" />
     <Compile Include="Events\EventDefinitions.cs" />
+    <Compile Include="Events\GenericWebsiteEventArgs.cs" />
+    <Compile Include="Events\ItemsForNewlyAddedDatasetsEventArgs.cs" />
     <Compile Include="Events\NewReportCreatedEvent.cs" />
-    <Compile Include="Events\WebsiteEvents.cs" />
+    <Compile Include="Events\RequestSelectedWebsiteEvent.cs" />
+    <Compile Include="Events\SelectedItemsForNewlyAddedDatasets.cs" />
+    <Compile Include="Events\SelectedTopicAssigmentEvent.cs" />
+    <Compile Include="Events\UpdateTabContextEventArgs.cs" />
+    <Compile Include="Events\WebsiteDeletedEvent.cs" />
+    <Compile Include="Events\WebsiteCreatedOrUpdatedEvent.cs" />
+    <Compile Include="Events\WebsiteJumpToTabEvent.cs" />
+    <Compile Include="Events\WebsiteJumpToTabEventArgs.cs" />
+    <Compile Include="Events\WebsiteNextTabEvent.cs" />
+    <Compile Include="Events\WebsiteSelectedEvent.cs" />
     <Compile Include="Helpers\WebBrowserHelper.cs" />
     <Compile Include="Model\AudienceModel.cs">
       <SubType>
@@ -229,19 +239,19 @@
     <Compile Include="ViewModels\IWebsitePublishViewModel.cs" />
     <Compile Include="ViewModels\IWebsiteViewModel.cs" />
     <Compile Include="ViewModels\BatchMeasureModel.cs" />
+    <Compile Include="ViewModels\Publish\ValidationOutcome.cs" />
+    <Compile Include="ViewModels\Publish\ValidationResultViewModelFactory.cs" />
     <Compile Include="ViewModels\WebsiteEditMeasureViewModel.cs" />
     <Compile Include="ViewModels\WebsitePagesEditReportViewModel.cs" />
     <Compile Include="ViewModels\WebsitePagesEditStaticViewModel.cs" />
     <Compile Include="ViewModels\WebsitePagesListViewModel.cs" />
     <Compile Include="ViewModels\WebsitePageModel.cs" />
-    <Compile Include="ViewModels\Publish\IValidationResultViewModel.cs" />
     <Compile Include="ViewModels\Publish\ValidationExtensions.cs" />
     <Compile Include="ViewModels\Publish\ValidationResults.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ValidationResults.resx</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\Publish\ValidationResultViewModel.cs" />
     <Compile Include="ViewModels\WebsitePagesViewModel.cs" />
     <Compile Include="ViewModels\WebsiteReportsViewModel.cs">
       <SubType>
@@ -496,15 +506,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>@echo ======= Copying...
-@echo "$(TargetPath)"  "$(SolutionDir)Monahrq\$(OutDir)Modules\"
-@echo  =======
-xcopy "$(TargetPath)"  "$(SolutionDir)Monahrq\$(OutDir)Modules\"    /y
-     
-@echo ======= Copied...
-@echo "$(TargetPath)"  "$(SolutionDir)Monahrq\$(OutDir)Modules\"
-@echo  =======
-</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

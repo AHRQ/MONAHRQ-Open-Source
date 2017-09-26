@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <GrouperPath>$(ProjectDir)\Grouper\Msgmce</GrouperPath>
+    <DownloadUrl>https://github.com/AHRQ/MONAHRQ-Open-Source/releases/download/v7.4.1/MS-DRG.Grouper.v35.zip</DownloadUrl>
+  </PropertyGroup>
+
+  <Target Name="VerifyGrouper">
+    <PropertyGroup>
+      <GrouperExists Condition="Exists('$(GrouperPath)\msgmce.jar')">true</GrouperExists>
+    </PropertyGroup>
+    <CallTarget Targets="PrepareGrouper" Condition="'$(GrouperExists)' != 'true'"/>
+    <Message Condition="'$(GrouperExists)' == 'true'" Text="Grouper already available. Skipping download." Importance="Normal"/>
+
+    <CallTarget Targets="AddGrouperItemsToProject"/>
+  </Target>
+
+  <Target Name="AddGrouperItemsToProject">
+    <ItemGroup>
+      <None Include="Grouper\Msgmce\**">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+  </Target>
+
+  <Target Name="PrepareGrouper">
+    <MakeDir Directories="$(GrouperPath)"/>
+
+    <CallTarget Targets="DownloadGrouper" Condition="!Exists('$(BaseIntermediateOutputPath)\grouper.zip')"/>
+
+    <Message Importance="High" Text="Extracting MS-DRG Grouper to $(GrouperPath)"/>
+    <Extract ZipFileName="$(BaseIntermediateOutputPath)\grouper.zip"
+             TargetDirectory="$(ProjectDir)\Grouper\Msgmce"/>
+  </Target>
+
+  <Target Name="DownloadGrouper">
+    <Message Importance="High" Text="Downloading MS-DRG Grouper from $(DownloadUrl)"/>
+    <DownloadFile Url="$(DownloadUrl)"
+                  File="grouper.zip"
+                  OutputFolder="$(BaseIntermediateOutputPath)"/>
+  </Target>
+
+  <UsingTask TaskName="DownloadFile" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll">
+    <ParameterGroup>
+      <Url ParameterType="System.String" Required="true" />
+      <File ParameterType="System.String" Required="false" />
+      <OutputFolder ParameterType="System.String" Required="false" />
+    </ParameterGroup>
+    <Task>
+      <Using Namespace="System.Web"/>
+      <Code Type="Fragment" Language="cs">
+        <![CDATA[
+            using (var client = new System.Net.WebClient()) { 
+              client.DownloadFile(Url, (OutputFolder != null ? OutputFolder + "/" : "") + (File ?? System.IO.Path.GetFileName(new Uri(Url).LocalPath))); 
+            }
+        ]]>
+      </Code>
+    </Task>
+  </UsingTask>
+
+  <UsingTask TaskName="Extract" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll">
+    <ParameterGroup>
+      <ZipFileName ParameterType="System.String" Required="true"/>
+      <TargetDirectory ParameterType="System.String" Required="true"/>
+    </ParameterGroup>
+    <Task>
+      <Reference Include="System.IO.Compression.FileSystem"/>
+      <Using Namespace="System.IO"/>
+      <Using Namespace="System.IO.Compression"/>
+      <Code Type="Fragment" Language="cs">
+        <![CDATA[
+  //ZipFile.ExtractToDirectory(ZipFileName, TargetDirectory);
+  using (var archive = ZipFile.OpenRead(ZipFileName)) {
+    foreach (var entry in archive.Entries) {
+      entry.ExtractToFile(Path.Combine(TargetDirectory, entry.FullName), true);
+    }
+  }
+]]>
+      </Code>
+    </Task>
+  </UsingTask>
+</Project>

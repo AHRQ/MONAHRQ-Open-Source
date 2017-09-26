@@ -182,7 +182,7 @@ namespace Monahrq.Infrastructure.BaseDataLoader
             }
             catch (Exception ex)
             {
-                Logger.Write(ex);
+                Logger.Write(ex, $"Error importing data for entity type {typeof(TEntity).Name} using strategy {typeof(TStrategy).Name}");
             }
         }
 
@@ -233,7 +233,7 @@ namespace Monahrq.Infrastructure.BaseDataLoader
             }
             catch (Exception ex)
             {
-                Logger.Write(ex);
+                Logger.Write(ex, "Error performing bulk insert of data for entity {0}", typeof(TEntity).Name);
             }
         }
 

@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using Microsoft.Practices.Prism.Logging;
+using Monahrq.Infrastructure.Domain;
 using Monahrq.Infrastructure.Entities.Domain;
 
 namespace Monahrq.Infrastructure.BaseDataLoader
@@ -32,6 +33,9 @@ namespace Monahrq.Infrastructure.BaseDataLoader
             {
                 if (!VersionStrategy.IsLoaded() && VersionStrategy.IsNewest())
                 {
+                    Logger.Information($"Processing base data update for type {typeof(TEntity).Name}");
+
+                    var rows = 0;
                     // start transaction
                     using (var session = DataProvider.SessionFactory.OpenStatelessSession())
                     {
@@ -62,23 +66,27 @@ namespace Monahrq.Infrastructure.BaseDataLoader
                                 if (temp != null)
                                 {
                                     bulkImporter.Insert(temp);
+                                    rows++;
                                 }
                             }
                         }
                     }
 
+                    SchemaVersion version;
                     using (var session = DataProvider.SessionFactory.OpenSession())
                     {
-                        var version = VersionStrategy.GetVersion(session);
-
+                        version = VersionStrategy.GetVersion(session);
                         session.SaveOrUpdate(version);
                         session.Flush();
                     }
+
+                    Logger.Information($"Base data update completed for type {typeof(TEntity).Name}: {rows} rows inserted or updated; now at schema version {version}");
                 }
             }
             catch (Exception ex)
             {
-                Logger.Log(ex.ToString(), Category.Warn, Priority.Medium);
+                Logger.Write(ex, "Error importing {0} enumeration values for data type {1}", typeof(TEnum).Name,
+                    typeof(TEntity).Name);
             }
         }
     }

@@ -127,7 +127,7 @@ namespace Monahrq.Sdk.ViewModels
         /// The logger.
         /// </value>
         [Import(LogNames.Session)]
-        protected ILoggerFacade Logger { get; set; }
+        protected ILogWriter Logger { get; set; }
 
         /// <summary>
         /// Gets or sets the region manager.
@@ -310,23 +310,10 @@ namespace Monahrq.Sdk.ViewModels
                         Notify(string.Format("{0} {1} has been successfully saved.", entity.Name,
                                                               typeof(TEntity).Name));
                     }
-                    catch (GenericADOException exc)
-                    {
-                        trans.Rollback();
-                        var exception = exc.GetBaseException();
-                        var fullMessage = exception.Message + System.Environment.NewLine + exception.StackTrace;
-                        Logger.Log(fullMessage, Category.Exception, Priority.High);
-                        NotifyError(exception, typeof(TEntity), entity.Name);
-                        throw;
-                    }
                     catch (Exception exc)
                     {
                         trans.Rollback();
-                        var exception = exc.GetBaseException();
-                        var fullMessage = exception.Message + System.Environment.NewLine + exception.StackTrace;
-                        Logger.Log(fullMessage, Category.Exception, Priority.High);
-
-                        NotifyError(exception, typeof(TEntity), entity.Name);
+                        LogEntityError(exc, typeof(TEntity), entity.Name);
                     }
                 }
             }
@@ -376,12 +363,7 @@ namespace Monahrq.Sdk.ViewModels
                     catch (Exception exc)
                     {
                         trans.Rollback();
-
-                        var exception = exc.GetBaseException();
-                        var fullMessage = exception.Message + System.Environment.NewLine + exception.StackTrace;
-                        Logger.Log(fullMessage, Category.Exception, Priority.High);
-
-                        NotifyError(exception, typeof(TEntity), entityName);
+                        LogEntityError(exc, typeof(TEntity), entityName);
                         //throw;
                     }
                 }
@@ -409,12 +391,7 @@ namespace Monahrq.Sdk.ViewModels
                     catch (Exception exc)
                     {
                         trans.Rollback();
-
-                        var exception = exc.GetBaseException();
-                        var fullMessage = exception.Message + System.Environment.NewLine + exception.StackTrace;
-                        Logger.Log(fullMessage, Category.Exception, Priority.High);
-
-                        NotifyError(exception, typeof(TEntity), obj.Name);
+                        LogEntityError(exc, typeof(TEntity), obj.Name);
                     }
                 }
             }
@@ -447,15 +424,8 @@ namespace Monahrq.Sdk.ViewModels
                     }
                     catch (Exception exc)
                     {
-                        var exception = exc.GetBaseException();
-                        var fullMessage = exception.Message + System.Environment.NewLine + exception.StackTrace;
-                        Logger.Log(fullMessage, Category.Exception, Priority.High);
-
                         trans.Rollback();
-
-                        NotifyError(exception, typeof(TEntity), obj.Name);
-
-                        //throw;
+                        LogEntityError(exc, typeof(TEntity), obj.Name);
                     }
                 }
             }
@@ -523,10 +493,9 @@ namespace Monahrq.Sdk.ViewModels
         /// <param name="exc">The exc.</param>
         /// <param name="entityType">Type of the entity.</param>
         /// <param name="entityName">Name of the entity.</param>
-        protected void NotifyError(Exception exc, Type entityType, string entityName)
+        protected void LogEntityError(Exception exc, Type entityType, string entityName, string action = "unknown")
         {
-            EventAggregator.GetEvent<ServiceErrorEvent>()
-                           .Publish(new ServiceErrorEventArgs((exc.InnerException ?? exc), typeof(TEntity).Name, entityName));
+            this.Logger.Write(exc, "Error acting on entity {0} of type {1}, action = {2}", entityName, typeof(TEntity).Name, action);
         }
 
         #endregion

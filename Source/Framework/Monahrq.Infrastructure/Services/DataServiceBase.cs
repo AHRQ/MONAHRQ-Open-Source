@@ -749,8 +749,8 @@ namespace Monahrq.Infrastructure.Services
                     {"Enitity Type", entityDescriptor.Type},
                     {"Name", entityDescriptor.Name},
                     {"ID", entityDescriptor.Id}
-
-                   });
+                },
+                "Error in generic Data Access Layer");
 
             /*Publish Error*/
             ServiceLocator.Current.GetInstance<IEventAggregator>()

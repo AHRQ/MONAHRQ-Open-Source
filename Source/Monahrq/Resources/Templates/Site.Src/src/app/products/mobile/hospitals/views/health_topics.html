@@ -1,0 +1,33 @@
+<section class="sharethis-section">
+    <nav class="sharethis-nav">
+        <ul class="clearfix">
+            <li>
+                <button data-ng-click="share()" class="btn-m-secondary">Share This Page</button>
+            </li>
+            <li>
+                <button class="btn-m-secondary" data-ng-click="feedbackModal()" data-ng-if="config.products.consumer.website_FeedBackEmail">Feedback</button>
+            </li>
+        </ul>
+    </nav>
+</section>
+<section class="section-head-blocks clearfix">
+    <h2 class="second-heading">Health Topics</h2>
+    <p>Use the information in the health topic to better understand the quality ratings used to compare hospitals and make an informed decision about your care. <span>Click on a box below to learn more about a topic of interest</span>, then see how hospitals compare in that area.</p>
+</section>
+<section class="health-topic-item-blocks clearfix">
+    <div class="topic-item-box clearfix" data-ng-repeat="item in model" data-ng-if="item.type == 'summary' || visibleTopicDesc == item.topic.TopicCategoryID" data-ng-class="{
+            'active': visibleTopicDesc == item.topic.TopicCategoryID,
+            'summary': item.type == 'summary',
+            'detail': item.type == 'detail'
+           }" ng-click="$event.stopPropagation()" data-ui-sref="top.consumer.hospitals.infographic({id: item.topic.TopicCategoryID})">
+        <div data-ng-if="item.type == 'summary'">
+            <span class="topic-title">{{item.topic.Name}}</span>
+            <img data-ng-src="{{'themes/consumer/assets/infographic/' + item.topic.TopicIcon}}" alt="{{item.topic.Name}}">
+        </div>
+    </div>
+</section>
+<section class="bottom-link-blocks clearfix">
+    <h3>Need Surgery?</h3>
+    <p>Make Sure You are Safe as Possible </p>
+    <a href="javascript:;" data-ui-sref="top.consumer.infographic" class="btn btn-all">View the visual report</a>
+</section>

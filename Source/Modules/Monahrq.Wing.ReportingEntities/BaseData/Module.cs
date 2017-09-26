@@ -53,11 +53,11 @@ namespace Monahrq.Wing.ReportingEntities.BaseData
         /// <param name="dataLoaders">The data loaders.</param>
         [ImportingConstructor]
         public Module(
-                     [Import(LogNames.Session)]ILogWriter logger, IDomainSessionFactoryProvider factoryProvider,
+                     IDomainSessionFactoryProvider factoryProvider,
                      [ImportMany(DataImportContracts.BaseData)] IEnumerable<IProgrammability> programmability,
                      [ImportMany(DataImportContracts.BaseData)] IEnumerable<IDataLoader> dataLoaders
                      )
-            : base(logger, factoryProvider, 
+            : base(factoryProvider, 
                     dataLoaders.Where(d=>d.DataProvider.VersionAttribute.Version == dataLoaders.Max(d1=>d1.DataProvider.VersionAttribute.Version)).Distinct().Prioritize())
         {
 

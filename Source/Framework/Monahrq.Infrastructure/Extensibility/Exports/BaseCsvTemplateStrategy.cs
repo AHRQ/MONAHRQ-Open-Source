@@ -145,13 +145,11 @@ namespace Monahrq.Infrastructure.Extensibility.Exports
                 }
                 catch (Exception exc)
                 {
-                    var exc2Use = exc.GetBaseException();
-
-                    Logger.Write(exc2Use, TraceEventType.Error);
+                    Logger.Write(exc, "Error executing CSV export");
 
                     asyncResult.Success = false;
                     asyncResult.Object = null;
-                    asyncResult.Exception = exc2Use;
+                    asyncResult.Exception = exc;
 
                     return Task.FromResult(asyncResult); ;
                 }

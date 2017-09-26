@@ -48,11 +48,7 @@ namespace Monahrq.Measures
         /// The logger.
         /// </value>
         [Import(LogNames.Session)]
-        private ILoggerFacade Logger
-        {
-            get;
-            set;
-        }
+        private ILogWriter Logger { get; set; }
 
         /// <summary>
         /// The plugin tracker
@@ -148,7 +144,7 @@ namespace Monahrq.Measures
             }
             catch (Exception exc)
             {
-                Logger.Log(exc.GetBaseException().Message, Category.Exception, Priority.High);
+                Logger.Write(exc, "Error registering views for region MeasuresManageRegion");
                 throw;
             }
 

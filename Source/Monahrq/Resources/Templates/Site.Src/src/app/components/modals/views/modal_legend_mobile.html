@@ -1,0 +1,28 @@
+<div data-mh-tabs="getDefaultTab()">
+  <div class="modal-header legend-overlay">
+    <button data-ng-click="$close()" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h1 id="modal-header-title">Understanding This Report</h1>
+    <ul class="nav nav-tabs" data-mh-tab-list style="display:none;">
+      <li data-ng-if="hasHelp('legend')" class="modal-title" data-mh-tab="'legend'" data-mh-tab-label="'Legend'"></li>
+      <li data-ng-if="hasHelp('interpretation')" class="modal-title" data-mh-tab="'interpretation'" data-mh-tab-label="''"></li>
+    </ul>
+  </div>
+  <div class="modal-body legend-overlay">
+    <section class="help-legend" data-mh-tab-panel="'legend'">
+      <ul data-ng-if="showSymbol()">
+        <li><img src="themes/base/assets/symbol_at_sm.png" width="15" height="15" alt="" /> The hospital scored at average.</li>
+        <li><img src="themes/base/assets/symbol_above_sm.png" width="15" height="13" alt="" /> The hospital scored better than average.</li>
+        <li><img src="themes/base/assets/symbol_below_sm.png" width="15" height="15" alt="" /> The hospital scored below average.</li>
+        <li><span class="pull-left">Not enough<br />data to report</span> The Hospital did not have enough data to report.</li>
+      </ul>
+      <ul data-ng-if="showBar()">
+        <li class="avg"><img src="themes/base/assets/symbol_bar_at_sm.png" width="12" height="12" alt=""/>Meets average</li>
+        <li class="above-avg"><img src="themes/base/assets/symbol_bar_above_sm.png" width="12" height="12" alt=""/>Better than average rating</li>
+        <li class="below-avg"><img src="themes/base/assets/symbol_bar_below_sm.png" width="12" height="12" alt=""/>Below average rating</li>
+      </ul>
+    </section>
+    <section class="help-interpretation" data-mh-tab-panel="'interpretation'">
+      <div data-ng-bind-html="help.interpretation"></div>
+    </section>
+  </div>
+</div>

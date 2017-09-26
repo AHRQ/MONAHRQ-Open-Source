@@ -23,6 +23,8 @@ using Microsoft.Practices.ServiceLocation;
 using Monahrq.Infrastructure.Configuration;
 using Monahrq.Infrastructure.Types;
 using System.Windows.Input;
+using Monahrq.Infrastructure;
+
 namespace Monahrq.Sdk.Services.Import
 {
     /// <summary>
@@ -59,7 +61,7 @@ namespace Monahrq.Sdk.Services.Import
         /// <value>
         /// The logger.
         /// </value>
-        protected ILoggerFacade Logger { get; private set; }
+        protected ILogWriter Logger { get; private set; }
         /// <summary>
         /// Gets the count inserted.
         /// </summary>
@@ -217,7 +219,7 @@ namespace Monahrq.Sdk.Services.Import
             , IDomainSessionFactoryProvider provider
             , IHospitalRegistryService hospitalRegistryService
             , IEventAggregator events
-            , ILoggerFacade logger)
+            , [Import(LogNames.Session)] ILogWriter logger)
         {
             Provider = provider;
             Logger = logger;
@@ -734,8 +736,8 @@ namespace Monahrq.Sdk.Services.Import
             }
             catch (IOException exc)
             {
-                var error = exc.InnerException ?? exc;
-                Logger.Log(error.Message, Category.Exception, Priority.High);
+                Logger.Write(exc, "Error importing file \"{0}\"",
+                    dlg.FileName);
 
                 var message = string.Format("Please close file\"{0}\" before trying to import.",
                                             dlg.FileName.SubStrAfterLast(@"\"));

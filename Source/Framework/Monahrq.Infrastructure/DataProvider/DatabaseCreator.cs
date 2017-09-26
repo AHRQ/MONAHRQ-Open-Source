@@ -19,7 +19,7 @@ namespace Monahrq.Sdk.DataProvider
         const string DELETE_SUCCESS_MESSAGE = "Database deleted.";
 
         [Import(LogNames.Session)]
-        ILoggerFacade Logger { get; set; }
+        ILogWriter Logger { get; set; }
 
         // Delete the database
         public void Delete(string connectionString)
@@ -82,7 +82,7 @@ namespace Monahrq.Sdk.DataProvider
             }
             catch (Exception ex)
             {
-                Logger.Log(ex.GetBaseException().Message, Category.Exception, Priority.High);
+                Logger.Write(ex, "Error truncating database log");
             }
         }
 

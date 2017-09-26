@@ -162,6 +162,13 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="CostQualityReportGenerator.cs" />
+    <Compile Include="DependencyChecks\Messages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Messages.resx</DependentUpon>
+    </Compile>
+    <Compile Include="DependencyChecks\PQI13.cs" />
+    <Compile Include="DependencyChecks\RetiredIndicators.cs" />
     <Compile Include="GenericInfographicTopicsReportGenerator.cs" />
     <Compile Include="Model\FileProgress.cs" />
     <Compile Include="Provider\ImportProcessor.cs" />
@@ -279,6 +286,10 @@
     <Content Include="Resources\Database\HospitalCompare\UDF-fnQualitySelectedMeasureTitle.sql">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="DependencyChecks\Messages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -363,17 +374,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>@echo ======= Copying...  
-@echo "$(TargetPath)"  "$(SolutionDir)Monahrq\$(OutDir)Modules\" 
-@echo  =======
-xcopy "$(TargetPath)"  "$(SolutionDir)Monahrq\$(OutDir)Modules\"    /y
-xcopy "$(TargetDir)\Measures\*.csv"  "$(SolutionDir)Monahrq\$(OutDir)Measures\"    /y
-xcopy /s /e "$(TargetDir)\Resources\*.sql"  "$(SolutionDir)Monahrq\$(OutDir)Resources\"    /y
-
-@echo ======= Copied...  
-@echo "$(TargetPath)"  "$(SolutionDir)Monahrq\$(OutDir)Modules\" 
-@echo  =======
-</PostBuildEvent>
+    <PostBuildEvent>xcopy "$(TargetDir)\Measures\*.csv"  "$(SolutionDir)Monahrq\$(OutDir)Measures\"    /y
+xcopy /s /e "$(TargetDir)\Resources\*.sql"  "$(SolutionDir)Monahrq\$(OutDir)Resources\"    /y</PostBuildEvent>
   </PropertyGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -393,5 +395,5 @@ xcopy /s /e "$(TargetDir)\Resources\*.sql"  "$(SolutionDir)Monahrq\$(OutDir)Reso
   <Target Name="AfterBuild">
   </Target>
   -->
-  <Import Project="$(SolutionDir)\MonahrqExtensionCommon.targets"/>
+  <Import Project="$(SolutionDir)\MonahrqExtensionCommon.targets" />
 </Project>

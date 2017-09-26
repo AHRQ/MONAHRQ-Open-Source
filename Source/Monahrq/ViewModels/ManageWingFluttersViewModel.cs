@@ -111,7 +111,7 @@ namespace Monahrq.ViewModels
         /// </value>
         [Import(LogNames.Session)]
         [IgnoreDataMember]
-        ILoggerFacade Logger { get; set; }
+        ILogWriter Logger { get; set; }
 
         /// <summary>
         /// Gets or sets the logger.
@@ -609,15 +609,9 @@ namespace Monahrq.ViewModels
 
                     #region "Asynchronous Aproach"
                     var result = await DynamicTargetService.InstallDynamicTargetAsync(dynamicTarget, wing, session, DynamicTargetService.Context.Value,
-                        InstallWingProgress
-
-                        , exceptionResult =>
-                        {
-                            StatusLog.Add(string.Format("An error occurred while trying to install wing \"{0}\". Please try again and if the error persists, please contact technical assistance for help.",
-                                                              dynamicTarget.Name));
-
-                            Logger.Log(exceptionResult.Message, Category.Exception, Priority.High);
-                        });
+                        InstallWingProgress);
+                    if (!result)
+                        StatusLog.Add($"An error occurred while trying to install wing \"{dynamicTarget.Name}\". Please try again and if the error persists, please contact technical assistance for help.");
                     #endregion
 
                     #region synchronous install
@@ -631,7 +625,7 @@ namespace Monahrq.ViewModels
                     //    case OpenSourceInstallFlags.Error:
                     //        // TODO: Add message for user.
                     //        uiContext.Send(x => StatusLog.Add(string.Format("An error occurred while trying to install wing \"{0}\". Please try again and if the error persists, please contact technical assistance for help.", dynamicTarget.Name)), null);
-                    //        Logger.Log(result.Message, Category.Exception, Priority.High);
+                    //        Logger.Write(result);
                     //        break;
                     //    case OpenSourceInstallFlags.Success:
                     //        uiContext.Send(x => StatusLog.Add(
@@ -751,7 +745,7 @@ namespace Monahrq.ViewModels
                     if (exceptionResult.Status == OSFlutterInstallFlags.Error)
                     {
                         uiContext.Send(x => StatusLog.Add(exceptionResult.Message), null);
-                        Logger.Log(installResult.Message, Category.Exception, Priority.High);
+                        Logger.Warning(installResult.ToString());
 
                         installResult = exceptionResult;
                     }
@@ -810,7 +804,7 @@ namespace Monahrq.ViewModels
                                                       "the error still remains after trying to uninstall again. Please contact Monahrq technical assistance.",
                                                       dynamicTarget.Name);
                     StatusLog.Add(statusMessage);
-                    Logger.Log(exceptionResult.Exception.Message, Category.Exception, Priority.High);
+                    Logger.Write(exceptionResult.Exception);
                 });
 
 
@@ -855,7 +849,7 @@ namespace Monahrq.ViewModels
                                                       "the error still remains after trying to uninstall again. Please contact Monahrq technical assistance.",
                                                      flutter.Name);
                     uiContext.Send(x => StatusLog.Add(statusMessage), null);
-                    Logger.Log(errorCallback.Exception.Message, Category.Exception, Priority.High);
+                    Logger.Write(errorCallback.Exception);
 
                     //if (FlutterItems.Contains(flutter))
                     //    FlutterItems.Remove(flutter);
@@ -924,7 +918,7 @@ namespace Monahrq.ViewModels
                     catch (Exception exc)
                     {
 
-                        Logger.Log((exc.InnerException ?? exc).Message, Category.Exception, Priority.High);
+                        Logger.Write((exc.InnerException ?? exc));
                         EventAggregator.GetEvent<ServiceErrorEvent>()
                                        .Publish(new ServiceErrorEventArgs((exc.InnerException ?? exc),
                                                                           typeof(Target).Name, target.Name));

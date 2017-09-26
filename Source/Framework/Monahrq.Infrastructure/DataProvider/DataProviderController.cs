@@ -88,10 +88,6 @@ namespace Monahrq.Sdk.DataProvider
 
                     try
                     {
-#if FIX_DataProviderControllerException_NOT_CAUGHT      // REMOVE this code after adding exception handler for throw from the catch block below. Enable this code to test.
-                        int k = 0;
-                        int j = 3/k;
-#endif
                         using (var rdr = cmd.ExecuteReader())
                         {
                             while (n < nrows && rdr.Read())
@@ -106,12 +102,14 @@ namespace Monahrq.Sdk.DataProvider
                     {
                         Logger.Write(ex, System.Diagnostics.TraceEventType.Error,
                             new Dictionary<string, object>()
-                                {
-                                    {"Action", string.Format("Read Table [{0}] failed on data provider: {1}", tableName, Name)}
-                                    ,{"sql", cmd.CommandText}
-                                    ,{"connectionString", connectionString}
-                                    ,{"tableName", tableName}
-                                    ,{ "nRows", nrows}});
+                            {
+                                { "Action", string.Format("Read Table [{0}] failed on data provider: {1}", tableName, Name) },
+                                {"sql", cmd.CommandText},
+                                {"connectionString", connectionString}, 
+                                {"tableName", tableName},
+                                {"nRows", nrows}
+                            },
+                            "Error selecting data from table {0}", tableName);
 
                         // BUG: this throw is not caught in (some) wizard steps. One cause of the exceptions has been fixed, so to test that
                         // this throw gets caught now, we need to temporarily hard-code divide-by-zero inside the try block above.

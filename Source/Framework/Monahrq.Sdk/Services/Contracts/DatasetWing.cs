@@ -15,24 +15,6 @@ namespace Monahrq.Sdk.Services.Contracts
     public abstract class DatasetWing<T> : IDatasetWing<T>
     {
         /// <summary>
-        /// Gets or sets the session log.
-        /// </summary>
-        /// <value>
-        /// The session log.
-        /// </value>
-        [Import(LogNames.Session)]
-        ILoggerFacade SessionLog { get; set; }
-
-        /// <summary>
-        /// Gets or sets the operations log.
-        /// </summary>
-        /// <value>
-        /// The operations log.
-        /// </value>
-        [Import(LogNames.Operations)]
-        ILoggerFacade OperationsLog { get; set; }
-
-        /// <summary>
         /// The name of this <see cref="DatasetWing{T}"/> as defined by <see cref="WingModuleAttribute"/>
         /// </summary>
         public string Name

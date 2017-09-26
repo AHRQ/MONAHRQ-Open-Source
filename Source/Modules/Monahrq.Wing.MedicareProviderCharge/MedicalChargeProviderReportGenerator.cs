@@ -160,7 +160,7 @@ namespace Monahrq.Wing.MedicareProviderCharge
             }
             catch (Exception ex)
             {
-                Logger.Write(ex.InnerException ?? ex);
+                Logger.Write(ex, "Error writing data file for Medicare Provider Charge report");
                 return false;
             }
         }

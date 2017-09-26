@@ -80,11 +80,11 @@ namespace Monahrq.Infrastructure.BaseDataLoader
     public enum BaseDataImportStrategyType
     {
         /// <summary>
-        /// The replace
+        /// Deletes all old data before importing the newest data
         /// </summary>
         Replace,
         /// <summary>
-        /// The append
+        /// Appends new data to existing data
         /// </summary>
         Append
     }

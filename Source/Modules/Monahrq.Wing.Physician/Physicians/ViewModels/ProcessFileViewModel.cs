@@ -62,7 +62,7 @@ namespace Monahrq.Wing.Physician.Physicians.ViewModels
         /// The logger.
         /// </value>
         [Import(LogNames.Session)]
-        protected ILoggerFacade Logger { get; set; }
+        protected ILogWriter Logger { get; set; }
 
         /// <summary>
         /// Gets or sets the event aggregator.
@@ -109,7 +109,7 @@ namespace Monahrq.Wing.Physician.Physicians.ViewModels
             }
             
             if (Logger == null)
-                Logger = ServiceLocator.Current.GetInstance<ILoggerFacade>();
+                Logger = ServiceLocator.Current.GetInstance<ILogWriter>();
 
             if (EventAggregator == null)
                 EventAggregator = ServiceLocator.Current.GetInstance<IEventAggregator>();
@@ -168,7 +168,7 @@ namespace Monahrq.Wing.Physician.Physicians.ViewModels
             }
             catch(ObjectDisposedException ode)
             {
-                this.Logger.Log(ode.GetBaseException().Message, Category.Warn, Priority.High);
+                this.Logger.Write(ode);
             }
         }
 
@@ -412,7 +412,7 @@ namespace Monahrq.Wing.Physician.Physicians.ViewModels
                     {
                         excToUse = (exc as AggregateException).GetBaseException();
                     }
-                    Logger.Log(excToUse.GetBaseException().Message, Category.Exception, Priority.High);
+                    Logger.Write(excToUse.GetBaseException());
 
                     if(excToUse is OperationCanceledException)
                     {
@@ -438,7 +438,7 @@ namespace Monahrq.Wing.Physician.Physicians.ViewModels
                             uiContext.Send(x => AppendLog(string.Format("An error occurred while process physician API records for State(s): {0}", string.Join(",",DataContextObject.SelectedStates))), null);
                     }
 
-                    LogFile.ToList().ForEach(log => Logger.Log(log, Category.Info, Priority.Medium));
+                    LogFile?.ToList().ForEach(log => Logger.Information(log));
                 }
                 return 1;
             }, ct);

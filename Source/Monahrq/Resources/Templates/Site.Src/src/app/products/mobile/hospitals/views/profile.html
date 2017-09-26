@@ -1,0 +1,343 @@
+<section class="sharethis-section clearfix">
+    <nav class="sharethis-nav">
+        <ul class="clearfix">
+            <li>
+                <button data-ng-click="share()" class="btn-m-secondary">Share This Page</button>
+            </li>
+            <li>
+                <button class="btn-m-secondary" data-ng-click="feedbackModal()" data-ng-if="config.products.consumer.website_FeedBackEmail">Feedback</button>
+            </li>
+        </ul>
+    </nav>
+</section>
+<section class="search-browse section-blue">
+    <article>
+        <header>
+            <h2>Find another hospital:</h2>
+        </header>
+    </article>
+    <form class="search-form text-left" name="searchForm">
+        <div class="search-form-container">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group search-form-location">
+                            <label for="search-hospital">Enter Name:</label>
+                            <input type="text" id="search-query" name="name"
+                                   placeholder="Enter a hospital name"
+                                   required="" data-ng-model="query.name">
+                            <span data-ng-if="searchForm.name.$error.required && showValidationErrors" class="form-error-message">Error: Please enter a name</span>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="search-form-action">
+                            <button class="btn-m-primary" data-ng-click="search()">Search</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>
+<section class="search-reasult-holder">
+    <article class="compare-result-help-link" data-ng-if="hasSearch">
+        <div class="help-block text-right">
+            <div data-mh-help-icon="'Help me understand this report'" data-mh-on-click="modalLegend()"></div>
+        </div>
+    </article>
+    <header class="report-header profile-title" data-ng-if="!hasSearch">
+        <div class="report-no-result">Enter your search above</div>
+    </header>
+    <header class="report-header profile-title" data-ng-if="hasSearch && !hasResult">
+        <div class="report-no-result">Your search did not find anything</div>
+    </header>
+    <article class="hospital-details" data-ng-if="hasResult">
+        <h2>{{profile.name}}</h2>
+        <div class="well clearfix">
+            <div class="hp-rating pull-right">
+                <div class="rating-holder better">
+                    <span class="profile-summary__data" data-mh-rating-symbol="overallRec"></span>
+                </div>
+            </div>
+            <div class="hp-recommendation-link pull-left">
+                <span data-mh-help-icon="'How patients recommend this facility overall'" data-mh-on-click="modalMeasure(config.HOSPITAL_OVERALL_ID)"></span>
+            </div>
+        </div>
+    </article>
+    <article class="hp-address" data-ng-if="hasResult">
+        <p>
+            <a data-ng-if="deviceData.os!='ios'" href="http://maps.google.com?q={{profile.address}},{{profile.city}},{{profile.state}},{{profile.zip}}">
+                {{profile.address}} <br />
+                {{profile.city}}, {{profile.state}} {{profile.zip | zip}}
+            </a>
+        </p>
+        <a data-ng-if="deviceData.os=='ios'" href="http://maps.apple.com?q={{profile.address}},{{profile.city}},{{profile.state}},{{profile.zip}}">
+            {{profile.address}} <br />
+            {{profile.city}}, {{profile.state}} {{profile.zip | zip}}
+        </a>
+    </article>
+</section>
+<!--section-->
+<section class="service-info" data-ng-if="hasResult">
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">General Information</div>
+        <ul class="list-group">
+            <li class="list-group-item">
+                <span class="badge">{{profile.phoneNumber | phone}}</span>
+                Phone Number:
+            </li>
+            <li class="list-group-item">
+                <span class="badge">{{profile.totalBeds}}</span>
+                Total Beds:
+            </li>
+            <li class="list-group-item">
+                <span class="badge">{{getHospitalType()}}</span>
+                Hospital Type:
+            </li>
+        </ul>
+    </div>
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Services</div>
+        <ul class="list-group">
+            <li class="list-group-item">
+                <span class="badge" ng-if="profile.cardiacCatherizationService">
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                </span>
+                <span class="badge" ng-if="!profile.cardiacCatherizationService">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </span>
+                Cardiac catheterization lab service?
+            </li>
+            <li class="list-group-item">
+                <span class="badge" ng-if="profile.diagnosticXRayService">
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                </span>
+                <span class="badge" ng-if="!profile.diagnosticXRayService">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </span>
+                Diagnostic X-ray services available with appointment?
+            </li>
+            <li class="list-group-item">
+                <span class="badge" ng-if="profile.emergencyService">
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                </span>
+                <span class="badge" ng-if="!profile.emergencyService">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </span>
+                Emergency Department services?
+            </li>
+            <li class="list-group-item">
+                <span class="badge" ng-if="profile.medicareMedicaidProvider">
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                </span>
+                <span class="badge" ng-if="!profile.medicareMedicaidProvider">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </span>
+                Medicare or Medicaid?
+            </li>
+            <li class="list-group-item">
+                <span class="badge" ng-if="profile.pediatricICUService">
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                </span>
+                <span class="badge" ng-if="!profile.pediatricICUService">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </span>
+                Pediatric ICU services?
+            </li>
+            <li class="list-group-item">
+                <span class="badge" ng-if="profile.pediatricService">
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                </span>
+                <span class="badge" ng-if="!profile.pediatricService">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </span>
+                Pediatric services?
+            </li>
+            <li class="list-group-item">
+                <span class="badge" ng-if="profile.traumaService">
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                </span>
+                <span class="badge" ng-if="!profile.traumaService">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </span>
+                Trauma Center services?
+            </li>
+            <li class="list-group-item">
+                <span class="badge" ng-if="profile.urgentCareService">
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                </span>
+                <span class="badge" ng-if="!profile.urgentCareService">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </span>
+                Urgent Care Center services?
+            </li>
+            <li class="list-group-item">
+                <span class="badge" ng-if="profile.pharmacyService">
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                </span>
+                <span class="badge" ng-if="!profile.pharmacyService">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </span>
+                Walk-in pharmacy services available?
+            </li>
+            <li class="list-group-item">
+                <span class="badge" ng-if="profile.HospitalUsesASafeSurgeryChecklist">
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                </span>
+                <span class="badge" ng-if="!profile.HospitalUsesASafeSurgeryChecklist">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </span>
+                Hospital uses a Safe Surgery Checklist (Outpatient)?
+            </li>
+            <li class="list-group-item">
+                <span class="badge" ng-if="profile.HospitalUsesASafeSurgeryChecklistInpatient">
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                </span>
+                <span class="badge" ng-if="!profile.HospitalUsesASafeSurgeryChecklistInpatient">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </span>
+                Hospital uses a Safe Surgery Checklist (Inpatient)?
+            </li>
+        </ul>
+    </div>
+</section>
+<!--.section-->
+<!--section-->
+<section class="result-table-holder" data-ng-if="hasResult">
+    <div class="result-table-wrapper no-bdr">
+        <article class="tab-holder">
+            <div>
+
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs doctors-profile-tab" role="tablist">
+                    <li role="presentation" class="active">
+                        <a data-ng-click="toggleFullTabTitle('quality')" href="#home" aria-controls="home" role="tab"
+                           data-toggle="tab">Quality Ratings</a>
+                    </li>
+                    <li role="presentation">
+                        <a data-ng-click="toggleFullTabTitle('doctor')" href="#profile" aria-controls="profile" role="tab"
+                           data-toggle="tab">{{doctorsTabTitle}}</a>
+                    </li>
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content result-table-wrapper-bdr">
+                    <div role="tabpanel" class="tab-pane active" id="home" data-ng-controller="CHProfileQualityCtrl">
+                        <article class="compare-result-option pad-15">
+                            <div class="">
+                                <h3 class="sub-header">
+                                    Select a topic from the list below to see how well this hospital takes care of their
+                                    patients
+                                </h3>
+                            </div>
+                            <form>
+                                <div class="form-group">
+                                    <label>Compare Your Results To The:</label>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="compareTo" id="compareTo-national" value="national" data-ng-model="query.compareTo">
+                                            National Average
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="compareTo" id="compareTo-state" value="state" data-ng-model="query.compareTo">
+                                            State Average
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="search-form-action">
+                                    <button data-ng-click="showAll()" aria-expanded="{{isShowAll}}" aria-controls="quality-container" class="btn-m-blue">
+                                        <span data-ng-if="!isShowAll">Show Ratings</span>
+                                        <span data-ng-if="isShowAll">Hide Ratings</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </article>
+                        <div class="panel panel-default profile-accordion">
+                            <div class="panel-heading">Health Topics</div>
+                            <div class="panel-body">
+                                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                    <div class="panel panel-default" data-ng-repeat="topic in topics">
+                                        <div class="panel-heading" role="tab" id="headingOne">
+                                            <h4 class="panel-title">
+                                                <a aria-expanded="{{showTopic(topic.TopicCategoryID)}}" aria-controls="ratings-{{topic.TopicCategoryID}}" role="button" data-toggle="collapse" data-ng-click="toggleTopic(topic.TopicCategoryID)" data-ng-class="{'active': showTopic(topic.TopicCategoryID)}">
+                                                    <span class="hide-rating" data-ng-show="showTopic(topic.TopicCategoryID)">Hide Ratings</span>
+                                                    <span class="show-rating" data-ng-show="!showTopic(topic.TopicCategoryID)">Show Ratings</span>
+                                                    {{getTopicCategoryName(topic.TopicCategoryID)}} <span data-mh-help-icon data-sr-label="'Help for ' + getTopicCategoryName(topic.TopicCategoryID)" data-mh-on-click="modalTopicCategory(topic.TopicCategoryID)"></span>
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="ratings-{{topic.TopicCategoryID}}" class="panel-collapse collapse in" role="tabpanel"
+                                             aria-labelledby="headingOne" data-ng-repeat="subtopic in topic.topics" data-ng-if="showTopic(topic.TopicCategoryID)">
+                                            <div class="panel-body">
+                                                <table class="table table-striped table-bordered accordion-table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>
+                                                                {{subtopic.Name}} <span data-mh-help-icon data-sr-label="'Help for ' + subtopic.Name" data-mh-on-click="modalTopic(subtopic.TopicID)"></span>
+                                                            </th>
+                                                            <th>Rating</th>
+                                                            <!-- Modal -->
+                                                            <div class="modal fade" id="result-of-care" tabindex="-1"
+                                                                 role="dialog" aria-labelledby="myModalLabel23">
+                                                                <div class="modal-dialog" role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <button type="button" class="close"
+                                                                                    data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span>
+                                                                            </button>
+                                                                            <h4 class="modal-title" id="myModalLabel23">
+                                                                                Results of care
+                                                                            </h4>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            Information on what happened to patients while
+                                                                            being cared for in the hospital or after leaving
+                                                                            the hospital. These ratings are sometimes called
+                                                                            outcome measures.
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr data-ng-repeat="m in model[subtopic.TopicID]">
+                                                            <td>
+                                                                {{m.title}} <span data-mh-help-icon data-sr-label="'Help for ' + m.title" data-mh-on-click="modalMeasure(m.id)"></span>
+                                                            </td>
+                                                            <td>
+                                                                <div data-ng-if="showSymbol(m) && query.compareTo === 'national'" data-mh-rating-symbol="m.data.NatRating"></div>
+                                                                <div data-ng-if="showSymbol(m) && query.compareTo === 'state'" data-mh-rating-symbol="m.data.PeerRating"></div>
+                                                                <div data-ng-if="!showSymbol(m)">{{m.data.RateAndCI}}</div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="profile">
+                        <div data-ui-view="profile-tab3"></div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </article>
+    </div>
+</section>
+<div data-ng-if="reportSettings.footer" class="report-footnotes" data-ng-bind-html="reportSettings.footer" style="padding-left:15px;"></div>
+<!--.section-->

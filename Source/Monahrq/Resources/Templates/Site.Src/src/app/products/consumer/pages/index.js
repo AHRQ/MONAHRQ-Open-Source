@@ -25,24 +25,20 @@ angular.module('monahrq.products.consumer.pages', [
  */
 config.$inject = ['$stateProvider'];
 function config($stateProvider) {
-	function isLocal() {
-		return window.location.protocol == 'file:';
-	}
-  
     $stateProvider.state('top.consumer', {
       url: '/consumer',
       abstract: true,
       views: {
         'header@': {
-          templateUrl: 'app/products/consumer/pages/views/header.html',
+            templateUrl:  'app/products/consumer/pages/views/header.html',
           controller: 'CHeaderCtrl'
         },
         'navigation@': {
-          templateUrl: 'app/products/consumer/pages/views/navigation.html',
+            templateUrl: 'app/products/consumer/pages/views/navigation.html',
           controller: 'CNavigationCtrl'
         },
         'footer@': {
-          templateUrl: 'app/products/consumer/pages/views/footer.html',
+            templateUrl: 'app/products/consumer/pages/views/footer.html',
           controller: function ($scope, ResourceSvc, WalkthroughSvc, $rootScope, $state) {
             $scope.showGuideTool = false;
             $scope.showHelpLinks = false;
@@ -130,18 +126,6 @@ function config($stateProvider) {
       }
     });
 
-	if (!isLocal()) {
-      $stateProvider.state('top.consumer.flutters', {
-        url: '/flutters',
-        views: {
-          'content@': {
-            templateUrl: 'app/products/consumer/pages/views/flutters.html',
-            controller: 'CFluttersCtrl'
-          }
-        }
-      });
-    }
-	
     $stateProvider.state('top.consumer.home', {
       url: '/',
       data: {
@@ -149,7 +133,7 @@ function config($stateProvider) {
       },
       views: {
         'content@': {
-          templateUrl: 'app/products/consumer/pages/views/index.html',
+            templateUrl: 'app/products/consumer/pages/views/index.html',
           controller: 'CHomeCtrl'
         }
       }
@@ -183,14 +167,14 @@ function config($stateProvider) {
             },
             measureTopicCategories: function(ResourceSvc, ConsumerReportConfigSvc) {
               if (ConsumerReportConfigSvc.webElementAvailable('Resource_AboutQR_Hospital')) {
-                return ResourceSvc.getMeasureTopicCategories();
+                  return ResourceSvc.getMeasureTopicCategoriesConsumer();
               }
 
               return [];
             },
             measureTopics: function(ResourceSvc, ConsumerReportConfigSvc) {
               if (ConsumerReportConfigSvc.webElementAvailable('Resource_AboutQR_Hospital')) {
-                return ResourceSvc.getMeasureTopics();
+                  return ResourceSvc.getMeasureTopicsConsumer();
               }
 
               return [];

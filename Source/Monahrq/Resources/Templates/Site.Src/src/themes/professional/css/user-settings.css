@@ -1,4 +1,4 @@
-/* PLEASE DO NOT REMOVE NUGGETS FOR THIS FILE. WE NEED FOR ALLOWABLE HOST USER CSS OVERRIDES!!!! */
+﻿/* PLEASE DO NOT REMOVE NUGGETS FOR THIS FILE. WE NEED FOR ALLOWABLE HOST USER CSS OVERRIDES!!!! */
 
 /* Bootstrap Overrides
 ---------------------------------------- */
@@ -6,64 +6,64 @@
 .nav-pills > li.active > a,
 .nav-pills > li.active > a:hover,
 .nav-pills > li.active > a:focus {
-    color: [@@bodyTextColor@@]; /* Body Text | #3E464C */
+    color: #3e464c; /* Body Text | #3E464C */
 }
 
 a,
 a:link,
 a:visited {
-    color: [@@linkTextColor@@]; /* Linked Text | #2d69a4 */
+    color: #2d69a4; /* Linked Text | #2d69a4 */
 }
 
 .list-group.sidebar .list-group-item.active {
-    background: [@@linkTextColor@@]; /* Unknown | #2d69a4 */
+    background: #2d69a4; /* Unknown | #2d69a4 */
     /* NEEDS TEXT COLOR NUGGET */
 }
 
 .btn-primary {
-    background: [@@accentColor@@]; /* Primary Buttons | #F8ED98; */
-    border-color: [@@accentColor@@]; /* Primary Buttons | #F8ED98; */
-    color: [@@foregroundColor@@];
+    background: #F68F40; /* Primary Buttons | #F8ED98; */
+    border-color: #F68F40; /* Primary Buttons | #F8ED98; */
+    color: White;
 }
 
 /* Body
 ---------------------------------------- */
 body {
-    font-family: [@@website_Font@@]; /* 'Droid Sans', Arial, sans-serif; */
-    color: [@@bodyTextColor@@]; /* Body Text | #3E464C */
+    font-family: 'Droid Sans', Arial, sans-serif; /* 'Droid Sans', Arial, sans-serif; */
+    color: #3e464c; /* Body Text | #3E464C */
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: [@@website_Font@@]; /*  'Droid Sans', Arial, sans-serif;*/
+    font-family: 'Droid Sans', Arial, sans-serif; /*  'Droid Sans', Arial, sans-serif;*/
 }
 
 /* ---------- Nav tabs
 ---------------------------------------- */
 .nav-tabs > li > .nav__link {
-  color: [@@brandColor@@];
+  color: #3778a8;
 }
 
 .nav-tabs > li > .nav__link.active,
 .nav-tabs > li > .nav__link.active:hover,
 .nav-tabs > li > .nav__link.active:focus {
-  background-color: [@@brandColor@@];
-  color: [@@foregroundColor@@];
+  background-color: #3778a8;
+  color: White;
 }
 
 .nav-tabs-secondary {
-  background-color: [@@brandColor@@];
+  background-color: #3778a8;
 }
 
 .nav-tabs-secondary .nav__link {
-  color: [@@foregroundColor@@];
+  color: White;
 }
 
 
 /* ---------- Search Form
 ---------------------------------------- */
 .search-form {
-    background: [@@brandColor@@]; /* Search Area | #A0D2EC */
-    color: [@@foregroundColor@@];
+    background: #3778a8; /* Search Area | #A0D2EC */
+    color: White;
 }
 
 /* ---------- Search Form Navigation
@@ -71,52 +71,52 @@ h1, h2, h3, h4, h5, h6 {
 .search-form-nav li a,
 .search-form-nav li a:link,
 .search-form-nav li a:visited {
-    background: [@@accent2Color@@]; /* Nav | #E3EBE3; */
-    color: [@@foregroundColor@@];
+    background: #e3ebe3; /* Nav | #E3EBE3; */
+    color: White;
 }
 
 .search-form-nav.small li a,
 .search-form-nav.small li a:link,
 .search-form-nav.small li a:visited {
-    background: [@@accent2Color@@]; /* Nav | #E3EBE3 */
-    color: [@@foregroundColor@@];
+    background: #e3ebe3; /* Nav | #E3EBE3 */
+    color: White;
 }
 
 /* ---------- Side Search
 ---------------------------------------- */
 .side-search li.item {
-    background: [@@accentColor@@]; /* Nav | #F8ED98 */
+    background: #F68F40; /* Nav | #F8ED98 */
 }
 .side-search li.item a {
-    color: [@@foregroundColor@@];
+    color: White;
 }
 
 
 /* ---------- Usage data wizard
 ---------------------------------------- */
 .ud-wizard-tabs {
-    background: [@@backgroundColor@@]; /* Background | #E0F5FF */
-    border-bottom: 10px solid [@@brandColor@@]; /* Search Area | #A0D7EC */
+    background: #e0f5ff; /* Background | #E0F5FF */
+    border-bottom: 10px solid #3778a8; /* Search Area | #A0D7EC */
     margin-left: 0;
-    color: [@@foregroundColor@@];
+    color: White;
 }
 
     .ud-wizard-tabs div {
-        background: [@@backgroundColor@@]; /* Background | #E0F5FF */
-        color: [@@foregroundColor@@];
+        background: #e0f5ff; /* Background | #E0F5FF */
+        color: White;
     }
 
     .ud-wizard-tabs .active {
-        background: [@@brandColor@@]; /* Search Area | #A0D7EC */
-        color: [@@foregroundColor@@];
+        background: #3778a8; /* Search Area | #A0D7EC */
+        color: White;
     }
 
 .ud-wizard-content > div {
-    border-right: 3px solid [@@backgroundColor@@]; /* Background | #E0F5FF */
+    border-right: 3px solid #e0f5ff; /* Background | #E0F5FF */
 }
 
 .ud-wizard-content.first:not(.last) {
-    border-bottom: 3px solid [@@backgroundColor@@]; /* Background | #E0F5FF */
+    border-bottom: 3px solid #e0f5ff; /* Background | #E0F5FF */
 }
 
 
@@ -125,6 +125,6 @@ h1, h2, h3, h4, h5, h6 {
 
 ul.list-group li a.active:hover,
 ul.list-group li a.active:focus {
-    background-color: [@@brandColor@@]; /* Nav | #A0D7EC */
-    color: [@@foregroundColor@@];
+    background-color: #3778a8; /* Nav | #A0D7EC */
+    color: White;
 }

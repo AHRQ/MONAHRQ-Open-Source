@@ -9,6 +9,8 @@ using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.ServiceLocation;
 using Monahrq.Default.Controllers;
 using Monahrq.Default.Views;
+using Monahrq.Infrastructure;
+using Monahrq.Infrastructure.Services;
 using Monahrq.Sdk.Attributes.Wings;
 using Monahrq.Sdk.Events;
 using Monahrq.Sdk.Modules;
@@ -59,7 +61,7 @@ namespace Monahrq.Default
         /// <summary>
         /// The logger
         /// </summary>
-        private readonly ILoggerFacade _logger;
+        private readonly ILogWriter _logger;
         /// <summary>
         /// The plugin tracker
         /// </summary>
@@ -84,7 +86,7 @@ namespace Monahrq.Default
         /// or
         /// moduleTracker</exception>
         [ImportingConstructor]
-        public DefaultModule(ILoggerFacade logger, IRegionManager regionManager, IPluginModuleTracker pluginTracker, IEventAggregator events)
+        public DefaultModule(ILogWriter logger, IRegionManager regionManager, IPluginModuleTracker pluginTracker, IEventAggregator events)
         {
             Events = events;
             if (logger == null)
@@ -148,7 +150,7 @@ namespace Monahrq.Default
         /// </summary>
         public void Initialize()
         {
-            _logger.Log("Monahrq.Default demonstrates logging during Initialize().", Category.Info, Priority.Medium);
+            _logger.Write("Monahrq.Default demonstrates logging during Initialize().");
 
             //_regionManager.RegisterViewWithRegion(Sdk.Regions.RegionNames.Modal, typeof(DataProvider.Administration.DataProviderAdministratorView));
 

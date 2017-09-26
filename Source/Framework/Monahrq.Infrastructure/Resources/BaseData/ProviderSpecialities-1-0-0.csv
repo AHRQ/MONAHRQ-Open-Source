@@ -1,22 +1,35 @@
 Name,provider_taxonomy
+Acupuncture,Acupuncture
 Addiction Medicine,"Allopathic & Osteopathic Physicians/Anesthesiology, Addiction Medicine|Family Medicine, Addiction Medicine|Internal Medicine, Addiction Medicine|Psychiatry & Neurology, Addiction Medicine"
-Advance Diagnostic Imaging,
+Addiction Psychiatry,"Addiction Psychiatry, Addiction "
+Adolescent Medicine,"Adolescent Medicine, Adolescent"
+Adult Medicine,"Adult Medicine, Family Medicine, Adult"
+Advance Diagnostic Imaging,"Advance Diagnostic Imaging, Imaging"
+Aerospace Medicine,Aerospace Medicine
 All Other Suppliers,Suppliers/Durable Medical Equipment & Medical Supplies
 Allergy/Immunology,Allopathic & Osteopathic Physicians/Allergy and Immunology/Allergy|Clinical & Laboratory Immunology
 Ambulance Service Provider,"Transportation Services/Ambulance|Ambulance, Air Transport|Ambulance, Land Transport|Ambulance, Water Transport"
 Ambulatory Surgical Center,"Ambulatory Health Care Facilities/Clinic-Center, Ambulatory Surgical"
+Anatomic Pathology,"Anatomic Pathology,  Organs and Tissues, Immunologic and Molecular "
 Anesthesiology,Allopathic & Osteopathic Physicians/Anesthesiology/Addiction Medicine|Critical Care Medicine|Hospice and Palliative Medicine|Pain Medicine|Pediatric Anesthesiology
 Anesthesiology Assistant,Physician Assistants & Advanced Practice Nursing Providers/Anesthesiologist Assistant
 Audiologist,"Speech, Language and Hearing Service Providers/Audiologist|Audiologist, Assistive Technology Practitioner"
-Cardiac Electrophysiology,
+Audiology,"Audiology, Hearing, Balance"
+Behavioral Health,"Behavioral Health, Mental Health, "
+Blood Banking/Transfusion Medicine,"Blood Banking/Transfusion Medicine, Transfusion"
+Cardiac Electrophysiology,"Cardiac Electrophysiology, Heart, Electrical Activities"
 Cardiac Surgery,Allopathic & Osteopathic Physicians/Thoracic Surgery (Cardiothoracic Vascular Surgery)
 Cardiovascular Disease (Cardiology),"Allopathic & Osteopathic Physicians/Internal Medicine, Cardiovascular Disease"
 Certified Nurse Midwife,"Physician Assistants & Advanced Practice Nursing Providers/Midwife, Certified Nurse"
 Certified Registered Nurse Anesthetist,"Physician Assistants & Advanced Practice Nursing Providers/Nurse Anesthetist, Certified Registered"
 Chiropractic,"Chiropractic Providers/Chiropractor|Chiropractor, Independent Medical Examiner|Chiropractor, Internist|Chiropractor, Neurology|Chiropractor, Nutrition|Chiropractor, Occupational Medicine|Chiropractor, Orthopedic|Chiropractor, Pediatric Chiropractor|Chiropractor, Radiology|Chiropractor, Rehabilitation|Chiropractor, Sports Physician|Chiropractor, Thermography"
-Clinic or Group Practice,Group/Multi-Specialty|Single-Specialty|"Ambulatory Health Care Facilities/Clinic/Center, Multi-Specialty"
+Clinic or Group Practice,"Group/Multi-Specialty|Single-Specialty|""Ambulatory Health Care Facilities/Clinic/Center"
+Clinical Genetics,"Clinical Genetics, Dysmorphology and Traits, Pedigree Analysis, Disease Locus, Homozygosity, Karyotyping, Genome Sequencing and Fenotyping"
 Clinical Laboratory,Laboratories/Clinical Medical Laboratory
+Clinical Molecular Genetics,"Clinical Molecular Genetics, Genomics"
+Clinical Neurophysiology,"Clinical Neurophysiology,  Central and Peripheral, Nervous Systems, Bioelectrical Activity"
 Clinical Nurse Specialist,"Physician Assistants & Advanced Practice Nursing Providers/Clinical Nurse Specialist|Community Health/Public Health|Psychiatric/Mental Health|Mental Health, Adult|Mental Health, Child & Adolescent|Mental Health, Child & Family|Mental Health, Chronically Ill|Mental Health, Community|Mental Health, Geropsychiatric|Clinical Nurse Specialist, Acute Care|Clinical Nurse Specialist, Adult Health|Clinical Nurse Specialist, Chronic Care|Clinical Nurse Specialist, Critical Care Medicine|Clinical Nurse Specialist, Emergency|Clinical Nurse Specialist, Ethics|Clinical Nurse Specialist, Family Health|Clinical Nurse Specialist, Gerontology|Clinical Nurse Specialist, Holistic|Clinical Nurse Specialist, Home Health|Clinical Nurse Specialist, Informatics|Clinical Nurse Specialist, Long-term Care|Clinical Nurse Specialist, Medical-Surgical|Clinical Nurse Specialist, Neonatal|Clinical Nurse Specialist, Neuroscience|Clinical Nurse Specialist,Occupational Health|Clinical Nurse Specialist, Oncology|Clinical Nurse Specialist, Oncology, Pediatrics|Clinical Nurse Specialist, Pediatrics|Clinical Nurse Specialist, Perinatal|Clinical Nurse Specialist, Perioperative|Clinical Nurse Specialist,Rehabilitation|Clinical Nurse Specialist, School|Clinical Nurse Specialist, Transplantation|Clinical Nurse Specialist, Women’s Health"
+Clinical Pathology,Clinical Pathology
 Clinical Psychologist,"Behavioral Health & Social Service Providers/Psychologist|Psychologist, Addiction (Substance Abuse Disorder)|Psychologist, Adult Development & Aging|Psychologist, Clinical|Psychologist, Clinical Child & Adolescent|Psychologist, Cognitive & Behavioral|Psychologist, Counseling|Psychologist, Educational|Psychologist, Exercise & Sports|Psychologist, Family|Psychologist, Forensic|Psychologist, Group Psychotherapy|Psychologist, Health|Psychologist, Health Service|Psychologist, Men & Masculinity|Psychologist, Mental Retardation & Developmental Disabilities|Psychologist, Prescribing (Medical)|Psychologist, Psychoanalysis|Psychologist, Psychotherapy|Psychologist, Rehabilitation|Psychologist, School|Psychologist, Women|Psychologist, Clinical"
 Clinical Social Worker,"Behavioral Health & Social Service Providers/Social Worker, Clinical"
 Colorectal Surgery (Proctology),Allopathic & Osteopathic Physicians/Colon & Rectal Surgery
@@ -24,24 +37,41 @@ Community Mental Health Center,"Ambulatory Health Care Facilities/Clinic/Center,
 Comprehensive Outpatient Rehabilitation Facility,"Ambulatory Health Care Facilities/Clinic/Center, Rehabilitation, Comprehensive Outpatient Rehabilitation Facility (CORF)"
 Critical Access Hospital,"Hospitals/General Acute Care Hospital, Critical Access"
 Critical Care (Intensivists),"Allopathic & Osteopathic Physicians/Internal Medicine, Critical Care Medicine"
+Critical Care Medicine,"Critical Care Medicine, Intensive Care Medicine"
+Critical Care Surgery,Critical Care Surgery
+Cytopathology,Cytopathology
+Dentist,"Dentist, Dentistry, Oral Cavity"
 Department Store,Suppliers/Durable Medical Equipment & Medical Supplies
 Dermatology,"Allopathic & Osteopathic Physicians/Dermatology|Procedural Dermatology|Dermatology, Clinical & Laboratory Dermatological Immunology|Dermatology, MOHS-Micrographic Surgery|Dermatology, Dermapathology|Dermatology, Pediatric Dermatology"
+Dermatopathology,"Dermatopathology, Dermatology, Pathology"
 Diagnostic Radiology,"Allopathic & Osteopathic Physicians/Radiology, Diagnostic Radiology"
+Dietitian,"Dietitian, Nutrition, Diet, Nutritional"
 Emergency Medicine,"Allopathic & Osteopathic Physicians/Emergency Medicine|Emergency Medicine, Emergency Medical Services|Emergency Medicine, Hospice and Palliative Medicine|Emergency Medicine, Medical Toxicology|Emergency Medicine, Pediatric Emergency Medicine|Emergency Medicine, Sports Medicine|Emergency Medicine, Undersea and Hyperbaric Medicine"
 Endocrinology,"Allopathic & Osteopathic Physicians/Internal Medicine, Endocrinology, Diabetes & Metabolism"
 End-Stage Renal Disease Facility,Ambulatory Health Care Facilities/End-Stage Renal Disease (ESRD) Treatment
+Facial Plastic Surgery  Otolaryngology,"Facial Plastic Surgery  Otolaryngology, Head and Neck,  Ear, Nose, and Throat"
+Family Medicine,"Allopathic & Osteopathic Physicians/Family Medicine|Family Medicine, Addiction Medicine|Family Medicine, Adolescent Medicine|Family Medicine, Adult Medicine|Family Medicine, Bariatric Medicine|Family Medicine, Geriatric Medicine|Family Medicine, Hospice and Palliative Medicine|Family Medicine, Sports Medicine|Family Medicine, Sleep Medicine"
 Family Practice,"Allopathic & Osteopathic Physicians/Family Medicine|Family Medicine, Addiction Medicine|Family Medicine, Adolescent Medicine|Family Medicine, Adult Medicine|Family Medicine, Bariatric Medicine|Family Medicine, Geriatric Medicine|Family Medicine, Hospice and Palliative Medicine|Family Medicine, Sports Medicine|Family Medicine, Sleep Medicine"
+Family Practice Nurse Practitioner,Family Practice Nurse Practitioner
+Family Practice Physician Assistant,Family Practice Physician Assistant
+Family Practice Resident,Family Practice Resident
+Family Practice  Geriatric Medicine,Family Practice  Geriatric Medicine
 Federally Qualified Health Center,Ambulatory Health Care Facilities/Federally Qualified Health Center (FQHC)
+Foot And Ankle Surgery,Foot And Ankle Surgery
 Gastroenterology,"Allopathic & Osteopathic Physicians/Internal Medicine, Gastroenterology"
+General Practice,General Practice
 General Surgery,Allopathic & Osteopathic Physicians|General Practice|Surgery|Hospice and Palliative Medicine|Pediatric Surgery|Plastic and Reconstructive Surgery|Surgery of the Hand|Surgical Critical Care|Surgical Oncology|Trauma Surgery|Vascular Surgery|Plastic Surgery/Plastic Surgery Within the Head & Neck|Surgery of the Hand|Thoracic Surgery (Cardiothoracic Vascular Surgery)|Transplant Surgery|Colon & Rectal Surgery|Neurological Surgery|Oral & Maxillofacial Surgery|Orthopaedic Surgery|Plastic Surgery|Orthopaedic Surgery/Adult Reconstructive Orthopaedic Surgery|Foot and Ankle Surgery|Hand Surgery|Orthopaedic Surgery of the Spine|Orthopaedic Trauma|Pediatric Orthopaedic Surgery|Sports Medicine
+Genetics,"Genetics, Genes, Heredity"
 Geriatric Medicine,"Allopathic & Osteopathic Physicians/Internal Medicine, Geriatric Medicine|Family Medicine, Geriatric Medicine"
-Geriatric Psychiatry,
-General Practice,
+Geriatric Psychiatry,Geriatric Psychiatry
 Grocery Store,Suppliers/Durable Medical Equipment & Medical Supplies
 Gynecological Oncology,"Allopathic & Osteopathic Physicians/Obstetrics & Gynecology, Gynecologic Oncology"
+Gynecology,Gynecology
 Hand Surgery,"Allopathic & Osteopathic Physicians/Surgery, Surgery of the Hand|Plastic Surgery, Surgery of the Hand"
+Hand Surgery  Orthopedic,"Allopathic & Osteopathic Physicians/Surgery, Surgery of the Hand|Plastic Surgery, Surgery of the Hand"
 Hematology,"Allopathic & Osteopathic Physicians/Internal Medicine, Hematology"
 Hematology/ONCOLOGY,"Allopathic & Osteopathic Physicians/Internal Medicine, Hematology & Oncology"
+Hepatology,Hepatology & Osteopathic Physicians/Internal Medicine
 Histocompatibility Laboratory,Laboratories/Clinical Medical Laboratory|Military Clinical Medical Laboratory
 Home Health Agency,Agencies/Home Health
 Hospice,"Agencies/Hospice Care, Community Based"
@@ -57,6 +87,7 @@ Hospital-Rehabilitation Unit,Hospital Units/Rehabilitation Unit
 Hospital-Short-Term (General and Specialty),Hospitals/General Acute Care Hospital|Special(ty) Hospital
 "Hospital-Specialty Hospital (cardiac, orthopedic, surgical)",Hospitals/Special(ty) Hospital
 Hospital-Swing Bed Approved,Hospital Units/Medicare Defined Swing Bed Unit
+Immunology,Immunology
 Independent Diagnostic Testing Facility (IDTF),Laboratories/Physiological Laboratory
 Indian Health Service facility13,
 Individual Certified,"Respiratory, Developmental, Rehabilitative, and Restorative Service Providers|Prosthetist|Orthotist"
@@ -64,78 +95,154 @@ Individual Certified Orthotist,"Respiratory, Developmental, Rehabilitative, and 
 Infectious Disease,"Allopathic & Osteopathic Physicians/Internal Medicine, Infectious Disease"
 Intermediate Care Nursing Facility,Suppliers/Durable Medical Equipment & Medical Supplies
 Internal Medicine,"Allopathic & Osteopathic Physicians/Internal Medicine|Internal Medicine, Addiction Medicine|Internal Medicine, Adolescent Medicine|Internal Medicine, Allergy & Immunology|Internal Medicine, Bariatric Medicine|Internal Medicine, Cardiovascular Disease|Internal Medicine, Clinical & Laboratory Immunology|Internal Medicine, Clinical Cardiatric Electrophysiology|Internal Medicine, Critical Care Medicine|Internal Medicine, Endocrinology, Diabetes, & Metabolism|Internal Medicine, Gastroenterology|Internal Medicine, Geriatric Medicine|Internal Medicine, Hematology|Internal Medicine, Hematology & Oncology|Internal Medicine, Hepatology|Internal Medicine, Hospice and Palliative Medicine|Internal Medicine, Infectious Disease|Internal Medicine, Interventional Cardiology|Internal Medicine, Magnetic Resonance Imaging (MRI)|Internal Medicine, Medical Oncology|Internal Medicine, Nephrology|Internal Medicine, Pulmonary Disease|Internal Medicine, Rheumatology|Internal Medicine, Sleep Medicine|Internal Medicine, Sports Medicine|Internal Medicine, Transplant Hepatology"
+Interventional Cardiology,
 Interventional Pain Management,"Allopathic & Osteopathic Physicians/Pain Medicine, Interventional Pain Medicine"
 Interventional Radiology,"Allopathic & Osteopathic Physicians/Radiology, Vascular and Interventional Radiology"
-Interventional Cardiology,
+Lab Medicine/Pathology,Lab Medicine/Pathology
+Legal Medicine,Legal Medicine
 Mammography Center,"Ambulatory Health Care Facilities/Clinic-Center, Radiology, Mammography|Clinic-Center, Radiology, Mobile Mammography"
+Marriage/Family Therapist,Marriage/Family Therapist
 Mass Immunizer Roster Biller2,
+Maternal And Fetal Medicine,Maternal And Fetal Medicine
 Maxillofacial Surgery,Allopathic & Osteopathic Physicians/Oral and Maxillofacial Surgery
+Medical Genetics,Medical Genetics
 Medical Oncology,"Allopathic & Osteopathic Physicians/Internal Medicine, Medical Oncology"
 Medical Supply Company with Orthotist,Suppliers/Prosthetic/Orthotic Supplier|Orthotic Supplier|Orthotic Supplier
 Medical Supply Company with Pharmacist,"Pharmacy Suppliers/Pharmacy, Compounding|Durable Medical Equipment & Medical Supplies|Clinic|Community/Retail|Home Infusion Therapy|Mail Order|Managed Care Organization|Nuclear Pharmacy|Institutional Pharmacy|Long-term Care|Specialty Pharmacy"
 Medical Supply Company with Respiratory Therapist,Suppliers/Durable Medical Equipment & Medical Supplies|Durable Medical Equipment & Medical Supplies
+Medical Toxicology,Medical Toxicology
+Mental Health,Mental Health
+Mental Health Counselor,Mental Health Counselor
+Musculoskeletal Medicine,Musculoskeletal Medicine
+Naturopathy,Naturopathy
+Neonatal/Perinatal Medicine,Neonatal/Perinatal Medicine
+Neonatology,Neonatology
 Nephrology,"Allopathic & Osteopathic Physicians/Internal Medicine, Nephrology"
 Neurology,"Allopathic & Osteopathic Physicians/Psychiatry and Neurology, Neurology|Psychiatry and Neurology, Neurology with Special Qualifications in Child Neurology"
+Neurology  Child,Neurology  Child
+Neuro-Ophthalmology,Neuro-Ophthalmology
+Neuropathology,Neuropathology
 Neuropsychiatry,"Allopathic & Osteopathic Physicians/Psychiatry & Neurology| Psychiatry & Neurology, Addiction Psychiatry| Psychiatry & Neurology, Bariatric Medicine| Psychiatry & Neurology, Child & Adolescent Psychiatry| Psychiatry & Neurology, Clinical Neurophysiology| Psychiatry & Neurology, Diagnostic Neuroimaging| Psychiatry & Neurology, Forensic Psychiatry| Psychiatry & Neurology, Geriatric Psychiatry| Psychiatry & Neurology, Hospice & Palliative Medicine| Psychiatry & Neurology, Neurodevelopmental Disabilities| Psychiatry & Neurology, Neurology| Psychiatry & Neurology, Neurology with Special Qualifications in Child Neurology| Psychiatry & Neurology, Neuromuscular Medicine| Psychiatry & Neurology, Pain Medicine| Psychiatry & Neurology, Psychiatry| Psychiatry & Neurology, Psychosomatic Medicine| Psychiatry & Neurology, Sleep Medicine| Psychiatry & Neurology, Sports Medicine| Psychiatry & Neurology, Vascular Neurology"
+Neuroradiology,Neuroradiology
 Neurosurgery,Allopathic & Osteopathic Physicians/Neurological Surgery
+Noncardiac Thoracic Surgery,
 Nuclear Medicine,"Allopathic & Osteopathic Physicians/Nuclear Medicine|Nuclear Medicine, In Vivo & In Vitro Nuclear Medicine|Nuclear Medicine, Nuclear Cardiology|Nuclear Medicine, Nuclear Imaging & Therapy"
+Nuclear Radiology,Nuclear Radiology
 Nurse Practitioner,"Physician Assistants & Advanced Practice Nursing Providers/Nurse Practitioner|Psychiatric/Mental Health|Nurse Practitioner, Acute Care|Nurse Practitioner, Adult Health|Nurse Practitioner, Community Health|Nurse Practitioner, Critical Care Medicine|Nurse Practitioner, Family|Nurse Practitioner, Gerontology|Nurse Practitioner, Neonatal|Nurse Practitioner, Neonatal, Critical Care|Nurse Practitioner, Obstetrics & Gynecology|Nurse Practitioner, Occupational Health|Nurse Practitioner, Pediatrics|Nurse Practitioner, Pediatrics, Critical Care|Nurse Practitioner, Perinatal|Nurse Practitioner, Primary Care|Nurse Practitioner, School|Nurse Practitioner, Women’s Health"
+Obstetric Nurse Practitioner,Obstetric Nurse Practitioner
+Obstetrics,Obstetrics
 Obstetrics/Gynecology,"Allopathic & Osteopathic Physicians/Obstetrics & Gynecology |Obstetrics & Gynecology, Bariatric Medicine|Obstetrics & Gynecology, Critical Care Medicine|Obstetrics & Gynecology, Gynecologic Oncology|Obstetrics & Gynecology, Gynecology|Obstetrics & Gynecology, Hospice and Palliative Medicine|Obstetrics & Gynecology, Maternal & Fetal Medicine|Obstetrics & Gynecology, Obstetrics|Obstetrics & Gynecology, Reproductive Endocrinology"
+Occupational Medicine,Occupational Medicine
 Occupational Therapist,"Respiratory, Developmental, Rehabilitative & Restorative Service Providers/Occupational Therapist|Occupational Therapist, Driving and Community Mobility|Occupational Therapist, Environmental Modification|Occupational Therapist, Ergonomics|Occupational Therapist, Feeding, Eating &Swallowing|Occupational Therapist, Gerontology|Occupational Therapist, Hand|Occupational Therapist, Human Factors|Occupational Therapist, Low Vision|Occupational Therapist, Mental Health|Occupational Therapist, Neurorehabilitation|Occupational Therapist, Pediatrics|Occupational Therapist, Physical Rehabilitation"
 Occupational Therapy,"Respiratory, Developmental, Rehabilitative & Restorative Service Providers/Occupational Therapist|Occupational Therapist, Driving and Community Mobility|Occupational Therapist, Environmental Modification|Occupational Therapist, Ergonomics|Occupational Therapist, Feeding, Eating &Swallowing|Occupational Therapist, Gerontology|Occupational Therapist, Hand|Occupational Therapist, Human Factors|Occupational Therapist, Low Vision|Occupational Therapist, Mental Health|Occupational Therapist, Neurorehabilitation|Occupational Therapist, Pediatrics|Occupational Therapist, Physical Rehabilitation"
+Oncological Surgery,Oncological Surgery
+Oncology  Medical,Oncology  Medical
 Ophthalmology,Allopathic & Osteopathic Physicians/Ophthalmology
 Optician,"Eye & Vision Service Providers/Technician/Technologist, Optician"
 Optometry,"Eye and Vision Service Providers/Optometrist|Optometrist, Corneal and Contact Management|Optometrist, Low Vision Rehabilitation|Optometrist, Occupational Vision|Optometrist, Pediatrics|Optometrist, Sports Vision|Optometrist, Vision Therapy"
+Oral Surgery,
 Oral Surgery (Dentist only),"Dental Providers/Dentist, Oral & Maxillofacial Surgery"
+Oral/Maxillofacial Surgery,
 Organ Procurement Organization15,Suppliers/Organ Procurement Organization
 Orthopedic Surgery,"Allopathic & Osteopathic Physicians/Orthopaedic Surgery|Orthopaedic Surgery, Adult Reconstructive Orthopaedic Surgery|Orthopaedic Surgery, Foot and Ankle Surgery|Orthopaedic Surgery, Hand Surgery|Orthopaedic Surgery, Orthopaedic Surgery of the Spine|Orthopaedic Surgery, Orthopaedic Trauma|Orthopaedic Surgery, Pediatric Orthopaedic Surgery|Orthopaedic Surgery, Sports Medicine"
+Orthopedic Surgery Of The Spine,Orthopedic Surgery Of The Spine
+Orthopedic Surgery  Trauma,Orthopedic Surgery  Trauma
+Orthopedics,Orthopedics
 Osteopathic,Allopathic & Osteopathic Physicians/Neuromusculoskeletal Medicine & OMM
 Osteopathic Manipulative Medicine,"Allopathic & Osteopathic Physicians/Neuromusculoskeletal Medicine, Sports Medicine"
 Other Medical Supply Company,Suppliers/Durable Medical Equipment & Medical Supplies
 Other Nursing Facility,Nursing and Custodial Care Facilities/Nursing Facility
 Otolaryngology,Allopathic & Osteopathic Physicians|Otolaryngology|Otolaryngic Allergy|Otology & Neurotology|Pediatric Otolaryngology|Facial Plastic Surgery|Plastic Surgery within the Head & Neck|Sleep Medicine
+Otology,Otology
+Otorhiolaryngology,Otorhiolaryngology
 Outpatient Physical Therapy/Occupational Therapy/Speech Pathology Services,"Ambulatory Health Care Facilities/Clinic/Center, Rehabilitation"
 Oxygen supplier,"Suppliers/Durable Medical Equipment & Medical Supplies, Oxygen Equipment & Supplies"
 Pain Management,"Allopathic & Osteopathic Physicians/Pain Medicine, Pain Medicine"
+Pain Medicine,Pain Medicine
 Pathology,"Allopathic & Osteopathic Physicians/Pathology|Anatomic Pathology|Clinical Pathology/Laboratory Medicine|Pathology, Anatomic Pathology & Clinical Pathology|Pathology, Blood Banking & Transfusion Medicine|Pathology, Chemical Pathology|Pathology, Clinical Pathology|Pathology, Cytopathology|Pathology, Dermapathology|Pathology, Forensic Pathology|Pathology, Hematology|Pathology, Immunopathology|Pathology, Medical Microbiology|Pathology, Molecular Genetic Pathology|Pathology, Neuropathology|Pathology, Pediatric Pathology"
+Pathology Anatomic/Clinical,Pathology Anatomic/Clinical
+Pediatric Allergy/Immunology,Pediatric Allergy/Immunology
+Pediatric Anesthesiology,Pediatric Anesthesiology
+Pediatric Cardiology,Pediatric Cardiology
+Pediatric Critical Care,Pediatric Critical Care
+Pediatric Emergency Medicine,Pediatric Emergency Medicine
+Pediatric Endocrinology,Pediatric Endocrinology
+Pediatric Gastroenterology,Pediatric Gastroenterology
+Pediatric Hematology-Oncology,Pediatric Hematology-Oncology
+Pediatric Infectious Disease,Pediatric Infectious Disease
 Pediatric Medicine,"Allopathic & Osteopathic Physicians/Pediatrics|Pediatrics, Adolescent Medicine|Pediatrics, Clinical & Laboratory Immunology|Pediatrics, Developmental–Behavioral Pediatrics|Pediatrics, Hospice and Palliative Medicine|Pediatrics, Medical Toxicology|Pediatrics, Neonatal-Perinatal Medicine|Pediatrics, Neurodevelopmental Disabilities|Pediatrics, Pediatric Allergy & Immunology|Pediatrics, Pediatric Cardiology|Pediatrics, Pediatric Critical Care Medicine|Pediatrics, Pediatric Emergency Medicine|Pediatrics, Pediatric Endocrinology|Pediatrics, Pediatric Gastroenterology|Pediatrics, Pediatric Hematology-Oncology|Pediatrics, Pediatric Infectious Diseases|Pediatrics, Pediatric Nephrology|Pediatrics, Pediatric Pulmonology|Pediatrics, Pediatric Rheumatology|Pediatrics, Pediatric Transplant Hepatology|Pediatrics, Sleep Medicine|Pediatrics, Sports Medicine"
+Pediatric Nephrology,Pediatric Nephrology
+Pediatric Ophthalmology,Pediatric Ophthalmology
+Pediatric Orthopedics,Pediatric Orthopedics
+Pediatric Otolaryngology,Pediatric Otolaryngology
+Pediatric Pathology,Pediatric Pathology
+Pediatric Physical Medicine,Pediatric Physical Medicine
+Pediatric Psychiatry,Pediatric Psychiatry
+Pediatric Pulmonology,Pediatric Pulmonology
+Pediatric Radiology,Pediatric Radiology
+Pediatric Rheumatology,Pediatric Rheumatology
+Pediatric Sports Medicine,Pediatric Sports Medicine
+Pediatric Surgery,Pediatric Surgery
+Pediatric Urology,Pediatric Urology
 Pedorthic personnel,"Respiratory, Developmental, Rehabilitative and Restorative Service Providers/Orthotist|Prosthetist"
+Periodontist,Periodontist
 Peripheral Vascular Disease,"Allopathic & Osteopathic Physicians/Surgery, Vascular Surgery"
 Pharmacy,"Suppliers/Pharmacy|Pharmacy, Clinic Pharmacy|Community/Retail Pharmacy|Pharmacy, Compounding Pharmacy|Pharmacy, Home Infusion Therapy Pharmacy|Pharmacy, Institutional Pharmacy|Pharmacy, Long-term Care Pharmacy|Pharmacy, Mail Order Pharmacy|Pharmacy, Managed Care Organization Pharmacy|Pharmacy, Nuclear Pharmacy|Pharmacy, Specialty Pharmacy"
+Physiatry,Physiatry
 Physical Medicine and Rehabilitation,"Allopathic & Osteopathic Physicians/Physical Medicine & Rehabilitation|Physical Medicine & Rehabilitation, Hospice and Palliative Medicine|Physical Medicine & Rehabilitation, Neuromuscular Medicine|Physical Medicine & Rehabilitation, Pain Medicine|Physical Medicine & Rehabilitation, Pediatric Rehabilitation Medicine|Physical Medicine & Rehabilitation, Spinal Cord Injury Medicine|Physical Medicine & Rehabilitation, Sports Medicine"
 Physical Therapist,"Respiratory, Developmental, Rehabilitative & Restorative Service Providers/Physical Therapist|Physical Therapist, Sports|Physical Therapist Cardiopulmonary|Physical Therapist, Electrophysiology, Clinical|Physical Therapist, Ergonomics|Physical Therapist, Geriatrics|Physical Therapist, Hand|Physical Therapist, Human Factors|Physical Therapist, Neurology|Physical Therapist, Orthopedic|Physical Therapist, Pediatrics"
 Physical Therapy,"Respiratory, Developmental, Rehabilitative & Restorative Service Providers/Physical Therapist|Physical Therapist, Sports|Physical Therapist Cardiopulmonary|Physical Therapist, Electrophysiology, Clinical|Physical Therapist, Ergonomics|Physical Therapist, Geriatrics|Physical Therapist, Hand|Physical Therapist, Human Factors|Physical Therapist, Neurology|Physical Therapist, Orthopedic|Physical Therapist, Pediatrics"
 Physician Assistant,"Physician Assistants & Advanced Practice Nursing Providers/Physician Assistant|Physician Assistant, Medical|Physician Assistant, Surgical"
 Plastic and,Allopathic & Osteopathic Physicians/Plastic Surgery
 Plastic and Reconstructive Surgery,
+Plastic Surgery,Plastic Surgery
 Podiatry,"Podiatric Medicine & Surgery Service Providers/Podiatrist|Podiatrist, Foot & Ankle Surgery|Podiatrist, Foot Surgery|Podiatrist, General Practice|Podiatrist, Primary Podiatric Medicine|Podiatrist, Public Medicine|Podiatrist, Radiology|Podiatrist, Sports Medicine"
 Portable X-Ray Supplier,Suppliers/Portable X-Ray Supplier
 Preventative Medicine,"Allopathic & Osteopathic Physicians/Preventive Medicine, Aerospace Medicine|Preventive Medicine/Occupational Environmental Medicine|Preventive Medicine, Medical Toxicology|Preventive Medicine, Occupational Medicine|Preventive Medicine, Public Health & General Preventive Medicine|Preventive Medicine, Sports Medicine|Preventive Medicine, Undersea and Hyperbaric Medicine"
+Preventive Medicine  General,Preventive Medicine  General
 Prosthetist,
 Prosthetist-Orthotist,"Respiratory, Developmental, Rehabilitative, and Restorative Service Providers/Prosthetist"
 Psychiatry,Allopathic & Osteopathic Physicians/Psychiatry
+Psychoanalysis,Psychoanalysis
+Psychology,Psychology
+Public Health,Public Health
 Public Health or Welfare Agency,Agencies/Public Health or Welfare
 Pulmonary Disease,"Allopathic & Osteopathic Physicians/Internal Medicine, Pulmonary Disease"
 Radiation Oncology,"Allopathic & Osteopathic Physicians/Radiology, Radiation Oncology"
+Radiation Therapy,Radiation Therapy
 Radiation Therapy Center,"Ambulatory Health Care Facilities/Clinic/Center, Radiology"
+Radiology,Radiology
 Reconstructive Surgery,"Allopathic & Osteopathic Physicians/Plastic Surgery, Plastic Surgery Within the Head and Neck|Plastic Surgery, Surgery of the Hand"
 Registered Dietitian or Nutrition Professional,"Dietary & Nutritional Service Providers/Dietician, Registered|Dietician, Registered, Nutrition, Metabolic|Dietician, Registered, Nutrition, Pediatric|Dietician, Registered, Nutrition, Renal"
 Rehabilitation Agency,"Ambulatory Health Care Facilities/Clinic/Center, Rehabilitation"
 Religious Non-Medical Health Care Institution,Hospitals/Religious Non-medical Health Care Institution
+Reproductive Endocrinology,Reproductive Endocrinology
+Retina Specialist,Retina Specialist
 Rheumatology,"Allopathic & Osteopathic Physicians/Internal Medicine, Rheumatology"
 Rural Health Clinic,"Ambulatory Health Care Facilities/Clinic/Center, Rural Health"
-Skilled Nursing Facility,Nursing and Custodial Care Facilities/Skilled Nursing Facility
 Single or Multispecialty Clinic or Group Practice,
+Skilled Nursing Facility,Nursing and Custodial Care Facilities/Skilled Nursing Facility
 SLEEP LABORATORY/MEDICINE,"Allopathic & Osteopathic Physicians/Family Medicine, Sleep Medicine|Internal Medicine|Sleep Medicine|Otolaryngology|Pediatrics, Sleep Medicine| Psychiatry & Neurology, Sleep Medicine"
+Sleep Medicine,Sleep Medicine
 Slide Preparation Facility,"Technologists, Technicians & Other Technical Service Providers/Technician, Other"
+Social Work,Social Work
 Speech Language Pathologist,
 Sports Medicine,"Allopathic & Osteopathic Physicians|Emergency Medicine|Family Medicine|Internal Medicine|Sports Medicine|Orthopedic Surgery|Neuromusculoskeletal Medicine, Sports Medicine|Pediatrics, Sports Medicine|Physical Medicine & Rehabilitation, Sports Medicine|Preventive Medicine, Sports Medicine| Psychiatry & Neurology, Sports Medicine"
+Surgery,Surgery
+Surgical Assistant,Surgical Assistant
 Surgical Oncology,"Allopathic & Osteopathic Physicians/Surgery, Surgical Oncology"
+Therapeutic Radiology,Therapeutic Radiology
 Thoracic Surgery,Allopathic & Osteopathic Physicians/Thoracic Surgery (Cardiothoracic Vascular Surgery)
+Transplant Surgery,Transplant Surgery
+Traumatic Surgery,Traumatic Surgery
 Undefined Non-Physician type (Specify),
 Undefined Physician type (Specify),
 Undefined Physician type 6,Allopathic & Osteopathic Physicians/General Practice
+Underseas Medicine,Underseas Medicine
 Unknown Supplier/Provider Specialty4,
+Urgent Care,Urgent Care
 Urology,"Allopathic & Osteopathic Physicians/Urology|Urology, Pediatric Urology"
 Vascular Surgery,"Allopathic & Osteopathic Physicians/Surgery, Vascular Surgery"
+Vascular/Interventional Radiology,Vascular/Interventional Radiology
 Voluntary Health or Charitable Agency1,Agencies/Voluntary or Charitable
+Women's Health Care,Women's Health Care

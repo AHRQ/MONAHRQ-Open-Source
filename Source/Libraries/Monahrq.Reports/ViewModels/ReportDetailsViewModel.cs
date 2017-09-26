@@ -328,7 +328,7 @@ namespace Monahrq.Reports.ViewModels
             {
                 if (!opResult.Status && opResult.Exception != null)
                 {
-                    saveException = opResult.Exception.GetBaseException();
+                    saveException = opResult.Exception;
                     errorOccurred = true;
                 }
                 else
@@ -352,7 +352,7 @@ namespace Monahrq.Reports.ViewModels
                 else
                 {
                     EventAggregator.GetEvent<GenericNotificationEvent>().Publish(saveException.ToString());
-                    Logger.Log(saveException.ToString(), Category.Exception, Priority.High);
+                    Logger.Write(saveException, "Error saving report {0}", this.Name);
                 }
             }
         }

@@ -1,0 +1,165 @@
+<main class="infographic infographic--nursing-home">
+    <section class="sharethis-section clearfix">
+        <nav class="sharethis-nav">
+            <ul class="clearfix">
+                <li>
+                    <button data-ng-click="share()" class="btn-m-secondary">Share This Page</button>
+                </li>
+                <li>
+                    <button class="btn-m-secondary" data-ng-click="feedbackModal()" data-ng-if="config.products.consumer.website_FeedBackEmail">Feedback</button>
+                </li>
+            </ul>
+        </nav>
+    </section>
+    <section class="info-graphic-head">
+        <div class="container">
+            <img src="themes/consumer/assets/infographic/header-icon-bar.png" alt="Row of various medical icons">
+            <h1>Choosing a nursing home</h1>
+            <h2>Find the Right Nursing Home<br>for You or a Loved One</h2>
+
+            <div class="box"><strong>A growing number of people need long term care</strong>, often from nursing homes.<br>However, nursing homes vary in the level of safety and quality of services they provide.</div>
+        </div>
+    </section>
+    <section class="statistic-blocks clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-4 col-md-4">
+                    <div class="info-graphic-statistic">
+                        <h6>More Than</h6>
+                        <div class="statistic-value">
+                            <div class="value-content"> 83<span>million</span></div>
+                        </div>
+                        <p class="statistic__description">people will be <strong>over the age of 65</strong> in the next 35 years - nearly double that of today<sup><a href="javascript:;" id="ref1" onclick="gotoFootnote()" title="Click to read footnote #1">1</a></sup>.</p>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-4 col-md-4">
+                    <div class="info-graphic-statistic">
+                        <h6>There is a</h6>
+                        <div class="statistic-value">
+                            <div class="value-content">
+                                70
+                                <small>%</small>
+                                <span>chance</span>
+                            </div>
+                        </div>
+
+                        <p class="statistic__description">
+                            chance a person turning 65 today will <strong>need long-term care</strong> sometime in their future years<sup>
+                                <a href="javascript:;" id="ref2" onclick="gotoFootnote()" title="Click to read footnote #2">2</a>
+                            </sup>.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-4 col-md-4">
+                    <div class="info-graphic-statistic">
+                        <h6>Each year</h6>
+                        <div class="statistic-value">
+                            <div class="value-content"> 1 in 3</div>
+                        </div>
+
+                        <p class="statistic__description">people in nursing homes <strong>are injured because of a fall</strong><sup><a href="javascript:;" id="ref3" onclick="gotoFootnote()" title="Click to read footnote #3">3</a></sup>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="info-graphic-detail clearfix">
+        <div class="container">
+            <p>All nursing homes can ensure that their residents are safe and receive high quality care. Many do, but not all of them.</p>
+            <p>There are things you can do to identify the best nursing homes for your loved ones, such as <strong>reviewing quality ratings and inspection results, and learning about nursing home staffing</strong>.</p>
+        </div>
+    </section>
+    <section class="info-graphic-quality clearfix" data-ng-if="getMeasure('NH-QM-01')">
+        <div class="container">
+            <h3 class="info-graphic-title" style="font-weight:normal;">In {{report.regionName}}, the overall quality of care provided in <strong>{{getMeasure('NH-QM-01')}} nursing homes has earned three or fewer stars</strong> (based in their national ratings)</h3>
+            <div class="info-graphic-quality-rating">
+                <h6>In nursing homes rated at three or fewer stars out of five stars total, residents are more likely to:</h6>
+                <ul>
+                    <li>Have a fall that caused a major injury</li>
+                    <li>Report moderate to severe pain</li>
+                    <li>Get new pressure sores, if the resident was already at risk</li>
+                    <li>Get a urinary tract infection</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section class="info-graphic-inspections clearfix" data-ng-if="getMeasure('NH-HI-01')">
+        <div class="container">
+            <h3 class="info-graphic-title">In {{report.regionName}},</h3>
+            <div class="inspections-measures">
+                <p class="inspections-measure">
+                    <img src="themes/consumer/assets/infographic/icon-statistics-circled.png" alt="Statistics icon">
+                    <div class="measure-value">{{getMeasure('NH-HI-01')}}</div>
+                <p>Nursing homes earned 'average' or 'below average' for overall national health and safety standards.</p>
+            </div>
+            <div class="inspections-measures">
+                <img src="themes/consumer/assets/infographic/icon-heart-circled.png" alt="Heart icon">
+                <div class="measure-value">{{getMeasure('NH-HI-04')}}</div>
+                <p>On average, nursing homes had {{getMeasure('NH-HI-04')}} violations of national health standards.</p>
+            </div>
+            <div class="inspections-measures">
+                <img src="themes/consumer/assets/infographic/icon-fire-circled.png" alt="Fire icon">
+                <p class="measure-value">{{getMeasure('NH-HI-05')}}</p>
+                <p>On average, nursing homes had {{getMeasure('NH-HI-05')}} violations of national fire safety standards.</p>
+            </div>
+        </div>
+    </section>
+    <section class="info-graphic-staffing clearfix">
+        <div class="container">
+            <div class="staffing-intro">Nurses and other staff who take care of residents are vitally important.<br>Generally, <strong>nursing homes provide better care when they have more staff working directly with residents.</strong></div>
+            <div class="info-graphic-clipboard nursing-graphic-board clearfix">
+                <p class="board-title">At a high quality nursing home, you should be able to find <sup><a href="javascript:;" id="ref4" onclick="gotoFootnote()" title="Click to read footnote #4">4</a></sup>:</p>
+                <ul>
+                    <li>Enough staff to give each resident the care they need</li>
+                    <li>Consistency in the staff people taking care of residents each day</li>
+                    <li>Information posted by the nursing home that explains the number and type of nursing staff</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section class="info-graphic-tips-blocks clearfix">
+        <div class="container">
+            <h3 class="info-graphic-title">Tips for Choosing a Nursing Home<sup><a href="javascript:;" id="ref5" onclick="gotoFootnote()" title="Click to read footnote #5">5</a></sup></h3>
+
+            <div class="clearfix">
+                <h4 class="title-tip">Do Your Homework</h4>
+                <ul>
+                    <li>Understand that not all nursing homes are alike and there are ways to ensure that loved ones are as safe and healthy as possible while in a nursing home</li>
+                    <li>Know the safety, quality and staffing ratings for the nursing homes you are considering &ndash; to find out, go to <a href="{{report.siteURL}}">{{report.siteName}}</a></li>
+                    <li>Review the <a href="https://www.medicare.gov/NursingHomeCompare/checklist.pdf" target="_blank">Nursing Home Checklist</a> from the Centers for Medicare and Medicaid Services</li>
+                </ul>
+            </div>
+
+            <div class="clearfix">
+                <h4 class="title-tip">Visit the Nursing Home to Ask Questions</h4>
+                <ul>
+                    <li>Take a copy of this report, the nursing home’s ratings, and go visit the nursing home</li>
+                    <li>Ask the nursing home leaders about their quality ratings and inspection results</li>
+                    <li>Ask for information about their staff levels and qualifications, plus staff turnover<sup><a href="javascript:;" id="ref6" onclick="gotoFootnote()" title="Click to read footnote #6">6</a></sup></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section class="info-graphic-help-actions clearfix">
+        <div class="container">
+            <p>Taking these actions will <strong>help ensure that your loved ones will be safe and receive high quality care.</strong></p>
+            <p>For more information, visit</p>
+            <a class="btn-custom" href="{{report.siteURL}}">{{report.siteName}}</a>
+        </div>
+    </section>
+    <section class="info-graphic-foot-notes clearfix">
+        <div class="container">
+            <div class="link-btn"><a href="javascript:;" onclick="showFootNotes(this);" id="accordionFooteNotes">Click here to view citations and footnotes<span></span></a></div>
+            <div class="notes-list clearfix">
+                <ol>
+                    <li>An Aging Nation: The Older Population in the United States, Current Population Reports, P25-1140. U.S. Census Bureau,Washington, DC. 2014.<a href="#" data-ng-click="$event.preventDefault()" data-scroll-to="ref1">^</a></li>
+                    <li><a href="http://longtermcare.gov/the-basics/how-much-care-will-you-need/">http://longtermcare.gov/the-basics/how-much-care-will-you-need/</a> <a href="#" data-ng-click="$event.preventDefault()" data-scroll-to="ref2">^</a></li>
+                    <li><a href="https://www.medicare.gov/NursingHomeCompare/About/Long-Stay-Residents.html">https://www.medicare.gov/NursingHomeCompare/About/Long-Stay-Residents.html</a> <a href="#" data-ng-click="$event.preventDefault()" data-scroll-to="ref3">^</a></li>
+                    <li>CMS “Your Guide to Choosing a Nursing Home or Other Long Term Care” August 2015 <a href="#">https://www.medicare.gov/Pubs/pdf/02174.pdf</a> <a href="#" data-ng-click="$event.preventDefault()" data-scroll-to="ref4">^</a></li>
+                    <li>CMS "Your Guide to Choosing a Nursing Home or Other Long Term Care" August 2015 <a href="#">https://www.medicare.gov/Pubs/pdf/02174.pdf</a> <a href="#" data-ng-click="$event.preventDefault()" data-scroll-to="ref5">^</a></li>
+                    <li>CMS Nursing Home Compare website <a href="#" data-ng-click="$event.preventDefault()" data-scroll-to="ref6">^</a></li>
+                </ol>
+            </div>
+        </div>
+    </section>
+</main>

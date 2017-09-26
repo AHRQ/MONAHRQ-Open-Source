@@ -1,0 +1,244 @@
+<main class="profile">
+
+    <section class="sharethis-section">
+        <nav class="sharethis-nav">
+            <ul class="clearfix">
+                <li>
+                    <button data-ng-click="share()" class="btn-m-secondary">Share This Page</button>
+                </li>
+                <li>
+                    <button class="btn-m-secondary" data-ng-click="feedbackModal()" data-ng-if="config.products.consumer.website_FeedBackEmail">Feedback</button>
+                </li>
+            </ul>
+        </nav>
+    </section>
+
+    <section class="search-browse section-blue" role="search">
+
+        <article>
+            <header>
+                <h2>Find another nursing home</h2>
+            </header>
+        </article>
+
+        <form class="search-form text-left" name="searchForm" novalidate>
+
+
+            <div class="search-form-container">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="form-group search-form-location">
+                                <label for="search-query">Enter Name:</label>
+                                <input type="text" id="search-query" name="name" placeholder="Enter a nursing home name" data-ng-model="query.name" required>
+                                <span data-ng-if="searchForm.name.$error.required && showValidationErrors" class="form-error-message">Error: Please enter a name</span>
+                            </div>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="search-form-action">
+                                <button class="btn-m-primary" data-ng-click="search()">Search</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+
+    <div data-mh-cms-zone="'header'" data-mh-cms-zone-report-id="reportId" data-mh-cms-zone-product="'Consumer'"></div>
+
+
+    <section class="search-reasult-holder" data-ng-if="hasResult">
+        <article class="compare-result-help-link">
+            <div class="help-block text-right">
+                <div data-mh-help-icon="'Help me understand this report'" data-mh-on-click="modalLegend()"></div>
+            </div>
+        </article>
+        <article class="hospital-details" data-ng-if="hasResult">
+            <h2>{{profile.Name}}</h2>
+        </article>
+        <article class="hp-address" data-ng-if="hasResult">
+            <p>
+                <a data-ng-if="deviceData.os!='ios'" href="http://maps.google.com?q={{profile.Address}},{{profile.City}},{{profile.State}},{{profile.Zip}}">
+                    {{profile.Address}} <br />
+                    {{profile.City}}, {{profile.State}} {{profile.Zip | zip}} <br />
+                </a>
+                <a data-ng-if="deviceData.os=='ios'" href="http://maps.apple.com?q={{profile.Address}},{{profile.City}},{{profile.State}},{{profile.Zip}}">
+                    {{profile.Address}} <br />
+                    {{profile.City}}, {{profile.State}} {{profile.Zip | zip}} <br />
+                </a>
+                ({{zipDist | number:0}} miles away from zip code {{profile.Zip | zip}})
+            </p>
+        </article>
+    </section>
+
+
+    <section class="consumer-info-provider text-center" data-ng-if="!hasSearch">
+        <article>
+            <div class="report-no-result">
+                Please enter a search in the form above.
+            </div>
+        </article>
+    </section>
+
+    <section class="consumer-info-provider text-center" data-ng-if="hasSearch && !hasResult">
+        <article>
+            <div class="report-no-result">Your search did not find any nursing homdsfdses.</div>
+        </article>
+    </section>
+
+
+
+    <section class="service-info" data-ng-if="hasResult">
+        <div class="panel panel-default">
+            <div class="panel-heading">General Information</div>
+
+            <ul class="list-group">
+                <li class="list-group-item" data-ng-if="profile.PhoneNumber != null">
+                    <span class="badge">{{profile.PhoneNumber | phone}}</span>
+                    Phone Number:
+                </li>
+                <li class="list-group-item" data-ng-if="countyName != null">
+                    <span class="badge">{{countyName}}</span>
+                    County Name:
+                </li>
+                <li class="list-group-item" data-ng-if="profile.OwnershipType != null">
+                    <span class="badge">{{profile.OwnershipType}}</span>
+                    Ownership Type:
+                </li>
+                <li class="list-group-item" data-ng-if="profile.CertifiedBeds != null">
+                    <span class="badge">{{profile.CertifiedBeds}}</span>
+                    Total number of beds<br>for residents with Medicare/Medicaid:
+                </li>
+                <li class="list-group-item" data-ng-if="profile.ResidentsInCertifiedBeds != null">
+                    <span class="badge">{{profile.ResidentsInCertifiedBeds}}</span>
+                    Total number of occupied beds for residents with Medicare/Medicaid:
+                </li>
+            </ul>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">Other Information</div>
+            <ul class="list-group">
+                <li class="list-group-item" data-ng-if="profile.ProviderType != null">
+                    <span class="badge">{{profile.ProviderType}}</span>
+                    Provider ID:
+                </li>
+                <li class="list-group-item" data-ng-if="profile.InHospital != null">
+                    <span class="badge" ng-if="profile.bInHospital">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                    <span class="badge" ng-if="!profile.bInHospital">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                    </span>
+                    Is the nursing home located in Hospital:
+                </li>
+                <li class="list-group-item" data-ng-if="profile.InRetirementCommunity != null">
+                    <span class="badge" ng-if="profile.bInRetirementCommunity">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                    <span class="badge" ng-if="!profile.bInRetirementCommunity">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                    </span>
+                    Is the nursing home located in Continuing Care Retirement Community:
+                </li>
+                <li class="list-group-item" data-ng-if="profile.DateApprovedMedicareMedicaid != null">
+                    <span class="badge">{{getFormattedDate(profile.DateApprovedMedicareMedicaid)}}</span>
+                    Date First Approved to Provide Medicare and Medicaid services:
+                </li>
+                <li class="list-group-item" data-ng-if="profile.SpecialFocus != null">
+                    <span class="badge" ng-if="profile.bSpecialFocus">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                    <span class="badge" ng-if="!profile.bSpecialFocus">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                    </span>
+                    Special Focus Facility:
+                </li>
+                <li class="list-group-item" data-ng-if="profile.LastYearOwnershipChange != null">
+                    <span class="badge" ng-if="profile.bLastYearOwnershipChange">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                    <span class="badge" ng-if="!profile.bLastYearOwnershipChange">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                    </span>
+                    Provider Changed Ownership in Last 12 Months:
+                </li>
+                <li class="list-group-item" data-ng-if="profile.HasCouncil != null">
+                    <span class="badge">{{profile.HasCouncil}}</span>
+                    Does the nursing home have a Resident and Family Council:
+                </li>
+                <li class="list-group-item" data-ng-if="profile.HasSprinkler  != null">
+                    <span class="badge" ng-if="profile.bHasSprinkler">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                    <span class="badge" ng-if="!profile.bHasSprinkler">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                    </span>
+                    Automatic Sprinkler Systems in All Required Areas:
+                </li>
+                <li class="list-group-item" data-ng-if="profile.Accreditation != null">
+                    <span class="badge">{{profile.Accreditation}}</span>
+                    Accreditation:
+                </li>
+
+
+            </ul>
+        </div>
+
+    </section>
+
+
+    <section class="result-table-holder" data-ng-if="hasResult">
+        <div class="result-table-wrapper no-bdr" data-mh-tabs="'measures'">
+            <article class="tab-holder single-tab-view">
+                <div>
+
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active">
+                            <a href="#home" aria-controls="home" role="tab"
+                               data-toggle="tab">MEASURE</a>
+                        </li>
+
+                    </ul>
+
+
+
+                    <div class="tab-content result-table-wrapper-bdr">
+                        <div role="tabpanel" class="tab-pane active" id="home">
+                            <article class="compare-result-option pad-15">
+
+                                <!--<div class="tabs" data-mh-tab-list>
+                                    <div data-mh-tab="'measures'" data-mh-tab-label="'Measures'"></div>
+                                </div>-->
+
+                                <div data-mh-tab-panel="'measures'">
+                                    <div data-ui-view="profile-tab1"></div>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </article>
+
+        </div>
+
+    </section>
+
+
+    <section class="update-search-result-section" data-ng-if="hasResult">
+        <div class="row">
+            <div class="col-xs-12">
+                <div data-ng-if="reportSettings.footer" class="report-footnotes" data-ng-bind-html="reportSettings.footer"></div>
+            </div>
+
+        </div>
+    </section>
+
+
+
+    <div data-mh-cms-zone="'footer'" data-mh-cms-zone-report-id="reportId" data-mh-cms-zone-product="'Consumer'"></div>
+</main>

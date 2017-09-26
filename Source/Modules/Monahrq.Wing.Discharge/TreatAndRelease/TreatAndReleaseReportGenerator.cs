@@ -1617,7 +1617,7 @@ namespace Monahrq.Wing.Discharge.TreatAndRelease
             }
             catch (Exception ex)
             {
-                Logger.Write(ex);
+                Logger.Write(ex, "Error initializing report \"{0}\"", this.ActiveReport?.Name);
             }
         }
 
@@ -1837,7 +1837,7 @@ namespace Monahrq.Wing.Discharge.TreatAndRelease
             }
             catch (Exception ex)
             {
-                Logger.Write(ex);
+                Logger.Write(ex, "Error creating directories for report \"{0}\"", this.ActiveReport?.Name);
             }
         }
 
@@ -1899,7 +1899,7 @@ namespace Monahrq.Wing.Discharge.TreatAndRelease
             }
             catch (Exception ex)
             {
-                Logger.Write(ex);
+                Logger.Write(ex, "Error generating JSON files for report {0}", this.ActiveReport?.Description);
             }
         }
 

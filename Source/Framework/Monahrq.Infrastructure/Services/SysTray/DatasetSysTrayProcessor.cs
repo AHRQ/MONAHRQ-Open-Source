@@ -25,7 +25,7 @@ namespace Monahrq.Infrastructure.Services.SysTray
         {
             var sessionProvider = ServiceLocator.Current.GetInstance<IDomainSessionFactoryProvider>();
 
-            var logger = ServiceLocator.Current.GetInstance<ILoggerFacade>(LogNames.Session);
+            var logger = ServiceLocator.Current.GetInstance<ILogWriter>(LogNames.Session);
 
             bool shouldExecute;
 
@@ -47,7 +47,7 @@ namespace Monahrq.Infrastructure.Services.SysTray
 
             if (shouldExecute)
             {
-                logger.Log("Starting Grouper SysTray App.", Category.Info, Priority.High);
+                logger.Information("Starting Grouper SysTray App.");
 
                 var workerThread = new Thread(DoWork) {IsBackground = true};
                 workerThread.Start(new WorkerParms
@@ -56,7 +56,6 @@ namespace Monahrq.Infrastructure.Services.SysTray
                         ConfigurationString = connectionStringToUse,
                         Logger = logger
                     });
-
             }
             else
             {
@@ -102,7 +101,7 @@ namespace Monahrq.Infrastructure.Services.SysTray
             {
                 var variableStrings = string.Format("{0}|{1}|{2}", objParams.Dataset.Id, connectionString, logFilePath);
 
-                logger.Log(string.Format("Grouper SysTray App Command Line Varables: {0}", variableStrings), Category.Info, Priority.High);
+                logger.Debug("Grouper SysTray App Command Line Varables: {0}", variableStrings);
 
                 //await Task.Run(() =>
                 //{
@@ -121,7 +120,7 @@ namespace Monahrq.Infrastructure.Services.SysTray
                     //do
                     //{
                     //    var message = sysTrayProc.StandardOutput.ReadLineAsync().Result; 
-                    //    logger.Log(message, Category.Info, Priority.High);
+                    //    logger.Write(message, Category.Info, Priority.High);
                     //} 
                     //while (!sysTrayProc.HasExited);
                     #endregion
@@ -132,24 +131,16 @@ namespace Monahrq.Infrastructure.Services.SysTray
             }
             else
             {
-                logger.Log(string.Format("Grouper SysTray App could not be ran for Dataset, {0} (id:{1}), due to connectionstring being null.", objParams.Dataset.File, objParams.Dataset.Id), Category.Exception, Priority.High);
+                logger.Write(null, TraceEventType.Error,
+                    "Grouper SysTray App could not be ran for Dataset, {0} (id:{1}), due to connectionstring being null.",
+                    objParams.Dataset.File, objParams.Dataset.Id);
             }
 
-                //logger.Log(string.Format("Grouper SysTray App Finished Processing for Dataset: {0} (id:{1})", objParams.Dataset.File, objParams.Dataset.Id), Category.Info, Priority.High);
+                //logger.Write(string.Format("Grouper SysTray App Finished Processing for Dataset: {0} (id:{1})", objParams.Dataset.File, objParams.Dataset.Id), Category.Info, Priority.High);
             }
             catch (Exception exc)
             {
-                var excToUse = exc.GetBaseException();
-
-                if (exc is AggregateException)
-                {
-                    excToUse = ((AggregateException) exc).Flatten().GetBaseException();
-                }
-
-                if (logger != null)
-                {
-                    logger.Log(excToUse.GetBaseException().Message, Category.Exception, Priority.High);
-                }
+                logger.Write(exc, "Error launching Grouper SysTray App");
             }
             //    RequestStop();
             //}
@@ -194,6 +185,6 @@ namespace Monahrq.Infrastructure.Services.SysTray
         /// <value>
         /// The logger.
         /// </value>
-        public ILoggerFacade Logger { get; set; }
+        public ILogWriter Logger { get; set; }
     }
 }

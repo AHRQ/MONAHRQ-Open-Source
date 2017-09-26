@@ -12,12 +12,12 @@
   /**
    * Angular wiring
    */
-  angular.module('monahrq.products.consumer.hospitals')
+    angular.module('monahrq.products.consumer.hospitals')
     .controller('CHProfileCtrl', CHProfileCtrl);
 
 
-  CHProfileCtrl.$inject = ['$scope', '$state', '$stateParams', 'HospitalRepositorySvc', 'CHReportSvc', 'ScrollToElSvc', 'ModalLegendSvc', 'ConsumerReportConfigSvc', 'ZipDistanceSvc', 'hospitalZips', 'zipDistances', 'ModalMeasureSvc'];
-  function CHProfileCtrl($scope, $state, $stateParams, HospitalRepositorySvc, CHReportSvc, ScrollToElSvc, ModalLegendSvc, ConsumerReportConfigSvc, ZipDistanceSvc, hospitalZips, zipDistances, ModalMeasureSvc) {
+    CHProfileCtrl.$inject = ['$scope', '$state', '$stateParams', 'HospitalRepositorySvc', 'CHReportSvc', 'ScrollToElSvc', 'ModalLegendSvc', 'ConsumerReportConfigSvc', 'ZipDistanceSvc', 'hospitalZips', 'zipDistances', 'ModalMeasureSvc',];
+    function CHProfileCtrl($scope, $state, $stateParams, HospitalRepositorySvc, CHReportSvc, ScrollToElSvc, ModalLegendSvc, ConsumerReportConfigSvc, ZipDistanceSvc, hospitalZips, zipDistances, ModalMeasureSvc) {
     var id;
     $scope.reportId = $state.current.data.report;
     $scope.reportSettings = {};
@@ -39,6 +39,10 @@
     $scope.modalMeasure = modalMeasure;
     $scope.modalLegend = modalLegend;
     $scope.showOverallRating = showOverallRating;
+    $scope.share = share;
+    $scope.feedbackModal = feedbackModal;
+    $scope.toggleFullTabTitle = toggleFullTabTitle;
+    $scope.doctorsTabTitle = "Doctors that can...";
 
     init();
 
@@ -62,6 +66,28 @@
           setupReportHeaderFooter();
       });
       setupReportHeaderFooter();
+    }
+
+    function toggleFullTabTitle(tabName) {
+        if (tabName == "doctor") {
+            $scope.doctorsTabTitle = "Doctors that can admit you to this hospital";
+        }
+        else {
+            $scope.doctorsTabTitle = "Doctors that can...";
+        }
+    }
+
+    function share() {
+        window.location = buildShareUrl();
+    }
+
+    function feedbackModal() {
+        ModalFeedbackSvc.open($scope.config);
+    }
+
+    function buildShareUrl() {
+        var url = escape(window.location);
+        return "mailto:?to=&subject=Shared%20MONAHRQ%20Page&body=" + url;
     }
 
     function getActiveTab() {

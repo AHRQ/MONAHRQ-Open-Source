@@ -17,12 +17,8 @@ namespace Monahrq.Sdk.Modules
         /// <value>
         /// The logger.
         /// </value>
-        [Import(LogNames.Operations, typeof(ILoggerFacade))]
-        private ILoggerFacade Logger
-        {
-            get;
-            set;
-        }
+        [Import(LogNames.Operations, typeof(ILogWriter))]
+        private ILogWriter Logger{ get; set; }
 
         /// <summary>
         /// Records the plugin module is loading.
@@ -32,7 +28,7 @@ namespace Monahrq.Sdk.Modules
         /// <param name="totalBytesToReceive">The total bytes to receive.</param>
         public void RecordModuleDownloading(string moduleName, long bytesReceived, long totalBytesToReceive)
         {
-            Logger.Log(string.Format("Downloading {0}: {1:N} of {2:N} bytes recieved", moduleName, bytesReceived, totalBytesToReceive), Category.Info, Priority.None); 
+            Logger.Debug("Downloading {0}: {1:N} of {2:N} bytes recieved", moduleName, bytesReceived, totalBytesToReceive); 
         }
 
         /// <summary>
@@ -41,7 +37,7 @@ namespace Monahrq.Sdk.Modules
         /// <param name="moduleName"></param>
         public void RecordModuleLoaded(string moduleName)
         {
-            Logger.Log(string.Format("Module loaded: {0}", moduleName), Category.Info, Priority.None);
+            Logger.Debug("Module loaded: {0}", moduleName);
         }
 
         /// <summary>
@@ -50,7 +46,7 @@ namespace Monahrq.Sdk.Modules
         /// <param name="moduleName"></param>
         public void RecordModuleConstructed(string moduleName)
         {
-            Logger.Log(string.Format("Module Created: {0}", moduleName), Category.Debug, Priority.None);
+            Logger.Debug("Module Created: {0}", moduleName);
         }
 
         /// <summary>
@@ -59,7 +55,7 @@ namespace Monahrq.Sdk.Modules
         /// <param name="moduleName"></param>
         public void RecordModuleInitialized(string moduleName)
         {
-            Logger.Log(string.Format("Module Initialized: {0}", moduleName), Category.Debug, Priority.None);
+            Logger.Debug("Module Initialized: {0}", moduleName);
         }
     }
 }

@@ -125,7 +125,7 @@ namespace Monahrq.Wing.Dynamic
             }
             catch (Exception ex)
             {
-                Logger.Write(ex.InnerException ?? ex);
+                Logger.Write(ex, "Error writing data files for dynamic report {0}", this.ActiveReport?.Name);
                 return false;
             }
         }

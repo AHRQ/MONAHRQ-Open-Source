@@ -88,7 +88,7 @@
                             <th class="compare-check">
                                 Select:
                                 <small>(To Compare)</small>
-                                <button class="btn--primary" id="compareBtn" tabindex="{{getCompareTabIndex()}}" data-ng-class="{disabled: !canCompare()}" data-ng-mouseover="$event.preventDefault(); showCompareHelpModal();" data-ng-click="gotoCompare()">Compare</button>
+                                <button title="Maximum five nursing homes" class="btn--primary" id="compareBtn" tabindex="{{getCompareTabIndex()}}" data-ng-class="{disabled: !canCompare()}" data-ng-mouseover="$event.preventDefault(); showCompareHelpModal();" data-ng-click="gotoCompare()">Compare</button>
                             </th>
                             <th class="nursing-home-name">Nursing Home Name:</th>
                             <th data-ng-repeat="col in columnModel track by $index" id="rating{{$index}}"><span ng-bind="col.name"></span><span data-mh-help-icon data-sr-label="'Help for ' + col.name" data-mh-on-click="modalMeasure(col.id)"></span></th>

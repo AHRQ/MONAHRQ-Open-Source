@@ -11,6 +11,7 @@ using Monahrq.Infrastructure.Extensions;
 using Monahrq.Infrastructure.Data;
 using Monahrq.Infrastructure.Domain.Websites;
 using System.Dynamic;
+using Monahrq.Infrastructure;
 
 namespace Monahrq.Sdk.Generators
 {
@@ -99,7 +100,7 @@ namespace Monahrq.Sdk.Generators
         /// <value>
         /// The logger.
         /// </value>
-        private ILoggerFacade Logger { get; set; }
+        private ILogWriter Logger { get; set; }
 
         /// <summary>
         /// The cost quality calculations dictionary
@@ -120,7 +121,7 @@ namespace Monahrq.Sdk.Generators
 			WinQiConnectionStr = winQiConnectionStr;
 			MonAhrqConnectionStr = monAhrqConnectionStr;
 			CurrentWebsite = currentWebsite;
-			Logger = ServiceLocator.Current.GetInstance<ILoggerFacade>();
+			Logger = ServiceLocator.Current.GetInstance<ILogWriter>();
 			CQCalculations = new Dictionary<CostQualityCalculatorMeasureType, Dictionary<int, CostQualityCalculation>>();
 		}
         /// <summary>

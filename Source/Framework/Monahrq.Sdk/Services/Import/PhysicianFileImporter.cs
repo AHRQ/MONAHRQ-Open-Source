@@ -23,6 +23,7 @@ using Monahrq.Sdk.Events;
 using NHibernate.Linq;
 using ReflectionHelper = Monahrq.Infrastructure.Utility.Extensions.ReflectionHelper;
 using Microsoft.Practices.ServiceLocation;
+using Monahrq.Infrastructure;
 
 namespace Monahrq.Sdk.Services.Import
 {
@@ -51,7 +52,7 @@ namespace Monahrq.Sdk.Services.Import
                                      , IDomainSessionFactoryProvider provider
                                      , IHospitalRegistryService hospitalRegistryService
                                      , IEventAggregator events
-                                     , ILoggerFacade logger
+                                     , [Import(LogNames.Session)] ILogWriter logger
                                      , IConfigurationService configurationService)
             : base(folder, provider, hospitalRegistryService, events, logger)
         {
@@ -350,8 +351,8 @@ namespace Monahrq.Sdk.Services.Import
             }
             catch (IOException exc)
             {
-                
-                Logger.Log(exc.GetBaseException().Message, Category.Exception, Priority.High);
+
+                Logger.Write(exc, "Error importing data from file {0}", dlg.FileName);
 
                 var message = string.Format("Please close file\"{0}\" before trying to import.",
                                             dlg.FileName.SubStrAfterLast(@"\"));
@@ -359,7 +360,7 @@ namespace Monahrq.Sdk.Services.Import
             }
             catch (Exception exc)
             {
-                Logger.Log(exc.GetBaseException().Message, Category.Exception, Priority.High);
+                Logger.Write(exc, "Error importing data from file {0}", dlg.FileName);
                 ImportErrors.Add(ImportError.Create("Physician", "Physician", exc.GetBaseException().Message));
             }
             finally

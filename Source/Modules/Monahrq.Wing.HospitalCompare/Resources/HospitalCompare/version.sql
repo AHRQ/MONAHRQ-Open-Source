@@ -58,7 +58,7 @@
 					) as Measures_HospitalReadmission
 				,	switch
 					(
-						'[@@Table_Schema_Name@@]' alike '%_11_14_2016',		'Heart Attack,Heart Failure,Pneumonia,Hospital-Wide All-Cause,MORT_30_COPD,READM_30_COPD,READM_30_HIP_KNEE,COMP_HIP_KNEE,READM_30_CABG',
+						'[@@Table_Schema_Name@@]' alike '%_11_14_2016',		'Heart Attack or Chest Pain,Heart Attack,Heart Failure,Pneumonia,Hospital-Wide All-Cause,MORT_30_COPD,READM_30_COPD,READM_30_HIP_KNEE,COMP_HIP_KNEE,READM_30_CABG',
 						'[@@Table_Schema_Name@@]' alike '%_08_26_2016',		'Heart Attack,Heart Failure,Pneumonia,Hospital-Wide All-Cause,MORT_30_COPD,READM_30_COPD,READM_30_HIP_KNEE,COMP_HIP_KNEE,READM_30_CABG',
 						'[@@Table_Schema_Name@@]' alike '%_06_08_2016',		'Heart Attack,Heart Failure,Pneumonia,Hospital-Wide All-Cause,MORT_30_COPD,READM_30_COPD,READM_30_HIP_KNEE,COMP_HIP_KNEE,READM_30_CABG',
 						'[@@Table_Schema_Name@@]' alike '%_02_18_2016',		'Heart Attack,Heart Failure,Pneumonia,Hospital-Wide All-Cause,MORT_30_COPD,READM_30_COPD,READM_30_HIP_KNEE,COMP_HIP_KNEE,READM_30_CABG',

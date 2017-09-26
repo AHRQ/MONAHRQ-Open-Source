@@ -716,7 +716,7 @@ namespace Monahrq.Reports.ViewModels
                     if (opResult.Status && opResult.Exception != null)
                     {
                         errorOccurred = true;
-                        NotifyError(opResult.Exception.GetBaseException(), typeof(Report), Title);
+                        LogEntityError(opResult.Exception.GetBaseException(), typeof(Report), Title);
                     }
                     else
                     {
@@ -732,7 +732,7 @@ namespace Monahrq.Reports.ViewModels
             }
             catch (Exception exc)
             {
-                NotifyError(exc, typeof(Report), Title);
+                LogEntityError(exc, typeof(Report), Title);
             }
             finally
             {
@@ -766,7 +766,7 @@ namespace Monahrq.Reports.ViewModels
                 if (opResult.Status && opResult.Exception != null)
                 {
                     errorOccurred = true;
-                    NotifyError(opResult.Exception.GetBaseException(), typeof(Report), Title);
+                    LogEntityError(opResult.Exception.GetBaseException(), typeof(Report), Title);
                 }
                 else
                 {
@@ -841,9 +841,8 @@ namespace Monahrq.Reports.ViewModels
                 if (!opResult.Status || opResult.Exception != null)
                 {
                     errorOccurred = true;
-                    var ex = opResult.Exception.GetBaseException();
-                    EventAggregator.GetEvent<GenericNotificationEvent>().Publish(ex.ToString());
-                    Logger.Log(ex.ToString(), Category.Exception, Priority.High);
+                    EventAggregator.GetEvent<GenericNotificationEvent>().Publish(opResult.Exception.GetBaseException().ToString());
+                    Logger.Write(opResult.Exception, "Error deleting report {0}", report.Name);
                 }
 
                 progressService.SetProgress("Completed", 100, true, false);

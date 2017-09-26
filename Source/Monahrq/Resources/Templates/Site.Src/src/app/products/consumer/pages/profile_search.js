@@ -32,6 +32,8 @@
     $scope.physicianResults = [];
     $scope.hasSearch = false;
     $scope.hasResult = false;
+    $scope.share = share;
+    $scope.feedbackModal = feedbackModal;
 
     init();
 
@@ -56,6 +58,19 @@
         $q.all(ps)
           .then(loadData);
       }
+    }
+
+    function share() {
+        window.location = buildShareUrl();
+    }
+
+    function feedbackModal() {
+        ModalFeedbackSvc.open($scope.config);
+    }
+
+    function buildShareUrl() {
+        var url = escape(window.location);
+        return "mailto:?to=&subject=Shared%20MONAHRQ%20Page&body=" + url;
     }
 
     function loadData() {

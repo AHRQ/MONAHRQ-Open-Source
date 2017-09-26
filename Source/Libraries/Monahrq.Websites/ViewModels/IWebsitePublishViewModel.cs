@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 using Microsoft.Practices.Prism.Commands;
+using Monahrq.Infrastructure.Domain.Websites;
 using Monahrq.Websites.ViewModels.Publish;
 
 namespace Monahrq.Websites.ViewModels
@@ -19,7 +20,7 @@ namespace Monahrq.Websites.ViewModels
         bool IsDependencyCheckRunning { get; }
         void RunDependencyCheck();
         DelegateCommand RunDependencyCheckCommand { get; }
-        IEnumerable<IValidationResultViewModel> DependencyCheckResults { get; }
+        IEnumerable<ValidationResultViewModel> DependencyCheckResults { get; }
         Visibility ResultsVisibility { get; }
     }
 

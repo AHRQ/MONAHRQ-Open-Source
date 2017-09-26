@@ -44,6 +44,8 @@ using Monahrq.Views;
 using NHibernate;
 using NHibernate.Transform;
 using System.Data.SqlClient;
+using System.Windows.Threading;
+using Monahrq.Infrastructure.Services;
 
 //using LinqKit;
 
@@ -92,7 +94,7 @@ namespace Monahrq
                 AppDomain.CurrentDomain.AppendPrivatePath(modulesPath);
             }
         }
-
+        
         /// <summary>
         /// Creates the shell or main window of the application.
         /// </summary>
@@ -165,6 +167,8 @@ namespace Monahrq
                 reportGenerators.ForEach(rg => rg.InitGenerator());
 
                 var eventAggregator = Container.GetExportedValue<IEventAggregator>();
+                eventAggregator.GetEvent<ServiceErrorEvent>().Subscribe(this.HandleServiceErrorEvent);
+                eventAggregator.GetEvent<ErrorNotificationEvent>().Subscribe(this.HandleGenericExceptionEvent);
                 eventAggregator.GetEvent<MessageUpdateEvent>().Publish(new MessageUpdateEvent { Message = "Finalizing application initialization" });
 
                 var regionRegistrars = Container.GetExportedValues<IModuleRegionRegistrar>().ToList();
@@ -193,6 +197,16 @@ namespace Monahrq
             }
         }
 
+        private void HandleGenericExceptionEvent(Exception obj)
+        {
+            _sessionLogger.Write(obj, $"Generic exception event raised");
+        }
+
+        private void HandleServiceErrorEvent(ServiceErrorEventArgs obj)
+        {
+            _sessionLogger.Write(obj.Exception, $"Service exception for data type {obj.EnitytType} named \"{obj.EntityName}\" (ID# {obj.EntityId ?? "?"})");
+        }
+
         /// <summary>
         /// Loads the monahrq shell asynchronous.
         /// </summary>
@@ -200,7 +214,7 @@ namespace Monahrq
         /// <returns></returns>
         private IMonahrqShell LoadMonahrqShellAsync(CompositionContainer container)
         {
-            _sessionLogger.Log("LoadMonahrqShellAsync", Category.Info, Priority.High);
+            _sessionLogger.Write("Loading MONAHRQ Shell...");
             return container.GetExportedValue<IMonahrqShell>();
         }
 
@@ -337,7 +351,7 @@ namespace Monahrq
                         }
                         catch (Exception exc)
                         {
-                            _sessionLogger.Log(exc.GetBaseException().Message, Category.Exception, Priority.High);
+                            _sessionLogger.Write(exc.GetBaseException());
                             return;
                         }
 
@@ -393,7 +407,7 @@ namespace Monahrq
         {
             base.ConfigureServiceLocator();
 
-            //_sessionLogger.Log("DEBUG: ConfigureServiceLocator()", Category.Debug, Priority.High);
+            //_sessionLogger.Write("DEBUG: ConfigureServiceLocator()", Category.Debug, Priority.High);
 
             Application.Current.ShutdownMode = ShutdownMode.OnExplicitShutdown;
 
@@ -401,8 +415,8 @@ namespace Monahrq
 
             if (!TestDb())
             {
-                var msg = string.Format("MONAHRQ was unable to connect to the database. Please restart MONAHRQ and specify a database connection.");
-                Logger.Log(msg, Category.Exception, Priority.High);
+                var msg = "MONAHRQ was unable to connect to the database. Please restart MONAHRQ and specify a database connection.";
+                Logger.Log(msg, Category.Info, Priority.High);
 
                 MessageBox.Show(msg, "MONAHRQ 6.0");
                 Application.Current.Shutdown();
@@ -463,7 +477,7 @@ namespace Monahrq
         /// </summary>
         protected override void InitializeModules()
         {
-            //_sessionLogger.Log("DEBUG: InitializeModules()", Category.Debug, Priority.High);
+            //_sessionLogger.Write("DEBUG: InitializeModules()", Category.Debug, Priority.High);
 
             if (this.Shell != null)
             {
@@ -536,7 +550,7 @@ namespace Monahrq
         /// </returns>
         protected override RegionAdapterMappings ConfigureRegionAdapterMappings()
         {
-           // _sessionLogger.Log("DEBUG: ConfigureRegionAdapterMappings()", Category.Debug, Priority.High);
+           // _sessionLogger.Write("DEBUG: ConfigureRegionAdapterMappings()", Category.Debug, Priority.High);
             RegionAdapterMappings regionAdapterMappings = base.ConfigureRegionAdapterMappings();
 
             var serviceLocator = Container.GetExportedValue<IServiceLocator>();
@@ -557,7 +571,7 @@ namespace Monahrq
         /// <returns></returns>
         protected override IRegionBehaviorFactory ConfigureDefaultRegionBehaviors()
         {
-            //_sessionLogger.Log("DEBUG: ConfigureDefaultRegionBehaviors()", Category.Debug, Priority.High);
+            //_sessionLogger.Write("DEBUG: ConfigureDefaultRegionBehaviors()", Category.Debug, Priority.High);
             var regionBehaviorTypesDictionary = base.ConfigureDefaultRegionBehaviors();
             regionBehaviorTypesDictionary.AddIfMissing(ClearChildViewsRegionBehavior.BEHAVIOR_KEY, typeof(ClearChildViewsRegionBehavior));
             return regionBehaviorTypesDictionary;
@@ -570,7 +584,7 @@ namespace Monahrq
         /// </summary>
         protected override void RegisterBootstrapperProvidedTypes()
         {
-            //_sessionLogger.Log("DEBUG: ConfigureDefaultRegionBehaviors()", Category.Debug, Priority.High);
+            //_sessionLogger.Write("DEBUG: ConfigureDefaultRegionBehaviors()", Category.Debug, Priority.High);
             base.RegisterBootstrapperProvidedTypes();
         }
         // ReSharper restore RedundantOverridenMember
@@ -582,7 +596,7 @@ namespace Monahrq
         /// <returns></returns>
         bool CheckOledbComponentsExist()
         {
-           // _sessionLogger.Log("DEBUG: CheckOledbComponentsExist()", Category.Debug, Priority.High);
+           // _sessionLogger.Write("DEBUG: CheckOledbComponentsExist()", Category.Debug, Priority.High);
             const string baseFilename = "Monahrq-Test.csv";
             string fullPath = Path.Combine(Environment.CurrentDirectory, baseFilename);
             bool tempTestFileCreated = false;
@@ -672,7 +686,7 @@ namespace Monahrq
         /// </summary>
         private void CheckUpdate()
         {
-            _sessionLogger.Log("CheckUpdate", Category.Info, Priority.High);
+            _sessionLogger.Write("Checking for MONAHRQ Update...");
             //_configurationService = Container.GetExportedValue<IConfigurationService>();
             if (string.IsNullOrWhiteSpace(_configurationService.MonahrqSettings.UpdateCheckUrl))
                 return;
@@ -721,7 +735,7 @@ namespace Monahrq
                 }
                 catch (Exception ex)
                 {
-                    _sessionLogger.Log(ex.Message, Category.Warn, Priority.High);
+                    _sessionLogger.Write(ex);
                     return;
                 }
             }
@@ -766,7 +780,7 @@ namespace Monahrq
         {
             try
             {
-               // _sessionLogger.Log("DEBUG: RenameMyDocumentsDirectoryIfNeeded()", Category.Debug, Priority.High);
+               // _sessionLogger.Write("DEBUG: RenameMyDocumentsDirectoryIfNeeded()", Category.Debug, Priority.High);
 
                 var directoryPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
                 var oldDirectoryPath = Path.Combine(directoryPath, MonahrqContext.OldApplicationName);
@@ -780,7 +794,7 @@ namespace Monahrq
             }
             catch (Exception exc)
             {
-                _sessionLogger.Log(exc.GetBaseException().Message, Category.Exception, Priority.High);
+                _sessionLogger.Write(exc, "Error renaming MONAHRQ directory in My Documents");
                // throw;
             }
         }
@@ -790,7 +804,7 @@ namespace Monahrq
         /// </summary>
         public void LogDatabaseInfo()
         {
-            //_sessionLogger.Log("DEBUG: LogDatabaseInfo()", Category.Debug, Priority.High);
+            //_sessionLogger.Write("DEBUG: LogDatabaseInfo()", Category.Debug, Priority.High);
 
             var dataService = ServiceLocator.Current.GetInstance<IDomainSessionFactoryProvider>();
             if (dataService == null) return;
